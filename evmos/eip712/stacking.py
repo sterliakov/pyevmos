@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Final, TypedDict
 
-from evmos.eip712 import _WithValidator
+from evmos.eip712.base import _WithValidator
 
 MSG_DELEGATE_TYPES: Final = {
     'MsgValue': [

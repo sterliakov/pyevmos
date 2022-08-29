@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-from typing import Any, Sequence
+from typing import Any, Sequence, TypedDict
+
+
+class _WithValidator(TypedDict):
+    validator_address: str
 
 
 def create_eip712(

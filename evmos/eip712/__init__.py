@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Final, TypedDict
+from typing import Any, Final
 
 from evmos.eip712.base import (
     create_eip712,
@@ -81,10 +81,6 @@ __all__ = [
     'MSG_EDIT_VALIDATOR_TYPES',
     'MsgWithdrawValidatorCommissionInterface',
 ]
-
-
-class _WithValidator(TypedDict):
-    validator_address: str
 
 
 # gov.ts

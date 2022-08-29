@@ -13,9 +13,7 @@ def test_generate_fee():
         '20000',
         'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
     ) == {
-        'amount': [
-            {'amount': '20', 'denom': 'aphoton'},
-        ],
+        'amount': [{'amount': '20', 'denom': 'aphoton'}],
         'gas': '20000',
         'feePayer': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
     }
@@ -90,9 +88,7 @@ def test_generate_message():
         {
             'type': 'cosmos-sdk/MsgSend',
             'value': {
-                'amount': [
-                    {'amount': '1', 'denom': 'aphoton'},
-                ],
+                'amount': [{'amount': '1', 'denom': 'aphoton'}],
                 'fromAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
                 'toAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
             },
@@ -101,12 +97,7 @@ def test_generate_message():
         'accountNumber': '8',
         'chainId': 'ethermint_9000-1',
         'fee': {
-            'amount': [
-                {
-                    'amount': '20',
-                    'denom': 'aphoton',
-                },
-            ],
+            'amount': [{'amount': '20', 'denom': 'aphoton'}],
             'gas': '20000',
             'feePayer': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
         },
@@ -115,9 +106,7 @@ def test_generate_message():
             {
                 'type': 'cosmos-sdk/MsgSend',
                 'value': {
-                    'amount': [
-                        {'amount': '1', 'denom': 'aphoton'},
-                    ],
+                    'amount': [{'amount': '1', 'denom': 'aphoton'}],
                     'fromAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
                     'toAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
                 },
@@ -157,12 +146,7 @@ def test_generate_base():
             {
                 'type': 'cosmos-sdk/MsgSend',
                 'value': {
-                    'amount': [
-                        {
-                            'amount': '1',
-                            'denom': 'aphoton',
-                        },
-                    ],
+                    'amount': [{'amount': '1', 'denom': 'aphoton'}],
                     'fromAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
                     'toAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
                 },
@@ -220,9 +204,7 @@ def test_generate_base():
             'accountNumber': '8',
             'chainId': 'ethermint_9000-1',
             'fee': {
-                'amount': [
-                    {'amount': '20', 'denom': 'aphoton'},
-                ],
+                'amount': [{'amount': '20', 'denom': 'aphoton'}],
                 'gas': '20000',
                 'feePayer': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
             },
@@ -231,12 +213,7 @@ def test_generate_base():
                 {
                     'type': 'cosmos-sdk/MsgSend',
                     'value': {
-                        'amount': [
-                            {
-                                'amount': '1',
-                                'denom': 'aphoton',
-                            },
-                        ],
+                        'amount': [{'amount': '1', 'denom': 'aphoton'}],
                         'fromAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
                         'toAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
                     },
