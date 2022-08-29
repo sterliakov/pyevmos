@@ -28,6 +28,8 @@ keywords = ["blockchain", "sdk", "ethereum"]
 dependencies = [
     "eth-typing ~= 2.3",
     "hexbytes ~= 0.3.0",
+    "bech32 ~= 1.2",
+    "pysha3 ~= 1.0",
     "typing_extensions ~= 4.3.0",
 ]
 requires-python = ">=3.8"

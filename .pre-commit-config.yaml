@@ -55,5 +55,6 @@ repos:
     - id: mypy
       args: ['--config-file', 'pyproject.toml']
       additional_dependencies: [
+          "web3 ~= 5.30",
       ]
       exclude: docs/

@@ -1,4 +1,4 @@
-<!-- 
+<!--
 [![PyPi Version](https://img.shields.io/pypi/v/matic.svg)](https://pypi.python.org/pypi/matic/)
 [![Python Versions](https://img.shields.io/pypi/pyversions/matic.svg)](https://pypi.python.org/pypi/matic/)
 [![Read the Docs](https://readthedocs.org/projects/pymatic/badge/?version=latest)](https://pymatic.readthedocs.io/en/latest/?badge=latest)
@@ -9,7 +9,7 @@
 # Pyevmos - Python SDK to assist developers on Evmos chain.
 
 **Disclaimer: this package is not officialy maintained by Evmos affiliates.**
-<!-- 
+<!--
 Read our [documentation](https://readthedocs.org/projects/pymatic/badge/?version=latest) on ReadTheDocs.
 
 This project is a direct python port of [matic.js](https://github.com/maticnetwork/matic.js/) library. It includes also [maticjs-web3](https://github.com/maticnetwork/maticjs-web3/) port.
