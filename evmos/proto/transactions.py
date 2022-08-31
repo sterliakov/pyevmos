@@ -5,21 +5,15 @@ from typing import Any, Final, Sequence
 
 from sha3 import keccak_256
 
-import evmos.proto.autogen.py.cosmos.crypto.secp256k1 as secp
-import evmos.proto.autogen.py.cosmos.tx.v1beta1 as tx
-import evmos.proto.autogen.py.ethermint.crypto.v1.ethsecp256k1 as eth
 from evmos.proto.autogen.py.cosmos.base.v1beta1 import Coin
+from evmos.proto.autogen.py.cosmos.crypto import secp256k1 as secp
+from evmos.proto.autogen.py.cosmos.tx import v1beta1 as tx
 from evmos.proto.autogen.py.cosmos.tx.signing.v1beta1 import SignMode
+from evmos.proto.autogen.py.ethermint.crypto.v1 import ethsecp256k1 as eth
 from evmos.proto.utils import MessageGenerated, create_any_message
 
 SIGN_DIRECT: Final = SignMode.SIGN_MODE_DIRECT
 LEGACY_AMINO: Final = SignMode.SIGN_MODE_LEGACY_AMINO_JSON
-
-# export namespace protoTxNamespace {
-#   /* global cosmos */
-#   /* eslint no-undef: "error" */
-#   export import txn = tx.cosmos.tx.v1beta1
-# }
 
 
 def create_body_with_multiple_messages(messages: Sequence[Any], memo: str) -> tx.TxBody:
@@ -56,32 +50,32 @@ def create_signer_info(
     algo: str,
     public_key: bytes,
     sequence: int,
-    mode: int,
+    mode: int | SignMode,
 ) -> tx.SignerInfo:
     """Create a SignerInfo instance.
 
     Create :class:`~evmos.proto.autogen.py.cosmos.tx.v1beta1.SignerInfo`
     with single message provided.
     """
-    pubkey: MessageGenerated
-
     # NOTE: secp256k1 is going to be removed from evmos
     if algo == 'secp256k1':
-        pubkey = {
-            'message': secp.PubKey(key=public_key),
-            'path': 'cosmos.crypto.secp256k1.PubKey',
-        }
+        pubkey = MessageGenerated(
+            message=secp.PubKey(key=public_key),
+            path='cosmos.crypto.secp256k1.PubKey',
+        )
     else:
         # NOTE: assume ethsecp256k1 by default because after mainnet is the only one
         # that is going to be supported
-        pubkey = {
-            'message': eth.PubKey(key=public_key),
-            'path': 'ethermint.crypto.v1.ethsecp256k1.PubKey',
-        }
+        pubkey = MessageGenerated(
+            message=eth.PubKey(key=public_key),
+            path='ethermint.crypto.v1.ethsecp256k1.PubKey',
+        )
 
     return tx.SignerInfo(
         public_key=create_any_message(pubkey),
-        mode_info=tx.ModeInfo(single=tx.ModeInfoSingle(mode=mode)),  # type: ignore
+        mode_info=tx.ModeInfo(
+            single=tx.ModeInfoSingle(mode=mode)  # type: ignore[arg-type]
+        ),
         sequence=sequence,
     )
 

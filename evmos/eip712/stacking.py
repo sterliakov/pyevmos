@@ -140,6 +140,8 @@ MSG_WITHDRAW_VALIDATOR_COMMISSION_TYPES: Final = {
 }
 """Types for validator commission withdrawal message."""
 
+# FIXME: normal interface
+
 
 class MsgWithdrawValidatorCommissionInterface(TypedDict):
     """Validator commission withdrawal message."""

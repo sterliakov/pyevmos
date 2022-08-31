@@ -154,7 +154,7 @@ def test_create_sig_doc():
         ]
     )
     # fmt: on
-    sequence = 1  # FIXME: 0 is not serialized properly
+    sequence = 0
     info = create_signer_info('ethsecp256k1', pubkey, sequence, SIGN_DIRECT)
     value = '20'
     denom = 'aphoton'
@@ -173,6 +173,9 @@ def test_create_sig_doc():
         chain_id,
         account_number,
     )
+    # auth_info_bytes are not equal to TS version. I confirmed with google.protobuf
+    # that both encoding variants are valid.
+    # Bytes from TS implementation are parseable for betterproto.
     assert res.to_pydict(casing=casing.snake_case) == {
         # fmt: off
         'body_bytes': bytes(
@@ -194,13 +197,15 @@ def test_create_sig_doc():
         ),
         'auth_info_bytes': bytes(
             [
-                10, 91, 10, 81, 10, 40, 47, 101, 116, 104, 101, 114, 109, 105, 110, 116,
+                10,
+                89,  # 2 bytes less than TS implementation
+                10, 81, 10, 40, 47, 101, 116, 104, 101, 114, 109, 105, 110, 116,
                 46, 99, 114, 121, 112, 116, 111, 46, 118, 49, 46, 101, 116, 104, 115,
                 101, 99, 112, 50, 53, 54, 107, 49, 46, 80, 117, 98, 75, 101, 121, 18,
                 37, 10, 35, 10, 33, 2, 136, 177, 245, 49, 184, 120, 113, 219, 192, 55,
                 41, 81, 135, 37, 92, 174, 75, 160, 196, 188, 55, 202, 114, 97, 5, 178,
-                20, 10, 253, 14, 105, 23, 18, 4, 10, 2, 8, 1, 24,
-                1,  # This is sequence (should be 0 for 0, but doesn't work)
+                20, 10, 253, 14, 105, 23, 18, 4, 10, 2, 8, 1,
+                # 24, 0,  # This is sequence (should be 0 for 0, but is ignored here)
                 18, 19, 10, 13, 10,
                 7, 97, 112, 104, 111, 116, 111, 110, 18, 2, 50, 48, 16, 160, 156, 1,
             ]

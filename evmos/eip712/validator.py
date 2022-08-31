@@ -2,9 +2,8 @@ from __future__ import annotations
 
 from typing import Final, TypedDict
 
+from evmos.constants import NOT_MODIFY
 from evmos.eip712.base import _WithValidator
-
-NOT_MODIFY: Final = '[do-not-modify]'
 
 MSG_EDIT_VALIDATOR_TYPES: Final = {
     'TypeDescription': [
@@ -38,6 +37,7 @@ class MsgEditValidatorInterface(TypedDict):
 
 
 def create_msg_edit_validator(
+    *,
     moniker: str | None,
     identity: str | None,
     website: str | None,
