@@ -2,6 +2,13 @@ from __future__ import annotations
 
 from typing import Sequence
 
+from evmos.proto.authz import (
+    RevokeMessages,
+    StakeAuthTypes,
+    create_msg_grant,
+    create_msg_revoke,
+    create_stake_authorization,
+)
 from evmos.proto.autogen.py.cosmos.bank.v1beta1 import MsgSend
 from evmos.proto.autogen.py.cosmos.base.v1beta1 import Coin
 from evmos.proto.autogen.py.cosmos.gov.v1beta1 import MsgVote, VoteOption
@@ -10,9 +17,72 @@ from evmos.proto.autogen.py.ethermint.evm import v1 as ethermint
 from evmos.proto.autogen.py.ethermint.types.v1 import ExtensionOptionsWeb3Tx
 from evmos.proto.autogen.py.ibc.applications.transfer.v1 import MsgTransfer
 from evmos.proto.autogen.py.ibc.core.client.v1 import Height
-from evmos.proto.utils import MessageGenerated
+from evmos.proto.erc20 import create_msg_convert_coin, create_msg_convert_erc20
+from evmos.proto.feesplit import (
+    create_msg_cancel_fee_split,
+    create_msg_register_fee_split,
+    create_msg_update_fee_split,
+)
+from evmos.proto.staking import (
+    create_msg_begin_redelegate,
+    create_msg_delegate,
+    create_msg_undelegate,
+    create_msg_withdraw_delegator_reward,
+    create_msg_withdraw_validator_commission,
+)
+from evmos.proto.transactions import (
+    create_auth_info,
+    create_body,
+    create_body_with_multiple_messages,
+    create_fee,
+    create_sig_doc,
+    create_signer_info,
+    create_transaction,
+    create_transaction_with_multiple_messages,
+)
+from evmos.proto.utils import MessageGenerated, create_any_message
+from evmos.proto.validator import create_msg_edit_validator
 
-# msgSend.ts
+__all__ = [
+    'create_msg_grant',
+    'create_msg_revoke',
+    'create_stake_authorization',
+    'StakeAuthTypes',
+    'RevokeMessages',
+    'create_msg_convert_coin',
+    'create_msg_convert_erc20',
+    'create_msg_cancel_fee_split',
+    'create_msg_register_fee_split',
+    'create_msg_update_fee_split',
+    'create_msg_delegate',
+    'create_msg_begin_redelegate',
+    'create_msg_undelegate',
+    'create_msg_withdraw_delegator_reward',
+    'create_msg_withdraw_validator_commission',
+    'create_body_with_multiple_messages',
+    'create_body',
+    'create_fee',
+    'create_signer_info',
+    'create_auth_info',
+    'create_sig_doc',
+    'create_transaction_with_multiple_messages',
+    'create_transaction',
+    'MessageGenerated',
+    'create_any_message',
+    'create_msg_edit_validator',
+    'create_msg_send',
+    'create_ibc_msg_transfer',
+    'bytes_to_msg_ethereum_tx',
+    'bytes_to_legacy_tx',
+    'bytes_to_access_list_tx',
+    'bytes_to_dynamic_fee_tx',
+    'bytes_to_tx_raw',
+    'bytes_to_tx_body',
+    'bytes_to_auth_info',
+    'create_tx_raw',
+    'create_msg_vote',
+    'create_web3_extension',
+]
 
 
 def create_msg_send(
