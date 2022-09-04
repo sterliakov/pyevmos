@@ -44,6 +44,7 @@ from evmos.transactions.staking import (
     create_tx_msg_withdraw_validator_commission,
 )
 from evmos.transactions.validator import create_tx_msg_edit_validator
+from evmos.utils.polyfill import removeprefix
 
 __all__ = [
     'create_tx_msg_vote',
@@ -306,7 +307,7 @@ def signature_to_web3_extension(
     hex_formatted_signature: HexStr,
 ) -> MessageGenerated[ExtensionOptionsWeb3Tx]:
     """Create a message with web3 extension from signature."""
-    signature = hex_formatted_signature.removeprefix('0x')
+    signature = removeprefix(hex_formatted_signature, '0x')
     return create_web3_extension(
         chain.chain_id,
         sender.account_address,
