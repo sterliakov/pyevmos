@@ -235,22 +235,22 @@ def test_valid_eip712():
         9,
         '',
     )
-    assert base64.b64encode(bytes(tx['legacyAmino']['body'])) == (
+    assert base64.b64encode(bytes(tx.legacy_amino.body)) == (
         b'CogBChwvY29zbW9zLmJhbmsudjFiZXRhMS5Nc2dTZW5kEmgKK2V0aG0xdGZlZ'
         b'2Y1MG41eGwwaGQ1Y3hmempjYTN5bHNmcGcwZm5lZDVncW0SK2V0aG0xdGZlZ2Y'
         b'1MG41eGwwaGQ1Y3hmempjYTN5bHNmcGcwZm5lZDVncW0aDAoHYXBob3RvbhIBMQ=='
     )
-    assert base64.b64encode(bytes(tx['legacyAmino']['authInfo'])) == (
+    assert base64.b64encode(bytes(tx.legacy_amino.auth_info)) == (
         b'ClkKTwooL2V0aGVybWludC5jcnlwdG8udjEuZXRoc2VjcDI1NmsxLlB1YktleRIj'
         b'CiECBPD7i/R1oivGw1JbgVxD4iiKeA+x4XAc7UOeyzKg6pkSBAoCCH8YARITCg0K'
         b'B2FwaG90b24SAjIwEMCaDA=='
     )
-    assert base64.b64encode(bytes(tx['signDirect']['body'])) == (
+    assert base64.b64encode(bytes(tx.sign_direct.body)) == (
         b'CogBChwvY29zbW9zLmJhbmsudjFiZXRhMS5Nc2dTZW5kEmgKK2V0aG0xdGZlZ2Y1'
         b'MG41eGwwaGQ1Y3hmempjYTN5bHNmcGcwZm5lZDVncW0SK2V0aG0xdGZlZ2Y1MG41'
         b'eGwwaGQ1Y3hmempjYTN5bHNmcGcwZm5lZDVncW0aDAoHYXBob3RvbhIBMQ=='
     )
-    assert base64.b64encode(bytes(tx['signDirect']['authInfo'])) == (
+    assert base64.b64encode(bytes(tx.sign_direct.auth_info)) == (
         b'ClkKTwooL2V0aGVybWludC5jcnlwdG8udjEuZXRoc2VjcDI1NmsxLlB1YktleRIj'
         b'CiECBPD7i/R1oivGw1JbgVxD4iiKeA+x4XAc7UOeyzKg6pkSBAoCCAEYARITCg0K'
         b'B2FwaG90b24SAjIwEMCaDA=='

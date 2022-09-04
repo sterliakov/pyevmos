@@ -1,3 +1,5 @@
+from dataclasses import asdict
+
 from evmos.eip712.base import (
     create_eip712,
     generate_fee,
@@ -117,41 +119,43 @@ def test_generate_message():
 
 
 def test_generate_base():
-    assert create_eip712(
-        generate_types(
-            {
-                'MsgValue': [
-                    {'name': 'fromAddress', 'type': 'string'},
-                    {'name': 'toAddress', 'type': 'string'},
-                    {'name': 'amount', 'type': 'TypeAmount[]'},
-                ],
-                'TypeAmount': [
-                    {'name': 'denom', 'type': 'string'},
-                    {'name': 'amount', 'type': 'string'},
-                ],
-            }
-        ),
-        9000,
-        generate_message(
-            '8',
-            '0',
-            'ethermint_9000-1',
-            '',
-            generate_fee(
-                '20',
-                'aphoton',
-                '20000',
-                'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+    assert asdict(
+        create_eip712(
+            generate_types(
+                {
+                    'MsgValue': [
+                        {'name': 'fromAddress', 'type': 'string'},
+                        {'name': 'toAddress', 'type': 'string'},
+                        {'name': 'amount', 'type': 'TypeAmount[]'},
+                    ],
+                    'TypeAmount': [
+                        {'name': 'denom', 'type': 'string'},
+                        {'name': 'amount', 'type': 'string'},
+                    ],
+                }
             ),
-            {
-                'type': 'cosmos-sdk/MsgSend',
-                'value': {
-                    'amount': [{'amount': '1', 'denom': 'aphoton'}],
-                    'fromAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
-                    'toAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+            9000,
+            generate_message(
+                '8',
+                '0',
+                'ethermint_9000-1',
+                '',
+                generate_fee(
+                    '20',
+                    'aphoton',
+                    '20000',
+                    'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+                ),
+                {
+                    'type': 'cosmos-sdk/MsgSend',
+                    'value': {
+                        'amount': [{'amount': '1', 'denom': 'aphoton'}],
+                        'fromAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+                        'toAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+                    },
                 },
-            },
-        ),
+            ),
+        )
     ) == {
         'types': {
             'EIP712Domain': [

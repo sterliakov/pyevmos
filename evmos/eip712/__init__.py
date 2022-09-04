@@ -3,6 +3,8 @@ from __future__ import annotations
 from typing import Any, Final
 
 from evmos.eip712.base import (
+    Domain,
+    EIPToSign,
     create_eip712,
     generate_fee,
     generate_message,
@@ -80,6 +82,8 @@ __all__ = [
     'MsgWithdrawDelegatorRewardInterface',
     'MSG_EDIT_VALIDATOR_TYPES',
     'MsgWithdrawValidatorCommissionInterface',
+    'EIPToSign',
+    'Domain',
 ]
 
 

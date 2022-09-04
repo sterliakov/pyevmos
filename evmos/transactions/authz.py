@@ -53,8 +53,8 @@ def create_tx_msg_stake_authorization(
     )
 
     return TxGeneratedBase(
-        sign_direct=tx['signDirect'],
-        legacy_amino=tx['legacyAmino'],
+        sign_direct=tx.sign_direct,
+        legacy_amino=tx.legacy_amino,
     )
 
 
@@ -89,6 +89,6 @@ def create_tx_msg_stake_revoke_authorization(
     )
 
     return TxGeneratedBase(
-        sign_direct=tx['signDirect'],
-        legacy_amino=tx['legacyAmino'],
+        sign_direct=tx.sign_direct,
+        legacy_amino=tx.legacy_amino,
     )

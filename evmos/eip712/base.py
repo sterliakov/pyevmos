@@ -1,28 +1,50 @@
 from __future__ import annotations
 
-from typing import Any, Sequence, TypedDict
+from dataclasses import dataclass
+from typing import Any, Mapping, Sequence, TypedDict
 
 
 class _WithValidator(TypedDict):
     validator_address: str
 
 
+@dataclass
+class Domain:
+    """This describes ``domain`` field of :class:`EIPToSign`."""
+
+    name: str
+    version: str
+    chainId: int  # noqa: N815
+    verifyingContract: str  # noqa: N815
+    salt: str
+
+
+@dataclass
+class EIPToSign:
+    """EIP message to sign."""
+
+    types: dict[str, Any]
+    primaryType: str  # noqa: N815
+    domain: Domain
+    message: dict[str, Any]
+
+
 def create_eip712(
     types: dict[str, Any], chain_id: int, message: dict[str, Any]
-) -> dict[str, Any]:
+) -> EIPToSign:
     """Create `EIP712 <https://eips.ethereum.org/EIPS/eip-712>`_ data."""
-    return {
-        'types': types,
-        'primaryType': 'Tx',
-        'domain': {
-            'name': 'Cosmos Web3',
-            'version': '1.0.0',
-            'chainId': chain_id,
-            'verifyingContract': 'cosmos',
-            'salt': '0',
-        },
-        'message': message,
-    }
+    return EIPToSign(
+        types=types,
+        primaryType='Tx',
+        domain=Domain(
+            name='Cosmos Web3',
+            version='1.0.0',
+            chainId=chain_id,
+            verifyingContract='cosmos',
+            salt='0',
+        ),
+        message=message,
+    )
 
 
 def generate_message_with_multiple_transactions(
@@ -31,7 +53,7 @@ def generate_message_with_multiple_transactions(
     chain_cosmos_id: str,
     memo: str,
     fee: dict[str, Any],
-    msgs: Sequence[dict[str, Any]],
+    msgs: Sequence[Mapping[str, Any]],
 ) -> dict[str, Any]:
     """Create a message with multiple transactions included."""
     return {
@@ -50,7 +72,7 @@ def generate_message(
     chain_cosmos_id: str,
     memo: str,
     fee: dict[str, Any],
-    msg: dict[str, Any],
+    msg: Mapping[str, Any],
 ) -> dict[str, Any]:
     """Create a message with one transaction included."""
     return generate_message_with_multiple_transactions(
@@ -102,12 +124,7 @@ def generate_types(msg_values: dict[str, Any]) -> dict[str, Any]:
 def generate_fee(amount: str, denom: str, gas: str, fee_payer: str) -> dict[str, Any]:
     """Generate fee definition structure."""
     return {
-        'amount': [
-            {
-                'amount': amount,
-                'denom': denom,
-            },
-        ],
+        'amount': [{'amount': amount, 'denom': denom}],
         'gas': gas,
         'feePayer': fee_payer,
     }
