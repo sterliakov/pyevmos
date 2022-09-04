@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from evmos.constants import NOT_MODIFY
-from evmos.proto.autogen.py.cosmos.staking import v1beta1 as staking
+from evmos.proto.autogen.py.cosmos.staking.v1beta1 import Description, MsgEditValidator
 from evmos.proto.utils import MessageGenerated
 
 
@@ -15,10 +15,10 @@ def create_msg_edit_validator(
     validator_address: str,
     commission_rate: str | None,
     min_self_delegation: str | None,
-) -> MessageGenerated[staking.MsgEditValidator]:
+) -> MessageGenerated[MsgEditValidator]:
     """Create message for validator editing."""
-    message = staking.MsgEditValidator(
-        description=staking.Description(
+    message = MsgEditValidator(
+        description=Description(
             moniker=moniker or NOT_MODIFY,
             identity=identity or NOT_MODIFY,
             website=website or NOT_MODIFY,

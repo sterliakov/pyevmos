@@ -2,7 +2,11 @@ from __future__ import annotations
 
 from typing import Sequence
 
-from evmos.proto.autogen.py.evmos.feesplit import v1 as feesplit
+from evmos.proto.autogen.py.evmos.feesplit.v1 import (
+    MsgCancelFeeSplit,
+    MsgRegisterFeeSplit,
+    MsgUpdateFeeSplit,
+)
 from evmos.proto.utils import MessageGenerated
 
 # msgCancelFeeSplit.ts
@@ -11,9 +15,9 @@ from evmos.proto.utils import MessageGenerated
 def create_msg_cancel_fee_split(
     contract_address: str,
     deployer_address: str,
-) -> MessageGenerated[feesplit.MsgCancelFeeSplit]:
+) -> MessageGenerated[MsgCancelFeeSplit]:
     """Create a message for fee split cancellation."""
-    msg = feesplit.MsgCancelFeeSplit(
+    msg = MsgCancelFeeSplit(
         contract_address=contract_address,
         deployer_address=deployer_address,
     )
@@ -31,9 +35,9 @@ def create_msg_register_fee_split(
     deployer_address: str,
     withdrawer_address: str,
     nonces: Sequence[int],
-) -> MessageGenerated[feesplit.MsgRegisterFeeSplit]:
+) -> MessageGenerated[MsgRegisterFeeSplit]:
     """Create a message for fee split registration."""
-    msg = feesplit.MsgRegisterFeeSplit(
+    msg = MsgRegisterFeeSplit(
         contract_address=contract_address,
         deployer_address=deployer_address,
         withdrawer_address=withdrawer_address,
@@ -52,9 +56,9 @@ def create_msg_update_fee_split(
     contract_address: str,
     deployer_address: str,
     withdrawer_address: str,
-) -> MessageGenerated[feesplit.MsgUpdateFeeSplit]:
+) -> MessageGenerated[MsgUpdateFeeSplit]:
     """Create a message for fee split update."""
-    msg = feesplit.MsgUpdateFeeSplit(
+    msg = MsgUpdateFeeSplit(
         contract_address=contract_address,
         deployer_address=deployer_address,
         withdrawer_address=withdrawer_address,

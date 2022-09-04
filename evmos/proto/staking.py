@@ -1,8 +1,15 @@
 from __future__ import annotations
 
 from evmos.proto.autogen.py.cosmos.base.v1beta1 import Coin
-from evmos.proto.autogen.py.cosmos.distribution import v1beta1 as dist
-from evmos.proto.autogen.py.cosmos.staking import v1beta1 as staking
+from evmos.proto.autogen.py.cosmos.distribution.v1beta1 import (
+    MsgWithdrawDelegatorReward,
+    MsgWithdrawValidatorCommission,
+)
+from evmos.proto.autogen.py.cosmos.staking.v1beta1 import (
+    MsgBeginRedelegate,
+    MsgDelegate,
+    MsgUndelegate,
+)
 from evmos.proto.utils import MessageGenerated
 
 
@@ -11,11 +18,11 @@ def create_msg_delegate(
     validator_address: str,
     amount: str,
     denom: str,
-) -> MessageGenerated[staking.MsgDelegate]:
+) -> MessageGenerated[MsgDelegate]:
     """Create a message for staking delegation."""
     value = Coin(denom=denom, amount=amount)
 
-    message = staking.MsgDelegate(
+    message = MsgDelegate(
         delegator_address=delegator_address,
         validator_address=validator_address,
         amount=value,
@@ -33,11 +40,11 @@ def create_msg_begin_redelegate(
     validator_dst_address: str,
     amount: str,
     denom: str,
-) -> MessageGenerated[staking.MsgBeginRedelegate]:
+) -> MessageGenerated[MsgBeginRedelegate]:
     """Create a message for staking redelegation."""
     value = Coin(denom=denom, amount=amount)
 
-    message = staking.MsgBeginRedelegate(
+    message = MsgBeginRedelegate(
         delegator_address=delegator_address,
         validator_src_address=validator_src_address,
         validator_dst_address=validator_dst_address,
@@ -55,11 +62,11 @@ def create_msg_undelegate(
     validator_address: str,
     amount: str,
     denom: str,
-) -> MessageGenerated[staking.MsgUndelegate]:
+) -> MessageGenerated[MsgUndelegate]:
     """Create a message for staking undelegation."""
     value = Coin(denom=denom, amount=amount)
 
-    message = staking.MsgUndelegate(
+    message = MsgUndelegate(
         delegator_address=delegator_address,
         validator_address=validator_address,
         amount=value,
@@ -74,9 +81,9 @@ def create_msg_undelegate(
 def create_msg_withdraw_delegator_reward(
     delegator_address: str,
     validator_address: str,
-) -> MessageGenerated[dist.MsgWithdrawDelegatorReward]:
+) -> MessageGenerated[MsgWithdrawDelegatorReward]:
     """Create a message for delegator rewards withdrawal."""
-    message = dist.MsgWithdrawDelegatorReward(
+    message = MsgWithdrawDelegatorReward(
         delegator_address=delegator_address,
         validator_address=validator_address,
     )
@@ -89,9 +96,9 @@ def create_msg_withdraw_delegator_reward(
 
 def create_msg_withdraw_validator_commission(
     validator_address: str,
-) -> MessageGenerated[dist.MsgWithdrawValidatorCommission]:
+) -> MessageGenerated[MsgWithdrawValidatorCommission]:
     """Create a message for validator commission withdrawal."""
-    message = dist.MsgWithdrawValidatorCommission(
+    message = MsgWithdrawValidatorCommission(
         validator_address=validator_address,
     )
 

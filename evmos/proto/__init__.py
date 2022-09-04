@@ -3,6 +3,8 @@ from __future__ import annotations
 from typing import Sequence
 
 from evmos.proto.authz import (
+    MsgGrant,
+    MsgRevoke,
     RevokeMessages,
     StakeAuthTypes,
     create_msg_grant,
@@ -17,13 +19,26 @@ from evmos.proto.autogen.py.ethermint.evm import v1 as ethermint
 from evmos.proto.autogen.py.ethermint.types.v1 import ExtensionOptionsWeb3Tx
 from evmos.proto.autogen.py.ibc.applications.transfer.v1 import MsgTransfer
 from evmos.proto.autogen.py.ibc.core.client.v1 import Height
-from evmos.proto.erc20 import create_msg_convert_coin, create_msg_convert_erc20
+from evmos.proto.erc20 import (
+    MsgConvertCoin,
+    MsgConvertErc20,
+    create_msg_convert_coin,
+    create_msg_convert_erc20,
+)
 from evmos.proto.feesplit import (
+    MsgCancelFeeSplit,
+    MsgRegisterFeeSplit,
+    MsgUpdateFeeSplit,
     create_msg_cancel_fee_split,
     create_msg_register_fee_split,
     create_msg_update_fee_split,
 )
 from evmos.proto.staking import (
+    MsgBeginRedelegate,
+    MsgDelegate,
+    MsgUndelegate,
+    MsgWithdrawDelegatorReward,
+    MsgWithdrawValidatorCommission,
     create_msg_begin_redelegate,
     create_msg_delegate,
     create_msg_undelegate,
@@ -41,7 +56,7 @@ from evmos.proto.transactions import (
     create_transaction_with_multiple_messages,
 )
 from evmos.proto.utils import MessageGenerated, create_any_message
-from evmos.proto.validator import create_msg_edit_validator
+from evmos.proto.validator import MsgEditValidator, create_msg_edit_validator
 
 __all__ = [
     'create_msg_grant',
@@ -49,6 +64,19 @@ __all__ = [
     'create_stake_authorization',
     'StakeAuthTypes',
     'RevokeMessages',
+    'MsgConvertCoin',
+    'MsgConvertErc20',
+    'MsgGrant',
+    'MsgRevoke',
+    'MsgCancelFeeSplit',
+    'MsgUpdateFeeSplit',
+    'MsgRegisterFeeSplit',
+    'MsgWithdrawDelegatorReward',
+    'MsgWithdrawValidatorCommission',
+    'MsgDelegate',
+    'MsgBeginRedelegate',
+    'MsgUndelegate',
+    'MsgEditValidator',
     'create_msg_convert_coin',
     'create_msg_convert_erc20',
     'create_msg_cancel_fee_split',
