@@ -35,12 +35,17 @@ def test_send_money_simple(sender, sender_pk, receiver_addr, url):
         try:
             assert response['tx_response']['code'] == 0
         except KeyError:
-            # 2 - timeout, 32 - old sequence (time-related too)
-            if response['code'] in {2, 32}:
-                time.sleep(10)
+            # 2 - timeout
+            if response['code'] == 2:
+                time.sleep(5)
                 continue
-            else:
-                raise
+            raise
+        except AssertionError:
+            # 32 - old sequence (time-related too)
+            if response['tx_response']['code'] == 32:
+                time.sleep(1)
+                continue
+            raise
         else:
             break
     else:
@@ -69,12 +74,17 @@ def test_send_money_eip712(receiver, receiver_pk, sender_addr, url):
         try:
             assert response['tx_response']['code'] == 0
         except KeyError:
-            # 2 - timeout, 32 - old sequence (time-related too)
-            if response['code'] in {2, 32}:
-                time.sleep(10)
+            # 2 - timeout
+            if response['code'] == 2:
+                time.sleep(5)
                 continue
-            else:
-                raise
+            raise
+        except AssertionError:
+            # 32 - old sequence (time-related too)
+            if response['tx_response']['code'] == 32:
+                time.sleep(1)
+                continue
+            raise
         else:
             break
     else:
