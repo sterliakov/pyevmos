@@ -56,6 +56,8 @@ jobs:
       - name: Run regular tests
         run: |
           pytest -vv
+      - name: Wait for chain to sync
+        run: sleep 5s
 
   docs:
     runs-on: ubuntu-latest
