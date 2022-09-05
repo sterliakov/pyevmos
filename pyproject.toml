@@ -51,7 +51,7 @@ test = [
     'pytest>=6.4.0',
     "pytest-cov",
     "pre-commit",
-    "dotenv",
+    "python-dotenv",
 ]
 docs = [
     'docutils>=0.14,<0.18',  # Sphinx haven't upgraded yet

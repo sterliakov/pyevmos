@@ -14,7 +14,7 @@ from evmos.wallet import (
 
 
 @pytest.mark.online()
-def test_send_money_simple(sender, sender_pk, receiver, url):
+def test_send_money_simple(sender, sender_pk, receiver_addr, url):
     for _ in range(2):
         sender.update_from_chain(url)
 
@@ -23,7 +23,7 @@ def test_send_money_simple(sender, sender_pk, receiver, url):
             sender,
             TESTNET_FEE,
             '',
-            receiver,
+            receiver_addr,
             '1',
             'atevmos',
         )
@@ -51,21 +51,21 @@ def test_send_money_simple(sender, sender_pk, receiver, url):
 
 
 @pytest.mark.online()
-def test_send_money_eip712(sender, sender_pk, receiver, url):
+def test_send_money_eip712(receiver, receiver_pk, sender_addr, url):
     for _ in range(2):
-        sender.update_from_chain(url)
+        receiver.update_from_chain(url)
 
         tx = create_message_send(
             TESTNET_CHAIN,
-            sender,
+            receiver,
             TESTNET_FEE,
             '',
-            receiver,
+            sender_addr,
             '1',
             'atevmos',
         )
 
-        signed = sign_transaction_eip712(sender, tx, sender_pk)
+        signed = sign_transaction_eip712(receiver, tx, receiver_pk)
         response = broadcast(signed, url)
         pprint(response)
 

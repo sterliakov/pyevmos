@@ -18,11 +18,12 @@ from collections.abc import Iterable, Iterator, Mapping
 from dataclasses import asdict
 from itertools import groupby
 from operator import itemgetter
-from typing import Any, Sequence, TypeAlias, TypedDict
+from typing import Any, Sequence, TypedDict
 
 from eth_abi import encode, is_encodable, is_encodable_type
 from eth_abi.grammar import parse
 from eth_utils import ValidationError, keccak, to_tuple, toolz
+from typing_extensions import TypeAlias
 
 from evmos.eip712 import EIPToSign
 

@@ -2,9 +2,10 @@ from __future__ import annotations
 
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
-from typing import Any, Concatenate, Literal, ParamSpec, overload
+from typing import Any, Literal, overload
 
 import requests
+from typing_extensions import Concatenate, ParamSpec
 
 from evmos.eip712 import (
     EIPToSign,
