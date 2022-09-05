@@ -41,6 +41,7 @@ jobs:
       max-parallel: 1  # Do not let the tests interfere
       matrix:
         python-version: ['3.8', '3.9', '3.10']
+      fail-fast: false
     steps:
       - name: Checkout
         uses: actions/checkout@v3

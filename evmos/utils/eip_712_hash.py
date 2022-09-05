@@ -18,7 +18,7 @@ from collections.abc import Iterable, Iterator, Mapping
 from dataclasses import asdict
 from itertools import groupby
 from operator import itemgetter
-from typing import Any, Sequence, TypedDict
+from typing import Any, Sequence, TypedDict  # noqa: F401  # fails to detect Sequence
 
 from eth_abi import encode, is_encodable, is_encodable_type
 from eth_abi.grammar import parse
@@ -33,7 +33,7 @@ class _FieldT(TypedDict):
     type: str  # noqa: A003
 
 
-_TypesT: TypeAlias = Mapping[str, Sequence[_FieldT]]
+_TypesT: TypeAlias = 'Mapping[str, Sequence[_FieldT]]'  # 3.8 compat
 
 
 def get_dependencies(primary_type: str, types: _TypesT) -> tuple[str, ...]:
