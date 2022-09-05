@@ -24,7 +24,6 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.8', '3.9', '3.10']
-      fail-fast: false
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -32,20 +31,16 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run: |
-          pip install pre-commit
-      - name: Run pre-commit
-        run: |
-          pre-commit install
-          pre-commit run --all-files -v
+      - uses: pre-commit/action@v2.0.0
+        with:
+          extra_args: --all-files --hook-stage push
 
   test:
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 1  # Do not let the tests interfere
       matrix:
         python-version: ['3.8', '3.9', '3.10']
-      fail-fast: false
     steps:
       - name: Checkout
         uses: actions/checkout@v3
