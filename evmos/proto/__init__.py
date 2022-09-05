@@ -14,7 +14,7 @@ from evmos.proto.authz import (
 from evmos.proto.autogen.py.cosmos.bank.v1beta1 import MsgSend
 from evmos.proto.autogen.py.cosmos.base.v1beta1 import Coin
 from evmos.proto.autogen.py.cosmos.gov.v1beta1 import MsgVote, VoteOption
-from evmos.proto.autogen.py.cosmos.tx import v1beta1 as tx
+from evmos.proto.autogen.py.cosmos.tx.v1beta1 import AuthInfo, TxBody, TxRaw
 from evmos.proto.autogen.py.ethermint.evm import v1 as ethermint
 from evmos.proto.autogen.py.ethermint.types.v1 import ExtensionOptionsWeb3Tx
 from evmos.proto.autogen.py.ibc.applications.transfer.v1 import MsgTransfer
@@ -77,6 +77,9 @@ __all__ = [
     'MsgBeginRedelegate',
     'MsgUndelegate',
     'MsgEditValidator',
+    'TxRaw',
+    'AuthInfo',
+    'TxBody',
     'create_msg_convert_coin',
     'create_msg_convert_erc20',
     'create_msg_cancel_fee_split',
@@ -204,28 +207,28 @@ def bytes_to_dynamic_fee_tx(binary_data: bytes) -> ethermint.DynamicFeeTx:
 # txRaw.ts
 
 
-def bytes_to_tx_raw(binary_data: bytes) -> tx.TxRaw:
+def bytes_to_tx_raw(binary_data: bytes) -> TxRaw:
     """Deserialize :class:`evmos.proto.autogen.py.cosmos.tx.v1beta1.TxRaw`."""
-    return tx.TxRaw().parse(binary_data)
+    return TxRaw().parse(binary_data)
 
 
-def bytes_to_tx_body(binary_data: bytes) -> tx.TxBody:
+def bytes_to_tx_body(binary_data: bytes) -> TxBody:
     """Deserialize :class:`evmos.proto.autogen.py.cosmos.tx.v1beta1.TxBody`."""
-    return tx.TxBody().parse(binary_data)
+    return TxBody().parse(binary_data)
 
 
-def bytes_to_auth_info(binary_data: bytes) -> tx.AuthInfo:
+def bytes_to_auth_info(binary_data: bytes) -> AuthInfo:
     """Deserialize :class:`evmos.proto.autogen.py.cosmos.tx.v1beta1.AuthInfo`."""
-    return tx.AuthInfo().parse(binary_data)
+    return AuthInfo().parse(binary_data)
 
 
 def create_tx_raw(
     body_bytes: bytes,
     auth_info_bytes: bytes,
     signatures: Sequence[bytes],
-) -> MessageGenerated[tx.TxRaw]:
+) -> MessageGenerated[TxRaw]:
     """Create message with raw transaction."""
-    message = tx.TxRaw(
+    message = TxRaw(
         body_bytes=body_bytes,
         auth_info_bytes=auth_info_bytes,
         signatures=list(signatures),
