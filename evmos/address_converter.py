@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import re
-from collections import namedtuple
-from typing import Callable, Final
+from dataclasses import dataclass
+from typing import Callable, Final, Generic, TypeVar
 
 import bech32
 from eth_typing import HexStr
@@ -38,7 +38,19 @@ def is_valid_checksum_address(address: HexStr, chain_id: int | None = None) -> b
     )
 
 
-Chain: Final = namedtuple('Chain', ['decoder', 'encoder', 'name'])
+_T = TypeVar('_T')
+
+
+@dataclass
+class Chain(Generic[_T]):
+    """Chain decoder-encoder pair."""
+
+    decoder: Callable[[_T], bytes]
+    """Address decoder for given chain."""
+    encoder: Callable[[bytes], _T]
+    """Address encoder for given chain."""
+    name: str
+    """Chain name."""
 
 
 def make_checksummed_hex_decoder(
@@ -47,6 +59,7 @@ def make_checksummed_hex_decoder(
     """Make decoder for hex-based address."""
 
     def decoder(data: HexStr) -> bytes:
+        """Address decoder."""
         stripped = removeprefix(data, '0x')
         if (
             not is_valid_checksum_address(data, chain_id)
@@ -65,12 +78,13 @@ def make_checksummed_hex_encoder(
     """Make encoder for hex-based address."""
 
     def encoder(data: bytes) -> HexStr:
+        """Address encoder."""
         return to_checksum_address(HexStr(data.hex()), chain_id)
 
     return encoder
 
 
-def hex_checksum_chain(name: str, chain_id: int | None = None) -> Chain:
+def hex_checksum_chain(name: str, chain_id: int | None = None) -> Chain[HexStr]:
     """Chain with hex address."""
     return Chain(
         decoder=make_checksummed_hex_decoder(chain_id),
@@ -87,6 +101,7 @@ def make_bech32_decoder(current_prefix: str) -> Callable[[str], bytes]:
     """Make decoder for bech32-based address."""
 
     def decoder(data: str) -> bytes:
+        """Address decoder."""
         prefix, words = bech32.bech32_decode(data)
         if prefix != current_prefix:
             raise ValueError('Unrecognised address format')
@@ -103,12 +118,13 @@ def make_bech32_encoder(prefix: str) -> Callable[[bytes], str]:
     """Make encoder for bech32-based address."""
 
     def encoder(data: bytes) -> str:
+        """Address encoder."""
         return bech32.bech32_encode(prefix, bech32.convertbits(data, 8, 5))
 
     return encoder
 
 
-def bech32_chain(name: str, prefix: str) -> Chain:
+def bech32_chain(name: str, prefix: str) -> Chain[str]:
     """Chain with bech32 address."""
     return Chain(
         decoder=make_bech32_decoder(prefix),
@@ -121,7 +137,7 @@ ETHERMINT: Final = bech32_chain('ETHERMINT', 'ethm')
 """Ethermint chain address converter."""
 
 
-def eth_to_ethermint(eth_address: str) -> str:
+def eth_to_ethermint(eth_address: HexStr) -> str:
     """Eth -> Ethermint address conversion."""
     data = ETH.decoder(eth_address)
     return ETHERMINT.encoder(data)
@@ -137,7 +153,7 @@ EVMOS: Final = bech32_chain('EVMOS', 'evmos')
 """Evmos chain address converter."""
 
 
-def eth_to_evmos(eth_address: str) -> str:
+def eth_to_evmos(eth_address: HexStr) -> str:
     """Eth -> Evmos address conversion."""
     data = ETH.decoder(eth_address)
     return EVMOS.encoder(data)
@@ -153,7 +169,7 @@ OSMOSIS: Final = bech32_chain('OSMOSIS', 'osmo')
 """Osmosis chain address converter."""
 
 
-def eth_to_osmosis(eth_address: str) -> str:
+def eth_to_osmosis(eth_address: HexStr) -> str:
     """Eth -> Osmosis address conversion."""
     data = ETH.decoder(eth_address)
     return OSMOSIS.encoder(data)
@@ -169,7 +185,7 @@ COSMOS: Final = bech32_chain('COSMOS', 'cosmos')
 """Cosmos chain address converter."""
 
 
-def eth_to_cosmos(eth_address: str) -> str:
+def eth_to_cosmos(eth_address: HexStr) -> str:
     """Eth -> Cosmos address conversion."""
     data = ETH.decoder(eth_address)
     return COSMOS.encoder(data)
@@ -185,7 +201,7 @@ KYVE: Final = bech32_chain('KORELLIA', 'kyve')
 """Kyve chain address converter."""
 
 
-def eth_to_kyve(eth_address: str) -> str:
+def eth_to_kyve(eth_address: HexStr) -> str:
     """Eth -> Kyve address conversion."""
     data = ETH.decoder(eth_address)
     return KYVE.encoder(data)
