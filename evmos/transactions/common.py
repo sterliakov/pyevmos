@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-from collections.abc import Callable, Mapping
 from dataclasses import dataclass
-from typing import Any, Literal, overload
+from typing import Any, Callable, Literal, Mapping, overload
 
 import requests
 from typing_extensions import Concatenate, ParamSpec

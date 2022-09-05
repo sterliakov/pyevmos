@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import Mapping
-from typing import Any
+from typing import Any, Mapping
 
 from evmos.eip712 import MSG_EDIT_VALIDATOR_TYPES, create_msg_edit_validator
 from evmos.proto import MessageGenerated, MsgEditValidator

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import Sequence
-from typing import Any, Final
+from typing import Any, Final, Sequence
 
 MSG_CANCEL_FEE_SPLIT_TYPES: Final = {
     'MsgValue': [

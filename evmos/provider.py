@@ -1,9 +1,8 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Callable, Sequence
 from enum import Enum
-from typing import TypedDict
+from typing import Callable, Sequence, TypedDict
 
 from typing_extensions import NotRequired
 

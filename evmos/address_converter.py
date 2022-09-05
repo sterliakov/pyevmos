@@ -2,8 +2,7 @@ from __future__ import annotations
 
 import re
 from collections import namedtuple
-from collections.abc import Callable
-from typing import Final
+from typing import Callable, Final
 
 import bech32
 from eth_typing import HexStr

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import Sequence
+from typing import Sequence
 
 from evmos.proto.autogen.py.evmos.feesplit.v1 import (
     MsgCancelFeeSplit,
