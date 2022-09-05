@@ -169,8 +169,8 @@ def create_ibc_msg_transfer(
 # msgSend.ts
 MSG_SEND_TYPES: Final = {
     'MsgValue': [
-        {'name': 'fromAddress', 'type': 'string'},
-        {'name': 'toAddress', 'type': 'string'},
+        {'name': 'from_address', 'type': 'string'},
+        {'name': 'to_address', 'type': 'string'},
         {'name': 'amount', 'type': 'TypeAmount[]'},
     ],
     'TypeAmount': [
@@ -194,7 +194,7 @@ def create_msg_send(
             'amount': [
                 {'amount': amount, 'denom': denom},
             ],
-            'fromAddress': from_address,
-            'toAddress': to_address,
+            'from_address': from_address,
+            'to_address': to_address,
         },
     }

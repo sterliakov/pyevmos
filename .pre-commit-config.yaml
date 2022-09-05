@@ -14,6 +14,11 @@ repos:
     hooks:
       - id: pyupgrade
         args: ["--py36-plus"]
+  - repo: https://github.com/sondrelg/pep585-upgrade
+    rev: 'v1.0.1'
+    hooks:
+    - id: upgrade-type-hints
+      args: [ '--futures=true' ]
   - repo: https://github.com/pre-commit/mirrors-isort
     rev: v5.10.1
     hooks:
@@ -57,5 +62,6 @@ repos:
       additional_dependencies: [
           # "web3 ~= 5.30",
           "types-protobuf",
+          "types-requests",
       ]
       exclude: docs/

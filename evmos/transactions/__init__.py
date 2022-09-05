@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from betterproto import Message
-from eth_typing import HexStr
 
 from evmos.eip712 import (
     IBC_MSG_TRANSFER_TYPES,
@@ -44,7 +43,6 @@ from evmos.transactions.staking import (
     create_tx_msg_withdraw_validator_commission,
 )
 from evmos.transactions.validator import create_tx_msg_edit_validator
-from evmos.utils.polyfill import removeprefix
 
 __all__ = [
     'create_tx_msg_vote',
@@ -76,7 +74,7 @@ __all__ = [
 
 # gov.ts
 
-
+# FIXME: forgot to use decorator here and below
 def create_tx_msg_vote(
     chain: Chain,
     sender: Sender,
@@ -304,12 +302,11 @@ def create_tx_raw_eip712(
 def signature_to_web3_extension(
     chain: Chain,
     sender: Sender,
-    hex_formatted_signature: HexStr,
+    signature: bytes,
 ) -> MessageGenerated[ExtensionOptionsWeb3Tx]:
     """Create a message with web3 extension from signature."""
-    signature = removeprefix(hex_formatted_signature, '0x')
     return create_web3_extension(
         chain.chain_id,
         sender.account_address,
-        bytes.fromhex(signature),
+        signature,
     )

@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
-from typing import Any, Mapping, Sequence, TypedDict
+from typing import Any, TypedDict
 
 
 class _WithValidator(TypedDict):
@@ -57,8 +58,8 @@ def generate_message_with_multiple_transactions(
 ) -> dict[str, Any]:
     """Create a message with multiple transactions included."""
     return {
-        'accountNumber': account_number,
-        'chainId': chain_cosmos_id,
+        'account_number': account_number,
+        'chain_id': chain_cosmos_id,
         'fee': fee,
         'memo': memo,
         'msgs': msgs,
@@ -96,8 +97,8 @@ def generate_types(msg_values: dict[str, Any]) -> dict[str, Any]:
             {'name': 'salt', 'type': 'string'},
         ],
         'Tx': [
-            {'name': 'accountNumber', 'type': 'string'},
-            {'name': 'chainId', 'type': 'string'},
+            {'name': 'account_number', 'type': 'string'},
+            {'name': 'chain_id', 'type': 'string'},
             {'name': 'fee', 'type': 'Fee'},
             {'name': 'memo', 'type': 'string'},
             {'name': 'msgs', 'type': 'Msg[]'},

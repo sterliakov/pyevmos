@@ -2,11 +2,12 @@ from __future__ import annotations
 
 import re
 from collections import namedtuple
-from typing import Callable, Final
+from collections.abc import Callable
+from typing import Final
 
 import bech32
 from eth_typing import HexStr
-from sha3 import keccak_256
+from eth_utils import keccak
 
 from evmos.utils.polyfill import removeprefix
 
@@ -17,9 +18,7 @@ def to_checksum_address(address: HexStr, chain_id: int | None = None) -> HexStr:
     """Convert address to checksum address."""
     strip_address = removeprefix(address, '0x').lower()
     prefix = (str(chain_id) + '0x') if chain_id is not None else ''
-    hasher = keccak_256()
-    hasher.update((prefix + strip_address).encode())
-    keccak_hash = hasher.hexdigest()
+    keccak_hash = keccak((prefix + strip_address).encode()).hex()
     output = '0x' + ''.join(
         byte.upper() if int(hash_byte, 16) >= 8 else byte
         for byte, hash_byte in zip(strip_address, keccak_hash)
@@ -123,13 +122,13 @@ ETHERMINT: Final = bech32_chain('ETHERMINT', 'ethm')
 """Ethermint chain address converter."""
 
 
-def eth_to_ethermint(eth_address: str) -> bytes:
+def eth_to_ethermint(eth_address: str) -> str:
     """Eth -> Ethermint address conversion."""
     data = ETH.decoder(eth_address)
     return ETHERMINT.encoder(data)
 
 
-def ethermint_to_eth(ethermint_address: str) -> bytes:
+def ethermint_to_eth(ethermint_address: str) -> HexStr:
     """Ethermint -> Eth address conversion."""
     data = ETHERMINT.decoder(ethermint_address)
     return ETH.encoder(data)
@@ -139,13 +138,13 @@ EVMOS: Final = bech32_chain('EVMOS', 'evmos')
 """Evmos chain address converter."""
 
 
-def eth_to_evmos(eth_address: str) -> bytes:
+def eth_to_evmos(eth_address: str) -> str:
     """Eth -> Evmos address conversion."""
     data = ETH.decoder(eth_address)
     return EVMOS.encoder(data)
 
 
-def evmos_to_eth(evmos_address: str) -> bytes:
+def evmos_to_eth(evmos_address: str) -> HexStr:
     """Evmos -> Eth address conversion."""
     data = EVMOS.decoder(evmos_address)
     return ETH.encoder(data)
@@ -155,13 +154,13 @@ OSMOSIS: Final = bech32_chain('OSMOSIS', 'osmo')
 """Osmosis chain address converter."""
 
 
-def eth_to_osmosis(eth_address: str) -> bytes:
+def eth_to_osmosis(eth_address: str) -> str:
     """Eth -> Osmosis address conversion."""
     data = ETH.decoder(eth_address)
     return OSMOSIS.encoder(data)
 
 
-def osmosis_to_eth(evmos_address: str) -> bytes:
+def osmosis_to_eth(evmos_address: str) -> HexStr:
     """Osmosis -> Eth address conversion."""
     data = OSMOSIS.decoder(evmos_address)
     return ETH.encoder(data)
@@ -171,13 +170,13 @@ COSMOS: Final = bech32_chain('COSMOS', 'cosmos')
 """Cosmos chain address converter."""
 
 
-def eth_to_cosmos(eth_address: str) -> bytes:
+def eth_to_cosmos(eth_address: str) -> str:
     """Eth -> Cosmos address conversion."""
     data = ETH.decoder(eth_address)
     return COSMOS.encoder(data)
 
 
-def cosmos_to_eth(evmos_address: str) -> bytes:
+def cosmos_to_eth(evmos_address: str) -> HexStr:
     """Cosmos -> Eth address conversion."""
     data = COSMOS.decoder(evmos_address)
     return ETH.encoder(data)
@@ -187,13 +186,13 @@ KYVE: Final = bech32_chain('KORELLIA', 'kyve')
 """Kyve chain address converter."""
 
 
-def eth_to_kyve(eth_address: str) -> bytes:
+def eth_to_kyve(eth_address: str) -> str:
     """Eth -> Kyve address conversion."""
     data = ETH.decoder(eth_address)
     return KYVE.encoder(data)
 
 
-def kyve_to_eth(kyve_address: str) -> bytes:
+def kyve_to_eth(kyve_address: str) -> HexStr:
     """Kyve -> Eth address conversion."""
     data = KYVE.decoder(kyve_address)
     return ETH.encoder(data)

@@ -25,8 +25,8 @@ def test_generate_types():
     assert generate_types(
         {
             'MsgValue': [
-                {'name': 'fromAddress', 'type': 'string'},
-                {'name': 'toAddress', 'type': 'string'},
+                {'name': 'from_address', 'type': 'string'},
+                {'name': 'to_address', 'type': 'string'},
                 {'name': 'amount', 'type': 'TypeAmount[]'},
             ],
             'TypeAmount': [
@@ -43,8 +43,8 @@ def test_generate_types():
             {'name': 'salt', 'type': 'string'},
         ],
         'Tx': [
-            {'name': 'accountNumber', 'type': 'string'},
-            {'name': 'chainId', 'type': 'string'},
+            {'name': 'account_number', 'type': 'string'},
+            {'name': 'chain_id', 'type': 'string'},
             {'name': 'fee', 'type': 'Fee'},
             {'name': 'memo', 'type': 'string'},
             {'name': 'msgs', 'type': 'Msg[]'},
@@ -64,8 +64,8 @@ def test_generate_types():
             {'name': 'value', 'type': 'MsgValue'},
         ],
         'MsgValue': [
-            {'name': 'fromAddress', 'type': 'string'},
-            {'name': 'toAddress', 'type': 'string'},
+            {'name': 'from_address', 'type': 'string'},
+            {'name': 'to_address', 'type': 'string'},
             {'name': 'amount', 'type': 'TypeAmount[]'},
         ],
         'TypeAmount': [
@@ -91,13 +91,13 @@ def test_generate_message():
             'type': 'cosmos-sdk/MsgSend',
             'value': {
                 'amount': [{'amount': '1', 'denom': 'aphoton'}],
-                'fromAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
-                'toAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+                'from_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+                'to_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
             },
         },
     ) == {
-        'accountNumber': '8',
-        'chainId': 'ethermint_9000-1',
+        'account_number': '8',
+        'chain_id': 'ethermint_9000-1',
         'fee': {
             'amount': [{'amount': '20', 'denom': 'aphoton'}],
             'gas': '20000',
@@ -109,8 +109,8 @@ def test_generate_message():
                 'type': 'cosmos-sdk/MsgSend',
                 'value': {
                     'amount': [{'amount': '1', 'denom': 'aphoton'}],
-                    'fromAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
-                    'toAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+                    'from_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+                    'to_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
                 },
             },
         ],
@@ -124,8 +124,8 @@ def test_generate_base():
             generate_types(
                 {
                     'MsgValue': [
-                        {'name': 'fromAddress', 'type': 'string'},
-                        {'name': 'toAddress', 'type': 'string'},
+                        {'name': 'from_address', 'type': 'string'},
+                        {'name': 'to_address', 'type': 'string'},
                         {'name': 'amount', 'type': 'TypeAmount[]'},
                     ],
                     'TypeAmount': [
@@ -150,8 +150,8 @@ def test_generate_base():
                     'type': 'cosmos-sdk/MsgSend',
                     'value': {
                         'amount': [{'amount': '1', 'denom': 'aphoton'}],
-                        'fromAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
-                        'toAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+                        'from_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+                        'to_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
                     },
                 },
             ),
@@ -166,8 +166,8 @@ def test_generate_base():
                 {'name': 'salt', 'type': 'string'},
             ],
             'Tx': [
-                {'name': 'accountNumber', 'type': 'string'},
-                {'name': 'chainId', 'type': 'string'},
+                {'name': 'account_number', 'type': 'string'},
+                {'name': 'chain_id', 'type': 'string'},
                 {'name': 'fee', 'type': 'Fee'},
                 {'name': 'memo', 'type': 'string'},
                 {'name': 'msgs', 'type': 'Msg[]'},
@@ -187,8 +187,8 @@ def test_generate_base():
                 {'name': 'value', 'type': 'MsgValue'},
             ],
             'MsgValue': [
-                {'name': 'fromAddress', 'type': 'string'},
-                {'name': 'toAddress', 'type': 'string'},
+                {'name': 'from_address', 'type': 'string'},
+                {'name': 'to_address', 'type': 'string'},
                 {'name': 'amount', 'type': 'TypeAmount[]'},
             ],
             'TypeAmount': [
@@ -205,8 +205,8 @@ def test_generate_base():
             'salt': '0',
         },
         'message': {
-            'accountNumber': '8',
-            'chainId': 'ethermint_9000-1',
+            'account_number': '8',
+            'chain_id': 'ethermint_9000-1',
             'fee': {
                 'amount': [{'amount': '20', 'denom': 'aphoton'}],
                 'gas': '20000',
@@ -218,8 +218,8 @@ def test_generate_base():
                     'type': 'cosmos-sdk/MsgSend',
                     'value': {
                         'amount': [{'amount': '1', 'denom': 'aphoton'}],
-                        'fromAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
-                        'toAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+                        'from_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+                        'to_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
                     },
                 },
             ],

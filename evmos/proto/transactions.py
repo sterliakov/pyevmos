@@ -1,10 +1,11 @@
 from __future__ import annotations
 
 import base64
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Any, Final, Sequence
+from typing import Any, Final
 
-from sha3 import keccak_256
+from eth_utils import keccak
 
 from evmos.proto.autogen.py.cosmos.base.v1beta1 import Coin
 from evmos.proto.autogen.py.cosmos.crypto import secp256k1 as secp
@@ -157,9 +158,7 @@ def create_transaction_with_multiple_messages(
         account_number,
     )
 
-    hash_amino = keccak_256()
-    hash_amino.update(bytes(sign_doc_amino))
-    to_sign_amino = hash_amino.digest()
+    to_sign_amino = keccak(bytes(sign_doc_amino))
 
     # SignDirect
     sign_info_direct = create_signer_info(
@@ -178,9 +177,7 @@ def create_transaction_with_multiple_messages(
         account_number,
     )
 
-    hash_direct = keccak_256()
-    hash_direct.update(bytes(sign_doc_direct))
-    to_sign_direct = hash_direct.digest()
+    to_sign_direct = keccak(bytes(sign_doc_direct))
 
     return TxGeneratedBase(
         legacy_amino=TxGeneratedSignInfo(

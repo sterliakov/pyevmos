@@ -75,8 +75,8 @@ def test_msg_send_valid():
             'version': '1.0.0',
         },
         'message': {
-            'accountNumber': '9',
-            'chainId': 'evmos_9000-1',
+            'account_number': '9',
+            'chain_id': 'evmos_9000-1',
             'fee': {
                 'amount': [{'amount': '20', 'denom': 'aevmos'}],
                 'feePayer': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
@@ -88,8 +88,8 @@ def test_msg_send_valid():
                     'type': 'cosmos-sdk/MsgSend',
                     'value': {
                         'amount': [{'amount': '1', 'denom': 'aevmos'}],
-                        'fromAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
-                        'toAddress': 'evmos1pmk2r32ssqwps42y3c9d4clqlca403yd9wymgr',
+                        'from_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+                        'to_address': 'evmos1pmk2r32ssqwps42y3c9d4clqlca403yd9wymgr',
                     },
                 },
             ],
@@ -118,13 +118,13 @@ def test_msg_send_valid():
                 {'name': 'value', 'type': 'MsgValue'},
             ],
             'MsgValue': [
-                {'name': 'fromAddress', 'type': 'string'},
-                {'name': 'toAddress', 'type': 'string'},
+                {'name': 'from_address', 'type': 'string'},
+                {'name': 'to_address', 'type': 'string'},
                 {'name': 'amount', 'type': 'TypeAmount[]'},
             ],
             'Tx': [
-                {'name': 'accountNumber', 'type': 'string'},
-                {'name': 'chainId', 'type': 'string'},
+                {'name': 'account_number', 'type': 'string'},
+                {'name': 'chain_id', 'type': 'string'},
                 {'name': 'fee', 'type': 'Fee'},
                 {'name': 'memo', 'type': 'string'},
                 {'name': 'msgs', 'type': 'Msg[]'},
@@ -154,8 +154,8 @@ def test_web3_extension():
         pubkey='AgTw+4v0daIrxsNSW4FcQ+IoingPseFwHO1DnssyoOqZ',
     )
 
-    signature = (
-        '0xee543cc5a50d25a5bab4da0609bf63095804282aeb82f3fd16e03784db19723a727f5'
+    signature = bytes.fromhex(
+        'ee543cc5a50d25a5bab4da0609bf63095804282aeb82f3fd16e03784db19723a727f5'
         '15b8d8e7b52c6f059f324ec5a651c92829f15e38e4d0db3788e230318a41c'
     )
 

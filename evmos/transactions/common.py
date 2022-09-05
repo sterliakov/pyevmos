@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass
-from typing import Any, Callable, Concatenate, Literal, Mapping, ParamSpec, overload
+from typing import Any, Concatenate, Literal, ParamSpec, overload
+
+import requests
 
 from evmos.eip712 import (
     EIPToSign,
@@ -28,9 +31,21 @@ class Sender:
     """Message sender."""
 
     account_address: str
-    sequence: int
-    account_number: int
-    pubkey: str
+    sequence: int = 0
+    account_number: int = 0
+    pubkey: str = ''
+
+    def update_from_chain(self, url: str = 'http://127.0.0.1:1317') -> None:
+        """Set `sequence`, `account_number` and possibly `pubkey` from API response."""
+        response = requests.get(
+            f'{url}/cosmos/auth/v1beta1/accounts/{self.account_address}'
+        )
+        resp = response.json()
+
+        self.sequence = int(resp['account']['base_account']['sequence'])
+        self.account_number = int(resp['account']['base_account']['account_number'])
+        if not self.pubkey:
+            self.pubkey = resp['account']['base_account']['pub_key']['key']
 
 
 @dataclass

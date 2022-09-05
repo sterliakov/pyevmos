@@ -11,7 +11,7 @@ def test_create_msg_send():
         'type': 'cosmos-sdk/MsgSend',
         'value': {
             'amount': [{'amount': '1', 'denom': 'aphoton'}],
-            'fromAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
-            'toAddress': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+            'from_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+            'to_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
         },
     }
