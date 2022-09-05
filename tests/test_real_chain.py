@@ -15,7 +15,7 @@ from evmos.wallet import (
 
 @pytest.mark.online()
 def test_send_money_simple(sender, sender_pk, receiver_addr, url):
-    for _ in range(2):
+    for _ in range(3):
         sender.update_from_chain(url)
 
         tx = create_message_send(
@@ -35,12 +35,9 @@ def test_send_money_simple(sender, sender_pk, receiver_addr, url):
         try:
             assert response['tx_response']['code'] == 0
         except KeyError:
-            if response == {
-                'code': 2,
-                'message': 'timed out waiting for tx to be included in a block',
-                'details': [],
-            }:
-                time.sleep(5)
+            # 2 - timeout, 32 - old sequence (time-related too)
+            if response['code'] in {2, 32}:
+                time.sleep(10)
                 continue
             else:
                 raise
@@ -52,7 +49,7 @@ def test_send_money_simple(sender, sender_pk, receiver_addr, url):
 
 @pytest.mark.online()
 def test_send_money_eip712(receiver, receiver_pk, sender_addr, url):
-    for _ in range(2):
+    for _ in range(3):
         receiver.update_from_chain(url)
 
         tx = create_message_send(
@@ -72,12 +69,9 @@ def test_send_money_eip712(receiver, receiver_pk, sender_addr, url):
         try:
             assert response['tx_response']['code'] == 0
         except KeyError:
-            if response == {
-                'code': 2,
-                'message': 'timed out waiting for tx to be included in a block',
-                'details': [],
-            }:
-                time.sleep(5)
+            # 2 - timeout, 32 - old sequence (time-related too)
+            if response['code'] in {2, 32}:
+                time.sleep(10)
                 continue
             else:
                 raise
