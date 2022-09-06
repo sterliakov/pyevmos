@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from evmos.proto import create_tx_raw
 
 

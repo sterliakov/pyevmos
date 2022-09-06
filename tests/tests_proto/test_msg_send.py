@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from betterproto import casing
 
 from evmos.proto import create_msg_send

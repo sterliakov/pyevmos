@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from evmos.eip712 import create_msg_send
 
 

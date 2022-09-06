@@ -20,6 +20,7 @@ repos:
       - id: isort
         name: isort
         args: ["--profile", "black"]
+        exclude: evmos/proto/autogen/py
   - repo: https://github.com/grantjenks/blue
     # This is black, but with minor changes (single quotes!)
     rev: v0.9.1

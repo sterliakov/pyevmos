@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import base64
 
 from evmos.proto import bytes_to_tx_raw, create_tx_raw
