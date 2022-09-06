@@ -4,8 +4,9 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-# -- Path setup --------------------------------------------------------------
+from __future__ import annotations
 
+# -- Path setup --------------------------------------------------------------
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -40,10 +41,9 @@ extensions = [
     'sphinx.ext.napoleon',  # Docstring preprocessing
     'sphinx.ext.autodoc',  # Docstring embedding into final documents
     'sphinx.ext.autosectionlabel',  # Use section header as anchor
-    'sphinx.ext.intersphinx',  # References to stl
+    'sphinx.ext.autosummary',  # Auto summary generation
+    'sphinx.ext.intersphinx',  # References
     'sphinx.ext.viewcode',  # Links to source
-    # Third-party
-    'autodocsumm',  # Table of module/class elements
     # Custom
     'ext.monkey_patch_sphinx',
 ]
@@ -76,15 +76,16 @@ autodoc_default_options = {
     'members': True,
     'undoc-members': True,
     'show-inheritance': True,
+    'ignore-module-all': False,
     'autosummary': True,
     'autosummary-members': True,
     'autosummary-undoc-members': True,
-    'autosummary-nosignatures': True,
-    'member-order': 'bysource',
+    # 'autosummary-nosignatures': True,
+    'autosummary-ignore-module-all': False,
 }
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
-    'web3': ('https://web3py.readthedocs.io/en/latest/', None),
     'eth_typing': ('https://eth-typing.readthedocs.io/en/latest/', None),
+    'betterproto': ('https://test-betterproto.readthedocs.io/en/docs/', None),
 }

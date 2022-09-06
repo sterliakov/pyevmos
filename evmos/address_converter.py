@@ -42,7 +42,7 @@ _T = TypeVar('_T')
 
 
 @dataclass
-class Chain(Generic[_T]):
+class ChainConverter(Generic[_T]):
     """Chain decoder-encoder pair."""
 
     decoder: Callable[[_T], bytes]
@@ -84,9 +84,11 @@ def make_checksummed_hex_encoder(
     return encoder
 
 
-def hex_checksum_chain(name: str, chain_id: int | None = None) -> Chain[HexStr]:
+def hex_checksum_chain(
+    name: str, chain_id: int | None = None
+) -> ChainConverter[HexStr]:
     """Chain with hex address."""
-    return Chain(
+    return ChainConverter(
         decoder=make_checksummed_hex_decoder(chain_id),
         encoder=make_checksummed_hex_encoder(chain_id),
         name=name,
@@ -124,9 +126,9 @@ def make_bech32_encoder(prefix: str) -> Callable[[bytes], str]:
     return encoder
 
 
-def bech32_chain(name: str, prefix: str) -> Chain[str]:
+def bech32_chain(name: str, prefix: str) -> ChainConverter[str]:
     """Chain with bech32 address."""
-    return Chain(
+    return ChainConverter(
         decoder=make_bech32_decoder(prefix),
         encoder=make_bech32_encoder(prefix),
         name=name,

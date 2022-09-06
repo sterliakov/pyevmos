@@ -10,6 +10,7 @@ from eth_typing import HexStr
 from eth_utils import keccak
 
 from evmos.proto import create_tx_raw
+from evmos.provider import BroadcastMode, BroadcastPostBody, generate_endpoint_broadcast
 from evmos.transactions import (
     Chain,
     Fee,
@@ -62,12 +63,20 @@ TESTNET_FEE: Final = Fee(
 
 
 def broadcast(
-    transaction_body: dict[str, str],
+    transaction_body: BroadcastPostBody,
     url: str = 'http://127.0.0.1:1317',
 ) -> dict[str, Any]:
-    """Broadcast a transaction."""
+    """Broadcast a transaction.
+
+    Args:
+        transaction_body: data to broadcast, json payload (not stringified).
+        url: REST API URL to use.
+
+    Returns:
+        Info about broadcasted transaction or failure reasons.
+    """
     post = requests.post(
-        f'{url}/cosmos/tx/v1beta1/txs',
+        f'{url}{generate_endpoint_broadcast()}',
         json=transaction_body,
     )
     return post.json()
@@ -76,8 +85,8 @@ def broadcast(
 def sign_transaction(
     tx: TxGenerated,
     private_key: HexStr,
-    broadcast_mode: str = 'BROADCAST_MODE_BLOCK',
-) -> dict[str, str]:
+    broadcast_mode: BroadcastMode = BroadcastMode.BLOCK,
+) -> BroadcastPostBody:
     """Sign transaction using payload method (keplr style)."""
     data_to_sign = base64.b64decode(tx.sign_direct.sign_bytes)
 
@@ -102,8 +111,8 @@ def sign_transaction_eip712(
     tx: TxGenerated,
     private_key: HexStr,
     chain: Chain = TESTNET_CHAIN,
-    broadcast_mode: str = 'BROADCAST_MODE_BLOCK',
-) -> dict[str, str]:
+    broadcast_mode: BroadcastMode = BroadcastMode.BLOCK,
+) -> BroadcastPostBody:
     """Sign transaction using eip712 method (metamask style)."""
     data_to_sign = keccak(
         b'\x19\x01' + hash_domain(tx.eip_to_sign) + hash_message(tx.eip_to_sign)

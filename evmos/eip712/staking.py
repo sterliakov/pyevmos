@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from typing import Any, Final, TypedDict
+from typing import Final
 
-from evmos.eip712.base import _WithValidator
+from evmos.eip712.base import MsgInterface, MsgWithValidatorInterface
 
 MSG_DELEGATE_TYPES: Final = {
     'MsgValue': [
@@ -23,7 +23,7 @@ def create_msg_delegate(
     validator_address: str,
     amount: str,
     denom: str,
-) -> dict[str, Any]:
+) -> MsgInterface:
     """Create delegation message."""
     return {
         'type': 'cosmos-sdk/MsgDelegate',
@@ -56,7 +56,7 @@ def create_msg_begin_redelegate(
     validator_dst_address: str,
     amount: str,
     denom: str,
-) -> dict[str, Any]:
+) -> MsgInterface:
     """Create redelegation beginning message."""
     return {
         'type': 'cosmos-sdk/MsgBeginRedelegate',
@@ -88,7 +88,7 @@ def create_msg_undelegate(
     validator_address: str,
     amount: str,
     denom: str,
-) -> dict[str, Any]:
+) -> MsgInterface:
     """Create delegation cancellation message."""
     return {
         'type': 'cosmos-sdk/MsgUndelegate',
@@ -109,22 +109,10 @@ MSG_WITHDRAW_DELEGATOR_REWARD_TYPES: Final = {
 """Types for delegation reward withdrawal message."""
 
 
-class _MsgValidators(TypedDict):
-    delegator_address: str
-    validator_address: str
-
-
-class MsgWithdrawDelegatorRewardInterface(TypedDict):
-    """Delegation reward withdrawal message."""
-
-    type: str  # noqa: A003
-    value: _MsgValidators
-
-
 def create_msg_withdraw_delegator_reward(
     delegator_address: str,
     validator_address: str,
-) -> MsgWithdrawDelegatorRewardInterface:
+) -> MsgInterface:
     """Create delegation reward withdrawal message."""
     return {
         'type': 'cosmos-sdk/MsgWithdrawDelegationReward',
@@ -140,19 +128,10 @@ MSG_WITHDRAW_VALIDATOR_COMMISSION_TYPES: Final = {
 }
 """Types for validator commission withdrawal message."""
 
-# FIXME: normal interface
-
-
-class MsgWithdrawValidatorCommissionInterface(TypedDict):
-    """Validator commission withdrawal message."""
-
-    type: str  # noqa: A003
-    value: _WithValidator
-
 
 def create_msg_withdraw_validator_commission(
     validator_address: str,
-) -> MsgWithdrawValidatorCommissionInterface:
+) -> MsgWithValidatorInterface:
     """Create validator commission withdrawal message."""
     return {
         'type': 'cosmos-sdk/MsgWithdrawValidatorCommission',

@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-from typing import Any, Final
+from typing import Final
 
 from evmos.eip712.base import (
     Domain,
     EIPToSign,
+    MsgInterface,
     create_eip712,
     generate_fee,
     generate_message,
@@ -25,25 +26,19 @@ from evmos.eip712.feesplit import (
     create_msg_register_fee_split,
     create_msg_update_fee_split,
 )
-from evmos.eip712.stacking import (
+from evmos.eip712.staking import (
     MSG_BEGIN_REDELEGATE_TYPES,
     MSG_DELEGATE_TYPES,
     MSG_UNDELEGATE_TYPES,
     MSG_WITHDRAW_DELEGATOR_REWARD_TYPES,
     MSG_WITHDRAW_VALIDATOR_COMMISSION_TYPES,
-    MsgWithdrawDelegatorRewardInterface,
-    MsgWithdrawValidatorCommissionInterface,
     create_msg_begin_redelegate,
     create_msg_delegate,
     create_msg_undelegate,
     create_msg_withdraw_delegator_reward,
     create_msg_withdraw_validator_commission,
 )
-from evmos.eip712.validator import (
-    MSG_EDIT_VALIDATOR_TYPES,
-    MsgEditValidatorInterface,
-    create_msg_edit_validator,
-)
+from evmos.eip712.validator import MSG_EDIT_VALIDATOR_TYPES, create_msg_edit_validator
 
 __all__ = [
     'create_eip712',
@@ -78,10 +73,7 @@ __all__ = [
     'MSG_UPDATE_FEE_SPLIT_TYPES',
     'MSG_WITHDRAW_DELEGATOR_REWARD_TYPES',
     'MSG_WITHDRAW_VALIDATOR_COMMISSION_TYPES',
-    'MsgEditValidatorInterface',
-    'MsgWithdrawDelegatorRewardInterface',
     'MSG_EDIT_VALIDATOR_TYPES',
-    'MsgWithdrawValidatorCommissionInterface',
     'EIPToSign',
     'Domain',
 ]
@@ -98,7 +90,7 @@ MSG_VOTE_TYPES: Final = {
 """Types for voting message."""
 
 
-def create_msg_vote(proposal_id: int, option: int, sender: str) -> dict[str, Any]:
+def create_msg_vote(proposal_id: int, option: int, sender: str) -> MsgInterface:
     """Create voting (governmental) message."""
     return {
         'type': 'cosmos-sdk/MsgVote',
@@ -143,7 +135,7 @@ def create_ibc_msg_transfer(
     timeout_timestamp: str,
     amount: str,
     denom: str,
-) -> dict[str, Any]:
+) -> MsgInterface:
     """Create IBC (inter-blockchain) message transfer.
 
     See Also:
@@ -186,7 +178,7 @@ def create_msg_send(
     denom: str,
     from_address: str,
     to_address: str,
-) -> dict[str, Any]:
+) -> MsgInterface:
     """Create message for sending."""
     return {
         'type': 'cosmos-sdk/MsgSend',

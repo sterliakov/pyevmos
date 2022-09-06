@@ -75,5 +75,5 @@ jobs:
       - name: Make docs
         run: |
           cd docs
-          make clean html
+          SPHINXOPTS="-W --keep-going" make clean html
           sphinx-build -b linkcheck source build/linkcheck

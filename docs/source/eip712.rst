@@ -1,0 +1,25 @@
+EIP-712 messages
+================
+
+Miscellaneous
+-------------
+.. automodule:: evmos.eip712
+
+.. automodule:: evmos.eip712.base
+
+
+ERC20
+-----
+.. automodule:: evmos.eip712.erc20
+
+Fee splitting
+-------------
+.. automodule:: evmos.eip712.feesplit
+
+Staking
+-------
+.. automodule:: evmos.eip712.staking
+
+Validators
+----------
+.. automodule:: evmos.eip712.validator

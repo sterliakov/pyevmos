@@ -185,7 +185,7 @@ def create_ibc_msg_transfer(
 
 
 def bytes_to_msg_ethereum_tx(binary_data: bytes) -> ethermint.MsgEthereumTx:
-    """Deserialize :class:`evmos.proto.autogen.py.ethermint.evm.v1.NsgEthereumTx`."""
+    """Deserialize :class:`evmos.proto.autogen.py.ethermint.evm.v1.MsgEthereumTx`."""
     return ethermint.MsgEthereumTx().parse(binary_data)
 
 

@@ -41,9 +41,11 @@ class RevokeMessages(str, Enum):
     """Revoke message paths."""
 
     REVOKE_MSG_DELEGATE = '/cosmos.staking.v1beta1.MsgDelegate'
+    """Revoke delegate message path."""
     REVOKE_MSG_WITHDRAW_DELEGATOR_REWARDS = (
         '/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward'
     )
+    """Revoke delegate and withdraw rewards message path."""
 
 
 def create_msg_revoke(

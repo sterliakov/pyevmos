@@ -4,8 +4,29 @@ from dataclasses import dataclass
 from typing import Any, Mapping, Sequence, TypedDict
 
 
-class _WithValidator(TypedDict):
+class WithValidator(TypedDict):
+    """:class:`~typing.TypedDict` with string ``validator_address`` field."""
+
     validator_address: str
+    """Validator address."""
+
+
+class MsgWithValidatorInterface(TypedDict):
+    """Validator editing message."""
+
+    type: str  # noqa: A003
+    """Type for ABI encoding."""
+    value: WithValidator
+    """Message itself."""
+
+
+class MsgInterface(TypedDict):
+    """Validator editing message."""
+
+    type: str  # noqa: A003
+    """Type for ABI encoding."""
+    value: Any
+    """Message itself."""
 
 
 @dataclass
@@ -13,10 +34,15 @@ class Domain:
     """This describes ``domain`` field of :class:`EIPToSign`."""
 
     name: str
+    """Domain name."""
     version: str
+    """Version (usually ``1.0.0``)."""
     chainId: int  # noqa: N815
+    """Chain ID."""
     verifyingContract: str  # noqa: N815
+    """Verifying contract address."""
     salt: str
+    """Used salt (usually ``'0'``)."""
 
 
 @dataclass
@@ -24,9 +50,13 @@ class EIPToSign:
     """EIP message to sign."""
 
     types: dict[str, Any]
+    """Message types for ABI encoding, mapping name to type."""
     primaryType: str  # noqa: N815
+    """Type name of ``message`` attribute."""
     domain: Domain
+    """Domain."""
     message: dict[str, Any]
+    """Message to sign itself, mapping."""
 
 
 def create_eip712(

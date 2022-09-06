@@ -1,6 +1,8 @@
 from __future__ import annotations
 
-from typing import Any, Final, Sequence
+from typing import Final, Sequence
+
+from evmos.eip712.base import MsgInterface
 
 MSG_CANCEL_FEE_SPLIT_TYPES: Final = {
     'MsgValue': [
@@ -14,7 +16,7 @@ MSG_CANCEL_FEE_SPLIT_TYPES: Final = {
 def create_msg_cancel_fee_split(
     contract_address: str,
     deployer_address: str,
-) -> dict[str, Any]:
+) -> MsgInterface:
     """Create message for fee split cancellation."""
     return {
         'type': 'evmos/MsgCancelFeeSplit',
@@ -41,7 +43,7 @@ def create_msg_register_fee_split(
     deployer_address: str,
     withdrawer_address: str,
     nonces: Sequence[int],
-) -> dict[str, Any]:
+) -> MsgInterface:
     """Create message for fee split registration."""
     return {
         'type': 'evmos/MsgRegisterFeeSplit',
@@ -68,7 +70,7 @@ def create_msg_update_fee_split(
     contract_address: str,
     deployer_address: str,
     withdrawer_address: str,
-) -> dict[str, Any]:
+) -> MsgInterface:
     """Create message for fee split update."""
     return {
         'type': 'evmos/MsgUpdateFeeSplit',

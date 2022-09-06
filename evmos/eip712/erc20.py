@@ -1,6 +1,8 @@
 from __future__ import annotations
 
-from typing import Any, Final
+from typing import Final
+
+from evmos.eip712.base import MsgInterface
 
 MSG_CONVERT_COIN_TYPES: Final = {
     'MsgValue': [
@@ -21,7 +23,7 @@ def create_msg_convert_coin(
     amount: str | int,
     receiver: str,
     sender: str,
-) -> dict[str, Any]:
+) -> MsgInterface:
     """Create message for coin types conversion."""
     return {
         'type': 'evmos/MsgConvertCoin',
@@ -52,7 +54,7 @@ def create_msg_convert_erc20(
     amount: str,
     receiver: str,
     sender: str,
-) -> dict[str, Any]:
+) -> MsgInterface:
     """Create message for ERC20 types conversion."""
     return {
         'type': 'evmos/MsgConvertERC20',

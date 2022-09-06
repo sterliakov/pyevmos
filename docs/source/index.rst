@@ -11,6 +11,14 @@ Welcome to pyevmos documentation!
     :caption: Contents:
 
     installation
+    eip712
+    proto
+    transactions
+    autogen
+    utils
+    address_converter
+    provider
+    wallet
 
 
 

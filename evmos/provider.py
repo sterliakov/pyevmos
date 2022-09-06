@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-import json
 from enum import Enum
-from typing import Callable, Sequence, TypedDict
+from typing import Sequence, TypedDict
 
 from typing_extensions import NotRequired
 
@@ -12,21 +11,31 @@ from typing_extensions import NotRequired
 class BroadcastMode(str, Enum):
     """Broadcasting mode."""
 
-    Unspecified = 'BROADCAST_MODE_UNSPECIFIED'
-    Block = 'BROADCAST_MODE_BLOCK'
-    Sync = 'BROADCAST_MODE_SYNC'
-    Async = 'BROADCAST_MODE_ASYNC'
+    UNSPECIFIED = 'BROADCAST_MODE_UNSPECIFIED'
+    """Broadcasting mode unset."""
+    BLOCK = 'BROADCAST_MODE_BLOCK'
+    """Broadcasting mode - block."""
+    SYNC = 'BROADCAST_MODE_SYNC'
+    """Broadcasting mode - synchronous."""
+    ASYNC = 'BROADCAST_MODE_ASYNC'
+    """Broadcasting mode - asynchronous."""
 
 
 class ProposalStatus(str, Enum):
     """Proposal status."""
 
-    Unspecified = 'PROPOSAL_STATUS_UNSPECIFIED'
-    Deposit = 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
-    Voting = 'PROPOSAL_STATUS_VOTING_PERIOD'
-    Passed = 'PROPOSAL_STATUS_PASSED'
-    Rejected = 'PROPOSAL_STATUS_REJECTED'
-    Failed = 'PROPOSAL_STATUS_FAILED'
+    UNSPECIFIED = 'PROPOSAL_STATUS_UNSPECIFIED'
+    """Proposal status unset."""
+    DEPOSIT = 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
+    """Proposal during deposit period."""
+    VOTING = 'PROPOSAL_STATUS_VOTING_PERIOD'
+    """Proposal during voting period."""
+    PASSED = 'PROPOSAL_STATUS_PASSED'
+    """Proposal passed."""
+    REJECTED = 'PROPOSAL_STATUS_REJECTED'
+    """Proposal rejected."""
+    FAILED = 'PROPOSAL_STATUS_FAILED'
+    """Proposal failed."""
 
 
 # Functions
@@ -45,19 +54,6 @@ def generate_endpoint_balances(address: str) -> str:
 def generate_endpoint_broadcast() -> str:
     """Generate endpoint for broadcasting."""
     return '/cosmos/tx/v1beta1/txs'
-
-
-def generate_post_body_broadcast(
-    tx_raw: TxToSend,
-    broadcast_mode: BroadcastMode = BroadcastMode.Sync,
-) -> str:
-    """Generate POST request body for broadcasting."""
-    return json.dumps(
-        {
-            'tx_bytes': [str(tx_raw['message']['serialize_binary']())],
-            'mode': broadcast_mode,
-        }
-    )
 
 
 def generate_endpoint_proposals() -> str:
@@ -107,68 +103,85 @@ def generate_endpoint_get_undelegations(delegator_address: str) -> str:
     )
 
 
-_WithAtType = TypedDict('_WithAtType', {'@type': str})
-
-
 # account.ts
 
 
-class _PubkeyAccountResponse(_WithAtType):
+class PubkeyAccountResponse(TypedDict):
+    """Response with account public key.
+
+    Also has "@type" key with corresponding `str` value.
+    """
+
     key: str
+    """Account public key (base64 encoded)."""
 
 
-class _BaseAccountResponse(TypedDict):
+class BaseAccountResponse(TypedDict):
+    """``base_account`` response field.
+
+    This is similar to :class:`evmos.transactions.common.Sender`.
+    """
+
     address: str
-    pub_key: NotRequired[_PubkeyAccountResponse]
+    """Account address (bech32)."""
+    pub_key: NotRequired[PubkeyAccountResponse]
+    """Account public key as dict."""
     account_number: str
+    """Account internal number."""
     sequence: str
+    """Account nonce - number of previously sent transactions."""
 
 
-class _AccountResponse(_WithAtType):
-    base_account: _BaseAccountResponse
+class AccountResponseBody(TypedDict):
+    """Account body from response.
+
+    Also has "@type" key with corresponding `str` value.
+    """
+
+    base_account: BaseAccountResponse
+    """Account response content."""
     code_hash: str
+    """Response status."""
 
 
 class AccountResponse(TypedDict):
-    """Response of account endpoint."""
+    """Full response of account endpoint."""
 
-    account: _AccountResponse
+    account: AccountResponseBody
+    """Account full response content, wrapped in another dict."""
 
 
 # balance.ts
 
 
-class _PaginationResponse(TypedDict):
+class PaginationResponse(TypedDict):
+    """Pagination response part."""
+
     next_key: str
+    """Next key to fetch."""
     total: int
+    """Total amount of records."""
 
 
 class BalancesResponse(TypedDict):
     """Response of balance endpoint."""
 
     balances: Sequence[Coin]
-    pagination: _PaginationResponse
+    """All coin balances of account."""
+    pagination: PaginationResponse
+    """Pagination part."""
 
 
 # broadcast.ts
 
 
-class _MessageToSend(TypedDict):
-    serialize_binary: Callable[[], Sequence[int]]
-
-
-class TxToSend(TypedDict):
-    """Transaction interface to broadcast."""
-
-    message: _MessageToSend
-    path: str
-
-
 class BroadcastPostBody(TypedDict):
     """Body of POST request for transaction broadcasting."""
 
-    tx_bytes: Sequence[int]
+    tx_bytes: str
+    """base64-encoded transaction bytes."""
     mode: str
+    """Broadcasting mode."""
 
 
 # claims.ts
@@ -178,67 +191,99 @@ class Claim(TypedDict):
     """Single claim record."""
 
     action: str
+    """Claiming action."""
     completed: bool
+    """Whether claim is completed."""
     claimable_amount: str
+    """Amount to claim."""
 
 
 class ClaimsRecordResponse(TypedDict):
     """Response of claims endpoint."""
 
     initial_claimable_amount: int
+    """Amount available to claim before processing."""
     claims: Sequence[Claim]
+    """All claims performed."""
 
 
 # coin.ts
+
+
 class Coin(TypedDict):
     """Coin structure."""
 
     denom: str
+    """Coin denomination."""
     amount: str
+    """Amount, as string (like '1000')."""
 
 
 # gov.ts
 
 
-class _ProposalContent(_WithAtType):
+class ProposalContent(TypedDict):
+    """Proposal content.
+
+    Also has "@type" key with corresponding `str` value.
+    """
+
     title: str
+    """Proposal title."""
     description: str
+    """Proposal description."""
 
 
 class TallyResults(TypedDict):
     """Tally results for a single proposal."""
 
     yes: str
+    """Number of positive votes, as string (like '1234')."""
     abstain: str
+    """Number of abstain votes, as string (like '1234')."""
     no: str
+    """Number of negative votes, as string (like '1234')."""
     no_with_veto: str
+    """Number of negative votes with veto, as string (like '1234')."""
 
 
 class Proposal(TypedDict):
     """Single proposal."""
 
     proposal_id: str
-    content: _ProposalContent
+    """Internal proposal ID."""
+    content: ProposalContent
+    """Proposal content."""
     status: str
+    """Proposal status."""
     final_tally_result: TallyResults
+    """Proposal final voting results."""
     submit_time: str
+    """Proposal submission time, as timestamp str."""
     deposit_end_time: str
+    """Proposal deposit end time, as timestamp str."""
     total_deposit: Sequence[Coin]
+    """Proposal total deposit, as str number."""
     voting_start_time: str
+    """Proposal voting start time, as timestamp str."""
     voting_end_time: str
+    """Proposal voting end time, as timestamp str."""
 
 
 class ProposalsResponse(TypedDict):
     """Response type of proposals endpoint."""
 
     proposals: Sequence[Proposal]
-    pagination: _PaginationResponse
+    """Response of proposals endpoint."""
+    pagination: PaginationResponse
+    """Pagination block."""
 
 
 class TallyResponse(TypedDict):
     """Response type of tally endpoint."""
 
     tally: TallyResults
+    """Results."""
 
 
 # ibc.ts
@@ -248,32 +293,48 @@ class CounterParty(TypedDict):
     """IBC counterparty."""
 
     port_id: str
+    """IBC port ID."""
     channel_id: str
+    """IBC channel ID."""
 
 
-class Channel(TypedDict):
+class IBCChannel(TypedDict):
     """IBC channel."""
 
     state: str
+    """IBC channel state."""
     ordering: str
+    """IBC channel ordering."""
     counterparty: CounterParty
+    """IBC channel counterparty."""
     connection_hops: Sequence[str]
+    """IBC channel connection hops."""
     version: str
+    """IBC channel version."""
     port_id: str
+    """IBC channel port id."""
     channel_id: str
+    """IBC channel id."""
 
 
-class _ChannelsResponseHeight(TypedDict):
+class ChannelsResponseHeight(TypedDict):
+    """``height`` field type of channels endpoint response."""
+
     revision_number: str
+    """Current revision number."""
     revision_height: str
+    """Current revision height."""
 
 
 class ChannelsResponse(TypedDict):
     """Response type of channels endpoint."""
 
-    channels: Sequence[Channel]
-    pagination: _PaginationResponse
-    height: _ChannelsResponseHeight
+    channels: Sequence[IBCChannel]
+    """Actual channels."""
+    pagination: PaginationResponse
+    """Pagination block."""
+    height: ChannelsResponseHeight
+    """Response height."""
 
 
 # staking.ts
@@ -283,95 +344,148 @@ class Reward(TypedDict):
     """Reward."""
 
     validator_address: str
+    """Validator address."""
     reward: Sequence[Coin]
+    """Reward (in all coin types)."""
 
 
 class DistributionRewardsResponse(TypedDict):
     """Response type of rewards distribution endpoint."""
 
     rewards: Sequence[Reward]
+    """Reward (in all coin types)."""
     total: Sequence[Coin]
+    """Total rewards (in all coin types)."""
 
 
-class _ValidatorCommissionRates(TypedDict):
+class ValidatorCommissionRates(TypedDict):
+    """Validator commission rates."""
+
     max_change_rate: str
+    """Max change rate, number as str."""
     max_rate: str
+    """Max overall rate, number as str."""
     rate: str
+    """Rate, number as str."""
 
 
-class _ValidatorCommission(TypedDict):
-    commission_rates: _ValidatorCommissionRates
+class ValidatorCommission(TypedDict):
+    """Commission rates of validator."""
+
+    commission_rates: ValidatorCommissionRates
+    """Actual rates."""
     update_time: str
+    """Last update time, as str timestamp."""
 
 
-class _ValidatorDescription(TypedDict):
+class ValidatorDescription(TypedDict):
+    """Validator details."""
+
     details: str
+    """Validator details."""
     identity: str
+    """Validator identity."""
     moniker: str
+    """Validator moniker."""
     security_contact: str
+    """Validator security contact."""
     website: str
+    """Validator website."""
 
 
 class Validator(TypedDict):
     """Validator definition."""
 
-    commission: _ValidatorCommission
-    consensus_pubkey: _PubkeyAccountResponse
+    commission: ValidatorCommission
+    """Validator commissions."""
+    consensus_pubkey: PubkeyAccountResponse
+    """Consensus public key."""
     delegator_shares: str
-    description: _ValidatorDescription
+    """Total delegator shares."""
+    description: ValidatorDescription
+    """Description."""
     jailed: bool
+    """Whether validator is jailed."""
     min_self_delegation: str
+    """Minimal self delegation amount, int as str."""
     operator_address: str
+    """Operator address."""
     status: str
+    """Validator status."""
     tokens: str
+    """Validator tokens."""
     unbonding_height: str
+    """Validator unbounding height."""
     unbonding_time: str
+    """Validator unbounding time."""
 
 
 class GetValidatorsResponse(TypedDict):
     """Response type of validators endpoint."""
 
     validators: Sequence[Validator]
-    pagination: _PaginationResponse
+    """All validators present."""
+    pagination: PaginationResponse
+    """Pagination block."""
 
 
-class _DelegationParams(TypedDict):
+class DelegationParams(TypedDict):
+    """Parameters of delegation deal."""
+
     delegator_address: str
+    """Address of delegator."""
     shares: str
+    """Total delegator shares."""
     validator_address: str
+    """Validator address."""
 
 
 class DelegationResponse(TypedDict):
     """Single delegation item received from delegation endpoint."""
 
     balance: Coin
-    delegation: _DelegationParams
+    """Balance of delegated coin."""
+    delegation: DelegationParams
+    """Deal options."""
 
 
 class GetDelegationsResponse(TypedDict):
     """Response type of delegation endpoint."""
 
     delegation_responses: Sequence[DelegationResponse]
-    pagination: _PaginationResponse
+    """All response blocks."""
+    pagination: PaginationResponse
+    """Pagination block."""
 
 
-class _UndelegationEntry(TypedDict):
+class UndelegationEntry(TypedDict):
+    """Undelegation entry."""
+
     creation_height: str
+    """Height of block when this item was created."""
     completion_time: str
+    """Completion time."""
     initial_balance: str
+    """Initial owner balance."""
     balance: str
+    """Resulting owner balance."""
 
 
 class UndelegationResponse(TypedDict):
     """Single undelegation item received from delegation endpoint."""
 
     delegator_address: str
+    """Delegator address."""
     validator_address: str
-    entries: Sequence[_UndelegationEntry]
+    """Validator address."""
+    entries: Sequence[UndelegationEntry]
+    """Actual undelegation descriptions."""
 
 
 class GetUndelegationsResponse(TypedDict):
     """Response type of undelegation endpoint."""
 
     unbonding_responses: Sequence[UndelegationResponse]
-    pagination: _PaginationResponse
+    """All responses as a sequence."""
+    pagination: PaginationResponse
+    """Pagination block."""

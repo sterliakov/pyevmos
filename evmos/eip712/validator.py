@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from typing import Final, TypedDict
+from typing import Final
 
 from evmos.constants import NOT_MODIFY
-from evmos.eip712.base import _WithValidator
+from evmos.eip712.base import MsgInterface
 
 MSG_EDIT_VALIDATOR_TYPES: Final = {
     'TypeDescription': [
@@ -23,19 +23,6 @@ MSG_EDIT_VALIDATOR_TYPES: Final = {
 """Types for validator editing message."""
 
 
-class _WithValidatorExtended(_WithValidator, total=False):
-    description: dict[str, str]
-    commission_rate: str
-    min_self_delegation: str
-
-
-class MsgEditValidatorInterface(TypedDict):
-    """Validator editing message."""
-
-    type: str  # noqa: A003
-    value: _WithValidatorExtended
-
-
 def create_msg_edit_validator(
     *,
     moniker: str | None,
@@ -46,7 +33,7 @@ def create_msg_edit_validator(
     validator_address: str,
     commission_rate: int | str | None = None,
     min_self_delegation: int | str | None = None,
-) -> MsgEditValidatorInterface:
+) -> MsgInterface:
     """Create validator editing message."""
     return {
         'type': 'cosmos-sdk/MsgEditValidator',
@@ -59,9 +46,6 @@ def create_msg_edit_validator(
                 'details': details or NOT_MODIFY,
             },
             'validator_address': validator_address,
-            # TODO: passing '<nil>' is the correct value but it's not supported by
-            # - ethermint (EIP712 parser)
-            # - https://github.com/tharsis/ethermint/issues/1125
             'commission_rate': str(commission_rate or '<nil>'),
             'min_self_delegation': str(min_self_delegation or '<nil>'),
         },

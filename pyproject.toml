@@ -46,18 +46,17 @@ version = {attr = "evmos.__version__"}
 [project.optional-dependencies]
 dev = [
     "betterproto[compiler] @ git+https://github.com/danielgtaylor/python-betterproto@bfc0fac7544bbdf4e0e2beabd45482a4958af514",
+    "pre-commit",
 ]
 test = [
     'pytest>=6.4.0',
     "pytest-cov",
-    "pre-commit",
     "python-dotenv",
 ]
 docs = [
-    'docutils>=0.14,<0.18',  # Sphinx haven't upgraded yet
-    "sphinx>=4.5.0,<5.0.0",
+    'docutils >=0.16, <0.18',  # Sphinx haven't upgraded yet
+    "sphinx >=5.1.1, <6.0",
     "sphinx-rtd-theme",
-    "autodocsumm>=0.2.8,<0.3.0",
 ]
 
 [project.urls]
@@ -183,3 +182,4 @@ docstring-convention = "google"
 
 [tool.isort]
 profile = "black"
+add_imports = "from __future__ import annotations"
