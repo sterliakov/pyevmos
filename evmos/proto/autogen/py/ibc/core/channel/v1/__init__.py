@@ -202,8 +202,7 @@ class Acknowledgement(betterproto.Message):
     used for acknowledgements. The first byte of any message with this format
     will be the non-ASCII values `0xaa` (result) or `0xb2` (error). Implemented
     as defined by ICS:
-    https://github.com/cosmos/ibc/tree/master/spec/core/ics-004-channel-and-
-    packet-semantics#acknowledgement-envelope
+    https://github.com/cosmos/ibc/tree/main/spec/core/ics-004-channel-and-packet-semantics
     """
 
     result: bytes = betterproto.bytes_field(21, group='response')

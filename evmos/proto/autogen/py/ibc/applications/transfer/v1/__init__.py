@@ -162,9 +162,8 @@ class GenesisState(betterproto.Message):
 class MsgTransfer(betterproto.Message):
     """
     MsgTransfer defines a msg to transfer fungible tokens (i.e Coins) between
-    ICS20 enabled chains. See ICS Spec here:
-    https://github.com/cosmos/ibc/tree/master/spec/app/ics-020-fungible-token-
-    transfer#data-structures
+    ICS20 enabled chains. See ICS Spec:
+    https://github.com/cosmos/ibc/tree/main/spec/app/ics-020-fungible-token-transfer
     """
 
     source_port: str = betterproto.string_field(1)

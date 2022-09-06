@@ -29,9 +29,9 @@ class Type(betterproto.Enum):
 class Metadata(betterproto.Message):
     """
     Metadata defines a set of protocol specific data encoded into the ICS27
-    channel version bytestring See ICS004:
-    https://github.com/cosmos/ibc/tree/master/spec/core/ics-004-channel-and-
-    packet-semantics#Versioning
+    channel version bytestring.
+    See ICS004:
+    https://github.com/cosmos/ibc/tree/main/spec/core/ics-004-channel-and-packet-semantics
     """
 
     version: str = betterproto.string_field(1)

@@ -11,8 +11,7 @@ class FungibleTokenPacketData(betterproto.Message):
     """
     FungibleTokenPacketData defines a struct for the packet payload See
     FungibleTokenPacketData spec:
-    https://github.com/cosmos/ibc/tree/master/spec/app/ics-020-fungible-token-
-    transfer#data-structures
+    https://github.com/cosmos/ibc/blob/main/spec/app/ics-020-fungible-token-transfer/README.md
     """
 
     denom: str = betterproto.string_field(1)
