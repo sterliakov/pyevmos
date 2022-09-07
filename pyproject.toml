@@ -36,7 +36,7 @@ dependencies = [
     "bech32 ~= 1.2",
     "typing_extensions ~= 4.3",
     "requests ~= 2.28",
-    "betterproto @ git+https://github.com/danielgtaylor/python-betterproto@bfc0fac7544bbdf4e0e2beabd45482a4958af514",
+    "alt-betterproto ~= 2.0.0",
 ]
 requires-python = ">=3.8"
 
@@ -45,7 +45,7 @@ version = {attr = "evmos.__version__"}
 
 [project.optional-dependencies]
 dev = [
-    "betterproto[compiler] @ git+https://github.com/danielgtaylor/python-betterproto@bfc0fac7544bbdf4e0e2beabd45482a4958af514",
+    "alt-betterproto[compiler] ~= 2.0.0",
     "pre-commit",
 ]
 test = [

@@ -10,21 +10,8 @@ so we patch it too to use our brand-new ``getmro``.
 from __future__ import annotations
 
 import re
-from typing import is_typeddict
 
 from sphinx.util import inspect
-from typing_extensions import is_typeddict as is_old_typeddict
-
-old_getmro = inspect.getmro
-
-
-def new_getmro(obj):
-    """Try to extract ``__doc_mro__`` attribute, fallback to default behavior."""
-    doc_mro = getattr(obj, '__doc_mro__', None)
-    if isinstance(doc_mro, tuple):
-        return doc_mro
-
-    return old_getmro(obj)
 
 
 def new_import_ivar_by_name(
@@ -59,15 +46,6 @@ def new_import_ivar_by_name(
     # Try to get something from __annotations__
     if getattr(obj, '__annotations__', {}).get(attr):
         return f'{modname}.{qualname}.{attr}', asum.INSTANCEATTR, obj, modname
-
-    # Try to resolve instance-level variables by MRO, if they were requested.
-    for base in new_getmro(obj):
-        qname = getattr(base, '__qualname__', None) or getattr(base, '__name__', None)
-        if not qname:
-            continue
-        if (qname, attr) in analyzer.attr_docs or (qname, attr) in analyzer.annotations:
-            mname = getattr(base, '__module__', modname)
-            return f'{mname}.{qname}.{attr}', asum.INSTANCEATTR, base, modname
     # ===============================================================================
 
     # Fail as before, if no success.
@@ -76,17 +54,9 @@ def new_import_ivar_by_name(
 
 def monkey_patch():
     """Script entry point."""
-    inspect.getmro = new_getmro
-
     from sphinx.ext import autosummary
 
     autosummary._module.import_ivar_by_name = new_import_ivar_by_name
-
-
-def fix_typeddict_bases(app, name, obj, options, bases):
-    """Fix ``dict`` display for ``TypedDict``."""
-    if is_typeddict(obj) or is_old_typeddict(obj):
-        bases[:] = new_getmro(obj)[1:]
 
 
 def fix_altered_signature(app, what, name, obj, options, signature, return_annotation):
@@ -125,12 +95,11 @@ def fix_directives(app, what, name, obj, options, lines):
         .replace('*', r'\*')
         .replace('cosmos- sdk', 'cosmos-sdk')
     )
-    res = SINCE_RE.sub(r'\n\n..versionadded:: \1\n\n', res)
+    res = SINCE_RE.sub(r'\n\n.. versionadded:: \1\n\n', res)
     lines[:] = re.split(r'  +', (res + '  '))
 
 
 def setup(app):
     """Set up this extension."""
-    app.connect('autodoc-process-bases', fix_typeddict_bases)
     app.connect('autodoc-process-signature', fix_altered_signature)
     app.connect('autodoc-process-docstring', fix_directives)
