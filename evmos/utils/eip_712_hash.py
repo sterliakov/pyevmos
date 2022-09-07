@@ -56,12 +56,12 @@ def get_dependencies(primary_type: str, types: _TypesT) -> tuple[str, ...]:
 
 
 def field_identifier(field: _FieldT) -> str:
-    """Stringify a field in 'TYPE NAME' format."""
+    """Stringify a field in ``'TYPE NAME'`` format."""
     return f'{field["type"]} {field["name"]}'
 
 
 def encode_struct(struct_name: str, struct_field_types: Iterable[_FieldT]) -> str:
-    """Stringify a single struct in 'NAME(type1 name1,type2 name2,...)' format."""
+    """Stringify a single struct in ``'NAME(type1 name1,type2 name2,...)'`` format."""
     return '{name}({args})'.format(
         name=struct_name,
         args=','.join(map(field_identifier, struct_field_types)),
@@ -73,7 +73,7 @@ def encode_type(primary_type: str, types: _TypesT) -> str:
 
     The type of a struct is encoded as
 
-    ..code-block:: text
+    .. code-block:: text
 
         name ‖ "(" ‖ member₁ ‖ "," ‖ member₂ ‖ "," ‖ … ‖ memberₙ ")"
 
