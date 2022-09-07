@@ -3,7 +3,7 @@
 [![Read the Docs](https://readthedocs.org/projects/pyevmos/badge/?version=latest)](https://pyevmos.readthedocs.io/en/latest/?badge=latest)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Code style: black](https://img.shields.io/badge/code%20style-blue-blue.svg)](https://blue.readthedocs.io/)
-![](https://github.com/sterliakov/pyevmos/workflows/test/badge.svg)
+![](https://github.com/sterliakov/pyevmos/actions/workflows/test.yml/badge.svg)
 
 # Pyevmos - Python SDK to assist developers on Evmos chain.
 
