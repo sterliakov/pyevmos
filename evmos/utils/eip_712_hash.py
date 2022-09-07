@@ -118,7 +118,7 @@ def get_array_dimensions(data: Any) -> tuple[int | str, ...]:
 
     Examples:
         >>> get_array_dimensions([[1, 2, 3], [4, 5, 6]])
-        (2, 3)
+        (3, 2)
 
     """
     depths_and_dimensions = get_depths_and_dimensions(data, 0)
