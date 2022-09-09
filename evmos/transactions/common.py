@@ -33,10 +33,7 @@ class Fee:
 
 @dataclass
 class Sender:
-    """Message sender.
-
-    ..versionadded:: 2.0.0
-    """
+    """Message sender."""
 
     account_address: str
     """Account address (bech32, ``evmos1...``)."""

@@ -11,6 +11,7 @@ Welcome to pyevmos documentation!
     :caption: Contents:
 
     installation
+    examples
     eip712
     proto
     transactions

@@ -37,7 +37,7 @@ class TxGeneratedBase:
     sign_direct: TxGeneratedSignInfo
     """Data to sign directly (intended for keplr-style signing)."""
     legacy_amino: TxGeneratedSignInfo
-    """Data to sign (inteded for use with EIP712 signing)."""
+    """Data to sign (intended for use with EIP712 signing)."""
 
 
 def create_body_with_multiple_messages(messages: Sequence[Any], memo: str) -> tx.TxBody:
