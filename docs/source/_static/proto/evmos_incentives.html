@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Protocol Documentation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        margin: 1em auto;
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0;
+      }
+
+
+      .field-table td:nth-child(1) {
+        width: 10em;
+      }
+      .field-table td:nth-child(2) {
+        width: 10em;
+      }
+      .field-table td:nth-child(3) {
+        width: 6em;
+      }
+      .field-table td:nth-child(4) {
+        width: auto;
+      }
+
+
+      .extension-table td:nth-child(1) {
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) {
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) {
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) {
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) {
+        width: auto;
+      }
+
+
+      .enum-table td:nth-child(1) {
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) {
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) {
+        width: auto;
+      }
+
+
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+    <div style="display: flex; justify-content: space-between; align-items: center;"><h1 id="title">Protocol Documentation</h1><a href="/">Back to package documentation</a></div>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+
+
+          <li>
+            <a href="#evmos%2fincentives%2fv1%2fincentives.proto">evmos/incentives/v1/incentives.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#evmos.incentives.v1.CancelIncentiveProposal"><span class="badge">M</span>CancelIncentiveProposal</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.GasMeter"><span class="badge">M</span>GasMeter</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.Incentive"><span class="badge">M</span>Incentive</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.RegisterIncentiveProposal"><span class="badge">M</span>RegisterIncentiveProposal</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#evmos%2fincentives%2fv1%2fquery.proto">evmos/incentives/v1/query.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryAllocationMeterRequest"><span class="badge">M</span>QueryAllocationMeterRequest</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryAllocationMeterResponse"><span class="badge">M</span>QueryAllocationMeterResponse</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryAllocationMetersRequest"><span class="badge">M</span>QueryAllocationMetersRequest</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryAllocationMetersResponse"><span class="badge">M</span>QueryAllocationMetersResponse</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryGasMeterRequest"><span class="badge">M</span>QueryGasMeterRequest</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryGasMeterResponse"><span class="badge">M</span>QueryGasMeterResponse</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryGasMetersRequest"><span class="badge">M</span>QueryGasMetersRequest</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryGasMetersResponse"><span class="badge">M</span>QueryGasMetersResponse</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryIncentiveRequest"><span class="badge">M</span>QueryIncentiveRequest</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryIncentiveResponse"><span class="badge">M</span>QueryIncentiveResponse</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryIncentivesRequest"><span class="badge">M</span>QueryIncentivesRequest</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryIncentivesResponse"><span class="badge">M</span>QueryIncentivesResponse</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryParamsRequest"><span class="badge">M</span>QueryParamsRequest</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.QueryParamsResponse"><span class="badge">M</span>QueryParamsResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#evmos.incentives.v1.Query"><span class="badge">S</span>Query</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#evmos%2fincentives%2fv1%2fgenesis.proto">evmos/incentives/v1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#evmos.incentives.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.Params"><span class="badge">M</span>Params</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="evmos/incentives/v1/incentives.proto">evmos/incentives/v1/incentives.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="evmos.incentives.v1.CancelIncentiveProposal">CancelIncentiveProposal</h3>
+        <p>CancelIncentiveProposal is a gov Content type to cancel an incentive</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>title of the proposal </p></td>
+                </tr>
+
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>proposal description </p></td>
+                </tr>
+
+                <tr>
+                  <td>contract</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>contract address </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.GasMeter">GasMeter</h3>
+        <p>GasMeter tracks the cumulative gas spent per participant in one epoch</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>contract</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>hex address of the incentivized contract </p></td>
+                </tr>
+
+                <tr>
+                  <td>participant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>participant address that interacts with the incentive </p></td>
+                </tr>
+
+                <tr>
+                  <td>cumulative_gas</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>cumulative gas spent during the epoch </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.Incentive">Incentive</h3>
+        <p>Incentive defines an instance that organizes distribution conditions for a</p><p>given smart contract</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>contract</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>contract address </p></td>
+                </tr>
+
+                <tr>
+                  <td>allocations</td>
+                  <td><a href="#cosmos.base.v1beta1.DecCoin">cosmos.base.v1beta1.DecCoin</a></td>
+                  <td>repeated</td>
+                  <td><p>denoms and percentage of rewards to be allocated </p></td>
+                </tr>
+
+                <tr>
+                  <td>epochs</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>number of remaining epochs </p></td>
+                </tr>
+
+                <tr>
+                  <td>start_time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>distribution start time </p></td>
+                </tr>
+
+                <tr>
+                  <td>total_gas</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>cumulative gas spent by all gasmeters of the incentive during the epoch </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.RegisterIncentiveProposal">RegisterIncentiveProposal</h3>
+        <p>RegisterIncentiveProposal is a gov Content type to register an incentive</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>title of the proposal </p></td>
+                </tr>
+
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>proposal description </p></td>
+                </tr>
+
+                <tr>
+                  <td>contract</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>contract address </p></td>
+                </tr>
+
+                <tr>
+                  <td>allocations</td>
+                  <td><a href="#cosmos.base.v1beta1.DecCoin">cosmos.base.v1beta1.DecCoin</a></td>
+                  <td>repeated</td>
+                  <td><p>denoms and percentage of rewards to be allocated </p></td>
+                </tr>
+
+                <tr>
+                  <td>epochs</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>number of remaining epochs </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="evmos/incentives/v1/query.proto">evmos/incentives/v1/query.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="evmos.incentives.v1.QueryAllocationMeterRequest">QueryAllocationMeterRequest</h3>
+        <p>QueryAllocationMeterRequest is the request type for the Query/AllocationMeter</p><p>RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>denom is the coin denom to query an allocation meter for. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.QueryAllocationMeterResponse">QueryAllocationMeterResponse</h3>
+        <p>QueryAllocationMeterResponse is the response type for the</p><p>Query/AllocationMeter RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>allocation_meter</td>
+                  <td><a href="#cosmos.base.v1beta1.DecCoin">cosmos.base.v1beta1.DecCoin</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.QueryAllocationMetersRequest">QueryAllocationMetersRequest</h3>
+        <p>QueryAllocationMetersRequest is the request type for the</p><p>Query/AllocationMeters RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.QueryAllocationMetersResponse">QueryAllocationMetersResponse</h3>
+        <p>QueryAllocationMetersResponse is the response type for the</p><p>Query/AllocationMeters RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>allocation_meters</td>
+                  <td><a href="#cosmos.base.v1beta1.DecCoin">cosmos.base.v1beta1.DecCoin</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.QueryGasMeterRequest">QueryGasMeterRequest</h3>
+        <p>QueryGasMeterRequest is the request type for the Query/Incentive RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>contract</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>contract identifier is the hex contract address of a contract </p></td>
+                </tr>
+
+                <tr>
+                  <td>participant</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>participant identifier is the hex address of a user </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.QueryGasMeterResponse">QueryGasMeterResponse</h3>
+        <p>QueryGasMeterResponse is the response type for the Query/Incentive RPC</p><p>method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>gas_meter</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.QueryGasMetersRequest">QueryGasMetersRequest</h3>
+        <p>QueryGasMetersRequest is the request type for the Query/Incentives RPC</p><p>method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>contract</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>contract is the hex contract address of a incentivized smart contract </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.QueryGasMetersResponse">QueryGasMetersResponse</h3>
+        <p>QueryGasMetersResponse is the response type for the Query/Incentives RPC</p><p>method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>gas_meters</td>
+                  <td><a href="#evmos.incentives.v1.GasMeter">GasMeter</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.QueryIncentiveRequest">QueryIncentiveRequest</h3>
+        <p>QueryIncentiveRequest is the request type for the Query/Incentive RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>contract</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>contract identifier is the hex contract address of a contract </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.QueryIncentiveResponse">QueryIncentiveResponse</h3>
+        <p>QueryIncentiveResponse is the response type for the Query/Incentive RPC</p><p>method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>incentive</td>
+                  <td><a href="#evmos.incentives.v1.Incentive">Incentive</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.QueryIncentivesRequest">QueryIncentivesRequest</h3>
+        <p>QueryIncentivesRequest is the request type for the Query/Incentives RPC</p><p>method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.QueryIncentivesResponse">QueryIncentivesResponse</h3>
+        <p>QueryIncentivesResponse is the response type for the Query/Incentives RPC</p><p>method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>incentives</td>
+                  <td><a href="#evmos.incentives.v1.Incentive">Incentive</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.QueryParamsRequest">QueryParamsRequest</h3>
+        <p>QueryParamsRequest is the request type for the Query/Params RPC method.</p>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.QueryParamsResponse">QueryParamsResponse</h3>
+        <p>QueryParamsResponse is the response type for the Query/Params RPC</p><p>method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#evmos.incentives.v1.Params">Params</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.Query">Query</h3>
+        <p>Query defines the gRPC querier service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>Incentives</td>
+                <td><a href="#evmos.incentives.v1.QueryIncentivesRequest">QueryIncentivesRequest</a></td>
+                <td><a href="#evmos.incentives.v1.QueryIncentivesResponse">QueryIncentivesResponse</a></td>
+                <td><p>Incentives retrieves registered incentives</p></td>
+              </tr>
+
+              <tr>
+                <td>Incentive</td>
+                <td><a href="#evmos.incentives.v1.QueryIncentiveRequest">QueryIncentiveRequest</a></td>
+                <td><a href="#evmos.incentives.v1.QueryIncentiveResponse">QueryIncentiveResponse</a></td>
+                <td><p>Incentive retrieves a registered incentive</p></td>
+              </tr>
+
+              <tr>
+                <td>GasMeters</td>
+                <td><a href="#evmos.incentives.v1.QueryGasMetersRequest">QueryGasMetersRequest</a></td>
+                <td><a href="#evmos.incentives.v1.QueryGasMetersResponse">QueryGasMetersResponse</a></td>
+                <td><p>GasMeters retrieves active gas meters for a given contract</p></td>
+              </tr>
+
+              <tr>
+                <td>GasMeter</td>
+                <td><a href="#evmos.incentives.v1.QueryGasMeterRequest">QueryGasMeterRequest</a></td>
+                <td><a href="#evmos.incentives.v1.QueryGasMeterResponse">QueryGasMeterResponse</a></td>
+                <td><p>GasMeter Retrieves a active gas meter</p></td>
+              </tr>
+
+              <tr>
+                <td>AllocationMeters</td>
+                <td><a href="#evmos.incentives.v1.QueryAllocationMetersRequest">QueryAllocationMetersRequest</a></td>
+                <td><a href="#evmos.incentives.v1.QueryAllocationMetersResponse">QueryAllocationMetersResponse</a></td>
+                <td><p>AllocationMeters retrieves active allocation meters for a given
+denomination</p></td>
+              </tr>
+
+              <tr>
+                <td>AllocationMeter</td>
+                <td><a href="#evmos.incentives.v1.QueryAllocationMeterRequest">QueryAllocationMeterRequest</a></td>
+                <td><a href="#evmos.incentives.v1.QueryAllocationMeterResponse">QueryAllocationMeterResponse</a></td>
+                <td><p>AllocationMeter Retrieves a active gas meter</p></td>
+              </tr>
+
+              <tr>
+                <td>Params</td>
+                <td><a href="#evmos.incentives.v1.QueryParamsRequest">QueryParamsRequest</a></td>
+                <td><a href="#evmos.incentives.v1.QueryParamsResponse">QueryParamsResponse</a></td>
+                <td><p>Params retrieves the incentives module params</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+
+
+
+              <tr>
+                <td>Incentives</td>
+                <td>GET</td>
+                <td>/evmos/incentives/v1/incentives</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>Incentive</td>
+                <td>GET</td>
+                <td>/evmos/incentives/v1/incentives/{contract}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GasMeters</td>
+                <td>GET</td>
+                <td>/evmos/incentives/v1/gas_meters/{contract}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GasMeter</td>
+                <td>GET</td>
+                <td>/evmos/incentives/v1/gas_meters/{contract}/{participant}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>AllocationMeters</td>
+                <td>GET</td>
+                <td>/evmos/incentives/v1/allocation_meters</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>AllocationMeter</td>
+                <td>GET</td>
+                <td>/evmos/incentives/v1/allocation_meters/{denom}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>Params</td>
+                <td>GET</td>
+                <td>/evmos/incentives/v1/params</td>
+                <td></td>
+              </tr>
+
+
+            </tbody>
+          </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="evmos/incentives/v1/genesis.proto">evmos/incentives/v1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="evmos.incentives.v1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#evmos.incentives.v1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>module parameters </p></td>
+                </tr>
+
+                <tr>
+                  <td>incentives</td>
+                  <td><a href="#evmos.incentives.v1.Incentive">Incentive</a></td>
+                  <td>repeated</td>
+                  <td><p>active incentives </p></td>
+                </tr>
+
+                <tr>
+                  <td>gas_meters</td>
+                  <td><a href="#evmos.incentives.v1.GasMeter">GasMeter</a></td>
+                  <td>repeated</td>
+                  <td><p>active Gasmeters </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.Params">Params</h3>
+        <p>Params defines the incentives module params</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>enable_incentives</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>parameter to enable incentives </p></td>
+                </tr>
+
+                <tr>
+                  <td>allocation_limit</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>maximum percentage an incentive can allocate per denomination </p></td>
+                </tr>
+
+                <tr>
+                  <td>incentives_epoch_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>identifier for the epochs module hooks </p></td>
+                </tr>
+
+                <tr>
+                  <td>reward_scaler</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>scaling factor for capping rewards </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr><td>.proto Type</td><td>Notes</td><td>C++</td><td>Java</td><td>Python</td><td>Go</td><td>C#</td><td>PHP</td><td>Ruby</td></tr>
+      </thead>
+      <tbody>
+
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>double</td>
+            <td>double</td>
+            <td>float</td>
+            <td>float64</td>
+            <td>double</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+            <td>float</td>
+            <td>float</td>
+            <td>float32</td>
+            <td>float</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int/long</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>boolean</td>
+            <td>bool</td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>TrueClass/FalseClass</td>
+          </tr>
+
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>string</td>
+            <td>String</td>
+            <td>str/unicode</td>
+            <td>string</td>
+            <td>string</td>
+            <td>string</td>
+            <td>String (UTF-8)</td>
+          </tr>
+
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>string</td>
+            <td>ByteString</td>
+            <td>str</td>
+            <td>[]byte</td>
+            <td>ByteString</td>
+            <td>string</td>
+            <td>String (ASCII-8BIT)</td>
+          </tr>
+
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Protocol Documentation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        margin: 1em auto;
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0;
+      }
+
+
+      .field-table td:nth-child(1) {
+        width: 10em;
+      }
+      .field-table td:nth-child(2) {
+        width: 10em;
+      }
+      .field-table td:nth-child(3) {
+        width: 6em;
+      }
+      .field-table td:nth-child(4) {
+        width: auto;
+      }
+
+
+      .extension-table td:nth-child(1) {
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) {
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) {
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) {
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) {
+        width: auto;
+      }
+
+
+      .enum-table td:nth-child(1) {
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) {
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) {
+        width: auto;
+      }
+
+
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+    <div style="display: flex; justify-content: space-between; align-items: center;"><h1 id="title">Protocol Documentation</h1><a href="/">Back to package documentation</a></div>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+
+
+          <li>
+            <a href="#tendermint%2ftypes%2fblock.proto">tendermint/types/block.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#tendermint.types.Block"><span class="badge">M</span>Block</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#tendermint%2ftypes%2fparams.proto">tendermint/types/params.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#tendermint.types.BlockParams"><span class="badge">M</span>BlockParams</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.ConsensusParams"><span class="badge">M</span>ConsensusParams</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.EvidenceParams"><span class="badge">M</span>EvidenceParams</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.HashedParams"><span class="badge">M</span>HashedParams</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.ValidatorParams"><span class="badge">M</span>ValidatorParams</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.VersionParams"><span class="badge">M</span>VersionParams</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#tendermint%2ftypes%2fevidence.proto">tendermint/types/evidence.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#tendermint.types.DuplicateVoteEvidence"><span class="badge">M</span>DuplicateVoteEvidence</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.Evidence"><span class="badge">M</span>Evidence</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.EvidenceList"><span class="badge">M</span>EvidenceList</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.LightClientAttackEvidence"><span class="badge">M</span>LightClientAttackEvidence</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#tendermint%2ftypes%2ftypes.proto">tendermint/types/types.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#tendermint.types.BlockID"><span class="badge">M</span>BlockID</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.BlockMeta"><span class="badge">M</span>BlockMeta</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.Commit"><span class="badge">M</span>Commit</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.CommitSig"><span class="badge">M</span>CommitSig</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.Data"><span class="badge">M</span>Data</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.Header"><span class="badge">M</span>Header</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.LightBlock"><span class="badge">M</span>LightBlock</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.Part"><span class="badge">M</span>Part</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.PartSetHeader"><span class="badge">M</span>PartSetHeader</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.Proposal"><span class="badge">M</span>Proposal</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.SignedHeader"><span class="badge">M</span>SignedHeader</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.TxProof"><span class="badge">M</span>TxProof</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.Vote"><span class="badge">M</span>Vote</a>
+                </li>
+
+
+                <li>
+                  <a href="#tendermint.types.BlockIDFlag"><span class="badge">E</span>BlockIDFlag</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.SignedMsgType"><span class="badge">E</span>SignedMsgType</a>
+                </li>
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#tendermint%2ftypes%2fvalidator.proto">tendermint/types/validator.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#tendermint.types.SimpleValidator"><span class="badge">M</span>SimpleValidator</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.Validator"><span class="badge">M</span>Validator</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.ValidatorSet"><span class="badge">M</span>ValidatorSet</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="tendermint/types/block.proto">tendermint/types/block.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="tendermint.types.Block">Block</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>header</td>
+                  <td><a href="#tendermint.types.Header">Header</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>data</td>
+                  <td><a href="#tendermint.types.Data">Data</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>evidence</td>
+                  <td><a href="#tendermint.types.EvidenceList">EvidenceList</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>last_commit</td>
+                  <td><a href="#tendermint.types.Commit">Commit</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="tendermint/types/params.proto">tendermint/types/params.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="tendermint.types.BlockParams">BlockParams</h3>
+        <p>BlockParams contains limits on the block size.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>max_bytes</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Max block size, in bytes.
+Note: must be greater than 0 </p></td>
+                </tr>
+
+                <tr>
+                  <td>max_gas</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Max gas per block.
+Note: must be greater or equal to -1 </p></td>
+                </tr>
+
+                <tr>
+                  <td>time_iota_ms</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Minimum time increment between consecutive blocks (in milliseconds) If the
+block header timestamp is ahead of the system clock, decrease this value.
+
+Not exposed to the application. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.ConsensusParams">ConsensusParams</h3>
+        <p>ConsensusParams contains consensus critical parameters that determine the</p><p>validity of blocks.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>block</td>
+                  <td><a href="#tendermint.types.BlockParams">BlockParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>evidence</td>
+                  <td><a href="#tendermint.types.EvidenceParams">EvidenceParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>validator</td>
+                  <td><a href="#tendermint.types.ValidatorParams">ValidatorParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#tendermint.types.VersionParams">VersionParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.EvidenceParams">EvidenceParams</h3>
+        <p>EvidenceParams determine how we handle evidence of malfeasance.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>max_age_num_blocks</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Max age of evidence, in blocks.
+
+The basic formula for calculating this is: MaxAgeDuration / {average block
+time}. </p></td>
+                </tr>
+
+                <tr>
+                  <td>max_age_duration</td>
+                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
+                  <td></td>
+                  <td><p>Max age of evidence, in time.
+
+It should correspond with an app&#39;s &#34;unbonding period&#34; or other similar
+mechanism for handling [Nothing-At-Stake
+attacks](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ#what-is-the-nothing-at-stake-problem-and-how-can-it-be-fixed). </p></td>
+                </tr>
+
+                <tr>
+                  <td>max_bytes</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>This sets the maximum size of total evidence in bytes that can be committed
+in a single block. and should fall comfortably under the max block bytes.
+Default is 1048576 or 1MB </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.HashedParams">HashedParams</h3>
+        <p>HashedParams is a subset of ConsensusParams.</p><p>It is hashed into the Header.ConsensusHash.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>block_max_bytes</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>block_max_gas</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.ValidatorParams">ValidatorParams</h3>
+        <p>ValidatorParams restrict the public key types validators can use.</p><p>NOTE: uses ABCI pubkey naming, not Amino names.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>pub_key_types</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.VersionParams">VersionParams</h3>
+        <p>VersionParams contains the ABCI application version.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>app_version</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="tendermint/types/evidence.proto">tendermint/types/evidence.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="tendermint.types.DuplicateVoteEvidence">DuplicateVoteEvidence</h3>
+        <p>DuplicateVoteEvidence contains evidence of a validator signed two conflicting</p><p>votes.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>vote_a</td>
+                  <td><a href="#tendermint.types.Vote">Vote</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>vote_b</td>
+                  <td><a href="#tendermint.types.Vote">Vote</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>total_voting_power</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>validator_power</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.Evidence">Evidence</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>duplicate_vote_evidence</td>
+                  <td><a href="#tendermint.types.DuplicateVoteEvidence">DuplicateVoteEvidence</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>light_client_attack_evidence</td>
+                  <td><a href="#tendermint.types.LightClientAttackEvidence">LightClientAttackEvidence</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.EvidenceList">EvidenceList</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>evidence</td>
+                  <td><a href="#tendermint.types.Evidence">Evidence</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.LightClientAttackEvidence">LightClientAttackEvidence</h3>
+        <p>LightClientAttackEvidence contains evidence of a set of validators attempting</p><p>to mislead a light client.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>conflicting_block</td>
+                  <td><a href="#tendermint.types.LightBlock">LightBlock</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>common_height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>byzantine_validators</td>
+                  <td><a href="#tendermint.types.Validator">Validator</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>total_voting_power</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="tendermint/types/types.proto">tendermint/types/types.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="tendermint.types.BlockID">BlockID</h3>
+        <p>BlockID</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>part_set_header</td>
+                  <td><a href="#tendermint.types.PartSetHeader">PartSetHeader</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.BlockMeta">BlockMeta</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>block_id</td>
+                  <td><a href="#tendermint.types.BlockID">BlockID</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>block_size</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>header</td>
+                  <td><a href="#tendermint.types.Header">Header</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>num_txs</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.Commit">Commit</h3>
+        <p>Commit contains the evidence that a block was committed by a set of</p><p>validators.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>round</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>block_id</td>
+                  <td><a href="#tendermint.types.BlockID">BlockID</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>signatures</td>
+                  <td><a href="#tendermint.types.CommitSig">CommitSig</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.CommitSig">CommitSig</h3>
+        <p>CommitSig is a part of the Vote included in a Commit.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>block_id_flag</td>
+                  <td><a href="#tendermint.types.BlockIDFlag">BlockIDFlag</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>validator_address</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>signature</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.Data">Data</h3>
+        <p>Data contains the set of transactions included in the block</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>txs</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td>repeated</td>
+                  <td><p>Txs that will be applied by state @ block.Height&#43;1.
+NOTE: not all txs here are valid.  We&#39;re just agreeing on the order first.
+This means that block.AppHash does not include these txs. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.Header">Header</h3>
+        <p>Header defines the structure of a Tendermint block header.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#tendermint.version.Consensus">tendermint.version.Consensus</a></td>
+                  <td></td>
+                  <td><p>basic block info </p></td>
+                </tr>
+
+                <tr>
+                  <td>chain_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>last_block_id</td>
+                  <td><a href="#tendermint.types.BlockID">BlockID</a></td>
+                  <td></td>
+                  <td><p>prev block info </p></td>
+                </tr>
+
+                <tr>
+                  <td>last_commit_hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>hashes of block data
+
+commit from validators from the last block </p></td>
+                </tr>
+
+                <tr>
+                  <td>data_hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>transactions </p></td>
+                </tr>
+
+                <tr>
+                  <td>validators_hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>hashes from the app output from the prev block
+
+validators for the current block </p></td>
+                </tr>
+
+                <tr>
+                  <td>next_validators_hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>validators for the next block </p></td>
+                </tr>
+
+                <tr>
+                  <td>consensus_hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>consensus params for current block </p></td>
+                </tr>
+
+                <tr>
+                  <td>app_hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>state after txs from the previous block </p></td>
+                </tr>
+
+                <tr>
+                  <td>last_results_hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>root hash of all results from the txs from the previous block </p></td>
+                </tr>
+
+                <tr>
+                  <td>evidence_hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>consensus info
+
+evidence included in the block </p></td>
+                </tr>
+
+                <tr>
+                  <td>proposer_address</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>original proposer of the block </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.LightBlock">LightBlock</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>signed_header</td>
+                  <td><a href="#tendermint.types.SignedHeader">SignedHeader</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>validator_set</td>
+                  <td><a href="#tendermint.types.ValidatorSet">ValidatorSet</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.Part">Part</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>index</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>bytes</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>proof</td>
+                  <td><a href="#tendermint.crypto.Proof">tendermint.crypto.Proof</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.PartSetHeader">PartSetHeader</h3>
+        <p>PartsetHeader</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>total</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.Proposal">Proposal</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>type</td>
+                  <td><a href="#tendermint.types.SignedMsgType">SignedMsgType</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>round</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pol_round</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>block_id</td>
+                  <td><a href="#tendermint.types.BlockID">BlockID</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>signature</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.SignedHeader">SignedHeader</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>header</td>
+                  <td><a href="#tendermint.types.Header">Header</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>commit</td>
+                  <td><a href="#tendermint.types.Commit">Commit</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.TxProof">TxProof</h3>
+        <p>TxProof represents a Merkle proof of the presence of a transaction in the</p><p>Merkle tree.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>root_hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>data</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>proof</td>
+                  <td><a href="#tendermint.crypto.Proof">tendermint.crypto.Proof</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.Vote">Vote</h3>
+        <p>Vote represents a prevote, precommit, or commit vote from validators for</p><p>consensus.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>type</td>
+                  <td><a href="#tendermint.types.SignedMsgType">SignedMsgType</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>round</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>block_id</td>
+                  <td><a href="#tendermint.types.BlockID">BlockID</a></td>
+                  <td></td>
+                  <td><p>zero if vote is nil. </p></td>
+                </tr>
+
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>validator_address</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>validator_index</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>signature</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+        <h3 id="tendermint.types.BlockIDFlag">BlockIDFlag</h3>
+        <p>BlockIdFlag indicates which BlcokID the signature is for</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>BLOCK_ID_FLAG_UNKNOWN</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>BLOCK_ID_FLAG_ABSENT</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>BLOCK_ID_FLAG_COMMIT</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>BLOCK_ID_FLAG_NIL</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <h3 id="tendermint.types.SignedMsgType">SignedMsgType</h3>
+        <p>SignedMsgType is a type of signed message in the consensus.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>SIGNED_MSG_TYPE_UNKNOWN</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>SIGNED_MSG_TYPE_PREVOTE</td>
+                <td>1</td>
+                <td><p>Votes</p></td>
+              </tr>
+
+              <tr>
+                <td>SIGNED_MSG_TYPE_PRECOMMIT</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>SIGNED_MSG_TYPE_PROPOSAL</td>
+                <td>32</td>
+                <td><p>Proposals</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="tendermint/types/validator.proto">tendermint/types/validator.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="tendermint.types.SimpleValidator">SimpleValidator</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>pub_key</td>
+                  <td><a href="#tendermint.crypto.PublicKey">tendermint.crypto.PublicKey</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>voting_power</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.Validator">Validator</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pub_key</td>
+                  <td><a href="#tendermint.crypto.PublicKey">tendermint.crypto.PublicKey</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>voting_power</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>proposer_priority</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.ValidatorSet">ValidatorSet</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>validators</td>
+                  <td><a href="#tendermint.types.Validator">Validator</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>proposer</td>
+                  <td><a href="#tendermint.types.Validator">Validator</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>total_voting_power</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr><td>.proto Type</td><td>Notes</td><td>C++</td><td>Java</td><td>Python</td><td>Go</td><td>C#</td><td>PHP</td><td>Ruby</td></tr>
+      </thead>
+      <tbody>
+
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>double</td>
+            <td>double</td>
+            <td>float</td>
+            <td>float64</td>
+            <td>double</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+            <td>float</td>
+            <td>float</td>
+            <td>float32</td>
+            <td>float</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int/long</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>boolean</td>
+            <td>bool</td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>TrueClass/FalseClass</td>
+          </tr>
+
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>string</td>
+            <td>String</td>
+            <td>str/unicode</td>
+            <td>string</td>
+            <td>string</td>
+            <td>string</td>
+            <td>String (UTF-8)</td>
+          </tr>
+
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>string</td>
+            <td>ByteString</td>
+            <td>str</td>
+            <td>[]byte</td>
+            <td>ByteString</td>
+            <td>string</td>
+            <td>String (ASCII-8BIT)</td>
+          </tr>
+
+      </tbody>
+    </table>
+  </body>
+</html>

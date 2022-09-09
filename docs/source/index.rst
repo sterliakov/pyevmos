@@ -15,11 +15,13 @@ Welcome to pyevmos documentation!
     eip712
     proto
     transactions
-    autogen
     utils
     address_converter
     provider
     wallet
+
+    autogen
+    autogen_proto
 
 
 

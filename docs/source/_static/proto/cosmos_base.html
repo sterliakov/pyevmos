@@ -1,0 +1,3642 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Protocol Documentation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        margin: 1em auto;
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0;
+      }
+
+
+      .field-table td:nth-child(1) {
+        width: 10em;
+      }
+      .field-table td:nth-child(2) {
+        width: 10em;
+      }
+      .field-table td:nth-child(3) {
+        width: 6em;
+      }
+      .field-table td:nth-child(4) {
+        width: auto;
+      }
+
+
+      .extension-table td:nth-child(1) {
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) {
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) {
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) {
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) {
+        width: auto;
+      }
+
+
+      .enum-table td:nth-child(1) {
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) {
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) {
+        width: auto;
+      }
+
+
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+    <div style="display: flex; justify-content: space-between; align-items: center;"><h1 id="title">Protocol Documentation</h1><a href="/">Back to package documentation</a></div>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+
+
+          <li>
+            <a href="#cosmos%2fbase%2fv1beta1%2fcoin.proto">cosmos/base/v1beta1/coin.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.base.v1beta1.Coin"><span class="badge">M</span>Coin</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.v1beta1.DecCoin"><span class="badge">M</span>DecCoin</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.v1beta1.DecProto"><span class="badge">M</span>DecProto</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.v1beta1.IntProto"><span class="badge">M</span>IntProto</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos%2fbase%2fquery%2fv1beta1%2fpagination.proto">cosmos/base/query/v1beta1/pagination.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.base.query.v1beta1.PageRequest"><span class="badge">M</span>PageRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.query.v1beta1.PageResponse"><span class="badge">M</span>PageResponse</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos%2fbase%2fstore%2fv1beta1%2flistening.proto">cosmos/base/store/v1beta1/listening.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.base.store.v1beta1.StoreKVPair"><span class="badge">M</span>StoreKVPair</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos%2fbase%2fstore%2fv1beta1%2fcommit_info.proto">cosmos/base/store/v1beta1/commit_info.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.base.store.v1beta1.CommitID"><span class="badge">M</span>CommitID</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.store.v1beta1.CommitInfo"><span class="badge">M</span>CommitInfo</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.store.v1beta1.StoreInfo"><span class="badge">M</span>StoreInfo</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos%2fbase%2fstore%2fv1beta1%2fsnapshot.proto">cosmos/base/store/v1beta1/snapshot.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.base.store.v1beta1.SnapshotIAVLItem"><span class="badge">M</span>SnapshotIAVLItem</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.store.v1beta1.SnapshotItem"><span class="badge">M</span>SnapshotItem</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.store.v1beta1.SnapshotStoreItem"><span class="badge">M</span>SnapshotStoreItem</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos%2fbase%2freflection%2fv1beta1%2freflection.proto">cosmos/base/reflection/v1beta1/reflection.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v1beta1.ListAllInterfacesRequest"><span class="badge">M</span>ListAllInterfacesRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v1beta1.ListAllInterfacesResponse"><span class="badge">M</span>ListAllInterfacesResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v1beta1.ListImplementationsRequest"><span class="badge">M</span>ListImplementationsRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v1beta1.ListImplementationsResponse"><span class="badge">M</span>ListImplementationsResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.base.reflection.v1beta1.ReflectionService"><span class="badge">S</span>ReflectionService</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos%2fbase%2freflection%2fv2alpha1%2freflection.proto">cosmos/base/reflection/v2alpha1/reflection.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.AppDescriptor"><span class="badge">M</span>AppDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.AuthnDescriptor"><span class="badge">M</span>AuthnDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.ChainDescriptor"><span class="badge">M</span>ChainDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.CodecDescriptor"><span class="badge">M</span>CodecDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.ConfigurationDescriptor"><span class="badge">M</span>ConfigurationDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.GetAuthnDescriptorRequest"><span class="badge">M</span>GetAuthnDescriptorRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.GetAuthnDescriptorResponse"><span class="badge">M</span>GetAuthnDescriptorResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.GetChainDescriptorRequest"><span class="badge">M</span>GetChainDescriptorRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.GetChainDescriptorResponse"><span class="badge">M</span>GetChainDescriptorResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.GetCodecDescriptorRequest"><span class="badge">M</span>GetCodecDescriptorRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.GetCodecDescriptorResponse"><span class="badge">M</span>GetCodecDescriptorResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.GetConfigurationDescriptorRequest"><span class="badge">M</span>GetConfigurationDescriptorRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.GetConfigurationDescriptorResponse"><span class="badge">M</span>GetConfigurationDescriptorResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.GetQueryServicesDescriptorRequest"><span class="badge">M</span>GetQueryServicesDescriptorRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.GetQueryServicesDescriptorResponse"><span class="badge">M</span>GetQueryServicesDescriptorResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.GetTxDescriptorRequest"><span class="badge">M</span>GetTxDescriptorRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.GetTxDescriptorResponse"><span class="badge">M</span>GetTxDescriptorResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.InterfaceAcceptingMessageDescriptor"><span class="badge">M</span>InterfaceAcceptingMessageDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.InterfaceDescriptor"><span class="badge">M</span>InterfaceDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.InterfaceImplementerDescriptor"><span class="badge">M</span>InterfaceImplementerDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.MsgDescriptor"><span class="badge">M</span>MsgDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.QueryMethodDescriptor"><span class="badge">M</span>QueryMethodDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.QueryServiceDescriptor"><span class="badge">M</span>QueryServiceDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.QueryServicesDescriptor"><span class="badge">M</span>QueryServicesDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.SigningModeDescriptor"><span class="badge">M</span>SigningModeDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.TxDescriptor"><span class="badge">M</span>TxDescriptor</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.base.reflection.v2alpha1.ReflectionService"><span class="badge">S</span>ReflectionService</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos%2fbase%2fabci%2fv1beta1%2fabci.proto">cosmos/base/abci/v1beta1/abci.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.base.abci.v1beta1.ABCIMessageLog"><span class="badge">M</span>ABCIMessageLog</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.abci.v1beta1.Attribute"><span class="badge">M</span>Attribute</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.abci.v1beta1.GasInfo"><span class="badge">M</span>GasInfo</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.abci.v1beta1.MsgData"><span class="badge">M</span>MsgData</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.abci.v1beta1.Result"><span class="badge">M</span>Result</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.abci.v1beta1.SearchTxsResult"><span class="badge">M</span>SearchTxsResult</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.abci.v1beta1.SimulationResponse"><span class="badge">M</span>SimulationResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.abci.v1beta1.StringEvent"><span class="badge">M</span>StringEvent</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.abci.v1beta1.TxMsgData"><span class="badge">M</span>TxMsgData</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.abci.v1beta1.TxResponse"><span class="badge">M</span>TxResponse</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos%2fbase%2fkv%2fv1beta1%2fkv.proto">cosmos/base/kv/v1beta1/kv.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.base.kv.v1beta1.Pair"><span class="badge">M</span>Pair</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.kv.v1beta1.Pairs"><span class="badge">M</span>Pairs</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos%2fbase%2fsnapshots%2fv1beta1%2fsnapshot.proto">cosmos/base/snapshots/v1beta1/snapshot.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.base.snapshots.v1beta1.Metadata"><span class="badge">M</span>Metadata</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.snapshots.v1beta1.Snapshot"><span class="badge">M</span>Snapshot</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.snapshots.v1beta1.SnapshotExtensionMeta"><span class="badge">M</span>SnapshotExtensionMeta</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.snapshots.v1beta1.SnapshotExtensionPayload"><span class="badge">M</span>SnapshotExtensionPayload</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.snapshots.v1beta1.SnapshotIAVLItem"><span class="badge">M</span>SnapshotIAVLItem</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.snapshots.v1beta1.SnapshotItem"><span class="badge">M</span>SnapshotItem</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.snapshots.v1beta1.SnapshotStoreItem"><span class="badge">M</span>SnapshotStoreItem</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos%2fbase%2ftendermint%2fv1beta1%2fquery.proto">cosmos/base/tendermint/v1beta1/query.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.GetBlockByHeightRequest"><span class="badge">M</span>GetBlockByHeightRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.GetBlockByHeightResponse"><span class="badge">M</span>GetBlockByHeightResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.GetLatestBlockRequest"><span class="badge">M</span>GetLatestBlockRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.GetLatestBlockResponse"><span class="badge">M</span>GetLatestBlockResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.GetLatestValidatorSetRequest"><span class="badge">M</span>GetLatestValidatorSetRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.GetLatestValidatorSetResponse"><span class="badge">M</span>GetLatestValidatorSetResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.GetNodeInfoRequest"><span class="badge">M</span>GetNodeInfoRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.GetNodeInfoResponse"><span class="badge">M</span>GetNodeInfoResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.GetSyncingRequest"><span class="badge">M</span>GetSyncingRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.GetSyncingResponse"><span class="badge">M</span>GetSyncingResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.GetValidatorSetByHeightRequest"><span class="badge">M</span>GetValidatorSetByHeightRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.GetValidatorSetByHeightResponse"><span class="badge">M</span>GetValidatorSetByHeightResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.Validator"><span class="badge">M</span>Validator</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.VersionInfo"><span class="badge">M</span>VersionInfo</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.base.tendermint.v1beta1.Service"><span class="badge">S</span>Service</a>
+                </li>
+
+            </ul>
+          </li>
+
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/base/v1beta1/coin.proto">cosmos/base/v1beta1/coin.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.base.v1beta1.Coin">Coin</h3>
+        <p>Coin defines a token with a denomination and an amount.</p><p>NOTE: The amount field is an Int which implements the custom method</p><p>signatures required by gogoproto.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.v1beta1.DecCoin">DecCoin</h3>
+        <p>DecCoin defines a token with a denomination and a decimal amount.</p><p>NOTE: The amount field is an Dec which implements the custom method</p><p>signatures required by gogoproto.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.v1beta1.DecProto">DecProto</h3>
+        <p>DecProto defines a Protobuf wrapper around a Dec object.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>dec</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.v1beta1.IntProto">IntProto</h3>
+        <p>IntProto defines a Protobuf wrapper around an Int object.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>int</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/base/query/v1beta1/pagination.proto">cosmos/base/query/v1beta1/pagination.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.base.query.v1beta1.PageRequest">PageRequest</h3>
+        <p>PageRequest is to be embedded in gRPC request messages for efficient</p><p>pagination. Ex:</p><p>message SomeRequest {</p><p>Foo some_parameter = 1;</p><p>PageRequest pagination = 2;</p><p>}</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>key</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>key is a value returned in PageResponse.next_key to begin
+querying the next page most efficiently. Only one of offset or key
+should be set. </p></td>
+                </tr>
+
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>offset is a numeric offset that can be used when key is unavailable.
+It is less efficient than using key. Only one of offset or key should
+be set. </p></td>
+                </tr>
+
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>limit is the total number of results to be returned in the result page.
+If left empty it will default to a value to be set by each app. </p></td>
+                </tr>
+
+                <tr>
+                  <td>count_total</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>count_total is set to true  to indicate that the result set should include
+a count of the total number of items available for pagination in UIs.
+count_total is only respected when offset is used. It is ignored when key
+is set. </p></td>
+                </tr>
+
+                <tr>
+                  <td>reverse</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>reverse is set to true if results are to be returned in the descending order.
+
+Since: cosmos-sdk 0.43 </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.query.v1beta1.PageResponse">PageResponse</h3>
+        <p>PageResponse is to be embedded in gRPC response messages where the</p><p>corresponding request message has used PageRequest.</p><p>message SomeResponse {</p><p>repeated Bar results = 1;</p><p>PageResponse page = 2;</p><p>}</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>next_key</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>next_key is the key to be passed to PageRequest.key to
+query the next page most efficiently </p></td>
+                </tr>
+
+                <tr>
+                  <td>total</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>total is total number of results available if PageRequest.count_total
+was set, its value is undefined otherwise </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/base/store/v1beta1/listening.proto">cosmos/base/store/v1beta1/listening.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.base.store.v1beta1.StoreKVPair">StoreKVPair</h3>
+        <p>StoreKVPair is a KVStore KVPair used for listening to state changes (Sets and Deletes)</p><p>It optionally includes the StoreKey for the originating KVStore and a Boolean flag to distinguish between Sets and</p><p>Deletes</p><p>Since: cosmos-sdk 0.43</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>store_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the store key for the KVStore this pair originates from </p></td>
+                </tr>
+
+                <tr>
+                  <td>delete</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>true indicates a delete operation, false indicates a set operation </p></td>
+                </tr>
+
+                <tr>
+                  <td>key</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/base/store/v1beta1/commit_info.proto">cosmos/base/store/v1beta1/commit_info.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.base.store.v1beta1.CommitID">CommitID</h3>
+        <p>CommitID defines the committment information when a specific store is</p><p>committed.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.store.v1beta1.CommitInfo">CommitInfo</h3>
+        <p>CommitInfo defines commit information used by the multi-store when committing</p><p>a version/height.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>store_infos</td>
+                  <td><a href="#cosmos.base.store.v1beta1.StoreInfo">StoreInfo</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.store.v1beta1.StoreInfo">StoreInfo</h3>
+        <p>StoreInfo defines store-specific commit information. It contains a reference</p><p>between a store name and the commit ID.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>commit_id</td>
+                  <td><a href="#cosmos.base.store.v1beta1.CommitID">CommitID</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/base/store/v1beta1/snapshot.proto">cosmos/base/store/v1beta1/snapshot.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.base.store.v1beta1.SnapshotIAVLItem">SnapshotIAVLItem</h3>
+        <p>SnapshotIAVLItem is an exported IAVL node.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>key</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.store.v1beta1.SnapshotItem">SnapshotItem</h3>
+        <p>SnapshotItem is an item contained in a rootmulti.Store snapshot.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>store</td>
+                  <td><a href="#cosmos.base.store.v1beta1.SnapshotStoreItem">SnapshotStoreItem</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>iavl</td>
+                  <td><a href="#cosmos.base.store.v1beta1.SnapshotIAVLItem">SnapshotIAVLItem</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.store.v1beta1.SnapshotStoreItem">SnapshotStoreItem</h3>
+        <p>SnapshotStoreItem contains metadata about a snapshotted store.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/base/reflection/v1beta1/reflection.proto">cosmos/base/reflection/v1beta1/reflection.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.base.reflection.v1beta1.ListAllInterfacesRequest">ListAllInterfacesRequest</h3>
+        <p>ListAllInterfacesRequest is the request type of the ListAllInterfaces RPC.</p>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v1beta1.ListAllInterfacesResponse">ListAllInterfacesResponse</h3>
+        <p>ListAllInterfacesResponse is the response type of the ListAllInterfaces RPC.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>interface_names</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>interface_names is an array of all the registered interfaces. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v1beta1.ListImplementationsRequest">ListImplementationsRequest</h3>
+        <p>ListImplementationsRequest is the request type of the ListImplementations</p><p>RPC.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>interface_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>interface_name defines the interface to query the implementations for. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v1beta1.ListImplementationsResponse">ListImplementationsResponse</h3>
+        <p>ListImplementationsResponse is the response type of the ListImplementations</p><p>RPC.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>implementation_message_names</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v1beta1.ReflectionService">ReflectionService</h3>
+        <p>ReflectionService defines a service for interface reflection.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>ListAllInterfaces</td>
+                <td><a href="#cosmos.base.reflection.v1beta1.ListAllInterfacesRequest">ListAllInterfacesRequest</a></td>
+                <td><a href="#cosmos.base.reflection.v1beta1.ListAllInterfacesResponse">ListAllInterfacesResponse</a></td>
+                <td><p>ListAllInterfaces lists all the interfaces registered in the interface
+registry.</p></td>
+              </tr>
+
+              <tr>
+                <td>ListImplementations</td>
+                <td><a href="#cosmos.base.reflection.v1beta1.ListImplementationsRequest">ListImplementationsRequest</a></td>
+                <td><a href="#cosmos.base.reflection.v1beta1.ListImplementationsResponse">ListImplementationsResponse</a></td>
+                <td><p>ListImplementations list all the concrete types that implement a given
+interface.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+
+
+
+              <tr>
+                <td>ListAllInterfaces</td>
+                <td>GET</td>
+                <td>/cosmos/base/reflection/v1beta1/interfaces</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>ListImplementations</td>
+                <td>GET</td>
+                <td>/cosmos/base/reflection/v1beta1/interfaces/{interface_name}/implementations</td>
+                <td></td>
+              </tr>
+
+
+            </tbody>
+          </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/base/reflection/v2alpha1/reflection.proto">cosmos/base/reflection/v2alpha1/reflection.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Since: cosmos-sdk 0.43</p>
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.AppDescriptor">AppDescriptor</h3>
+        <p>AppDescriptor describes a cosmos-sdk based application</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authn</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.AuthnDescriptor">AuthnDescriptor</a></td>
+                  <td></td>
+                  <td><p>AuthnDescriptor provides information on how to authenticate transactions on the application
+NOTE: experimental and subject to change in future releases. </p></td>
+                </tr>
+
+                <tr>
+                  <td>chain</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.ChainDescriptor">ChainDescriptor</a></td>
+                  <td></td>
+                  <td><p>chain provides the chain descriptor </p></td>
+                </tr>
+
+                <tr>
+                  <td>codec</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.CodecDescriptor">CodecDescriptor</a></td>
+                  <td></td>
+                  <td><p>codec provides metadata information regarding codec related types </p></td>
+                </tr>
+
+                <tr>
+                  <td>configuration</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.ConfigurationDescriptor">ConfigurationDescriptor</a></td>
+                  <td></td>
+                  <td><p>configuration provides metadata information regarding the sdk.Config type </p></td>
+                </tr>
+
+                <tr>
+                  <td>query_services</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.QueryServicesDescriptor">QueryServicesDescriptor</a></td>
+                  <td></td>
+                  <td><p>query_services provides metadata information regarding the available queriable endpoints </p></td>
+                </tr>
+
+                <tr>
+                  <td>tx</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.TxDescriptor">TxDescriptor</a></td>
+                  <td></td>
+                  <td><p>tx provides metadata information regarding how to send transactions to the given application </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.AuthnDescriptor">AuthnDescriptor</h3>
+        <p>AuthnDescriptor provides information on how to sign transactions without relying</p><p>on the online RPCs GetTxMetadata and CombineUnsignedTxAndSignatures</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>sign_modes</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.SigningModeDescriptor">SigningModeDescriptor</a></td>
+                  <td>repeated</td>
+                  <td><p>sign_modes defines the supported signature algorithm </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.ChainDescriptor">ChainDescriptor</h3>
+        <p>ChainDescriptor describes chain information of the application</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>id is the chain id </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.CodecDescriptor">CodecDescriptor</h3>
+        <p>CodecDescriptor describes the registered interfaces and provides metadata information on the types</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>interfaces</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.InterfaceDescriptor">InterfaceDescriptor</a></td>
+                  <td>repeated</td>
+                  <td><p>interfaces is a list of the registerted interfaces descriptors </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.ConfigurationDescriptor">ConfigurationDescriptor</h3>
+        <p>ConfigurationDescriptor contains metadata information on the sdk.Config</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>bech32_account_address_prefix</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>bech32_account_address_prefix is the account address prefix </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.GetAuthnDescriptorRequest">GetAuthnDescriptorRequest</h3>
+        <p>GetAuthnDescriptorRequest is the request used for the GetAuthnDescriptor RPC</p>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.GetAuthnDescriptorResponse">GetAuthnDescriptorResponse</h3>
+        <p>GetAuthnDescriptorResponse is the response returned by the GetAuthnDescriptor RPC</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authn</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.AuthnDescriptor">AuthnDescriptor</a></td>
+                  <td></td>
+                  <td><p>authn describes how to authenticate to the application when sending transactions </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.GetChainDescriptorRequest">GetChainDescriptorRequest</h3>
+        <p>GetChainDescriptorRequest is the request used for the GetChainDescriptor RPC</p>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.GetChainDescriptorResponse">GetChainDescriptorResponse</h3>
+        <p>GetChainDescriptorResponse is the response returned by the GetChainDescriptor RPC</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>chain</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.ChainDescriptor">ChainDescriptor</a></td>
+                  <td></td>
+                  <td><p>chain describes application chain information </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.GetCodecDescriptorRequest">GetCodecDescriptorRequest</h3>
+        <p>GetCodecDescriptorRequest is the request used for the GetCodecDescriptor RPC</p>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.GetCodecDescriptorResponse">GetCodecDescriptorResponse</h3>
+        <p>GetCodecDescriptorResponse is the response returned by the GetCodecDescriptor RPC</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>codec</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.CodecDescriptor">CodecDescriptor</a></td>
+                  <td></td>
+                  <td><p>codec describes the application codec such as registered interfaces and implementations </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.GetConfigurationDescriptorRequest">GetConfigurationDescriptorRequest</h3>
+        <p>GetConfigurationDescriptorRequest is the request used for the GetConfigurationDescriptor RPC</p>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.GetConfigurationDescriptorResponse">GetConfigurationDescriptorResponse</h3>
+        <p>GetConfigurationDescriptorResponse is the response returned by the GetConfigurationDescriptor RPC</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>config</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.ConfigurationDescriptor">ConfigurationDescriptor</a></td>
+                  <td></td>
+                  <td><p>config describes the application&#39;s sdk.Config </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.GetQueryServicesDescriptorRequest">GetQueryServicesDescriptorRequest</h3>
+        <p>GetQueryServicesDescriptorRequest is the request used for the GetQueryServicesDescriptor RPC</p>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.GetQueryServicesDescriptorResponse">GetQueryServicesDescriptorResponse</h3>
+        <p>GetQueryServicesDescriptorResponse is the response returned by the GetQueryServicesDescriptor RPC</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>queries</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.QueryServicesDescriptor">QueryServicesDescriptor</a></td>
+                  <td></td>
+                  <td><p>queries provides information on the available queryable services </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.GetTxDescriptorRequest">GetTxDescriptorRequest</h3>
+        <p>GetTxDescriptorRequest is the request used for the GetTxDescriptor RPC</p>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.GetTxDescriptorResponse">GetTxDescriptorResponse</h3>
+        <p>GetTxDescriptorResponse is the response returned by the GetTxDescriptor RPC</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>tx</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.TxDescriptor">TxDescriptor</a></td>
+                  <td></td>
+                  <td><p>tx provides information on msgs that can be forwarded to the application
+alongside the accepted transaction protobuf type </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.InterfaceAcceptingMessageDescriptor">InterfaceAcceptingMessageDescriptor</h3>
+        <p>InterfaceAcceptingMessageDescriptor describes a protobuf message which contains</p><p>an interface represented as a google.protobuf.Any</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>fullname</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>fullname is the protobuf fullname of the type containing the interface </p></td>
+                </tr>
+
+                <tr>
+                  <td>field_descriptor_names</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>field_descriptor_names is a list of the protobuf name (not fullname) of the field
+which contains the interface as google.protobuf.Any (the interface is the same, but
+it can be in multiple fields of the same proto message) </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.InterfaceDescriptor">InterfaceDescriptor</h3>
+        <p>InterfaceDescriptor describes the implementation of an interface</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>fullname</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>fullname is the name of the interface </p></td>
+                </tr>
+
+                <tr>
+                  <td>interface_accepting_messages</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.InterfaceAcceptingMessageDescriptor">InterfaceAcceptingMessageDescriptor</a></td>
+                  <td>repeated</td>
+                  <td><p>interface_accepting_messages contains information regarding the proto messages which contain the interface as
+google.protobuf.Any field </p></td>
+                </tr>
+
+                <tr>
+                  <td>interface_implementers</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.InterfaceImplementerDescriptor">InterfaceImplementerDescriptor</a></td>
+                  <td>repeated</td>
+                  <td><p>interface_implementers is a list of the descriptors of the interface implementers </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.InterfaceImplementerDescriptor">InterfaceImplementerDescriptor</h3>
+        <p>InterfaceImplementerDescriptor describes an interface implementer</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>fullname</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>fullname is the protobuf queryable name of the interface implementer </p></td>
+                </tr>
+
+                <tr>
+                  <td>type_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>type_url defines the type URL used when marshalling the type as any
+this is required so we can provide type safe google.protobuf.Any marshalling and
+unmarshalling, making sure that we don&#39;t accept just &#39;any&#39; type
+in our interface fields </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.MsgDescriptor">MsgDescriptor</h3>
+        <p>MsgDescriptor describes a cosmos-sdk message that can be delivered with a transaction</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>msg_type_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>msg_type_url contains the TypeURL of a sdk.Msg. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.QueryMethodDescriptor">QueryMethodDescriptor</h3>
+        <p>QueryMethodDescriptor describes a queryable method of a query service</p><p>no other info is provided beside method name and tendermint queryable path</p><p>because it would be redundant with the grpc reflection service</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>name is the protobuf name (not fullname) of the method </p></td>
+                </tr>
+
+                <tr>
+                  <td>full_query_path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>full_query_path is the path that can be used to query
+this method via tendermint abci.Query </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.QueryServiceDescriptor">QueryServiceDescriptor</h3>
+        <p>QueryServiceDescriptor describes a cosmos-sdk queryable service</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>fullname</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>fullname is the protobuf fullname of the service descriptor </p></td>
+                </tr>
+
+                <tr>
+                  <td>is_module</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>is_module describes if this service is actually exposed by an application&#39;s module </p></td>
+                </tr>
+
+                <tr>
+                  <td>methods</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.QueryMethodDescriptor">QueryMethodDescriptor</a></td>
+                  <td>repeated</td>
+                  <td><p>methods provides a list of query service methods </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.QueryServicesDescriptor">QueryServicesDescriptor</h3>
+        <p>QueryServicesDescriptor contains the list of cosmos-sdk queriable services</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>query_services</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.QueryServiceDescriptor">QueryServiceDescriptor</a></td>
+                  <td>repeated</td>
+                  <td><p>query_services is a list of cosmos-sdk QueryServiceDescriptor </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.SigningModeDescriptor">SigningModeDescriptor</h3>
+        <p>SigningModeDescriptor provides information on a signing flow of the application</p><p>NOTE(fdymylja): here we could go as far as providing an entire flow on how</p><p>to sign a message given a SigningModeDescriptor, but it's better to think about</p><p>this another time</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>name defines the unique name of the signing mode </p></td>
+                </tr>
+
+                <tr>
+                  <td>number</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>number is the unique int32 identifier for the sign_mode enum </p></td>
+                </tr>
+
+                <tr>
+                  <td>authn_info_provider_method_fullname</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authn_info_provider_method_fullname defines the fullname of the method to call to get
+the metadata required to authenticate using the provided sign_modes </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.TxDescriptor">TxDescriptor</h3>
+        <p>TxDescriptor describes the accepted transaction type</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>fullname</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>fullname is the protobuf fullname of the raw transaction type (for instance the tx.Tx type)
+it is not meant to support polymorphism of transaction types, it is supposed to be used by
+reflection clients to understand if they can handle a specific transaction type in an application. </p></td>
+                </tr>
+
+                <tr>
+                  <td>msgs</td>
+                  <td><a href="#cosmos.base.reflection.v2alpha1.MsgDescriptor">MsgDescriptor</a></td>
+                  <td>repeated</td>
+                  <td><p>msgs lists the accepted application messages (sdk.Msg) </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.base.reflection.v2alpha1.ReflectionService">ReflectionService</h3>
+        <p>ReflectionService defines a service for application reflection.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>GetAuthnDescriptor</td>
+                <td><a href="#cosmos.base.reflection.v2alpha1.GetAuthnDescriptorRequest">GetAuthnDescriptorRequest</a></td>
+                <td><a href="#cosmos.base.reflection.v2alpha1.GetAuthnDescriptorResponse">GetAuthnDescriptorResponse</a></td>
+                <td><p>GetAuthnDescriptor returns information on how to authenticate transactions in the application
+NOTE: this RPC is still experimental and might be subject to breaking changes or removal in
+future releases of the cosmos-sdk.</p></td>
+              </tr>
+
+              <tr>
+                <td>GetChainDescriptor</td>
+                <td><a href="#cosmos.base.reflection.v2alpha1.GetChainDescriptorRequest">GetChainDescriptorRequest</a></td>
+                <td><a href="#cosmos.base.reflection.v2alpha1.GetChainDescriptorResponse">GetChainDescriptorResponse</a></td>
+                <td><p>GetChainDescriptor returns the description of the chain</p></td>
+              </tr>
+
+              <tr>
+                <td>GetCodecDescriptor</td>
+                <td><a href="#cosmos.base.reflection.v2alpha1.GetCodecDescriptorRequest">GetCodecDescriptorRequest</a></td>
+                <td><a href="#cosmos.base.reflection.v2alpha1.GetCodecDescriptorResponse">GetCodecDescriptorResponse</a></td>
+                <td><p>GetCodecDescriptor returns the descriptor of the codec of the application</p></td>
+              </tr>
+
+              <tr>
+                <td>GetConfigurationDescriptor</td>
+                <td><a href="#cosmos.base.reflection.v2alpha1.GetConfigurationDescriptorRequest">GetConfigurationDescriptorRequest</a></td>
+                <td><a href="#cosmos.base.reflection.v2alpha1.GetConfigurationDescriptorResponse">GetConfigurationDescriptorResponse</a></td>
+                <td><p>GetConfigurationDescriptor returns the descriptor for the sdk.Config of the application</p></td>
+              </tr>
+
+              <tr>
+                <td>GetQueryServicesDescriptor</td>
+                <td><a href="#cosmos.base.reflection.v2alpha1.GetQueryServicesDescriptorRequest">GetQueryServicesDescriptorRequest</a></td>
+                <td><a href="#cosmos.base.reflection.v2alpha1.GetQueryServicesDescriptorResponse">GetQueryServicesDescriptorResponse</a></td>
+                <td><p>GetQueryServicesDescriptor returns the available gRPC queryable services of the application</p></td>
+              </tr>
+
+              <tr>
+                <td>GetTxDescriptor</td>
+                <td><a href="#cosmos.base.reflection.v2alpha1.GetTxDescriptorRequest">GetTxDescriptorRequest</a></td>
+                <td><a href="#cosmos.base.reflection.v2alpha1.GetTxDescriptorResponse">GetTxDescriptorResponse</a></td>
+                <td><p>GetTxDescriptor returns information on the used transaction object and available msgs that can be used</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+
+
+
+              <tr>
+                <td>GetAuthnDescriptor</td>
+                <td>GET</td>
+                <td>/cosmos/base/reflection/v1beta1/app_descriptor/authn</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GetChainDescriptor</td>
+                <td>GET</td>
+                <td>/cosmos/base/reflection/v1beta1/app_descriptor/chain</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GetCodecDescriptor</td>
+                <td>GET</td>
+                <td>/cosmos/base/reflection/v1beta1/app_descriptor/codec</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GetConfigurationDescriptor</td>
+                <td>GET</td>
+                <td>/cosmos/base/reflection/v1beta1/app_descriptor/configuration</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GetQueryServicesDescriptor</td>
+                <td>GET</td>
+                <td>/cosmos/base/reflection/v1beta1/app_descriptor/query_services</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GetTxDescriptor</td>
+                <td>GET</td>
+                <td>/cosmos/base/reflection/v1beta1/app_descriptor/tx_descriptor</td>
+                <td></td>
+              </tr>
+
+
+            </tbody>
+          </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/base/abci/v1beta1/abci.proto">cosmos/base/abci/v1beta1/abci.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.base.abci.v1beta1.ABCIMessageLog">ABCIMessageLog</h3>
+        <p>ABCIMessageLog defines a structure containing an indexed tx ABCI message log.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>msg_index</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>log</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>events</td>
+                  <td><a href="#cosmos.base.abci.v1beta1.StringEvent">StringEvent</a></td>
+                  <td>repeated</td>
+                  <td><p>Events contains a slice of Event objects that were emitted during some
+execution. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.abci.v1beta1.Attribute">Attribute</h3>
+        <p>Attribute defines an attribute wrapper where the key and value are</p><p>strings instead of raw bytes.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.abci.v1beta1.GasInfo">GasInfo</h3>
+        <p>GasInfo defines tx execution gas context.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>gas_wanted</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>GasWanted is the maximum units of work we allow this tx to perform. </p></td>
+                </tr>
+
+                <tr>
+                  <td>gas_used</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>GasUsed is the amount of gas actually consumed. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.abci.v1beta1.MsgData">MsgData</h3>
+        <p>MsgData defines the data returned in a Result object during message</p><p>execution.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>msg_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>data</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.abci.v1beta1.Result">Result</h3>
+        <p>Result is the union of ResponseFormat and ResponseCheckTx.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>data</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Data is any data returned from message or handler execution. It MUST be
+length prefixed in order to separate data from multiple message executions. </p></td>
+                </tr>
+
+                <tr>
+                  <td>log</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Log contains the log information from message or handler execution. </p></td>
+                </tr>
+
+                <tr>
+                  <td>events</td>
+                  <td><a href="#tendermint.abci.Event">tendermint.abci.Event</a></td>
+                  <td>repeated</td>
+                  <td><p>Events contains a slice of Event objects that were emitted during message
+or handler execution. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.abci.v1beta1.SearchTxsResult">SearchTxsResult</h3>
+        <p>SearchTxsResult defines a structure for querying txs pageable</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>total_count</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Count of all txs </p></td>
+                </tr>
+
+                <tr>
+                  <td>count</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Count of txs in current page </p></td>
+                </tr>
+
+                <tr>
+                  <td>page_number</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Index of current page, start from 1 </p></td>
+                </tr>
+
+                <tr>
+                  <td>page_total</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Count of total pages </p></td>
+                </tr>
+
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Max count txs per page </p></td>
+                </tr>
+
+                <tr>
+                  <td>txs</td>
+                  <td><a href="#cosmos.base.abci.v1beta1.TxResponse">TxResponse</a></td>
+                  <td>repeated</td>
+                  <td><p>List of txs in current page </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.abci.v1beta1.SimulationResponse">SimulationResponse</h3>
+        <p>SimulationResponse defines the response generated when a transaction is</p><p>successfully simulated.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>gas_info</td>
+                  <td><a href="#cosmos.base.abci.v1beta1.GasInfo">GasInfo</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>result</td>
+                  <td><a href="#cosmos.base.abci.v1beta1.Result">Result</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.abci.v1beta1.StringEvent">StringEvent</h3>
+        <p>StringEvent defines en Event object wrapper where all the attributes</p><p>contain key/value pairs that are strings instead of raw bytes.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>attributes</td>
+                  <td><a href="#cosmos.base.abci.v1beta1.Attribute">Attribute</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.abci.v1beta1.TxMsgData">TxMsgData</h3>
+        <p>TxMsgData defines a list of MsgData. A transaction will have a MsgData object</p><p>for each message.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>data</td>
+                  <td><a href="#cosmos.base.abci.v1beta1.MsgData">MsgData</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.abci.v1beta1.TxResponse">TxResponse</h3>
+        <p>TxResponse defines a structure containing relevant tx data and metadata. The</p><p>tags are stringified and the log is JSON decoded.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>The block height </p></td>
+                </tr>
+
+                <tr>
+                  <td>txhash</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The transaction hash. </p></td>
+                </tr>
+
+                <tr>
+                  <td>codespace</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Namespace for the Code </p></td>
+                </tr>
+
+                <tr>
+                  <td>code</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>Response code. </p></td>
+                </tr>
+
+                <tr>
+                  <td>data</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Result bytes, if any. </p></td>
+                </tr>
+
+                <tr>
+                  <td>raw_log</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The output of the application&#39;s logger (raw string). May be
+non-deterministic. </p></td>
+                </tr>
+
+                <tr>
+                  <td>logs</td>
+                  <td><a href="#cosmos.base.abci.v1beta1.ABCIMessageLog">ABCIMessageLog</a></td>
+                  <td>repeated</td>
+                  <td><p>The output of the application&#39;s logger (typed). May be non-deterministic. </p></td>
+                </tr>
+
+                <tr>
+                  <td>info</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Additional information. May be non-deterministic. </p></td>
+                </tr>
+
+                <tr>
+                  <td>gas_wanted</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Amount of gas requested for transaction. </p></td>
+                </tr>
+
+                <tr>
+                  <td>gas_used</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Amount of gas consumed by transaction. </p></td>
+                </tr>
+
+                <tr>
+                  <td>tx</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p>The request transaction bytes. </p></td>
+                </tr>
+
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Time of the previous block. For heights &gt; 1, it&#39;s the weighted median of
+the timestamps of the valid votes in the block.LastCommit. For height == 1,
+it&#39;s genesis time. </p></td>
+                </tr>
+
+                <tr>
+                  <td>events</td>
+                  <td><a href="#tendermint.abci.Event">tendermint.abci.Event</a></td>
+                  <td>repeated</td>
+                  <td><p>Events defines all the events emitted by processing a transaction. Note,
+these events include those emitted by processing all the messages and those
+emitted from the ante handler. Whereas Logs contains the events, with
+additional metadata, emitted only by processing the messages.
+
+Since: cosmos-sdk 0.42.11, 0.44.5, 0.45 </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/base/kv/v1beta1/kv.proto">cosmos/base/kv/v1beta1/kv.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.base.kv.v1beta1.Pair">Pair</h3>
+        <p>Pair defines a key/value bytes tuple.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>key</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.kv.v1beta1.Pairs">Pairs</h3>
+        <p>Pairs defines a repeated slice of Pair objects.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>pairs</td>
+                  <td><a href="#cosmos.base.kv.v1beta1.Pair">Pair</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/base/snapshots/v1beta1/snapshot.proto">cosmos/base/snapshots/v1beta1/snapshot.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.base.snapshots.v1beta1.Metadata">Metadata</h3>
+        <p>Metadata contains SDK-specific snapshot metadata.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>chunk_hashes</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td>repeated</td>
+                  <td><p>SHA-256 chunk hashes </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.snapshots.v1beta1.Snapshot">Snapshot</h3>
+        <p>Snapshot contains Tendermint state sync snapshot info.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>format</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>chunks</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#cosmos.base.snapshots.v1beta1.Metadata">Metadata</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.snapshots.v1beta1.SnapshotExtensionMeta">SnapshotExtensionMeta</h3>
+        <p>SnapshotExtensionMeta contains metadata about an external snapshotter.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>format</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.snapshots.v1beta1.SnapshotExtensionPayload">SnapshotExtensionPayload</h3>
+        <p>SnapshotExtensionPayload contains payloads of an external snapshotter.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>payload</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.snapshots.v1beta1.SnapshotIAVLItem">SnapshotIAVLItem</h3>
+        <p>SnapshotIAVLItem is an exported IAVL node.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>key</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>version is block height </p></td>
+                </tr>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>height is depth of the tree. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.snapshots.v1beta1.SnapshotItem">SnapshotItem</h3>
+        <p>SnapshotItem is an item contained in a rootmulti.Store snapshot.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>store</td>
+                  <td><a href="#cosmos.base.snapshots.v1beta1.SnapshotStoreItem">SnapshotStoreItem</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>iavl</td>
+                  <td><a href="#cosmos.base.snapshots.v1beta1.SnapshotIAVLItem">SnapshotIAVLItem</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>extension</td>
+                  <td><a href="#cosmos.base.snapshots.v1beta1.SnapshotExtensionMeta">SnapshotExtensionMeta</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>extension_payload</td>
+                  <td><a href="#cosmos.base.snapshots.v1beta1.SnapshotExtensionPayload">SnapshotExtensionPayload</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.snapshots.v1beta1.SnapshotStoreItem">SnapshotStoreItem</h3>
+        <p>SnapshotStoreItem contains metadata about a snapshotted store.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/base/tendermint/v1beta1/query.proto">cosmos/base/tendermint/v1beta1/query.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.GetBlockByHeightRequest">GetBlockByHeightRequest</h3>
+        <p>GetBlockByHeightRequest is the request type for the Query/GetBlockByHeight RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.GetBlockByHeightResponse">GetBlockByHeightResponse</h3>
+        <p>GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>block_id</td>
+                  <td><a href="#tendermint.types.BlockID">tendermint.types.BlockID</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>block</td>
+                  <td><a href="#tendermint.types.Block">tendermint.types.Block</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.GetLatestBlockRequest">GetLatestBlockRequest</h3>
+        <p>GetLatestBlockRequest is the request type for the Query/GetLatestBlock RPC method.</p>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.GetLatestBlockResponse">GetLatestBlockResponse</h3>
+        <p>GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>block_id</td>
+                  <td><a href="#tendermint.types.BlockID">tendermint.types.BlockID</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>block</td>
+                  <td><a href="#tendermint.types.Block">tendermint.types.Block</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.GetLatestValidatorSetRequest">GetLatestValidatorSetRequest</h3>
+        <p>GetLatestValidatorSetRequest is the request type for the Query/GetValidatorSetByHeight RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.GetLatestValidatorSetResponse">GetLatestValidatorSetResponse</h3>
+        <p>GetLatestValidatorSetResponse is the response type for the Query/GetValidatorSetByHeight RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>block_height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>validators</td>
+                  <td><a href="#cosmos.base.tendermint.v1beta1.Validator">Validator</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines an pagination for the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.GetNodeInfoRequest">GetNodeInfoRequest</h3>
+        <p>GetNodeInfoRequest is the request type for the Query/GetNodeInfo RPC method.</p>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.GetNodeInfoResponse">GetNodeInfoResponse</h3>
+        <p>GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>default_node_info</td>
+                  <td><a href="#tendermint.p2p.DefaultNodeInfo">tendermint.p2p.DefaultNodeInfo</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>application_version</td>
+                  <td><a href="#cosmos.base.tendermint.v1beta1.VersionInfo">VersionInfo</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.GetSyncingRequest">GetSyncingRequest</h3>
+        <p>GetSyncingRequest is the request type for the Query/GetSyncing RPC method.</p>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.GetSyncingResponse">GetSyncingResponse</h3>
+        <p>GetSyncingResponse is the response type for the Query/GetSyncing RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>syncing</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.GetValidatorSetByHeightRequest">GetValidatorSetByHeightRequest</h3>
+        <p>GetValidatorSetByHeightRequest is the request type for the Query/GetValidatorSetByHeight RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.GetValidatorSetByHeightResponse">GetValidatorSetByHeightResponse</h3>
+        <p>GetValidatorSetByHeightResponse is the response type for the Query/GetValidatorSetByHeight RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>block_height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>validators</td>
+                  <td><a href="#cosmos.base.tendermint.v1beta1.Validator">Validator</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines an pagination for the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.Module">Module</h3>
+        <p>Module is the type for VersionInfo</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>module path </p></td>
+                </tr>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>module version </p></td>
+                </tr>
+
+                <tr>
+                  <td>sum</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>checksum </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.Validator">Validator</h3>
+        <p>Validator is the type for the validator-set.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pub_key</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>voting_power</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>proposer_priority</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.VersionInfo">VersionInfo</h3>
+        <p>VersionInfo is the type for the GetNodeInfoResponse message.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>app_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>git_commit</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>build_tags</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>go_version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>build_deps</td>
+                  <td><a href="#cosmos.base.tendermint.v1beta1.Module">Module</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>cosmos_sdk_version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Since: cosmos-sdk 0.43 </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.base.tendermint.v1beta1.Service">Service</h3>
+        <p>Service defines the gRPC querier service for tendermint queries.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>GetNodeInfo</td>
+                <td><a href="#cosmos.base.tendermint.v1beta1.GetNodeInfoRequest">GetNodeInfoRequest</a></td>
+                <td><a href="#cosmos.base.tendermint.v1beta1.GetNodeInfoResponse">GetNodeInfoResponse</a></td>
+                <td><p>GetNodeInfo queries the current node info.</p></td>
+              </tr>
+
+              <tr>
+                <td>GetSyncing</td>
+                <td><a href="#cosmos.base.tendermint.v1beta1.GetSyncingRequest">GetSyncingRequest</a></td>
+                <td><a href="#cosmos.base.tendermint.v1beta1.GetSyncingResponse">GetSyncingResponse</a></td>
+                <td><p>GetSyncing queries node syncing.</p></td>
+              </tr>
+
+              <tr>
+                <td>GetLatestBlock</td>
+                <td><a href="#cosmos.base.tendermint.v1beta1.GetLatestBlockRequest">GetLatestBlockRequest</a></td>
+                <td><a href="#cosmos.base.tendermint.v1beta1.GetLatestBlockResponse">GetLatestBlockResponse</a></td>
+                <td><p>GetLatestBlock returns the latest block.</p></td>
+              </tr>
+
+              <tr>
+                <td>GetBlockByHeight</td>
+                <td><a href="#cosmos.base.tendermint.v1beta1.GetBlockByHeightRequest">GetBlockByHeightRequest</a></td>
+                <td><a href="#cosmos.base.tendermint.v1beta1.GetBlockByHeightResponse">GetBlockByHeightResponse</a></td>
+                <td><p>GetBlockByHeight queries block for given height.</p></td>
+              </tr>
+
+              <tr>
+                <td>GetLatestValidatorSet</td>
+                <td><a href="#cosmos.base.tendermint.v1beta1.GetLatestValidatorSetRequest">GetLatestValidatorSetRequest</a></td>
+                <td><a href="#cosmos.base.tendermint.v1beta1.GetLatestValidatorSetResponse">GetLatestValidatorSetResponse</a></td>
+                <td><p>GetLatestValidatorSet queries latest validator-set.</p></td>
+              </tr>
+
+              <tr>
+                <td>GetValidatorSetByHeight</td>
+                <td><a href="#cosmos.base.tendermint.v1beta1.GetValidatorSetByHeightRequest">GetValidatorSetByHeightRequest</a></td>
+                <td><a href="#cosmos.base.tendermint.v1beta1.GetValidatorSetByHeightResponse">GetValidatorSetByHeightResponse</a></td>
+                <td><p>GetValidatorSetByHeight queries validator-set at a given height.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+
+
+
+              <tr>
+                <td>GetNodeInfo</td>
+                <td>GET</td>
+                <td>/cosmos/base/tendermint/v1beta1/node_info</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GetSyncing</td>
+                <td>GET</td>
+                <td>/cosmos/base/tendermint/v1beta1/syncing</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GetLatestBlock</td>
+                <td>GET</td>
+                <td>/cosmos/base/tendermint/v1beta1/blocks/latest</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GetBlockByHeight</td>
+                <td>GET</td>
+                <td>/cosmos/base/tendermint/v1beta1/blocks/{height}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GetLatestValidatorSet</td>
+                <td>GET</td>
+                <td>/cosmos/base/tendermint/v1beta1/validatorsets/latest</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GetValidatorSetByHeight</td>
+                <td>GET</td>
+                <td>/cosmos/base/tendermint/v1beta1/validatorsets/{height}</td>
+                <td></td>
+              </tr>
+
+
+            </tbody>
+          </table>
+
+
+
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr><td>.proto Type</td><td>Notes</td><td>C++</td><td>Java</td><td>Python</td><td>Go</td><td>C#</td><td>PHP</td><td>Ruby</td></tr>
+      </thead>
+      <tbody>
+
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>double</td>
+            <td>double</td>
+            <td>float</td>
+            <td>float64</td>
+            <td>double</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+            <td>float</td>
+            <td>float</td>
+            <td>float32</td>
+            <td>float</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int/long</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>boolean</td>
+            <td>bool</td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>TrueClass/FalseClass</td>
+          </tr>
+
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>string</td>
+            <td>String</td>
+            <td>str/unicode</td>
+            <td>string</td>
+            <td>string</td>
+            <td>string</td>
+            <td>String (UTF-8)</td>
+          </tr>
+
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>string</td>
+            <td>ByteString</td>
+            <td>str</td>
+            <td>[]byte</td>
+            <td>ByteString</td>
+            <td>string</td>
+            <td>String (ASCII-8BIT)</td>
+          </tr>
+
+      </tbody>
+    </table>
+  </body>
+</html>

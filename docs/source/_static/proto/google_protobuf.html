@@ -1,0 +1,2554 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Protocol Documentation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        margin: 1em auto;
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0;
+      }
+
+
+      .field-table td:nth-child(1) {
+        width: 10em;
+      }
+      .field-table td:nth-child(2) {
+        width: 10em;
+      }
+      .field-table td:nth-child(3) {
+        width: 6em;
+      }
+      .field-table td:nth-child(4) {
+        width: auto;
+      }
+
+
+      .extension-table td:nth-child(1) {
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) {
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) {
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) {
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) {
+        width: auto;
+      }
+
+
+      .enum-table td:nth-child(1) {
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) {
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) {
+        width: auto;
+      }
+
+
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+    <div style="display: flex; justify-content: space-between; align-items: center;"><h1 id="title">Protocol Documentation</h1><a href="/">Back to package documentation</a></div>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+
+
+          <li>
+            <a href="#google%2fprotobuf%2fdescriptor.proto">google/protobuf/descriptor.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#google.protobuf.DescriptorProto"><span class="badge">M</span>DescriptorProto</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.DescriptorProto.ExtensionRange"><span class="badge">M</span>DescriptorProto.ExtensionRange</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.DescriptorProto.ReservedRange"><span class="badge">M</span>DescriptorProto.ReservedRange</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.EnumDescriptorProto"><span class="badge">M</span>EnumDescriptorProto</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.EnumDescriptorProto.EnumReservedRange"><span class="badge">M</span>EnumDescriptorProto.EnumReservedRange</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.EnumOptions"><span class="badge">M</span>EnumOptions</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.EnumValueDescriptorProto"><span class="badge">M</span>EnumValueDescriptorProto</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.EnumValueOptions"><span class="badge">M</span>EnumValueOptions</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.ExtensionRangeOptions"><span class="badge">M</span>ExtensionRangeOptions</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.FieldDescriptorProto"><span class="badge">M</span>FieldDescriptorProto</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.FieldOptions"><span class="badge">M</span>FieldOptions</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.FileDescriptorProto"><span class="badge">M</span>FileDescriptorProto</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.FileDescriptorSet"><span class="badge">M</span>FileDescriptorSet</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.FileOptions"><span class="badge">M</span>FileOptions</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.GeneratedCodeInfo"><span class="badge">M</span>GeneratedCodeInfo</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.GeneratedCodeInfo.Annotation"><span class="badge">M</span>GeneratedCodeInfo.Annotation</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.MessageOptions"><span class="badge">M</span>MessageOptions</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.MethodDescriptorProto"><span class="badge">M</span>MethodDescriptorProto</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.MethodOptions"><span class="badge">M</span>MethodOptions</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.OneofDescriptorProto"><span class="badge">M</span>OneofDescriptorProto</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.OneofOptions"><span class="badge">M</span>OneofOptions</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.ServiceDescriptorProto"><span class="badge">M</span>ServiceDescriptorProto</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.ServiceOptions"><span class="badge">M</span>ServiceOptions</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.SourceCodeInfo"><span class="badge">M</span>SourceCodeInfo</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.SourceCodeInfo.Location"><span class="badge">M</span>SourceCodeInfo.Location</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.UninterpretedOption"><span class="badge">M</span>UninterpretedOption</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.UninterpretedOption.NamePart"><span class="badge">M</span>UninterpretedOption.NamePart</a>
+                </li>
+
+
+                <li>
+                  <a href="#google.protobuf.FieldDescriptorProto.Label"><span class="badge">E</span>FieldDescriptorProto.Label</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.FieldDescriptorProto.Type"><span class="badge">E</span>FieldDescriptorProto.Type</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.FieldOptions.CType"><span class="badge">E</span>FieldOptions.CType</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.FieldOptions.JSType"><span class="badge">E</span>FieldOptions.JSType</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.FileOptions.OptimizeMode"><span class="badge">E</span>FileOptions.OptimizeMode</a>
+                </li>
+
+                <li>
+                  <a href="#google.protobuf.MethodOptions.IdempotencyLevel"><span class="badge">E</span>MethodOptions.IdempotencyLevel</a>
+                </li>
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#google%2fprotobuf%2fany.proto">google/protobuf/any.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#google.protobuf.Any"><span class="badge">M</span>Any</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="google/protobuf/descriptor.proto">google/protobuf/descriptor.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="google.protobuf.DescriptorProto">DescriptorProto</h3>
+        <p>Describes a message type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>field</td>
+                  <td><a href="#google.protobuf.FieldDescriptorProto">FieldDescriptorProto</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>extension</td>
+                  <td><a href="#google.protobuf.FieldDescriptorProto">FieldDescriptorProto</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>nested_type</td>
+                  <td><a href="#google.protobuf.DescriptorProto">DescriptorProto</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>enum_type</td>
+                  <td><a href="#google.protobuf.EnumDescriptorProto">EnumDescriptorProto</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>extension_range</td>
+                  <td><a href="#google.protobuf.DescriptorProto.ExtensionRange">DescriptorProto.ExtensionRange</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>oneof_decl</td>
+                  <td><a href="#google.protobuf.OneofDescriptorProto">OneofDescriptorProto</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>options</td>
+                  <td><a href="#google.protobuf.MessageOptions">MessageOptions</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>reserved_range</td>
+                  <td><a href="#google.protobuf.DescriptorProto.ReservedRange">DescriptorProto.ReservedRange</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>reserved_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Reserved field names, which may not be used by fields in the same message.
+A given name may only be reserved once. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.DescriptorProto.ExtensionRange">DescriptorProto.ExtensionRange</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>start</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Inclusive. </p></td>
+                </tr>
+
+                <tr>
+                  <td>end</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Exclusive. </p></td>
+                </tr>
+
+                <tr>
+                  <td>options</td>
+                  <td><a href="#google.protobuf.ExtensionRangeOptions">ExtensionRangeOptions</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.DescriptorProto.ReservedRange">DescriptorProto.ReservedRange</h3>
+        <p>Range of reserved tag numbers. Reserved tag numbers may not be used by</p><p>fields or extension ranges in the same message. Reserved ranges may</p><p>not overlap.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>start</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Inclusive. </p></td>
+                </tr>
+
+                <tr>
+                  <td>end</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Exclusive. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.EnumDescriptorProto">EnumDescriptorProto</h3>
+        <p>Describes an enum type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>value</td>
+                  <td><a href="#google.protobuf.EnumValueDescriptorProto">EnumValueDescriptorProto</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>options</td>
+                  <td><a href="#google.protobuf.EnumOptions">EnumOptions</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>reserved_range</td>
+                  <td><a href="#google.protobuf.EnumDescriptorProto.EnumReservedRange">EnumDescriptorProto.EnumReservedRange</a></td>
+                  <td>repeated</td>
+                  <td><p>Range of reserved numeric values. Reserved numeric values may not be used
+by enum values in the same enum declaration. Reserved ranges may not
+overlap. </p></td>
+                </tr>
+
+                <tr>
+                  <td>reserved_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Reserved enum value names, which may not be reused. A given name may only
+be reserved once. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.EnumDescriptorProto.EnumReservedRange">EnumDescriptorProto.EnumReservedRange</h3>
+        <p>Range of reserved numeric values. Reserved values may not be used by</p><p>entries in the same enum. Reserved ranges may not overlap.</p><p>Note that this is distinct from DescriptorProto.ReservedRange in that it</p><p>is inclusive such that it can appropriately represent the entire int32</p><p>domain.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>start</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Inclusive. </p></td>
+                </tr>
+
+                <tr>
+                  <td>end</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Inclusive. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.EnumOptions">EnumOptions</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>allow_alias</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Set this option to true to allow mapping different tag names to the same
+value. </p></td>
+                </tr>
+
+                <tr>
+                  <td>deprecated</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Is this enum deprecated?
+Depending on the target platform, this can emit Deprecated annotations
+for the enum, or it will be completely ignored; in the very least, this
+is a formalization for deprecating enums. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>uninterpreted_option</td>
+                  <td><a href="#google.protobuf.UninterpretedOption">UninterpretedOption</a></td>
+                  <td>repeated</td>
+                  <td><p>The parser stores options it doesn&#39;t recognize here. See above. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.EnumValueDescriptorProto">EnumValueDescriptorProto</h3>
+        <p>Describes a value within an enum.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>number</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>options</td>
+                  <td><a href="#google.protobuf.EnumValueOptions">EnumValueOptions</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.EnumValueOptions">EnumValueOptions</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>deprecated</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Is this enum value deprecated?
+Depending on the target platform, this can emit Deprecated annotations
+for the enum value, or it will be completely ignored; in the very least,
+this is a formalization for deprecating enum values. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>uninterpreted_option</td>
+                  <td><a href="#google.protobuf.UninterpretedOption">UninterpretedOption</a></td>
+                  <td>repeated</td>
+                  <td><p>The parser stores options it doesn&#39;t recognize here. See above. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.ExtensionRangeOptions">ExtensionRangeOptions</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>uninterpreted_option</td>
+                  <td><a href="#google.protobuf.UninterpretedOption">UninterpretedOption</a></td>
+                  <td>repeated</td>
+                  <td><p>The parser stores options it doesn&#39;t recognize here. See above. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.FieldDescriptorProto">FieldDescriptorProto</h3>
+        <p>Describes a field within a message.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>number</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>label</td>
+                  <td><a href="#google.protobuf.FieldDescriptorProto.Label">FieldDescriptorProto.Label</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>type</td>
+                  <td><a href="#google.protobuf.FieldDescriptorProto.Type">FieldDescriptorProto.Type</a></td>
+                  <td>optional</td>
+                  <td><p>If type_name is set, this need not be set.  If both this and type_name
+are set, this must be one of TYPE_ENUM, TYPE_MESSAGE or TYPE_GROUP. </p></td>
+                </tr>
+
+                <tr>
+                  <td>type_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>For message and enum types, this is the name of the type.  If the name
+starts with a &#39;.&#39;, it is fully-qualified.  Otherwise, C&#43;&#43;-like scoping
+rules are used to find the type (i.e. first the nested types within this
+message are searched, then within the parent, on up to the root
+namespace). </p></td>
+                </tr>
+
+                <tr>
+                  <td>extendee</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>For extensions, this is the name of the type being extended.  It is
+resolved in the same manner as type_name. </p></td>
+                </tr>
+
+                <tr>
+                  <td>default_value</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>For numeric types, contains the original text representation of the value.
+For booleans, &#34;true&#34; or &#34;false&#34;.
+For strings, contains the default text contents (not escaped in any way).
+For bytes, contains the C escaped value.  All bytes &gt;= 128 are escaped.
+TODO(kenton):  Base-64 encode? </p></td>
+                </tr>
+
+                <tr>
+                  <td>oneof_index</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>If set, gives the index of a oneof in the containing type&#39;s oneof_decl
+list.  This field is a member of that oneof. </p></td>
+                </tr>
+
+                <tr>
+                  <td>json_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>JSON name of this field. The value is set by protocol compiler. If the
+user has set a &#34;json_name&#34; option on this field, that option&#39;s value
+will be used. Otherwise, it&#39;s deduced from the field&#39;s name by converting
+it to camelCase. </p></td>
+                </tr>
+
+                <tr>
+                  <td>options</td>
+                  <td><a href="#google.protobuf.FieldOptions">FieldOptions</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>proto3_optional</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>If true, this is a proto3 &#34;optional&#34;. When a proto3 field is optional, it
+tracks presence regardless of field type.
+
+When proto3_optional is true, this field must be belong to a oneof to
+signal to old proto3 clients that presence is tracked for this field. This
+oneof is known as a &#34;synthetic&#34; oneof, and this field must be its sole
+member (each proto3 optional field gets its own synthetic oneof). Synthetic
+oneofs exist in the descriptor only, and do not generate any API. Synthetic
+oneofs must be ordered after all &#34;real&#34; oneofs.
+
+For message fields, proto3_optional doesn&#39;t create any semantic change,
+since non-repeated message fields always track presence. However it still
+indicates the semantic detail of whether the user wrote &#34;optional&#34; or not.
+This can be useful for round-tripping the .proto file. For consistency we
+give message fields a synthetic oneof also, even though it is not required
+to track presence. This is especially important because the parser can&#39;t
+tell if a field is a message or an enum, so it must always create a
+synthetic oneof.
+
+Proto2 optional fields do not set this flag, because they already indicate
+optional with `LABEL_OPTIONAL`. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.FieldOptions">FieldOptions</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>ctype</td>
+                  <td><a href="#google.protobuf.FieldOptions.CType">FieldOptions.CType</a></td>
+                  <td>optional</td>
+                  <td><p>The ctype option instructs the C&#43;&#43; code generator to use a different
+representation of the field than it normally would.  See the specific
+options below.  This option is not yet implemented in the open source
+release -- sorry, we&#39;ll try to include it in a future version! Default: STRING</p></td>
+                </tr>
+
+                <tr>
+                  <td>packed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>The packed option can be enabled for repeated primitive fields to enable
+a more efficient representation on the wire. Rather than repeatedly
+writing the tag and type for each element, the entire array is encoded as
+a single length-delimited blob. In proto3, only explicit setting it to
+false will avoid using packed encoding. </p></td>
+                </tr>
+
+                <tr>
+                  <td>jstype</td>
+                  <td><a href="#google.protobuf.FieldOptions.JSType">FieldOptions.JSType</a></td>
+                  <td>optional</td>
+                  <td><p>The jstype option determines the JavaScript type used for values of the
+field.  The option is permitted only for 64 bit integral and fixed types
+(int64, uint64, sint64, fixed64, sfixed64).  A field with jstype JS_STRING
+is represented as JavaScript string, which avoids loss of precision that
+can happen when a large value is converted to a floating point JavaScript.
+Specifying JS_NUMBER for the jstype causes the generated JavaScript code to
+use the JavaScript &#34;number&#34; type.  The behavior of the default option
+JS_NORMAL is implementation dependent.
+
+This option is an enum to permit additional types to be added, e.g.
+goog.math.Integer. Default: JS_NORMAL</p></td>
+                </tr>
+
+                <tr>
+                  <td>lazy</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Should this field be parsed lazily?  Lazy applies only to message-type
+fields.  It means that when the outer message is initially parsed, the
+inner message&#39;s contents will not be parsed but instead stored in encoded
+form.  The inner message will actually be parsed when it is first accessed.
+
+This is only a hint.  Implementations are free to choose whether to use
+eager or lazy parsing regardless of the value of this option.  However,
+setting this option true suggests that the protocol author believes that
+using lazy parsing on this field is worth the additional bookkeeping
+overhead typically needed to implement it.
+
+This option does not affect the public interface of any generated code;
+all method signatures remain the same.  Furthermore, thread-safety of the
+interface is not affected by this option; const methods remain safe to
+call from multiple threads concurrently, while non-const methods continue
+to require exclusive access.
+
+
+Note that implementations may choose not to check required fields within
+a lazy sub-message.  That is, calling IsInitialized() on the outer message
+may return true even if the inner message has missing required fields.
+This is necessary because otherwise the inner message would have to be
+parsed in order to perform the check, defeating the purpose of lazy
+parsing.  An implementation which chooses not to check required fields
+must be consistent about it.  That is, for any particular sub-message, the
+implementation must either *always* check its required fields, or *never*
+check its required fields, regardless of whether or not the message has
+been parsed. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>deprecated</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Is this field deprecated?
+Depending on the target platform, this can emit Deprecated annotations
+for accessors, or it will be completely ignored; in the very least, this
+is a formalization for deprecating fields. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>weak</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>For Google-internal migration only. Do not use. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>uninterpreted_option</td>
+                  <td><a href="#google.protobuf.UninterpretedOption">UninterpretedOption</a></td>
+                  <td>repeated</td>
+                  <td><p>The parser stores options it doesn&#39;t recognize here. See above. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.FileDescriptorProto">FileDescriptorProto</h3>
+        <p>Describes a complete .proto file.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>file name, relative to root of source tree </p></td>
+                </tr>
+
+                <tr>
+                  <td>package</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>e.g. &#34;foo&#34;, &#34;foo.bar&#34;, etc. </p></td>
+                </tr>
+
+                <tr>
+                  <td>dependency</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>Names of files imported by this file. </p></td>
+                </tr>
+
+                <tr>
+                  <td>public_dependency</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>repeated</td>
+                  <td><p>Indexes of the public imported files in the dependency list above. </p></td>
+                </tr>
+
+                <tr>
+                  <td>weak_dependency</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>repeated</td>
+                  <td><p>Indexes of the weak imported files in the dependency list.
+For Google-internal migration only. Do not use. </p></td>
+                </tr>
+
+                <tr>
+                  <td>message_type</td>
+                  <td><a href="#google.protobuf.DescriptorProto">DescriptorProto</a></td>
+                  <td>repeated</td>
+                  <td><p>All top-level definitions in this file. </p></td>
+                </tr>
+
+                <tr>
+                  <td>enum_type</td>
+                  <td><a href="#google.protobuf.EnumDescriptorProto">EnumDescriptorProto</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>service</td>
+                  <td><a href="#google.protobuf.ServiceDescriptorProto">ServiceDescriptorProto</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>extension</td>
+                  <td><a href="#google.protobuf.FieldDescriptorProto">FieldDescriptorProto</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>options</td>
+                  <td><a href="#google.protobuf.FileOptions">FileOptions</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>source_code_info</td>
+                  <td><a href="#google.protobuf.SourceCodeInfo">SourceCodeInfo</a></td>
+                  <td>optional</td>
+                  <td><p>This field contains optional information about the original source code.
+You may safely remove this entire field without harming runtime
+functionality of the descriptors -- the information is needed only by
+development tools. </p></td>
+                </tr>
+
+                <tr>
+                  <td>syntax</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>The syntax of the proto file.
+The supported values are &#34;proto2&#34; and &#34;proto3&#34;. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.FileDescriptorSet">FileDescriptorSet</h3>
+        <p>The protocol compiler can output a FileDescriptorSet containing the .proto</p><p>files it parses.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>file</td>
+                  <td><a href="#google.protobuf.FileDescriptorProto">FileDescriptorProto</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.FileOptions">FileOptions</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>java_package</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Sets the Java package where classes generated from this .proto will be
+placed.  By default, the proto package is used, but this is often
+inappropriate because proto packages do not normally start with backwards
+domain names. </p></td>
+                </tr>
+
+                <tr>
+                  <td>java_outer_classname</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Controls the name of the wrapper Java class generated for the .proto file.
+That class will always contain the .proto file&#39;s getDescriptor() method as
+well as any top-level extensions defined in the .proto file.
+If java_multiple_files is disabled, then all the other classes from the
+.proto file will be nested inside the single wrapper outer class. </p></td>
+                </tr>
+
+                <tr>
+                  <td>java_multiple_files</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>If enabled, then the Java code generator will generate a separate .java
+file for each top-level message, enum, and service defined in the .proto
+file.  Thus, these types will *not* be nested inside the wrapper class
+named by java_outer_classname.  However, the wrapper class will still be
+generated to contain the file&#39;s getDescriptor() method as well as any
+top-level extensions defined in the file. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>java_generate_equals_and_hash</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p><strong>Deprecated.</strong> This option does nothing. </p></td>
+                </tr>
+
+                <tr>
+                  <td>java_string_check_utf8</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>If set true, then the Java2 code generator will generate code that
+throws an exception whenever an attempt is made to assign a non-UTF-8
+byte sequence to a string field.
+Message reflection will do the same.
+However, an extension field still accepts non-UTF-8 byte sequences.
+This option has no effect on when used with the lite runtime. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>optimize_for</td>
+                  <td><a href="#google.protobuf.FileOptions.OptimizeMode">FileOptions.OptimizeMode</a></td>
+                  <td>optional</td>
+                  <td><p> Default: SPEED</p></td>
+                </tr>
+
+                <tr>
+                  <td>go_package</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Sets the Go package where structs generated from this .proto will be
+placed. If omitted, the Go package will be derived from the following:
+  - The basename of the package import path, if provided.
+  - Otherwise, the package statement in the .proto file, if present.
+  - Otherwise, the basename of the .proto file, without extension. </p></td>
+                </tr>
+
+                <tr>
+                  <td>cc_generic_services</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Should generic services be generated in each language?  &#34;Generic&#34; services
+are not specific to any particular RPC system.  They are generated by the
+main code generators in each language (without additional plugins).
+Generic services were the only kind of service generation supported by
+early versions of google.protobuf.
+
+Generic services are now considered deprecated in favor of using plugins
+that generate code specific to your particular RPC system.  Therefore,
+these default to false.  Old code which depends on generic services should
+explicitly set them to true. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>java_generic_services</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p> Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>py_generic_services</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p> Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>php_generic_services</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p> Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>deprecated</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Is this file deprecated?
+Depending on the target platform, this can emit Deprecated annotations
+for everything in the file, or it will be completely ignored; in the very
+least, this is a formalization for deprecating files. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>cc_enable_arenas</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Enables the use of arenas for the proto messages in this file. This applies
+only to generated classes for C&#43;&#43;. Default: true</p></td>
+                </tr>
+
+                <tr>
+                  <td>objc_class_prefix</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Sets the objective c class prefix which is prepended to all objective c
+generated classes from this .proto. There is no default. </p></td>
+                </tr>
+
+                <tr>
+                  <td>csharp_namespace</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Namespace for generated classes; defaults to the package. </p></td>
+                </tr>
+
+                <tr>
+                  <td>swift_prefix</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>By default Swift generators will take the proto package and CamelCase it
+replacing &#39;.&#39; with underscore and use that to prefix the types/symbols
+defined. When this options is provided, they will use this value instead
+to prefix the types/symbols defined. </p></td>
+                </tr>
+
+                <tr>
+                  <td>php_class_prefix</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Sets the php class prefix which is prepended to all php generated classes
+from this .proto. Default is empty. </p></td>
+                </tr>
+
+                <tr>
+                  <td>php_namespace</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Use this option to change the namespace of php generated classes. Default
+is empty. When this option is empty, the package name will be used for
+determining the namespace. </p></td>
+                </tr>
+
+                <tr>
+                  <td>php_metadata_namespace</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Use this option to change the namespace of php generated metadata classes.
+Default is empty. When this option is empty, the proto file name will be
+used for determining the namespace. </p></td>
+                </tr>
+
+                <tr>
+                  <td>ruby_package</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Use this option to change the package of ruby generated classes. Default
+is empty. When this option is not set, the package name will be used for
+determining the ruby package. </p></td>
+                </tr>
+
+                <tr>
+                  <td>uninterpreted_option</td>
+                  <td><a href="#google.protobuf.UninterpretedOption">UninterpretedOption</a></td>
+                  <td>repeated</td>
+                  <td><p>The parser stores options it doesn&#39;t recognize here.
+See the documentation for the &#34;Options&#34; section above. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>java_generate_equals_and_hash</td>
+                  <td><p>true</p></td>
+                </tr>
+
+              </tbody>
+            </table>
+
+
+
+
+
+        <h3 id="google.protobuf.GeneratedCodeInfo">GeneratedCodeInfo</h3>
+        <p>Describes the relationship between generated code and its original source</p><p>file. A GeneratedCodeInfo message is associated with only one generated</p><p>source file, but may contain references to different source .proto files.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>annotation</td>
+                  <td><a href="#google.protobuf.GeneratedCodeInfo.Annotation">GeneratedCodeInfo.Annotation</a></td>
+                  <td>repeated</td>
+                  <td><p>An Annotation connects some span of text in generated code to an element
+of its generating .proto file. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.GeneratedCodeInfo.Annotation">GeneratedCodeInfo.Annotation</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>path</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>repeated</td>
+                  <td><p>Identifies the element in the original source .proto file. This field
+is formatted the same as SourceCodeInfo.Location.path. </p></td>
+                </tr>
+
+                <tr>
+                  <td>source_file</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Identifies the filesystem path to the original source .proto. </p></td>
+                </tr>
+
+                <tr>
+                  <td>begin</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Identifies the starting offset in bytes in the generated code
+that relates to the identified object. </p></td>
+                </tr>
+
+                <tr>
+                  <td>end</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>optional</td>
+                  <td><p>Identifies the ending offset in bytes in the generated code that
+relates to the identified offset. The end offset should be one past
+the last relevant byte (so the length of the text = end - begin). </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.MessageOptions">MessageOptions</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>message_set_wire_format</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Set true to use the old proto1 MessageSet wire format for extensions.
+This is provided for backwards-compatibility with the MessageSet wire
+format.  You should not use this for any other reason:  It&#39;s less
+efficient, has fewer features, and is more complicated.
+
+The message must be defined exactly as follows:
+  message Foo {
+    option message_set_wire_format = true;
+    extensions 4 to max;
+  }
+Note that the message cannot have any defined fields; MessageSets only
+have extensions.
+
+All extensions of your type must be singular messages; e.g. they cannot
+be int32s, enums, or repeated messages.
+
+Because this is an option, the above two restrictions are not enforced by
+the protocol compiler. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>no_standard_descriptor_accessor</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Disables the generation of the standard &#34;descriptor()&#34; accessor, which can
+conflict with a field of the same name.  This is meant to make migration
+from proto1 easier; new code should avoid fields named &#34;descriptor&#34;. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>deprecated</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Is this message deprecated?
+Depending on the target platform, this can emit Deprecated annotations
+for the message, or it will be completely ignored; in the very least,
+this is a formalization for deprecating messages. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>map_entry</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Whether the message is an automatically generated map entry type for the
+maps field.
+
+For maps fields:
+    map&lt;KeyType, ValueType&gt; map_field = 1;
+The parsed descriptor looks like:
+    message MapFieldEntry {
+        option map_entry = true;
+        optional KeyType key = 1;
+        optional ValueType value = 2;
+    }
+    repeated MapFieldEntry map_field = 1;
+
+Implementations may choose not to generate the map_entry=true message, but
+use a native map in the target language to hold the keys and values.
+The reflection APIs in such implementations still need to work as
+if the field is a repeated message field.
+
+NOTE: Do not set the option in .proto files. Always use the maps syntax
+instead. The option should only be implicitly set by the proto compiler
+parser. </p></td>
+                </tr>
+
+                <tr>
+                  <td>uninterpreted_option</td>
+                  <td><a href="#google.protobuf.UninterpretedOption">UninterpretedOption</a></td>
+                  <td>repeated</td>
+                  <td><p>The parser stores options it doesn&#39;t recognize here. See above. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.MethodDescriptorProto">MethodDescriptorProto</h3>
+        <p>Describes a method of a service.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>input_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>Input and output type names.  These are resolved in the same way as
+FieldDescriptorProto.type_name, but must refer to a message type. </p></td>
+                </tr>
+
+                <tr>
+                  <td>output_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>options</td>
+                  <td><a href="#google.protobuf.MethodOptions">MethodOptions</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>client_streaming</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Identifies if client streams multiple client messages Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>server_streaming</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Identifies if server streams multiple server messages Default: false</p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.MethodOptions">MethodOptions</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>deprecated</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Is this method deprecated?
+Depending on the target platform, this can emit Deprecated annotations
+for the method, or it will be completely ignored; in the very least,
+this is a formalization for deprecating methods. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>idempotency_level</td>
+                  <td><a href="#google.protobuf.MethodOptions.IdempotencyLevel">MethodOptions.IdempotencyLevel</a></td>
+                  <td>optional</td>
+                  <td><p> Default: IDEMPOTENCY_UNKNOWN</p></td>
+                </tr>
+
+                <tr>
+                  <td>uninterpreted_option</td>
+                  <td><a href="#google.protobuf.UninterpretedOption">UninterpretedOption</a></td>
+                  <td>repeated</td>
+                  <td><p>The parser stores options it doesn&#39;t recognize here. See above. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.OneofDescriptorProto">OneofDescriptorProto</h3>
+        <p>Describes a oneof.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>options</td>
+                  <td><a href="#google.protobuf.OneofOptions">OneofOptions</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.OneofOptions">OneofOptions</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>uninterpreted_option</td>
+                  <td><a href="#google.protobuf.UninterpretedOption">UninterpretedOption</a></td>
+                  <td>repeated</td>
+                  <td><p>The parser stores options it doesn&#39;t recognize here. See above. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.ServiceDescriptorProto">ServiceDescriptorProto</h3>
+        <p>Describes a service.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>method</td>
+                  <td><a href="#google.protobuf.MethodDescriptorProto">MethodDescriptorProto</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>options</td>
+                  <td><a href="#google.protobuf.ServiceOptions">ServiceOptions</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.ServiceOptions">ServiceOptions</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>deprecated</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>optional</td>
+                  <td><p>Is this service deprecated?
+Depending on the target platform, this can emit Deprecated annotations
+for the service, or it will be completely ignored; in the very least,
+this is a formalization for deprecating services. Default: false</p></td>
+                </tr>
+
+                <tr>
+                  <td>uninterpreted_option</td>
+                  <td><a href="#google.protobuf.UninterpretedOption">UninterpretedOption</a></td>
+                  <td>repeated</td>
+                  <td><p>The parser stores options it doesn&#39;t recognize here. See above. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.SourceCodeInfo">SourceCodeInfo</h3>
+        <p>Encapsulates information about the original source file from which a</p><p>FileDescriptorProto was generated.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>location</td>
+                  <td><a href="#google.protobuf.SourceCodeInfo.Location">SourceCodeInfo.Location</a></td>
+                  <td>repeated</td>
+                  <td><p>A Location identifies a piece of source code in a .proto file which
+corresponds to a particular definition.  This information is intended
+to be useful to IDEs, code indexers, documentation generators, and similar
+tools.
+
+For example, say we have a file like:
+  message Foo {
+    optional string foo = 1;
+  }
+Let&#39;s look at just the field definition:
+  optional string foo = 1;
+  ^       ^^     ^^  ^  ^^^
+  a       bc     de  f  ghi
+We have the following locations:
+  span   path               represents
+  [a,i)  [ 4, 0, 2, 0 ]     The whole field definition.
+  [a,b)  [ 4, 0, 2, 0, 4 ]  The label (optional).
+  [c,d)  [ 4, 0, 2, 0, 5 ]  The type (string).
+  [e,f)  [ 4, 0, 2, 0, 1 ]  The name (foo).
+  [g,h)  [ 4, 0, 2, 0, 3 ]  The number (1).
+
+Notes:
+- A location may refer to a repeated field itself (i.e. not to any
+  particular index within it).  This is used whenever a set of elements are
+  logically enclosed in a single code segment.  For example, an entire
+  extend block (possibly containing multiple extension definitions) will
+  have an outer location whose path refers to the &#34;extensions&#34; repeated
+  field without an index.
+- Multiple locations may have the same path.  This happens when a single
+  logical declaration is spread out across multiple places.  The most
+  obvious example is the &#34;extend&#34; block again -- there may be multiple
+  extend blocks in the same scope, each of which will have the same path.
+- A location&#39;s span is not always a subset of its parent&#39;s span.  For
+  example, the &#34;extendee&#34; of an extension declaration appears at the
+  beginning of the &#34;extend&#34; block and is shared by all extensions within
+  the block.
+- Just because a location&#39;s span is a subset of some other location&#39;s span
+  does not mean that it is a descendant.  For example, a &#34;group&#34; defines
+  both a type and a field in a single declaration.  Thus, the locations
+  corresponding to the type and field and their components will overlap.
+- Code which tries to interpret locations should probably be designed to
+  ignore those that it doesn&#39;t understand, as more types of locations could
+  be recorded in the future. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.SourceCodeInfo.Location">SourceCodeInfo.Location</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>path</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>repeated</td>
+                  <td><p>Identifies which part of the FileDescriptorProto was defined at this
+location.
+
+Each element is a field number or an index.  They form a path from
+the root FileDescriptorProto to the place where the definition.  For
+example, this path:
+  [ 4, 3, 2, 7, 1 ]
+refers to:
+  file.message_type(3)  // 4, 3
+      .field(7)         // 2, 7
+      .name()           // 1
+This is because FileDescriptorProto.message_type has field number 4:
+  repeated DescriptorProto message_type = 4;
+and DescriptorProto.field has field number 2:
+  repeated FieldDescriptorProto field = 2;
+and FieldDescriptorProto.name has field number 1:
+  optional string name = 1;
+
+Thus, the above path gives the location of a field name.  If we removed
+the last element:
+  [ 4, 3, 2, 7 ]
+this path refers to the whole field declaration (from the beginning
+of the label to the terminating semicolon). </p></td>
+                </tr>
+
+                <tr>
+                  <td>span</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td>repeated</td>
+                  <td><p>Always has exactly three or four elements: start line, start column,
+end line (optional, otherwise assumed same as start line), end column.
+These are packed into a single field for efficiency.  Note that line
+and column numbers are zero-based -- typically you will want to add
+1 to each before displaying to a user. </p></td>
+                </tr>
+
+                <tr>
+                  <td>leading_comments</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>If this SourceCodeInfo represents a complete declaration, these are any
+comments appearing before and after the declaration which appear to be
+attached to the declaration.
+
+A series of line comments appearing on consecutive lines, with no other
+tokens appearing on those lines, will be treated as a single comment.
+
+leading_detached_comments will keep paragraphs of comments that appear
+before (but not connected to) the current element. Each paragraph,
+separated by empty lines, will be one comment element in the repeated
+field.
+
+Only the comment content is provided; comment markers (e.g. //) are
+stripped out.  For block comments, leading whitespace and an asterisk
+will be stripped from the beginning of each line other than the first.
+Newlines are included in the output.
+
+Examples:
+
+  optional int32 foo = 1;  // Comment attached to foo.
+  // Comment attached to bar.
+  optional int32 bar = 2;
+
+  optional string baz = 3;
+  // Comment attached to baz.
+  // Another line attached to baz.
+
+  // Comment attached to qux.
+  //
+  // Another line attached to qux.
+  optional double qux = 4;
+
+  // Detached comment for corge. This is not leading or trailing comments
+  // to qux or corge because there are blank lines separating it from
+  // both.
+
+  // Detached comment for corge paragraph 2.
+
+  optional string corge = 5;
+  /* Block comment attached
+   * to corge.  Leading asterisks
+   * will be removed. */
+  /* Block comment attached to
+   * grault. */
+  optional int32 grault = 6;
+
+  // ignored detached comments. </p></td>
+                </tr>
+
+                <tr>
+                  <td>trailing_comments</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>leading_detached_comments</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.UninterpretedOption">UninterpretedOption</h3>
+        <p>A message representing a option the parser does not recognize. This only</p><p>appears in options protos created by the compiler::Parser class.</p><p>DescriptorPool resolves these when building Descriptor objects. Therefore,</p><p>options protos in descriptor objects (e.g. returned by Descriptor::options(),</p><p>or produced by Descriptor::CopyTo()) will never have UninterpretedOptions</p><p>in them.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#google.protobuf.UninterpretedOption.NamePart">UninterpretedOption.NamePart</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>identifier_value</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p>The value of the uninterpreted option, in whatever type the tokenizer
+identified it as during parsing. Exactly one of these should be set. </p></td>
+                </tr>
+
+                <tr>
+                  <td>positive_int_value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>negative_int_value</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>double_value</td>
+                  <td><a href="#double">double</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>string_value</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>aggregate_value</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="google.protobuf.UninterpretedOption.NamePart">UninterpretedOption.NamePart</h3>
+        <p>The name of the uninterpreted option.  Each string represents a segment in</p><p>a dot-separated name.  is_extension is true iff a segment represents an</p><p>extension (denoted with parentheses in options specs in .proto files).</p><p>E.g.,{ ["foo", false], ["bar.baz", true], ["qux", false] } represents</p><p>"foo.(bar.baz).qux".</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name_part</td>
+                  <td><a href="#string">string</a></td>
+                  <td>required</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>is_extension</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>required</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+        <h3 id="google.protobuf.FieldDescriptorProto.Label">FieldDescriptorProto.Label</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>LABEL_OPTIONAL</td>
+                <td>1</td>
+                <td><p>0 is reserved for errors</p></td>
+              </tr>
+
+              <tr>
+                <td>LABEL_REQUIRED</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>LABEL_REPEATED</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <h3 id="google.protobuf.FieldDescriptorProto.Type">FieldDescriptorProto.Type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>TYPE_DOUBLE</td>
+                <td>1</td>
+                <td><p>0 is reserved for errors.
+Order is weird for historical reasons.</p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_FLOAT</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_INT64</td>
+                <td>3</td>
+                <td><p>Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT64 if
+negative values are likely.</p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_UINT64</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_INT32</td>
+                <td>5</td>
+                <td><p>Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT32 if
+negative values are likely.</p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_FIXED64</td>
+                <td>6</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_FIXED32</td>
+                <td>7</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_BOOL</td>
+                <td>8</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_STRING</td>
+                <td>9</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_GROUP</td>
+                <td>10</td>
+                <td><p>Tag-delimited aggregate.
+Group type is deprecated and not supported in proto3. However, Proto3
+implementations should still be able to parse the group wire format and
+treat group fields as unknown fields.</p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_MESSAGE</td>
+                <td>11</td>
+                <td><p>Length-delimited aggregate.</p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_BYTES</td>
+                <td>12</td>
+                <td><p>New in version 2.</p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_UINT32</td>
+                <td>13</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_ENUM</td>
+                <td>14</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_SFIXED32</td>
+                <td>15</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_SFIXED64</td>
+                <td>16</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_SINT32</td>
+                <td>17</td>
+                <td><p>Uses ZigZag encoding.</p></td>
+              </tr>
+
+              <tr>
+                <td>TYPE_SINT64</td>
+                <td>18</td>
+                <td><p>Uses ZigZag encoding.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <h3 id="google.protobuf.FieldOptions.CType">FieldOptions.CType</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>STRING</td>
+                <td>0</td>
+                <td><p>Default mode.</p></td>
+              </tr>
+
+              <tr>
+                <td>CORD</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>STRING_PIECE</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <h3 id="google.protobuf.FieldOptions.JSType">FieldOptions.JSType</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>JS_NORMAL</td>
+                <td>0</td>
+                <td><p>Use the default type.</p></td>
+              </tr>
+
+              <tr>
+                <td>JS_STRING</td>
+                <td>1</td>
+                <td><p>Use JavaScript strings.</p></td>
+              </tr>
+
+              <tr>
+                <td>JS_NUMBER</td>
+                <td>2</td>
+                <td><p>Use JavaScript numbers.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <h3 id="google.protobuf.FileOptions.OptimizeMode">FileOptions.OptimizeMode</h3>
+        <p>Generated classes can be optimized for speed or code size.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>SPEED</td>
+                <td>1</td>
+                <td><p>Generate complete code for parsing, serialization,</p></td>
+              </tr>
+
+              <tr>
+                <td>CODE_SIZE</td>
+                <td>2</td>
+                <td><p>etc.
+
+Use ReflectionOps to implement these methods.</p></td>
+              </tr>
+
+              <tr>
+                <td>LITE_RUNTIME</td>
+                <td>3</td>
+                <td><p>Generate code using MessageLite and the lite runtime.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <h3 id="google.protobuf.MethodOptions.IdempotencyLevel">MethodOptions.IdempotencyLevel</h3>
+        <p>Is this method side-effect-free (or safe in HTTP parlance), or idempotent,</p><p>or neither? HTTP based RPC implementation may choose GET verb for safe</p><p>methods, and PUT verb for idempotent methods instead of the default POST.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>IDEMPOTENCY_UNKNOWN</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>NO_SIDE_EFFECTS</td>
+                <td>1</td>
+                <td><p>implies idempotent</p></td>
+              </tr>
+
+              <tr>
+                <td>IDEMPOTENT</td>
+                <td>2</td>
+                <td><p>idempotent, but may have side effects</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="google/protobuf/any.proto">google/protobuf/any.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="google.protobuf.Any">Any</h3>
+        <p>`Any` contains an arbitrary serialized protocol buffer message along with a</p><p>URL that describes the type of the serialized message.</p><p>Protobuf library provides support to pack/unpack Any values in the form</p><p>of utility functions or additional generated methods of the Any type.</p><p>Example 1: Pack and unpack a message in C++.</p><p>Foo foo = ...;</p><p>Any any;</p><p>any.PackFrom(foo);</p><p>...</p><p>if (any.UnpackTo(&foo)) {</p><p>...</p><p>}</p><p>Example 2: Pack and unpack a message in Java.</p><p>Foo foo = ...;</p><p>Any any = Any.pack(foo);</p><p>...</p><p>if (any.is(Foo.class)) {</p><p>foo = any.unpack(Foo.class);</p><p>}</p><p>Example 3: Pack and unpack a message in Python.</p><p>foo = Foo(...)</p><p>any = Any()</p><p>any.Pack(foo)</p><p>...</p><p>if any.Is(Foo.DESCRIPTOR):</p><p>any.Unpack(foo)</p><p>...</p><p>Example 4: Pack and unpack a message in Go</p><p>foo := &pb.Foo{...}</p><p>any, err := anypb.New(foo)</p><p>if err != nil {</p><p>...</p><p>}</p><p>...</p><p>foo := &pb.Foo{}</p><p>if err := any.UnmarshalTo(foo); err != nil {</p><p>...</p><p>}</p><p>The pack methods provided by protobuf library will by default use</p><p>'type.googleapis.com/full.type.name' as the type URL and the unpack</p><p>methods only use the fully qualified type name after the last '/'</p><p>in the type URL, for example "foo.bar.com/x/y.z" will yield type</p><p>name "y.z".</p><p>JSON</p><p>====</p><p>The JSON representation of an `Any` value uses the regular</p><p>representation of the deserialized, embedded message, with an</p><p>additional field `@type` which contains the type URL. Example:</p><p>package google.profile;</p><p>message Person {</p><p>string first_name = 1;</p><p>string last_name = 2;</p><p>}</p><p>{</p><p>"@type": "type.googleapis.com/google.profile.Person",</p><p>"firstName": <string>,</p><p>"lastName": <string></p><p>}</p><p>If the embedded message type is well-known and has a custom JSON</p><p>representation, that representation will be embedded adding a field</p><p>`value` which holds the custom JSON in addition to the `@type`</p><p>field. Example (for message [google.protobuf.Duration][]):</p><p>{</p><p>"@type": "type.googleapis.com/google.protobuf.Duration",</p><p>"value": "1.212s"</p><p>}</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>type_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>A URL/resource name that uniquely identifies the type of the serialized
+protocol buffer message. This string must contain at least
+one &#34;/&#34; character. The last segment of the URL&#39;s path must represent
+the fully qualified name of the type (as in
+`path/google.protobuf.Duration`). The name should be in a canonical form
+(e.g., leading &#34;.&#34; is not accepted).
+
+In practice, teams usually precompile into the binary all types that they
+expect it to use in the context of Any. However, for URLs which use the
+scheme `http`, `https`, or no scheme, one can optionally set up a type
+server that maps type URLs to message definitions as follows:
+
+* If no scheme is provided, `https` is assumed.
+* An HTTP GET on the URL must yield a [google.protobuf.Type][]
+  value in binary format, or produce an error.
+* Applications are allowed to cache lookup results based on the
+  URL, or have them precompiled into a binary to avoid any
+  lookup. Therefore, binary compatibility needs to be preserved
+  on changes to types. (Use versioned type names to manage
+  breaking changes.)
+
+Note: this functionality is not currently available in the official
+protobuf release, and it is not used for type URLs beginning with
+type.googleapis.com.
+
+Schemes other than `http`, `https` (or the empty scheme) might be
+used with implementation specific semantics. </p></td>
+                </tr>
+
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Must be a valid serialized protocol buffer of the above specified type. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr><td>.proto Type</td><td>Notes</td><td>C++</td><td>Java</td><td>Python</td><td>Go</td><td>C#</td><td>PHP</td><td>Ruby</td></tr>
+      </thead>
+      <tbody>
+
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>double</td>
+            <td>double</td>
+            <td>float</td>
+            <td>float64</td>
+            <td>double</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+            <td>float</td>
+            <td>float</td>
+            <td>float32</td>
+            <td>float</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int/long</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>boolean</td>
+            <td>bool</td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>TrueClass/FalseClass</td>
+          </tr>
+
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>string</td>
+            <td>String</td>
+            <td>str/unicode</td>
+            <td>string</td>
+            <td>string</td>
+            <td>string</td>
+            <td>String (UTF-8)</td>
+          </tr>
+
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>string</td>
+            <td>ByteString</td>
+            <td>str</td>
+            <td>[]byte</td>
+            <td>ByteString</td>
+            <td>string</td>
+            <td>String (ASCII-8BIT)</td>
+          </tr>
+
+      </tbody>
+    </table>
+  </body>
+</html>
