@@ -1,4 +1,6 @@
 #!/bin/bash
+
+cd evmos/proto
 MYFOLDER="$(pwd)/aautogen"
 
 # Ethermint
