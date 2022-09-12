@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        /*margin: 1em auto;*/
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin-top: 2ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0; /* No indent on first p in td */
+      }
+
+      /* Table of fields */
+      .field-table td:nth-child(1) { /* Field */
+        width: 10em;
+      }
+      .field-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .field-table td:nth-child(3) { /* Label */
+        width: 6em;
+      }
+      .field-table td:nth-child(4) { /* Description */
+        width: auto;
+      }
+
+      /* Table of extensions */
+      .extension-table td:nth-child(1) { /* Extension */
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) { /* Base */
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) { /* Number */
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) { /* Description */
+        width: auto;
+      }
+
+      /* Table of enum values. */
+      .enum-table td:nth-child(1) { /* Name */
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) { /* Number */
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) { /* Description */
+        width: auto;
+      }
+
+      /* Table of scalar value types. */
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+      /* Table of contents. */
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+      /* File heading div */
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+      /* The 'M', 'E' and 'X' badges in the ToC */
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    <!-- User custom CSS -->
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+
+
+          <li>
+            <a href="#evmos/vesting/v1/query.proto">evmos/vesting/v1/query.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#evmos.vesting.v1.QueryBalancesRequest"><span class="badge">M</span>QueryBalancesRequest</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.vesting.v1.QueryBalancesResponse"><span class="badge">M</span>QueryBalancesResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#evmos.vesting.v1.Query"><span class="badge">S</span>Query</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#evmos/vesting/v1/vesting.proto">evmos/vesting/v1/vesting.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#evmos.vesting.v1.ClawbackVestingAccount"><span class="badge">M</span>ClawbackVestingAccount</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#evmos/vesting/v1/tx.proto">evmos/vesting/v1/tx.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#evmos.vesting.v1.MsgClawback"><span class="badge">M</span>MsgClawback</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.vesting.v1.MsgClawbackResponse"><span class="badge">M</span>MsgClawbackResponse</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.vesting.v1.MsgCreateClawbackVestingAccount"><span class="badge">M</span>MsgCreateClawbackVestingAccount</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.vesting.v1.MsgCreateClawbackVestingAccountResponse"><span class="badge">M</span>MsgCreateClawbackVestingAccountResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#evmos.vesting.v1.Msg"><span class="badge">S</span>Msg</a>
+                </li>
+
+            </ul>
+          </li>
+
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="evmos/vesting/v1/query.proto">evmos/vesting/v1/query.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="evmos.vesting.v1.QueryBalancesRequest">QueryBalancesRequest</h3>
+        <p>QueryBalancesRequest is the request type for the Query/Balances RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address of the clawback vesting account </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.vesting.v1.QueryBalancesResponse">QueryBalancesResponse</h3>
+        <p>QueryBalancesResponse is the response type for the Query/Balances RPC</p><p>method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>locked</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p>current amount of locked tokens </p></td>
+                </tr>
+
+                <tr>
+                  <td>unvested</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p>current amount of unvested tokens </p></td>
+                </tr>
+
+                <tr>
+                  <td>vested</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p>current amount of vested tokens </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="evmos.vesting.v1.Query">Query</h3>
+        <p>Query defines the gRPC querier service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>Balances</td>
+                <td><a href="#evmos.vesting.v1.QueryBalancesRequest">QueryBalancesRequest</a></td>
+                <td><a href="#evmos.vesting.v1.QueryBalancesResponse">QueryBalancesResponse</a></td>
+                <td><p>Retrieves the unvested, vested and locked tokens for a vesting account</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+
+
+
+              <tr>
+                <td>Balances</td>
+                <td>GET</td>
+                <td>/evmos/vesting/v1/balances/{address}</td>
+                <td></td>
+              </tr>
+
+
+            </tbody>
+          </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="evmos/vesting/v1/vesting.proto">evmos/vesting/v1/vesting.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="evmos.vesting.v1.ClawbackVestingAccount">ClawbackVestingAccount</h3>
+        <p>ClawbackVestingAccount implements the VestingAccount interface. It provides</p><p>an account that can hold contributions subject to "lockup" (like a</p><p>PeriodicVestingAccount), or vesting which is subject to clawback</p><p>of unvested tokens, or a combination (tokens vest, but are still locked).</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>base_vesting_account</td>
+                  <td><a href="#cosmos.vesting.v1beta1.BaseVestingAccount">cosmos.vesting.v1beta1.BaseVestingAccount</a></td>
+                  <td></td>
+                  <td><p>base_vesting_account implements the VestingAccount interface. It contains
+all the necessary fields needed for any vesting account implementation </p></td>
+                </tr>
+
+                <tr>
+                  <td>funder_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>funder_address specifies the account which can perform clawback </p></td>
+                </tr>
+
+                <tr>
+                  <td>start_time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>start_time defines the time at which the vesting period begins </p></td>
+                </tr>
+
+                <tr>
+                  <td>lockup_periods</td>
+                  <td><a href="#cosmos.vesting.v1beta1.Period">cosmos.vesting.v1beta1.Period</a></td>
+                  <td>repeated</td>
+                  <td><p>lockup_periods defines the unlocking schedule relative to the start_time </p></td>
+                </tr>
+
+                <tr>
+                  <td>vesting_periods</td>
+                  <td><a href="#cosmos.vesting.v1beta1.Period">cosmos.vesting.v1beta1.Period</a></td>
+                  <td>repeated</td>
+                  <td><p>vesting_periods defines the vesting schedule relative to the start_time </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="evmos/vesting/v1/tx.proto">evmos/vesting/v1/tx.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="evmos.vesting.v1.MsgClawback">MsgClawback</h3>
+        <p>MsgClawback defines a message that removes unvested tokens from a</p><p>ClawbackVestingAccount.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>funder_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>funder_address is the address which funded the account </p></td>
+                </tr>
+
+                <tr>
+                  <td>account_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>account_address is the address of the ClawbackVestingAccount to claw back
+from. </p></td>
+                </tr>
+
+                <tr>
+                  <td>dest_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>dest_address specifies where the clawed-back tokens should be transferred
+to. If empty, the tokens will be transferred back to the original funder of
+the account. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.vesting.v1.MsgClawbackResponse">MsgClawbackResponse</h3>
+        <p>MsgClawbackResponse defines the MsgClawback response type.</p>
+
+
+
+
+
+        <h3 id="evmos.vesting.v1.MsgCreateClawbackVestingAccount">MsgCreateClawbackVestingAccount</h3>
+        <p>MsgCreateClawbackVestingAccount defines a message that enables creating a</p><p>ClawbackVestingAccount.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>from_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>from_address specifies the account to provide the funds and sign the
+clawback request </p></td>
+                </tr>
+
+                <tr>
+                  <td>to_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>to_address specifies the account to receive the funds </p></td>
+                </tr>
+
+                <tr>
+                  <td>start_time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>start_time defines the time at which the vesting period begins </p></td>
+                </tr>
+
+                <tr>
+                  <td>lockup_periods</td>
+                  <td><a href="#cosmos.vesting.v1beta1.Period">cosmos.vesting.v1beta1.Period</a></td>
+                  <td>repeated</td>
+                  <td><p>lockup_periods defines the unlocking schedule relative to the start_time </p></td>
+                </tr>
+
+                <tr>
+                  <td>vesting_periods</td>
+                  <td><a href="#cosmos.vesting.v1beta1.Period">cosmos.vesting.v1beta1.Period</a></td>
+                  <td>repeated</td>
+                  <td><p>vesting_periods defines thevesting schedule relative to the start_time </p></td>
+                </tr>
+
+                <tr>
+                  <td>merge</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>merge specifies a the creation mechanism for existing
+ClawbackVestingAccounts. If true, merge this new grant into an existing
+ClawbackVestingAccount, or create it if it does not exist. If false,
+creates a new account. New grants to an existing account must be from the
+same from_address. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.vesting.v1.MsgCreateClawbackVestingAccountResponse">MsgCreateClawbackVestingAccountResponse</h3>
+        <p>MsgCreateClawbackVestingAccountResponse defines the</p><p>MsgCreateClawbackVestingAccount response type.</p>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="evmos.vesting.v1.Msg">Msg</h3>
+        <p>Msg defines the vesting Msg service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>CreateClawbackVestingAccount</td>
+                <td><a href="#evmos.vesting.v1.MsgCreateClawbackVestingAccount">MsgCreateClawbackVestingAccount</a></td>
+                <td><a href="#evmos.vesting.v1.MsgCreateClawbackVestingAccountResponse">MsgCreateClawbackVestingAccountResponse</a></td>
+                <td><p>CreateClawbackVestingAccount creats a vesting account that is subject to
+clawback and the configuration of vesting and lockup schedules.</p></td>
+              </tr>
+
+              <tr>
+                <td>Clawback</td>
+                <td><a href="#evmos.vesting.v1.MsgClawback">MsgClawback</a></td>
+                <td><a href="#evmos.vesting.v1.MsgClawbackResponse">MsgClawbackResponse</a></td>
+                <td><p>Clawback removes the unvested tokens from a ClawbackVestingAccount.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+
+
+
+              <tr>
+                <td>CreateClawbackVestingAccount</td>
+                <td>GET</td>
+                <td>/evmos/vesting/v1/tx/create_clawback_vesting_account</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>Clawback</td>
+                <td>GET</td>
+                <td>/evmos/vesting/v1/tx/clawback</td>
+                <td></td>
+              </tr>
+
+
+            </tbody>
+          </table>
+
+
+
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr>
+          <td>.proto Type</td>
+          <td>Notes</td>
+          <td>Python Type</td>
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>boolean</td>
+          </tr>
+
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>str/unicode</td>
+          </tr>
+
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>str</td>
+          </tr>
+
+      </tbody>
+    </table>

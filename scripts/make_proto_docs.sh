@@ -5,10 +5,17 @@
 set -euo pipefail
 
 BASE=evmos/proto/autogen/proto
-OUT=docs/source/_static/proto
-OUT_RST=docs/source/autogen_proto.rst
+OUT_RST=docs/source/proto_external
+OUT=$OUT_RST/_proto_auto/
+OUT_RST_INDEX=docs/source/autogen_proto.rst
+template=/out/_template.html
 
+rm -rf $OUT_RST
+mkdir -p $OUT_RST
 rm -rf $OUT
+mkdir -p $OUT
+
+cp docs/source/_templates/proto.html ${OUT}_template.html
 
 curfiles=$(find $BASE -maxdepth 1 -type f -name '*.proto' | cut -c27- )
 if [ "$curfiles" ]
@@ -18,7 +25,7 @@ then
         -v $(pwd)/$BASE:/protos \
         -v $(pwd)/$OUT:/out \
         pseudomuto/protoc-gen-doc \
-        --doc_opt="html,proto.html" \
+        --doc_opt="$template,proto.html" \
         $curfiles
 fi
 
@@ -33,7 +40,7 @@ do
             -v $(pwd)/$BASE:/protos \
             -v $(pwd)/$OUT:/out \
             pseudomuto/protoc-gen-doc \
-            --doc_opt="html,$(echo $d | cut -c27- | sed -e 's=/=_=g').html" \
+            --doc_opt="$template,$(echo $d | cut -c27- | sed -e 's=/=_=g').html" \
             $curfiles
     fi
 done
@@ -49,30 +56,35 @@ do
             -v $(pwd)/$BASE:/protos \
             -v $(pwd)/$OUT:/out \
             pseudomuto/protoc-gen-doc \
-            --doc_opt="html,$(echo $d | cut -c27- | sed -e 's=/=_=g').html" \
+            --doc_opt="$template,$(echo $d | cut -c27- | sed -e 's=/=_=g').html" \
             $curfiles
     fi
 done
 
-chmod -R 666 "$OUT"
-chmod 777 "$OUT"
+rm $OUT/_template.html
 
-# I can't understand original templates, so just do possible minimum
-find $OUT -type f | xargs -n1 sed -i \
-    's@<h1 id="title">Protocol Documentation</h1>@<div style="display: flex; justify-content: space-between; align-items: center;"><h1 id="title">Protocol Documentation</h1><a href="/">Back to package documentation</a></div>@'
+rm -f "$OUT_RST_INDEX"
 
-rm -f "$OUT_RST"
+printf 'Original protobuf files documentation\n' >> $OUT_RST_INDEX
+printf '=====================================\n\n' >> $OUT_RST_INDEX
+printf '.. toctree::\n' >> $OUT_RST_INDEX
 
-printf 'Original protobuf files documentation\n' >> $OUT_RST
-printf '=====================================\n\n' >> $OUT_RST
 for f in $(find $OUT -type f | sort)
 do
-    header_under=$(echo $f | cut -c27-)
-    header=$(echo $header_under | sed -e 's=_=/=g')
+    fbase="$(basename $f)"
+    fbase="${fbase%.*}"
+    printf '    proto_external/%s\n' $fbase >> $OUT_RST_INDEX
+
+    final_rst="$OUT_RST/$fbase.rst"
+    header=$(echo $fbase | sed -e 's=_=/=g')
     header=${header%.*}
-    printf "%s\n" $header >> $OUT_RST
-    (yes '-' || true) | head -n ${#header} | tr -d '\n' >> $OUT_RST
-    printf '\n`%s <%s>`_\n\n' $header_under $(echo $f | cut -c12-) >> $OUT_RST
+    printf '%s\n' $header >> $final_rst
+    (yes '=' || true) | head -n ${#header} | tr -d '\n' >> $final_rst
+    printf '\n.. raw:: html\n' >> $final_rst
+    printf '    :file: _proto_auto/%s.html\n\n' $fbase >> $final_rst
 done
 
 chmod -R 666 "$OUT_RST"
+chmod 777 "$OUT_RST"
+chmod -R 666 "$OUT"
+chmod 777 "$OUT"
