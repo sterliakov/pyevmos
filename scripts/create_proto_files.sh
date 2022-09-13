@@ -5,12 +5,12 @@ cd evmos/proto
 
 I=$(pwd)/autogen/proto
 DEST_PY=$(pwd)/autogen/py/
-mkdir -p $DEST_PY
-cd $I
+mkdir -p "$DEST_PY"
+cd "$I"
 
 protoc \
-    --python_betterproto_out=$DEST_PY \
-    -I $I \
-    $(find $I -iname "*.proto")
+    --python_betterproto_out="$DEST_PY" \
+    -I "$I" \
+    $(find "$I" -iname "*.proto")
 
-touch $DEST_PY/__init__.py
+touch "$DEST_PY/__init__.py"
