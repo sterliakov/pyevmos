@@ -2,6 +2,8 @@ Original protobuf files documentation
 =====================================
 
 .. toctree::
+    :caption: Proto messages contents
+
     proto_external/cosmos_auth
     proto_external/cosmos_authz
     proto_external/cosmos_bank

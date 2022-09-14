@@ -67,6 +67,7 @@ rm -f "$OUT_RST_INDEX"
     printf 'Original protobuf files documentation\n'
     printf '=====================================\n\n'
     printf '.. toctree::\n'
+    printf '    :caption: Proto messages contents\n\n'
 } >> $OUT_RST_INDEX
 
 for f in $(find "$OUT" -type f | sort)
