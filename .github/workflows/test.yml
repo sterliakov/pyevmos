@@ -3,8 +3,8 @@ name: Pull Request & Push to Master Branch
 on:
   push:
     branches:
-      master
-      versioned/*
+      - master
+      - versioned/*
   pull_request:
     branches:
       master
