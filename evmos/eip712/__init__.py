@@ -18,7 +18,7 @@ from evmos.eip712.erc20 import (
     create_msg_convert_coin,
     create_msg_convert_erc20,
 )
-from evmos.eip712.feesplit import (
+from evmos.eip712.revenue import (
     MSG_CANCEL_FEE_SPLIT_TYPES,
     MSG_REGISTER_FEE_SPLIT_TYPES,
     MSG_UPDATE_FEE_SPLIT_TYPES,

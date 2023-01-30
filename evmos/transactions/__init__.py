@@ -43,7 +43,7 @@ from evmos.transactions.erc20 import (
     create_tx_msg_convert_coin,
     create_tx_msg_convert_erc20,
 )
-from evmos.transactions.feesplit import (
+from evmos.transactions.revenue import (
     create_tx_msg_cancel_revenue,
     create_tx_msg_register_revenue,
     create_tx_msg_update_revenue,

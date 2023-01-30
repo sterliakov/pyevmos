@@ -25,7 +25,7 @@ from evmos.proto.erc20 import (
     create_msg_convert_coin,
     create_msg_convert_erc20,
 )
-from evmos.proto.feesplit import (
+from evmos.proto.revenue import (
     MsgCancelRevenue,
     MsgRegisterRevenue,
     MsgUpdateRevenue,
