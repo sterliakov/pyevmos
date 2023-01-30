@@ -35,9 +35,7 @@ class GenesisState(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgVerifyInvariant(betterproto.Message):
-    """
-    MsgVerifyInvariant represents a message to verify a particular invariance.
-    """
+    """MsgVerifyInvariant represents a message to verify a particular invariance."""
 
     sender: str = betterproto.string_field(1)
     invariant_module_name: str = betterproto.string_field(2)
@@ -46,9 +44,7 @@ class MsgVerifyInvariant(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgVerifyInvariantResponse(betterproto.Message):
-    """
-    MsgVerifyInvariantResponse defines the Msg/VerifyInvariant response type.
-    """
+    """MsgVerifyInvariantResponse defines the Msg/VerifyInvariant response type."""
 
     pass
 

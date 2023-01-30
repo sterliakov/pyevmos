@@ -82,9 +82,7 @@ class DenomUnit(betterproto.Message):
     """
 
     denom: str = betterproto.string_field(1)
-    """
-    denom represents the string name of the given denom unit (e.g uatom).
-    """
+    """denom represents the string name of the given denom unit (e.g uatom)."""
 
     exponent: int = betterproto.uint32_field(2)
     """
@@ -111,9 +109,7 @@ class Metadata(betterproto.Message):
     """denom_units represents the list of DenomUnit's for a given coin"""
 
     base: str = betterproto.string_field(3)
-    """
-    base represents the base denom (should be the DenomUnit with exponent = 0).
-    """
+    """base represents the base denom (should be the DenomUnit with exponent = 0)."""
 
     display: str = betterproto.string_field(4)
     """
@@ -137,9 +133,7 @@ class Metadata(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryBalanceRequest(betterproto.Message):
-    """
-    QueryBalanceRequest is the request type for the Query/Balance RPC method.
-    """
+    """QueryBalanceRequest is the request type for the Query/Balance RPC method."""
 
     address: str = betterproto.string_field(1)
     """address is the address to query balances for."""
@@ -150,9 +144,7 @@ class QueryBalanceRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryBalanceResponse(betterproto.Message):
-    """
-    QueryBalanceResponse is the response type for the Query/Balance RPC method.
-    """
+    """QueryBalanceResponse is the response type for the Query/Balance RPC method."""
 
     balance: '__base_v1_beta1__.Coin' = betterproto.message_field(1)
     """balance is the balance of the coin."""
@@ -160,9 +152,7 @@ class QueryBalanceResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryAllBalancesRequest(betterproto.Message):
-    """
-    QueryBalanceRequest is the request type for the Query/AllBalances RPC method.
-    """
+    """QueryBalanceRequest is the request type for the Query/AllBalances RPC method."""
 
     address: str = betterproto.string_field(1)
     """address is the address to query balances for."""
@@ -246,9 +236,7 @@ class QueryTotalSupplyResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QuerySupplyOfRequest(betterproto.Message):
-    """
-    QuerySupplyOfRequest is the request type for the Query/SupplyOf RPC method.
-    """
+    """QuerySupplyOfRequest is the request type for the Query/SupplyOf RPC method."""
 
     denom: str = betterproto.string_field(1)
     """denom is the coin denom to query balances for."""
@@ -256,9 +244,7 @@ class QuerySupplyOfRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QuerySupplyOfResponse(betterproto.Message):
-    """
-    QuerySupplyOfResponse is the response type for the Query/SupplyOf RPC method.
-    """
+    """QuerySupplyOfResponse is the response type for the Query/SupplyOf RPC method."""
 
     amount: '__base_v1_beta1__.Coin' = betterproto.message_field(1)
     """amount is the supply of the coin."""
@@ -266,18 +252,14 @@ class QuerySupplyOfResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
-    """
-    QueryParamsRequest defines the request type for querying x/bank parameters.
-    """
+    """QueryParamsRequest defines the request type for querying x/bank parameters."""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class QueryParamsResponse(betterproto.Message):
-    """
-    QueryParamsResponse defines the response type for querying x/bank parameters.
-    """
+    """QueryParamsResponse defines the response type for querying x/bank parameters."""
 
     params: 'Params' = betterproto.message_field(1)
 
@@ -301,9 +283,7 @@ class QueryDenomsMetadataResponse(betterproto.Message):
     """
 
     metadatas: List['Metadata'] = betterproto.message_field(1)
-    """
-    metadata provides the client information for all the registered tokens.
-    """
+    """metadata provides the client information for all the registered tokens."""
 
     pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
@@ -347,8 +327,8 @@ class GenesisState(betterproto.Message):
     """
     supply represents the total supply. If it is left empty, then supply will be
     calculated based on the provided
-    balances. Otherwise, it will be used to validate that the sum of the balances
-    equals this amount.
+    balances. Otherwise, it will be used to validate that the sum of the balances equals
+    this amount.
     """
 
     denom_metadata: List['Metadata'] = betterproto.message_field(4)
@@ -382,9 +362,7 @@ class SendAuthorization(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgSend(betterproto.Message):
-    """
-    MsgSend represents a message to send coins from one account to another.
-    """
+    """MsgSend represents a message to send coins from one account to another."""
 
     from_address: str = betterproto.string_field(1)
     to_address: str = betterproto.string_field(2)
@@ -400,9 +378,7 @@ class MsgSendResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgMultiSend(betterproto.Message):
-    """
-    MsgMultiSend represents an arbitrary multi-in, multi-out send message.
-    """
+    """MsgMultiSend represents an arbitrary multi-in, multi-out send message."""
 
     inputs: List['Input'] = betterproto.message_field(1)
     outputs: List['Output'] = betterproto.message_field(2)

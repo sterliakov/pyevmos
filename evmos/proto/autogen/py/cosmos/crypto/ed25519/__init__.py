@@ -14,8 +14,7 @@ class PubKey(betterproto.Message):
     It's needed for Any serialization and SDK compatibility.
     It must not be used in a non Tendermint key context because it doesn't implement
     ADR-28. Nevertheless, you will like to use ed25519 in app user level
-    then you must create a new proto message and follow ADR-28 for Address
-    construction.
+    then you must create a new proto message and follow ADR-28 for Address construction.
     """
 
     key: bytes = betterproto.bytes_field(1)

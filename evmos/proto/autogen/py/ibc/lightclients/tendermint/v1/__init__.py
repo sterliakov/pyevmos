@@ -36,9 +36,7 @@ class ClientState(betterproto.Message):
     """duration of the staking unbonding period"""
 
     max_clock_drift: timedelta = betterproto.message_field(5)
-    """
-    defines how much new (untrusted) header's Time can drift into the future.
-    """
+    """defines how much new (untrusted) header's Time can drift into the future."""
 
     frozen_height: '___core_client_v1__.Height' = betterproto.message_field(6)
     """Block height when the client was frozen due to a misbehaviour"""

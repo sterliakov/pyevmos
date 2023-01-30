@@ -23,9 +23,7 @@ if TYPE_CHECKING:
 
 @dataclass(eq=False, repr=False)
 class ParameterChangeProposal(betterproto.Message):
-    """
-    ParameterChangeProposal defines a proposal to change one or more parameters.
-    """
+    """ParameterChangeProposal defines a proposal to change one or more parameters."""
 
     title: str = betterproto.string_field(1)
     description: str = betterproto.string_field(2)
@@ -57,9 +55,7 @@ class QueryParamsRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryParamsResponse(betterproto.Message):
-    """
-    QueryParamsResponse is response type for the Query/Params RPC method.
-    """
+    """QueryParamsResponse is response type for the Query/Params RPC method."""
 
     param: 'ParamChange' = betterproto.message_field(1)
     """param defines the queried parameter."""

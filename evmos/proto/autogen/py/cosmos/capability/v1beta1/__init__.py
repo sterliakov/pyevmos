@@ -41,9 +41,7 @@ class CapabilityOwners(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GenesisOwners(betterproto.Message):
-    """
-    GenesisOwners defines the capability owners with their corresponding index.
-    """
+    """GenesisOwners defines the capability owners with their corresponding index."""
 
     index: int = betterproto.uint64_field(1)
     """index is the index of the capability owner."""

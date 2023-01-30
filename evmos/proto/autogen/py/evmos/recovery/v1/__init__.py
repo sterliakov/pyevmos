@@ -37,25 +37,19 @@ class Params(betterproto.Message):
     """enable recovery IBC middleware"""
 
     packet_timeout_duration: timedelta = betterproto.message_field(2)
-    """
-    duration added to timeout timestamp for balances recovered via IBC packets
-    """
+    """duration added to timeout timestamp for balances recovered via IBC packets"""
 
 
 @dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
-    """
-    QueryParamsRequest is the request type for the Query/Params RPC method.
-    """
+    """QueryParamsRequest is the request type for the Query/Params RPC method."""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class QueryParamsResponse(betterproto.Message):
-    """
-    QueryParamsResponse is the response type for the Query/Params RPC method.
-    """
+    """QueryParamsResponse is the response type for the Query/Params RPC method."""
 
     params: 'Params' = betterproto.message_field(1)
     """params defines the parameters of the module."""

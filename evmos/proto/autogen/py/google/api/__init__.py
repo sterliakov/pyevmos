@@ -318,9 +318,7 @@ class HttpBody(betterproto.Message):
     """
 
     content_type: str = betterproto.string_field(1)
-    """
-    The HTTP Content-Type header value specifying the content type of the body.
-    """
+    """The HTTP Content-Type header value specifying the content type of the body."""
 
     data: bytes = betterproto.bytes_field(2)
     """The HTTP request/response body as raw binary."""

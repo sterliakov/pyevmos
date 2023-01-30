@@ -60,9 +60,7 @@ class SnapshotIavlItem(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class SnapshotExtensionMeta(betterproto.Message):
-    """
-    SnapshotExtensionMeta contains metadata about an external snapshotter.
-    """
+    """SnapshotExtensionMeta contains metadata about an external snapshotter."""
 
     name: str = betterproto.string_field(1)
     format: int = betterproto.uint32_field(2)
@@ -70,8 +68,6 @@ class SnapshotExtensionMeta(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class SnapshotExtensionPayload(betterproto.Message):
-    """
-    SnapshotExtensionPayload contains payloads of an external snapshotter.
-    """
+    """SnapshotExtensionPayload contains payloads of an external snapshotter."""
 
     payload: bytes = betterproto.bytes_field(1)

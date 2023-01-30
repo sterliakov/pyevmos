@@ -85,17 +85,13 @@ class PeriodicAllowance(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class AllowedMsgAllowance(betterproto.Message):
-    """
-    AllowedMsgAllowance creates allowance only for specified message types.
-    """
+    """AllowedMsgAllowance creates allowance only for specified message types."""
 
     allowance: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(1)
     """allowance can be any of basic and filtered fee allowance."""
 
     allowed_messages: List[str] = betterproto.string_field(2)
-    """
-    allowed_messages are the messages for which the grantee has the access.
-    """
+    """allowed_messages are the messages for which the grantee has the access."""
 
 
 @dataclass(eq=False, repr=False)
@@ -103,9 +99,7 @@ class Grant(betterproto.Message):
     """Grant is stored in the KVStore to record a grant with full context"""
 
     granter: str = betterproto.string_field(1)
-    """
-    granter is the address of the user granting an allowance of their funds.
-    """
+    """granter is the address of the user granting an allowance of their funds."""
 
     grantee: str = betterproto.string_field(2)
     """
@@ -119,14 +113,10 @@ class Grant(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryAllowanceRequest(betterproto.Message):
-    """
-    QueryAllowanceRequest is the request type for the Query/Allowance RPC method.
-    """
+    """QueryAllowanceRequest is the request type for the Query/Allowance RPC method."""
 
     granter: str = betterproto.string_field(1)
-    """
-    granter is the address of the user granting an allowance of their funds.
-    """
+    """granter is the address of the user granting an allowance of their funds."""
 
     grantee: str = betterproto.string_field(2)
     """
@@ -171,9 +161,7 @@ class QueryAllowancesResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GenesisState(betterproto.Message):
-    """
-    GenesisState contains a set of fee allowances, persisted from the store
-    """
+    """GenesisState contains a set of fee allowances, persisted from the store"""
 
     allowances: List['Grant'] = betterproto.message_field(1)
 
@@ -186,9 +174,7 @@ class MsgGrantAllowance(betterproto.Message):
     """
 
     granter: str = betterproto.string_field(1)
-    """
-    granter is the address of the user granting an allowance of their funds.
-    """
+    """granter is the address of the user granting an allowance of their funds."""
 
     grantee: str = betterproto.string_field(2)
     """
@@ -211,14 +197,10 @@ class MsgGrantAllowanceResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgRevokeAllowance(betterproto.Message):
-    """
-    MsgRevokeAllowance removes any existing Allowance from Granter to Grantee.
-    """
+    """MsgRevokeAllowance removes any existing Allowance from Granter to Grantee."""
 
     granter: str = betterproto.string_field(1)
-    """
-    granter is the address of the user granting an allowance of their funds.
-    """
+    """granter is the address of the user granting an allowance of their funds."""
 
     grantee: str = betterproto.string_field(2)
     """

@@ -60,9 +60,7 @@ class Metadata(betterproto.Message):
     """encoding defines the supported codec format"""
 
     tx_type: str = betterproto.string_field(6)
-    """
-    tx_type defines the type of transactions the interchain account can execute
-    """
+    """tx_type defines the type of transactions the interchain account can execute"""
 
 
 @dataclass(eq=False, repr=False)

@@ -25,9 +25,7 @@ class Params(betterproto.Message):
     """Params defines the EVM module parameters"""
 
     no_base_fee: bool = betterproto.bool_field(1)
-    """
-    no base fee forces the EIP-1559 base fee to 0 (needed for 0 price calls)
-    """
+    """no base fee forces the EIP-1559 base fee to 0 (needed for 0 price calls)"""
 
     base_fee_change_denominator: int = betterproto.uint32_field(2)
     """
@@ -61,18 +59,14 @@ class Params(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
-    """
-    QueryParamsRequest defines the request type for querying x/evm parameters.
-    """
+    """QueryParamsRequest defines the request type for querying x/evm parameters."""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class QueryParamsResponse(betterproto.Message):
-    """
-    QueryParamsResponse defines the response type for querying x/evm parameters.
-    """
+    """QueryParamsResponse defines the response type for querying x/evm parameters."""
 
     params: 'Params' = betterproto.message_field(1)
     """params define the evm module parameters."""

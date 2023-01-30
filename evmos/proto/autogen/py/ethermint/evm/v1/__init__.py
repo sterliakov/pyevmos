@@ -36,9 +36,7 @@ class Params(betterproto.Message):
     """
 
     enable_create: bool = betterproto.bool_field(2)
-    """
-    enable create toggles state transitions that use the vm.Create function
-    """
+    """enable create toggles state transitions that use the vm.Create function"""
 
     enable_call: bool = betterproto.bool_field(3)
     """enable call toggles state transitions that use the vm.Call function"""
@@ -79,9 +77,7 @@ class ChainConfig(betterproto.Message):
     """
 
     eip150_hash: str = betterproto.string_field(5)
-    """
-    EIP150 HF hash (needed for header only clients as only gas pricing changed)
-    """
+    """EIP150 HF hash (needed for header only clients as only gas pricing changed)"""
 
     eip155_block: str = betterproto.string_field(6)
     """EIP155Block HF block"""
@@ -102,9 +98,7 @@ class ChainConfig(betterproto.Message):
     """Istanbul switch block (nil no fork, 0 = already on istanbul)"""
 
     muir_glacier_block: str = betterproto.string_field(12)
-    """
-    Eip-2384 (bomb delay) switch block (nil no fork, 0 = already activated)
-    """
+    """Eip-2384 (bomb delay) switch block (nil no fork, 0 = already activated)"""
 
     berlin_block: str = betterproto.string_field(13)
     """Berlin switch block (nil = no fork, 0 = already on berlin)"""
@@ -113,9 +107,7 @@ class ChainConfig(betterproto.Message):
     """London switch block (nil = no fork, 0 = already on london)"""
 
     arrow_glacier_block: str = betterproto.string_field(18)
-    """
-    Eip-4345 (bomb delay) switch block (nil = no fork, 0 = already activated)
-    """
+    """Eip-4345 (bomb delay) switch block (nil = no fork, 0 = already activated)"""
 
     merge_fork_block: str = betterproto.string_field(19)
     """
@@ -253,9 +245,7 @@ class TraceConfig(betterproto.Message):
     """maximum length of output, but zero means unlimited"""
 
     overrides: 'ChainConfig' = betterproto.message_field(10)
-    """
-    Chain overrides, can be used to execute a trace using future fork rules
-    """
+    """Chain overrides, can be used to execute a trace using future fork rules"""
 
     enable_memory: bool = betterproto.bool_field(11)
     """enable memory capture"""
@@ -266,9 +256,7 @@ class TraceConfig(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgEthereumTx(betterproto.Message):
-    """
-    MsgEthereumTx encapsulates an Ethereum transaction as an SDK message.
-    """
+    """MsgEthereumTx encapsulates an Ethereum transaction as an SDK message."""
 
     data: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(1)
     """inner transaction data"""
@@ -435,9 +423,7 @@ class MsgEthereumTxResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryAccountRequest(betterproto.Message):
-    """
-    QueryAccountRequest is the request type for the Query/Account RPC method.
-    """
+    """QueryAccountRequest is the request type for the Query/Account RPC method."""
 
     address: str = betterproto.string_field(1)
     """address is the ethereum hex address to query the account for."""
@@ -445,9 +431,7 @@ class QueryAccountRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryAccountResponse(betterproto.Message):
-    """
-    QueryAccountResponse is the response type for the Query/Account RPC method.
-    """
+    """QueryAccountResponse is the response type for the Query/Account RPC method."""
 
     balance: str = betterproto.string_field(1)
     """balance is the balance of the EVM denomination."""
@@ -506,9 +490,7 @@ class QueryValidatorAccountResponse(betterproto.Message):
     """
 
     account_address: str = betterproto.string_field(1)
-    """
-    account_address is the cosmos address of the account in bech32 format.
-    """
+    """account_address is the cosmos address of the account in bech32 format."""
 
     sequence: int = betterproto.uint64_field(2)
     """sequence is the account's sequence number."""
@@ -519,9 +501,7 @@ class QueryValidatorAccountResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryBalanceRequest(betterproto.Message):
-    """
-    QueryBalanceRequest is the request type for the Query/Balance RPC method.
-    """
+    """QueryBalanceRequest is the request type for the Query/Balance RPC method."""
 
     address: str = betterproto.string_field(1)
     """address is the ethereum hex address to query the balance for."""
@@ -529,9 +509,7 @@ class QueryBalanceRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryBalanceResponse(betterproto.Message):
-    """
-    QueryBalanceResponse is the response type for the Query/Balance RPC method.
-    """
+    """QueryBalanceResponse is the response type for the Query/Balance RPC method."""
 
     balance: str = betterproto.string_field(1)
     """balance is the balance of the EVM denomination."""
@@ -539,14 +517,10 @@ class QueryBalanceResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryStorageRequest(betterproto.Message):
-    """
-    QueryStorageRequest is the request type for the Query/Storage RPC method.
-    """
+    """QueryStorageRequest is the request type for the Query/Storage RPC method."""
 
     address: str = betterproto.string_field(1)
-    """
-    / address is the ethereum hex address to query the storage state for.
-    """
+    """/ address is the ethereum hex address to query the storage state for."""
 
     key: str = betterproto.string_field(2)
     """key defines the key of the storage state"""
@@ -560,9 +534,7 @@ class QueryStorageResponse(betterproto.Message):
     """
 
     value: str = betterproto.string_field(1)
-    """
-    key defines the storage state value hash associated with the given key.
-    """
+    """key defines the storage state value hash associated with the given key."""
 
 
 @dataclass(eq=False, repr=False)
@@ -586,9 +558,7 @@ class QueryCodeResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryTxLogsRequest(betterproto.Message):
-    """
-    QueryTxLogsRequest is the request type for the Query/TxLogs RPC method.
-    """
+    """QueryTxLogsRequest is the request type for the Query/TxLogs RPC method."""
 
     hash: str = betterproto.string_field(1)
     """hash is the ethereum transaction hex hash to query the logs for."""
@@ -604,9 +574,7 @@ class QueryTxLogsResponse(betterproto.Message):
     """QueryTxLogs is the response type for the Query/TxLogs RPC method."""
 
     logs: List['Log'] = betterproto.message_field(1)
-    """
-    logs represents the ethereum logs generated from the given transaction.
-    """
+    """logs represents the ethereum logs generated from the given transaction."""
 
     pagination: '___cosmos_base_query_v1_beta1__.PageResponse' = (
         betterproto.message_field(2)
@@ -616,18 +584,14 @@ class QueryTxLogsResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
-    """
-    QueryParamsRequest defines the request type for querying x/evm parameters.
-    """
+    """QueryParamsRequest defines the request type for querying x/evm parameters."""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class QueryParamsResponse(betterproto.Message):
-    """
-    QueryParamsResponse defines the response type for querying x/evm parameters.
-    """
+    """QueryParamsResponse defines the response type for querying x/evm parameters."""
 
     params: 'Params' = betterproto.message_field(1)
     """params define the evm module parameters."""

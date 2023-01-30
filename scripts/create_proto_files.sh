@@ -6,6 +6,7 @@ cd evmos/proto
 I=$(pwd)/autogen/proto
 DEST_PY=$(pwd)/autogen/py/
 mkdir -p "$DEST_PY"
+rm -rf "$DEST_PY"/*
 cd "$I"
 
 protoc \

@@ -86,9 +86,7 @@ class ClientUpdateProposal(betterproto.Message):
     """the description of the proposal"""
 
     subject_client_id: str = betterproto.string_field(3)
-    """
-    the client identifier for the client to be updated if the proposal passes
-    """
+    """the client identifier for the client to be updated if the proposal passes"""
 
     substitute_client_id: str = betterproto.string_field(4)
     """
@@ -241,9 +239,7 @@ class QueryConsensusStateResponse(betterproto.Message):
     consensus_state: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(
         1
     )
-    """
-    consensus state associated with the client identifier at the given height
-    """
+    """consensus state associated with the client identifier at the given height"""
 
     proof: bytes = betterproto.bytes_field(2)
     """merkle proof of existence"""
@@ -501,9 +497,7 @@ class MsgUpgradeClient(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgUpgradeClientResponse(betterproto.Message):
-    """
-    MsgUpgradeClientResponse defines the Msg/UpgradeClient response type.
-    """
+    """MsgUpgradeClientResponse defines the Msg/UpgradeClient response type."""
 
     pass
 

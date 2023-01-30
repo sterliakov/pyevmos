@@ -27,9 +27,7 @@ if TYPE_CHECKING:
 
 @dataclass(eq=False, repr=False)
 class QueryBalancesRequest(betterproto.Message):
-    """
-    QueryBalancesRequest is the request type for the Query/Balances RPC method.
-    """
+    """QueryBalancesRequest is the request type for the Query/Balances RPC method."""
 
     address: str = betterproto.string_field(1)
     """address of the clawback vesting account"""
@@ -78,16 +76,12 @@ class ClawbackVestingAccount(betterproto.Message):
     lockup_periods: List[
         '___cosmos_vesting_v1_beta1__.Period'
     ] = betterproto.message_field(4)
-    """
-    lockup_periods defines the unlocking schedule relative to the start_time
-    """
+    """lockup_periods defines the unlocking schedule relative to the start_time"""
 
     vesting_periods: List[
         '___cosmos_vesting_v1_beta1__.Period'
     ] = betterproto.message_field(5)
-    """
-    vesting_periods defines the vesting schedule relative to the start_time
-    """
+    """vesting_periods defines the vesting schedule relative to the start_time"""
 
 
 @dataclass(eq=False, repr=False)
@@ -112,16 +106,12 @@ class MsgCreateClawbackVestingAccount(betterproto.Message):
     lockup_periods: List[
         '___cosmos_vesting_v1_beta1__.Period'
     ] = betterproto.message_field(4)
-    """
-    lockup_periods defines the unlocking schedule relative to the start_time
-    """
+    """lockup_periods defines the unlocking schedule relative to the start_time"""
 
     vesting_periods: List[
         '___cosmos_vesting_v1_beta1__.Period'
     ] = betterproto.message_field(5)
-    """
-    vesting_periods defines thevesting schedule relative to the start_time
-    """
+    """vesting_periods defines thevesting schedule relative to the start_time"""
 
     merge: bool = betterproto.bool_field(6)
     """

@@ -40,9 +40,7 @@ class BaseAccount(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ModuleAccount(betterproto.Message):
-    """
-    ModuleAccount defines an account for modules that holds coins on a pool.
-    """
+    """ModuleAccount defines an account for modules that holds coins on a pool."""
 
     base_account: 'BaseAccount' = betterproto.message_field(1)
     name: str = betterproto.string_field(2)
@@ -87,9 +85,7 @@ class QueryAccountsResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryAccountRequest(betterproto.Message):
-    """
-    QueryAccountRequest is the request type for the Query/Account RPC method.
-    """
+    """QueryAccountRequest is the request type for the Query/Account RPC method."""
 
     address: str = betterproto.string_field(1)
     """address defines the address to query for."""
@@ -97,9 +93,7 @@ class QueryAccountRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryAccountResponse(betterproto.Message):
-    """
-    QueryAccountResponse is the response type for the Query/Account RPC method.
-    """
+    """QueryAccountResponse is the response type for the Query/Account RPC method."""
 
     account: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(1)
     """account defines the account of the corresponding address."""
@@ -107,18 +101,14 @@ class QueryAccountResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
-    """
-    QueryParamsRequest is the request type for the Query/Params RPC method.
-    """
+    """QueryParamsRequest is the request type for the Query/Params RPC method."""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class QueryParamsResponse(betterproto.Message):
-    """
-    QueryParamsResponse is the response type for the Query/Params RPC method.
-    """
+    """QueryParamsResponse is the response type for the Query/Params RPC method."""
 
     params: 'Params' = betterproto.message_field(1)
     """params defines the parameters of the module."""

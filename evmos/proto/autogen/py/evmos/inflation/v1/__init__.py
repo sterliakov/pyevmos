@@ -118,18 +118,14 @@ class Params(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryPeriodRequest(betterproto.Message):
-    """
-    QueryPeriodRequest is the request type for the Query/Period RPC method.
-    """
+    """QueryPeriodRequest is the request type for the Query/Period RPC method."""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class QueryPeriodResponse(betterproto.Message):
-    """
-    QueryPeriodResponse is the response type for the Query/Period RPC method.
-    """
+    """QueryPeriodResponse is the response type for the Query/Period RPC method."""
 
     period: int = betterproto.uint64_field(1)
     """period is the current minting per epoch provision value."""
@@ -155,9 +151,7 @@ class QueryEpochMintProvisionResponse(betterproto.Message):
     epoch_mint_provision: '___cosmos_base_v1_beta1__.DecCoin' = (
         betterproto.message_field(1)
     )
-    """
-    epoch_mint_provision is the current minting per epoch provision value.
-    """
+    """epoch_mint_provision is the current minting per epoch provision value."""
 
 
 @dataclass(eq=False, repr=False)
@@ -227,18 +221,14 @@ class QueryInflationRateResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
-    """
-    QueryParamsRequest is the request type for the Query/Params RPC method.
-    """
+    """QueryParamsRequest is the request type for the Query/Params RPC method."""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class QueryParamsResponse(betterproto.Message):
-    """
-    QueryParamsResponse is the response type for the Query/Params RPC method.
-    """
+    """QueryParamsResponse is the response type for the Query/Params RPC method."""
 
     params: 'Params' = betterproto.message_field(1)
     """params defines the parameters of the module."""

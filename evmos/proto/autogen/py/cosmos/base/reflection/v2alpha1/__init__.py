@@ -39,9 +39,7 @@ class AppDescriptor(betterproto.Message):
     """codec provides metadata information regarding codec related types"""
 
     configuration: 'ConfigurationDescriptor' = betterproto.message_field(4)
-    """
-    configuration provides metadata information regarding the sdk.Config type
-    """
+    """configuration provides metadata information regarding the sdk.Config type"""
 
     query_services: 'QueryServicesDescriptor' = betterproto.message_field(5)
     """
@@ -138,8 +136,8 @@ class InterfaceDescriptor(betterproto.Message):
         'InterfaceAcceptingMessageDescriptor'
     ] = betterproto.message_field(2)
     """
-    interface_accepting_messages contains information regarding the proto messages
-    which contain the interface as
+    interface_accepting_messages contains information regarding the proto messages which
+    contain the interface as
     google.protobuf.Any field
     """
 
@@ -175,9 +173,7 @@ class InterfaceAcceptingMessageDescriptor(betterproto.Message):
     """
 
     fullname: str = betterproto.string_field(1)
-    """
-    fullname is the protobuf fullname of the type containing the interface
-    """
+    """fullname is the protobuf fullname of the type containing the interface"""
 
     field_descriptor_names: List[str] = betterproto.string_field(2)
     """
@@ -189,9 +185,7 @@ class InterfaceAcceptingMessageDescriptor(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ConfigurationDescriptor(betterproto.Message):
-    """
-    ConfigurationDescriptor contains metadata information on the sdk.Config
-    """
+    """ConfigurationDescriptor contains metadata information on the sdk.Config"""
 
     bech32_account_address_prefix: str = betterproto.string_field(1)
     """bech32_account_address_prefix is the account address prefix"""
@@ -210,9 +204,7 @@ class MsgDescriptor(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetAuthnDescriptorRequest(betterproto.Message):
-    """
-    GetAuthnDescriptorRequest is the request used for the GetAuthnDescriptor RPC
-    """
+    """GetAuthnDescriptorRequest is the request used for the GetAuthnDescriptor RPC"""
 
     pass
 
@@ -231,9 +223,7 @@ class GetAuthnDescriptorResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetChainDescriptorRequest(betterproto.Message):
-    """
-    GetChainDescriptorRequest is the request used for the GetChainDescriptor RPC
-    """
+    """GetChainDescriptorRequest is the request used for the GetChainDescriptor RPC"""
 
     pass
 
@@ -250,9 +240,7 @@ class GetChainDescriptorResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetCodecDescriptorRequest(betterproto.Message):
-    """
-    GetCodecDescriptorRequest is the request used for the GetCodecDescriptor RPC
-    """
+    """GetCodecDescriptorRequest is the request used for the GetCodecDescriptor RPC"""
 
     pass
 
@@ -314,18 +302,14 @@ class GetQueryServicesDescriptorResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetTxDescriptorRequest(betterproto.Message):
-    """
-    GetTxDescriptorRequest is the request used for the GetTxDescriptor RPC
-    """
+    """GetTxDescriptorRequest is the request used for the GetTxDescriptor RPC"""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class GetTxDescriptorResponse(betterproto.Message):
-    """
-    GetTxDescriptorResponse is the response returned by the GetTxDescriptor RPC
-    """
+    """GetTxDescriptorResponse is the response returned by the GetTxDescriptor RPC"""
 
     tx: 'TxDescriptor' = betterproto.message_field(1)
     """
@@ -336,9 +320,7 @@ class GetTxDescriptorResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryServicesDescriptor(betterproto.Message):
-    """
-    QueryServicesDescriptor contains the list of cosmos-sdk queriable services
-    """
+    """QueryServicesDescriptor contains the list of cosmos-sdk queriable services"""
 
     query_services: List['QueryServiceDescriptor'] = betterproto.message_field(1)
     """query_services is a list of cosmos-sdk QueryServiceDescriptor"""
