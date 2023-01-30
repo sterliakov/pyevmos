@@ -44,9 +44,9 @@ from evmos.transactions.erc20 import (
     create_tx_msg_convert_erc20,
 )
 from evmos.transactions.feesplit import (
-    create_tx_msg_cancel_fee_split,
-    create_tx_msg_register_fee_split,
-    create_tx_msg_update_fee_split,
+    create_tx_msg_cancel_revenue,
+    create_tx_msg_register_revenue,
+    create_tx_msg_update_revenue,
 )
 from evmos.transactions.staking import (
     create_tx_msg_begin_redelegate,
@@ -73,9 +73,9 @@ __all__ = [
     'create_tx_msg_stake_revoke_authorization',
     'create_tx_msg_convert_coin',
     'create_tx_msg_convert_erc20',
-    'create_tx_msg_cancel_fee_split',
-    'create_tx_msg_register_fee_split',
-    'create_tx_msg_update_fee_split',
+    'create_tx_msg_cancel_revenue',
+    'create_tx_msg_register_revenue',
+    'create_tx_msg_update_revenue',
     'create_tx_msg_delegate',
     'create_tx_msg_begin_redelegate',
     'create_tx_msg_undelegate',
