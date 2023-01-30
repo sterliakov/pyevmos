@@ -16,9 +16,9 @@ ERC20 transactions
 ------------------
 .. automodule:: evmos.transactions.erc20
 
-Fee splitting transactions
---------------------------
-.. automodule:: evmos.transactions.feesplit
+Revenue transactions
+--------------------
+.. automodule:: evmos.transactions.revenue
 
 Staking transactions
 --------------------
