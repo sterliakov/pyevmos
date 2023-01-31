@@ -9,16 +9,12 @@ from evmos.eip712 import (
     MSG_UNDELEGATE_TYPES,
     MSG_WITHDRAW_DELEGATOR_REWARD_TYPES,
     MSG_WITHDRAW_VALIDATOR_COMMISSION_TYPES,
-    create_eip712,
     create_msg_begin_redelegate,
     create_msg_delegate,
     create_msg_set_withdraw_address,
     create_msg_undelegate,
     create_msg_withdraw_delegator_reward,
     create_msg_withdraw_validator_commission,
-    generate_fee,
-    generate_message_with_multiple_transactions,
-    generate_types,
 )
 from evmos.proto import (
     MessageGenerated,
@@ -41,8 +37,7 @@ from evmos.proto import (
 from evmos.proto import (
     create_msg_withdraw_validator_commission as proto_msg_withdraw_validator_commission,
 )
-from evmos.proto import create_transaction_with_multiple_messages
-from evmos.transactions.common import Chain, Fee, Sender, TxGenerated, to_generated
+from evmos.transactions.common import to_generated
 
 
 @to_generated(MSG_DELEGATE_TYPES, proto=True)
@@ -147,65 +142,24 @@ def create_tx_msg_withdraw_delegator_reward(
 
 
 # Multiple WithdrawRewards
+@to_generated(MSG_WITHDRAW_DELEGATOR_REWARD_TYPES, proto=True, many=True)
 def create_tx_msg_multiple_withdraw_delegator_reward(
-    chain: Chain,
-    sender: Sender,
-    fee: Fee,
-    memo: str,
+    account_address: str,
     validator_addresses: Sequence[str],
-) -> TxGenerated:
+) -> tuple[
+    Sequence[Mapping[str, Any]], Sequence[MessageGenerated[MsgWithdrawDelegatorReward]]
+]:
     """Create a transaction with message for delegator multiple rewards withdrawal."""
-    # EIP712
-    fee_object = generate_fee(
-        fee.amount,
-        fee.denom,
-        fee.gas,
-        sender.account_address,
-    )
-    types = generate_types(MSG_WITHDRAW_DELEGATOR_REWARD_TYPES)
-    # EIP712
-    # msgs: MsgWithdrawDelegatorRewardInterface[] = []
-    msgs = []
-    # Cosmos
-    # proto_msgs: MsgWithdrawDelegatorRewardProtoInterface[] = []
     msgs = [
-        create_msg_withdraw_delegator_reward(sender.account_address, validator)
+        create_msg_withdraw_delegator_reward(account_address, validator)
         for validator in validator_addresses
     ]
     proto_msgs = [
-        proto_msg_withdraw_delegator_reward(sender.account_address, validator)
+        proto_msg_withdraw_delegator_reward(account_address, validator)
         for validator in validator_addresses
     ]
 
-    messages = generate_message_with_multiple_transactions(
-        str(sender.account_number),
-        str(sender.sequence),
-        chain.cosmos_chain_id,
-        memo,
-        fee_object,
-        msgs,
-    )
-    eip_to_sign = create_eip712(types, chain.chain_id, messages)
-
-    # Cosmos
-    tx = create_transaction_with_multiple_messages(
-        proto_msgs,
-        memo,
-        fee.amount,
-        fee.denom,
-        int(fee.gas),
-        'ethsecp256',
-        sender.pubkey,
-        sender.sequence,
-        sender.account_number,
-        chain.cosmos_chain_id,
-    )
-
-    return TxGenerated(
-        sign_direct=tx.sign_direct,
-        legacy_amino=tx.legacy_amino,
-        eip_to_sign=eip_to_sign,
-    )
+    return msgs, proto_msgs
 
 
 @to_generated(MSG_WITHDRAW_VALIDATOR_COMMISSION_TYPES)
