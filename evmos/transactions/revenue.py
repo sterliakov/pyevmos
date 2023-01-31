@@ -3,9 +3,9 @@ from __future__ import annotations
 from typing import Any, Mapping, Sequence
 
 from evmos.eip712 import (
-    MSG_CANCEL_FEE_SPLIT_TYPES,
-    MSG_REGISTER_FEE_SPLIT_TYPES,
-    MSG_UPDATE_FEE_SPLIT_TYPES,
+    MSG_CANCEL_REVENUE_TYPES,
+    MSG_REGISTER_REVENUE_TYPES,
+    MSG_UPDATE_REVENUE_TYPES,
     create_msg_cancel_revenue,
     create_msg_register_revenue,
     create_msg_update_revenue,
@@ -24,7 +24,7 @@ from evmos.transactions.common import to_generated
 # msgCancelRevenue.ts
 
 
-@to_generated(MSG_CANCEL_FEE_SPLIT_TYPES)
+@to_generated(MSG_CANCEL_REVENUE_TYPES)
 def create_tx_msg_cancel_revenue(
     contract_address: str,
     deployer_address: str,
@@ -46,7 +46,7 @@ def create_tx_msg_cancel_revenue(
 # msgRegisterRevenue.ts
 
 
-@to_generated(MSG_REGISTER_FEE_SPLIT_TYPES)
+@to_generated(MSG_REGISTER_REVENUE_TYPES)
 def create_tx_msg_register_revenue(
     contract_address: str,
     deployer_address: str,
@@ -73,7 +73,7 @@ def create_tx_msg_register_revenue(
 # msgUpdateRevenue.ts
 
 
-@to_generated(MSG_UPDATE_FEE_SPLIT_TYPES)
+@to_generated(MSG_UPDATE_REVENUE_TYPES)
 def create_tx_msg_update_revenue(
     contract_address: str,
     deployer_address: str,
