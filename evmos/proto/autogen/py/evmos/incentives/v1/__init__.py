@@ -47,16 +47,12 @@ class Incentive(betterproto.Message):
     """distribution start time"""
 
     total_gas: int = betterproto.uint64_field(5)
-    """
-    cumulative gas spent by all gasmeters of the incentive during the epoch
-    """
+    """cumulative gas spent by all gasmeters of the incentive during the epoch"""
 
 
 @dataclass(eq=False, repr=False)
 class GasMeter(betterproto.Message):
-    """
-    GasMeter tracks the cumulative gas spent per participant in one epoch
-    """
+    """GasMeter tracks the cumulative gas spent per participant in one epoch"""
 
     contract: str = betterproto.string_field(1)
     """hex address of the incentivized contract"""
@@ -70,9 +66,7 @@ class GasMeter(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class RegisterIncentiveProposal(betterproto.Message):
-    """
-    RegisterIncentiveProposal is a gov Content type to register an incentive
-    """
+    """RegisterIncentiveProposal is a gov Content type to register an incentive"""
 
     title: str = betterproto.string_field(1)
     """title of the proposal"""
@@ -166,9 +160,7 @@ class QueryIncentivesResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryIncentiveRequest(betterproto.Message):
-    """
-    QueryIncentiveRequest is the request type for the Query/Incentive RPC method.
-    """
+    """QueryIncentiveRequest is the request type for the Query/Incentive RPC method."""
 
     contract: str = betterproto.string_field(1)
     """contract identifier is the hex contract address of a contract"""
@@ -192,9 +184,7 @@ class QueryGasMetersRequest(betterproto.Message):
     """
 
     contract: str = betterproto.string_field(1)
-    """
-    contract is the hex contract address of a incentivized smart contract
-    """
+    """contract is the hex contract address of a incentivized smart contract"""
 
     pagination: '___cosmos_base_query_v1_beta1__.PageRequest' = (
         betterproto.message_field(2)
@@ -218,9 +208,7 @@ class QueryGasMetersResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryGasMeterRequest(betterproto.Message):
-    """
-    QueryGasMeterRequest is the request type for the Query/Incentive RPC method.
-    """
+    """QueryGasMeterRequest is the request type for the Query/Incentive RPC method."""
 
     contract: str = betterproto.string_field(1)
     """contract identifier is the hex contract address of a contract"""
@@ -291,9 +279,7 @@ class QueryAllocationMeterResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
-    """
-    QueryParamsRequest is the request type for the Query/Params RPC method.
-    """
+    """QueryParamsRequest is the request type for the Query/Params RPC method."""
 
     pass
 

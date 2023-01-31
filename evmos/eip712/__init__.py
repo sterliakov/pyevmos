@@ -18,22 +18,24 @@ from evmos.eip712.erc20 import (
     create_msg_convert_coin,
     create_msg_convert_erc20,
 )
-from evmos.eip712.feesplit import (
+from evmos.eip712.revenue import (
     MSG_CANCEL_FEE_SPLIT_TYPES,
     MSG_REGISTER_FEE_SPLIT_TYPES,
     MSG_UPDATE_FEE_SPLIT_TYPES,
-    create_msg_cancel_fee_split,
-    create_msg_register_fee_split,
-    create_msg_update_fee_split,
+    create_msg_cancel_revenue,
+    create_msg_register_revenue,
+    create_msg_update_revenue,
 )
 from evmos.eip712.staking import (
     MSG_BEGIN_REDELEGATE_TYPES,
     MSG_DELEGATE_TYPES,
+    MSG_SET_WITHDRAW_ADDRESS_TYPES,
     MSG_UNDELEGATE_TYPES,
     MSG_WITHDRAW_DELEGATOR_REWARD_TYPES,
     MSG_WITHDRAW_VALIDATOR_COMMISSION_TYPES,
     create_msg_begin_redelegate,
     create_msg_delegate,
+    create_msg_set_withdraw_address,
     create_msg_undelegate,
     create_msg_withdraw_delegator_reward,
     create_msg_withdraw_validator_commission,
@@ -44,17 +46,18 @@ __all__ = [
     'create_eip712',
     'create_ibc_msg_transfer',
     'create_msg_begin_redelegate',
-    'create_msg_cancel_fee_split',
+    'create_msg_cancel_revenue',
     'create_msg_convert_coin',
     'create_msg_convert_erc20',
     'MSG_CANCEL_FEE_SPLIT_TYPES',
     'create_msg_delegate',
     'create_msg_edit_validator',
+    'create_msg_set_withdraw_address',
     'MSG_VOTE_TYPES',
-    'create_msg_register_fee_split',
+    'create_msg_register_revenue',
     'create_msg_send',
     'create_msg_undelegate',
-    'create_msg_update_fee_split',
+    'create_msg_update_revenue',
     'MSG_DELEGATE_TYPES',
     'create_msg_vote',
     'create_msg_withdraw_delegator_reward',
@@ -74,6 +77,7 @@ __all__ = [
     'MSG_WITHDRAW_DELEGATOR_REWARD_TYPES',
     'MSG_WITHDRAW_VALIDATOR_COMMISSION_TYPES',
     'MSG_EDIT_VALIDATOR_TYPES',
+    'MSG_SET_WITHDRAW_ADDRESS_TYPES',
     'EIPToSign',
     'Domain',
 ]
@@ -82,7 +86,7 @@ __all__ = [
 # gov.ts
 MSG_VOTE_TYPES: Final = {
     'MsgValue': [
-        {'name': 'proposalId', 'type': 'uint64'},
+        {'name': 'proposal_id', 'type': 'uint64'},
         {'name': 'voter', 'type': 'string'},
         {'name': 'option', 'type': 'int32'},
     ],

@@ -167,9 +167,7 @@ class HeaderData(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ClientStateData(betterproto.Message):
-    """
-    ClientStateData returns the SignBytes data for client state verification.
-    """
+    """ClientStateData returns the SignBytes data for client state verification."""
 
     path: bytes = betterproto.bytes_field(1)
     client_state: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(2)

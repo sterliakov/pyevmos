@@ -38,9 +38,7 @@ class State(betterproto.Enum):
     """A channel has just started the opening handshake."""
 
     STATE_TRYOPEN = 2
-    """
-    A channel has acknowledged the handshake step on the counterparty chain.
-    """
+    """A channel has acknowledged the handshake step on the counterparty chain."""
 
     STATE_OPEN = 3
     """
@@ -135,9 +133,7 @@ class Counterparty(betterproto.Message):
     """Counterparty defines a channel end counterparty"""
 
     port_id: str = betterproto.string_field(1)
-    """
-    port on the counterparty chain which owns the other end of the channel.
-    """
+    """port on the counterparty chain which owns the other end of the channel."""
 
     channel_id: str = betterproto.string_field(2)
     """channel end on the counterparty chain"""
@@ -145,9 +141,7 @@ class Counterparty(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class Packet(betterproto.Message):
-    """
-    Packet defines a type that carries data across different chains through IBC
-    """
+    """Packet defines a type that carries data across different chains through IBC"""
 
     sequence: int = betterproto.uint64_field(1)
     """
@@ -218,9 +212,7 @@ class Acknowledgement(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryChannelRequest(betterproto.Message):
-    """
-    QueryChannelRequest is the request type for the Query/Channel RPC method
-    """
+    """QueryChannelRequest is the request type for the Query/Channel RPC method"""
 
     port_id: str = betterproto.string_field(1)
     """port unique identifier"""
@@ -249,9 +241,7 @@ class QueryChannelResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryChannelsRequest(betterproto.Message):
-    """
-    QueryChannelsRequest is the request type for the Query/Channels RPC method
-    """
+    """QueryChannelsRequest is the request type for the Query/Channels RPC method"""
 
     pagination: '____cosmos_base_query_v1_beta1__.PageRequest' = (
         betterproto.message_field(1)
@@ -261,9 +251,7 @@ class QueryChannelsRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryChannelsResponse(betterproto.Message):
-    """
-    QueryChannelsResponse is the response type for the Query/Channels RPC method.
-    """
+    """QueryChannelsResponse is the response type for the Query/Channels RPC method."""
 
     channels: List['IdentifiedChannel'] = betterproto.message_field(1)
     """list of stored channels of the chain."""
@@ -701,9 +689,7 @@ class MsgChannelOpenInit(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgChannelOpenInitResponse(betterproto.Message):
-    """
-    MsgChannelOpenInitResponse defines the Msg/ChannelOpenInit response type.
-    """
+    """MsgChannelOpenInitResponse defines the Msg/ChannelOpenInit response type."""
 
     channel_id: str = betterproto.string_field(1)
 
@@ -737,9 +723,7 @@ class MsgChannelOpenTry(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgChannelOpenTryResponse(betterproto.Message):
-    """
-    MsgChannelOpenTryResponse defines the Msg/ChannelOpenTry response type.
-    """
+    """MsgChannelOpenTryResponse defines the Msg/ChannelOpenTry response type."""
 
     pass
 
@@ -762,9 +746,7 @@ class MsgChannelOpenAck(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgChannelOpenAckResponse(betterproto.Message):
-    """
-    MsgChannelOpenAckResponse defines the Msg/ChannelOpenAck response type.
-    """
+    """MsgChannelOpenAckResponse defines the Msg/ChannelOpenAck response type."""
 
     pass
 
@@ -807,9 +789,7 @@ class MsgChannelCloseInit(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgChannelCloseInitResponse(betterproto.Message):
-    """
-    MsgChannelCloseInitResponse defines the Msg/ChannelCloseInit response type.
-    """
+    """MsgChannelCloseInitResponse defines the Msg/ChannelCloseInit response type."""
 
     pass
 
@@ -875,9 +855,7 @@ class MsgTimeoutResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgTimeoutOnClose(betterproto.Message):
-    """
-    MsgTimeoutOnClose timed-out packet upon counterparty channel closure.
-    """
+    """MsgTimeoutOnClose timed-out packet upon counterparty channel closure."""
 
     packet: 'Packet' = betterproto.message_field(1)
     proof_unreceived: bytes = betterproto.bytes_field(2)
@@ -889,9 +867,7 @@ class MsgTimeoutOnClose(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgTimeoutOnCloseResponse(betterproto.Message):
-    """
-    MsgTimeoutOnCloseResponse defines the Msg/TimeoutOnClose response type.
-    """
+    """MsgTimeoutOnCloseResponse defines the Msg/TimeoutOnClose response type."""
 
     pass
 
@@ -909,9 +885,7 @@ class MsgAcknowledgement(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgAcknowledgementResponse(betterproto.Message):
-    """
-    MsgAcknowledgementResponse defines the Msg/Acknowledgement response type.
-    """
+    """MsgAcknowledgementResponse defines the Msg/Acknowledgement response type."""
 
     pass
 

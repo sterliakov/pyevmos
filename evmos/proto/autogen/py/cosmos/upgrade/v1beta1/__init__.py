@@ -26,9 +26,7 @@ if TYPE_CHECKING:
 
 @dataclass(eq=False, repr=False)
 class Plan(betterproto.Message):
-    """
-    Plan specifies information about a planned upgrade and when it should occur.
-    """
+    """Plan specifies information about a planned upgrade and when it should occur."""
 
     name: str = betterproto.string_field(1)
     """
@@ -224,9 +222,7 @@ class QueryModuleVersionsResponse(betterproto.Message):
     """
 
     module_versions: List['ModuleVersion'] = betterproto.message_field(1)
-    """
-    module_versions is a list of module names with their consensus versions.
-    """
+    """module_versions is a list of module names with their consensus versions."""
 
 
 class QueryStub(betterproto.ServiceStub):

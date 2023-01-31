@@ -38,7 +38,10 @@ def test_send_money_simple(sender, sender_pk, receiver_addr, url):
             assert response['tx_response']['code'] == 0
         except KeyError:
             # 2 - timeout
-            if response['code'] == 2:
+            if (
+                response.get('error_from_node') == 'timeout'
+                or response.get('code') == 2
+            ):
                 time.sleep(5)
                 continue
             raise
@@ -77,7 +80,10 @@ def test_send_money_eip712(receiver, receiver_pk, sender_addr, url):
             assert response['tx_response']['code'] == 0
         except KeyError:
             # 2 - timeout
-            if response['code'] == 2:
+            if (
+                response.get('error_from_node') == 'timeout'
+                or response.get('code') == 2
+            ):
                 time.sleep(5)
                 continue
             raise

@@ -13,9 +13,9 @@ ERC20 proto
 -----------
 .. automodule:: evmos.proto.erc20
 
-Fee splitting proto
--------------------
-.. automodule:: evmos.proto.feesplit
+Revenue proto
+-------------
+.. automodule:: evmos.proto.revenue
 
 Staking proto
 -------------

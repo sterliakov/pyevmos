@@ -126,9 +126,7 @@ class TxRaw(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class SignDoc(betterproto.Message):
-    """
-    SignDoc is the type used for generating sign bytes for SIGN_MODE_DIRECT.
-    """
+    """SignDoc is the type used for generating sign bytes for SIGN_MODE_DIRECT."""
 
     body_bytes: bytes = betterproto.bytes_field(1)
     """
@@ -255,9 +253,7 @@ class SignerInfo(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ModeInfo(betterproto.Message):
-    """
-    ModeInfo describes the signing mode of a single or nested multisig signer.
-    """
+    """ModeInfo describes the signing mode of a single or nested multisig signer."""
 
     single: 'ModeInfoSingle' = betterproto.message_field(1, group='sum')
     """single represents a single signer"""
@@ -313,8 +309,8 @@ class Fee(betterproto.Message):
 
     payer: str = betterproto.string_field(3)
     """
-    if unset, the first signer is responsible for paying the fees. If set, the
-    specified account must pay the fees.
+    if unset, the first signer is responsible for paying the fees. If set, the specified
+    account must pay the fees.
     the payer must be a tx signer (and thus have signed this field in AuthInfo).
     setting this field does *not* change the ordering of required signers for the
     transaction.
@@ -324,8 +320,8 @@ class Fee(betterproto.Message):
     """
     if set, the fee payer (either the first signer or the value of the payer field)
     requests that a fee grant be used
-    to pay fees instead of the fee payer's own balance. If an appropriate fee grant
-    does not exist or the chain does
+    to pay fees instead of the fee payer's own balance. If an appropriate fee grant does
+    not exist or the chain does
     not support fee grants, this will fail
     """
 
@@ -468,8 +464,7 @@ class GetBlockWithTxsRequest(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class GetBlockWithTxsResponse(betterproto.Message):
     """
-    GetBlockWithTxsResponse is the response type for the Service.GetBlockWithTxs
-    method.
+    GetBlockWithTxsResponse is the response type for the Service.GetBlockWithTxs method.
     Since: cosmos-sdk 0.45.2
     """
 

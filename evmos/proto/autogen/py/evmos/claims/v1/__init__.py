@@ -29,9 +29,7 @@ if TYPE_CHECKING:
 
 
 class Action(betterproto.Enum):
-    """
-    Action defines the list of available actions to claim the airdrop tokens.
-    """
+    """Action defines the list of available actions to claim the airdrop tokens."""
 
     ACTION_UNSPECIFIED = 0
     """UNSPECIFIED defines an invalid action."""
@@ -160,18 +158,14 @@ class QueryTotalUnclaimedResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
-    """
-    QueryParamsRequest is the request type for the Query/Params RPC method.
-    """
+    """QueryParamsRequest is the request type for the Query/Params RPC method."""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class QueryParamsResponse(betterproto.Message):
-    """
-    QueryParamsResponse is the response type for the Query/Params RPC method.
-    """
+    """QueryParamsResponse is the response type for the Query/Params RPC method."""
 
     params: 'Params' = betterproto.message_field(1)
     """params defines the parameters of the module."""

@@ -53,14 +53,10 @@ class AuthorizationType(betterproto.Enum):
     """
 
     AUTHORIZATION_TYPE_UNSPECIFIED = 0
-    """
-    AUTHORIZATION_TYPE_UNSPECIFIED specifies an unknown authorization type
-    """
+    """AUTHORIZATION_TYPE_UNSPECIFIED specifies an unknown authorization type"""
 
     AUTHORIZATION_TYPE_DELEGATE = 1
-    """
-    AUTHORIZATION_TYPE_DELEGATE defines an authorization type for Msg/Delegate
-    """
+    """AUTHORIZATION_TYPE_DELEGATE defines an authorization type for Msg/Delegate"""
 
     AUTHORIZATION_TYPE_UNDELEGATE = 2
     """
@@ -104,8 +100,8 @@ class CommissionRates(betterproto.Message):
 
     max_change_rate: str = betterproto.string_field(3)
     """
-    max_change_rate defines the maximum daily increase of the validator commission, as
-    a fraction.
+    max_change_rate defines the maximum daily increase of the validator commission, as a
+    fraction.
     """
 
 
@@ -131,9 +127,7 @@ class Description(betterproto.Message):
     """moniker defines a human-readable name for the validator."""
 
     identity: str = betterproto.string_field(2)
-    """
-    identity defines an optional identity signature (ex. UPort or Keybase).
-    """
+    """identity defines an optional identity signature (ex. UPort or Keybase)."""
 
     website: str = betterproto.string_field(3)
     """website defines an optional website link."""
@@ -183,17 +177,15 @@ class Validator(betterproto.Message):
     """tokens define the delegated tokens (incl. self-delegation)."""
 
     delegator_shares: str = betterproto.string_field(6)
-    """
-    delegator_shares defines total shares issued to a validator's delegators.
-    """
+    """delegator_shares defines total shares issued to a validator's delegators."""
 
     description: 'Description' = betterproto.message_field(7)
     """description defines the description terms for the validator."""
 
     unbonding_height: int = betterproto.int64_field(8)
     """
-    unbonding_height defines, if unbonding, the height at which this validator has
-    begun unbonding.
+    unbonding_height defines, if unbonding, the height at which this validator has begun
+    unbonding.
     """
 
     unbonding_time: datetime = betterproto.message_field(9)
@@ -206,9 +198,7 @@ class Validator(betterproto.Message):
     """commission defines the commission parameters."""
 
     min_self_delegation: str = betterproto.string_field(11)
-    """
-    min_self_delegation is the validator's self declared minimum self delegation.
-    """
+    """min_self_delegation is the validator's self declared minimum self delegation."""
 
 
 @dataclass(eq=False, repr=False)
@@ -295,9 +285,7 @@ class UnbondingDelegation(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class UnbondingDelegationEntry(betterproto.Message):
-    """
-    UnbondingDelegationEntry defines an unbonding object with relevant metadata.
-    """
+    """UnbondingDelegationEntry defines an unbonding object with relevant metadata."""
 
     creation_height: int = betterproto.int64_field(1)
     """creation_height is the height which the unbonding took place."""
@@ -316,22 +304,16 @@ class UnbondingDelegationEntry(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class RedelegationEntry(betterproto.Message):
-    """
-    RedelegationEntry defines a redelegation object with relevant metadata.
-    """
+    """RedelegationEntry defines a redelegation object with relevant metadata."""
 
     creation_height: int = betterproto.int64_field(1)
-    """
-    creation_height  defines the height which the redelegation took place.
-    """
+    """creation_height  defines the height which the redelegation took place."""
 
     completion_time: datetime = betterproto.message_field(2)
     """completion_time defines the unix time for redelegation completion."""
 
     initial_balance: str = betterproto.string_field(3)
-    """
-    initial_balance defines the initial balance when redelegation started.
-    """
+    """initial_balance defines the initial balance when redelegation started."""
 
     shares_dst: str = betterproto.string_field(4)
     """
@@ -350,9 +332,7 @@ class Redelegation(betterproto.Message):
     """delegator_address is the bech32-encoded address of the delegator."""
 
     validator_src_address: str = betterproto.string_field(2)
-    """
-    validator_src_address is the validator redelegation source operator address.
-    """
+    """validator_src_address is the validator redelegation source operator address."""
 
     validator_dst_address: str = betterproto.string_field(3)
     """
@@ -434,9 +414,7 @@ class Pool(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryValidatorsRequest(betterproto.Message):
-    """
-    QueryValidatorsRequest is request type for Query/Validators RPC method.
-    """
+    """QueryValidatorsRequest is request type for Query/Validators RPC method."""
 
     status: str = betterproto.string_field(1)
     """status enables to query for validators matching a given status."""
@@ -447,9 +425,7 @@ class QueryValidatorsRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryValidatorsResponse(betterproto.Message):
-    """
-    QueryValidatorsResponse is response type for the Query/Validators RPC method
-    """
+    """QueryValidatorsResponse is response type for the Query/Validators RPC method"""
 
     validators: List['Validator'] = betterproto.message_field(1)
     """validators contains all the queried validators."""
@@ -460,9 +436,7 @@ class QueryValidatorsResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryValidatorRequest(betterproto.Message):
-    """
-    QueryValidatorRequest is response type for the Query/Validator RPC method
-    """
+    """QueryValidatorRequest is response type for the Query/Validator RPC method"""
 
     validator_addr: str = betterproto.string_field(1)
     """validator_addr defines the validator address to query for."""
@@ -470,9 +444,7 @@ class QueryValidatorRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryValidatorResponse(betterproto.Message):
-    """
-    QueryValidatorResponse is response type for the Query/Validator RPC method
-    """
+    """QueryValidatorResponse is response type for the Query/Validator RPC method"""
 
     validator: 'Validator' = betterproto.message_field(1)
     """validator defines the the validator info."""
@@ -532,9 +504,7 @@ class QueryValidatorUnbondingDelegationsResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryDelegationRequest(betterproto.Message):
-    """
-    QueryDelegationRequest is request type for the Query/Delegation RPC method.
-    """
+    """QueryDelegationRequest is request type for the Query/Delegation RPC method."""
 
     delegator_addr: str = betterproto.string_field(1)
     """delegator_addr defines the delegator address to query for."""
@@ -545,9 +515,7 @@ class QueryDelegationRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryDelegationResponse(betterproto.Message):
-    """
-    QueryDelegationResponse is response type for the Query/Delegation RPC method.
-    """
+    """QueryDelegationResponse is response type for the Query/Delegation RPC method."""
 
     delegation_response: 'DelegationResponse' = betterproto.message_field(1)
     """delegation_responses defines the delegation info of a delegation."""
@@ -600,9 +568,7 @@ class QueryDelegatorDelegationsResponse(betterproto.Message):
     """
 
     delegation_responses: List['DelegationResponse'] = betterproto.message_field(1)
-    """
-    delegation_responses defines all the delegations' info of a delegator.
-    """
+    """delegation_responses defines all the delegations' info of a delegator."""
 
     pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
@@ -765,9 +731,7 @@ class QueryParamsRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryParamsResponse(betterproto.Message):
-    """
-    QueryParamsResponse is response type for the Query/Params RPC method.
-    """
+    """QueryParamsResponse is response type for the Query/Params RPC method."""
 
     params: 'Params' = betterproto.message_field(1)
     """params holds all the parameters of this module."""
@@ -799,9 +763,7 @@ class GenesisState(betterproto.Message):
     """delegations defines the delegations active at genesis."""
 
     unbonding_delegations: List['UnbondingDelegation'] = betterproto.message_field(6)
-    """
-    unbonding_delegations defines the unbonding delegations active at genesis.
-    """
+    """unbonding_delegations defines the unbonding delegations active at genesis."""
 
     redelegations: List['Redelegation'] = betterproto.message_field(7)
     """redelegations defines the redelegations active at genesis."""
@@ -829,8 +791,8 @@ class StakeAuthorization(betterproto.Message):
 
     max_tokens: '__base_v1_beta1__.Coin' = betterproto.message_field(1)
     """
-    max_tokens specifies the maximum amount of tokens can be delegate to a validator.
-    If it is
+    max_tokens specifies the maximum amount of tokens can be delegate to a validator. If
+    it is
     empty, there is no spend limit and any amount of coins can be delegated.
     """
 
@@ -838,8 +800,8 @@ class StakeAuthorization(betterproto.Message):
         2, group='validators'
     )
     """
-    allow_list specifies list of validator addresses to whom grantee can delegate
-    tokens on behalf of granter's
+    allow_list specifies list of validator addresses to whom grantee can delegate tokens
+    on behalf of granter's
     account.
     """
 
@@ -864,9 +826,7 @@ class StakeAuthorizationValidators(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgCreateValidator(betterproto.Message):
-    """
-    MsgCreateValidator defines a SDK message for creating a new validator.
-    """
+    """MsgCreateValidator defines a SDK message for creating a new validator."""
 
     description: 'Description' = betterproto.message_field(1)
     commission: 'CommissionRates' = betterproto.message_field(2)
@@ -879,18 +839,14 @@ class MsgCreateValidator(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgCreateValidatorResponse(betterproto.Message):
-    """
-    MsgCreateValidatorResponse defines the Msg/CreateValidator response type.
-    """
+    """MsgCreateValidatorResponse defines the Msg/CreateValidator response type."""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class MsgEditValidator(betterproto.Message):
-    """
-    MsgEditValidator defines a SDK message for editing an existing validator.
-    """
+    """MsgEditValidator defines a SDK message for editing an existing validator."""
 
     description: 'Description' = betterproto.message_field(1)
     validator_address: str = betterproto.string_field(2)
@@ -907,9 +863,7 @@ class MsgEditValidator(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgEditValidatorResponse(betterproto.Message):
-    """
-    MsgEditValidatorResponse defines the Msg/EditValidator response type.
-    """
+    """MsgEditValidatorResponse defines the Msg/EditValidator response type."""
 
     pass
 
@@ -948,9 +902,7 @@ class MsgBeginRedelegate(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgBeginRedelegateResponse(betterproto.Message):
-    """
-    MsgBeginRedelegateResponse defines the Msg/BeginRedelegate response type.
-    """
+    """MsgBeginRedelegateResponse defines the Msg/BeginRedelegate response type."""
 
     completion_time: datetime = betterproto.message_field(1)
 

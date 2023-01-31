@@ -111,9 +111,7 @@ class IdentifiedConnection(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class Counterparty(betterproto.Message):
-    """
-    Counterparty defines the counterparty chain associated with a connection end.
-    """
+    """Counterparty defines the counterparty chain associated with a connection end."""
 
     client_id: str = betterproto.string_field(1)
     """
@@ -141,9 +139,7 @@ class ClientPaths(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ConnectionPaths(betterproto.Message):
-    """
-    ConnectionPaths define all the connection paths for a given client state.
-    """
+    """ConnectionPaths define all the connection paths for a given client state."""
 
     client_id: str = betterproto.string_field(1)
     """client state unique identifier"""
@@ -406,9 +402,7 @@ class MsgConnectionOpenTry(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgConnectionOpenTryResponse(betterproto.Message):
-    """
-    MsgConnectionOpenTryResponse defines the Msg/ConnectionOpenTry response type.
-    """
+    """MsgConnectionOpenTryResponse defines the Msg/ConnectionOpenTry response type."""
 
     pass
 
@@ -443,9 +437,7 @@ class MsgConnectionOpenAck(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgConnectionOpenAckResponse(betterproto.Message):
-    """
-    MsgConnectionOpenAckResponse defines the Msg/ConnectionOpenAck response type.
-    """
+    """MsgConnectionOpenAckResponse defines the Msg/ConnectionOpenAck response type."""
 
     pass
 
@@ -459,9 +451,7 @@ class MsgConnectionOpenConfirm(betterproto.Message):
 
     connection_id: str = betterproto.string_field(1)
     proof_ack: bytes = betterproto.bytes_field(2)
-    """
-    proof for the change of the connection state on Chain A: `INIT -> OPEN`
-    """
+    """proof for the change of the connection state on Chain A: `INIT -> OPEN`"""
 
     proof_height: '__client_v1__.Height' = betterproto.message_field(3)
     signer: str = betterproto.string_field(4)

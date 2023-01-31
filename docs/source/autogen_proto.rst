@@ -31,10 +31,10 @@ Original protobuf files documentation
     proto_external/evmos_claims
     proto_external/evmos_epochs
     proto_external/evmos_erc20
-    proto_external/evmos_feesplit
     proto_external/evmos_incentives
     proto_external/evmos_inflation
     proto_external/evmos_recovery
+    proto_external/evmos_revenue
     proto_external/evmos_vesting
     proto_external/gogoproto
     proto_external/google_api

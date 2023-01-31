@@ -104,9 +104,7 @@ class ValidatorSlashEvent(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ValidatorSlashEvents(betterproto.Message):
-    """
-    ValidatorSlashEvents is a collection of ValidatorSlashEvent messages.
-    """
+    """ValidatorSlashEvents is a collection of ValidatorSlashEvent messages."""
 
     validator_slash_events: List['ValidatorSlashEvent'] = betterproto.message_field(1)
 
@@ -175,18 +173,14 @@ class CommunityPoolSpendProposalWithDeposit(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
-    """
-    QueryParamsRequest is the request type for the Query/Params RPC method.
-    """
+    """QueryParamsRequest is the request type for the Query/Params RPC method."""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class QueryParamsResponse(betterproto.Message):
-    """
-    QueryParamsResponse is the response type for the Query/Params RPC method.
-    """
+    """QueryParamsResponse is the response type for the Query/Params RPC method."""
 
     params: 'Params' = betterproto.message_field(1)
     """params defines the parameters of the module."""
@@ -246,14 +240,10 @@ class QueryValidatorSlashesRequest(betterproto.Message):
     """validator_address defines the validator address to query for."""
 
     starting_height: int = betterproto.uint64_field(2)
-    """
-    starting_height defines the optional starting height to query the slashes.
-    """
+    """starting_height defines the optional starting height to query the slashes."""
 
     ending_height: int = betterproto.uint64_field(3)
-    """
-    starting_height defines the optional ending height to query the slashes.
-    """
+    """starting_height defines the optional ending height to query the slashes."""
 
     pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(4)
     """pagination defines an optional pagination for the request."""
@@ -400,16 +390,12 @@ class DelegatorWithdrawInfo(betterproto.Message):
     """delegator_address is the address of the delegator."""
 
     withdraw_address: str = betterproto.string_field(2)
-    """
-    withdraw_address is the address to withdraw the delegation rewards to.
-    """
+    """withdraw_address is the address to withdraw the delegation rewards to."""
 
 
 @dataclass(eq=False, repr=False)
 class ValidatorOutstandingRewardsRecord(betterproto.Message):
-    """
-    ValidatorOutstandingRewardsRecord is used for import/export via genesis json.
-    """
+    """ValidatorOutstandingRewardsRecord is used for import/export via genesis json."""
 
     validator_address: str = betterproto.string_field(1)
     """validator_address is the address of the validator."""
@@ -417,9 +403,7 @@ class ValidatorOutstandingRewardsRecord(betterproto.Message):
     outstanding_rewards: List['__base_v1_beta1__.DecCoin'] = betterproto.message_field(
         2
     )
-    """
-    outstanding_rewards represents the oustanding rewards of a validator.
-    """
+    """outstanding_rewards represents the oustanding rewards of a validator."""
 
 
 @dataclass(eq=False, repr=False)
@@ -455,9 +439,7 @@ class ValidatorHistoricalRewardsRecord(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ValidatorCurrentRewardsRecord(betterproto.Message):
-    """
-    ValidatorCurrentRewardsRecord is used for import / export via genesis json.
-    """
+    """ValidatorCurrentRewardsRecord is used for import / export via genesis json."""
 
     validator_address: str = betterproto.string_field(1)
     """validator_address is the address of the validator."""
@@ -468,9 +450,7 @@ class ValidatorCurrentRewardsRecord(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class DelegatorStartingInfoRecord(betterproto.Message):
-    """
-    DelegatorStartingInfoRecord used for import / export via genesis json.
-    """
+    """DelegatorStartingInfoRecord used for import / export via genesis json."""
 
     delegator_address: str = betterproto.string_field(1)
     """delegator_address is the address of the delegator."""
@@ -484,9 +464,7 @@ class DelegatorStartingInfoRecord(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ValidatorSlashEventRecord(betterproto.Message):
-    """
-    ValidatorSlashEventRecord is used for import / export via genesis json.
-    """
+    """ValidatorSlashEventRecord is used for import / export via genesis json."""
 
     validator_address: str = betterproto.string_field(1)
     """validator_address is the address of the validator."""
@@ -522,23 +500,17 @@ class GenesisState(betterproto.Message):
     outstanding_rewards: List[
         'ValidatorOutstandingRewardsRecord'
     ] = betterproto.message_field(5)
-    """
-    fee_pool defines the outstanding rewards of all validators at genesis.
-    """
+    """fee_pool defines the outstanding rewards of all validators at genesis."""
 
     validator_accumulated_commissions: List[
         'ValidatorAccumulatedCommissionRecord'
     ] = betterproto.message_field(6)
-    """
-    fee_pool defines the accumulated commisions of all validators at genesis.
-    """
+    """fee_pool defines the accumulated commisions of all validators at genesis."""
 
     validator_historical_rewards: List[
         'ValidatorHistoricalRewardsRecord'
     ] = betterproto.message_field(7)
-    """
-    fee_pool defines the historical rewards of all validators at genesis.
-    """
+    """fee_pool defines the historical rewards of all validators at genesis."""
 
     validator_current_rewards: List[
         'ValidatorCurrentRewardsRecord'
@@ -630,9 +602,7 @@ class MsgFundCommunityPool(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgFundCommunityPoolResponse(betterproto.Message):
-    """
-    MsgFundCommunityPoolResponse defines the Msg/FundCommunityPool response type.
-    """
+    """MsgFundCommunityPoolResponse defines the Msg/FundCommunityPool response type."""
 
     pass
 

@@ -55,9 +55,7 @@ class TokenPair(betterproto.Message):
     """shows token mapping enable status"""
 
     contract_owner: 'Owner' = betterproto.enum_field(4)
-    """
-    ERC20 owner address ENUM (0 invalid, 1 ModuleAccount, 2 external address)
-    """
+    """ERC20 owner address ENUM (0 invalid, 1 ModuleAccount, 2 external address)"""
 
 
 @dataclass(eq=False, repr=False)
@@ -130,9 +128,7 @@ class Params(betterproto.Message):
     """Params defines the erc20 module params"""
 
     enable_erc20: bool = betterproto.bool_field(1)
-    """
-    parameter to enable the conversion of Cosmos coins <--> ERC20 tokens.
-    """
+    """parameter to enable the conversion of Cosmos coins <--> ERC20 tokens."""
 
     enable_evm_hook: bool = betterproto.bool_field(2)
     """
@@ -171,9 +167,7 @@ class QueryTokenPairsResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryTokenPairRequest(betterproto.Message):
-    """
-    QueryTokenPairRequest is the request type for the Query/TokenPair RPC method.
-    """
+    """QueryTokenPairRequest is the request type for the Query/TokenPair RPC method."""
 
     token: str = betterproto.string_field(1)
     """
@@ -194,9 +188,7 @@ class QueryTokenPairResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
-    """
-    QueryParamsRequest is the request type for the Query/Params RPC method.
-    """
+    """QueryParamsRequest is the request type for the Query/Params RPC method."""
 
     pass
 
@@ -213,9 +205,7 @@ class QueryParamsResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgConvertCoin(betterproto.Message):
-    """
-    MsgConvertCoin defines a Msg to convert a native Cosmos coin to a ERC20 token
-    """
+    """MsgConvertCoin defines a Msg to convert a native Cosmos coin to a ERC20 token"""
 
     coin: '___cosmos_base_v1_beta1__.Coin' = betterproto.message_field(1)
     """

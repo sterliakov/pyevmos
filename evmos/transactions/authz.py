@@ -24,6 +24,7 @@ def create_tx_msg_stake_authorization(
 ) -> MessageGenerated[MsgGrant]:
     """Create a transaction with message for stake authorization."""
     # EIP712
+    # FIXME: is it still relevant?
     # This is blocked until EvmosV7 is released with the eip712 any messages fixes!
 
     # Cosmos

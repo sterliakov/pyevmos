@@ -94,9 +94,7 @@ class GrantAuthorization(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryGrantsRequest(betterproto.Message):
-    """
-    QueryGrantsRequest is the request type for the Query/Grants RPC method.
-    """
+    """QueryGrantsRequest is the request type for the Query/Grants RPC method."""
 
     granter: str = betterproto.string_field(1)
     grantee: str = betterproto.string_field(2)
@@ -151,8 +149,7 @@ class QueryGranterGrantsResponse(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class QueryGranteeGrantsRequest(betterproto.Message):
     """
-    QueryGranteeGrantsRequest is the request type for the Query/IssuedGrants RPC
-    method.
+    QueryGranteeGrantsRequest is the request type for the Query/IssuedGrants RPC method.
     """
 
     grantee: str = betterproto.string_field(1)

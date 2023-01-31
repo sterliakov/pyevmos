@@ -120,8 +120,7 @@ class GetLatestBlockRequest(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class GetLatestBlockResponse(betterproto.Message):
     """
-    GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC
-    method.
+    GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC method.
     """
 
     block_id: '____tendermint_types__.BlockId' = betterproto.message_field(1)
@@ -130,36 +129,28 @@ class GetLatestBlockResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetSyncingRequest(betterproto.Message):
-    """
-    GetSyncingRequest is the request type for the Query/GetSyncing RPC method.
-    """
+    """GetSyncingRequest is the request type for the Query/GetSyncing RPC method."""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class GetSyncingResponse(betterproto.Message):
-    """
-    GetSyncingResponse is the response type for the Query/GetSyncing RPC method.
-    """
+    """GetSyncingResponse is the response type for the Query/GetSyncing RPC method."""
 
     syncing: bool = betterproto.bool_field(1)
 
 
 @dataclass(eq=False, repr=False)
 class GetNodeInfoRequest(betterproto.Message):
-    """
-    GetNodeInfoRequest is the request type for the Query/GetNodeInfo RPC method.
-    """
+    """GetNodeInfoRequest is the request type for the Query/GetNodeInfo RPC method."""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class GetNodeInfoResponse(betterproto.Message):
-    """
-    GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC method.
-    """
+    """GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC method."""
 
     default_node_info: '____tendermint_p2_p__.DefaultNodeInfo' = (
         betterproto.message_field(1)

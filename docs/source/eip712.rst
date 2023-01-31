@@ -12,9 +12,9 @@ ERC20
 -----
 .. automodule:: evmos.eip712.erc20
 
-Fee splitting
--------------
-.. automodule:: evmos.eip712.feesplit
+Revenue
+-------
+.. automodule:: evmos.eip712.revenue
 
 Staking
 -------

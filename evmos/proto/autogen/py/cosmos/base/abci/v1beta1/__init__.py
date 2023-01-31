@@ -40,9 +40,7 @@ class TxResponse(betterproto.Message):
     """
 
     logs: List['AbciMessageLog'] = betterproto.message_field(7)
-    """
-    The output of the application's logger (typed). May be non-deterministic.
-    """
+    """The output of the application's logger (typed). May be non-deterministic."""
 
     info: str = betterproto.string_field(8)
     """Additional information. May be non-deterministic."""
@@ -75,9 +73,7 @@ class TxResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class AbciMessageLog(betterproto.Message):
-    """
-    ABCIMessageLog defines a structure containing an indexed tx ABCI message log.
-    """
+    """ABCIMessageLog defines a structure containing an indexed tx ABCI message log."""
 
     msg_index: int = betterproto.uint32_field(1)
     log: str = betterproto.string_field(2)

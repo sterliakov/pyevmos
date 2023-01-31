@@ -41,9 +41,7 @@ class LengthOp(betterproto.Enum):
     """VAR_RLP uses rlp int encoding of the length"""
 
     FIXED32_BIG = 3
-    """
-    FIXED32_BIG uses big-endian encoding of the length as a 32 bit integer
-    """
+    """FIXED32_BIG uses big-endian encoding of the length as a 32 bit integer"""
 
     FIXED32_LITTLE = 4
     """
@@ -52,9 +50,7 @@ class LengthOp(betterproto.Enum):
     """
 
     FIXED64_BIG = 5
-    """
-    FIXED64_BIG uses big-endian encoding of the length as a 64 bit integer
-    """
+    """FIXED64_BIG uses big-endian encoding of the length as a 64 bit integer"""
 
     FIXED64_LITTLE = 6
     """
@@ -280,9 +276,7 @@ class CompressedExistenceProof(betterproto.Message):
     value: bytes = betterproto.bytes_field(2)
     leaf: 'LeafOp' = betterproto.message_field(3)
     path: List[int] = betterproto.int32_field(4)
-    """
-    these are indexes into the lookup_inners table in CompressedBatchProof
-    """
+    """these are indexes into the lookup_inners table in CompressedBatchProof"""
 
 
 @dataclass(eq=False, repr=False)

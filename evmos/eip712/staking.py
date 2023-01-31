@@ -137,3 +137,26 @@ def create_msg_withdraw_validator_commission(
         'type': 'cosmos-sdk/MsgWithdrawValidatorCommission',
         'value': {'validator_address': validator_address},
     }
+
+
+MSG_SET_WITHDRAW_ADDRESS_TYPES: Final = {
+    'MsgValue': [
+        {'name': 'delegator_address', 'type': 'string'},
+        {'name': 'withdraw_address', 'type': 'string'},
+    ],
+}
+"""Types for validator withdrawal address setting message."""
+
+
+def create_msg_set_withdraw_address(
+    delegator_address: str,
+    withdraw_address: str,
+) -> MsgInterface:
+    """Create validator withdrawal address setting message."""
+    return {
+        'type': 'cosmos-sdk/MsgModifyWithdrawAddress',
+        'value': {
+            'delegator_address': delegator_address,
+            'withdraw_address': withdraw_address,
+        },
+    }

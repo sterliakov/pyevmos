@@ -56,7 +56,7 @@ TESTNET_CHAIN: Final = Chain(
 )
 
 TESTNET_FEE: Final = Fee(
-    amount='6000000000000',
+    amount='15000000000000000',
     denom='atevmos',
     gas='600000',
 )

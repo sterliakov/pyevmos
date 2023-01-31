@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Callable, Literal, Mapping, overload
+from typing import Any, Callable, Literal, Mapping, Sequence, overload
 
 import requests
 from typing_extensions import Concatenate, ParamSpec
@@ -11,9 +11,14 @@ from evmos.eip712 import (
     create_eip712,
     generate_fee,
     generate_message,
+    generate_message_with_multiple_transactions,
     generate_types,
 )
-from evmos.proto import MessageGenerated, create_transaction
+from evmos.proto import (
+    MessageGenerated,
+    create_transaction,
+    create_transaction_with_multiple_messages,
+)
 from evmos.proto.transactions import TxGeneratedBase as TxGeneratedBase
 from evmos.provider import generate_endpoint_account
 from evmos.utils.doc import _inherit
@@ -117,7 +122,32 @@ def to_generated_base(
 
 @overload
 def to_generated(
-    types_def: dict[str, Any], proto: Literal[True]
+    types_def: dict[str, Any], *, proto: Literal[True], many: Literal[True]
+) -> Callable[
+    [
+        Callable[
+            Concatenate[str, _P],
+            tuple[Sequence[Mapping[str, Any]], Sequence[MessageGenerated[Any]]],
+        ]
+    ],
+    Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
+]:
+    ...
+
+
+@overload
+def to_generated(
+    types_def: dict[str, Any], *, proto: Literal[False] = ..., many: Literal[True]
+) -> Callable[
+    [Callable[_P, tuple[Sequence[Mapping[str, Any]], Sequence[MessageGenerated[Any]]]]],
+    Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
+]:
+    ...
+
+
+@overload
+def to_generated(
+    types_def: dict[str, Any], *, proto: Literal[True], many: Literal[False] = ...
 ) -> Callable[
     [Callable[Concatenate[str, _P], tuple[Mapping[str, Any], MessageGenerated[Any]]]],
     Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
@@ -127,7 +157,10 @@ def to_generated(
 
 @overload
 def to_generated(
-    types_def: dict[str, Any], proto: Literal[False] = ...
+    types_def: dict[str, Any],
+    *,
+    proto: Literal[False] = ...,
+    many: Literal[False] = ...,
 ) -> Callable[
     [Callable[_P, tuple[Mapping[str, Any], MessageGenerated[Any]]]],
     Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
@@ -136,12 +169,23 @@ def to_generated(
 
 
 def to_generated(
-    types_def: dict[str, Any], proto: bool = False
+    types_def: dict[str, Any], *, proto: bool = False, many: bool = False
 ) -> Callable[
     [Callable[_P, tuple[Mapping[str, Any], MessageGenerated[Any]]]],
     Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
 ] | Callable[
     [Callable[Concatenate[str, _P], tuple[Mapping[str, Any], MessageGenerated[Any]]]],
+    Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
+] | Callable[
+    [Callable[_P, tuple[Sequence[Mapping[str, Any]], Sequence[MessageGenerated[Any]]]]],
+    Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
+] | Callable[
+    [
+        Callable[
+            Concatenate[str, _P],
+            tuple[Sequence[Mapping[str, Any]], Sequence[MessageGenerated[Any]]],
+        ]
+    ],
     Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
 ]:
     """Wrap function returning message with transaction."""
@@ -151,8 +195,8 @@ def to_generated(
         sender: Sender,
         fee: Fee,
         memo: str,
-        msg: Mapping[str, Any],
-        msg_cosmos: MessageGenerated[Any],
+        msg: Mapping[str, Any] | Sequence[Mapping[str, Any]],
+        msg_cosmos: MessageGenerated[Any] | Sequence[MessageGenerated[Any]],
     ) -> TxGenerated:
         # EIP712
         fee_object = generate_fee(
@@ -163,7 +207,10 @@ def to_generated(
         )
         types = generate_types(types_def)
 
-        messages = generate_message(
+        # No, I won't make it even more ugly with further typing
+        messages = (  # type: ignore
+            generate_message_with_multiple_transactions if many else generate_message
+        )(
             str(sender.account_number),
             str(sender.sequence),
             chain.cosmos_chain_id,
@@ -175,7 +222,9 @@ def to_generated(
 
         # Cosmos
 
-        tx = create_transaction(
+        tx = (
+            create_transaction_with_multiple_messages if many else create_transaction
+        )(
             msg_cosmos,
             memo,
             fee.amount,
@@ -198,7 +247,11 @@ def to_generated(
 
         def decorator(
             func: Callable[
-                Concatenate[str, _P], tuple[Mapping[str, Any], MessageGenerated[Any]]
+                Concatenate[str, _P],
+                tuple[
+                    Mapping[str, Any] | Sequence[Mapping[str, Any]],
+                    MessageGenerated[Any] | Sequence[MessageGenerated[Any]],
+                ],
             ]
         ) -> Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated]:
             @_inherit(func)
@@ -220,7 +273,13 @@ def to_generated(
     else:
 
         def decorator2(
-            func: Callable[_P, tuple[Mapping[str, Any], MessageGenerated[Any]]]
+            func: Callable[
+                _P,
+                tuple[
+                    Mapping[str, Any] | Sequence[Mapping[str, Any]],
+                    MessageGenerated[Any] | Sequence[MessageGenerated[Any]],
+                ],
+            ]
         ) -> Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated]:
             @_inherit(func)
             def inner(

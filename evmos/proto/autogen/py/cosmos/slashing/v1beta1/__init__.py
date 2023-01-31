@@ -46,9 +46,7 @@ class ValidatorSigningInfo(betterproto.Message):
     """
 
     jailed_until: datetime = betterproto.message_field(4)
-    """
-    Timestamp until which the validator is jailed due to liveness downtime.
-    """
+    """Timestamp until which the validator is jailed due to liveness downtime."""
 
     tombstoned: bool = betterproto.bool_field(5)
     """
@@ -77,18 +75,14 @@ class Params(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
-    """
-    QueryParamsRequest is the request type for the Query/Params RPC method
-    """
+    """QueryParamsRequest is the request type for the Query/Params RPC method"""
 
     pass
 
 
 @dataclass(eq=False, repr=False)
 class QueryParamsResponse(betterproto.Message):
-    """
-    QueryParamsResponse is the response type for the Query/Params RPC method
-    """
+    """QueryParamsResponse is the response type for the Query/Params RPC method"""
 
     params: 'Params' = betterproto.message_field(1)
 
@@ -166,9 +160,7 @@ class SigningInfo(betterproto.Message):
     """address is the validator address."""
 
     validator_signing_info: 'ValidatorSigningInfo' = betterproto.message_field(2)
-    """
-    validator_signing_info represents the signing info of this validator.
-    """
+    """validator_signing_info represents the signing info of this validator."""
 
 
 @dataclass(eq=False, repr=False)

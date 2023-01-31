@@ -40,9 +40,7 @@ class Equivocation(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryEvidenceRequest(betterproto.Message):
-    """
-    QueryEvidenceRequest is the request type for the Query/Evidence RPC method.
-    """
+    """QueryEvidenceRequest is the request type for the Query/Evidence RPC method."""
 
     evidence_hash: bytes = betterproto.bytes_field(1)
     """evidence_hash defines the hash of the requested evidence."""
@@ -50,9 +48,7 @@ class QueryEvidenceRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class QueryEvidenceResponse(betterproto.Message):
-    """
-    QueryEvidenceResponse is the response type for the Query/Evidence RPC method.
-    """
+    """QueryEvidenceResponse is the response type for the Query/Evidence RPC method."""
 
     evidence: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(1)
     """evidence returns the requested evidence."""
@@ -104,9 +100,7 @@ class MsgSubmitEvidence(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class MsgSubmitEvidenceResponse(betterproto.Message):
-    """
-    MsgSubmitEvidenceResponse defines the Msg/SubmitEvidence response type.
-    """
+    """MsgSubmitEvidenceResponse defines the Msg/SubmitEvidence response type."""
 
     hash: bytes = betterproto.bytes_field(4)
     """hash defines the hash of the evidence."""
