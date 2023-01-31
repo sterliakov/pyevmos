@@ -41,7 +41,7 @@ jobs:
 
       - name: Get Asset name
         run: |
-          export PKG=$(ls dist/ | grep tar)
+          export PKG=$(ls dist/ | grep -E 'tar|whl')
           set -- $PKG
           echo "name=$1" >> $GITHUB_ENV
       - name: Upload Release Asset (sdist) to GitHub
