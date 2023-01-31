@@ -83,7 +83,7 @@ def generate_endpoint_ibc_channels() -> str:
 
 def generate_endpoint_distribution_rewards_by_address(address: str) -> str:
     """Generate endpoint for rewards distribution."""
-    return f'/cosmos/distribution/v1beta1/delegators/${address}/rewards'
+    return f'/cosmos/distribution/v1beta1/delegators/{address}/rewards'
 
 
 def generate_endpoint_get_validators() -> str:
@@ -93,14 +93,19 @@ def generate_endpoint_get_validators() -> str:
 
 def generate_endpoint_get_delegations(delegator_address: str) -> str:
     """Generate endpoint for delegation."""
-    return f'/cosmos/staking/v1beta1/delegations/${delegator_address}'
+    return f'/cosmos/staking/v1beta1/delegations/{delegator_address}'
 
 
 def generate_endpoint_get_undelegations(delegator_address: str) -> str:
     """Generate endpoint for undelegation."""
     return (
-        f'/cosmos/staking/v1beta1/delegators/${delegator_address}/unbonding_delegations'
+        f'/cosmos/staking/v1beta1/delegators/{delegator_address}/unbonding_delegations'
     )
+
+
+def generate_endpoint_balance_by_denom(address: str, denom: str) -> str:
+    """Generate endpoint for undelegation."""
+    return f'/cosmos/bank/v1beta1/balances/{address}/by_denom?denom={denom}'
 
 
 # account.ts
@@ -170,6 +175,13 @@ class BalancesResponse(TypedDict):
     """All coin balances of account."""
     pagination: PaginationResponse
     """Pagination part."""
+
+
+class BalanceByDenomResponse(TypedDict):
+    """Response of balance endpoint."""
+
+    balance: Coin
+    """All coin balances of account."""
 
 
 # broadcast.ts
