@@ -213,3 +213,19 @@ def kyve_to_eth(kyve_address: str) -> HexStr:
     """Kyve -> Eth address conversion."""
     data = KYVE.decoder(kyve_address)
     return ETH.encoder(data)
+
+
+AKASH: Final = bech32_chain('AKASH', 'akash')
+"""Akash chain address converter."""
+
+
+def eth_to_akash(eth_address: HexStr) -> str:
+    """Eth -> Kyve address conversion."""
+    data = ETH.decoder(eth_address)
+    return AKASH.encoder(data)
+
+
+def akash_to_eth(kyve_address: str) -> HexStr:
+    """Kyve -> Eth address conversion."""
+    data = AKASH.decoder(kyve_address)
+    return ETH.encoder(data)
