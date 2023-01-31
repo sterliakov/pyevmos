@@ -52,6 +52,7 @@ from evmos.transactions.staking import (
     create_tx_msg_begin_redelegate,
     create_tx_msg_delegate,
     create_tx_msg_multiple_withdraw_delegator_reward,
+    create_tx_msg_set_withdraw_address,
     create_tx_msg_undelegate,
     create_tx_msg_withdraw_delegator_reward,
     create_tx_msg_withdraw_validator_commission,
@@ -82,6 +83,7 @@ __all__ = [
     'create_tx_msg_withdraw_delegator_reward',
     'create_tx_msg_multiple_withdraw_delegator_reward',
     'create_tx_msg_withdraw_validator_commission',
+    'create_tx_msg_set_withdraw_address',
     'create_tx_msg_edit_validator',
 ]
 

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from evmos.proto.autogen.py.cosmos.base.v1beta1 import Coin
 from evmos.proto.autogen.py.cosmos.distribution.v1beta1 import (
+    MsgSetWithdrawAddress,
     MsgWithdrawDelegatorReward,
     MsgWithdrawValidatorCommission,
 )
@@ -105,4 +106,20 @@ def create_msg_withdraw_validator_commission(
     return MessageGenerated(
         message=message,
         path='cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission',
+    )
+
+
+def create_msg_set_withdraw_address(
+    delegator_address: str,
+    withdraw_address: str,
+) -> MessageGenerated[MsgSetWithdrawAddress]:
+    """Create a message for withdrawal address setting."""
+    message = MsgSetWithdrawAddress(
+        delegator_address=delegator_address,
+        withdraw_address=withdraw_address,
+    )
+
+    return MessageGenerated(
+        message=message,
+        path='cosmos.distribution.v1beta1.MsgSetWithdrawAddress',
     )

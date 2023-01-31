@@ -2,16 +2,17 @@ from __future__ import annotations
 
 from typing import Any, Mapping, Sequence
 
-# from evmos.eip712 import MsgWithdrawDelegatorRewardInterface
 from evmos.eip712 import (
     MSG_BEGIN_REDELEGATE_TYPES,
     MSG_DELEGATE_TYPES,
+    MSG_SET_WITHDRAW_ADDRESS_TYPES,
     MSG_UNDELEGATE_TYPES,
     MSG_WITHDRAW_DELEGATOR_REWARD_TYPES,
     MSG_WITHDRAW_VALIDATOR_COMMISSION_TYPES,
     create_eip712,
     create_msg_begin_redelegate,
     create_msg_delegate,
+    create_msg_set_withdraw_address,
     create_msg_undelegate,
     create_msg_withdraw_delegator_reward,
     create_msg_withdraw_validator_commission,
@@ -19,18 +20,20 @@ from evmos.eip712 import (
     generate_message_with_multiple_transactions,
     generate_types,
 )
-
-# from evmos.proto import MsgWithdrawDelegatorRewardProtoInterface
 from evmos.proto import (
     MessageGenerated,
     MsgBeginRedelegate,
     MsgDelegate,
+    MsgSetWithdrawAddress,
     MsgUndelegate,
     MsgWithdrawDelegatorReward,
     MsgWithdrawValidatorCommission,
 )
 from evmos.proto import create_msg_begin_redelegate as proto_msg_begin_redelegate
 from evmos.proto import create_msg_delegate as proto_msg_delegate
+from evmos.proto import (
+    create_msg_set_withdraw_address as proto_msg_set_withdraw_address,
+)
 from evmos.proto import create_msg_undelegate as proto_msg_undelegate
 from evmos.proto import (
     create_msg_withdraw_delegator_reward as proto_msg_withdraw_delegator_reward,
@@ -215,4 +218,18 @@ def create_tx_msg_withdraw_validator_commission(
 
     # Cosmos
     proto_message = proto_msg_withdraw_validator_commission(validator_address)
+    return msg, proto_message
+
+
+@to_generated(MSG_SET_WITHDRAW_ADDRESS_TYPES)
+def create_tx_msg_set_withdraw_address(
+    delegator_address: str,
+    withdraw_address: str,
+) -> tuple[Mapping[str, Any], MessageGenerated[MsgSetWithdrawAddress]]:
+    """Create a transaction with message for withdrawal address setting."""
+    # EIP712
+    msg = create_msg_set_withdraw_address(delegator_address, withdraw_address)
+
+    # Cosmos
+    proto_message = proto_msg_set_withdraw_address(delegator_address, withdraw_address)
     return msg, proto_message
