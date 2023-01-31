@@ -82,7 +82,7 @@ __all__ = [
 # gov.ts
 MSG_VOTE_TYPES: Final = {
     'MsgValue': [
-        {'name': 'proposalId', 'type': 'uint64'},
+        {'name': 'proposal_id', 'type': 'uint64'},
         {'name': 'voter', 'type': 'string'},
         {'name': 'option', 'type': 'int32'},
     ],
