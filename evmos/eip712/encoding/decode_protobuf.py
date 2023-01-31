@@ -5,7 +5,7 @@ from typing import Any
 
 from betterproto import Casing, Message
 
-from evmos.eip712.base import create_eip712, generate_fee, generate_message
+from evmos.eip712.base import EIPToSign, create_eip712, generate_fee, generate_message
 from evmos.eip712.encoding.decode_amino import (
     MsgTypes,
     eip712_message_type,
@@ -27,19 +27,19 @@ class ProtoMsgTypes(str, Enum):
     MSG_DELEGATE = '/cosmos.staking.v1beta1.MsgDelegate'
 
 
-def _protobuf_type_url_to_amino_type(type_url: str):
-    mapping: dict[str, Any] = {
+def _protobuf_type_url_to_amino_type(type_url: str) -> MsgTypes:
+    mapping: dict[ProtoMsgTypes, MsgTypes] = {
         ProtoMsgTypes.MSG_SEND: MsgTypes.MSG_SEND,
         ProtoMsgTypes.MSG_VOTE: MsgTypes.MSG_VOTE,
         ProtoMsgTypes.MSG_DELEGATE: MsgTypes.MSG_DELEGATE,
     }
     try:
-        return mapping[type_url]
+        return mapping[ProtoMsgTypes(type_url)]
     except KeyError:
         raise NotImplementedError('Invalid Protobuf message type url received')
 
 
-def _convert_protobuf_msg_to_amino_msg(obj):
+def _convert_protobuf_msg_to_amino_msg(obj: Message) -> dict[str, Any]:
     """Convert a Protobuf Message to its corresponding Amino representation.
 
     Necessary, since EIP-712 types require messages to be in Amino form.
@@ -57,7 +57,7 @@ def _make_eip712_protobuf_registry() -> Registry:
     return registry
 
 
-def decode_protobuf_sign_doc(bytes_src: bytes):
+def decode_protobuf_sign_doc(bytes_src: bytes) -> EIPToSign:
     """Decode the ProtobufSignDoc to EIP712."""
     # Decode Protobuf tx
     registry = _make_eip712_protobuf_registry()

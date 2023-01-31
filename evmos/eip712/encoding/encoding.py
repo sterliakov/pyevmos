@@ -5,12 +5,12 @@ from typing import Any
 
 from eth_account.messages import hash_domain, hash_eip712_message
 
-from evmos.eip712 import EIPToSign
+from evmos.eip712.base import EIPToSign
 from evmos.eip712.encoding.decode_amino import decode_amino_sign_doc
 from evmos.eip712.encoding.decode_protobuf import decode_protobuf_sign_doc
 
 
-def decode_sign_doc_to_typed_data(byte_src: bytes):
+def decode_sign_doc_to_typed_data(byte_src: bytes) -> EIPToSign:
     """Decode Amino StdSignDoc or Protobuf SignDoc bytes into the EIP-712 TypedData.
 
     Throws on errors.
@@ -28,7 +28,7 @@ def decode_sign_doc_to_typed_data(byte_src: bytes):
             )
 
 
-def hash_eip712(eip712: EIPToSign) -> dict[str, Any]:  # TODO: TypedDict
+def hash_eip712(eip712: EIPToSign) -> dict[str, Any]:
     """Return the hashed V4 EIP-712 domain and struct objects to be signed.
 
     Throws on errors.

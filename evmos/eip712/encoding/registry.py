@@ -42,7 +42,7 @@ class Registry:
             }
         )
 
-    def register(self, type_url: str, type_: Message):
+    def register(self, type_url: str, type_: Message) -> None:
         """Add new type to registry."""
         self.types[type_url] = type_
 
