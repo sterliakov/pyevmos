@@ -4,7 +4,7 @@ from typing import Final, Sequence
 
 from evmos.eip712.base import MsgInterface
 
-MSG_CANCEL_FEE_SPLIT_TYPES: Final = {
+MSG_CANCEL_REVENUE_TYPES: Final = {
     'MsgValue': [
         {'name': 'contract_address', 'type': 'string'},
         {'name': 'deployer_address', 'type': 'string'},
@@ -27,7 +27,7 @@ def create_msg_cancel_revenue(
     }
 
 
-MSG_REGISTER_FEE_SPLIT_TYPES: Final = {
+MSG_REGISTER_REVENUE_TYPES: Final = {
     'MsgValue': [
         {'name': 'contract_address', 'type': 'string'},
         {'name': 'deployer_address', 'type': 'string'},
@@ -56,7 +56,7 @@ def create_msg_register_revenue(
     }
 
 
-MSG_UPDATE_FEE_SPLIT_TYPES: Final = {
+MSG_UPDATE_REVENUE_TYPES: Final = {
     'MsgValue': [
         {'name': 'contract_address', 'type': 'string'},
         {'name': 'deployer_address', 'type': 'string'},
