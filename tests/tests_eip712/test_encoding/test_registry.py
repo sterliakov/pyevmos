@@ -41,6 +41,7 @@ def test_works_with_default_msg():
     assert msg.value
 
     decoder = registry.lookup_type(msg.type_url)
+    assert decoder
     msg_send_decoded = decoder().parse(msg.value)
 
     assert msg_send_decoded.from_address == msg_send.from_address
@@ -95,6 +96,7 @@ def test_works_with_custom_msg():
     assert msg.value
 
     decoder = registry.lookup_type(msg.type_url)
+    assert decoder
     msg_demo_decoded = decoder().parse(msg.value)
     assert msg_demo_decoded.creator == 'Me'
     assert msg_demo_decoded.title == 'Something with stars'
