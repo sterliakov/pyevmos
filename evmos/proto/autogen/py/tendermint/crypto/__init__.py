@@ -9,14 +9,6 @@ import betterproto
 
 
 @dataclass(eq=False, repr=False)
-class PublicKey(betterproto.Message):
-    """PublicKey defines the keys available for use with Tendermint Validators"""
-
-    ed25519: bytes = betterproto.bytes_field(1, group='sum')
-    secp256_k1: bytes = betterproto.bytes_field(2, group='sum')
-
-
-@dataclass(eq=False, repr=False)
 class Proof(betterproto.Message):
     total: int = betterproto.int64_field(1)
     index: int = betterproto.int64_field(2)
@@ -58,3 +50,11 @@ class ProofOps(betterproto.Message):
     """ProofOps is Merkle proof defined by the list of ProofOps"""
 
     ops: List['ProofOp'] = betterproto.message_field(1)
+
+
+@dataclass(eq=False, repr=False)
+class PublicKey(betterproto.Message):
+    """PublicKey defines the keys available for use with Tendermint Validators"""
+
+    ed25519: bytes = betterproto.bytes_field(1, group='sum')
+    secp256_k1: bytes = betterproto.bytes_field(2, group='sum')

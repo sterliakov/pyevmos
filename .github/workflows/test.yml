@@ -6,8 +6,7 @@ on:
       - master
       - versioned/*
   pull_request:
-    branches:
-      master
+    branches: master
   workflow_dispatch:
 
 env:

@@ -167,6 +167,25 @@
 
 
           <li>
+            <a href="#evmos/incentives/v1/genesis.proto">evmos/incentives/v1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#evmos.incentives.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.incentives.v1.Params"><span class="badge">M</span>Params</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#evmos/incentives/v1/incentives.proto">evmos/incentives/v1/incentives.proto</a>
             <ul>
 
@@ -263,28 +282,106 @@
             </ul>
           </li>
 
-
-          <li>
-            <a href="#evmos/incentives/v1/genesis.proto">evmos/incentives/v1/genesis.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#evmos.incentives.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
-                </li>
-
-                <li>
-                  <a href="#evmos.incentives.v1.Params"><span class="badge">M</span>Params</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="evmos/incentives/v1/genesis.proto">evmos/incentives/v1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="evmos.incentives.v1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#evmos.incentives.v1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>module parameters </p></td>
+                </tr>
+
+                <tr>
+                  <td>incentives</td>
+                  <td><a href="#evmos.incentives.v1.Incentive">Incentive</a></td>
+                  <td>repeated</td>
+                  <td><p>active incentives </p></td>
+                </tr>
+
+                <tr>
+                  <td>gas_meters</td>
+                  <td><a href="#evmos.incentives.v1.GasMeter">GasMeter</a></td>
+                  <td>repeated</td>
+                  <td><p>active Gasmeters </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.incentives.v1.Params">Params</h3>
+        <p>Params defines the incentives module params</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>enable_incentives</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>parameter to enable incentives </p></td>
+                </tr>
+
+                <tr>
+                  <td>allocation_limit</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>maximum percentage an incentive can allocate per denomination </p></td>
+                </tr>
+
+                <tr>
+                  <td>incentives_epoch_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>identifier for the epochs module hooks </p></td>
+                </tr>
+
+                <tr>
+                  <td>reward_scaler</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>scaling factor for capping rewards </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -996,103 +1093,6 @@ denomination</p></td>
 
             </tbody>
           </table>
-
-
-
-
-      <div class="file-heading">
-        <h2 id="evmos/incentives/v1/genesis.proto">evmos/incentives/v1/genesis.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="evmos.incentives.v1.GenesisState">GenesisState</h3>
-        <p>GenesisState defines the module's genesis state.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>params</td>
-                  <td><a href="#evmos.incentives.v1.Params">Params</a></td>
-                  <td></td>
-                  <td><p>module parameters </p></td>
-                </tr>
-
-                <tr>
-                  <td>incentives</td>
-                  <td><a href="#evmos.incentives.v1.Incentive">Incentive</a></td>
-                  <td>repeated</td>
-                  <td><p>active incentives </p></td>
-                </tr>
-
-                <tr>
-                  <td>gas_meters</td>
-                  <td><a href="#evmos.incentives.v1.GasMeter">GasMeter</a></td>
-                  <td>repeated</td>
-                  <td><p>active Gasmeters </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="evmos.incentives.v1.Params">Params</h3>
-        <p>Params defines the incentives module params</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>enable_incentives</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>parameter to enable incentives </p></td>
-                </tr>
-
-                <tr>
-                  <td>allocation_limit</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>maximum percentage an incentive can allocate per denomination </p></td>
-                </tr>
-
-                <tr>
-                  <td>incentives_epoch_identifier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>identifier for the epochs module hooks </p></td>
-                </tr>
-
-                <tr>
-                  <td>reward_scaler</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>scaling factor for capping rewards </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
 
 
 

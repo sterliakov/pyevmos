@@ -167,11 +167,15 @@
 
 
           <li>
-            <a href="#evmos/revenue/v1/revenue.proto">evmos/revenue/v1/revenue.proto</a>
+            <a href="#evmos/revenue/v1/genesis.proto">evmos/revenue/v1/genesis.proto</a>
             <ul>
 
                 <li>
-                  <a href="#evmos.revenue.v1.Revenue"><span class="badge">M</span>Revenue</a>
+                  <a href="#evmos.revenue.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.revenue.v1.Params"><span class="badge">M</span>Params</a>
                 </li>
 
 
@@ -237,15 +241,11 @@
 
 
           <li>
-            <a href="#evmos/revenue/v1/genesis.proto">evmos/revenue/v1/genesis.proto</a>
+            <a href="#evmos/revenue/v1/revenue.proto">evmos/revenue/v1/revenue.proto</a>
             <ul>
 
                 <li>
-                  <a href="#evmos.revenue.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
-                </li>
-
-                <li>
-                  <a href="#evmos.revenue.v1.Params"><span class="badge">M</span>Params</a>
+                  <a href="#evmos.revenue.v1.Revenue"><span class="badge">M</span>Revenue</a>
                 </li>
 
 
@@ -300,13 +300,13 @@
 
 
       <div class="file-heading">
-        <h2 id="evmos/revenue/v1/revenue.proto">evmos/revenue/v1/revenue.proto</h2><a href="#title">Top</a>
+        <h2 id="evmos/revenue/v1/genesis.proto">evmos/revenue/v1/genesis.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
 
-        <h3 id="evmos.revenue.v1.Revenue">Revenue</h3>
-        <p>Revenue defines an instance that organizes fee distribution conditions for</p><p>the owner of a given smart contract</p>
+        <h3 id="evmos.revenue.v1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the module's genesis state.</p>
 
 
           <table class="field-table">
@@ -316,25 +316,57 @@
             <tbody>
 
                 <tr>
-                  <td>contract_address</td>
-                  <td><a href="#string">string</a></td>
+                  <td>params</td>
+                  <td><a href="#evmos.revenue.v1.Params">Params</a></td>
                   <td></td>
-                  <td><p>hex address of registered contract </p></td>
+                  <td><p>module parameters </p></td>
                 </tr>
 
                 <tr>
-                  <td>deployer_address</td>
-                  <td><a href="#string">string</a></td>
+                  <td>revenues</td>
+                  <td><a href="#evmos.revenue.v1.Revenue">Revenue</a></td>
+                  <td>repeated</td>
+                  <td><p>active registered contracts for fee distribution </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.revenue.v1.Params">Params</h3>
+        <p>Params defines the revenue module params</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>enable_revenue</td>
+                  <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>bech32 address of contract deployer </p></td>
+                  <td><p>enable_revenue defines a parameter to enable the revenue module </p></td>
                 </tr>
 
                 <tr>
-                  <td>withdrawer_address</td>
+                  <td>developer_shares</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>bech32 address of account receiving the transaction fees it defaults to
-deployer_address </p></td>
+                  <td><p>developer_shares defines the proportion of the transaction fees to be
+distributed to the registered contract owner </p></td>
+                </tr>
+
+                <tr>
+                  <td>addr_derivation_cost_create</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>addr_derivation_cost_create defines the cost of address derivation for
+verifying the contract deployer at fee registration </p></td>
                 </tr>
 
             </tbody>
@@ -742,13 +774,13 @@ address</p></td>
 
 
       <div class="file-heading">
-        <h2 id="evmos/revenue/v1/genesis.proto">evmos/revenue/v1/genesis.proto</h2><a href="#title">Top</a>
+        <h2 id="evmos/revenue/v1/revenue.proto">evmos/revenue/v1/revenue.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
 
-        <h3 id="evmos.revenue.v1.GenesisState">GenesisState</h3>
-        <p>GenesisState defines the module's genesis state.</p>
+        <h3 id="evmos.revenue.v1.Revenue">Revenue</h3>
+        <p>Revenue defines an instance that organizes fee distribution conditions for</p><p>the owner of a given smart contract</p>
 
 
           <table class="field-table">
@@ -758,57 +790,25 @@ address</p></td>
             <tbody>
 
                 <tr>
-                  <td>params</td>
-                  <td><a href="#evmos.revenue.v1.Params">Params</a></td>
-                  <td></td>
-                  <td><p>module parameters </p></td>
-                </tr>
-
-                <tr>
-                  <td>revenues</td>
-                  <td><a href="#evmos.revenue.v1.Revenue">Revenue</a></td>
-                  <td>repeated</td>
-                  <td><p>active registered contracts for fee distribution </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="evmos.revenue.v1.Params">Params</h3>
-        <p>Params defines the revenue module params</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>enable_revenue</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>enable_revenue defines a parameter to enable the revenue module </p></td>
-                </tr>
-
-                <tr>
-                  <td>developer_shares</td>
+                  <td>contract_address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>developer_shares defines the proportion of the transaction fees to be
-distributed to the registered contract owner </p></td>
+                  <td><p>hex address of registered contract </p></td>
                 </tr>
 
                 <tr>
-                  <td>addr_derivation_cost_create</td>
-                  <td><a href="#uint64">uint64</a></td>
+                  <td>deployer_address</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>addr_derivation_cost_create defines the cost of address derivation for
-verifying the contract deployer at fee registration </p></td>
+                  <td><p>bech32 address of contract deployer </p></td>
+                </tr>
+
+                <tr>
+                  <td>withdrawer_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>bech32 address of account receiving the transaction fees it defaults to
+deployer_address </p></td>
                 </tr>
 
             </tbody>

@@ -167,6 +167,76 @@
 
 
           <li>
+            <a href="#cosmos/gov/v1beta1/genesis.proto">cosmos/gov/v1beta1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.gov.v1beta1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/gov/v1beta1/gov.proto">cosmos/gov/v1beta1/gov.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.gov.v1beta1.Deposit"><span class="badge">M</span>Deposit</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.gov.v1beta1.DepositParams"><span class="badge">M</span>DepositParams</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.gov.v1beta1.Proposal"><span class="badge">M</span>Proposal</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.gov.v1beta1.TallyParams"><span class="badge">M</span>TallyParams</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.gov.v1beta1.TallyResult"><span class="badge">M</span>TallyResult</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.gov.v1beta1.TextProposal"><span class="badge">M</span>TextProposal</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.gov.v1beta1.Vote"><span class="badge">M</span>Vote</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.gov.v1beta1.VotingParams"><span class="badge">M</span>VotingParams</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.gov.v1beta1.WeightedVoteOption"><span class="badge">M</span>WeightedVoteOption</a>
+                </li>
+
+
+                <li>
+                  <a href="#cosmos.gov.v1beta1.ProposalStatus"><span class="badge">E</span>ProposalStatus</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.gov.v1beta1.VoteOption"><span class="badge">E</span>VoteOption</a>
+                </li>
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/gov/v1beta1/query.proto">cosmos/gov/v1beta1/query.proto</a>
             <ul>
 
@@ -246,76 +316,6 @@
 
 
           <li>
-            <a href="#cosmos/gov/v1beta1/gov.proto">cosmos/gov/v1beta1/gov.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#cosmos.gov.v1beta1.Deposit"><span class="badge">M</span>Deposit</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.gov.v1beta1.DepositParams"><span class="badge">M</span>DepositParams</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.gov.v1beta1.Proposal"><span class="badge">M</span>Proposal</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.gov.v1beta1.TallyParams"><span class="badge">M</span>TallyParams</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.gov.v1beta1.TallyResult"><span class="badge">M</span>TallyResult</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.gov.v1beta1.TextProposal"><span class="badge">M</span>TextProposal</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.gov.v1beta1.Vote"><span class="badge">M</span>Vote</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.gov.v1beta1.VotingParams"><span class="badge">M</span>VotingParams</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.gov.v1beta1.WeightedVoteOption"><span class="badge">M</span>WeightedVoteOption</a>
-                </li>
-
-
-                <li>
-                  <a href="#cosmos.gov.v1beta1.ProposalStatus"><span class="badge">E</span>ProposalStatus</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.gov.v1beta1.VoteOption"><span class="badge">E</span>VoteOption</a>
-                </li>
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
-            <a href="#cosmos/gov/v1beta1/genesis.proto">cosmos/gov/v1beta1/genesis.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#cosmos.gov.v1beta1.GenesisState"><span class="badge">M</span>GenesisState</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
             <a href="#cosmos/gov/v1beta1/tx.proto">cosmos/gov/v1beta1/tx.proto</a>
             <ul>
 
@@ -364,6 +364,582 @@
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/gov/v1beta1/genesis.proto">cosmos/gov/v1beta1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.gov.v1beta1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the gov module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>starting_proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>starting_proposal_id is the ID of the starting proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>deposits</td>
+                  <td><a href="#cosmos.gov.v1beta1.Deposit">Deposit</a></td>
+                  <td>repeated</td>
+                  <td><p>deposits defines all the deposits present at genesis. </p></td>
+                </tr>
+
+                <tr>
+                  <td>votes</td>
+                  <td><a href="#cosmos.gov.v1beta1.Vote">Vote</a></td>
+                  <td>repeated</td>
+                  <td><p>votes defines all the votes present at genesis. </p></td>
+                </tr>
+
+                <tr>
+                  <td>proposals</td>
+                  <td><a href="#cosmos.gov.v1beta1.Proposal">Proposal</a></td>
+                  <td>repeated</td>
+                  <td><p>proposals defines all the proposals present at genesis. </p></td>
+                </tr>
+
+                <tr>
+                  <td>deposit_params</td>
+                  <td><a href="#cosmos.gov.v1beta1.DepositParams">DepositParams</a></td>
+                  <td></td>
+                  <td><p>params defines all the paramaters of related to deposit. </p></td>
+                </tr>
+
+                <tr>
+                  <td>voting_params</td>
+                  <td><a href="#cosmos.gov.v1beta1.VotingParams">VotingParams</a></td>
+                  <td></td>
+                  <td><p>params defines all the paramaters of related to voting. </p></td>
+                </tr>
+
+                <tr>
+                  <td>tally_params</td>
+                  <td><a href="#cosmos.gov.v1beta1.TallyParams">TallyParams</a></td>
+                  <td></td>
+                  <td><p>params defines all the paramaters of related to tally. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/gov/v1beta1/gov.proto">cosmos/gov/v1beta1/gov.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.gov.v1beta1.Deposit">Deposit</h3>
+        <p>Deposit defines an amount deposited by an account address to an active</p><p>proposal.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>depositor</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.gov.v1beta1.DepositParams">DepositParams</h3>
+        <p>DepositParams defines the params for deposits on governance proposals.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>min_deposit</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p>Minimum deposit for a proposal to enter voting period. </p></td>
+                </tr>
+
+                <tr>
+                  <td>max_deposit_period</td>
+                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
+                  <td></td>
+                  <td><p>Maximum period for Atom holders to deposit on a proposal. Initial value: 2
+ months. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.gov.v1beta1.Proposal">Proposal</h3>
+        <p>Proposal defines the core field members of a governance proposal.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>content</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cosmos.gov.v1beta1.ProposalStatus">ProposalStatus</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>final_tally_result</td>
+                  <td><a href="#cosmos.gov.v1beta1.TallyResult">TallyResult</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>submit_time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>deposit_end_time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>total_deposit</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>voting_start_time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>voting_end_time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.gov.v1beta1.TallyParams">TallyParams</h3>
+        <p>TallyParams defines the params for tallying votes on governance proposals.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>quorum</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Minimum percentage of total stake needed to vote for a result to be
+ considered valid. </p></td>
+                </tr>
+
+                <tr>
+                  <td>threshold</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Minimum proportion of Yes votes for proposal to pass. Default value: 0.5. </p></td>
+                </tr>
+
+                <tr>
+                  <td>veto_threshold</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Minimum value of Veto votes to Total votes ratio for proposal to be
+ vetoed. Default value: 1/3. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.gov.v1beta1.TallyResult">TallyResult</h3>
+        <p>TallyResult defines a standard tally for a governance proposal.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>yes</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>abstain</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>no</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>no_with_veto</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.gov.v1beta1.TextProposal">TextProposal</h3>
+        <p>TextProposal defines a standard text proposal whose changes need to be</p><p>manually updated in case of approval.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.gov.v1beta1.Vote">Vote</h3>
+        <p>Vote defines a vote on a governance proposal.</p><p>A Vote consists of a proposal ID, the voter, and the vote option.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>voter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>option</td>
+                  <td><a href="#cosmos.gov.v1beta1.VoteOption">VoteOption</a></td>
+                  <td></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated: Prefer to use `options` instead. This field is set in queries
+if and only if `len(options) == 1` and that option has weight 1. In all
+other cases, this field will default to VOTE_OPTION_UNSPECIFIED. </p></td>
+                </tr>
+
+                <tr>
+                  <td>options</td>
+                  <td><a href="#cosmos.gov.v1beta1.WeightedVoteOption">WeightedVoteOption</a></td>
+                  <td>repeated</td>
+                  <td><p>Since: cosmos-sdk 0.43 </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>option</td>
+                  <td><p>true</p></td>
+                </tr>
+
+              </tbody>
+            </table>
+
+
+
+
+
+        <h3 id="cosmos.gov.v1beta1.VotingParams">VotingParams</h3>
+        <p>VotingParams defines the params for voting on governance proposals.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>voting_period</td>
+                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
+                  <td></td>
+                  <td><p>Length of the voting period. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.gov.v1beta1.WeightedVoteOption">WeightedVoteOption</h3>
+        <p>WeightedVoteOption defines a unit of vote for vote split.</p><p>Since: cosmos-sdk 0.43</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>option</td>
+                  <td><a href="#cosmos.gov.v1beta1.VoteOption">VoteOption</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>weight</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+        <h3 id="cosmos.gov.v1beta1.ProposalStatus">ProposalStatus</h3>
+        <p>ProposalStatus enumerates the valid statuses of a proposal.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>PROPOSAL_STATUS_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>PROPOSAL_STATUS_UNSPECIFIED defines the default propopsal status.</p></td>
+              </tr>
+
+              <tr>
+                <td>PROPOSAL_STATUS_DEPOSIT_PERIOD</td>
+                <td>1</td>
+                <td><p>PROPOSAL_STATUS_DEPOSIT_PERIOD defines a proposal status during the deposit
+period.</p></td>
+              </tr>
+
+              <tr>
+                <td>PROPOSAL_STATUS_VOTING_PERIOD</td>
+                <td>2</td>
+                <td><p>PROPOSAL_STATUS_VOTING_PERIOD defines a proposal status during the voting
+period.</p></td>
+              </tr>
+
+              <tr>
+                <td>PROPOSAL_STATUS_PASSED</td>
+                <td>3</td>
+                <td><p>PROPOSAL_STATUS_PASSED defines a proposal status of a proposal that has
+passed.</p></td>
+              </tr>
+
+              <tr>
+                <td>PROPOSAL_STATUS_REJECTED</td>
+                <td>4</td>
+                <td><p>PROPOSAL_STATUS_REJECTED defines a proposal status of a proposal that has
+been rejected.</p></td>
+              </tr>
+
+              <tr>
+                <td>PROPOSAL_STATUS_FAILED</td>
+                <td>5</td>
+                <td><p>PROPOSAL_STATUS_FAILED defines a proposal status of a proposal that has
+failed.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <h3 id="cosmos.gov.v1beta1.VoteOption">VoteOption</h3>
+        <p>VoteOption enumerates the valid vote options for a given governance proposal.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>VOTE_OPTION_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>VOTE_OPTION_UNSPECIFIED defines a no-op vote option.</p></td>
+              </tr>
+
+              <tr>
+                <td>VOTE_OPTION_YES</td>
+                <td>1</td>
+                <td><p>VOTE_OPTION_YES defines a yes vote option.</p></td>
+              </tr>
+
+              <tr>
+                <td>VOTE_OPTION_ABSTAIN</td>
+                <td>2</td>
+                <td><p>VOTE_OPTION_ABSTAIN defines an abstain vote option.</p></td>
+              </tr>
+
+              <tr>
+                <td>VOTE_OPTION_NO</td>
+                <td>3</td>
+                <td><p>VOTE_OPTION_NO defines a no vote option.</p></td>
+              </tr>
+
+              <tr>
+                <td>VOTE_OPTION_NO_WITH_VETO</td>
+                <td>4</td>
+                <td><p>VOTE_OPTION_NO_WITH_VETO defines a no with veto vote option.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
 
 
 
@@ -1012,582 +1588,6 @@
 
             </tbody>
           </table>
-
-
-
-
-      <div class="file-heading">
-        <h2 id="cosmos/gov/v1beta1/gov.proto">cosmos/gov/v1beta1/gov.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="cosmos.gov.v1beta1.Deposit">Deposit</h3>
-        <p>Deposit defines an amount deposited by an account address to an active</p><p>proposal.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>proposal_id</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>depositor</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>amount</td>
-                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.gov.v1beta1.DepositParams">DepositParams</h3>
-        <p>DepositParams defines the params for deposits on governance proposals.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>min_deposit</td>
-                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
-                  <td>repeated</td>
-                  <td><p>Minimum deposit for a proposal to enter voting period. </p></td>
-                </tr>
-
-                <tr>
-                  <td>max_deposit_period</td>
-                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
-                  <td></td>
-                  <td><p>Maximum period for Atom holders to deposit on a proposal. Initial value: 2
- months. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.gov.v1beta1.Proposal">Proposal</h3>
-        <p>Proposal defines the core field members of a governance proposal.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>proposal_id</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>content</td>
-                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>status</td>
-                  <td><a href="#cosmos.gov.v1beta1.ProposalStatus">ProposalStatus</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>final_tally_result</td>
-                  <td><a href="#cosmos.gov.v1beta1.TallyResult">TallyResult</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>submit_time</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>deposit_end_time</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>total_deposit</td>
-                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>voting_start_time</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>voting_end_time</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.gov.v1beta1.TallyParams">TallyParams</h3>
-        <p>TallyParams defines the params for tallying votes on governance proposals.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>quorum</td>
-                  <td><a href="#bytes">bytes</a></td>
-                  <td></td>
-                  <td><p>Minimum percentage of total stake needed to vote for a result to be
- considered valid. </p></td>
-                </tr>
-
-                <tr>
-                  <td>threshold</td>
-                  <td><a href="#bytes">bytes</a></td>
-                  <td></td>
-                  <td><p>Minimum proportion of Yes votes for proposal to pass. Default value: 0.5. </p></td>
-                </tr>
-
-                <tr>
-                  <td>veto_threshold</td>
-                  <td><a href="#bytes">bytes</a></td>
-                  <td></td>
-                  <td><p>Minimum value of Veto votes to Total votes ratio for proposal to be
- vetoed. Default value: 1/3. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.gov.v1beta1.TallyResult">TallyResult</h3>
-        <p>TallyResult defines a standard tally for a governance proposal.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>yes</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>abstain</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>no</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>no_with_veto</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.gov.v1beta1.TextProposal">TextProposal</h3>
-        <p>TextProposal defines a standard text proposal whose changes need to be</p><p>manually updated in case of approval.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>title</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>description</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.gov.v1beta1.Vote">Vote</h3>
-        <p>Vote defines a vote on a governance proposal.</p><p>A Vote consists of a proposal ID, the voter, and the vote option.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>proposal_id</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>voter</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>option</td>
-                  <td><a href="#cosmos.gov.v1beta1.VoteOption">VoteOption</a></td>
-                  <td></td>
-                  <td><p><strong>Deprecated.</strong> Deprecated: Prefer to use `options` instead. This field is set in queries
-if and only if `len(options) == 1` and that option has weight 1. In all
-other cases, this field will default to VOTE_OPTION_UNSPECIFIED. </p></td>
-                </tr>
-
-                <tr>
-                  <td>options</td>
-                  <td><a href="#cosmos.gov.v1beta1.WeightedVoteOption">WeightedVoteOption</a></td>
-                  <td>repeated</td>
-                  <td><p>Since: cosmos-sdk 0.43 </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-            <h4>Fields with deprecated option</h4>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Option</td>
-                </tr>
-              </thead>
-              <tbody>
-
-                <tr>
-                  <td>option</td>
-                  <td><p>true</p></td>
-                </tr>
-
-              </tbody>
-            </table>
-
-
-
-
-
-        <h3 id="cosmos.gov.v1beta1.VotingParams">VotingParams</h3>
-        <p>VotingParams defines the params for voting on governance proposals.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>voting_period</td>
-                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
-                  <td></td>
-                  <td><p>Length of the voting period. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.gov.v1beta1.WeightedVoteOption">WeightedVoteOption</h3>
-        <p>WeightedVoteOption defines a unit of vote for vote split.</p><p>Since: cosmos-sdk 0.43</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>option</td>
-                  <td><a href="#cosmos.gov.v1beta1.VoteOption">VoteOption</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>weight</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-        <h3 id="cosmos.gov.v1beta1.ProposalStatus">ProposalStatus</h3>
-        <p>ProposalStatus enumerates the valid statuses of a proposal.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-
-              <tr>
-                <td>PROPOSAL_STATUS_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>PROPOSAL_STATUS_UNSPECIFIED defines the default propopsal status.</p></td>
-              </tr>
-
-              <tr>
-                <td>PROPOSAL_STATUS_DEPOSIT_PERIOD</td>
-                <td>1</td>
-                <td><p>PROPOSAL_STATUS_DEPOSIT_PERIOD defines a proposal status during the deposit
-period.</p></td>
-              </tr>
-
-              <tr>
-                <td>PROPOSAL_STATUS_VOTING_PERIOD</td>
-                <td>2</td>
-                <td><p>PROPOSAL_STATUS_VOTING_PERIOD defines a proposal status during the voting
-period.</p></td>
-              </tr>
-
-              <tr>
-                <td>PROPOSAL_STATUS_PASSED</td>
-                <td>3</td>
-                <td><p>PROPOSAL_STATUS_PASSED defines a proposal status of a proposal that has
-passed.</p></td>
-              </tr>
-
-              <tr>
-                <td>PROPOSAL_STATUS_REJECTED</td>
-                <td>4</td>
-                <td><p>PROPOSAL_STATUS_REJECTED defines a proposal status of a proposal that has
-been rejected.</p></td>
-              </tr>
-
-              <tr>
-                <td>PROPOSAL_STATUS_FAILED</td>
-                <td>5</td>
-                <td><p>PROPOSAL_STATUS_FAILED defines a proposal status of a proposal that has
-failed.</p></td>
-              </tr>
-
-          </tbody>
-        </table>
-
-        <h3 id="cosmos.gov.v1beta1.VoteOption">VoteOption</h3>
-        <p>VoteOption enumerates the valid vote options for a given governance proposal.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-
-              <tr>
-                <td>VOTE_OPTION_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>VOTE_OPTION_UNSPECIFIED defines a no-op vote option.</p></td>
-              </tr>
-
-              <tr>
-                <td>VOTE_OPTION_YES</td>
-                <td>1</td>
-                <td><p>VOTE_OPTION_YES defines a yes vote option.</p></td>
-              </tr>
-
-              <tr>
-                <td>VOTE_OPTION_ABSTAIN</td>
-                <td>2</td>
-                <td><p>VOTE_OPTION_ABSTAIN defines an abstain vote option.</p></td>
-              </tr>
-
-              <tr>
-                <td>VOTE_OPTION_NO</td>
-                <td>3</td>
-                <td><p>VOTE_OPTION_NO defines a no vote option.</p></td>
-              </tr>
-
-              <tr>
-                <td>VOTE_OPTION_NO_WITH_VETO</td>
-                <td>4</td>
-                <td><p>VOTE_OPTION_NO_WITH_VETO defines a no with veto vote option.</p></td>
-              </tr>
-
-          </tbody>
-        </table>
-
-
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="cosmos/gov/v1beta1/genesis.proto">cosmos/gov/v1beta1/genesis.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="cosmos.gov.v1beta1.GenesisState">GenesisState</h3>
-        <p>GenesisState defines the gov module's genesis state.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>starting_proposal_id</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>starting_proposal_id is the ID of the starting proposal. </p></td>
-                </tr>
-
-                <tr>
-                  <td>deposits</td>
-                  <td><a href="#cosmos.gov.v1beta1.Deposit">Deposit</a></td>
-                  <td>repeated</td>
-                  <td><p>deposits defines all the deposits present at genesis. </p></td>
-                </tr>
-
-                <tr>
-                  <td>votes</td>
-                  <td><a href="#cosmos.gov.v1beta1.Vote">Vote</a></td>
-                  <td>repeated</td>
-                  <td><p>votes defines all the votes present at genesis. </p></td>
-                </tr>
-
-                <tr>
-                  <td>proposals</td>
-                  <td><a href="#cosmos.gov.v1beta1.Proposal">Proposal</a></td>
-                  <td>repeated</td>
-                  <td><p>proposals defines all the proposals present at genesis. </p></td>
-                </tr>
-
-                <tr>
-                  <td>deposit_params</td>
-                  <td><a href="#cosmos.gov.v1beta1.DepositParams">DepositParams</a></td>
-                  <td></td>
-                  <td><p>params defines all the paramaters of related to deposit. </p></td>
-                </tr>
-
-                <tr>
-                  <td>voting_params</td>
-                  <td><a href="#cosmos.gov.v1beta1.VotingParams">VotingParams</a></td>
-                  <td></td>
-                  <td><p>params defines all the paramaters of related to voting. </p></td>
-                </tr>
-
-                <tr>
-                  <td>tally_params</td>
-                  <td><a href="#cosmos.gov.v1beta1.TallyParams">TallyParams</a></td>
-                  <td></td>
-                  <td><p>params defines all the paramaters of related to tally. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
 
 
 

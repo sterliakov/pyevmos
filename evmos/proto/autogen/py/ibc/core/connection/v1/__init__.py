@@ -176,6 +176,18 @@ class Params(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the ibc connection submodule's genesis state."""
+
+    connections: List['IdentifiedConnection'] = betterproto.message_field(1)
+    client_connection_paths: List['ConnectionPaths'] = betterproto.message_field(2)
+    next_connection_sequence: int = betterproto.uint64_field(3)
+    """the sequence for the next generated connection identifier"""
+
+    params: 'Params' = betterproto.message_field(4)
+
+
+@dataclass(eq=False, repr=False)
 class QueryConnectionRequest(betterproto.Message):
     """
     QueryConnectionRequest is the request type for the Query/Connection RPC
@@ -327,18 +339,6 @@ class QueryConnectionConsensusStateResponse(betterproto.Message):
 
     proof_height: '__client_v1__.Height' = betterproto.message_field(4)
     """height at which the proof was retrieved"""
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the ibc connection submodule's genesis state."""
-
-    connections: List['IdentifiedConnection'] = betterproto.message_field(1)
-    client_connection_paths: List['ConnectionPaths'] = betterproto.message_field(2)
-    next_connection_sequence: int = betterproto.uint64_field(3)
-    """the sequence for the next generated connection identifier"""
-
-    params: 'Params' = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)

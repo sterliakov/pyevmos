@@ -167,6 +167,52 @@
 
 
           <li>
+            <a href="#evmos/claims/v1/claims.proto">evmos/claims/v1/claims.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#evmos.claims.v1.Claim"><span class="badge">M</span>Claim</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.claims.v1.ClaimsRecord"><span class="badge">M</span>ClaimsRecord</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.claims.v1.ClaimsRecordAddress"><span class="badge">M</span>ClaimsRecordAddress</a>
+                </li>
+
+
+                <li>
+                  <a href="#evmos.claims.v1.Action"><span class="badge">E</span>Action</a>
+                </li>
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#evmos/claims/v1/genesis.proto">evmos/claims/v1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#evmos.claims.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.claims.v1.Params"><span class="badge">M</span>Params</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#evmos/claims/v1/query.proto">evmos/claims/v1/query.proto</a>
             <ul>
 
@@ -212,55 +258,283 @@
             </ul>
           </li>
 
-
-          <li>
-            <a href="#evmos/claims/v1/genesis.proto">evmos/claims/v1/genesis.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#evmos.claims.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
-                </li>
-
-                <li>
-                  <a href="#evmos.claims.v1.Params"><span class="badge">M</span>Params</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
-            <a href="#evmos/claims/v1/claims.proto">evmos/claims/v1/claims.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#evmos.claims.v1.Claim"><span class="badge">M</span>Claim</a>
-                </li>
-
-                <li>
-                  <a href="#evmos.claims.v1.ClaimsRecord"><span class="badge">M</span>ClaimsRecord</a>
-                </li>
-
-                <li>
-                  <a href="#evmos.claims.v1.ClaimsRecordAddress"><span class="badge">M</span>ClaimsRecordAddress</a>
-                </li>
-
-
-                <li>
-                  <a href="#evmos.claims.v1.Action"><span class="badge">E</span>Action</a>
-                </li>
-
-
-
-            </ul>
-          </li>
-
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="evmos/claims/v1/claims.proto">evmos/claims/v1/claims.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="evmos.claims.v1.Claim">Claim</h3>
+        <p>Claim defines the action, completed flag and the remaining claimable amount</p><p>for a given user. This is only used during client queries.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>action</td>
+                  <td><a href="#evmos.claims.v1.Action">Action</a></td>
+                  <td></td>
+                  <td><p>action enum </p></td>
+                </tr>
+
+                <tr>
+                  <td>completed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>true if the action has been completed </p></td>
+                </tr>
+
+                <tr>
+                  <td>claimable_amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>claimable token amount for the action. Zero if completed </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.claims.v1.ClaimsRecord">ClaimsRecord</h3>
+        <p>ClaimsRecord defines the initial claimable airdrop amount and the list of</p><p>completed actions to claim the tokens.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>initial_claimable_amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>total initial claimable amount for the user </p></td>
+                </tr>
+
+                <tr>
+                  <td>actions_completed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>repeated</td>
+                  <td><p>slice of the available actions completed </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.claims.v1.ClaimsRecordAddress">ClaimsRecordAddress</h3>
+        <p>ClaimsRecordAddress is the claims metadata per address that is used at</p><p>Genesis.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>bech32 or hex address of claim user </p></td>
+                </tr>
+
+                <tr>
+                  <td>initial_claimable_amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>total initial claimable amount for the user </p></td>
+                </tr>
+
+                <tr>
+                  <td>actions_completed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td>repeated</td>
+                  <td><p>slice of the available actions completed </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+        <h3 id="evmos.claims.v1.Action">Action</h3>
+        <p>Action defines the list of available actions to claim the airdrop tokens.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>ACTION_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>UNSPECIFIED defines an invalid action.</p></td>
+              </tr>
+
+              <tr>
+                <td>ACTION_VOTE</td>
+                <td>1</td>
+                <td><p>VOTE defines a proposal vote.</p></td>
+              </tr>
+
+              <tr>
+                <td>ACTION_DELEGATE</td>
+                <td>2</td>
+                <td><p>DELEGATE defines an staking delegation.</p></td>
+              </tr>
+
+              <tr>
+                <td>ACTION_EVM</td>
+                <td>3</td>
+                <td><p>EVM defines an EVM transaction.</p></td>
+              </tr>
+
+              <tr>
+                <td>ACTION_IBC_TRANSFER</td>
+                <td>4</td>
+                <td><p>IBC Transfer defines a fungible token transfer transaction via IBC.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="evmos/claims/v1/genesis.proto">evmos/claims/v1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="evmos.claims.v1.GenesisState">GenesisState</h3>
+        <p>GenesisState define the claims module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#evmos.claims.v1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines all the parameters of the module. </p></td>
+                </tr>
+
+                <tr>
+                  <td>claims_records</td>
+                  <td><a href="#evmos.claims.v1.ClaimsRecordAddress">ClaimsRecordAddress</a></td>
+                  <td>repeated</td>
+                  <td><p>list of claim records with the corresponding airdrop recipient </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.claims.v1.Params">Params</h3>
+        <p>Params defines the claims module's parameters.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>enable_claims</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>enable claiming process </p></td>
+                </tr>
+
+                <tr>
+                  <td>airdrop_start_time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>timestamp of the airdrop start </p></td>
+                </tr>
+
+                <tr>
+                  <td>duration_until_decay</td>
+                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
+                  <td></td>
+                  <td><p>duration until decay of claimable tokens begin </p></td>
+                </tr>
+
+                <tr>
+                  <td>duration_of_decay</td>
+                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
+                  <td></td>
+                  <td><p>duration of the token claim decay period </p></td>
+                </tr>
+
+                <tr>
+                  <td>claims_denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>denom of claimable coin </p></td>
+                </tr>
+
+                <tr>
+                  <td>authorized_channels</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>list of authorized channel identifiers that can perform address
+attestations via IBC. </p></td>
+                </tr>
+
+                <tr>
+                  <td>evm_channels</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>list of channel identifiers from EVM compatible chains </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -544,280 +818,6 @@
 
             </tbody>
           </table>
-
-
-
-
-      <div class="file-heading">
-        <h2 id="evmos/claims/v1/genesis.proto">evmos/claims/v1/genesis.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="evmos.claims.v1.GenesisState">GenesisState</h3>
-        <p>GenesisState define the claims module's genesis state.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>params</td>
-                  <td><a href="#evmos.claims.v1.Params">Params</a></td>
-                  <td></td>
-                  <td><p>params defines all the parameters of the module. </p></td>
-                </tr>
-
-                <tr>
-                  <td>claims_records</td>
-                  <td><a href="#evmos.claims.v1.ClaimsRecordAddress">ClaimsRecordAddress</a></td>
-                  <td>repeated</td>
-                  <td><p>list of claim records with the corresponding airdrop recipient </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="evmos.claims.v1.Params">Params</h3>
-        <p>Params defines the claims module's parameters.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>enable_claims</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>enable claiming process </p></td>
-                </tr>
-
-                <tr>
-                  <td>airdrop_start_time</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p>timestamp of the airdrop start </p></td>
-                </tr>
-
-                <tr>
-                  <td>duration_until_decay</td>
-                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
-                  <td></td>
-                  <td><p>duration until decay of claimable tokens begin </p></td>
-                </tr>
-
-                <tr>
-                  <td>duration_of_decay</td>
-                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
-                  <td></td>
-                  <td><p>duration of the token claim decay period </p></td>
-                </tr>
-
-                <tr>
-                  <td>claims_denom</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>denom of claimable coin </p></td>
-                </tr>
-
-                <tr>
-                  <td>authorized_channels</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>list of authorized channel identifiers that can perform address
-attestations via IBC. </p></td>
-                </tr>
-
-                <tr>
-                  <td>evm_channels</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>list of channel identifiers from EVM compatible chains </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="evmos/claims/v1/claims.proto">evmos/claims/v1/claims.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="evmos.claims.v1.Claim">Claim</h3>
-        <p>Claim defines the action, completed flag and the remaining claimable amount</p><p>for a given user. This is only used during client queries.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>action</td>
-                  <td><a href="#evmos.claims.v1.Action">Action</a></td>
-                  <td></td>
-                  <td><p>action enum </p></td>
-                </tr>
-
-                <tr>
-                  <td>completed</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>true if the action has been completed </p></td>
-                </tr>
-
-                <tr>
-                  <td>claimable_amount</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>claimable token amount for the action. Zero if completed </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="evmos.claims.v1.ClaimsRecord">ClaimsRecord</h3>
-        <p>ClaimsRecord defines the initial claimable airdrop amount and the list of</p><p>completed actions to claim the tokens.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>initial_claimable_amount</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>total initial claimable amount for the user </p></td>
-                </tr>
-
-                <tr>
-                  <td>actions_completed</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td>repeated</td>
-                  <td><p>slice of the available actions completed </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="evmos.claims.v1.ClaimsRecordAddress">ClaimsRecordAddress</h3>
-        <p>ClaimsRecordAddress is the claims metadata per address that is used at</p><p>Genesis.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>bech32 or hex address of claim user </p></td>
-                </tr>
-
-                <tr>
-                  <td>initial_claimable_amount</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>total initial claimable amount for the user </p></td>
-                </tr>
-
-                <tr>
-                  <td>actions_completed</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td>repeated</td>
-                  <td><p>slice of the available actions completed </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-        <h3 id="evmos.claims.v1.Action">Action</h3>
-        <p>Action defines the list of available actions to claim the airdrop tokens.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-
-              <tr>
-                <td>ACTION_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>UNSPECIFIED defines an invalid action.</p></td>
-              </tr>
-
-              <tr>
-                <td>ACTION_VOTE</td>
-                <td>1</td>
-                <td><p>VOTE defines a proposal vote.</p></td>
-              </tr>
-
-              <tr>
-                <td>ACTION_DELEGATE</td>
-                <td>2</td>
-                <td><p>DELEGATE defines an staking delegation.</p></td>
-              </tr>
-
-              <tr>
-                <td>ACTION_EVM</td>
-                <td>3</td>
-                <td><p>EVM defines an EVM transaction.</p></td>
-              </tr>
-
-              <tr>
-                <td>ACTION_IBC_TRANSFER</td>
-                <td>4</td>
-                <td><p>IBC Transfer defines a fungible token transfer transaction via IBC.</p></td>
-              </tr>
-
-          </tbody>
-        </table>
-
-
-
 
 
 

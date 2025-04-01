@@ -210,6 +210,25 @@
 
 
           <li>
+            <a href="#ethermint/evm/v1/genesis.proto">ethermint/evm/v1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#ethermint.evm.v1.GenesisAccount"><span class="badge">M</span>GenesisAccount</a>
+                </li>
+
+                <li>
+                  <a href="#ethermint.evm.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#ethermint/evm/v1/query.proto">ethermint/evm/v1/query.proto</a>
             <ul>
 
@@ -315,25 +334,6 @@
                 <li>
                   <a href="#ethermint.evm.v1.Query"><span class="badge">S</span>Query</a>
                 </li>
-
-            </ul>
-          </li>
-
-
-          <li>
-            <a href="#ethermint/evm/v1/genesis.proto">ethermint/evm/v1/genesis.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#ethermint.evm.v1.GenesisAccount"><span class="badge">M</span>GenesisAccount</a>
-                </li>
-
-                <li>
-                  <a href="#ethermint.evm.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
-                </li>
-
-
-
 
             </ul>
           </li>
@@ -896,6 +896,89 @@ logs. </p></td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
                   <td><p>gas_used notes the amount of gas consumed while execution </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="ethermint/evm/v1/genesis.proto">ethermint/evm/v1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="ethermint.evm.v1.GenesisAccount">GenesisAccount</h3>
+        <p>GenesisAccount defines an account to be initialized in the genesis state.</p><p>Its main difference between with Geth's GenesisAccount is that it uses a</p><p>custom storage type and that it doesn't contain the private key field.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address defines an ethereum hex formated address of an account </p></td>
+                </tr>
+
+                <tr>
+                  <td>code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>code defines the hex bytes of the account code. </p></td>
+                </tr>
+
+                <tr>
+                  <td>storage</td>
+                  <td><a href="#ethermint.evm.v1.State">State</a></td>
+                  <td>repeated</td>
+                  <td><p>storage defines the set of state key values for the account. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="ethermint.evm.v1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the evm module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>accounts</td>
+                  <td><a href="#ethermint.evm.v1.GenesisAccount">GenesisAccount</a></td>
+                  <td>repeated</td>
+                  <td><p>accounts is an array containing the ethereum genesis accounts. </p></td>
+                </tr>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#ethermint.evm.v1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines all the parameters of the module. </p></td>
                 </tr>
 
             </tbody>
@@ -1836,89 +1919,6 @@ it's similar to feemarket module's method, but also checks london hardfork statu
 
             </tbody>
           </table>
-
-
-
-
-      <div class="file-heading">
-        <h2 id="ethermint/evm/v1/genesis.proto">ethermint/evm/v1/genesis.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="ethermint.evm.v1.GenesisAccount">GenesisAccount</h3>
-        <p>GenesisAccount defines an account to be initialized in the genesis state.</p><p>Its main difference between with Geth's GenesisAccount is that it uses a</p><p>custom storage type and that it doesn't contain the private key field.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>address defines an ethereum hex formated address of an account </p></td>
-                </tr>
-
-                <tr>
-                  <td>code</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>code defines the hex bytes of the account code. </p></td>
-                </tr>
-
-                <tr>
-                  <td>storage</td>
-                  <td><a href="#ethermint.evm.v1.State">State</a></td>
-                  <td>repeated</td>
-                  <td><p>storage defines the set of state key values for the account. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="ethermint.evm.v1.GenesisState">GenesisState</h3>
-        <p>GenesisState defines the evm module's genesis state.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>accounts</td>
-                  <td><a href="#ethermint.evm.v1.GenesisAccount">GenesisAccount</a></td>
-                  <td>repeated</td>
-                  <td><p>accounts is an array containing the ethereum genesis accounts. </p></td>
-                </tr>
-
-                <tr>
-                  <td>params</td>
-                  <td><a href="#ethermint.evm.v1.Params">Params</a></td>
-                  <td></td>
-                  <td><p>params defines all the parameters of the module. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
 
 
 

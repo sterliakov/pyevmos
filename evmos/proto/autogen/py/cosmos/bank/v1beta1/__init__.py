@@ -25,6 +25,17 @@ if TYPE_CHECKING:
 
 
 @dataclass(eq=False, repr=False)
+class SendAuthorization(betterproto.Message):
+    """
+    SendAuthorization allows the grantee to spend up to spend_limit coins from
+    the granter's account.
+    Since: cosmos-sdk 0.43
+    """
+
+    spend_limit: List['__base_v1_beta1__.Coin'] = betterproto.message_field(1)
+
+
+@dataclass(eq=False, repr=False)
 class Params(betterproto.Message):
     """Params defines the parameters for the bank module."""
 
@@ -129,6 +140,42 @@ class Metadata(betterproto.Message):
     be the same as the display.
     Since: cosmos-sdk 0.43
     """
+
+
+@dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the bank module's genesis state."""
+
+    params: 'Params' = betterproto.message_field(1)
+    """params defines all the paramaters of the module."""
+
+    balances: List['Balance'] = betterproto.message_field(2)
+    """balances is an array containing the balances of all the accounts."""
+
+    supply: List['__base_v1_beta1__.Coin'] = betterproto.message_field(3)
+    """
+    supply represents the total supply. If it is left empty, then supply will be
+    calculated based on the provided
+    balances. Otherwise, it will be used to validate that the sum of the balances equals
+    this amount.
+    """
+
+    denom_metadata: List['Metadata'] = betterproto.message_field(4)
+    """denom_metadata defines the metadata of the differents coins."""
+
+
+@dataclass(eq=False, repr=False)
+class Balance(betterproto.Message):
+    """
+    Balance defines an account address and balance pair used in the bank module's
+    genesis state.
+    """
+
+    address: str = betterproto.string_field(1)
+    """address is the address of the balance holder."""
+
+    coins: List['__base_v1_beta1__.Coin'] = betterproto.message_field(2)
+    """coins defines the different coins this balance holds."""
 
 
 @dataclass(eq=False, repr=False)
@@ -311,53 +358,6 @@ class QueryDenomMetadataResponse(betterproto.Message):
     """
     metadata describes and provides all the client information for the requested token.
     """
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the bank module's genesis state."""
-
-    params: 'Params' = betterproto.message_field(1)
-    """params defines all the paramaters of the module."""
-
-    balances: List['Balance'] = betterproto.message_field(2)
-    """balances is an array containing the balances of all the accounts."""
-
-    supply: List['__base_v1_beta1__.Coin'] = betterproto.message_field(3)
-    """
-    supply represents the total supply. If it is left empty, then supply will be
-    calculated based on the provided
-    balances. Otherwise, it will be used to validate that the sum of the balances equals
-    this amount.
-    """
-
-    denom_metadata: List['Metadata'] = betterproto.message_field(4)
-    """denom_metadata defines the metadata of the differents coins."""
-
-
-@dataclass(eq=False, repr=False)
-class Balance(betterproto.Message):
-    """
-    Balance defines an account address and balance pair used in the bank module's
-    genesis state.
-    """
-
-    address: str = betterproto.string_field(1)
-    """address is the address of the balance holder."""
-
-    coins: List['__base_v1_beta1__.Coin'] = betterproto.message_field(2)
-    """coins defines the different coins this balance holds."""
-
-
-@dataclass(eq=False, repr=False)
-class SendAuthorization(betterproto.Message):
-    """
-    SendAuthorization allows the grantee to spend up to spend_limit coins from
-    the granter's account.
-    Since: cosmos-sdk 0.43
-    """
-
-    spend_limit: List['__base_v1_beta1__.Coin'] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)

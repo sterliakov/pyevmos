@@ -167,6 +167,21 @@
 
 
           <li>
+            <a href="#ethermint/types/v1/account.proto">ethermint/types/v1/account.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#ethermint.types.v1.EthAccount"><span class="badge">M</span>EthAccount</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#ethermint/types/v1/indexer.proto">ethermint/types/v1/indexer.proto</a>
             <ul>
 
@@ -195,24 +210,54 @@
             </ul>
           </li>
 
-
-          <li>
-            <a href="#ethermint/types/v1/account.proto">ethermint/types/v1/account.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#ethermint.types.v1.EthAccount"><span class="badge">M</span>EthAccount</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="ethermint/types/v1/account.proto">ethermint/types/v1/account.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="ethermint.types.v1.EthAccount">EthAccount</h3>
+        <p>EthAccount implements the authtypes.AccountI interface and embeds an</p><p>authtypes.BaseAccount type. It is compatible with the auth AccountKeeper.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>base_account</td>
+                  <td><a href="#cosmos.auth.v1beta1.BaseAccount">cosmos.auth.v1beta1.BaseAccount</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>code_hash</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -336,51 +381,6 @@ during EIP712 signature checking. </p></td>
                   <td></td>
                   <td><p>fee payer sig is a signature data from the fee paying account,
 allows to perform fee delegation when using EIP712 Domain. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="ethermint/types/v1/account.proto">ethermint/types/v1/account.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="ethermint.types.v1.EthAccount">EthAccount</h3>
-        <p>EthAccount implements the authtypes.AccountI interface and embeds an</p><p>authtypes.BaseAccount type. It is compatible with the auth AccountKeeper.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>base_account</td>
-                  <td><a href="#cosmos.auth.v1beta1.BaseAccount">cosmos.auth.v1beta1.BaseAccount</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>code_hash</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
                 </tr>
 
             </tbody>

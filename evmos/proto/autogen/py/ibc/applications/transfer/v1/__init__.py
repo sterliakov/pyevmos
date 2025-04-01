@@ -65,6 +65,15 @@ class Params(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the ibc-transfer genesis state"""
+
+    port_id: str = betterproto.string_field(1)
+    denom_traces: List['DenomTrace'] = betterproto.message_field(2)
+    params: 'Params' = betterproto.message_field(3)
+
+
+@dataclass(eq=False, repr=False)
 class QueryDenomTraceRequest(betterproto.Message):
     """
     QueryDenomTraceRequest is the request type for the Query/DenomTrace RPC
@@ -150,15 +159,6 @@ class QueryDenomHashResponse(betterproto.Message):
 
     hash: str = betterproto.string_field(1)
     """hash (in hex format) of the denomination trace information."""
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the ibc-transfer genesis state"""
-
-    port_id: str = betterproto.string_field(1)
-    denom_traces: List['DenomTrace'] = betterproto.message_field(2)
-    params: 'Params' = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)

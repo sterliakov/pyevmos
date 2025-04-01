@@ -1,6 +1,8 @@
 #! /usr/bin/env bash
 
 set -euo pipefail
+shopt -s globstar
+shopt -s nullglob
 
 BASE=evmos/proto/autogen/proto
 OUT_RST=docs/source/proto_external
@@ -8,54 +10,60 @@ OUT=$OUT_RST/_proto_auto/
 OUT_RST_INDEX=docs/source/autogen_proto.rst
 template=/out/_template.html
 
-rm -rf $OUT_RST
-mkdir -p $OUT_RST
-rm -rf $OUT
-mkdir -p $OUT
+sudo rm -rf "$OUT_RST"
+mkdir -p "$OUT_RST"
+sudo rm -rf "$OUT"
+mkdir -p "$OUT"
 
-cp docs/source/_templates/proto.html ${OUT}_template.html
+cp docs/source/_templates/proto.html "${OUT}_template.html"
 
-curfiles=$(find $BASE -maxdepth 1 -type f -name '*.proto' | cut -c27- )
-if [ "$curfiles" ]
-then
+declare -a top_levels=("$BASE"/*.proto)
+top_levels=("${top_levels[@]#*/*/*/*/}")
+if [[ -n ${top_levels[*]} ]]; then
     docker run --rm \
         --user "$(id -u):$(id -g)" \
         -v "$(pwd)/$BASE:/protos" \
         -v "$(pwd)/$OUT:/out" \
         pseudomuto/protoc-gen-doc \
         --doc_opt="$template,proto.html" \
-        $curfiles
+        "${top_levels[@]}"
 fi
 
-for d in $(find $BASE -maxdepth 1 -mindepth 1 -type d);
-do
-    echo "$d"
-    curfiles=$(find "$d" -maxdepth 1 -type f -name '*.proto' | cut -c27- )
-    if [ "$curfiles" ]
-    then
+declare -a first_level_dirs=("$BASE"/*/)
+for d in "${first_level_dirs[@]}"; do
+    declare -a curfiles=("$d"*.proto)
+    curfiles=("${curfiles[@]#*/*/*/*/}")
+    readarray -t curfiles < <(printf '%s\0' "${curfiles[@]}" | sort -z | xargs -0n1)
+    base="${d#*/*/*/*/}"
+    base="${base%/}"
+    base="${base//\//_}"
+    if [[ -n ${curfiles[*]} ]]; then
         docker run --rm \
             --user "$(id -u):$(id -g)" \
             -v "$(pwd)/$BASE:/protos" \
             -v "$(pwd)/$OUT:/out" \
             pseudomuto/protoc-gen-doc \
-            --doc_opt="$template,$(echo "$d" | cut -c27- | sed -e 's=/=_=g').html" \
-            $curfiles
+            --doc_opt="$template,${base}.html" \
+            "${curfiles[@]}"
     fi
 done
 
-for d in $(find $BASE -maxdepth 2 -mindepth 2 -type d);
-do
-    echo "$d"
-    curfiles=$(find "$d" -type f -name '*.proto' | cut -c27- )
-    if [ "$curfiles" ]
-    then
+declare -a second_level_dirs=("$BASE"/*/*/)
+for d in "${second_level_dirs[@]}"; do
+    curfiles=("$d"**/*.proto)
+    curfiles=("${curfiles[@]#*/*/*/*/}")
+    readarray -t curfiles < <(printf '%s\0' "${curfiles[@]}" | sort -z | xargs -0n1)
+    base="${d#*/*/*/*/}"
+    base="${base%/}"
+    base="${base//\//_}"
+    if [[ -n ${curfiles[*]} ]]; then
         docker run --rm \
             --user "$(id -u):$(id -g)" \
             -v "$(pwd)/$BASE:/protos" \
             -v "$(pwd)/$OUT:/out" \
             pseudomuto/protoc-gen-doc \
-            --doc_opt="$template,$(echo "$d" | cut -c27- | sed -e 's=/=_=g').html" \
-            $curfiles
+            --doc_opt="$template,${base}.html" \
+            "${curfiles[@]}"
     fi
 done
 
@@ -68,27 +76,31 @@ rm -f "$OUT_RST_INDEX"
     printf '=====================================\n\n'
     printf '.. toctree::\n'
     printf '    :caption: Proto messages contents\n\n'
-} >> $OUT_RST_INDEX
+} >>$OUT_RST_INDEX
 
-for f in $(find "$OUT" -type f | sort)
-do
+for f in $(find "$OUT" -type f | sort); do
     fbase=$(basename "$f")
     fbase="${fbase%.*}"
-    printf '    proto_external/%s\n' "$fbase" >> $OUT_RST_INDEX
+    printf '    proto_external/%s\n' "$fbase" >>$OUT_RST_INDEX
 
     final_rst="$OUT_RST/$fbase.rst"
     header=${fbase//_//}
     header=${header%.*}
     {
         printf '%s\n' "$header"
-        (yes '=' || true) | head -n ${#header} | tr -d '\n'
+        set +o pipefail
+        yes '=' | head -n ${#header} | tr -d '\n'
+        set -o pipefail
         printf '\n.. raw:: html\n'
         printf '    :file: _proto_auto/%s.html\n\n' "$fbase"
-    } >> $final_rst
+    } >>"$final_rst"
 done
 
-chmod -R 666 "$OUT_RST"
-chmod 777 "$OUT_RST"
-chmod -R 666 "$OUT"
-chmod 777 "$OUT"
-chmod 666 "$OUT_RST_INDEX"
+sudo chown -R "$(id -u)" "$OUT_RST"
+sudo chmod -R 666 "$OUT_RST"
+sudo chmod 777 "$OUT_RST"
+sudo chown -R "$(id -u)" "$OUT"
+sudo chmod -R 666 "$OUT"
+sudo chmod 777 "$OUT"
+sudo chown "$(id -u)" "$OUT_RST_INDEX"
+sudo chmod 666 "$OUT_RST_INDEX"

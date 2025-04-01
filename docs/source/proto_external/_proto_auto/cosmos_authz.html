@@ -167,6 +167,29 @@
 
 
           <li>
+            <a href="#cosmos/authz/v1beta1/authz.proto">cosmos/authz/v1beta1/authz.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.authz.v1beta1.GenericAuthorization"><span class="badge">M</span>GenericAuthorization</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.authz.v1beta1.Grant"><span class="badge">M</span>Grant</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.authz.v1beta1.GrantAuthorization"><span class="badge">M</span>GrantAuthorization</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/authz/v1beta1/event.proto">cosmos/authz/v1beta1/event.proto</a>
             <ul>
 
@@ -176,6 +199,21 @@
 
                 <li>
                   <a href="#cosmos.authz.v1beta1.EventRevoke"><span class="badge">M</span>EventRevoke</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/authz/v1beta1/genesis.proto">cosmos/authz/v1beta1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.authz.v1beta1.GenesisState"><span class="badge">M</span>GenesisState</a>
                 </li>
 
 
@@ -225,44 +263,6 @@
 
 
           <li>
-            <a href="#cosmos/authz/v1beta1/genesis.proto">cosmos/authz/v1beta1/genesis.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#cosmos.authz.v1beta1.GenesisState"><span class="badge">M</span>GenesisState</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
-            <a href="#cosmos/authz/v1beta1/authz.proto">cosmos/authz/v1beta1/authz.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#cosmos.authz.v1beta1.GenericAuthorization"><span class="badge">M</span>GenericAuthorization</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.authz.v1beta1.Grant"><span class="badge">M</span>Grant</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.authz.v1beta1.GrantAuthorization"><span class="badge">M</span>GrantAuthorization</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
             <a href="#cosmos/authz/v1beta1/tx.proto">cosmos/authz/v1beta1/tx.proto</a>
             <ul>
 
@@ -303,6 +303,120 @@
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/authz/v1beta1/authz.proto">cosmos/authz/v1beta1/authz.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Since: cosmos-sdk 0.43</p>
+
+
+        <h3 id="cosmos.authz.v1beta1.GenericAuthorization">GenericAuthorization</h3>
+        <p>GenericAuthorization gives the grantee unrestricted permissions to execute</p><p>the provided method on behalf of the granter's account.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>msg</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Msg, identified by it's type URL, to grant unrestricted permissions to execute </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.authz.v1beta1.Grant">Grant</h3>
+        <p>Grant gives permissions to execute</p><p>the provide method with expiration time.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authorization</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>expiration</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.authz.v1beta1.GrantAuthorization">GrantAuthorization</h3>
+        <p>GrantAuthorization extends a grant with both the addresses of the grantee and granter.</p><p>It is used in genesis.proto and query.proto</p><p>Since: cosmos-sdk 0.45.2</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>granter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>grantee</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>authorization</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>expiration</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -379,6 +493,44 @@
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Grantee account address </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/authz/v1beta1/genesis.proto">cosmos/authz/v1beta1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Since: cosmos-sdk 0.43</p>
+
+
+        <h3 id="cosmos.authz.v1beta1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the authz module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authorization</td>
+                  <td><a href="#cosmos.authz.v1beta1.GrantAuthorization">GrantAuthorization</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
                 </tr>
 
             </tbody>
@@ -691,158 +843,6 @@ Since: cosmos-sdk 0.45.2</p></td>
 
             </tbody>
           </table>
-
-
-
-
-      <div class="file-heading">
-        <h2 id="cosmos/authz/v1beta1/genesis.proto">cosmos/authz/v1beta1/genesis.proto</h2><a href="#title">Top</a>
-      </div>
-      <p>Since: cosmos-sdk 0.43</p>
-
-
-        <h3 id="cosmos.authz.v1beta1.GenesisState">GenesisState</h3>
-        <p>GenesisState defines the authz module's genesis state.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>authorization</td>
-                  <td><a href="#cosmos.authz.v1beta1.GrantAuthorization">GrantAuthorization</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="cosmos/authz/v1beta1/authz.proto">cosmos/authz/v1beta1/authz.proto</h2><a href="#title">Top</a>
-      </div>
-      <p>Since: cosmos-sdk 0.43</p>
-
-
-        <h3 id="cosmos.authz.v1beta1.GenericAuthorization">GenericAuthorization</h3>
-        <p>GenericAuthorization gives the grantee unrestricted permissions to execute</p><p>the provided method on behalf of the granter's account.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>msg</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Msg, identified by it's type URL, to grant unrestricted permissions to execute </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.authz.v1beta1.Grant">Grant</h3>
-        <p>Grant gives permissions to execute</p><p>the provide method with expiration time.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>authorization</td>
-                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>expiration</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.authz.v1beta1.GrantAuthorization">GrantAuthorization</h3>
-        <p>GrantAuthorization extends a grant with both the addresses of the grantee and granter.</p><p>It is used in genesis.proto and query.proto</p><p>Since: cosmos-sdk 0.45.2</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>granter</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>grantee</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>authorization</td>
-                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>expiration</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
 
 
 

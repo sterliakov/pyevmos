@@ -30,22 +30,6 @@ if TYPE_CHECKING:
     from grpclib.metadata import Deadline
 
 
-class BondStatus(betterproto.Enum):
-    """BondStatus is the status of a validator."""
-
-    BOND_STATUS_UNSPECIFIED = 0
-    """UNSPECIFIED defines an invalid validator status."""
-
-    BOND_STATUS_UNBONDED = 1
-    """UNBONDED defines a validator that is not bonded."""
-
-    BOND_STATUS_UNBONDING = 2
-    """UNBONDING defines a validator that is unbonding."""
-
-    BOND_STATUS_BONDED = 3
-    """BONDED defines a validator that is bonded."""
-
-
 class AuthorizationType(betterproto.Enum):
     """
     AuthorizationType defines the type of staking module authorization type
@@ -67,6 +51,64 @@ class AuthorizationType(betterproto.Enum):
     """
     AUTHORIZATION_TYPE_REDELEGATE defines an authorization type for Msg/BeginRedelegate
     """
+
+
+class BondStatus(betterproto.Enum):
+    """BondStatus is the status of a validator."""
+
+    BOND_STATUS_UNSPECIFIED = 0
+    """UNSPECIFIED defines an invalid validator status."""
+
+    BOND_STATUS_UNBONDED = 1
+    """UNBONDED defines a validator that is not bonded."""
+
+    BOND_STATUS_UNBONDING = 2
+    """UNBONDING defines a validator that is unbonding."""
+
+    BOND_STATUS_BONDED = 3
+    """BONDED defines a validator that is bonded."""
+
+
+@dataclass(eq=False, repr=False)
+class StakeAuthorization(betterproto.Message):
+    """
+    StakeAuthorization defines authorization for delegate/undelegate/redelegate.
+    Since: cosmos-sdk 0.43
+    """
+
+    max_tokens: '__base_v1_beta1__.Coin' = betterproto.message_field(1)
+    """
+    max_tokens specifies the maximum amount of tokens can be delegate to a validator. If
+    it is
+    empty, there is no spend limit and any amount of coins can be delegated.
+    """
+
+    allow_list: 'StakeAuthorizationValidators' = betterproto.message_field(
+        2, group='validators'
+    )
+    """
+    allow_list specifies list of validator addresses to whom grantee can delegate tokens
+    on behalf of granter's
+    account.
+    """
+
+    deny_list: 'StakeAuthorizationValidators' = betterproto.message_field(
+        3, group='validators'
+    )
+    """
+    deny_list specifies list of validator addresses to whom grantee can not delegate
+    tokens.
+    """
+
+    authorization_type: 'AuthorizationType' = betterproto.enum_field(4)
+    """authorization_type defines one of AuthorizationType."""
+
+
+@dataclass(eq=False, repr=False)
+class StakeAuthorizationValidators(betterproto.Message):
+    """Validators defines list of validator addresses."""
+
+    address: List[str] = betterproto.string_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -413,6 +455,51 @@ class Pool(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the staking module's genesis state."""
+
+    params: 'Params' = betterproto.message_field(1)
+    """params defines all the paramaters of related to deposit."""
+
+    last_total_power: bytes = betterproto.bytes_field(2)
+    """
+    last_total_power tracks the total amounts of bonded tokens recorded during
+    the previous end block.
+    """
+
+    last_validator_powers: List['LastValidatorPower'] = betterproto.message_field(3)
+    """
+    last_validator_powers is a special index that provides a historical list
+    of the last-block's bonded validators.
+    """
+
+    validators: List['Validator'] = betterproto.message_field(4)
+    """delegations defines the validator set at genesis."""
+
+    delegations: List['Delegation'] = betterproto.message_field(5)
+    """delegations defines the delegations active at genesis."""
+
+    unbonding_delegations: List['UnbondingDelegation'] = betterproto.message_field(6)
+    """unbonding_delegations defines the unbonding delegations active at genesis."""
+
+    redelegations: List['Redelegation'] = betterproto.message_field(7)
+    """redelegations defines the redelegations active at genesis."""
+
+    exported: bool = betterproto.bool_field(8)
+
+
+@dataclass(eq=False, repr=False)
+class LastValidatorPower(betterproto.Message):
+    """LastValidatorPower required for validator set update logic."""
+
+    address: str = betterproto.string_field(1)
+    """address is the address of the validator."""
+
+    power: int = betterproto.int64_field(2)
+    """power defines the power of the validator."""
+
+
+@dataclass(eq=False, repr=False)
 class QueryValidatorsRequest(betterproto.Message):
     """QueryValidatorsRequest is request type for Query/Validators RPC method."""
 
@@ -735,93 +822,6 @@ class QueryParamsResponse(betterproto.Message):
 
     params: 'Params' = betterproto.message_field(1)
     """params holds all the parameters of this module."""
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the staking module's genesis state."""
-
-    params: 'Params' = betterproto.message_field(1)
-    """params defines all the paramaters of related to deposit."""
-
-    last_total_power: bytes = betterproto.bytes_field(2)
-    """
-    last_total_power tracks the total amounts of bonded tokens recorded during
-    the previous end block.
-    """
-
-    last_validator_powers: List['LastValidatorPower'] = betterproto.message_field(3)
-    """
-    last_validator_powers is a special index that provides a historical list
-    of the last-block's bonded validators.
-    """
-
-    validators: List['Validator'] = betterproto.message_field(4)
-    """delegations defines the validator set at genesis."""
-
-    delegations: List['Delegation'] = betterproto.message_field(5)
-    """delegations defines the delegations active at genesis."""
-
-    unbonding_delegations: List['UnbondingDelegation'] = betterproto.message_field(6)
-    """unbonding_delegations defines the unbonding delegations active at genesis."""
-
-    redelegations: List['Redelegation'] = betterproto.message_field(7)
-    """redelegations defines the redelegations active at genesis."""
-
-    exported: bool = betterproto.bool_field(8)
-
-
-@dataclass(eq=False, repr=False)
-class LastValidatorPower(betterproto.Message):
-    """LastValidatorPower required for validator set update logic."""
-
-    address: str = betterproto.string_field(1)
-    """address is the address of the validator."""
-
-    power: int = betterproto.int64_field(2)
-    """power defines the power of the validator."""
-
-
-@dataclass(eq=False, repr=False)
-class StakeAuthorization(betterproto.Message):
-    """
-    StakeAuthorization defines authorization for delegate/undelegate/redelegate.
-    Since: cosmos-sdk 0.43
-    """
-
-    max_tokens: '__base_v1_beta1__.Coin' = betterproto.message_field(1)
-    """
-    max_tokens specifies the maximum amount of tokens can be delegate to a validator. If
-    it is
-    empty, there is no spend limit and any amount of coins can be delegated.
-    """
-
-    allow_list: 'StakeAuthorizationValidators' = betterproto.message_field(
-        2, group='validators'
-    )
-    """
-    allow_list specifies list of validator addresses to whom grantee can delegate tokens
-    on behalf of granter's
-    account.
-    """
-
-    deny_list: 'StakeAuthorizationValidators' = betterproto.message_field(
-        3, group='validators'
-    )
-    """
-    deny_list specifies list of validator addresses to whom grantee can not delegate
-    tokens.
-    """
-
-    authorization_type: 'AuthorizationType' = betterproto.enum_field(4)
-    """authorization_type defines one of AuthorizationType."""
-
-
-@dataclass(eq=False, repr=False)
-class StakeAuthorizationValidators(betterproto.Message):
-    """Validators defines list of validator addresses."""
-
-    address: List[str] = betterproto.string_field(1)
 
 
 @dataclass(eq=False, repr=False)

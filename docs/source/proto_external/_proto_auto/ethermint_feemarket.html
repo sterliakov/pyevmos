@@ -167,6 +167,36 @@
 
 
           <li>
+            <a href="#ethermint/feemarket/v1/feemarket.proto">ethermint/feemarket/v1/feemarket.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#ethermint.feemarket.v1.Params"><span class="badge">M</span>Params</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#ethermint/feemarket/v1/genesis.proto">ethermint/feemarket/v1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#ethermint.feemarket.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#ethermint/feemarket/v1/query.proto">ethermint/feemarket/v1/query.proto</a>
             <ul>
 
@@ -204,39 +234,138 @@
             </ul>
           </li>
 
-
-          <li>
-            <a href="#ethermint/feemarket/v1/genesis.proto">ethermint/feemarket/v1/genesis.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#ethermint.feemarket.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
-            <a href="#ethermint/feemarket/v1/feemarket.proto">ethermint/feemarket/v1/feemarket.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#ethermint.feemarket.v1.Params"><span class="badge">M</span>Params</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="ethermint/feemarket/v1/feemarket.proto">ethermint/feemarket/v1/feemarket.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="ethermint.feemarket.v1.Params">Params</h3>
+        <p>Params defines the EVM module parameters</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>no_base_fee</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>no base fee forces the EIP-1559 base fee to 0 (needed for 0 price calls) </p></td>
+                </tr>
+
+                <tr>
+                  <td>base_fee_change_denominator</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>base fee change denominator bounds the amount the base fee can change
+between blocks. </p></td>
+                </tr>
+
+                <tr>
+                  <td>elasticity_multiplier</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>elasticity multiplier bounds the maximum gas limit an EIP-1559 block may
+have. </p></td>
+                </tr>
+
+                <tr>
+                  <td>enable_height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>height at which the base fee calculation is enabled. </p></td>
+                </tr>
+
+                <tr>
+                  <td>base_fee</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>base fee for EIP-1559 blocks. </p></td>
+                </tr>
+
+                <tr>
+                  <td>min_gas_price</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>min_gas_price defines the minimum gas price value for cosmos and eth transactions </p></td>
+                </tr>
+
+                <tr>
+                  <td>min_gas_multiplier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>min gas denominator bounds the minimum gasUsed to be charged
+to senders based on GasLimit </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="ethermint/feemarket/v1/genesis.proto">ethermint/feemarket/v1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="ethermint.feemarket.v1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the feemarket module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#ethermint.feemarket.v1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines all the paramaters of the module. </p></td>
+                </tr>
+
+                <tr>
+                  <td>block_gas</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>block gas is the amount of gas wanted on the last block before the upgrade.
+Zero by default. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -424,135 +553,6 @@
 
             </tbody>
           </table>
-
-
-
-
-      <div class="file-heading">
-        <h2 id="ethermint/feemarket/v1/genesis.proto">ethermint/feemarket/v1/genesis.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="ethermint.feemarket.v1.GenesisState">GenesisState</h3>
-        <p>GenesisState defines the feemarket module's genesis state.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>params</td>
-                  <td><a href="#ethermint.feemarket.v1.Params">Params</a></td>
-                  <td></td>
-                  <td><p>params defines all the paramaters of the module. </p></td>
-                </tr>
-
-                <tr>
-                  <td>block_gas</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>block gas is the amount of gas wanted on the last block before the upgrade.
-Zero by default. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="ethermint/feemarket/v1/feemarket.proto">ethermint/feemarket/v1/feemarket.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="ethermint.feemarket.v1.Params">Params</h3>
-        <p>Params defines the EVM module parameters</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>no_base_fee</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>no base fee forces the EIP-1559 base fee to 0 (needed for 0 price calls) </p></td>
-                </tr>
-
-                <tr>
-                  <td>base_fee_change_denominator</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>base fee change denominator bounds the amount the base fee can change
-between blocks. </p></td>
-                </tr>
-
-                <tr>
-                  <td>elasticity_multiplier</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>elasticity multiplier bounds the maximum gas limit an EIP-1559 block may
-have. </p></td>
-                </tr>
-
-                <tr>
-                  <td>enable_height</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>height at which the base fee calculation is enabled. </p></td>
-                </tr>
-
-                <tr>
-                  <td>base_fee</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>base fee for EIP-1559 blocks. </p></td>
-                </tr>
-
-                <tr>
-                  <td>min_gas_price</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>min_gas_price defines the minimum gas price value for cosmos and eth transactions </p></td>
-                </tr>
-
-                <tr>
-                  <td>min_gas_multiplier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>min gas denominator bounds the minimum gasUsed to be charged
-to senders based on GasLimit </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
 
 
 

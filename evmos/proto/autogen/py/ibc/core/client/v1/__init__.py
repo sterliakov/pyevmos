@@ -148,6 +148,52 @@ class Params(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the ibc client submodule's genesis state."""
+
+    clients: List['IdentifiedClientState'] = betterproto.message_field(1)
+    """client states with their corresponding identifiers"""
+
+    clients_consensus: List['ClientConsensusStates'] = betterproto.message_field(2)
+    """consensus states from each client"""
+
+    clients_metadata: List['IdentifiedGenesisMetadata'] = betterproto.message_field(3)
+    """metadata from each client"""
+
+    params: 'Params' = betterproto.message_field(4)
+    create_localhost: bool = betterproto.bool_field(5)
+    """create localhost on initialization"""
+
+    next_client_sequence: int = betterproto.uint64_field(6)
+    """the sequence for the next generated client identifier"""
+
+
+@dataclass(eq=False, repr=False)
+class GenesisMetadata(betterproto.Message):
+    """
+    GenesisMetadata defines the genesis type for metadata that clients may return
+    with ExportMetadata
+    """
+
+    key: bytes = betterproto.bytes_field(1)
+    """store key of metadata without clientID-prefix"""
+
+    value: bytes = betterproto.bytes_field(2)
+    """metadata value"""
+
+
+@dataclass(eq=False, repr=False)
+class IdentifiedGenesisMetadata(betterproto.Message):
+    """
+    IdentifiedGenesisMetadata has the client metadata with the corresponding
+    client id.
+    """
+
+    client_id: str = betterproto.string_field(1)
+    client_metadata: List['GenesisMetadata'] = betterproto.message_field(2)
+
+
+@dataclass(eq=False, repr=False)
 class QueryClientStateRequest(betterproto.Message):
     """
     QueryClientStateRequest is the request type for the Query/ClientState RPC
@@ -366,52 +412,6 @@ class QueryUpgradedConsensusStateResponse(betterproto.Message):
         betterproto.message_field(1)
     )
     """Consensus state associated with the request identifier"""
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the ibc client submodule's genesis state."""
-
-    clients: List['IdentifiedClientState'] = betterproto.message_field(1)
-    """client states with their corresponding identifiers"""
-
-    clients_consensus: List['ClientConsensusStates'] = betterproto.message_field(2)
-    """consensus states from each client"""
-
-    clients_metadata: List['IdentifiedGenesisMetadata'] = betterproto.message_field(3)
-    """metadata from each client"""
-
-    params: 'Params' = betterproto.message_field(4)
-    create_localhost: bool = betterproto.bool_field(5)
-    """create localhost on initialization"""
-
-    next_client_sequence: int = betterproto.uint64_field(6)
-    """the sequence for the next generated client identifier"""
-
-
-@dataclass(eq=False, repr=False)
-class GenesisMetadata(betterproto.Message):
-    """
-    GenesisMetadata defines the genesis type for metadata that clients may return
-    with ExportMetadata
-    """
-
-    key: bytes = betterproto.bytes_field(1)
-    """store key of metadata without clientID-prefix"""
-
-    value: bytes = betterproto.bytes_field(2)
-    """metadata value"""
-
-
-@dataclass(eq=False, repr=False)
-class IdentifiedGenesisMetadata(betterproto.Message):
-    """
-    IdentifiedGenesisMetadata has the client metadata with the corresponding
-    client id.
-    """
-
-    client_id: str = betterproto.string_field(1)
-    client_metadata: List['GenesisMetadata'] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)

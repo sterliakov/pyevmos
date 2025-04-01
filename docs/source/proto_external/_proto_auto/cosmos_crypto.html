@@ -186,15 +186,11 @@
 
 
           <li>
-            <a href="#cosmos/crypto/multisig/v1beta1/multisig.proto">cosmos/crypto/multisig/v1beta1/multisig.proto</a>
+            <a href="#cosmos/crypto/multisig/keys.proto">cosmos/crypto/multisig/keys.proto</a>
             <ul>
 
                 <li>
-                  <a href="#cosmos.crypto.multisig.v1beta1.CompactBitArray"><span class="badge">M</span>CompactBitArray</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.crypto.multisig.v1beta1.MultiSignature"><span class="badge">M</span>MultiSignature</a>
+                  <a href="#cosmos.crypto.multisig.LegacyAminoPubKey"><span class="badge">M</span>LegacyAminoPubKey</a>
                 </li>
 
 
@@ -205,11 +201,15 @@
 
 
           <li>
-            <a href="#cosmos/crypto/multisig/keys.proto">cosmos/crypto/multisig/keys.proto</a>
+            <a href="#cosmos/crypto/multisig/v1beta1/multisig.proto">cosmos/crypto/multisig/v1beta1/multisig.proto</a>
             <ul>
 
                 <li>
-                  <a href="#cosmos.crypto.multisig.LegacyAminoPubKey"><span class="badge">M</span>LegacyAminoPubKey</a>
+                  <a href="#cosmos.crypto.multisig.v1beta1.CompactBitArray"><span class="badge">M</span>CompactBitArray</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.crypto.multisig.v1beta1.MultiSignature"><span class="badge">M</span>MultiSignature</a>
                 </li>
 
 
@@ -325,6 +325,51 @@
 
 
       <div class="file-heading">
+        <h2 id="cosmos/crypto/multisig/keys.proto">cosmos/crypto/multisig/keys.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.crypto.multisig.LegacyAminoPubKey">LegacyAminoPubKey</h3>
+        <p>LegacyAminoPubKey specifies a public key type</p><p>which nests multiple public keys and a threshold,</p><p>it uses legacy amino address rules.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>threshold</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>public_keys</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
         <h2 id="cosmos/crypto/multisig/v1beta1/multisig.proto">cosmos/crypto/multisig/v1beta1/multisig.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -374,51 +419,6 @@
                 <tr>
                   <td>signatures</td>
                   <td><a href="#bytes">bytes</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="cosmos/crypto/multisig/keys.proto">cosmos/crypto/multisig/keys.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="cosmos.crypto.multisig.LegacyAminoPubKey">LegacyAminoPubKey</h3>
-        <p>LegacyAminoPubKey specifies a public key type</p><p>which nests multiple public keys and a threshold,</p><p>it uses legacy amino address rules.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>threshold</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>public_keys</td>
-                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
                 </tr>

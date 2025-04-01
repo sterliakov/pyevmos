@@ -10,6 +10,17 @@ from ....cosmos.auth import v1beta1 as ___cosmos_auth_v1_beta1__
 
 
 @dataclass(eq=False, repr=False)
+class EthAccount(betterproto.Message):
+    """
+    EthAccount implements the authtypes.AccountI interface and embeds an
+    authtypes.BaseAccount type. It is compatible with the auth AccountKeeper.
+    """
+
+    base_account: '___cosmos_auth_v1_beta1__.BaseAccount' = betterproto.message_field(1)
+    code_hash: str = betterproto.string_field(2)
+
+
+@dataclass(eq=False, repr=False)
 class TxResult(betterproto.Message):
     """TxResult is the value stored in eth tx indexer"""
 
@@ -60,14 +71,3 @@ class ExtensionOptionsWeb3Tx(betterproto.Message):
     fee payer sig is a signature data from the fee paying account,
     allows to perform fee delegation when using EIP712 Domain.
     """
-
-
-@dataclass(eq=False, repr=False)
-class EthAccount(betterproto.Message):
-    """
-    EthAccount implements the authtypes.AccountI interface and embeds an
-    authtypes.BaseAccount type. It is compatible with the auth AccountKeeper.
-    """
-
-    base_account: '___cosmos_auth_v1_beta1__.BaseAccount' = betterproto.message_field(1)
-    code_hash: str = betterproto.string_field(2)

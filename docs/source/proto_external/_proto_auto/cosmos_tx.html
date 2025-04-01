@@ -167,6 +167,41 @@
 
 
           <li>
+            <a href="#cosmos/tx/signing/v1beta1/signing.proto">cosmos/tx/signing/v1beta1/signing.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor"><span class="badge">M</span>SignatureDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data"><span class="badge">M</span>SignatureDescriptor.Data</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Multi"><span class="badge">M</span>SignatureDescriptor.Data.Multi</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Single"><span class="badge">M</span>SignatureDescriptor.Data.Single</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.tx.signing.v1beta1.SignatureDescriptors"><span class="badge">M</span>SignatureDescriptors</a>
+                </li>
+
+
+                <li>
+                  <a href="#cosmos.tx.signing.v1beta1.SignMode"><span class="badge">E</span>SignMode</a>
+                </li>
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/tx/v1beta1/service.proto">cosmos/tx/v1beta1/service.proto</a>
             <ul>
 
@@ -279,44 +314,235 @@
             </ul>
           </li>
 
-
-          <li>
-            <a href="#cosmos/tx/signing/v1beta1/signing.proto">cosmos/tx/signing/v1beta1/signing.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor"><span class="badge">M</span>SignatureDescriptor</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data"><span class="badge">M</span>SignatureDescriptor.Data</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Multi"><span class="badge">M</span>SignatureDescriptor.Data.Multi</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Single"><span class="badge">M</span>SignatureDescriptor.Data.Single</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.tx.signing.v1beta1.SignatureDescriptors"><span class="badge">M</span>SignatureDescriptors</a>
-                </li>
-
-
-                <li>
-                  <a href="#cosmos.tx.signing.v1beta1.SignMode"><span class="badge">E</span>SignMode</a>
-                </li>
-
-
-
-            </ul>
-          </li>
-
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/tx/signing/v1beta1/signing.proto">cosmos/tx/signing/v1beta1/signing.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.tx.signing.v1beta1.SignatureDescriptor">SignatureDescriptor</h3>
+        <p>SignatureDescriptor is a convenience type which represents the full data for</p><p>a signature including the public key of the signer, signing modes and the</p><p>signature itself. It is primarily used for coordinating signatures between</p><p>clients.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>public_key</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p>public_key is the public key of the signer </p></td>
+                </tr>
+
+                <tr>
+                  <td>data</td>
+                  <td><a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data">SignatureDescriptor.Data</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>sequence</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>sequence is the sequence of the account, which describes the
+number of committed transactions signed by a given address. It is used to prevent
+replay attacks. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.tx.signing.v1beta1.SignatureDescriptor.Data">SignatureDescriptor.Data</h3>
+        <p>Data represents signature data</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>single</td>
+                  <td><a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Single">SignatureDescriptor.Data.Single</a></td>
+                  <td></td>
+                  <td><p>single represents a single signer </p></td>
+                </tr>
+
+                <tr>
+                  <td>multi</td>
+                  <td><a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Multi">SignatureDescriptor.Data.Multi</a></td>
+                  <td></td>
+                  <td><p>multi represents a multisig signer </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Multi">SignatureDescriptor.Data.Multi</h3>
+        <p>Multi is the signature data for a multisig public key</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>bitarray</td>
+                  <td><a href="#cosmos.crypto.multisig.v1beta1.CompactBitArray">cosmos.crypto.multisig.v1beta1.CompactBitArray</a></td>
+                  <td></td>
+                  <td><p>bitarray specifies which keys within the multisig are signing </p></td>
+                </tr>
+
+                <tr>
+                  <td>signatures</td>
+                  <td><a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data">SignatureDescriptor.Data</a></td>
+                  <td>repeated</td>
+                  <td><p>signatures is the signatures of the multi-signature </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Single">SignatureDescriptor.Data.Single</h3>
+        <p>Single is the signature data for a single signer</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>mode</td>
+                  <td><a href="#cosmos.tx.signing.v1beta1.SignMode">SignMode</a></td>
+                  <td></td>
+                  <td><p>mode is the signing mode of the single signer </p></td>
+                </tr>
+
+                <tr>
+                  <td>signature</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>signature is the raw signature bytes </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.tx.signing.v1beta1.SignatureDescriptors">SignatureDescriptors</h3>
+        <p>SignatureDescriptors wraps multiple SignatureDescriptor's.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>signatures</td>
+                  <td><a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor">SignatureDescriptor</a></td>
+                  <td>repeated</td>
+                  <td><p>signatures are the signature descriptors </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+        <h3 id="cosmos.tx.signing.v1beta1.SignMode">SignMode</h3>
+        <p>SignMode represents a signing mode with its own security guarantees.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>SIGN_MODE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be
+rejected</p></td>
+              </tr>
+
+              <tr>
+                <td>SIGN_MODE_DIRECT</td>
+                <td>1</td>
+                <td><p>SIGN_MODE_DIRECT specifies a signing mode which uses SignDoc and is
+verified with raw bytes from Tx</p></td>
+              </tr>
+
+              <tr>
+                <td>SIGN_MODE_TEXTUAL</td>
+                <td>2</td>
+                <td><p>SIGN_MODE_TEXTUAL is a future signing mode that will verify some
+human-readable textual representation on top of the binary representation
+from SIGN_MODE_DIRECT</p></td>
+              </tr>
+
+              <tr>
+                <td>SIGN_MODE_LEGACY_AMINO_JSON</td>
+                <td>127</td>
+                <td><p>SIGN_MODE_LEGACY_AMINO_JSON is a backwards compatibility mode which uses
+Amino JSON and will be removed in the future</p></td>
+              </tr>
+
+              <tr>
+                <td>SIGN_MODE_EIP_191</td>
+                <td>191</td>
+                <td><p>SIGN_MODE_EIP_191 specifies the sign mode for EIP 191 signing on the Cosmos
+SDK. Ref: https://eips.ethereum.org/EIPS/eip-191
+
+Currently, SIGN_MODE_EIP_191 is registered as a SignMode enum variant,
+but is not implemented on the SDK by default. To enable EIP-191, you need
+to pass a custom `TxConfig` that has an implementation of
+`SignModeHandler` for EIP-191. The SDK may decide to fully support
+EIP-191 in the future.
+
+Since: cosmos-sdk 0.45.2</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
 
 
 
@@ -1287,232 +1513,6 @@ public key and signing mode by position. </p></td>
 
 
 
-
-
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="cosmos/tx/signing/v1beta1/signing.proto">cosmos/tx/signing/v1beta1/signing.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="cosmos.tx.signing.v1beta1.SignatureDescriptor">SignatureDescriptor</h3>
-        <p>SignatureDescriptor is a convenience type which represents the full data for</p><p>a signature including the public key of the signer, signing modes and the</p><p>signature itself. It is primarily used for coordinating signatures between</p><p>clients.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>public_key</td>
-                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
-                  <td></td>
-                  <td><p>public_key is the public key of the signer </p></td>
-                </tr>
-
-                <tr>
-                  <td>data</td>
-                  <td><a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data">SignatureDescriptor.Data</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>sequence</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>sequence is the sequence of the account, which describes the
-number of committed transactions signed by a given address. It is used to prevent
-replay attacks. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.tx.signing.v1beta1.SignatureDescriptor.Data">SignatureDescriptor.Data</h3>
-        <p>Data represents signature data</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>single</td>
-                  <td><a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Single">SignatureDescriptor.Data.Single</a></td>
-                  <td></td>
-                  <td><p>single represents a single signer </p></td>
-                </tr>
-
-                <tr>
-                  <td>multi</td>
-                  <td><a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Multi">SignatureDescriptor.Data.Multi</a></td>
-                  <td></td>
-                  <td><p>multi represents a multisig signer </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Multi">SignatureDescriptor.Data.Multi</h3>
-        <p>Multi is the signature data for a multisig public key</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>bitarray</td>
-                  <td><a href="#cosmos.crypto.multisig.v1beta1.CompactBitArray">cosmos.crypto.multisig.v1beta1.CompactBitArray</a></td>
-                  <td></td>
-                  <td><p>bitarray specifies which keys within the multisig are signing </p></td>
-                </tr>
-
-                <tr>
-                  <td>signatures</td>
-                  <td><a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor.Data">SignatureDescriptor.Data</a></td>
-                  <td>repeated</td>
-                  <td><p>signatures is the signatures of the multi-signature </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.tx.signing.v1beta1.SignatureDescriptor.Data.Single">SignatureDescriptor.Data.Single</h3>
-        <p>Single is the signature data for a single signer</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>mode</td>
-                  <td><a href="#cosmos.tx.signing.v1beta1.SignMode">SignMode</a></td>
-                  <td></td>
-                  <td><p>mode is the signing mode of the single signer </p></td>
-                </tr>
-
-                <tr>
-                  <td>signature</td>
-                  <td><a href="#bytes">bytes</a></td>
-                  <td></td>
-                  <td><p>signature is the raw signature bytes </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.tx.signing.v1beta1.SignatureDescriptors">SignatureDescriptors</h3>
-        <p>SignatureDescriptors wraps multiple SignatureDescriptor's.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>signatures</td>
-                  <td><a href="#cosmos.tx.signing.v1beta1.SignatureDescriptor">SignatureDescriptor</a></td>
-                  <td>repeated</td>
-                  <td><p>signatures are the signature descriptors </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-        <h3 id="cosmos.tx.signing.v1beta1.SignMode">SignMode</h3>
-        <p>SignMode represents a signing mode with its own security guarantees.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-
-              <tr>
-                <td>SIGN_MODE_UNSPECIFIED</td>
-                <td>0</td>
-                <td><p>SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be
-rejected</p></td>
-              </tr>
-
-              <tr>
-                <td>SIGN_MODE_DIRECT</td>
-                <td>1</td>
-                <td><p>SIGN_MODE_DIRECT specifies a signing mode which uses SignDoc and is
-verified with raw bytes from Tx</p></td>
-              </tr>
-
-              <tr>
-                <td>SIGN_MODE_TEXTUAL</td>
-                <td>2</td>
-                <td><p>SIGN_MODE_TEXTUAL is a future signing mode that will verify some
-human-readable textual representation on top of the binary representation
-from SIGN_MODE_DIRECT</p></td>
-              </tr>
-
-              <tr>
-                <td>SIGN_MODE_LEGACY_AMINO_JSON</td>
-                <td>127</td>
-                <td><p>SIGN_MODE_LEGACY_AMINO_JSON is a backwards compatibility mode which uses
-Amino JSON and will be removed in the future</p></td>
-              </tr>
-
-              <tr>
-                <td>SIGN_MODE_EIP_191</td>
-                <td>191</td>
-                <td><p>SIGN_MODE_EIP_191 specifies the sign mode for EIP 191 signing on the Cosmos
-SDK. Ref: https://eips.ethereum.org/EIPS/eip-191
-
-Currently, SIGN_MODE_EIP_191 is registered as a SignMode enum variant,
-but is not implemented on the SDK by default. To enable EIP-191, you need
-to pass a custom `TxConfig` that has an implementation of
-`SignModeHandler` for EIP-191. The SDK may decide to fully support
-EIP-191 in the future.
-
-Since: cosmos-sdk 0.45.2</p></td>
-              </tr>
-
-          </tbody>
-        </table>
 
 
 

@@ -167,6 +167,29 @@
 
 
           <li>
+            <a href="#cosmos/vesting/v1beta1/tx.proto">cosmos/vesting/v1beta1/tx.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.vesting.v1beta1.MsgCreateVestingAccount"><span class="badge">M</span>MsgCreateVestingAccount</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse"><span class="badge">M</span>MsgCreateVestingAccountResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.vesting.v1beta1.Msg"><span class="badge">S</span>Msg</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/vesting/v1beta1/vesting.proto">cosmos/vesting/v1beta1/vesting.proto</a>
             <ul>
 
@@ -200,32 +223,102 @@
             </ul>
           </li>
 
-
-          <li>
-            <a href="#cosmos/vesting/v1beta1/tx.proto">cosmos/vesting/v1beta1/tx.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#cosmos.vesting.v1beta1.MsgCreateVestingAccount"><span class="badge">M</span>MsgCreateVestingAccount</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse"><span class="badge">M</span>MsgCreateVestingAccountResponse</a>
-                </li>
-
-
-
-
-                <li>
-                  <a href="#cosmos.vesting.v1beta1.Msg"><span class="badge">S</span>Msg</a>
-                </li>
-
-            </ul>
-          </li>
-
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/vesting/v1beta1/tx.proto">cosmos/vesting/v1beta1/tx.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.vesting.v1beta1.MsgCreateVestingAccount">MsgCreateVestingAccount</h3>
+        <p>MsgCreateVestingAccount defines a message that enables creating a vesting</p><p>account.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>from_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>to_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>end_time</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>delayed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse">MsgCreateVestingAccountResponse</h3>
+        <p>MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount response type.</p>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.vesting.v1beta1.Msg">Msg</h3>
+        <p>Msg defines the bank Msg service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>CreateVestingAccount</td>
+                <td><a href="#cosmos.vesting.v1beta1.MsgCreateVestingAccount">MsgCreateVestingAccount</a></td>
+                <td><a href="#cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse">MsgCreateVestingAccountResponse</a></td>
+                <td><p>CreateVestingAccount defines a method that enables creating a vesting
+account.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
 
 
 
@@ -439,99 +532,6 @@
 
 
 
-
-
-
-
-      <div class="file-heading">
-        <h2 id="cosmos/vesting/v1beta1/tx.proto">cosmos/vesting/v1beta1/tx.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="cosmos.vesting.v1beta1.MsgCreateVestingAccount">MsgCreateVestingAccount</h3>
-        <p>MsgCreateVestingAccount defines a message that enables creating a vesting</p><p>account.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>from_address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>to_address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>amount</td>
-                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>end_time</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>delayed</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse">MsgCreateVestingAccountResponse</h3>
-        <p>MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount response type.</p>
-
-
-
-
-
-
-
-
-
-
-
-        <h3 id="cosmos.vesting.v1beta1.Msg">Msg</h3>
-        <p>Msg defines the bank Msg service.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-
-              <tr>
-                <td>CreateVestingAccount</td>
-                <td><a href="#cosmos.vesting.v1beta1.MsgCreateVestingAccount">MsgCreateVestingAccount</a></td>
-                <td><a href="#cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse">MsgCreateVestingAccountResponse</a></td>
-                <td><p>CreateVestingAccount defines a method that enables creating a vesting
-account.</p></td>
-              </tr>
-
-          </tbody>
-        </table>
 
 
 

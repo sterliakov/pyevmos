@@ -59,6 +59,17 @@ class Params(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the auth module's genesis state."""
+
+    params: 'Params' = betterproto.message_field(1)
+    """params defines all the paramaters of the module."""
+
+    accounts: List['betterproto_lib_google_protobuf.Any'] = betterproto.message_field(2)
+    """accounts are the accounts present at genesis."""
+
+
+@dataclass(eq=False, repr=False)
 class QueryAccountsRequest(betterproto.Message):
     """
     QueryAccountsRequest is the request type for the Query/Accounts RPC method.
@@ -112,17 +123,6 @@ class QueryParamsResponse(betterproto.Message):
 
     params: 'Params' = betterproto.message_field(1)
     """params defines the parameters of the module."""
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the auth module's genesis state."""
-
-    params: 'Params' = betterproto.message_field(1)
-    """params defines all the paramaters of the module."""
-
-    accounts: List['betterproto_lib_google_protobuf.Any'] = betterproto.message_field(2)
-    """accounts are the accounts present at genesis."""
 
 
 class QueryStub(betterproto.ServiceStub):

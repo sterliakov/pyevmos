@@ -39,6 +39,14 @@ class Equivocation(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the evidence module's genesis state."""
+
+    evidence: List['betterproto_lib_google_protobuf.Any'] = betterproto.message_field(1)
+    """evidence defines all the evidence at genesis."""
+
+
+@dataclass(eq=False, repr=False)
 class QueryEvidenceRequest(betterproto.Message):
     """QueryEvidenceRequest is the request type for the Query/Evidence RPC method."""
 
@@ -77,14 +85,6 @@ class QueryAllEvidenceResponse(betterproto.Message):
 
     pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the evidence module's genesis state."""
-
-    evidence: List['betterproto_lib_google_protobuf.Any'] = betterproto.message_field(1)
-    """evidence defines all the evidence at genesis."""
 
 
 @dataclass(eq=False, repr=False)

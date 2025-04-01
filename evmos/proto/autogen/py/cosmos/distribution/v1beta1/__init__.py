@@ -172,6 +172,156 @@ class CommunityPoolSpendProposalWithDeposit(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class DelegatorWithdrawInfo(betterproto.Message):
+    """
+    DelegatorWithdrawInfo is the address for where distributions rewards are
+    withdrawn to by default this struct is only used at genesis to feed in
+    default withdraw addresses.
+    """
+
+    delegator_address: str = betterproto.string_field(1)
+    """delegator_address is the address of the delegator."""
+
+    withdraw_address: str = betterproto.string_field(2)
+    """withdraw_address is the address to withdraw the delegation rewards to."""
+
+
+@dataclass(eq=False, repr=False)
+class ValidatorOutstandingRewardsRecord(betterproto.Message):
+    """ValidatorOutstandingRewardsRecord is used for import/export via genesis json."""
+
+    validator_address: str = betterproto.string_field(1)
+    """validator_address is the address of the validator."""
+
+    outstanding_rewards: List['__base_v1_beta1__.DecCoin'] = betterproto.message_field(
+        2
+    )
+    """outstanding_rewards represents the oustanding rewards of a validator."""
+
+
+@dataclass(eq=False, repr=False)
+class ValidatorAccumulatedCommissionRecord(betterproto.Message):
+    """
+    ValidatorAccumulatedCommissionRecord is used for import / export via genesis
+    json.
+    """
+
+    validator_address: str = betterproto.string_field(1)
+    """validator_address is the address of the validator."""
+
+    accumulated: 'ValidatorAccumulatedCommission' = betterproto.message_field(2)
+    """accumulated is the accumulated commission of a validator."""
+
+
+@dataclass(eq=False, repr=False)
+class ValidatorHistoricalRewardsRecord(betterproto.Message):
+    """
+    ValidatorHistoricalRewardsRecord is used for import / export via genesis
+    json.
+    """
+
+    validator_address: str = betterproto.string_field(1)
+    """validator_address is the address of the validator."""
+
+    period: int = betterproto.uint64_field(2)
+    """period defines the period the historical rewards apply to."""
+
+    rewards: 'ValidatorHistoricalRewards' = betterproto.message_field(3)
+    """rewards defines the historical rewards of a validator."""
+
+
+@dataclass(eq=False, repr=False)
+class ValidatorCurrentRewardsRecord(betterproto.Message):
+    """ValidatorCurrentRewardsRecord is used for import / export via genesis json."""
+
+    validator_address: str = betterproto.string_field(1)
+    """validator_address is the address of the validator."""
+
+    rewards: 'ValidatorCurrentRewards' = betterproto.message_field(2)
+    """rewards defines the current rewards of a validator."""
+
+
+@dataclass(eq=False, repr=False)
+class DelegatorStartingInfoRecord(betterproto.Message):
+    """DelegatorStartingInfoRecord used for import / export via genesis json."""
+
+    delegator_address: str = betterproto.string_field(1)
+    """delegator_address is the address of the delegator."""
+
+    validator_address: str = betterproto.string_field(2)
+    """validator_address is the address of the validator."""
+
+    starting_info: 'DelegatorStartingInfo' = betterproto.message_field(3)
+    """starting_info defines the starting info of a delegator."""
+
+
+@dataclass(eq=False, repr=False)
+class ValidatorSlashEventRecord(betterproto.Message):
+    """ValidatorSlashEventRecord is used for import / export via genesis json."""
+
+    validator_address: str = betterproto.string_field(1)
+    """validator_address is the address of the validator."""
+
+    height: int = betterproto.uint64_field(2)
+    """height defines the block height at which the slash event occured."""
+
+    period: int = betterproto.uint64_field(3)
+    """period is the period of the slash event."""
+
+    validator_slash_event: 'ValidatorSlashEvent' = betterproto.message_field(4)
+    """validator_slash_event describes the slash event."""
+
+
+@dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the distribution module's genesis state."""
+
+    params: 'Params' = betterproto.message_field(1)
+    """params defines all the paramaters of the module."""
+
+    fee_pool: 'FeePool' = betterproto.message_field(2)
+    """fee_pool defines the fee pool at genesis."""
+
+    delegator_withdraw_infos: List['DelegatorWithdrawInfo'] = betterproto.message_field(
+        3
+    )
+    """fee_pool defines the delegator withdraw infos at genesis."""
+
+    previous_proposer: str = betterproto.string_field(4)
+    """fee_pool defines the previous proposer at genesis."""
+
+    outstanding_rewards: List[
+        'ValidatorOutstandingRewardsRecord'
+    ] = betterproto.message_field(5)
+    """fee_pool defines the outstanding rewards of all validators at genesis."""
+
+    validator_accumulated_commissions: List[
+        'ValidatorAccumulatedCommissionRecord'
+    ] = betterproto.message_field(6)
+    """fee_pool defines the accumulated commisions of all validators at genesis."""
+
+    validator_historical_rewards: List[
+        'ValidatorHistoricalRewardsRecord'
+    ] = betterproto.message_field(7)
+    """fee_pool defines the historical rewards of all validators at genesis."""
+
+    validator_current_rewards: List[
+        'ValidatorCurrentRewardsRecord'
+    ] = betterproto.message_field(8)
+    """fee_pool defines the current rewards of all validators at genesis."""
+
+    delegator_starting_infos: List[
+        'DelegatorStartingInfoRecord'
+    ] = betterproto.message_field(9)
+    """fee_pool defines the delegator starting infos at genesis."""
+
+    validator_slash_events: List[
+        'ValidatorSlashEventRecord'
+    ] = betterproto.message_field(10)
+    """fee_pool defines the validator slash events at genesis."""
+
+
+@dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
     """QueryParamsRequest is the request type for the Query/Params RPC method."""
 
@@ -376,156 +526,6 @@ class QueryCommunityPoolResponse(betterproto.Message):
 
     pool: List['__base_v1_beta1__.DecCoin'] = betterproto.message_field(1)
     """pool defines community pool's coins."""
-
-
-@dataclass(eq=False, repr=False)
-class DelegatorWithdrawInfo(betterproto.Message):
-    """
-    DelegatorWithdrawInfo is the address for where distributions rewards are
-    withdrawn to by default this struct is only used at genesis to feed in
-    default withdraw addresses.
-    """
-
-    delegator_address: str = betterproto.string_field(1)
-    """delegator_address is the address of the delegator."""
-
-    withdraw_address: str = betterproto.string_field(2)
-    """withdraw_address is the address to withdraw the delegation rewards to."""
-
-
-@dataclass(eq=False, repr=False)
-class ValidatorOutstandingRewardsRecord(betterproto.Message):
-    """ValidatorOutstandingRewardsRecord is used for import/export via genesis json."""
-
-    validator_address: str = betterproto.string_field(1)
-    """validator_address is the address of the validator."""
-
-    outstanding_rewards: List['__base_v1_beta1__.DecCoin'] = betterproto.message_field(
-        2
-    )
-    """outstanding_rewards represents the oustanding rewards of a validator."""
-
-
-@dataclass(eq=False, repr=False)
-class ValidatorAccumulatedCommissionRecord(betterproto.Message):
-    """
-    ValidatorAccumulatedCommissionRecord is used for import / export via genesis
-    json.
-    """
-
-    validator_address: str = betterproto.string_field(1)
-    """validator_address is the address of the validator."""
-
-    accumulated: 'ValidatorAccumulatedCommission' = betterproto.message_field(2)
-    """accumulated is the accumulated commission of a validator."""
-
-
-@dataclass(eq=False, repr=False)
-class ValidatorHistoricalRewardsRecord(betterproto.Message):
-    """
-    ValidatorHistoricalRewardsRecord is used for import / export via genesis
-    json.
-    """
-
-    validator_address: str = betterproto.string_field(1)
-    """validator_address is the address of the validator."""
-
-    period: int = betterproto.uint64_field(2)
-    """period defines the period the historical rewards apply to."""
-
-    rewards: 'ValidatorHistoricalRewards' = betterproto.message_field(3)
-    """rewards defines the historical rewards of a validator."""
-
-
-@dataclass(eq=False, repr=False)
-class ValidatorCurrentRewardsRecord(betterproto.Message):
-    """ValidatorCurrentRewardsRecord is used for import / export via genesis json."""
-
-    validator_address: str = betterproto.string_field(1)
-    """validator_address is the address of the validator."""
-
-    rewards: 'ValidatorCurrentRewards' = betterproto.message_field(2)
-    """rewards defines the current rewards of a validator."""
-
-
-@dataclass(eq=False, repr=False)
-class DelegatorStartingInfoRecord(betterproto.Message):
-    """DelegatorStartingInfoRecord used for import / export via genesis json."""
-
-    delegator_address: str = betterproto.string_field(1)
-    """delegator_address is the address of the delegator."""
-
-    validator_address: str = betterproto.string_field(2)
-    """validator_address is the address of the validator."""
-
-    starting_info: 'DelegatorStartingInfo' = betterproto.message_field(3)
-    """starting_info defines the starting info of a delegator."""
-
-
-@dataclass(eq=False, repr=False)
-class ValidatorSlashEventRecord(betterproto.Message):
-    """ValidatorSlashEventRecord is used for import / export via genesis json."""
-
-    validator_address: str = betterproto.string_field(1)
-    """validator_address is the address of the validator."""
-
-    height: int = betterproto.uint64_field(2)
-    """height defines the block height at which the slash event occured."""
-
-    period: int = betterproto.uint64_field(3)
-    """period is the period of the slash event."""
-
-    validator_slash_event: 'ValidatorSlashEvent' = betterproto.message_field(4)
-    """validator_slash_event describes the slash event."""
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the distribution module's genesis state."""
-
-    params: 'Params' = betterproto.message_field(1)
-    """params defines all the paramaters of the module."""
-
-    fee_pool: 'FeePool' = betterproto.message_field(2)
-    """fee_pool defines the fee pool at genesis."""
-
-    delegator_withdraw_infos: List['DelegatorWithdrawInfo'] = betterproto.message_field(
-        3
-    )
-    """fee_pool defines the delegator withdraw infos at genesis."""
-
-    previous_proposer: str = betterproto.string_field(4)
-    """fee_pool defines the previous proposer at genesis."""
-
-    outstanding_rewards: List[
-        'ValidatorOutstandingRewardsRecord'
-    ] = betterproto.message_field(5)
-    """fee_pool defines the outstanding rewards of all validators at genesis."""
-
-    validator_accumulated_commissions: List[
-        'ValidatorAccumulatedCommissionRecord'
-    ] = betterproto.message_field(6)
-    """fee_pool defines the accumulated commisions of all validators at genesis."""
-
-    validator_historical_rewards: List[
-        'ValidatorHistoricalRewardsRecord'
-    ] = betterproto.message_field(7)
-    """fee_pool defines the historical rewards of all validators at genesis."""
-
-    validator_current_rewards: List[
-        'ValidatorCurrentRewardsRecord'
-    ] = betterproto.message_field(8)
-    """fee_pool defines the current rewards of all validators at genesis."""
-
-    delegator_starting_infos: List[
-        'DelegatorStartingInfoRecord'
-    ] = betterproto.message_field(9)
-    """fee_pool defines the delegator starting infos at genesis."""
-
-    validator_slash_events: List[
-        'ValidatorSlashEventRecord'
-    ] = betterproto.message_field(10)
-    """fee_pool defines the validator slash events at genesis."""
 
 
 @dataclass(eq=False, repr=False)

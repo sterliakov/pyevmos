@@ -211,6 +211,33 @@ class Acknowledgement(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the ibc channel submodule's genesis state."""
+
+    channels: List['IdentifiedChannel'] = betterproto.message_field(1)
+    acknowledgements: List['PacketState'] = betterproto.message_field(2)
+    commitments: List['PacketState'] = betterproto.message_field(3)
+    receipts: List['PacketState'] = betterproto.message_field(4)
+    send_sequences: List['PacketSequence'] = betterproto.message_field(5)
+    recv_sequences: List['PacketSequence'] = betterproto.message_field(6)
+    ack_sequences: List['PacketSequence'] = betterproto.message_field(7)
+    next_channel_sequence: int = betterproto.uint64_field(8)
+    """the sequence for the next generated channel identifier"""
+
+
+@dataclass(eq=False, repr=False)
+class PacketSequence(betterproto.Message):
+    """
+    PacketSequence defines the genesis type necessary to retrieve and store
+    next send and receive sequences.
+    """
+
+    port_id: str = betterproto.string_field(1)
+    channel_id: str = betterproto.string_field(2)
+    sequence: int = betterproto.uint64_field(3)
+
+
+@dataclass(eq=False, repr=False)
 class QueryChannelRequest(betterproto.Message):
     """QueryChannelRequest is the request type for the Query/Channel RPC method"""
 
@@ -646,33 +673,6 @@ class QueryNextSequenceReceiveResponse(betterproto.Message):
 
     proof_height: '__client_v1__.Height' = betterproto.message_field(3)
     """height at which the proof was retrieved"""
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the ibc channel submodule's genesis state."""
-
-    channels: List['IdentifiedChannel'] = betterproto.message_field(1)
-    acknowledgements: List['PacketState'] = betterproto.message_field(2)
-    commitments: List['PacketState'] = betterproto.message_field(3)
-    receipts: List['PacketState'] = betterproto.message_field(4)
-    send_sequences: List['PacketSequence'] = betterproto.message_field(5)
-    recv_sequences: List['PacketSequence'] = betterproto.message_field(6)
-    ack_sequences: List['PacketSequence'] = betterproto.message_field(7)
-    next_channel_sequence: int = betterproto.uint64_field(8)
-    """the sequence for the next generated channel identifier"""
-
-
-@dataclass(eq=False, repr=False)
-class PacketSequence(betterproto.Message):
-    """
-    PacketSequence defines the genesis type necessary to retrieve and store
-    next send and receive sequences.
-    """
-
-    port_id: str = betterproto.string_field(1)
-    channel_id: str = betterproto.string_field(2)
-    sequence: int = betterproto.uint64_field(3)
 
 
 @dataclass(eq=False, repr=False)

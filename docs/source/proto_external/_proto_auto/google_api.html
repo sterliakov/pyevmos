@@ -167,29 +167,6 @@
 
 
           <li>
-            <a href="#google/api/http.proto">google/api/http.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#google.api.CustomHttpPattern"><span class="badge">M</span>CustomHttpPattern</a>
-                </li>
-
-                <li>
-                  <a href="#google.api.Http"><span class="badge">M</span>Http</a>
-                </li>
-
-                <li>
-                  <a href="#google.api.HttpRule"><span class="badge">M</span>HttpRule</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
             <a href="#google/api/annotations.proto">google/api/annotations.proto</a>
             <ul>
 
@@ -218,9 +195,117 @@
             </ul>
           </li>
 
+
+          <li>
+            <a href="#google/api/http.proto">google/api/http.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#google.api.CustomHttpPattern"><span class="badge">M</span>CustomHttpPattern</a>
+                </li>
+
+                <li>
+                  <a href="#google.api.Http"><span class="badge">M</span>Http</a>
+                </li>
+
+                <li>
+                  <a href="#google.api.HttpRule"><span class="badge">M</span>HttpRule</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="google/api/annotations.proto">google/api/annotations.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+
+
+
+
+        <h3 id="google/api/annotations.proto-extensions">File-level Extensions</h3>
+        <table class="extension-table">
+          <thead>
+            <tr><td>Extension</td><td>Type</td><td>Base</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>http</td>
+                <td><a href="#google.api.HttpRule">HttpRule</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
+                <td>72295728</td>
+                <td><p>See `HttpRule`.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="google/api/httpbody.proto">google/api/httpbody.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="google.api.HttpBody">HttpBody</h3>
+        <p>Message that represents an arbitrary HTTP body. It should only be used for</p><p>payload formats that can't be represented as JSON, such as raw binary or</p><p>an HTML page.</p><p>This message can be used both in streaming and non-streaming API methods in</p><p>the request as well as the response.</p><p>It can be used as a top-level request field, which is convenient if one</p><p>wants to extract parameters from either the URL or HTTP template into the</p><p>request fields and also want access to the raw HTTP body.</p><p>Example:</p><p>message GetResourceRequest {</p><p>// A unique request id.</p><p>string request_id = 1;</p><p>// The raw HTTP body is bound to this field.</p><p>google.api.HttpBody http_body = 2;</p><p>}</p><p>service ResourceService {</p><p>rpc GetResource(GetResourceRequest) returns (google.api.HttpBody);</p><p>rpc UpdateResource(google.api.HttpBody) returns</p><p>(google.protobuf.Empty);</p><p>}</p><p>Example with streaming methods:</p><p>service CaldavService {</p><p>rpc GetCalendar(stream google.api.HttpBody)</p><p>returns (stream google.api.HttpBody);</p><p>rpc UpdateCalendar(stream google.api.HttpBody)</p><p>returns (stream google.api.HttpBody);</p><p>}</p><p>Use of this type only changes how the request and response bodies are</p><p>handled, all other features will continue to work unchanged.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>content_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The HTTP Content-Type header value specifying the content type of the body. </p></td>
+                </tr>
+
+                <tr>
+                  <td>data</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>The HTTP request/response body as raw binary. </p></td>
+                </tr>
+
+                <tr>
+                  <td>extensions</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td>repeated</td>
+                  <td><p>Application specific response metadata. Must be set in the first response
+for streaming APIs. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -390,91 +475,6 @@ not set, the response message will be used as HTTP body of response. </p></td>
                   <td><p>Additional HTTP bindings for the selector. Nested bindings must
 not contain an `additional_bindings` field themselves (that is,
 the nesting may only be one level deep). </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="google/api/annotations.proto">google/api/annotations.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-
-
-
-
-        <h3 id="google/api/annotations.proto-extensions">File-level Extensions</h3>
-        <table class="extension-table">
-          <thead>
-            <tr><td>Extension</td><td>Type</td><td>Base</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-
-              <tr>
-                <td>http</td>
-                <td><a href="#google.api.HttpRule">HttpRule</a></td>
-                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
-                <td>72295728</td>
-                <td><p>See `HttpRule`.</p></td>
-              </tr>
-
-          </tbody>
-        </table>
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="google/api/httpbody.proto">google/api/httpbody.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="google.api.HttpBody">HttpBody</h3>
-        <p>Message that represents an arbitrary HTTP body. It should only be used for</p><p>payload formats that can't be represented as JSON, such as raw binary or</p><p>an HTML page.</p><p>This message can be used both in streaming and non-streaming API methods in</p><p>the request as well as the response.</p><p>It can be used as a top-level request field, which is convenient if one</p><p>wants to extract parameters from either the URL or HTTP template into the</p><p>request fields and also want access to the raw HTTP body.</p><p>Example:</p><p>message GetResourceRequest {</p><p>// A unique request id.</p><p>string request_id = 1;</p><p>// The raw HTTP body is bound to this field.</p><p>google.api.HttpBody http_body = 2;</p><p>}</p><p>service ResourceService {</p><p>rpc GetResource(GetResourceRequest) returns (google.api.HttpBody);</p><p>rpc UpdateResource(google.api.HttpBody) returns</p><p>(google.protobuf.Empty);</p><p>}</p><p>Example with streaming methods:</p><p>service CaldavService {</p><p>rpc GetCalendar(stream google.api.HttpBody)</p><p>returns (stream google.api.HttpBody);</p><p>rpc UpdateCalendar(stream google.api.HttpBody)</p><p>returns (stream google.api.HttpBody);</p><p>}</p><p>Use of this type only changes how the request and response bodies are</p><p>handled, all other features will continue to work unchanged.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>content_type</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The HTTP Content-Type header value specifying the content type of the body. </p></td>
-                </tr>
-
-                <tr>
-                  <td>data</td>
-                  <td><a href="#bytes">bytes</a></td>
-                  <td></td>
-                  <td><p>The HTTP request/response body as raw binary. </p></td>
-                </tr>
-
-                <tr>
-                  <td>extensions</td>
-                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
-                  <td>repeated</td>
-                  <td><p>Application specific response metadata. Must be set in the first response
-for streaming APIs. </p></td>
                 </tr>
 
             </tbody>

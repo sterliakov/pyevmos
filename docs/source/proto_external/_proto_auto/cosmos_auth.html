@@ -167,6 +167,44 @@
 
 
           <li>
+            <a href="#cosmos/auth/v1beta1/auth.proto">cosmos/auth/v1beta1/auth.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.BaseAccount"><span class="badge">M</span>BaseAccount</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.ModuleAccount"><span class="badge">M</span>ModuleAccount</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.Params"><span class="badge">M</span>Params</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/auth/v1beta1/genesis.proto">cosmos/auth/v1beta1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/auth/v1beta1/query.proto">cosmos/auth/v1beta1/query.proto</a>
             <ul>
 
@@ -204,47 +242,203 @@
             </ul>
           </li>
 
-
-          <li>
-            <a href="#cosmos/auth/v1beta1/genesis.proto">cosmos/auth/v1beta1/genesis.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#cosmos.auth.v1beta1.GenesisState"><span class="badge">M</span>GenesisState</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
-            <a href="#cosmos/auth/v1beta1/auth.proto">cosmos/auth/v1beta1/auth.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#cosmos.auth.v1beta1.BaseAccount"><span class="badge">M</span>BaseAccount</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.auth.v1beta1.ModuleAccount"><span class="badge">M</span>ModuleAccount</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.auth.v1beta1.Params"><span class="badge">M</span>Params</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/auth/v1beta1/auth.proto">cosmos/auth/v1beta1/auth.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.auth.v1beta1.BaseAccount">BaseAccount</h3>
+        <p>BaseAccount defines a base account type. It contains all the necessary fields</p><p>for basic account functionality. Any custom account type should extend this</p><p>type for additional functionality (e.g. vesting).</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pub_key</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>account_number</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>sequence</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.ModuleAccount">ModuleAccount</h3>
+        <p>ModuleAccount defines an account for modules that holds coins on a pool.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>base_account</td>
+                  <td><a href="#cosmos.auth.v1beta1.BaseAccount">BaseAccount</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>permissions</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.Params">Params</h3>
+        <p>Params defines the parameters for the auth module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>max_memo_characters</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>tx_sig_limit</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>tx_size_cost_per_byte</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>sig_verify_cost_ed25519</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>sig_verify_cost_secp256k1</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/auth/v1beta1/genesis.proto">cosmos/auth/v1beta1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.auth.v1beta1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the auth module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#cosmos.auth.v1beta1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines all the paramaters of the module. </p></td>
+                </tr>
+
+                <tr>
+                  <td>accounts</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td>repeated</td>
+                  <td><p>accounts are the accounts present at genesis. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -475,200 +669,6 @@ Since: cosmos-sdk 0.43</p></td>
 
             </tbody>
           </table>
-
-
-
-
-      <div class="file-heading">
-        <h2 id="cosmos/auth/v1beta1/genesis.proto">cosmos/auth/v1beta1/genesis.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="cosmos.auth.v1beta1.GenesisState">GenesisState</h3>
-        <p>GenesisState defines the auth module's genesis state.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>params</td>
-                  <td><a href="#cosmos.auth.v1beta1.Params">Params</a></td>
-                  <td></td>
-                  <td><p>params defines all the paramaters of the module. </p></td>
-                </tr>
-
-                <tr>
-                  <td>accounts</td>
-                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
-                  <td>repeated</td>
-                  <td><p>accounts are the accounts present at genesis. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="cosmos/auth/v1beta1/auth.proto">cosmos/auth/v1beta1/auth.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="cosmos.auth.v1beta1.BaseAccount">BaseAccount</h3>
-        <p>BaseAccount defines a base account type. It contains all the necessary fields</p><p>for basic account functionality. Any custom account type should extend this</p><p>type for additional functionality (e.g. vesting).</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>pub_key</td>
-                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>account_number</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>sequence</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.auth.v1beta1.ModuleAccount">ModuleAccount</h3>
-        <p>ModuleAccount defines an account for modules that holds coins on a pool.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>base_account</td>
-                  <td><a href="#cosmos.auth.v1beta1.BaseAccount">BaseAccount</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>permissions</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.auth.v1beta1.Params">Params</h3>
-        <p>Params defines the parameters for the auth module.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>max_memo_characters</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>tx_sig_limit</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>tx_size_cost_per_byte</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>sig_verify_cost_ed25519</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>sig_verify_cost_secp256k1</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
 
 
 

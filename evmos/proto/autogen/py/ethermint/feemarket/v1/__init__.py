@@ -58,6 +58,20 @@ class Params(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the feemarket module's genesis state."""
+
+    params: 'Params' = betterproto.message_field(1)
+    """params defines all the paramaters of the module."""
+
+    block_gas: int = betterproto.uint64_field(3)
+    """
+    block gas is the amount of gas wanted on the last block before the upgrade.
+    Zero by default.
+    """
+
+
+@dataclass(eq=False, repr=False)
 class QueryParamsRequest(betterproto.Message):
     """QueryParamsRequest defines the request type for querying x/evm parameters."""
 
@@ -104,20 +118,6 @@ class QueryBlockGasResponse(betterproto.Message):
     """QueryBlockGasResponse returns block gas used for a given height."""
 
     gas: int = betterproto.int64_field(1)
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the feemarket module's genesis state."""
-
-    params: 'Params' = betterproto.message_field(1)
-    """params defines all the paramaters of the module."""
-
-    block_gas: int = betterproto.uint64_field(3)
-    """
-    block gas is the amount of gas wanted on the last block before the upgrade.
-    Zero by default.
-    """
 
 
 class QueryStub(betterproto.ServiceStub):

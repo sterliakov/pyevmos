@@ -26,34 +26,6 @@ if TYPE_CHECKING:
 
 
 @dataclass(eq=False, repr=False)
-class EventGrant(betterproto.Message):
-    """EventGrant is emitted on Msg/Grant"""
-
-    msg_type_url: str = betterproto.string_field(2)
-    """Msg type URL for which an autorization is granted"""
-
-    granter: str = betterproto.string_field(3)
-    """Granter account address"""
-
-    grantee: str = betterproto.string_field(4)
-    """Grantee account address"""
-
-
-@dataclass(eq=False, repr=False)
-class EventRevoke(betterproto.Message):
-    """EventRevoke is emitted on Msg/Revoke"""
-
-    msg_type_url: str = betterproto.string_field(2)
-    """Msg type URL for which an autorization is revoked"""
-
-    granter: str = betterproto.string_field(3)
-    """Granter account address"""
-
-    grantee: str = betterproto.string_field(4)
-    """Grantee account address"""
-
-
-@dataclass(eq=False, repr=False)
 class GenericAuthorization(betterproto.Message):
     """
     GenericAuthorization gives the grantee unrestricted permissions to execute
@@ -90,6 +62,41 @@ class GrantAuthorization(betterproto.Message):
     grantee: str = betterproto.string_field(2)
     authorization: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(3)
     expiration: datetime = betterproto.message_field(4)
+
+
+@dataclass(eq=False, repr=False)
+class EventGrant(betterproto.Message):
+    """EventGrant is emitted on Msg/Grant"""
+
+    msg_type_url: str = betterproto.string_field(2)
+    """Msg type URL for which an autorization is granted"""
+
+    granter: str = betterproto.string_field(3)
+    """Granter account address"""
+
+    grantee: str = betterproto.string_field(4)
+    """Grantee account address"""
+
+
+@dataclass(eq=False, repr=False)
+class EventRevoke(betterproto.Message):
+    """EventRevoke is emitted on Msg/Revoke"""
+
+    msg_type_url: str = betterproto.string_field(2)
+    """Msg type URL for which an autorization is revoked"""
+
+    granter: str = betterproto.string_field(3)
+    """Granter account address"""
+
+    grantee: str = betterproto.string_field(4)
+    """Grantee account address"""
+
+
+@dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the authz module's genesis state."""
+
+    authorization: List['GrantAuthorization'] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -169,13 +176,6 @@ class QueryGranteeGrantsResponse(betterproto.Message):
 
     pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
     """pagination defines an pagination for the response."""
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the authz module's genesis state."""
-
-    authorization: List['GrantAuthorization'] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)

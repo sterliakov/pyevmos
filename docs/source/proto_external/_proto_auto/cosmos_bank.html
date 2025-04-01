@@ -167,6 +167,21 @@
 
 
           <li>
+            <a href="#cosmos/bank/v1beta1/authz.proto">cosmos/bank/v1beta1/authz.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.SendAuthorization"><span class="badge">M</span>SendAuthorization</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/bank/v1beta1/bank.proto">cosmos/bank/v1beta1/bank.proto</a>
             <ul>
 
@@ -196,6 +211,25 @@
 
                 <li>
                   <a href="#cosmos.bank.v1beta1.Supply"><span class="badge">M</span>Supply</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/bank/v1beta1/genesis.proto">cosmos/bank/v1beta1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.Balance"><span class="badge">M</span>Balance</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.GenesisState"><span class="badge">M</span>GenesisState</a>
                 </li>
 
 
@@ -285,40 +319,6 @@
 
 
           <li>
-            <a href="#cosmos/bank/v1beta1/genesis.proto">cosmos/bank/v1beta1/genesis.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#cosmos.bank.v1beta1.Balance"><span class="badge">M</span>Balance</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.bank.v1beta1.GenesisState"><span class="badge">M</span>GenesisState</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
-            <a href="#cosmos/bank/v1beta1/authz.proto">cosmos/bank/v1beta1/authz.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#cosmos.bank.v1beta1.SendAuthorization"><span class="badge">M</span>SendAuthorization</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
             <a href="#cosmos/bank/v1beta1/tx.proto">cosmos/bank/v1beta1/tx.proto</a>
             <ul>
 
@@ -351,6 +351,44 @@
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/bank/v1beta1/authz.proto">cosmos/bank/v1beta1/authz.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.bank.v1beta1.SendAuthorization">SendAuthorization</h3>
+        <p>SendAuthorization allows the grantee to spend up to spend_limit coins from</p><p>the granter's account.</p><p>Since: cosmos-sdk 0.43</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>spend_limit</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -606,6 +644,97 @@ Since: cosmos-sdk 0.43 </p></td>
                   <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/bank/v1beta1/genesis.proto">cosmos/bank/v1beta1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.bank.v1beta1.Balance">Balance</h3>
+        <p>Balance defines an account address and balance pair used in the bank module's</p><p>genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the address of the balance holder. </p></td>
+                </tr>
+
+                <tr>
+                  <td>coins</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p>coins defines the different coins this balance holds. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.bank.v1beta1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the bank module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#cosmos.bank.v1beta1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines all the paramaters of the module. </p></td>
+                </tr>
+
+                <tr>
+                  <td>balances</td>
+                  <td><a href="#cosmos.bank.v1beta1.Balance">Balance</a></td>
+                  <td>repeated</td>
+                  <td><p>balances is an array containing the balances of all the accounts. </p></td>
+                </tr>
+
+                <tr>
+                  <td>supply</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p>supply represents the total supply. If it is left empty, then supply will be calculated based on the provided
+balances. Otherwise, it will be used to validate that the sum of the balances equals this amount. </p></td>
+                </tr>
+
+                <tr>
+                  <td>denom_metadata</td>
+                  <td><a href="#cosmos.bank.v1beta1.Metadata">Metadata</a></td>
+                  <td>repeated</td>
+                  <td><p>denom_metadata defines the metadata of the differents coins. </p></td>
                 </tr>
 
             </tbody>
@@ -1220,135 +1349,6 @@ account.</p></td>
 
             </tbody>
           </table>
-
-
-
-
-      <div class="file-heading">
-        <h2 id="cosmos/bank/v1beta1/genesis.proto">cosmos/bank/v1beta1/genesis.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="cosmos.bank.v1beta1.Balance">Balance</h3>
-        <p>Balance defines an account address and balance pair used in the bank module's</p><p>genesis state.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>address is the address of the balance holder. </p></td>
-                </tr>
-
-                <tr>
-                  <td>coins</td>
-                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
-                  <td>repeated</td>
-                  <td><p>coins defines the different coins this balance holds. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.bank.v1beta1.GenesisState">GenesisState</h3>
-        <p>GenesisState defines the bank module's genesis state.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>params</td>
-                  <td><a href="#cosmos.bank.v1beta1.Params">Params</a></td>
-                  <td></td>
-                  <td><p>params defines all the paramaters of the module. </p></td>
-                </tr>
-
-                <tr>
-                  <td>balances</td>
-                  <td><a href="#cosmos.bank.v1beta1.Balance">Balance</a></td>
-                  <td>repeated</td>
-                  <td><p>balances is an array containing the balances of all the accounts. </p></td>
-                </tr>
-
-                <tr>
-                  <td>supply</td>
-                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
-                  <td>repeated</td>
-                  <td><p>supply represents the total supply. If it is left empty, then supply will be calculated based on the provided
-balances. Otherwise, it will be used to validate that the sum of the balances equals this amount. </p></td>
-                </tr>
-
-                <tr>
-                  <td>denom_metadata</td>
-                  <td><a href="#cosmos.bank.v1beta1.Metadata">Metadata</a></td>
-                  <td>repeated</td>
-                  <td><p>denom_metadata defines the metadata of the differents coins. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="cosmos/bank/v1beta1/authz.proto">cosmos/bank/v1beta1/authz.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="cosmos.bank.v1beta1.SendAuthorization">SendAuthorization</h3>
-        <p>SendAuthorization allows the grantee to spend up to spend_limit coins from</p><p>the granter's account.</p><p>Since: cosmos-sdk 0.43</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>spend_limit</td>
-                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
 
 
 

@@ -9,23 +9,6 @@ import betterproto
 
 
 @dataclass(eq=False, repr=False)
-class StoreKvPair(betterproto.Message):
-    """
-    StoreKVPair is a KVStore KVPair used for listening to state changes (Sets and
-    Deletes)
-    It optionally includes the StoreKey for the originating KVStore and a Boolean flag
-    to distinguish between Sets and
-    Deletes
-    Since: cosmos-sdk 0.43
-    """
-
-    store_key: str = betterproto.string_field(1)
-    delete: bool = betterproto.bool_field(2)
-    key: bytes = betterproto.bytes_field(3)
-    value: bytes = betterproto.bytes_field(4)
-
-
-@dataclass(eq=False, repr=False)
 class CommitInfo(betterproto.Message):
     """
     CommitInfo defines commit information used by the multi-store when committing
@@ -56,6 +39,23 @@ class CommitId(betterproto.Message):
 
     version: int = betterproto.int64_field(1)
     hash: bytes = betterproto.bytes_field(2)
+
+
+@dataclass(eq=False, repr=False)
+class StoreKvPair(betterproto.Message):
+    """
+    StoreKVPair is a KVStore KVPair used for listening to state changes (Sets and
+    Deletes)
+    It optionally includes the StoreKey for the originating KVStore and a Boolean flag
+    to distinguish between Sets and
+    Deletes
+    Since: cosmos-sdk 0.43
+    """
+
+    store_key: str = betterproto.string_field(1)
+    delete: bool = betterproto.bool_field(2)
+    key: bytes = betterproto.bytes_field(3)
+    value: bytes = betterproto.bytes_field(4)
 
 
 @dataclass(eq=False, repr=False)

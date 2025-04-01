@@ -51,40 +51,6 @@ class QueryBalancesResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class ClawbackVestingAccount(betterproto.Message):
-    """
-    ClawbackVestingAccount implements the VestingAccount interface. It provides
-    an account that can hold contributions subject to "lockup" (like a
-    PeriodicVestingAccount), or vesting which is subject to clawback
-    of unvested tokens, or a combination (tokens vest, but are still locked).
-    """
-
-    base_vesting_account: '___cosmos_vesting_v1_beta1__.BaseVestingAccount' = (
-        betterproto.message_field(1)
-    )
-    """
-    base_vesting_account implements the VestingAccount interface. It contains
-    all the necessary fields needed for any vesting account implementation
-    """
-
-    funder_address: str = betterproto.string_field(2)
-    """funder_address specifies the account which can perform clawback"""
-
-    start_time: datetime = betterproto.message_field(3)
-    """start_time defines the time at which the vesting period begins"""
-
-    lockup_periods: List[
-        '___cosmos_vesting_v1_beta1__.Period'
-    ] = betterproto.message_field(4)
-    """lockup_periods defines the unlocking schedule relative to the start_time"""
-
-    vesting_periods: List[
-        '___cosmos_vesting_v1_beta1__.Period'
-    ] = betterproto.message_field(5)
-    """vesting_periods defines the vesting schedule relative to the start_time"""
-
-
-@dataclass(eq=False, repr=False)
 class MsgCreateClawbackVestingAccount(betterproto.Message):
     """
     MsgCreateClawbackVestingAccount defines a message that enables creating a
@@ -162,6 +128,40 @@ class MsgClawbackResponse(betterproto.Message):
     """MsgClawbackResponse defines the MsgClawback response type."""
 
     pass
+
+
+@dataclass(eq=False, repr=False)
+class ClawbackVestingAccount(betterproto.Message):
+    """
+    ClawbackVestingAccount implements the VestingAccount interface. It provides
+    an account that can hold contributions subject to "lockup" (like a
+    PeriodicVestingAccount), or vesting which is subject to clawback
+    of unvested tokens, or a combination (tokens vest, but are still locked).
+    """
+
+    base_vesting_account: '___cosmos_vesting_v1_beta1__.BaseVestingAccount' = (
+        betterproto.message_field(1)
+    )
+    """
+    base_vesting_account implements the VestingAccount interface. It contains
+    all the necessary fields needed for any vesting account implementation
+    """
+
+    funder_address: str = betterproto.string_field(2)
+    """funder_address specifies the account which can perform clawback"""
+
+    start_time: datetime = betterproto.message_field(3)
+    """start_time defines the time at which the vesting period begins"""
+
+    lockup_periods: List[
+        '___cosmos_vesting_v1_beta1__.Period'
+    ] = betterproto.message_field(4)
+    """lockup_periods defines the unlocking schedule relative to the start_time"""
+
+    vesting_periods: List[
+        '___cosmos_vesting_v1_beta1__.Period'
+    ] = betterproto.message_field(5)
+    """vesting_periods defines the vesting schedule relative to the start_time"""
 
 
 class QueryStub(betterproto.ServiceStub):

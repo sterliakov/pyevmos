@@ -182,6 +182,33 @@
 
 
           <li>
+            <a href="#tendermint/types/evidence.proto">tendermint/types/evidence.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#tendermint.types.DuplicateVoteEvidence"><span class="badge">M</span>DuplicateVoteEvidence</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.Evidence"><span class="badge">M</span>Evidence</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.EvidenceList"><span class="badge">M</span>EvidenceList</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.LightClientAttackEvidence"><span class="badge">M</span>LightClientAttackEvidence</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#tendermint/types/params.proto">tendermint/types/params.proto</a>
             <ul>
 
@@ -207,33 +234,6 @@
 
                 <li>
                   <a href="#tendermint.types.VersionParams"><span class="badge">M</span>VersionParams</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
-            <a href="#tendermint/types/evidence.proto">tendermint/types/evidence.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#tendermint.types.DuplicateVoteEvidence"><span class="badge">M</span>DuplicateVoteEvidence</a>
-                </li>
-
-                <li>
-                  <a href="#tendermint.types.Evidence"><span class="badge">M</span>Evidence</a>
-                </li>
-
-                <li>
-                  <a href="#tendermint.types.EvidenceList"><span class="badge">M</span>EvidenceList</a>
-                </li>
-
-                <li>
-                  <a href="#tendermint.types.LightClientAttackEvidence"><span class="badge">M</span>LightClientAttackEvidence</a>
                 </li>
 
 
@@ -382,6 +382,179 @@
                 <tr>
                   <td>last_commit</td>
                   <td><a href="#tendermint.types.Commit">Commit</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="tendermint/types/evidence.proto">tendermint/types/evidence.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="tendermint.types.DuplicateVoteEvidence">DuplicateVoteEvidence</h3>
+        <p>DuplicateVoteEvidence contains evidence of a validator signed two conflicting</p><p>votes.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>vote_a</td>
+                  <td><a href="#tendermint.types.Vote">Vote</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>vote_b</td>
+                  <td><a href="#tendermint.types.Vote">Vote</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>total_voting_power</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>validator_power</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.Evidence">Evidence</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>duplicate_vote_evidence</td>
+                  <td><a href="#tendermint.types.DuplicateVoteEvidence">DuplicateVoteEvidence</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>light_client_attack_evidence</td>
+                  <td><a href="#tendermint.types.LightClientAttackEvidence">LightClientAttackEvidence</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.EvidenceList">EvidenceList</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>evidence</td>
+                  <td><a href="#tendermint.types.Evidence">Evidence</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.LightClientAttackEvidence">LightClientAttackEvidence</h3>
+        <p>LightClientAttackEvidence contains evidence of a set of validators attempting</p><p>to mislead a light client.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>conflicting_block</td>
+                  <td><a href="#tendermint.types.LightBlock">LightBlock</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>common_height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>byzantine_validators</td>
+                  <td><a href="#tendermint.types.Validator">Validator</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>total_voting_power</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -610,179 +783,6 @@ Default is 1048576 or 1MB </p></td>
                 <tr>
                   <td>app_version</td>
                   <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="tendermint/types/evidence.proto">tendermint/types/evidence.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="tendermint.types.DuplicateVoteEvidence">DuplicateVoteEvidence</h3>
-        <p>DuplicateVoteEvidence contains evidence of a validator signed two conflicting</p><p>votes.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>vote_a</td>
-                  <td><a href="#tendermint.types.Vote">Vote</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>vote_b</td>
-                  <td><a href="#tendermint.types.Vote">Vote</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>total_voting_power</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>validator_power</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>timestamp</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="tendermint.types.Evidence">Evidence</h3>
-        <p></p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>duplicate_vote_evidence</td>
-                  <td><a href="#tendermint.types.DuplicateVoteEvidence">DuplicateVoteEvidence</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>light_client_attack_evidence</td>
-                  <td><a href="#tendermint.types.LightClientAttackEvidence">LightClientAttackEvidence</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="tendermint.types.EvidenceList">EvidenceList</h3>
-        <p></p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>evidence</td>
-                  <td><a href="#tendermint.types.Evidence">Evidence</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="tendermint.types.LightClientAttackEvidence">LightClientAttackEvidence</h3>
-        <p>LightClientAttackEvidence contains evidence of a set of validators attempting</p><p>to mislead a light client.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>conflicting_block</td>
-                  <td><a href="#tendermint.types.LightBlock">LightBlock</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>common_height</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>byzantine_validators</td>
-                  <td><a href="#tendermint.types.Validator">Validator</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>total_voting_power</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>timestamp</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>

@@ -167,6 +167,33 @@
 
 
           <li>
+            <a href="#cosmos/slashing/v1beta1/genesis.proto">cosmos/slashing/v1beta1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.slashing.v1beta1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.slashing.v1beta1.MissedBlock"><span class="badge">M</span>MissedBlock</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.slashing.v1beta1.SigningInfo"><span class="badge">M</span>SigningInfo</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.slashing.v1beta1.ValidatorMissedBlocks"><span class="badge">M</span>ValidatorMissedBlocks</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/slashing/v1beta1/query.proto">cosmos/slashing/v1beta1/query.proto</a>
             <ul>
 
@@ -225,33 +252,6 @@
 
 
           <li>
-            <a href="#cosmos/slashing/v1beta1/genesis.proto">cosmos/slashing/v1beta1/genesis.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#cosmos.slashing.v1beta1.GenesisState"><span class="badge">M</span>GenesisState</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.slashing.v1beta1.MissedBlock"><span class="badge">M</span>MissedBlock</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.slashing.v1beta1.SigningInfo"><span class="badge">M</span>SigningInfo</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.slashing.v1beta1.ValidatorMissedBlocks"><span class="badge">M</span>ValidatorMissedBlocks</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
             <a href="#cosmos/slashing/v1beta1/tx.proto">cosmos/slashing/v1beta1/tx.proto</a>
             <ul>
 
@@ -276,6 +276,153 @@
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/slashing/v1beta1/genesis.proto">cosmos/slashing/v1beta1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.slashing.v1beta1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the slashing module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#cosmos.slashing.v1beta1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines all the paramaters of related to deposit. </p></td>
+                </tr>
+
+                <tr>
+                  <td>signing_infos</td>
+                  <td><a href="#cosmos.slashing.v1beta1.SigningInfo">SigningInfo</a></td>
+                  <td>repeated</td>
+                  <td><p>signing_infos represents a map between validator addresses and their
+signing infos. </p></td>
+                </tr>
+
+                <tr>
+                  <td>missed_blocks</td>
+                  <td><a href="#cosmos.slashing.v1beta1.ValidatorMissedBlocks">ValidatorMissedBlocks</a></td>
+                  <td>repeated</td>
+                  <td><p>missed_blocks represents a map between validator addresses and their
+missed blocks. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.slashing.v1beta1.MissedBlock">MissedBlock</h3>
+        <p>MissedBlock contains height and missed status as boolean.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>index</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>index is the height at which the block was missed. </p></td>
+                </tr>
+
+                <tr>
+                  <td>missed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>missed is the missed status. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.slashing.v1beta1.SigningInfo">SigningInfo</h3>
+        <p>SigningInfo stores validator signing info of corresponding address.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the validator address. </p></td>
+                </tr>
+
+                <tr>
+                  <td>validator_signing_info</td>
+                  <td><a href="#cosmos.slashing.v1beta1.ValidatorSigningInfo">ValidatorSigningInfo</a></td>
+                  <td></td>
+                  <td><p>validator_signing_info represents the signing info of this validator. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.slashing.v1beta1.ValidatorMissedBlocks">ValidatorMissedBlocks</h3>
+        <p>ValidatorMissedBlocks contains array of missed blocks of corresponding</p><p>address.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the validator address. </p></td>
+                </tr>
+
+                <tr>
+                  <td>missed_blocks</td>
+                  <td><a href="#cosmos.slashing.v1beta1.MissedBlock">MissedBlock</a></td>
+                  <td>repeated</td>
+                  <td><p>missed_blocks is an array of missed blocks by the validator. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -620,153 +767,6 @@ once the validator commits an equivocation or for any other configured misbehiav
                   <td></td>
                   <td><p>A counter kept to avoid unnecessary array reads.
 Note that `Sum(MissedBlocksBitArray)` always equals `MissedBlocksCounter`. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="cosmos/slashing/v1beta1/genesis.proto">cosmos/slashing/v1beta1/genesis.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="cosmos.slashing.v1beta1.GenesisState">GenesisState</h3>
-        <p>GenesisState defines the slashing module's genesis state.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>params</td>
-                  <td><a href="#cosmos.slashing.v1beta1.Params">Params</a></td>
-                  <td></td>
-                  <td><p>params defines all the paramaters of related to deposit. </p></td>
-                </tr>
-
-                <tr>
-                  <td>signing_infos</td>
-                  <td><a href="#cosmos.slashing.v1beta1.SigningInfo">SigningInfo</a></td>
-                  <td>repeated</td>
-                  <td><p>signing_infos represents a map between validator addresses and their
-signing infos. </p></td>
-                </tr>
-
-                <tr>
-                  <td>missed_blocks</td>
-                  <td><a href="#cosmos.slashing.v1beta1.ValidatorMissedBlocks">ValidatorMissedBlocks</a></td>
-                  <td>repeated</td>
-                  <td><p>missed_blocks represents a map between validator addresses and their
-missed blocks. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.slashing.v1beta1.MissedBlock">MissedBlock</h3>
-        <p>MissedBlock contains height and missed status as boolean.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>index</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>index is the height at which the block was missed. </p></td>
-                </tr>
-
-                <tr>
-                  <td>missed</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>missed is the missed status. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.slashing.v1beta1.SigningInfo">SigningInfo</h3>
-        <p>SigningInfo stores validator signing info of corresponding address.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>address is the validator address. </p></td>
-                </tr>
-
-                <tr>
-                  <td>validator_signing_info</td>
-                  <td><a href="#cosmos.slashing.v1beta1.ValidatorSigningInfo">ValidatorSigningInfo</a></td>
-                  <td></td>
-                  <td><p>validator_signing_info represents the signing info of this validator. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.slashing.v1beta1.ValidatorMissedBlocks">ValidatorMissedBlocks</h3>
-        <p>ValidatorMissedBlocks contains array of missed blocks of corresponding</p><p>address.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>address is the validator address. </p></td>
-                </tr>
-
-                <tr>
-                  <td>missed_blocks</td>
-                  <td><a href="#cosmos.slashing.v1beta1.MissedBlock">MissedBlock</a></td>
-                  <td>repeated</td>
-                  <td><p>missed_blocks is an array of missed blocks by the validator. </p></td>
                 </tr>
 
             </tbody>

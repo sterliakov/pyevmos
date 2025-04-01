@@ -25,6 +25,29 @@ if TYPE_CHECKING:
 
 
 @dataclass(eq=False, repr=False)
+class MsgCreateVestingAccount(betterproto.Message):
+    """
+    MsgCreateVestingAccount defines a message that enables creating a vesting
+    account.
+    """
+
+    from_address: str = betterproto.string_field(1)
+    to_address: str = betterproto.string_field(2)
+    amount: List['__base_v1_beta1__.Coin'] = betterproto.message_field(3)
+    end_time: int = betterproto.int64_field(4)
+    delayed: bool = betterproto.bool_field(5)
+
+
+@dataclass(eq=False, repr=False)
+class MsgCreateVestingAccountResponse(betterproto.Message):
+    """
+    MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount response type.
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
 class BaseVestingAccount(betterproto.Message):
     """
     BaseVestingAccount implements the VestingAccount interface. It contains all
@@ -90,29 +113,6 @@ class PermanentLockedAccount(betterproto.Message):
     """
 
     base_vesting_account: 'BaseVestingAccount' = betterproto.message_field(1)
-
-
-@dataclass(eq=False, repr=False)
-class MsgCreateVestingAccount(betterproto.Message):
-    """
-    MsgCreateVestingAccount defines a message that enables creating a vesting
-    account.
-    """
-
-    from_address: str = betterproto.string_field(1)
-    to_address: str = betterproto.string_field(2)
-    amount: List['__base_v1_beta1__.Coin'] = betterproto.message_field(3)
-    end_time: int = betterproto.int64_field(4)
-    delayed: bool = betterproto.bool_field(5)
-
-
-@dataclass(eq=False, repr=False)
-class MsgCreateVestingAccountResponse(betterproto.Message):
-    """
-    MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount response type.
-    """
-
-    pass
 
 
 class MsgStub(betterproto.ServiceStub):

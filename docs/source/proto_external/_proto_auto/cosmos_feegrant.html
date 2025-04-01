@@ -167,37 +167,6 @@
 
 
           <li>
-            <a href="#cosmos/feegrant/v1beta1/query.proto">cosmos/feegrant/v1beta1/query.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#cosmos.feegrant.v1beta1.QueryAllowanceRequest"><span class="badge">M</span>QueryAllowanceRequest</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.feegrant.v1beta1.QueryAllowanceResponse"><span class="badge">M</span>QueryAllowanceResponse</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.feegrant.v1beta1.QueryAllowancesRequest"><span class="badge">M</span>QueryAllowancesRequest</a>
-                </li>
-
-                <li>
-                  <a href="#cosmos.feegrant.v1beta1.QueryAllowancesResponse"><span class="badge">M</span>QueryAllowancesResponse</a>
-                </li>
-
-
-
-
-                <li>
-                  <a href="#cosmos.feegrant.v1beta1.Query"><span class="badge">S</span>Query</a>
-                </li>
-
-            </ul>
-          </li>
-
-
-          <li>
             <a href="#cosmos/feegrant/v1beta1/feegrant.proto">cosmos/feegrant/v1beta1/feegrant.proto</a>
             <ul>
 
@@ -240,6 +209,37 @@
 
 
           <li>
+            <a href="#cosmos/feegrant/v1beta1/query.proto">cosmos/feegrant/v1beta1/query.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.feegrant.v1beta1.QueryAllowanceRequest"><span class="badge">M</span>QueryAllowanceRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.feegrant.v1beta1.QueryAllowanceResponse"><span class="badge">M</span>QueryAllowanceResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.feegrant.v1beta1.QueryAllowancesRequest"><span class="badge">M</span>QueryAllowancesRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.feegrant.v1beta1.QueryAllowancesResponse"><span class="badge">M</span>QueryAllowancesResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.feegrant.v1beta1.Query"><span class="badge">S</span>Query</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/feegrant/v1beta1/tx.proto">cosmos/feegrant/v1beta1/tx.proto</a>
             <ul>
 
@@ -272,201 +272,6 @@
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
-
-
-
-      <div class="file-heading">
-        <h2 id="cosmos/feegrant/v1beta1/query.proto">cosmos/feegrant/v1beta1/query.proto</h2><a href="#title">Top</a>
-      </div>
-      <p>Since: cosmos-sdk 0.43</p>
-
-
-        <h3 id="cosmos.feegrant.v1beta1.QueryAllowanceRequest">QueryAllowanceRequest</h3>
-        <p>QueryAllowanceRequest is the request type for the Query/Allowance RPC method.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>granter</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>granter is the address of the user granting an allowance of their funds. </p></td>
-                </tr>
-
-                <tr>
-                  <td>grantee</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>grantee is the address of the user being granted an allowance of another user's funds. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.feegrant.v1beta1.QueryAllowanceResponse">QueryAllowanceResponse</h3>
-        <p>QueryAllowanceResponse is the response type for the Query/Allowance RPC method.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>allowance</td>
-                  <td><a href="#cosmos.feegrant.v1beta1.Grant">Grant</a></td>
-                  <td></td>
-                  <td><p>allowance is a allowance granted for grantee by granter. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.feegrant.v1beta1.QueryAllowancesRequest">QueryAllowancesRequest</h3>
-        <p>QueryAllowancesRequest is the request type for the Query/Allowances RPC method.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>grantee</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
-                  <td></td>
-                  <td><p>pagination defines an pagination for the request. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="cosmos.feegrant.v1beta1.QueryAllowancesResponse">QueryAllowancesResponse</h3>
-        <p>QueryAllowancesResponse is the response type for the Query/Allowances RPC method.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>allowances</td>
-                  <td><a href="#cosmos.feegrant.v1beta1.Grant">Grant</a></td>
-                  <td>repeated</td>
-                  <td><p>allowances are allowance's granted for grantee by granter. </p></td>
-                </tr>
-
-                <tr>
-                  <td>pagination</td>
-                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
-                  <td></td>
-                  <td><p>pagination defines an pagination for the response. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-
-
-        <h3 id="cosmos.feegrant.v1beta1.Query">Query</h3>
-        <p>Query defines the gRPC querier service.</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-
-              <tr>
-                <td>Allowance</td>
-                <td><a href="#cosmos.feegrant.v1beta1.QueryAllowanceRequest">QueryAllowanceRequest</a></td>
-                <td><a href="#cosmos.feegrant.v1beta1.QueryAllowanceResponse">QueryAllowanceResponse</a></td>
-                <td><p>Allowance returns fee granted to the grantee by the granter.</p></td>
-              </tr>
-
-              <tr>
-                <td>Allowances</td>
-                <td><a href="#cosmos.feegrant.v1beta1.QueryAllowancesRequest">QueryAllowancesRequest</a></td>
-                <td><a href="#cosmos.feegrant.v1beta1.QueryAllowancesResponse">QueryAllowancesResponse</a></td>
-                <td><p>Allowances returns all the grants for address.</p></td>
-              </tr>
-
-          </tbody>
-        </table>
-
-
-
-
-          <h4>Methods with HTTP bindings</h4>
-          <table>
-            <thead>
-              <tr>
-                <td>Method Name</td>
-                <td>Method</td>
-                <td>Pattern</td>
-                <td>Body</td>
-              </tr>
-            </thead>
-            <tbody>
-
-
-
-              <tr>
-                <td>Allowance</td>
-                <td>GET</td>
-                <td>/cosmos/feegrant/v1beta1/allowance/{granter}/{grantee}</td>
-                <td></td>
-              </tr>
-
-
-
-
-              <tr>
-                <td>Allowances</td>
-                <td>GET</td>
-                <td>/cosmos/feegrant/v1beta1/allowances/{grantee}</td>
-                <td></td>
-              </tr>
-
-
-            </tbody>
-          </table>
-
 
 
 
@@ -676,6 +481,201 @@ last period ended </p></td>
 
 
 
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/feegrant/v1beta1/query.proto">cosmos/feegrant/v1beta1/query.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Since: cosmos-sdk 0.43</p>
+
+
+        <h3 id="cosmos.feegrant.v1beta1.QueryAllowanceRequest">QueryAllowanceRequest</h3>
+        <p>QueryAllowanceRequest is the request type for the Query/Allowance RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>granter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>granter is the address of the user granting an allowance of their funds. </p></td>
+                </tr>
+
+                <tr>
+                  <td>grantee</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>grantee is the address of the user being granted an allowance of another user's funds. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.feegrant.v1beta1.QueryAllowanceResponse">QueryAllowanceResponse</h3>
+        <p>QueryAllowanceResponse is the response type for the Query/Allowance RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>allowance</td>
+                  <td><a href="#cosmos.feegrant.v1beta1.Grant">Grant</a></td>
+                  <td></td>
+                  <td><p>allowance is a allowance granted for grantee by granter. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.feegrant.v1beta1.QueryAllowancesRequest">QueryAllowancesRequest</h3>
+        <p>QueryAllowancesRequest is the request type for the Query/Allowances RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>grantee</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.feegrant.v1beta1.QueryAllowancesResponse">QueryAllowancesResponse</h3>
+        <p>QueryAllowancesResponse is the response type for the Query/Allowances RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>allowances</td>
+                  <td><a href="#cosmos.feegrant.v1beta1.Grant">Grant</a></td>
+                  <td>repeated</td>
+                  <td><p>allowances are allowance's granted for grantee by granter. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines an pagination for the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.feegrant.v1beta1.Query">Query</h3>
+        <p>Query defines the gRPC querier service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>Allowance</td>
+                <td><a href="#cosmos.feegrant.v1beta1.QueryAllowanceRequest">QueryAllowanceRequest</a></td>
+                <td><a href="#cosmos.feegrant.v1beta1.QueryAllowanceResponse">QueryAllowanceResponse</a></td>
+                <td><p>Allowance returns fee granted to the grantee by the granter.</p></td>
+              </tr>
+
+              <tr>
+                <td>Allowances</td>
+                <td><a href="#cosmos.feegrant.v1beta1.QueryAllowancesRequest">QueryAllowancesRequest</a></td>
+                <td><a href="#cosmos.feegrant.v1beta1.QueryAllowancesResponse">QueryAllowancesResponse</a></td>
+                <td><p>Allowances returns all the grants for address.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+
+
+
+              <tr>
+                <td>Allowance</td>
+                <td>GET</td>
+                <td>/cosmos/feegrant/v1beta1/allowance/{granter}/{grantee}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>Allowances</td>
+                <td>GET</td>
+                <td>/cosmos/feegrant/v1beta1/allowances/{grantee}</td>
+                <td></td>
+              </tr>
+
+
+            </tbody>
+          </table>
 
 
 

@@ -112,6 +112,13 @@ class Grant(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState contains a set of fee allowances, persisted from the store"""
+
+    allowances: List['Grant'] = betterproto.message_field(1)
+
+
+@dataclass(eq=False, repr=False)
 class QueryAllowanceRequest(betterproto.Message):
     """QueryAllowanceRequest is the request type for the Query/Allowance RPC method."""
 
@@ -157,13 +164,6 @@ class QueryAllowancesResponse(betterproto.Message):
 
     pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
     """pagination defines an pagination for the response."""
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState contains a set of fee allowances, persisted from the store"""
-
-    allowances: List['Grant'] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)

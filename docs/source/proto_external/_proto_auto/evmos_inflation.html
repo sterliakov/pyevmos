@@ -167,6 +167,25 @@
 
 
           <li>
+            <a href="#evmos/inflation/v1/genesis.proto">evmos/inflation/v1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#evmos.inflation.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.inflation.v1.Params"><span class="badge">M</span>Params</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#evmos/inflation/v1/inflation.proto">evmos/inflation/v1/inflation.proto</a>
             <ul>
 
@@ -247,28 +266,120 @@
             </ul>
           </li>
 
-
-          <li>
-            <a href="#evmos/inflation/v1/genesis.proto">evmos/inflation/v1/genesis.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#evmos.inflation.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
-                </li>
-
-                <li>
-                  <a href="#evmos.inflation.v1.Params"><span class="badge">M</span>Params</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="evmos/inflation/v1/genesis.proto">evmos/inflation/v1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="evmos.inflation.v1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the inflation module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#evmos.inflation.v1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines all the paramaters of the module. </p></td>
+                </tr>
+
+                <tr>
+                  <td>period</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>amount of past periods, based on the epochs per period param </p></td>
+                </tr>
+
+                <tr>
+                  <td>epoch_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>inflation epoch identifier </p></td>
+                </tr>
+
+                <tr>
+                  <td>epochs_per_period</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>number of epochs after which inflation is recalculated </p></td>
+                </tr>
+
+                <tr>
+                  <td>skipped_epochs</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>number of epochs that have passed while inflation is disabled </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.inflation.v1.Params">Params</h3>
+        <p>Params holds parameters for the inflation module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>mint_denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>type of coin to mint </p></td>
+                </tr>
+
+                <tr>
+                  <td>exponential_calculation</td>
+                  <td><a href="#evmos.inflation.v1.ExponentialCalculation">ExponentialCalculation</a></td>
+                  <td></td>
+                  <td><p>variables to calculate exponential inflation </p></td>
+                </tr>
+
+                <tr>
+                  <td>inflation_distribution</td>
+                  <td><a href="#evmos.inflation.v1.InflationDistribution">InflationDistribution</a></td>
+                  <td></td>
+                  <td><p>inflation distribution of the minted denom </p></td>
+                </tr>
+
+                <tr>
+                  <td>enable_inflation</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>parameter to enable inflation and halt increasing the skipped_epochs </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -708,117 +819,6 @@ circulation (i.e. excluding unvested tokens).</p></td>
 
             </tbody>
           </table>
-
-
-
-
-      <div class="file-heading">
-        <h2 id="evmos/inflation/v1/genesis.proto">evmos/inflation/v1/genesis.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="evmos.inflation.v1.GenesisState">GenesisState</h3>
-        <p>GenesisState defines the inflation module's genesis state.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>params</td>
-                  <td><a href="#evmos.inflation.v1.Params">Params</a></td>
-                  <td></td>
-                  <td><p>params defines all the paramaters of the module. </p></td>
-                </tr>
-
-                <tr>
-                  <td>period</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>amount of past periods, based on the epochs per period param </p></td>
-                </tr>
-
-                <tr>
-                  <td>epoch_identifier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>inflation epoch identifier </p></td>
-                </tr>
-
-                <tr>
-                  <td>epochs_per_period</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>number of epochs after which inflation is recalculated </p></td>
-                </tr>
-
-                <tr>
-                  <td>skipped_epochs</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>number of epochs that have passed while inflation is disabled </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="evmos.inflation.v1.Params">Params</h3>
-        <p>Params holds parameters for the inflation module.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>mint_denom</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>type of coin to mint </p></td>
-                </tr>
-
-                <tr>
-                  <td>exponential_calculation</td>
-                  <td><a href="#evmos.inflation.v1.ExponentialCalculation">ExponentialCalculation</a></td>
-                  <td></td>
-                  <td><p>variables to calculate exponential inflation </p></td>
-                </tr>
-
-                <tr>
-                  <td>inflation_distribution</td>
-                  <td><a href="#evmos.inflation.v1.InflationDistribution">InflationDistribution</a></td>
-                  <td></td>
-                  <td><p>inflation distribution of the minted denom </p></td>
-                </tr>
-
-                <tr>
-                  <td>enable_inflation</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>parameter to enable inflation and halt increasing the skipped_epochs </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
 
 
 

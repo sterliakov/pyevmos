@@ -255,6 +255,35 @@ class TraceConfig(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class GenesisState(betterproto.Message):
+    """GenesisState defines the evm module's genesis state."""
+
+    accounts: List['GenesisAccount'] = betterproto.message_field(1)
+    """accounts is an array containing the ethereum genesis accounts."""
+
+    params: 'Params' = betterproto.message_field(2)
+    """params defines all the parameters of the module."""
+
+
+@dataclass(eq=False, repr=False)
+class GenesisAccount(betterproto.Message):
+    """
+    GenesisAccount defines an account to be initialized in the genesis state.
+    Its main difference between with Geth's GenesisAccount is that it uses a
+    custom storage type and that it doesn't contain the private key field.
+    """
+
+    address: str = betterproto.string_field(1)
+    """address defines an ethereum hex formated address of an account"""
+
+    code: str = betterproto.string_field(2)
+    """code defines the hex bytes of the account code."""
+
+    storage: List['State'] = betterproto.message_field(3)
+    """storage defines the set of state key values for the account."""
+
+
+@dataclass(eq=False, repr=False)
 class MsgEthereumTx(betterproto.Message):
     """MsgEthereumTx encapsulates an Ethereum transaction as an SDK message."""
 
@@ -692,35 +721,6 @@ class QueryBaseFeeResponse(betterproto.Message):
     """BaseFeeResponse returns the EIP1559 base fee."""
 
     base_fee: str = betterproto.string_field(1)
-
-
-@dataclass(eq=False, repr=False)
-class GenesisState(betterproto.Message):
-    """GenesisState defines the evm module's genesis state."""
-
-    accounts: List['GenesisAccount'] = betterproto.message_field(1)
-    """accounts is an array containing the ethereum genesis accounts."""
-
-    params: 'Params' = betterproto.message_field(2)
-    """params defines all the parameters of the module."""
-
-
-@dataclass(eq=False, repr=False)
-class GenesisAccount(betterproto.Message):
-    """
-    GenesisAccount defines an account to be initialized in the genesis state.
-    Its main difference between with Geth's GenesisAccount is that it uses a
-    custom storage type and that it doesn't contain the private key field.
-    """
-
-    address: str = betterproto.string_field(1)
-    """address defines an ethereum hex formated address of an account"""
-
-    code: str = betterproto.string_field(2)
-    """code defines the hex bytes of the account code."""
-
-    storage: List['State'] = betterproto.message_field(3)
-    """storage defines the set of state key values for the account."""
 
 
 class MsgStub(betterproto.ServiceStub):

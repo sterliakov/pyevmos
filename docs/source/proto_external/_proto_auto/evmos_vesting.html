@@ -190,21 +190,6 @@
 
 
           <li>
-            <a href="#evmos/vesting/v1/vesting.proto">evmos/vesting/v1/vesting.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#evmos.vesting.v1.ClawbackVestingAccount"><span class="badge">M</span>ClawbackVestingAccount</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
             <a href="#evmos/vesting/v1/tx.proto">evmos/vesting/v1/tx.proto</a>
             <ul>
 
@@ -230,6 +215,21 @@
                 <li>
                   <a href="#evmos.vesting.v1.Msg"><span class="badge">S</span>Msg</a>
                 </li>
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#evmos/vesting/v1/vesting.proto">evmos/vesting/v1/vesting.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#evmos.vesting.v1.ClawbackVestingAccount"><span class="badge">M</span>ClawbackVestingAccount</a>
+                </li>
+
+
+
 
             </ul>
           </li>
@@ -359,73 +359,6 @@
 
             </tbody>
           </table>
-
-
-
-
-      <div class="file-heading">
-        <h2 id="evmos/vesting/v1/vesting.proto">evmos/vesting/v1/vesting.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="evmos.vesting.v1.ClawbackVestingAccount">ClawbackVestingAccount</h3>
-        <p>ClawbackVestingAccount implements the VestingAccount interface. It provides</p><p>an account that can hold contributions subject to "lockup" (like a</p><p>PeriodicVestingAccount), or vesting which is subject to clawback</p><p>of unvested tokens, or a combination (tokens vest, but are still locked).</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>base_vesting_account</td>
-                  <td><a href="#cosmos.vesting.v1beta1.BaseVestingAccount">cosmos.vesting.v1beta1.BaseVestingAccount</a></td>
-                  <td></td>
-                  <td><p>base_vesting_account implements the VestingAccount interface. It contains
-all the necessary fields needed for any vesting account implementation </p></td>
-                </tr>
-
-                <tr>
-                  <td>funder_address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>funder_address specifies the account which can perform clawback </p></td>
-                </tr>
-
-                <tr>
-                  <td>start_time</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p>start_time defines the time at which the vesting period begins </p></td>
-                </tr>
-
-                <tr>
-                  <td>lockup_periods</td>
-                  <td><a href="#cosmos.vesting.v1beta1.Period">cosmos.vesting.v1beta1.Period</a></td>
-                  <td>repeated</td>
-                  <td><p>lockup_periods defines the unlocking schedule relative to the start_time </p></td>
-                </tr>
-
-                <tr>
-                  <td>vesting_periods</td>
-                  <td><a href="#cosmos.vesting.v1beta1.Period">cosmos.vesting.v1beta1.Period</a></td>
-                  <td>repeated</td>
-                  <td><p>vesting_periods defines the vesting schedule relative to the start_time </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -624,6 +557,73 @@ clawback and the configuration of vesting and lockup schedules.</p></td>
 
             </tbody>
           </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="evmos/vesting/v1/vesting.proto">evmos/vesting/v1/vesting.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="evmos.vesting.v1.ClawbackVestingAccount">ClawbackVestingAccount</h3>
+        <p>ClawbackVestingAccount implements the VestingAccount interface. It provides</p><p>an account that can hold contributions subject to "lockup" (like a</p><p>PeriodicVestingAccount), or vesting which is subject to clawback</p><p>of unvested tokens, or a combination (tokens vest, but are still locked).</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>base_vesting_account</td>
+                  <td><a href="#cosmos.vesting.v1beta1.BaseVestingAccount">cosmos.vesting.v1beta1.BaseVestingAccount</a></td>
+                  <td></td>
+                  <td><p>base_vesting_account implements the VestingAccount interface. It contains
+all the necessary fields needed for any vesting account implementation </p></td>
+                </tr>
+
+                <tr>
+                  <td>funder_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>funder_address specifies the account which can perform clawback </p></td>
+                </tr>
+
+                <tr>
+                  <td>start_time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>start_time defines the time at which the vesting period begins </p></td>
+                </tr>
+
+                <tr>
+                  <td>lockup_periods</td>
+                  <td><a href="#cosmos.vesting.v1beta1.Period">cosmos.vesting.v1beta1.Period</a></td>
+                  <td>repeated</td>
+                  <td><p>lockup_periods defines the unlocking schedule relative to the start_time </p></td>
+                </tr>
+
+                <tr>
+                  <td>vesting_periods</td>
+                  <td><a href="#cosmos.vesting.v1beta1.Period">cosmos.vesting.v1beta1.Period</a></td>
+                  <td>repeated</td>
+                  <td><p>vesting_periods defines the vesting schedule relative to the start_time </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
 
 
 
