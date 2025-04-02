@@ -36,7 +36,7 @@ class CapabilityOwners(betterproto.Message):
     owners must be unique.
     """
 
-    owners: List['Owner'] = betterproto.message_field(1)
+    owners: List["Owner"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -46,7 +46,7 @@ class GenesisOwners(betterproto.Message):
     index: int = betterproto.uint64_field(1)
     """index is the index of the capability owner."""
 
-    index_owners: 'CapabilityOwners' = betterproto.message_field(2)
+    index_owners: "CapabilityOwners" = betterproto.message_field(2)
     """index_owners are the owners at the given index."""
 
 
@@ -57,7 +57,7 @@ class GenesisState(betterproto.Message):
     index: int = betterproto.uint64_field(1)
     """index is the capability global index."""
 
-    owners: List['GenesisOwners'] = betterproto.message_field(2)
+    owners: List["GenesisOwners"] = betterproto.message_field(2)
     """
     owners represents a map from index to owners of the capability index
     index key is string to allow amino marshalling.

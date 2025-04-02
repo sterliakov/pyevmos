@@ -12,7 +12,7 @@ import betterproto
 class Pairs(betterproto.Message):
     """Pairs defines a repeated slice of Pair objects."""
 
-    pairs: List['Pair'] = betterproto.message_field(1)
+    pairs: List["Pair"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)

@@ -83,7 +83,7 @@ class ExponentialCalculation(betterproto.Message):
 class GenesisState(betterproto.Message):
     """GenesisState defines the inflation module's genesis state."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params defines all the paramaters of the module."""
 
     period: int = betterproto.uint64_field(2)
@@ -106,10 +106,10 @@ class Params(betterproto.Message):
     mint_denom: str = betterproto.string_field(1)
     """type of coin to mint"""
 
-    exponential_calculation: 'ExponentialCalculation' = betterproto.message_field(2)
+    exponential_calculation: "ExponentialCalculation" = betterproto.message_field(2)
     """variables to calculate exponential inflation"""
 
-    inflation_distribution: 'InflationDistribution' = betterproto.message_field(3)
+    inflation_distribution: "InflationDistribution" = betterproto.message_field(3)
     """inflation distribution of the minted denom"""
 
     enable_inflation: bool = betterproto.bool_field(4)
@@ -148,7 +148,7 @@ class QueryEpochMintProvisionResponse(betterproto.Message):
     Query/EpochMintProvision RPC method.
     """
 
-    epoch_mint_provision: '___cosmos_base_v1_beta1__.DecCoin' = (
+    epoch_mint_provision: "___cosmos_base_v1_beta1__.DecCoin" = (
         betterproto.message_field(1)
     )
     """epoch_mint_provision is the current minting per epoch provision value."""
@@ -192,7 +192,7 @@ class QueryCirculatingSupplyResponse(betterproto.Message):
     Query/CirculatingSupply RPC method.
     """
 
-    circulating_supply: '___cosmos_base_v1_beta1__.DecCoin' = betterproto.message_field(
+    circulating_supply: "___cosmos_base_v1_beta1__.DecCoin" = betterproto.message_field(
         1
     )
     """total amount of coins in circulation"""
@@ -230,21 +230,21 @@ class QueryParamsRequest(betterproto.Message):
 class QueryParamsResponse(betterproto.Message):
     """QueryParamsResponse is the response type for the Query/Params RPC method."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params defines the parameters of the module."""
 
 
 class QueryStub(betterproto.ServiceStub):
     async def period(
         self,
-        query_period_request: 'QueryPeriodRequest',
+        query_period_request: "QueryPeriodRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryPeriodResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryPeriodResponse":
         return await self._unary_unary(
-            '/evmos.inflation.v1.Query/Period',
+            "/evmos.inflation.v1.Query/Period",
             query_period_request,
             QueryPeriodResponse,
             timeout=timeout,
@@ -254,14 +254,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def epoch_mint_provision(
         self,
-        query_epoch_mint_provision_request: 'QueryEpochMintProvisionRequest',
+        query_epoch_mint_provision_request: "QueryEpochMintProvisionRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryEpochMintProvisionResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryEpochMintProvisionResponse":
         return await self._unary_unary(
-            '/evmos.inflation.v1.Query/EpochMintProvision',
+            "/evmos.inflation.v1.Query/EpochMintProvision",
             query_epoch_mint_provision_request,
             QueryEpochMintProvisionResponse,
             timeout=timeout,
@@ -271,14 +271,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def skipped_epochs(
         self,
-        query_skipped_epochs_request: 'QuerySkippedEpochsRequest',
+        query_skipped_epochs_request: "QuerySkippedEpochsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QuerySkippedEpochsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QuerySkippedEpochsResponse":
         return await self._unary_unary(
-            '/evmos.inflation.v1.Query/SkippedEpochs',
+            "/evmos.inflation.v1.Query/SkippedEpochs",
             query_skipped_epochs_request,
             QuerySkippedEpochsResponse,
             timeout=timeout,
@@ -288,14 +288,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def circulating_supply(
         self,
-        query_circulating_supply_request: 'QueryCirculatingSupplyRequest',
+        query_circulating_supply_request: "QueryCirculatingSupplyRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryCirculatingSupplyResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryCirculatingSupplyResponse":
         return await self._unary_unary(
-            '/evmos.inflation.v1.Query/CirculatingSupply',
+            "/evmos.inflation.v1.Query/CirculatingSupply",
             query_circulating_supply_request,
             QueryCirculatingSupplyResponse,
             timeout=timeout,
@@ -305,14 +305,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def inflation_rate(
         self,
-        query_inflation_rate_request: 'QueryInflationRateRequest',
+        query_inflation_rate_request: "QueryInflationRateRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryInflationRateResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryInflationRateResponse":
         return await self._unary_unary(
-            '/evmos.inflation.v1.Query/InflationRate',
+            "/evmos.inflation.v1.Query/InflationRate",
             query_inflation_rate_request,
             QueryInflationRateResponse,
             timeout=timeout,
@@ -322,14 +322,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def params(
         self,
-        query_params_request: 'QueryParamsRequest',
+        query_params_request: "QueryParamsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryParamsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryParamsResponse":
         return await self._unary_unary(
-            '/evmos.inflation.v1.Query/Params',
+            "/evmos.inflation.v1.Query/Params",
             query_params_request,
             QueryParamsResponse,
             timeout=timeout,
@@ -340,37 +340,37 @@ class QueryStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def period(
-        self, query_period_request: 'QueryPeriodRequest'
-    ) -> 'QueryPeriodResponse':
+        self, query_period_request: "QueryPeriodRequest"
+    ) -> "QueryPeriodResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def epoch_mint_provision(
-        self, query_epoch_mint_provision_request: 'QueryEpochMintProvisionRequest'
-    ) -> 'QueryEpochMintProvisionResponse':
+        self, query_epoch_mint_provision_request: "QueryEpochMintProvisionRequest"
+    ) -> "QueryEpochMintProvisionResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def skipped_epochs(
-        self, query_skipped_epochs_request: 'QuerySkippedEpochsRequest'
-    ) -> 'QuerySkippedEpochsResponse':
+        self, query_skipped_epochs_request: "QuerySkippedEpochsRequest"
+    ) -> "QuerySkippedEpochsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def circulating_supply(
-        self, query_circulating_supply_request: 'QueryCirculatingSupplyRequest'
-    ) -> 'QueryCirculatingSupplyResponse':
+        self, query_circulating_supply_request: "QueryCirculatingSupplyRequest"
+    ) -> "QueryCirculatingSupplyResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def inflation_rate(
-        self, query_inflation_rate_request: 'QueryInflationRateRequest'
-    ) -> 'QueryInflationRateResponse':
+        self, query_inflation_rate_request: "QueryInflationRateRequest"
+    ) -> "QueryInflationRateResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def params(
-        self, query_params_request: 'QueryParamsRequest'
-    ) -> 'QueryParamsResponse':
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_period(
-        self, stream: 'grpclib.server.Stream[QueryPeriodRequest, QueryPeriodResponse]'
+        self, stream: "grpclib.server.Stream[QueryPeriodRequest, QueryPeriodResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.period(request)
@@ -378,7 +378,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_epoch_mint_provision(
         self,
-        stream: 'grpclib.server.Stream[QueryEpochMintProvisionRequest, QueryEpochMintProvisionResponse]',
+        stream: "grpclib.server.Stream[QueryEpochMintProvisionRequest, QueryEpochMintProvisionResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.epoch_mint_provision(request)
@@ -386,7 +386,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_skipped_epochs(
         self,
-        stream: 'grpclib.server.Stream[QuerySkippedEpochsRequest, QuerySkippedEpochsResponse]',
+        stream: "grpclib.server.Stream[QuerySkippedEpochsRequest, QuerySkippedEpochsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.skipped_epochs(request)
@@ -394,7 +394,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_circulating_supply(
         self,
-        stream: 'grpclib.server.Stream[QueryCirculatingSupplyRequest, QueryCirculatingSupplyResponse]',
+        stream: "grpclib.server.Stream[QueryCirculatingSupplyRequest, QueryCirculatingSupplyResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.circulating_supply(request)
@@ -402,14 +402,14 @@ class QueryBase(ServiceBase):
 
     async def __rpc_inflation_rate(
         self,
-        stream: 'grpclib.server.Stream[QueryInflationRateRequest, QueryInflationRateResponse]',
+        stream: "grpclib.server.Stream[QueryInflationRateRequest, QueryInflationRateResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.inflation_rate(request)
         await stream.send_message(response)
 
     async def __rpc_params(
-        self, stream: 'grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]'
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
@@ -417,37 +417,37 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/evmos.inflation.v1.Query/Period': grpclib.const.Handler(
+            "/evmos.inflation.v1.Query/Period": grpclib.const.Handler(
                 self.__rpc_period,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryPeriodRequest,
                 QueryPeriodResponse,
             ),
-            '/evmos.inflation.v1.Query/EpochMintProvision': grpclib.const.Handler(
+            "/evmos.inflation.v1.Query/EpochMintProvision": grpclib.const.Handler(
                 self.__rpc_epoch_mint_provision,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryEpochMintProvisionRequest,
                 QueryEpochMintProvisionResponse,
             ),
-            '/evmos.inflation.v1.Query/SkippedEpochs': grpclib.const.Handler(
+            "/evmos.inflation.v1.Query/SkippedEpochs": grpclib.const.Handler(
                 self.__rpc_skipped_epochs,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QuerySkippedEpochsRequest,
                 QuerySkippedEpochsResponse,
             ),
-            '/evmos.inflation.v1.Query/CirculatingSupply': grpclib.const.Handler(
+            "/evmos.inflation.v1.Query/CirculatingSupply": grpclib.const.Handler(
                 self.__rpc_circulating_supply,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryCirculatingSupplyRequest,
                 QueryCirculatingSupplyResponse,
             ),
-            '/evmos.inflation.v1.Query/InflationRate': grpclib.const.Handler(
+            "/evmos.inflation.v1.Query/InflationRate": grpclib.const.Handler(
                 self.__rpc_inflation_rate,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryInflationRateRequest,
                 QueryInflationRateResponse,
             ),
-            '/evmos.inflation.v1.Query/Params': grpclib.const.Handler(
+            "/evmos.inflation.v1.Query/Params": grpclib.const.Handler(
                 self.__rpc_params,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,

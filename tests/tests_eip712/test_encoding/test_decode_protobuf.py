@@ -9,13 +9,13 @@ from evmos.eip712.base import generate_types
 from evmos.eip712.encoding.decode_protobuf import decode_protobuf_sign_doc
 
 eip712_domain = {
-    'name': None,
-    'version': None,
-    'chainId': 9000,
-    'verifyingContract': None,
-    'salt': None,
+    "name": None,
+    "version": None,
+    "chainId": 9000,
+    "verifyingContract": None,
+    "salt": None,
 }
-eip712_primary_type = 'Tx'
+eip712_primary_type = "Tx"
 
 
 def test_decodes_msg_send_payloads():
@@ -47,28 +47,28 @@ def test_decodes_msg_send_payloads():
 
     assert asdict(eip712.domain) == eip712_domain
     assert eip712.primaryType == eip712_primary_type
-    assert eip712.types.pop('EIP712Domain') == eip712.domain.pick_types()
+    assert eip712.types.pop("EIP712Domain") == eip712.domain.pick_types()
     assert eip712.types == generate_types(MSG_SEND_TYPES)
     assert eip712.message == {
-        'account_number': '0',
-        'chain_id': 'evmos_9000-1',
-        'fee': {
-            'amount': [{'amount': '200', 'denom': 'aevmos'}],
-            'gas': '200000',
-            'feePayer': 'evmos1tyvpq5736lzj2yzmj0kanqxg7wf29fmp2drqt0',
+        "account_number": "0",
+        "chain_id": "evmos_9000-1",
+        "fee": {
+            "amount": [{"amount": "200", "denom": "aevmos"}],
+            "gas": "200000",
+            "feePayer": "evmos1tyvpq5736lzj2yzmj0kanqxg7wf29fmp2drqt0",
         },
-        'memo': '',
-        'msgs': [
+        "memo": "",
+        "msgs": [
             {
-                'type': 'cosmos-sdk/MsgSend',
-                'value': {
-                    'from_address': 'evmos1tyvpq5736lzj2yzmj0kanqxg7wf29fmp2drqt0',
-                    'to_address': 'evmos1hnmrdr0jc2ve3ycxft0gcjjtrdkncpmmkeamf9',
-                    'amount': [{'amount': '100000000000000000', 'denom': 'aevmos'}],
+                "type": "cosmos-sdk/MsgSend",
+                "value": {
+                    "from_address": "evmos1tyvpq5736lzj2yzmj0kanqxg7wf29fmp2drqt0",
+                    "to_address": "evmos1hnmrdr0jc2ve3ycxft0gcjjtrdkncpmmkeamf9",
+                    "amount": [{"amount": "100000000000000000", "denom": "aevmos"}],
                 },
             },
         ],
-        'sequence': '1',
+        "sequence": "1",
     }
 
 
@@ -96,28 +96,28 @@ def test_decodes_msg_vote_payloads():
 
     assert asdict(eip712.domain) == eip712_domain
     assert eip712.primaryType == eip712_primary_type
-    assert eip712.types.pop('EIP712Domain') == eip712.domain.pick_types()
+    assert eip712.types.pop("EIP712Domain") == eip712.domain.pick_types()
     assert eip712.types == generate_types(MSG_VOTE_TYPES)
     assert eip712.message == {
-        'account_number': '0',
-        'chain_id': 'evmos_9000-1',
-        'fee': {
-            'amount': [{'amount': '2000', 'denom': 'aevmos'}],
-            'gas': '200000',
-            'feePayer': 'evmos18tayzhta3vxfkfd8pyc5zflts09gcsj284mx4g',
+        "account_number": "0",
+        "chain_id": "evmos_9000-1",
+        "fee": {
+            "amount": [{"amount": "2000", "denom": "aevmos"}],
+            "gas": "200000",
+            "feePayer": "evmos18tayzhta3vxfkfd8pyc5zflts09gcsj284mx4g",
         },
-        'memo': '',
-        'msgs': [
+        "memo": "",
+        "msgs": [
             {
-                'type': 'cosmos-sdk/MsgVote',
-                'value': {
-                    'proposal_id': 1,  # In JS it was a string for uint64 field
-                    'voter': 'evmos18tayzhta3vxfkfd8pyc5zflts09gcsj284mx4g',
-                    'option': 1,
+                "type": "cosmos-sdk/MsgVote",
+                "value": {
+                    "proposal_id": 1,  # In JS it was a string for uint64 field
+                    "voter": "evmos18tayzhta3vxfkfd8pyc5zflts09gcsj284mx4g",
+                    "option": 1,
                 },
             },
         ],
-        'sequence': '1',
+        "sequence": "1",
     }
 
 
@@ -151,30 +151,30 @@ def test_decodes_msg_delegate_payloads():
 
     assert asdict(eip712.domain) == eip712_domain
     assert eip712.primaryType == eip712_primary_type
-    assert eip712.types.pop('EIP712Domain') == eip712.domain.pick_types()
+    assert eip712.types.pop("EIP712Domain") == eip712.domain.pick_types()
     assert eip712.types == generate_types(MSG_DELEGATE_TYPES)
     assert eip712.message == {
-        'account_number': '0',
-        'chain_id': 'evmos_9000-1',
-        'fee': {
-            'amount': [{'amount': '2000', 'denom': 'aevmos'}],
-            'gas': '200000',
-            'feePayer': 'evmos1kp3y735jwpqfl0lz9palzkptuhth8wllw854gs',
+        "account_number": "0",
+        "chain_id": "evmos_9000-1",
+        "fee": {
+            "amount": [{"amount": "2000", "denom": "aevmos"}],
+            "gas": "200000",
+            "feePayer": "evmos1kp3y735jwpqfl0lz9palzkptuhth8wllw854gs",
         },
-        'memo': '',
-        'msgs': [
+        "memo": "",
+        "msgs": [
             {
-                'type': 'cosmos-sdk/MsgDelegate',
-                'value': {
-                    'delegator_address': 'evmos1kp3y735jwpqfl0lz9palzkptuhth8wllw854gs',
-                    'validator_address': (
-                        'evmosvaloper1kp3y735jwpqfl0lz9palzkptuhth8wllrfm9fd'
+                "type": "cosmos-sdk/MsgDelegate",
+                "value": {
+                    "delegator_address": "evmos1kp3y735jwpqfl0lz9palzkptuhth8wllw854gs",
+                    "validator_address": (
+                        "evmosvaloper1kp3y735jwpqfl0lz9palzkptuhth8wllrfm9fd"
                     ),
-                    'amount': {'denom': 'aevmos', 'amount': '1000000000000000000'},
+                    "amount": {"denom": "aevmos", "amount": "1000000000000000000"},
                 },
             },
         ],
-        'sequence': '1',
+        "sequence": "1",
     }
 
 
@@ -206,5 +206,5 @@ def test_throws_on_invalid_byte_payload():
         48, 48, 48, 45,
     ])
     # fmt: on
-    with pytest.raises(ValueError, match='Invalid chain_id received: evmos_9000-'):
+    with pytest.raises(ValueError, match="Invalid chain_id received: evmos_9000-"):
         decode_protobuf_sign_doc(encoded)

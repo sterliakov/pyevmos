@@ -93,7 +93,7 @@ class WeightedVoteOption(betterproto.Message):
     Since: cosmos-sdk 0.43
     """
 
-    option: 'VoteOption' = betterproto.enum_field(1)
+    option: "VoteOption" = betterproto.enum_field(1)
     weight: str = betterproto.string_field(2)
 
 
@@ -117,7 +117,7 @@ class Deposit(betterproto.Message):
 
     proposal_id: int = betterproto.uint64_field(1)
     depositor: str = betterproto.string_field(2)
-    amount: List['__base_v1_beta1__.Coin'] = betterproto.message_field(3)
+    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -125,12 +125,12 @@ class Proposal(betterproto.Message):
     """Proposal defines the core field members of a governance proposal."""
 
     proposal_id: int = betterproto.uint64_field(1)
-    content: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(2)
-    status: 'ProposalStatus' = betterproto.enum_field(3)
-    final_tally_result: 'TallyResult' = betterproto.message_field(4)
+    content: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(2)
+    status: "ProposalStatus" = betterproto.enum_field(3)
+    final_tally_result: "TallyResult" = betterproto.message_field(4)
     submit_time: datetime = betterproto.message_field(5)
     deposit_end_time: datetime = betterproto.message_field(6)
-    total_deposit: List['__base_v1_beta1__.Coin'] = betterproto.message_field(7)
+    total_deposit: List["__base_v1_beta1__.Coin"] = betterproto.message_field(7)
     voting_start_time: datetime = betterproto.message_field(8)
     voting_end_time: datetime = betterproto.message_field(9)
 
@@ -154,27 +154,27 @@ class Vote(betterproto.Message):
 
     proposal_id: int = betterproto.uint64_field(1)
     voter: str = betterproto.string_field(2)
-    option: 'VoteOption' = betterproto.enum_field(3)
+    option: "VoteOption" = betterproto.enum_field(3)
     """
     Deprecated: Prefer to use `options` instead. This field is set in queries
     if and only if `len(options) == 1` and that option has weight 1. In all
     other cases, this field will default to VOTE_OPTION_UNSPECIFIED.
     """
 
-    options: List['WeightedVoteOption'] = betterproto.message_field(4)
+    options: List["WeightedVoteOption"] = betterproto.message_field(4)
     """Since: cosmos-sdk 0.43"""
 
     def __post_init__(self) -> None:
         super().__post_init__()
-        if self.is_set('option'):
-            warnings.warn('Vote.option is deprecated', DeprecationWarning)
+        if self.is_set("option"):
+            warnings.warn("Vote.option is deprecated", DeprecationWarning)
 
 
 @dataclass(eq=False, repr=False)
 class DepositParams(betterproto.Message):
     """DepositParams defines the params for deposits on governance proposals."""
 
-    min_deposit: List['__base_v1_beta1__.Coin'] = betterproto.message_field(1)
+    min_deposit: List["__base_v1_beta1__.Coin"] = betterproto.message_field(1)
     """Minimum deposit for a proposal to enter voting period."""
 
     max_deposit_period: timedelta = betterproto.message_field(2)
@@ -219,22 +219,22 @@ class GenesisState(betterproto.Message):
     starting_proposal_id: int = betterproto.uint64_field(1)
     """starting_proposal_id is the ID of the starting proposal."""
 
-    deposits: List['Deposit'] = betterproto.message_field(2)
+    deposits: List["Deposit"] = betterproto.message_field(2)
     """deposits defines all the deposits present at genesis."""
 
-    votes: List['Vote'] = betterproto.message_field(3)
+    votes: List["Vote"] = betterproto.message_field(3)
     """votes defines all the votes present at genesis."""
 
-    proposals: List['Proposal'] = betterproto.message_field(4)
+    proposals: List["Proposal"] = betterproto.message_field(4)
     """proposals defines all the proposals present at genesis."""
 
-    deposit_params: 'DepositParams' = betterproto.message_field(5)
+    deposit_params: "DepositParams" = betterproto.message_field(5)
     """params defines all the paramaters of related to deposit."""
 
-    voting_params: 'VotingParams' = betterproto.message_field(6)
+    voting_params: "VotingParams" = betterproto.message_field(6)
     """params defines all the paramaters of related to voting."""
 
-    tally_params: 'TallyParams' = betterproto.message_field(7)
+    tally_params: "TallyParams" = betterproto.message_field(7)
     """params defines all the paramaters of related to tally."""
 
 
@@ -250,14 +250,14 @@ class QueryProposalRequest(betterproto.Message):
 class QueryProposalResponse(betterproto.Message):
     """QueryProposalResponse is the response type for the Query/Proposal RPC method."""
 
-    proposal: 'Proposal' = betterproto.message_field(1)
+    proposal: "Proposal" = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
 class QueryProposalsRequest(betterproto.Message):
     """QueryProposalsRequest is the request type for the Query/Proposals RPC method."""
 
-    proposal_status: 'ProposalStatus' = betterproto.enum_field(1)
+    proposal_status: "ProposalStatus" = betterproto.enum_field(1)
     """proposal_status defines the status of the proposals."""
 
     voter: str = betterproto.string_field(2)
@@ -266,7 +266,7 @@ class QueryProposalsRequest(betterproto.Message):
     depositor: str = betterproto.string_field(3)
     """depositor defines the deposit addresses from the proposals."""
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(4)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(4)
     """pagination defines an optional pagination for the request."""
 
 
@@ -277,8 +277,8 @@ class QueryProposalsResponse(betterproto.Message):
     method.
     """
 
-    proposals: List['Proposal'] = betterproto.message_field(1)
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    proposals: List["Proposal"] = betterproto.message_field(1)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
 
 
@@ -297,7 +297,7 @@ class QueryVoteRequest(betterproto.Message):
 class QueryVoteResponse(betterproto.Message):
     """QueryVoteResponse is the response type for the Query/Vote RPC method."""
 
-    vote: 'Vote' = betterproto.message_field(1)
+    vote: "Vote" = betterproto.message_field(1)
     """vote defined the queried vote."""
 
 
@@ -308,7 +308,7 @@ class QueryVotesRequest(betterproto.Message):
     proposal_id: int = betterproto.uint64_field(1)
     """proposal_id defines the unique id of the proposal."""
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
     """pagination defines an optional pagination for the request."""
 
 
@@ -316,10 +316,10 @@ class QueryVotesRequest(betterproto.Message):
 class QueryVotesResponse(betterproto.Message):
     """QueryVotesResponse is the response type for the Query/Votes RPC method."""
 
-    votes: List['Vote'] = betterproto.message_field(1)
+    votes: List["Vote"] = betterproto.message_field(1)
     """votes defined the queried votes."""
 
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
 
 
@@ -338,13 +338,13 @@ class QueryParamsRequest(betterproto.Message):
 class QueryParamsResponse(betterproto.Message):
     """QueryParamsResponse is the response type for the Query/Params RPC method."""
 
-    voting_params: 'VotingParams' = betterproto.message_field(1)
+    voting_params: "VotingParams" = betterproto.message_field(1)
     """voting_params defines the parameters related to voting."""
 
-    deposit_params: 'DepositParams' = betterproto.message_field(2)
+    deposit_params: "DepositParams" = betterproto.message_field(2)
     """deposit_params defines the parameters related to deposit."""
 
-    tally_params: 'TallyParams' = betterproto.message_field(3)
+    tally_params: "TallyParams" = betterproto.message_field(3)
     """tally_params defines the parameters related to tally."""
 
 
@@ -363,7 +363,7 @@ class QueryDepositRequest(betterproto.Message):
 class QueryDepositResponse(betterproto.Message):
     """QueryDepositResponse is the response type for the Query/Deposit RPC method."""
 
-    deposit: 'Deposit' = betterproto.message_field(1)
+    deposit: "Deposit" = betterproto.message_field(1)
     """deposit defines the requested deposit."""
 
 
@@ -374,7 +374,7 @@ class QueryDepositsRequest(betterproto.Message):
     proposal_id: int = betterproto.uint64_field(1)
     """proposal_id defines the unique id of the proposal."""
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
     """pagination defines an optional pagination for the request."""
 
 
@@ -382,8 +382,8 @@ class QueryDepositsRequest(betterproto.Message):
 class QueryDepositsResponse(betterproto.Message):
     """QueryDepositsResponse is the response type for the Query/Deposits RPC method."""
 
-    deposits: List['Deposit'] = betterproto.message_field(1)
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    deposits: List["Deposit"] = betterproto.message_field(1)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
 
 
@@ -399,7 +399,7 @@ class QueryTallyResultRequest(betterproto.Message):
 class QueryTallyResultResponse(betterproto.Message):
     """QueryTallyResultResponse is the response type for the Query/Tally RPC method."""
 
-    tally: 'TallyResult' = betterproto.message_field(1)
+    tally: "TallyResult" = betterproto.message_field(1)
     """tally defines the requested tally."""
 
 
@@ -410,8 +410,8 @@ class MsgSubmitProposal(betterproto.Message):
     proposal Content.
     """
 
-    content: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(1)
-    initial_deposit: List['__base_v1_beta1__.Coin'] = betterproto.message_field(2)
+    content: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(1)
+    initial_deposit: List["__base_v1_beta1__.Coin"] = betterproto.message_field(2)
     proposer: str = betterproto.string_field(3)
 
 
@@ -428,7 +428,7 @@ class MsgVote(betterproto.Message):
 
     proposal_id: int = betterproto.uint64_field(1)
     voter: str = betterproto.string_field(2)
-    option: 'VoteOption' = betterproto.enum_field(3)
+    option: "VoteOption" = betterproto.enum_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -447,7 +447,7 @@ class MsgVoteWeighted(betterproto.Message):
 
     proposal_id: int = betterproto.uint64_field(1)
     voter: str = betterproto.string_field(2)
-    options: List['WeightedVoteOption'] = betterproto.message_field(3)
+    options: List["WeightedVoteOption"] = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -466,7 +466,7 @@ class MsgDeposit(betterproto.Message):
 
     proposal_id: int = betterproto.uint64_field(1)
     depositor: str = betterproto.string_field(2)
-    amount: List['__base_v1_beta1__.Coin'] = betterproto.message_field(3)
+    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -479,14 +479,14 @@ class MsgDepositResponse(betterproto.Message):
 class QueryStub(betterproto.ServiceStub):
     async def proposal(
         self,
-        query_proposal_request: 'QueryProposalRequest',
+        query_proposal_request: "QueryProposalRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryProposalResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryProposalResponse":
         return await self._unary_unary(
-            '/cosmos.gov.v1beta1.Query/Proposal',
+            "/cosmos.gov.v1beta1.Query/Proposal",
             query_proposal_request,
             QueryProposalResponse,
             timeout=timeout,
@@ -496,14 +496,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def proposals(
         self,
-        query_proposals_request: 'QueryProposalsRequest',
+        query_proposals_request: "QueryProposalsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryProposalsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryProposalsResponse":
         return await self._unary_unary(
-            '/cosmos.gov.v1beta1.Query/Proposals',
+            "/cosmos.gov.v1beta1.Query/Proposals",
             query_proposals_request,
             QueryProposalsResponse,
             timeout=timeout,
@@ -513,14 +513,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def vote(
         self,
-        query_vote_request: 'QueryVoteRequest',
+        query_vote_request: "QueryVoteRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryVoteResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryVoteResponse":
         return await self._unary_unary(
-            '/cosmos.gov.v1beta1.Query/Vote',
+            "/cosmos.gov.v1beta1.Query/Vote",
             query_vote_request,
             QueryVoteResponse,
             timeout=timeout,
@@ -530,14 +530,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def votes(
         self,
-        query_votes_request: 'QueryVotesRequest',
+        query_votes_request: "QueryVotesRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryVotesResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryVotesResponse":
         return await self._unary_unary(
-            '/cosmos.gov.v1beta1.Query/Votes',
+            "/cosmos.gov.v1beta1.Query/Votes",
             query_votes_request,
             QueryVotesResponse,
             timeout=timeout,
@@ -547,14 +547,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def params(
         self,
-        query_params_request: 'QueryParamsRequest',
+        query_params_request: "QueryParamsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryParamsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryParamsResponse":
         return await self._unary_unary(
-            '/cosmos.gov.v1beta1.Query/Params',
+            "/cosmos.gov.v1beta1.Query/Params",
             query_params_request,
             QueryParamsResponse,
             timeout=timeout,
@@ -564,14 +564,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def deposit(
         self,
-        query_deposit_request: 'QueryDepositRequest',
+        query_deposit_request: "QueryDepositRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDepositResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDepositResponse":
         return await self._unary_unary(
-            '/cosmos.gov.v1beta1.Query/Deposit',
+            "/cosmos.gov.v1beta1.Query/Deposit",
             query_deposit_request,
             QueryDepositResponse,
             timeout=timeout,
@@ -581,14 +581,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def deposits(
         self,
-        query_deposits_request: 'QueryDepositsRequest',
+        query_deposits_request: "QueryDepositsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDepositsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDepositsResponse":
         return await self._unary_unary(
-            '/cosmos.gov.v1beta1.Query/Deposits',
+            "/cosmos.gov.v1beta1.Query/Deposits",
             query_deposits_request,
             QueryDepositsResponse,
             timeout=timeout,
@@ -598,14 +598,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def tally_result(
         self,
-        query_tally_result_request: 'QueryTallyResultRequest',
+        query_tally_result_request: "QueryTallyResultRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryTallyResultResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryTallyResultResponse":
         return await self._unary_unary(
-            '/cosmos.gov.v1beta1.Query/TallyResult',
+            "/cosmos.gov.v1beta1.Query/TallyResult",
             query_tally_result_request,
             QueryTallyResultResponse,
             timeout=timeout,
@@ -617,14 +617,14 @@ class QueryStub(betterproto.ServiceStub):
 class MsgStub(betterproto.ServiceStub):
     async def submit_proposal(
         self,
-        msg_submit_proposal: 'MsgSubmitProposal',
+        msg_submit_proposal: "MsgSubmitProposal",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgSubmitProposalResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgSubmitProposalResponse":
         return await self._unary_unary(
-            '/cosmos.gov.v1beta1.Msg/SubmitProposal',
+            "/cosmos.gov.v1beta1.Msg/SubmitProposal",
             msg_submit_proposal,
             MsgSubmitProposalResponse,
             timeout=timeout,
@@ -634,14 +634,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def vote(
         self,
-        msg_vote: 'MsgVote',
+        msg_vote: "MsgVote",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgVoteResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgVoteResponse":
         return await self._unary_unary(
-            '/cosmos.gov.v1beta1.Msg/Vote',
+            "/cosmos.gov.v1beta1.Msg/Vote",
             msg_vote,
             MsgVoteResponse,
             timeout=timeout,
@@ -651,14 +651,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def vote_weighted(
         self,
-        msg_vote_weighted: 'MsgVoteWeighted',
+        msg_vote_weighted: "MsgVoteWeighted",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgVoteWeightedResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgVoteWeightedResponse":
         return await self._unary_unary(
-            '/cosmos.gov.v1beta1.Msg/VoteWeighted',
+            "/cosmos.gov.v1beta1.Msg/VoteWeighted",
             msg_vote_weighted,
             MsgVoteWeightedResponse,
             timeout=timeout,
@@ -668,14 +668,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def deposit(
         self,
-        msg_deposit: 'MsgDeposit',
+        msg_deposit: "MsgDeposit",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgDepositResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgDepositResponse":
         return await self._unary_unary(
-            '/cosmos.gov.v1beta1.Msg/Deposit',
+            "/cosmos.gov.v1beta1.Msg/Deposit",
             msg_deposit,
             MsgDepositResponse,
             timeout=timeout,
@@ -686,46 +686,46 @@ class MsgStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def proposal(
-        self, query_proposal_request: 'QueryProposalRequest'
-    ) -> 'QueryProposalResponse':
+        self, query_proposal_request: "QueryProposalRequest"
+    ) -> "QueryProposalResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def proposals(
-        self, query_proposals_request: 'QueryProposalsRequest'
-    ) -> 'QueryProposalsResponse':
+        self, query_proposals_request: "QueryProposalsRequest"
+    ) -> "QueryProposalsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def vote(self, query_vote_request: 'QueryVoteRequest') -> 'QueryVoteResponse':
+    async def vote(self, query_vote_request: "QueryVoteRequest") -> "QueryVoteResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def votes(
-        self, query_votes_request: 'QueryVotesRequest'
-    ) -> 'QueryVotesResponse':
+        self, query_votes_request: "QueryVotesRequest"
+    ) -> "QueryVotesResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def params(
-        self, query_params_request: 'QueryParamsRequest'
-    ) -> 'QueryParamsResponse':
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def deposit(
-        self, query_deposit_request: 'QueryDepositRequest'
-    ) -> 'QueryDepositResponse':
+        self, query_deposit_request: "QueryDepositRequest"
+    ) -> "QueryDepositResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def deposits(
-        self, query_deposits_request: 'QueryDepositsRequest'
-    ) -> 'QueryDepositsResponse':
+        self, query_deposits_request: "QueryDepositsRequest"
+    ) -> "QueryDepositsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def tally_result(
-        self, query_tally_result_request: 'QueryTallyResultRequest'
-    ) -> 'QueryTallyResultResponse':
+        self, query_tally_result_request: "QueryTallyResultRequest"
+    ) -> "QueryTallyResultResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_proposal(
         self,
-        stream: 'grpclib.server.Stream[QueryProposalRequest, QueryProposalResponse]',
+        stream: "grpclib.server.Stream[QueryProposalRequest, QueryProposalResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.proposal(request)
@@ -733,35 +733,35 @@ class QueryBase(ServiceBase):
 
     async def __rpc_proposals(
         self,
-        stream: 'grpclib.server.Stream[QueryProposalsRequest, QueryProposalsResponse]',
+        stream: "grpclib.server.Stream[QueryProposalsRequest, QueryProposalsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.proposals(request)
         await stream.send_message(response)
 
     async def __rpc_vote(
-        self, stream: 'grpclib.server.Stream[QueryVoteRequest, QueryVoteResponse]'
+        self, stream: "grpclib.server.Stream[QueryVoteRequest, QueryVoteResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.vote(request)
         await stream.send_message(response)
 
     async def __rpc_votes(
-        self, stream: 'grpclib.server.Stream[QueryVotesRequest, QueryVotesResponse]'
+        self, stream: "grpclib.server.Stream[QueryVotesRequest, QueryVotesResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.votes(request)
         await stream.send_message(response)
 
     async def __rpc_params(
-        self, stream: 'grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]'
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
         await stream.send_message(response)
 
     async def __rpc_deposit(
-        self, stream: 'grpclib.server.Stream[QueryDepositRequest, QueryDepositResponse]'
+        self, stream: "grpclib.server.Stream[QueryDepositRequest, QueryDepositResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.deposit(request)
@@ -769,7 +769,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_deposits(
         self,
-        stream: 'grpclib.server.Stream[QueryDepositsRequest, QueryDepositsResponse]',
+        stream: "grpclib.server.Stream[QueryDepositsRequest, QueryDepositsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.deposits(request)
@@ -777,7 +777,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_tally_result(
         self,
-        stream: 'grpclib.server.Stream[QueryTallyResultRequest, QueryTallyResultResponse]',
+        stream: "grpclib.server.Stream[QueryTallyResultRequest, QueryTallyResultResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.tally_result(request)
@@ -785,49 +785,49 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.gov.v1beta1.Query/Proposal': grpclib.const.Handler(
+            "/cosmos.gov.v1beta1.Query/Proposal": grpclib.const.Handler(
                 self.__rpc_proposal,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryProposalRequest,
                 QueryProposalResponse,
             ),
-            '/cosmos.gov.v1beta1.Query/Proposals': grpclib.const.Handler(
+            "/cosmos.gov.v1beta1.Query/Proposals": grpclib.const.Handler(
                 self.__rpc_proposals,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryProposalsRequest,
                 QueryProposalsResponse,
             ),
-            '/cosmos.gov.v1beta1.Query/Vote': grpclib.const.Handler(
+            "/cosmos.gov.v1beta1.Query/Vote": grpclib.const.Handler(
                 self.__rpc_vote,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryVoteRequest,
                 QueryVoteResponse,
             ),
-            '/cosmos.gov.v1beta1.Query/Votes': grpclib.const.Handler(
+            "/cosmos.gov.v1beta1.Query/Votes": grpclib.const.Handler(
                 self.__rpc_votes,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryVotesRequest,
                 QueryVotesResponse,
             ),
-            '/cosmos.gov.v1beta1.Query/Params': grpclib.const.Handler(
+            "/cosmos.gov.v1beta1.Query/Params": grpclib.const.Handler(
                 self.__rpc_params,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,
                 QueryParamsResponse,
             ),
-            '/cosmos.gov.v1beta1.Query/Deposit': grpclib.const.Handler(
+            "/cosmos.gov.v1beta1.Query/Deposit": grpclib.const.Handler(
                 self.__rpc_deposit,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDepositRequest,
                 QueryDepositResponse,
             ),
-            '/cosmos.gov.v1beta1.Query/Deposits': grpclib.const.Handler(
+            "/cosmos.gov.v1beta1.Query/Deposits": grpclib.const.Handler(
                 self.__rpc_deposits,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDepositsRequest,
                 QueryDepositsResponse,
             ),
-            '/cosmos.gov.v1beta1.Query/TallyResult': grpclib.const.Handler(
+            "/cosmos.gov.v1beta1.Query/TallyResult": grpclib.const.Handler(
                 self.__rpc_tally_result,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryTallyResultRequest,
@@ -838,45 +838,45 @@ class QueryBase(ServiceBase):
 
 class MsgBase(ServiceBase):
     async def submit_proposal(
-        self, msg_submit_proposal: 'MsgSubmitProposal'
-    ) -> 'MsgSubmitProposalResponse':
+        self, msg_submit_proposal: "MsgSubmitProposal"
+    ) -> "MsgSubmitProposalResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def vote(self, msg_vote: 'MsgVote') -> 'MsgVoteResponse':
+    async def vote(self, msg_vote: "MsgVote") -> "MsgVoteResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def vote_weighted(
-        self, msg_vote_weighted: 'MsgVoteWeighted'
-    ) -> 'MsgVoteWeightedResponse':
+        self, msg_vote_weighted: "MsgVoteWeighted"
+    ) -> "MsgVoteWeightedResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def deposit(self, msg_deposit: 'MsgDeposit') -> 'MsgDepositResponse':
+    async def deposit(self, msg_deposit: "MsgDeposit") -> "MsgDepositResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_submit_proposal(
         self,
-        stream: 'grpclib.server.Stream[MsgSubmitProposal, MsgSubmitProposalResponse]',
+        stream: "grpclib.server.Stream[MsgSubmitProposal, MsgSubmitProposalResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.submit_proposal(request)
         await stream.send_message(response)
 
     async def __rpc_vote(
-        self, stream: 'grpclib.server.Stream[MsgVote, MsgVoteResponse]'
+        self, stream: "grpclib.server.Stream[MsgVote, MsgVoteResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.vote(request)
         await stream.send_message(response)
 
     async def __rpc_vote_weighted(
-        self, stream: 'grpclib.server.Stream[MsgVoteWeighted, MsgVoteWeightedResponse]'
+        self, stream: "grpclib.server.Stream[MsgVoteWeighted, MsgVoteWeightedResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.vote_weighted(request)
         await stream.send_message(response)
 
     async def __rpc_deposit(
-        self, stream: 'grpclib.server.Stream[MsgDeposit, MsgDepositResponse]'
+        self, stream: "grpclib.server.Stream[MsgDeposit, MsgDepositResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.deposit(request)
@@ -884,25 +884,25 @@ class MsgBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.gov.v1beta1.Msg/SubmitProposal': grpclib.const.Handler(
+            "/cosmos.gov.v1beta1.Msg/SubmitProposal": grpclib.const.Handler(
                 self.__rpc_submit_proposal,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgSubmitProposal,
                 MsgSubmitProposalResponse,
             ),
-            '/cosmos.gov.v1beta1.Msg/Vote': grpclib.const.Handler(
+            "/cosmos.gov.v1beta1.Msg/Vote": grpclib.const.Handler(
                 self.__rpc_vote,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgVote,
                 MsgVoteResponse,
             ),
-            '/cosmos.gov.v1beta1.Msg/VoteWeighted': grpclib.const.Handler(
+            "/cosmos.gov.v1beta1.Msg/VoteWeighted": grpclib.const.Handler(
                 self.__rpc_vote_weighted,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgVoteWeighted,
                 MsgVoteWeightedResponse,
             ),
-            '/cosmos.gov.v1beta1.Msg/Deposit': grpclib.const.Handler(
+            "/cosmos.gov.v1beta1.Msg/Deposit": grpclib.const.Handler(
                 self.__rpc_deposit,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgDeposit,

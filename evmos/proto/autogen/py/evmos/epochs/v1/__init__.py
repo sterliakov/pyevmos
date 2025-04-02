@@ -42,20 +42,20 @@ class EpochInfo(betterproto.Message):
 class GenesisState(betterproto.Message):
     """GenesisState defines the epochs module's genesis state."""
 
-    epochs: List['EpochInfo'] = betterproto.message_field(1)
+    epochs: List["EpochInfo"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
 class QueryEpochsInfoRequest(betterproto.Message):
-    pagination: '___cosmos_base_query_v1_beta1__.PageRequest' = (
+    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(1)
     )
 
 
 @dataclass(eq=False, repr=False)
 class QueryEpochsInfoResponse(betterproto.Message):
-    epochs: List['EpochInfo'] = betterproto.message_field(1)
-    pagination: '___cosmos_base_query_v1_beta1__.PageResponse' = (
+    epochs: List["EpochInfo"] = betterproto.message_field(1)
+    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
         betterproto.message_field(2)
     )
 
@@ -73,14 +73,14 @@ class QueryCurrentEpochResponse(betterproto.Message):
 class QueryStub(betterproto.ServiceStub):
     async def epoch_infos(
         self,
-        query_epochs_info_request: 'QueryEpochsInfoRequest',
+        query_epochs_info_request: "QueryEpochsInfoRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryEpochsInfoResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryEpochsInfoResponse":
         return await self._unary_unary(
-            '/evmos.epochs.v1.Query/EpochInfos',
+            "/evmos.epochs.v1.Query/EpochInfos",
             query_epochs_info_request,
             QueryEpochsInfoResponse,
             timeout=timeout,
@@ -90,14 +90,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def current_epoch(
         self,
-        query_current_epoch_request: 'QueryCurrentEpochRequest',
+        query_current_epoch_request: "QueryCurrentEpochRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryCurrentEpochResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryCurrentEpochResponse":
         return await self._unary_unary(
-            '/evmos.epochs.v1.Query/CurrentEpoch',
+            "/evmos.epochs.v1.Query/CurrentEpoch",
             query_current_epoch_request,
             QueryCurrentEpochResponse,
             timeout=timeout,
@@ -108,18 +108,18 @@ class QueryStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def epoch_infos(
-        self, query_epochs_info_request: 'QueryEpochsInfoRequest'
-    ) -> 'QueryEpochsInfoResponse':
+        self, query_epochs_info_request: "QueryEpochsInfoRequest"
+    ) -> "QueryEpochsInfoResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def current_epoch(
-        self, query_current_epoch_request: 'QueryCurrentEpochRequest'
-    ) -> 'QueryCurrentEpochResponse':
+        self, query_current_epoch_request: "QueryCurrentEpochRequest"
+    ) -> "QueryCurrentEpochResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_epoch_infos(
         self,
-        stream: 'grpclib.server.Stream[QueryEpochsInfoRequest, QueryEpochsInfoResponse]',
+        stream: "grpclib.server.Stream[QueryEpochsInfoRequest, QueryEpochsInfoResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.epoch_infos(request)
@@ -127,7 +127,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_current_epoch(
         self,
-        stream: 'grpclib.server.Stream[QueryCurrentEpochRequest, QueryCurrentEpochResponse]',
+        stream: "grpclib.server.Stream[QueryCurrentEpochRequest, QueryCurrentEpochResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.current_epoch(request)
@@ -135,13 +135,13 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/evmos.epochs.v1.Query/EpochInfos': grpclib.const.Handler(
+            "/evmos.epochs.v1.Query/EpochInfos": grpclib.const.Handler(
                 self.__rpc_epoch_infos,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryEpochsInfoRequest,
                 QueryEpochsInfoResponse,
             ),
-            '/evmos.epochs.v1.Query/CurrentEpoch': grpclib.const.Handler(
+            "/evmos.epochs.v1.Query/CurrentEpoch": grpclib.const.Handler(
                 self.__rpc_current_epoch,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryCurrentEpochRequest,

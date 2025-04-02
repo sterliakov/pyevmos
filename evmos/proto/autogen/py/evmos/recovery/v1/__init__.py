@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 class GenesisState(betterproto.Message):
     """GenesisState defines the recovery module's genesis state."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params defines all the paramaters of the module."""
 
 
@@ -51,21 +51,21 @@ class QueryParamsRequest(betterproto.Message):
 class QueryParamsResponse(betterproto.Message):
     """QueryParamsResponse is the response type for the Query/Params RPC method."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params defines the parameters of the module."""
 
 
 class QueryStub(betterproto.ServiceStub):
     async def params(
         self,
-        query_params_request: 'QueryParamsRequest',
+        query_params_request: "QueryParamsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryParamsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryParamsResponse":
         return await self._unary_unary(
-            '/evmos.recovery.v1.Query/Params',
+            "/evmos.recovery.v1.Query/Params",
             query_params_request,
             QueryParamsResponse,
             timeout=timeout,
@@ -76,12 +76,12 @@ class QueryStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def params(
-        self, query_params_request: 'QueryParamsRequest'
-    ) -> 'QueryParamsResponse':
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_params(
-        self, stream: 'grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]'
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
@@ -89,7 +89,7 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/evmos.recovery.v1.Query/Params': grpclib.const.Handler(
+            "/evmos.recovery.v1.Query/Params": grpclib.const.Handler(
                 self.__rpc_params,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,

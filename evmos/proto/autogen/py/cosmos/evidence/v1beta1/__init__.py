@@ -42,7 +42,7 @@ class Equivocation(betterproto.Message):
 class GenesisState(betterproto.Message):
     """GenesisState defines the evidence module's genesis state."""
 
-    evidence: List['betterproto_lib_google_protobuf.Any'] = betterproto.message_field(1)
+    evidence: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(1)
     """evidence defines all the evidence at genesis."""
 
 
@@ -58,7 +58,7 @@ class QueryEvidenceRequest(betterproto.Message):
 class QueryEvidenceResponse(betterproto.Message):
     """QueryEvidenceResponse is the response type for the Query/Evidence RPC method."""
 
-    evidence: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(1)
+    evidence: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(1)
     """evidence returns the requested evidence."""
 
 
@@ -69,7 +69,7 @@ class QueryAllEvidenceRequest(betterproto.Message):
     method.
     """
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(1)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(1)
     """pagination defines an optional pagination for the request."""
 
 
@@ -80,10 +80,10 @@ class QueryAllEvidenceResponse(betterproto.Message):
     method.
     """
 
-    evidence: List['betterproto_lib_google_protobuf.Any'] = betterproto.message_field(1)
+    evidence: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(1)
     """evidence returns all evidences."""
 
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
 
 
@@ -95,7 +95,7 @@ class MsgSubmitEvidence(betterproto.Message):
     """
 
     submitter: str = betterproto.string_field(1)
-    evidence: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(2)
+    evidence: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -109,14 +109,14 @@ class MsgSubmitEvidenceResponse(betterproto.Message):
 class QueryStub(betterproto.ServiceStub):
     async def evidence(
         self,
-        query_evidence_request: 'QueryEvidenceRequest',
+        query_evidence_request: "QueryEvidenceRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryEvidenceResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryEvidenceResponse":
         return await self._unary_unary(
-            '/cosmos.evidence.v1beta1.Query/Evidence',
+            "/cosmos.evidence.v1beta1.Query/Evidence",
             query_evidence_request,
             QueryEvidenceResponse,
             timeout=timeout,
@@ -126,14 +126,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def all_evidence(
         self,
-        query_all_evidence_request: 'QueryAllEvidenceRequest',
+        query_all_evidence_request: "QueryAllEvidenceRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryAllEvidenceResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryAllEvidenceResponse":
         return await self._unary_unary(
-            '/cosmos.evidence.v1beta1.Query/AllEvidence',
+            "/cosmos.evidence.v1beta1.Query/AllEvidence",
             query_all_evidence_request,
             QueryAllEvidenceResponse,
             timeout=timeout,
@@ -145,14 +145,14 @@ class QueryStub(betterproto.ServiceStub):
 class MsgStub(betterproto.ServiceStub):
     async def submit_evidence(
         self,
-        msg_submit_evidence: 'MsgSubmitEvidence',
+        msg_submit_evidence: "MsgSubmitEvidence",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgSubmitEvidenceResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgSubmitEvidenceResponse":
         return await self._unary_unary(
-            '/cosmos.evidence.v1beta1.Msg/SubmitEvidence',
+            "/cosmos.evidence.v1beta1.Msg/SubmitEvidence",
             msg_submit_evidence,
             MsgSubmitEvidenceResponse,
             timeout=timeout,
@@ -163,18 +163,18 @@ class MsgStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def evidence(
-        self, query_evidence_request: 'QueryEvidenceRequest'
-    ) -> 'QueryEvidenceResponse':
+        self, query_evidence_request: "QueryEvidenceRequest"
+    ) -> "QueryEvidenceResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def all_evidence(
-        self, query_all_evidence_request: 'QueryAllEvidenceRequest'
-    ) -> 'QueryAllEvidenceResponse':
+        self, query_all_evidence_request: "QueryAllEvidenceRequest"
+    ) -> "QueryAllEvidenceResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_evidence(
         self,
-        stream: 'grpclib.server.Stream[QueryEvidenceRequest, QueryEvidenceResponse]',
+        stream: "grpclib.server.Stream[QueryEvidenceRequest, QueryEvidenceResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.evidence(request)
@@ -182,7 +182,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_all_evidence(
         self,
-        stream: 'grpclib.server.Stream[QueryAllEvidenceRequest, QueryAllEvidenceResponse]',
+        stream: "grpclib.server.Stream[QueryAllEvidenceRequest, QueryAllEvidenceResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.all_evidence(request)
@@ -190,13 +190,13 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.evidence.v1beta1.Query/Evidence': grpclib.const.Handler(
+            "/cosmos.evidence.v1beta1.Query/Evidence": grpclib.const.Handler(
                 self.__rpc_evidence,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryEvidenceRequest,
                 QueryEvidenceResponse,
             ),
-            '/cosmos.evidence.v1beta1.Query/AllEvidence': grpclib.const.Handler(
+            "/cosmos.evidence.v1beta1.Query/AllEvidence": grpclib.const.Handler(
                 self.__rpc_all_evidence,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryAllEvidenceRequest,
@@ -207,13 +207,13 @@ class QueryBase(ServiceBase):
 
 class MsgBase(ServiceBase):
     async def submit_evidence(
-        self, msg_submit_evidence: 'MsgSubmitEvidence'
-    ) -> 'MsgSubmitEvidenceResponse':
+        self, msg_submit_evidence: "MsgSubmitEvidence"
+    ) -> "MsgSubmitEvidenceResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_submit_evidence(
         self,
-        stream: 'grpclib.server.Stream[MsgSubmitEvidence, MsgSubmitEvidenceResponse]',
+        stream: "grpclib.server.Stream[MsgSubmitEvidence, MsgSubmitEvidenceResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.submit_evidence(request)
@@ -221,7 +221,7 @@ class MsgBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.evidence.v1beta1.Msg/SubmitEvidence': grpclib.const.Handler(
+            "/cosmos.evidence.v1beta1.Msg/SubmitEvidence": grpclib.const.Handler(
                 self.__rpc_submit_evidence,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgSubmitEvidence,

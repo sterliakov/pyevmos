@@ -58,10 +58,10 @@ class Params(betterproto.Message):
 class GenesisState(betterproto.Message):
     """GenesisState defines the mint module's genesis state."""
 
-    minter: 'Minter' = betterproto.message_field(1)
+    minter: "Minter" = betterproto.message_field(1)
     """minter is a space for holding current inflation information."""
 
-    params: 'Params' = betterproto.message_field(2)
+    params: "Params" = betterproto.message_field(2)
     """params defines all the paramaters of the module."""
 
 
@@ -76,7 +76,7 @@ class QueryParamsRequest(betterproto.Message):
 class QueryParamsResponse(betterproto.Message):
     """QueryParamsResponse is the response type for the Query/Params RPC method."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params defines the parameters of the module."""
 
 
@@ -122,14 +122,14 @@ class QueryAnnualProvisionsResponse(betterproto.Message):
 class QueryStub(betterproto.ServiceStub):
     async def params(
         self,
-        query_params_request: 'QueryParamsRequest',
+        query_params_request: "QueryParamsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryParamsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryParamsResponse":
         return await self._unary_unary(
-            '/cosmos.mint.v1beta1.Query/Params',
+            "/cosmos.mint.v1beta1.Query/Params",
             query_params_request,
             QueryParamsResponse,
             timeout=timeout,
@@ -139,14 +139,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def inflation(
         self,
-        query_inflation_request: 'QueryInflationRequest',
+        query_inflation_request: "QueryInflationRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryInflationResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryInflationResponse":
         return await self._unary_unary(
-            '/cosmos.mint.v1beta1.Query/Inflation',
+            "/cosmos.mint.v1beta1.Query/Inflation",
             query_inflation_request,
             QueryInflationResponse,
             timeout=timeout,
@@ -156,14 +156,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def annual_provisions(
         self,
-        query_annual_provisions_request: 'QueryAnnualProvisionsRequest',
+        query_annual_provisions_request: "QueryAnnualProvisionsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryAnnualProvisionsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryAnnualProvisionsResponse":
         return await self._unary_unary(
-            '/cosmos.mint.v1beta1.Query/AnnualProvisions',
+            "/cosmos.mint.v1beta1.Query/AnnualProvisions",
             query_annual_provisions_request,
             QueryAnnualProvisionsResponse,
             timeout=timeout,
@@ -174,22 +174,22 @@ class QueryStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def params(
-        self, query_params_request: 'QueryParamsRequest'
-    ) -> 'QueryParamsResponse':
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def inflation(
-        self, query_inflation_request: 'QueryInflationRequest'
-    ) -> 'QueryInflationResponse':
+        self, query_inflation_request: "QueryInflationRequest"
+    ) -> "QueryInflationResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def annual_provisions(
-        self, query_annual_provisions_request: 'QueryAnnualProvisionsRequest'
-    ) -> 'QueryAnnualProvisionsResponse':
+        self, query_annual_provisions_request: "QueryAnnualProvisionsRequest"
+    ) -> "QueryAnnualProvisionsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_params(
-        self, stream: 'grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]'
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
@@ -197,7 +197,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_inflation(
         self,
-        stream: 'grpclib.server.Stream[QueryInflationRequest, QueryInflationResponse]',
+        stream: "grpclib.server.Stream[QueryInflationRequest, QueryInflationResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.inflation(request)
@@ -205,7 +205,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_annual_provisions(
         self,
-        stream: 'grpclib.server.Stream[QueryAnnualProvisionsRequest, QueryAnnualProvisionsResponse]',
+        stream: "grpclib.server.Stream[QueryAnnualProvisionsRequest, QueryAnnualProvisionsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.annual_provisions(request)
@@ -213,19 +213,19 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.mint.v1beta1.Query/Params': grpclib.const.Handler(
+            "/cosmos.mint.v1beta1.Query/Params": grpclib.const.Handler(
                 self.__rpc_params,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,
                 QueryParamsResponse,
             ),
-            '/cosmos.mint.v1beta1.Query/Inflation': grpclib.const.Handler(
+            "/cosmos.mint.v1beta1.Query/Inflation": grpclib.const.Handler(
                 self.__rpc_inflation,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryInflationRequest,
                 QueryInflationResponse,
             ),
-            '/cosmos.mint.v1beta1.Query/AnnualProvisions': grpclib.const.Handler(
+            "/cosmos.mint.v1beta1.Query/AnnualProvisions": grpclib.const.Handler(
                 self.__rpc_annual_provisions,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryAnnualProvisionsRequest,

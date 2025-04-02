@@ -51,9 +51,9 @@ class ValidatorHistoricalRewards(betterproto.Message):
      + one per validator for the zeroeth period, set on initialization
     """
 
-    cumulative_reward_ratio: List[
-        '__base_v1_beta1__.DecCoin'
-    ] = betterproto.message_field(1)
+    cumulative_reward_ratio: List["__base_v1_beta1__.DecCoin"] = (
+        betterproto.message_field(1)
+    )
     reference_count: int = betterproto.uint32_field(2)
 
 
@@ -65,7 +65,7 @@ class ValidatorCurrentRewards(betterproto.Message):
     each block as long as the validator's tokens remain constant.
     """
 
-    rewards: List['__base_v1_beta1__.DecCoin'] = betterproto.message_field(1)
+    rewards: List["__base_v1_beta1__.DecCoin"] = betterproto.message_field(1)
     period: int = betterproto.uint64_field(2)
 
 
@@ -76,7 +76,7 @@ class ValidatorAccumulatedCommission(betterproto.Message):
     for a validator kept as a running counter, can be withdrawn at any time.
     """
 
-    commission: List['__base_v1_beta1__.DecCoin'] = betterproto.message_field(1)
+    commission: List["__base_v1_beta1__.DecCoin"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -86,7 +86,7 @@ class ValidatorOutstandingRewards(betterproto.Message):
     for a validator inexpensive to track, allows simple sanity checks.
     """
 
-    rewards: List['__base_v1_beta1__.DecCoin'] = betterproto.message_field(1)
+    rewards: List["__base_v1_beta1__.DecCoin"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -106,14 +106,14 @@ class ValidatorSlashEvent(betterproto.Message):
 class ValidatorSlashEvents(betterproto.Message):
     """ValidatorSlashEvents is a collection of ValidatorSlashEvent messages."""
 
-    validator_slash_events: List['ValidatorSlashEvent'] = betterproto.message_field(1)
+    validator_slash_events: List["ValidatorSlashEvent"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
 class FeePool(betterproto.Message):
     """FeePool is the global fee pool for distribution."""
 
-    community_pool: List['__base_v1_beta1__.DecCoin'] = betterproto.message_field(1)
+    community_pool: List["__base_v1_beta1__.DecCoin"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -127,7 +127,7 @@ class CommunityPoolSpendProposal(betterproto.Message):
     title: str = betterproto.string_field(1)
     description: str = betterproto.string_field(2)
     recipient: str = betterproto.string_field(3)
-    amount: List['__base_v1_beta1__.Coin'] = betterproto.message_field(4)
+    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
@@ -154,7 +154,7 @@ class DelegationDelegatorReward(betterproto.Message):
     """
 
     validator_address: str = betterproto.string_field(1)
-    reward: List['__base_v1_beta1__.DecCoin'] = betterproto.message_field(2)
+    reward: List["__base_v1_beta1__.DecCoin"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -193,7 +193,7 @@ class ValidatorOutstandingRewardsRecord(betterproto.Message):
     validator_address: str = betterproto.string_field(1)
     """validator_address is the address of the validator."""
 
-    outstanding_rewards: List['__base_v1_beta1__.DecCoin'] = betterproto.message_field(
+    outstanding_rewards: List["__base_v1_beta1__.DecCoin"] = betterproto.message_field(
         2
     )
     """outstanding_rewards represents the oustanding rewards of a validator."""
@@ -209,7 +209,7 @@ class ValidatorAccumulatedCommissionRecord(betterproto.Message):
     validator_address: str = betterproto.string_field(1)
     """validator_address is the address of the validator."""
 
-    accumulated: 'ValidatorAccumulatedCommission' = betterproto.message_field(2)
+    accumulated: "ValidatorAccumulatedCommission" = betterproto.message_field(2)
     """accumulated is the accumulated commission of a validator."""
 
 
@@ -226,7 +226,7 @@ class ValidatorHistoricalRewardsRecord(betterproto.Message):
     period: int = betterproto.uint64_field(2)
     """period defines the period the historical rewards apply to."""
 
-    rewards: 'ValidatorHistoricalRewards' = betterproto.message_field(3)
+    rewards: "ValidatorHistoricalRewards" = betterproto.message_field(3)
     """rewards defines the historical rewards of a validator."""
 
 
@@ -237,7 +237,7 @@ class ValidatorCurrentRewardsRecord(betterproto.Message):
     validator_address: str = betterproto.string_field(1)
     """validator_address is the address of the validator."""
 
-    rewards: 'ValidatorCurrentRewards' = betterproto.message_field(2)
+    rewards: "ValidatorCurrentRewards" = betterproto.message_field(2)
     """rewards defines the current rewards of a validator."""
 
 
@@ -251,7 +251,7 @@ class DelegatorStartingInfoRecord(betterproto.Message):
     validator_address: str = betterproto.string_field(2)
     """validator_address is the address of the validator."""
 
-    starting_info: 'DelegatorStartingInfo' = betterproto.message_field(3)
+    starting_info: "DelegatorStartingInfo" = betterproto.message_field(3)
     """starting_info defines the starting info of a delegator."""
 
 
@@ -268,7 +268,7 @@ class ValidatorSlashEventRecord(betterproto.Message):
     period: int = betterproto.uint64_field(3)
     """period is the period of the slash event."""
 
-    validator_slash_event: 'ValidatorSlashEvent' = betterproto.message_field(4)
+    validator_slash_event: "ValidatorSlashEvent" = betterproto.message_field(4)
     """validator_slash_event describes the slash event."""
 
 
@@ -276,13 +276,13 @@ class ValidatorSlashEventRecord(betterproto.Message):
 class GenesisState(betterproto.Message):
     """GenesisState defines the distribution module's genesis state."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params defines all the paramaters of the module."""
 
-    fee_pool: 'FeePool' = betterproto.message_field(2)
+    fee_pool: "FeePool" = betterproto.message_field(2)
     """fee_pool defines the fee pool at genesis."""
 
-    delegator_withdraw_infos: List['DelegatorWithdrawInfo'] = betterproto.message_field(
+    delegator_withdraw_infos: List["DelegatorWithdrawInfo"] = betterproto.message_field(
         3
     )
     """fee_pool defines the delegator withdraw infos at genesis."""
@@ -290,34 +290,34 @@ class GenesisState(betterproto.Message):
     previous_proposer: str = betterproto.string_field(4)
     """fee_pool defines the previous proposer at genesis."""
 
-    outstanding_rewards: List[
-        'ValidatorOutstandingRewardsRecord'
-    ] = betterproto.message_field(5)
+    outstanding_rewards: List["ValidatorOutstandingRewardsRecord"] = (
+        betterproto.message_field(5)
+    )
     """fee_pool defines the outstanding rewards of all validators at genesis."""
 
-    validator_accumulated_commissions: List[
-        'ValidatorAccumulatedCommissionRecord'
-    ] = betterproto.message_field(6)
+    validator_accumulated_commissions: List["ValidatorAccumulatedCommissionRecord"] = (
+        betterproto.message_field(6)
+    )
     """fee_pool defines the accumulated commisions of all validators at genesis."""
 
-    validator_historical_rewards: List[
-        'ValidatorHistoricalRewardsRecord'
-    ] = betterproto.message_field(7)
+    validator_historical_rewards: List["ValidatorHistoricalRewardsRecord"] = (
+        betterproto.message_field(7)
+    )
     """fee_pool defines the historical rewards of all validators at genesis."""
 
-    validator_current_rewards: List[
-        'ValidatorCurrentRewardsRecord'
-    ] = betterproto.message_field(8)
+    validator_current_rewards: List["ValidatorCurrentRewardsRecord"] = (
+        betterproto.message_field(8)
+    )
     """fee_pool defines the current rewards of all validators at genesis."""
 
-    delegator_starting_infos: List[
-        'DelegatorStartingInfoRecord'
-    ] = betterproto.message_field(9)
+    delegator_starting_infos: List["DelegatorStartingInfoRecord"] = (
+        betterproto.message_field(9)
+    )
     """fee_pool defines the delegator starting infos at genesis."""
 
-    validator_slash_events: List[
-        'ValidatorSlashEventRecord'
-    ] = betterproto.message_field(10)
+    validator_slash_events: List["ValidatorSlashEventRecord"] = (
+        betterproto.message_field(10)
+    )
     """fee_pool defines the validator slash events at genesis."""
 
 
@@ -332,7 +332,7 @@ class QueryParamsRequest(betterproto.Message):
 class QueryParamsResponse(betterproto.Message):
     """QueryParamsResponse is the response type for the Query/Params RPC method."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params defines the parameters of the module."""
 
 
@@ -354,7 +354,7 @@ class QueryValidatorOutstandingRewardsResponse(betterproto.Message):
     Query/ValidatorOutstandingRewards RPC method.
     """
 
-    rewards: 'ValidatorOutstandingRewards' = betterproto.message_field(1)
+    rewards: "ValidatorOutstandingRewards" = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -375,7 +375,7 @@ class QueryValidatorCommissionResponse(betterproto.Message):
     Query/ValidatorCommission RPC method
     """
 
-    commission: 'ValidatorAccumulatedCommission' = betterproto.message_field(1)
+    commission: "ValidatorAccumulatedCommission" = betterproto.message_field(1)
     """commission defines the commision the validator received."""
 
 
@@ -395,7 +395,7 @@ class QueryValidatorSlashesRequest(betterproto.Message):
     ending_height: int = betterproto.uint64_field(3)
     """starting_height defines the optional ending height to query the slashes."""
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(4)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(4)
     """pagination defines an optional pagination for the request."""
 
 
@@ -406,10 +406,10 @@ class QueryValidatorSlashesResponse(betterproto.Message):
     Query/ValidatorSlashes RPC method.
     """
 
-    slashes: List['ValidatorSlashEvent'] = betterproto.message_field(1)
+    slashes: List["ValidatorSlashEvent"] = betterproto.message_field(1)
     """slashes defines the slashes the validator received."""
 
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
 
 
@@ -434,7 +434,7 @@ class QueryDelegationRewardsResponse(betterproto.Message):
     Query/DelegationRewards RPC method.
     """
 
-    rewards: List['__base_v1_beta1__.DecCoin'] = betterproto.message_field(1)
+    rewards: List["__base_v1_beta1__.DecCoin"] = betterproto.message_field(1)
     """rewards defines the rewards accrued by a delegation."""
 
 
@@ -456,10 +456,10 @@ class QueryDelegationTotalRewardsResponse(betterproto.Message):
     Query/DelegationTotalRewards RPC method.
     """
 
-    rewards: List['DelegationDelegatorReward'] = betterproto.message_field(1)
+    rewards: List["DelegationDelegatorReward"] = betterproto.message_field(1)
     """rewards defines all the rewards accrued by a delegator."""
 
-    total: List['__base_v1_beta1__.DecCoin'] = betterproto.message_field(2)
+    total: List["__base_v1_beta1__.DecCoin"] = betterproto.message_field(2)
     """total defines the sum of all the rewards."""
 
 
@@ -524,7 +524,7 @@ class QueryCommunityPoolResponse(betterproto.Message):
     RPC method.
     """
 
-    pool: List['__base_v1_beta1__.DecCoin'] = betterproto.message_field(1)
+    pool: List["__base_v1_beta1__.DecCoin"] = betterproto.message_field(1)
     """pool defines community pool's coins."""
 
 
@@ -596,7 +596,7 @@ class MsgFundCommunityPool(betterproto.Message):
     fund the community pool.
     """
 
-    amount: List['__base_v1_beta1__.Coin'] = betterproto.message_field(1)
+    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(1)
     depositor: str = betterproto.string_field(2)
 
 
@@ -610,14 +610,14 @@ class MsgFundCommunityPoolResponse(betterproto.Message):
 class QueryStub(betterproto.ServiceStub):
     async def params(
         self,
-        query_params_request: 'QueryParamsRequest',
+        query_params_request: "QueryParamsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryParamsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryParamsResponse":
         return await self._unary_unary(
-            '/cosmos.distribution.v1beta1.Query/Params',
+            "/cosmos.distribution.v1beta1.Query/Params",
             query_params_request,
             QueryParamsResponse,
             timeout=timeout,
@@ -627,14 +627,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def validator_outstanding_rewards(
         self,
-        query_validator_outstanding_rewards_request: 'QueryValidatorOutstandingRewardsRequest',
+        query_validator_outstanding_rewards_request: "QueryValidatorOutstandingRewardsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryValidatorOutstandingRewardsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryValidatorOutstandingRewardsResponse":
         return await self._unary_unary(
-            '/cosmos.distribution.v1beta1.Query/ValidatorOutstandingRewards',
+            "/cosmos.distribution.v1beta1.Query/ValidatorOutstandingRewards",
             query_validator_outstanding_rewards_request,
             QueryValidatorOutstandingRewardsResponse,
             timeout=timeout,
@@ -644,14 +644,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def validator_commission(
         self,
-        query_validator_commission_request: 'QueryValidatorCommissionRequest',
+        query_validator_commission_request: "QueryValidatorCommissionRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryValidatorCommissionResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryValidatorCommissionResponse":
         return await self._unary_unary(
-            '/cosmos.distribution.v1beta1.Query/ValidatorCommission',
+            "/cosmos.distribution.v1beta1.Query/ValidatorCommission",
             query_validator_commission_request,
             QueryValidatorCommissionResponse,
             timeout=timeout,
@@ -661,14 +661,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def validator_slashes(
         self,
-        query_validator_slashes_request: 'QueryValidatorSlashesRequest',
+        query_validator_slashes_request: "QueryValidatorSlashesRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryValidatorSlashesResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryValidatorSlashesResponse":
         return await self._unary_unary(
-            '/cosmos.distribution.v1beta1.Query/ValidatorSlashes',
+            "/cosmos.distribution.v1beta1.Query/ValidatorSlashes",
             query_validator_slashes_request,
             QueryValidatorSlashesResponse,
             timeout=timeout,
@@ -678,14 +678,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def delegation_rewards(
         self,
-        query_delegation_rewards_request: 'QueryDelegationRewardsRequest',
+        query_delegation_rewards_request: "QueryDelegationRewardsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDelegationRewardsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDelegationRewardsResponse":
         return await self._unary_unary(
-            '/cosmos.distribution.v1beta1.Query/DelegationRewards',
+            "/cosmos.distribution.v1beta1.Query/DelegationRewards",
             query_delegation_rewards_request,
             QueryDelegationRewardsResponse,
             timeout=timeout,
@@ -695,14 +695,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def delegation_total_rewards(
         self,
-        query_delegation_total_rewards_request: 'QueryDelegationTotalRewardsRequest',
+        query_delegation_total_rewards_request: "QueryDelegationTotalRewardsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDelegationTotalRewardsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDelegationTotalRewardsResponse":
         return await self._unary_unary(
-            '/cosmos.distribution.v1beta1.Query/DelegationTotalRewards',
+            "/cosmos.distribution.v1beta1.Query/DelegationTotalRewards",
             query_delegation_total_rewards_request,
             QueryDelegationTotalRewardsResponse,
             timeout=timeout,
@@ -712,14 +712,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def delegator_validators(
         self,
-        query_delegator_validators_request: 'QueryDelegatorValidatorsRequest',
+        query_delegator_validators_request: "QueryDelegatorValidatorsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDelegatorValidatorsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDelegatorValidatorsResponse":
         return await self._unary_unary(
-            '/cosmos.distribution.v1beta1.Query/DelegatorValidators',
+            "/cosmos.distribution.v1beta1.Query/DelegatorValidators",
             query_delegator_validators_request,
             QueryDelegatorValidatorsResponse,
             timeout=timeout,
@@ -729,14 +729,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def delegator_withdraw_address(
         self,
-        query_delegator_withdraw_address_request: 'QueryDelegatorWithdrawAddressRequest',
+        query_delegator_withdraw_address_request: "QueryDelegatorWithdrawAddressRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDelegatorWithdrawAddressResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDelegatorWithdrawAddressResponse":
         return await self._unary_unary(
-            '/cosmos.distribution.v1beta1.Query/DelegatorWithdrawAddress',
+            "/cosmos.distribution.v1beta1.Query/DelegatorWithdrawAddress",
             query_delegator_withdraw_address_request,
             QueryDelegatorWithdrawAddressResponse,
             timeout=timeout,
@@ -746,14 +746,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def community_pool(
         self,
-        query_community_pool_request: 'QueryCommunityPoolRequest',
+        query_community_pool_request: "QueryCommunityPoolRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryCommunityPoolResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryCommunityPoolResponse":
         return await self._unary_unary(
-            '/cosmos.distribution.v1beta1.Query/CommunityPool',
+            "/cosmos.distribution.v1beta1.Query/CommunityPool",
             query_community_pool_request,
             QueryCommunityPoolResponse,
             timeout=timeout,
@@ -765,14 +765,14 @@ class QueryStub(betterproto.ServiceStub):
 class MsgStub(betterproto.ServiceStub):
     async def set_withdraw_address(
         self,
-        msg_set_withdraw_address: 'MsgSetWithdrawAddress',
+        msg_set_withdraw_address: "MsgSetWithdrawAddress",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgSetWithdrawAddressResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgSetWithdrawAddressResponse":
         return await self._unary_unary(
-            '/cosmos.distribution.v1beta1.Msg/SetWithdrawAddress',
+            "/cosmos.distribution.v1beta1.Msg/SetWithdrawAddress",
             msg_set_withdraw_address,
             MsgSetWithdrawAddressResponse,
             timeout=timeout,
@@ -782,14 +782,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def withdraw_delegator_reward(
         self,
-        msg_withdraw_delegator_reward: 'MsgWithdrawDelegatorReward',
+        msg_withdraw_delegator_reward: "MsgWithdrawDelegatorReward",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgWithdrawDelegatorRewardResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgWithdrawDelegatorRewardResponse":
         return await self._unary_unary(
-            '/cosmos.distribution.v1beta1.Msg/WithdrawDelegatorReward',
+            "/cosmos.distribution.v1beta1.Msg/WithdrawDelegatorReward",
             msg_withdraw_delegator_reward,
             MsgWithdrawDelegatorRewardResponse,
             timeout=timeout,
@@ -799,14 +799,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def withdraw_validator_commission(
         self,
-        msg_withdraw_validator_commission: 'MsgWithdrawValidatorCommission',
+        msg_withdraw_validator_commission: "MsgWithdrawValidatorCommission",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgWithdrawValidatorCommissionResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgWithdrawValidatorCommissionResponse":
         return await self._unary_unary(
-            '/cosmos.distribution.v1beta1.Msg/WithdrawValidatorCommission',
+            "/cosmos.distribution.v1beta1.Msg/WithdrawValidatorCommission",
             msg_withdraw_validator_commission,
             MsgWithdrawValidatorCommissionResponse,
             timeout=timeout,
@@ -816,14 +816,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def fund_community_pool(
         self,
-        msg_fund_community_pool: 'MsgFundCommunityPool',
+        msg_fund_community_pool: "MsgFundCommunityPool",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgFundCommunityPoolResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgFundCommunityPoolResponse":
         return await self._unary_unary(
-            '/cosmos.distribution.v1beta1.Msg/FundCommunityPool',
+            "/cosmos.distribution.v1beta1.Msg/FundCommunityPool",
             msg_fund_community_pool,
             MsgFundCommunityPoolResponse,
             timeout=timeout,
@@ -834,55 +834,55 @@ class MsgStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def params(
-        self, query_params_request: 'QueryParamsRequest'
-    ) -> 'QueryParamsResponse':
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def validator_outstanding_rewards(
         self,
-        query_validator_outstanding_rewards_request: 'QueryValidatorOutstandingRewardsRequest',
-    ) -> 'QueryValidatorOutstandingRewardsResponse':
+        query_validator_outstanding_rewards_request: "QueryValidatorOutstandingRewardsRequest",
+    ) -> "QueryValidatorOutstandingRewardsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def validator_commission(
-        self, query_validator_commission_request: 'QueryValidatorCommissionRequest'
-    ) -> 'QueryValidatorCommissionResponse':
+        self, query_validator_commission_request: "QueryValidatorCommissionRequest"
+    ) -> "QueryValidatorCommissionResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def validator_slashes(
-        self, query_validator_slashes_request: 'QueryValidatorSlashesRequest'
-    ) -> 'QueryValidatorSlashesResponse':
+        self, query_validator_slashes_request: "QueryValidatorSlashesRequest"
+    ) -> "QueryValidatorSlashesResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def delegation_rewards(
-        self, query_delegation_rewards_request: 'QueryDelegationRewardsRequest'
-    ) -> 'QueryDelegationRewardsResponse':
+        self, query_delegation_rewards_request: "QueryDelegationRewardsRequest"
+    ) -> "QueryDelegationRewardsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def delegation_total_rewards(
         self,
-        query_delegation_total_rewards_request: 'QueryDelegationTotalRewardsRequest',
-    ) -> 'QueryDelegationTotalRewardsResponse':
+        query_delegation_total_rewards_request: "QueryDelegationTotalRewardsRequest",
+    ) -> "QueryDelegationTotalRewardsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def delegator_validators(
-        self, query_delegator_validators_request: 'QueryDelegatorValidatorsRequest'
-    ) -> 'QueryDelegatorValidatorsResponse':
+        self, query_delegator_validators_request: "QueryDelegatorValidatorsRequest"
+    ) -> "QueryDelegatorValidatorsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def delegator_withdraw_address(
         self,
-        query_delegator_withdraw_address_request: 'QueryDelegatorWithdrawAddressRequest',
-    ) -> 'QueryDelegatorWithdrawAddressResponse':
+        query_delegator_withdraw_address_request: "QueryDelegatorWithdrawAddressRequest",
+    ) -> "QueryDelegatorWithdrawAddressResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def community_pool(
-        self, query_community_pool_request: 'QueryCommunityPoolRequest'
-    ) -> 'QueryCommunityPoolResponse':
+        self, query_community_pool_request: "QueryCommunityPoolRequest"
+    ) -> "QueryCommunityPoolResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_params(
-        self, stream: 'grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]'
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
@@ -890,7 +890,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_validator_outstanding_rewards(
         self,
-        stream: 'grpclib.server.Stream[QueryValidatorOutstandingRewardsRequest, QueryValidatorOutstandingRewardsResponse]',
+        stream: "grpclib.server.Stream[QueryValidatorOutstandingRewardsRequest, QueryValidatorOutstandingRewardsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.validator_outstanding_rewards(request)
@@ -898,7 +898,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_validator_commission(
         self,
-        stream: 'grpclib.server.Stream[QueryValidatorCommissionRequest, QueryValidatorCommissionResponse]',
+        stream: "grpclib.server.Stream[QueryValidatorCommissionRequest, QueryValidatorCommissionResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.validator_commission(request)
@@ -906,7 +906,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_validator_slashes(
         self,
-        stream: 'grpclib.server.Stream[QueryValidatorSlashesRequest, QueryValidatorSlashesResponse]',
+        stream: "grpclib.server.Stream[QueryValidatorSlashesRequest, QueryValidatorSlashesResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.validator_slashes(request)
@@ -914,7 +914,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_delegation_rewards(
         self,
-        stream: 'grpclib.server.Stream[QueryDelegationRewardsRequest, QueryDelegationRewardsResponse]',
+        stream: "grpclib.server.Stream[QueryDelegationRewardsRequest, QueryDelegationRewardsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.delegation_rewards(request)
@@ -922,7 +922,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_delegation_total_rewards(
         self,
-        stream: 'grpclib.server.Stream[QueryDelegationTotalRewardsRequest, QueryDelegationTotalRewardsResponse]',
+        stream: "grpclib.server.Stream[QueryDelegationTotalRewardsRequest, QueryDelegationTotalRewardsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.delegation_total_rewards(request)
@@ -930,7 +930,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_delegator_validators(
         self,
-        stream: 'grpclib.server.Stream[QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponse]',
+        stream: "grpclib.server.Stream[QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.delegator_validators(request)
@@ -938,7 +938,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_delegator_withdraw_address(
         self,
-        stream: 'grpclib.server.Stream[QueryDelegatorWithdrawAddressRequest, QueryDelegatorWithdrawAddressResponse]',
+        stream: "grpclib.server.Stream[QueryDelegatorWithdrawAddressRequest, QueryDelegatorWithdrawAddressResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.delegator_withdraw_address(request)
@@ -946,7 +946,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_community_pool(
         self,
-        stream: 'grpclib.server.Stream[QueryCommunityPoolRequest, QueryCommunityPoolResponse]',
+        stream: "grpclib.server.Stream[QueryCommunityPoolRequest, QueryCommunityPoolResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.community_pool(request)
@@ -954,55 +954,55 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.distribution.v1beta1.Query/Params': grpclib.const.Handler(
+            "/cosmos.distribution.v1beta1.Query/Params": grpclib.const.Handler(
                 self.__rpc_params,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,
                 QueryParamsResponse,
             ),
-            '/cosmos.distribution.v1beta1.Query/ValidatorOutstandingRewards': grpclib.const.Handler(
+            "/cosmos.distribution.v1beta1.Query/ValidatorOutstandingRewards": grpclib.const.Handler(
                 self.__rpc_validator_outstanding_rewards,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryValidatorOutstandingRewardsRequest,
                 QueryValidatorOutstandingRewardsResponse,
             ),
-            '/cosmos.distribution.v1beta1.Query/ValidatorCommission': grpclib.const.Handler(
+            "/cosmos.distribution.v1beta1.Query/ValidatorCommission": grpclib.const.Handler(
                 self.__rpc_validator_commission,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryValidatorCommissionRequest,
                 QueryValidatorCommissionResponse,
             ),
-            '/cosmos.distribution.v1beta1.Query/ValidatorSlashes': grpclib.const.Handler(
+            "/cosmos.distribution.v1beta1.Query/ValidatorSlashes": grpclib.const.Handler(
                 self.__rpc_validator_slashes,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryValidatorSlashesRequest,
                 QueryValidatorSlashesResponse,
             ),
-            '/cosmos.distribution.v1beta1.Query/DelegationRewards': grpclib.const.Handler(
+            "/cosmos.distribution.v1beta1.Query/DelegationRewards": grpclib.const.Handler(
                 self.__rpc_delegation_rewards,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDelegationRewardsRequest,
                 QueryDelegationRewardsResponse,
             ),
-            '/cosmos.distribution.v1beta1.Query/DelegationTotalRewards': grpclib.const.Handler(
+            "/cosmos.distribution.v1beta1.Query/DelegationTotalRewards": grpclib.const.Handler(
                 self.__rpc_delegation_total_rewards,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDelegationTotalRewardsRequest,
                 QueryDelegationTotalRewardsResponse,
             ),
-            '/cosmos.distribution.v1beta1.Query/DelegatorValidators': grpclib.const.Handler(
+            "/cosmos.distribution.v1beta1.Query/DelegatorValidators": grpclib.const.Handler(
                 self.__rpc_delegator_validators,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDelegatorValidatorsRequest,
                 QueryDelegatorValidatorsResponse,
             ),
-            '/cosmos.distribution.v1beta1.Query/DelegatorWithdrawAddress': grpclib.const.Handler(
+            "/cosmos.distribution.v1beta1.Query/DelegatorWithdrawAddress": grpclib.const.Handler(
                 self.__rpc_delegator_withdraw_address,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDelegatorWithdrawAddressRequest,
                 QueryDelegatorWithdrawAddressResponse,
             ),
-            '/cosmos.distribution.v1beta1.Query/CommunityPool': grpclib.const.Handler(
+            "/cosmos.distribution.v1beta1.Query/CommunityPool": grpclib.const.Handler(
                 self.__rpc_community_pool,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryCommunityPoolRequest,
@@ -1013,28 +1013,28 @@ class QueryBase(ServiceBase):
 
 class MsgBase(ServiceBase):
     async def set_withdraw_address(
-        self, msg_set_withdraw_address: 'MsgSetWithdrawAddress'
-    ) -> 'MsgSetWithdrawAddressResponse':
+        self, msg_set_withdraw_address: "MsgSetWithdrawAddress"
+    ) -> "MsgSetWithdrawAddressResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def withdraw_delegator_reward(
-        self, msg_withdraw_delegator_reward: 'MsgWithdrawDelegatorReward'
-    ) -> 'MsgWithdrawDelegatorRewardResponse':
+        self, msg_withdraw_delegator_reward: "MsgWithdrawDelegatorReward"
+    ) -> "MsgWithdrawDelegatorRewardResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def withdraw_validator_commission(
-        self, msg_withdraw_validator_commission: 'MsgWithdrawValidatorCommission'
-    ) -> 'MsgWithdrawValidatorCommissionResponse':
+        self, msg_withdraw_validator_commission: "MsgWithdrawValidatorCommission"
+    ) -> "MsgWithdrawValidatorCommissionResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def fund_community_pool(
-        self, msg_fund_community_pool: 'MsgFundCommunityPool'
-    ) -> 'MsgFundCommunityPoolResponse':
+        self, msg_fund_community_pool: "MsgFundCommunityPool"
+    ) -> "MsgFundCommunityPoolResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_set_withdraw_address(
         self,
-        stream: 'grpclib.server.Stream[MsgSetWithdrawAddress, MsgSetWithdrawAddressResponse]',
+        stream: "grpclib.server.Stream[MsgSetWithdrawAddress, MsgSetWithdrawAddressResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.set_withdraw_address(request)
@@ -1042,7 +1042,7 @@ class MsgBase(ServiceBase):
 
     async def __rpc_withdraw_delegator_reward(
         self,
-        stream: 'grpclib.server.Stream[MsgWithdrawDelegatorReward, MsgWithdrawDelegatorRewardResponse]',
+        stream: "grpclib.server.Stream[MsgWithdrawDelegatorReward, MsgWithdrawDelegatorRewardResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.withdraw_delegator_reward(request)
@@ -1050,7 +1050,7 @@ class MsgBase(ServiceBase):
 
     async def __rpc_withdraw_validator_commission(
         self,
-        stream: 'grpclib.server.Stream[MsgWithdrawValidatorCommission, MsgWithdrawValidatorCommissionResponse]',
+        stream: "grpclib.server.Stream[MsgWithdrawValidatorCommission, MsgWithdrawValidatorCommissionResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.withdraw_validator_commission(request)
@@ -1058,7 +1058,7 @@ class MsgBase(ServiceBase):
 
     async def __rpc_fund_community_pool(
         self,
-        stream: 'grpclib.server.Stream[MsgFundCommunityPool, MsgFundCommunityPoolResponse]',
+        stream: "grpclib.server.Stream[MsgFundCommunityPool, MsgFundCommunityPoolResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.fund_community_pool(request)
@@ -1066,25 +1066,25 @@ class MsgBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.distribution.v1beta1.Msg/SetWithdrawAddress': grpclib.const.Handler(
+            "/cosmos.distribution.v1beta1.Msg/SetWithdrawAddress": grpclib.const.Handler(
                 self.__rpc_set_withdraw_address,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgSetWithdrawAddress,
                 MsgSetWithdrawAddressResponse,
             ),
-            '/cosmos.distribution.v1beta1.Msg/WithdrawDelegatorReward': grpclib.const.Handler(
+            "/cosmos.distribution.v1beta1.Msg/WithdrawDelegatorReward": grpclib.const.Handler(
                 self.__rpc_withdraw_delegator_reward,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgWithdrawDelegatorReward,
                 MsgWithdrawDelegatorRewardResponse,
             ),
-            '/cosmos.distribution.v1beta1.Msg/WithdrawValidatorCommission': grpclib.const.Handler(
+            "/cosmos.distribution.v1beta1.Msg/WithdrawValidatorCommission": grpclib.const.Handler(
                 self.__rpc_withdraw_validator_commission,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgWithdrawValidatorCommission,
                 MsgWithdrawValidatorCommissionResponse,
             ),
-            '/cosmos.distribution.v1beta1.Msg/FundCommunityPool': grpclib.const.Handler(
+            "/cosmos.distribution.v1beta1.Msg/FundCommunityPool": grpclib.const.Handler(
                 self.__rpc_fund_community_pool,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgFundCommunityPool,

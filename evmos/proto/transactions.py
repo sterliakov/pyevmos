@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 import base64
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Any, Final, Sequence
+from typing import Any, Final
 
-from eth_typing import HexStr
 from eth_utils import keccak
 
 from evmos.proto.autogen.py.cosmos.base.v1beta1 import Coin
@@ -83,17 +83,17 @@ def create_signer_info(
     """
     # NOTE: secp256k1 is going to be removed from evmos
     pubkey: MessageGenerated[secp.PubKey | eth.PubKey]
-    if algo == 'secp256k1':
+    if algo == "secp256k1":
         pubkey = MessageGenerated(
             message=secp.PubKey(key=public_key),
-            path='cosmos.crypto.secp256k1.PubKey',
+            path="cosmos.crypto.secp256k1.PubKey",
         )
     else:
         # NOTE: assume ethsecp256k1 by default because after mainnet is the only one
         # that is going to be supported
         pubkey = MessageGenerated(
             message=eth.PubKey(key=public_key),
-            path='ethermint.crypto.v1.ethsecp256k1.PubKey',
+            path="ethermint.crypto.v1.ethsecp256k1.PubKey",
         )
 
     return tx.SignerInfo(

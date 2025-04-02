@@ -15,11 +15,11 @@ from ...connection import v1 as __connection_v1__
 class GenesisState(betterproto.Message):
     """GenesisState defines the ibc module's genesis state."""
 
-    client_genesis: '__client_v1__.GenesisState' = betterproto.message_field(1)
+    client_genesis: "__client_v1__.GenesisState" = betterproto.message_field(1)
     """ICS002 - Clients genesis state"""
 
-    connection_genesis: '__connection_v1__.GenesisState' = betterproto.message_field(2)
+    connection_genesis: "__connection_v1__.GenesisState" = betterproto.message_field(2)
     """ICS003 - Connections genesis state"""
 
-    channel_genesis: '__channel_v1__.GenesisState' = betterproto.message_field(3)
+    channel_genesis: "__channel_v1__.GenesisState" = betterproto.message_field(3)
     """ICS004 - Channel genesis state"""

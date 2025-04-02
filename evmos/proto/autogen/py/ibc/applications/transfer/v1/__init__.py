@@ -69,8 +69,8 @@ class GenesisState(betterproto.Message):
     """GenesisState defines the ibc-transfer genesis state"""
 
     port_id: str = betterproto.string_field(1)
-    denom_traces: List['DenomTrace'] = betterproto.message_field(2)
-    params: 'Params' = betterproto.message_field(3)
+    denom_traces: List["DenomTrace"] = betterproto.message_field(2)
+    params: "Params" = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -91,7 +91,7 @@ class QueryDenomTraceResponse(betterproto.Message):
     method.
     """
 
-    denom_trace: 'DenomTrace' = betterproto.message_field(1)
+    denom_trace: "DenomTrace" = betterproto.message_field(1)
     """denom_trace returns the requested denomination trace information."""
 
 
@@ -102,7 +102,7 @@ class QueryDenomTracesRequest(betterproto.Message):
     method
     """
 
-    pagination: '____cosmos_base_query_v1_beta1__.PageRequest' = (
+    pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(1)
     )
     """pagination defines an optional pagination for the request."""
@@ -115,10 +115,10 @@ class QueryDenomTracesResponse(betterproto.Message):
     method.
     """
 
-    denom_traces: List['DenomTrace'] = betterproto.message_field(1)
+    denom_traces: List["DenomTrace"] = betterproto.message_field(1)
     """denom_traces returns all denominations trace information."""
 
-    pagination: '____cosmos_base_query_v1_beta1__.PageResponse' = (
+    pagination: "____cosmos_base_query_v1_beta1__.PageResponse" = (
         betterproto.message_field(2)
     )
     """pagination defines the pagination in the response."""
@@ -135,7 +135,7 @@ class QueryParamsRequest(betterproto.Message):
 class QueryParamsResponse(betterproto.Message):
     """QueryParamsResponse is the response type for the Query/Params RPC method."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params defines the parameters of the module."""
 
 
@@ -175,7 +175,7 @@ class MsgTransfer(betterproto.Message):
     source_channel: str = betterproto.string_field(2)
     """the channel by which the packet will be sent"""
 
-    token: '____cosmos_base_v1_beta1__.Coin' = betterproto.message_field(3)
+    token: "____cosmos_base_v1_beta1__.Coin" = betterproto.message_field(3)
     """the tokens to be transferred"""
 
     sender: str = betterproto.string_field(4)
@@ -184,7 +184,7 @@ class MsgTransfer(betterproto.Message):
     receiver: str = betterproto.string_field(5)
     """the recipient address on the destination chain"""
 
-    timeout_height: '___core_client_v1__.Height' = betterproto.message_field(6)
+    timeout_height: "___core_client_v1__.Height" = betterproto.message_field(6)
     """
     Timeout height relative to the current block height.
     The timeout is disabled when set to 0.
@@ -207,14 +207,14 @@ class MsgTransferResponse(betterproto.Message):
 class QueryStub(betterproto.ServiceStub):
     async def denom_trace(
         self,
-        query_denom_trace_request: 'QueryDenomTraceRequest',
+        query_denom_trace_request: "QueryDenomTraceRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDenomTraceResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDenomTraceResponse":
         return await self._unary_unary(
-            '/ibc.applications.transfer.v1.Query/DenomTrace',
+            "/ibc.applications.transfer.v1.Query/DenomTrace",
             query_denom_trace_request,
             QueryDenomTraceResponse,
             timeout=timeout,
@@ -224,14 +224,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def denom_traces(
         self,
-        query_denom_traces_request: 'QueryDenomTracesRequest',
+        query_denom_traces_request: "QueryDenomTracesRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDenomTracesResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDenomTracesResponse":
         return await self._unary_unary(
-            '/ibc.applications.transfer.v1.Query/DenomTraces',
+            "/ibc.applications.transfer.v1.Query/DenomTraces",
             query_denom_traces_request,
             QueryDenomTracesResponse,
             timeout=timeout,
@@ -241,14 +241,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def params(
         self,
-        query_params_request: 'QueryParamsRequest',
+        query_params_request: "QueryParamsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryParamsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryParamsResponse":
         return await self._unary_unary(
-            '/ibc.applications.transfer.v1.Query/Params',
+            "/ibc.applications.transfer.v1.Query/Params",
             query_params_request,
             QueryParamsResponse,
             timeout=timeout,
@@ -258,14 +258,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def denom_hash(
         self,
-        query_denom_hash_request: 'QueryDenomHashRequest',
+        query_denom_hash_request: "QueryDenomHashRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDenomHashResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDenomHashResponse":
         return await self._unary_unary(
-            '/ibc.applications.transfer.v1.Query/DenomHash',
+            "/ibc.applications.transfer.v1.Query/DenomHash",
             query_denom_hash_request,
             QueryDenomHashResponse,
             timeout=timeout,
@@ -277,14 +277,14 @@ class QueryStub(betterproto.ServiceStub):
 class MsgStub(betterproto.ServiceStub):
     async def transfer(
         self,
-        msg_transfer: 'MsgTransfer',
+        msg_transfer: "MsgTransfer",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgTransferResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgTransferResponse":
         return await self._unary_unary(
-            '/ibc.applications.transfer.v1.Msg/Transfer',
+            "/ibc.applications.transfer.v1.Msg/Transfer",
             msg_transfer,
             MsgTransferResponse,
             timeout=timeout,
@@ -295,28 +295,28 @@ class MsgStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def denom_trace(
-        self, query_denom_trace_request: 'QueryDenomTraceRequest'
-    ) -> 'QueryDenomTraceResponse':
+        self, query_denom_trace_request: "QueryDenomTraceRequest"
+    ) -> "QueryDenomTraceResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def denom_traces(
-        self, query_denom_traces_request: 'QueryDenomTracesRequest'
-    ) -> 'QueryDenomTracesResponse':
+        self, query_denom_traces_request: "QueryDenomTracesRequest"
+    ) -> "QueryDenomTracesResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def params(
-        self, query_params_request: 'QueryParamsRequest'
-    ) -> 'QueryParamsResponse':
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def denom_hash(
-        self, query_denom_hash_request: 'QueryDenomHashRequest'
-    ) -> 'QueryDenomHashResponse':
+        self, query_denom_hash_request: "QueryDenomHashRequest"
+    ) -> "QueryDenomHashResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_denom_trace(
         self,
-        stream: 'grpclib.server.Stream[QueryDenomTraceRequest, QueryDenomTraceResponse]',
+        stream: "grpclib.server.Stream[QueryDenomTraceRequest, QueryDenomTraceResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.denom_trace(request)
@@ -324,14 +324,14 @@ class QueryBase(ServiceBase):
 
     async def __rpc_denom_traces(
         self,
-        stream: 'grpclib.server.Stream[QueryDenomTracesRequest, QueryDenomTracesResponse]',
+        stream: "grpclib.server.Stream[QueryDenomTracesRequest, QueryDenomTracesResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.denom_traces(request)
         await stream.send_message(response)
 
     async def __rpc_params(
-        self, stream: 'grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]'
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
@@ -339,7 +339,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_denom_hash(
         self,
-        stream: 'grpclib.server.Stream[QueryDenomHashRequest, QueryDenomHashResponse]',
+        stream: "grpclib.server.Stream[QueryDenomHashRequest, QueryDenomHashResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.denom_hash(request)
@@ -347,25 +347,25 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/ibc.applications.transfer.v1.Query/DenomTrace': grpclib.const.Handler(
+            "/ibc.applications.transfer.v1.Query/DenomTrace": grpclib.const.Handler(
                 self.__rpc_denom_trace,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDenomTraceRequest,
                 QueryDenomTraceResponse,
             ),
-            '/ibc.applications.transfer.v1.Query/DenomTraces': grpclib.const.Handler(
+            "/ibc.applications.transfer.v1.Query/DenomTraces": grpclib.const.Handler(
                 self.__rpc_denom_traces,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDenomTracesRequest,
                 QueryDenomTracesResponse,
             ),
-            '/ibc.applications.transfer.v1.Query/Params': grpclib.const.Handler(
+            "/ibc.applications.transfer.v1.Query/Params": grpclib.const.Handler(
                 self.__rpc_params,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,
                 QueryParamsResponse,
             ),
-            '/ibc.applications.transfer.v1.Query/DenomHash': grpclib.const.Handler(
+            "/ibc.applications.transfer.v1.Query/DenomHash": grpclib.const.Handler(
                 self.__rpc_denom_hash,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDenomHashRequest,
@@ -375,11 +375,11 @@ class QueryBase(ServiceBase):
 
 
 class MsgBase(ServiceBase):
-    async def transfer(self, msg_transfer: 'MsgTransfer') -> 'MsgTransferResponse':
+    async def transfer(self, msg_transfer: "MsgTransfer") -> "MsgTransferResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_transfer(
-        self, stream: 'grpclib.server.Stream[MsgTransfer, MsgTransferResponse]'
+        self, stream: "grpclib.server.Stream[MsgTransfer, MsgTransferResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.transfer(request)
@@ -387,7 +387,7 @@ class MsgBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/ibc.applications.transfer.v1.Msg/Transfer': grpclib.const.Handler(
+            "/ibc.applications.transfer.v1.Msg/Transfer": grpclib.const.Handler(
                 self.__rpc_transfer,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgTransfer,

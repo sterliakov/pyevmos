@@ -16,7 +16,7 @@ class CommitInfo(betterproto.Message):
     """
 
     version: int = betterproto.int64_field(1)
-    store_infos: List['StoreInfo'] = betterproto.message_field(2)
+    store_infos: List["StoreInfo"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -27,7 +27,7 @@ class StoreInfo(betterproto.Message):
     """
 
     name: str = betterproto.string_field(1)
-    commit_id: 'CommitId' = betterproto.message_field(2)
+    commit_id: "CommitId" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -62,8 +62,8 @@ class StoreKvPair(betterproto.Message):
 class SnapshotItem(betterproto.Message):
     """SnapshotItem is an item contained in a rootmulti.Store snapshot."""
 
-    store: 'SnapshotStoreItem' = betterproto.message_field(1, group='item')
-    iavl: 'SnapshotIavlItem' = betterproto.message_field(2, group='item')
+    store: "SnapshotStoreItem" = betterproto.message_field(1, group="item")
+    iavl: "SnapshotIavlItem" = betterproto.message_field(2, group="item")
 
 
 @dataclass(eq=False, repr=False)

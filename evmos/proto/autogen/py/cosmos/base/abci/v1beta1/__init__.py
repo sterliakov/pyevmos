@@ -39,7 +39,7 @@ class TxResponse(betterproto.Message):
     non-deterministic.
     """
 
-    logs: List['AbciMessageLog'] = betterproto.message_field(7)
+    logs: List["AbciMessageLog"] = betterproto.message_field(7)
     """The output of the application's logger (typed). May be non-deterministic."""
 
     info: str = betterproto.string_field(8)
@@ -51,7 +51,7 @@ class TxResponse(betterproto.Message):
     gas_used: int = betterproto.int64_field(10)
     """Amount of gas consumed by transaction."""
 
-    tx: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(11)
+    tx: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(11)
     """The request transaction bytes."""
 
     timestamp: str = betterproto.string_field(12)
@@ -61,7 +61,7 @@ class TxResponse(betterproto.Message):
     it's genesis time.
     """
 
-    events: List['____tendermint_abci__.Event'] = betterproto.message_field(13)
+    events: List["____tendermint_abci__.Event"] = betterproto.message_field(13)
     """
     Events defines all the events emitted by processing a transaction. Note,
     these events include those emitted by processing all the messages and those
@@ -77,7 +77,7 @@ class AbciMessageLog(betterproto.Message):
 
     msg_index: int = betterproto.uint32_field(1)
     log: str = betterproto.string_field(2)
-    events: List['StringEvent'] = betterproto.message_field(3)
+    events: List["StringEvent"] = betterproto.message_field(3)
     """
     Events contains a slice of Event objects that were emitted during some
     execution.
@@ -92,7 +92,7 @@ class StringEvent(betterproto.Message):
     """
 
     type: str = betterproto.string_field(1)
-    attributes: List['Attribute'] = betterproto.message_field(2)
+    attributes: List["Attribute"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -130,7 +130,7 @@ class Result(betterproto.Message):
     log: str = betterproto.string_field(2)
     """Log contains the log information from message or handler execution."""
 
-    events: List['____tendermint_abci__.Event'] = betterproto.message_field(3)
+    events: List["____tendermint_abci__.Event"] = betterproto.message_field(3)
     """
     Events contains a slice of Event objects that were emitted during message
     or handler execution.
@@ -144,8 +144,8 @@ class SimulationResponse(betterproto.Message):
     successfully simulated.
     """
 
-    gas_info: 'GasInfo' = betterproto.message_field(1)
-    result: 'Result' = betterproto.message_field(2)
+    gas_info: "GasInfo" = betterproto.message_field(1)
+    result: "Result" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -166,7 +166,7 @@ class TxMsgData(betterproto.Message):
     for each message.
     """
 
-    data: List['MsgData'] = betterproto.message_field(1)
+    data: List["MsgData"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -188,5 +188,5 @@ class SearchTxsResult(betterproto.Message):
     limit: int = betterproto.uint64_field(5)
     """Max count txs per page"""
 
-    txs: List['TxResponse'] = betterproto.message_field(6)
+    txs: List["TxResponse"] = betterproto.message_field(6)
     """List of txs in current page"""

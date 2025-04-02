@@ -40,13 +40,13 @@ class QueryBalancesResponse(betterproto.Message):
     method.
     """
 
-    locked: List['___cosmos_base_v1_beta1__.Coin'] = betterproto.message_field(1)
+    locked: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(1)
     """current amount of locked tokens"""
 
-    unvested: List['___cosmos_base_v1_beta1__.Coin'] = betterproto.message_field(2)
+    unvested: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(2)
     """current amount of unvested tokens"""
 
-    vested: List['___cosmos_base_v1_beta1__.Coin'] = betterproto.message_field(3)
+    vested: List["___cosmos_base_v1_beta1__.Coin"] = betterproto.message_field(3)
     """current amount of vested tokens"""
 
 
@@ -69,14 +69,14 @@ class MsgCreateClawbackVestingAccount(betterproto.Message):
     start_time: datetime = betterproto.message_field(3)
     """start_time defines the time at which the vesting period begins"""
 
-    lockup_periods: List[
-        '___cosmos_vesting_v1_beta1__.Period'
-    ] = betterproto.message_field(4)
+    lockup_periods: List["___cosmos_vesting_v1_beta1__.Period"] = (
+        betterproto.message_field(4)
+    )
     """lockup_periods defines the unlocking schedule relative to the start_time"""
 
-    vesting_periods: List[
-        '___cosmos_vesting_v1_beta1__.Period'
-    ] = betterproto.message_field(5)
+    vesting_periods: List["___cosmos_vesting_v1_beta1__.Period"] = (
+        betterproto.message_field(5)
+    )
     """vesting_periods defines thevesting schedule relative to the start_time"""
 
     merge: bool = betterproto.bool_field(6)
@@ -139,7 +139,7 @@ class ClawbackVestingAccount(betterproto.Message):
     of unvested tokens, or a combination (tokens vest, but are still locked).
     """
 
-    base_vesting_account: '___cosmos_vesting_v1_beta1__.BaseVestingAccount' = (
+    base_vesting_account: "___cosmos_vesting_v1_beta1__.BaseVestingAccount" = (
         betterproto.message_field(1)
     )
     """
@@ -153,28 +153,28 @@ class ClawbackVestingAccount(betterproto.Message):
     start_time: datetime = betterproto.message_field(3)
     """start_time defines the time at which the vesting period begins"""
 
-    lockup_periods: List[
-        '___cosmos_vesting_v1_beta1__.Period'
-    ] = betterproto.message_field(4)
+    lockup_periods: List["___cosmos_vesting_v1_beta1__.Period"] = (
+        betterproto.message_field(4)
+    )
     """lockup_periods defines the unlocking schedule relative to the start_time"""
 
-    vesting_periods: List[
-        '___cosmos_vesting_v1_beta1__.Period'
-    ] = betterproto.message_field(5)
+    vesting_periods: List["___cosmos_vesting_v1_beta1__.Period"] = (
+        betterproto.message_field(5)
+    )
     """vesting_periods defines the vesting schedule relative to the start_time"""
 
 
 class QueryStub(betterproto.ServiceStub):
     async def balances(
         self,
-        query_balances_request: 'QueryBalancesRequest',
+        query_balances_request: "QueryBalancesRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryBalancesResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryBalancesResponse":
         return await self._unary_unary(
-            '/evmos.vesting.v1.Query/Balances',
+            "/evmos.vesting.v1.Query/Balances",
             query_balances_request,
             QueryBalancesResponse,
             timeout=timeout,
@@ -186,14 +186,14 @@ class QueryStub(betterproto.ServiceStub):
 class MsgStub(betterproto.ServiceStub):
     async def create_clawback_vesting_account(
         self,
-        msg_create_clawback_vesting_account: 'MsgCreateClawbackVestingAccount',
+        msg_create_clawback_vesting_account: "MsgCreateClawbackVestingAccount",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgCreateClawbackVestingAccountResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgCreateClawbackVestingAccountResponse":
         return await self._unary_unary(
-            '/evmos.vesting.v1.Msg/CreateClawbackVestingAccount',
+            "/evmos.vesting.v1.Msg/CreateClawbackVestingAccount",
             msg_create_clawback_vesting_account,
             MsgCreateClawbackVestingAccountResponse,
             timeout=timeout,
@@ -203,14 +203,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def clawback(
         self,
-        msg_clawback: 'MsgClawback',
+        msg_clawback: "MsgClawback",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgClawbackResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgClawbackResponse":
         return await self._unary_unary(
-            '/evmos.vesting.v1.Msg/Clawback',
+            "/evmos.vesting.v1.Msg/Clawback",
             msg_clawback,
             MsgClawbackResponse,
             timeout=timeout,
@@ -221,13 +221,13 @@ class MsgStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def balances(
-        self, query_balances_request: 'QueryBalancesRequest'
-    ) -> 'QueryBalancesResponse':
+        self, query_balances_request: "QueryBalancesRequest"
+    ) -> "QueryBalancesResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_balances(
         self,
-        stream: 'grpclib.server.Stream[QueryBalancesRequest, QueryBalancesResponse]',
+        stream: "grpclib.server.Stream[QueryBalancesRequest, QueryBalancesResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.balances(request)
@@ -235,7 +235,7 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/evmos.vesting.v1.Query/Balances': grpclib.const.Handler(
+            "/evmos.vesting.v1.Query/Balances": grpclib.const.Handler(
                 self.__rpc_balances,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryBalancesRequest,
@@ -246,23 +246,23 @@ class QueryBase(ServiceBase):
 
 class MsgBase(ServiceBase):
     async def create_clawback_vesting_account(
-        self, msg_create_clawback_vesting_account: 'MsgCreateClawbackVestingAccount'
-    ) -> 'MsgCreateClawbackVestingAccountResponse':
+        self, msg_create_clawback_vesting_account: "MsgCreateClawbackVestingAccount"
+    ) -> "MsgCreateClawbackVestingAccountResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def clawback(self, msg_clawback: 'MsgClawback') -> 'MsgClawbackResponse':
+    async def clawback(self, msg_clawback: "MsgClawback") -> "MsgClawbackResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_create_clawback_vesting_account(
         self,
-        stream: 'grpclib.server.Stream[MsgCreateClawbackVestingAccount, MsgCreateClawbackVestingAccountResponse]',
+        stream: "grpclib.server.Stream[MsgCreateClawbackVestingAccount, MsgCreateClawbackVestingAccountResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.create_clawback_vesting_account(request)
         await stream.send_message(response)
 
     async def __rpc_clawback(
-        self, stream: 'grpclib.server.Stream[MsgClawback, MsgClawbackResponse]'
+        self, stream: "grpclib.server.Stream[MsgClawback, MsgClawbackResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.clawback(request)
@@ -270,13 +270,13 @@ class MsgBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/evmos.vesting.v1.Msg/CreateClawbackVestingAccount': grpclib.const.Handler(
+            "/evmos.vesting.v1.Msg/CreateClawbackVestingAccount": grpclib.const.Handler(
                 self.__rpc_create_clawback_vesting_account,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgCreateClawbackVestingAccount,
                 MsgCreateClawbackVestingAccountResponse,
             ),
-            '/evmos.vesting.v1.Msg/Clawback': grpclib.const.Handler(
+            "/evmos.vesting.v1.Msg/Clawback": grpclib.const.Handler(
                 self.__rpc_clawback,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgClawback,

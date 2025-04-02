@@ -33,7 +33,7 @@ class InterchainAccount(betterproto.Message):
     owner on the controller chain
     """
 
-    base_account: '____cosmos_auth_v1_beta1__.BaseAccount' = betterproto.message_field(
+    base_account: "____cosmos_auth_v1_beta1__.BaseAccount" = betterproto.message_field(
         1
     )
     account_owner: str = betterproto.string_field(2)
@@ -43,8 +43,8 @@ class InterchainAccount(betterproto.Message):
 class GenesisState(betterproto.Message):
     """GenesisState defines the interchain accounts genesis state"""
 
-    controller_genesis_state: 'ControllerGenesisState' = betterproto.message_field(1)
-    host_genesis_state: 'HostGenesisState' = betterproto.message_field(2)
+    controller_genesis_state: "ControllerGenesisState" = betterproto.message_field(1)
+    host_genesis_state: "HostGenesisState" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -54,24 +54,24 @@ class ControllerGenesisState(betterproto.Message):
     state
     """
 
-    active_channels: List['ActiveChannel'] = betterproto.message_field(1)
-    interchain_accounts: List[
-        'RegisteredInterchainAccount'
-    ] = betterproto.message_field(2)
+    active_channels: List["ActiveChannel"] = betterproto.message_field(1)
+    interchain_accounts: List["RegisteredInterchainAccount"] = (
+        betterproto.message_field(2)
+    )
     ports: List[str] = betterproto.string_field(3)
-    params: '_controller_v1__.Params' = betterproto.message_field(4)
+    params: "_controller_v1__.Params" = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
 class HostGenesisState(betterproto.Message):
     """HostGenesisState defines the interchain accounts host genesis state"""
 
-    active_channels: List['ActiveChannel'] = betterproto.message_field(1)
-    interchain_accounts: List[
-        'RegisteredInterchainAccount'
-    ] = betterproto.message_field(2)
+    active_channels: List["ActiveChannel"] = betterproto.message_field(1)
+    interchain_accounts: List["RegisteredInterchainAccount"] = (
+        betterproto.message_field(2)
+    )
     port: str = betterproto.string_field(3)
-    params: '_host_v1__.Params' = betterproto.message_field(4)
+    params: "_host_v1__.Params" = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
@@ -142,7 +142,7 @@ class InterchainAccountPacketData(betterproto.Message):
     transaction and optional memo field.
     """
 
-    type: 'Type' = betterproto.enum_field(1)
+    type: "Type" = betterproto.enum_field(1)
     data: bytes = betterproto.bytes_field(2)
     memo: str = betterproto.string_field(3)
 
@@ -154,4 +154,4 @@ class CosmosTx(betterproto.Message):
     transactions to an SDK host chain.
     """
 
-    messages: List['betterproto_lib_google_protobuf.Any'] = betterproto.message_field(1)
+    messages: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(1)

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Any, Mapping, Sequence
+from collections.abc import Mapping, Sequence
+from typing import Any
 
 from evmos.eip712 import (
     MSG_BEGIN_REDELEGATE_TYPES,
@@ -24,17 +25,11 @@ from evmos.proto import (
     MsgUndelegate,
     MsgWithdrawDelegatorReward,
     MsgWithdrawValidatorCommission,
-)
-from evmos.proto import create_msg_begin_redelegate as proto_msg_begin_redelegate
-from evmos.proto import create_msg_delegate as proto_msg_delegate
-from evmos.proto import (
+    create_msg_begin_redelegate as proto_msg_begin_redelegate,
+    create_msg_delegate as proto_msg_delegate,
     create_msg_set_withdraw_address as proto_msg_set_withdraw_address,
-)
-from evmos.proto import create_msg_undelegate as proto_msg_undelegate
-from evmos.proto import (
+    create_msg_undelegate as proto_msg_undelegate,
     create_msg_withdraw_delegator_reward as proto_msg_withdraw_delegator_reward,
-)
-from evmos.proto import (
     create_msg_withdraw_validator_commission as proto_msg_withdraw_validator_commission,
 )
 from evmos.transactions.common import to_generated

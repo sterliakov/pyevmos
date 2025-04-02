@@ -61,7 +61,7 @@ class ClientState(betterproto.Message):
     is_frozen: bool = betterproto.bool_field(2)
     """frozen sequence of the solo machine"""
 
-    consensus_state: 'ConsensusState' = betterproto.message_field(3)
+    consensus_state: "ConsensusState" = betterproto.message_field(3)
     allow_update_after_proposal: bool = betterproto.bool_field(4)
     """
     when set to true, will allow governance to update a solo machine client.
@@ -77,7 +77,7 @@ class ConsensusState(betterproto.Message):
     consensus state.
     """
 
-    public_key: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(1)
+    public_key: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(1)
     """public key of the solo machine"""
 
     diversifier: str = betterproto.string_field(2)
@@ -99,7 +99,7 @@ class Header(betterproto.Message):
 
     timestamp: int = betterproto.uint64_field(2)
     signature: bytes = betterproto.bytes_field(3)
-    new_public_key: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(4)
+    new_public_key: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(4)
     new_diversifier: str = betterproto.string_field(5)
 
 
@@ -112,8 +112,8 @@ class Misbehaviour(betterproto.Message):
 
     client_id: str = betterproto.string_field(1)
     sequence: int = betterproto.uint64_field(2)
-    signature_one: 'SignatureAndData' = betterproto.message_field(3)
-    signature_two: 'SignatureAndData' = betterproto.message_field(4)
+    signature_one: "SignatureAndData" = betterproto.message_field(3)
+    signature_two: "SignatureAndData" = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
@@ -124,7 +124,7 @@ class SignatureAndData(betterproto.Message):
     """
 
     signature: bytes = betterproto.bytes_field(1)
-    data_type: 'DataType' = betterproto.enum_field(2)
+    data_type: "DataType" = betterproto.enum_field(2)
     data: bytes = betterproto.bytes_field(3)
     timestamp: int = betterproto.uint64_field(4)
 
@@ -147,7 +147,7 @@ class SignBytes(betterproto.Message):
     sequence: int = betterproto.uint64_field(1)
     timestamp: int = betterproto.uint64_field(2)
     diversifier: str = betterproto.string_field(3)
-    data_type: 'DataType' = betterproto.enum_field(4)
+    data_type: "DataType" = betterproto.enum_field(4)
     """type of the data used"""
 
     data: bytes = betterproto.bytes_field(5)
@@ -158,7 +158,7 @@ class SignBytes(betterproto.Message):
 class HeaderData(betterproto.Message):
     """HeaderData returns the SignBytes data for update verification."""
 
-    new_pub_key: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(1)
+    new_pub_key: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(1)
     """header public key"""
 
     new_diversifier: str = betterproto.string_field(2)
@@ -170,7 +170,7 @@ class ClientStateData(betterproto.Message):
     """ClientStateData returns the SignBytes data for client state verification."""
 
     path: bytes = betterproto.bytes_field(1)
-    client_state: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(2)
+    client_state: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -181,7 +181,7 @@ class ConsensusStateData(betterproto.Message):
     """
 
     path: bytes = betterproto.bytes_field(1)
-    consensus_state: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(
+    consensus_state: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(
         2
     )
 
@@ -194,7 +194,7 @@ class ConnectionStateData(betterproto.Message):
     """
 
     path: bytes = betterproto.bytes_field(1)
-    connection: '___core_connection_v1__.ConnectionEnd' = betterproto.message_field(2)
+    connection: "___core_connection_v1__.ConnectionEnd" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -205,7 +205,7 @@ class ChannelStateData(betterproto.Message):
     """
 
     path: bytes = betterproto.bytes_field(1)
-    channel: '___core_channel_v1__.Channel' = betterproto.message_field(2)
+    channel: "___core_channel_v1__.Channel" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)

@@ -16,7 +16,7 @@ class EthAccount(betterproto.Message):
     authtypes.BaseAccount type. It is compatible with the auth AccountKeeper.
     """
 
-    base_account: '___cosmos_auth_v1_beta1__.BaseAccount' = betterproto.message_field(1)
+    base_account: "___cosmos_auth_v1_beta1__.BaseAccount" = betterproto.message_field(1)
     code_hash: str = betterproto.string_field(2)
 
 

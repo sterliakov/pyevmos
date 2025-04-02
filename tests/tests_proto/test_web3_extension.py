@@ -36,7 +36,7 @@ def test_create_tx_raw():
         153, 18, 4, 10, 2, 8, 127, 24, 1, 18, 19, 10, 13, 10, 7, 97, 112, 104,
         111, 116, 111, 110, 18, 2, 50, 48, 16, 192, 154, 12,
     ])
-    sig = [b'']
+    sig = [b""]
     tx_raw = bytes([
         10, 176, 2, 10, 136, 1, 10, 28, 47, 99, 111, 115, 109, 111, 115, 46, 98,
         97, 110, 107, 46, 118, 49, 98, 101, 116, 97, 49, 46, 77, 115, 103, 83,
@@ -69,4 +69,4 @@ def test_create_tx_raw():
     # fmt: on
     message = create_tx_raw(body, auth, sig)
     assert bytes(message.message) == tx_raw
-    assert message.path == 'cosmos.tx.v1beta1.TxRaw'
+    assert message.path == "cosmos.tx.v1beta1.TxRaw"

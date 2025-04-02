@@ -44,7 +44,7 @@ class Params(betterproto.Message):
     extra_eips: List[int] = betterproto.int64_field(4)
     """extra eips defines the additional EIPs for the vm.Config"""
 
-    chain_config: 'ChainConfig' = betterproto.message_field(5)
+    chain_config: "ChainConfig" = betterproto.message_field(5)
     """chain config defines the EVM chain configuration parameters"""
 
     allow_unprotected_txs: bool = betterproto.bool_field(6)
@@ -132,7 +132,7 @@ class TransactionLogs(betterproto.Message):
     """
 
     hash: str = betterproto.string_field(1)
-    logs: List['Log'] = betterproto.message_field(2)
+    logs: List["Log"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -189,7 +189,7 @@ class TxResult(betterproto.Message):
     bloom: bytes = betterproto.bytes_field(2)
     """bloom represents the bloom filter bytes"""
 
-    tx_logs: 'TransactionLogs' = betterproto.message_field(3)
+    tx_logs: "TransactionLogs" = betterproto.message_field(3)
     """
     tx_logs contains the transaction hash and the proto-compatible ethereum
     logs.
@@ -244,7 +244,7 @@ class TraceConfig(betterproto.Message):
     limit: int = betterproto.int32_field(9)
     """maximum length of output, but zero means unlimited"""
 
-    overrides: 'ChainConfig' = betterproto.message_field(10)
+    overrides: "ChainConfig" = betterproto.message_field(10)
     """Chain overrides, can be used to execute a trace using future fork rules"""
 
     enable_memory: bool = betterproto.bool_field(11)
@@ -258,10 +258,10 @@ class TraceConfig(betterproto.Message):
 class GenesisState(betterproto.Message):
     """GenesisState defines the evm module's genesis state."""
 
-    accounts: List['GenesisAccount'] = betterproto.message_field(1)
+    accounts: List["GenesisAccount"] = betterproto.message_field(1)
     """accounts is an array containing the ethereum genesis accounts."""
 
-    params: 'Params' = betterproto.message_field(2)
+    params: "Params" = betterproto.message_field(2)
     """params defines all the parameters of the module."""
 
 
@@ -279,7 +279,7 @@ class GenesisAccount(betterproto.Message):
     code: str = betterproto.string_field(2)
     """code defines the hex bytes of the account code."""
 
-    storage: List['State'] = betterproto.message_field(3)
+    storage: List["State"] = betterproto.message_field(3)
     """storage defines the set of state key values for the account."""
 
 
@@ -287,7 +287,7 @@ class GenesisAccount(betterproto.Message):
 class MsgEthereumTx(betterproto.Message):
     """MsgEthereumTx encapsulates an Ethereum transaction as an SDK message."""
 
-    data: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(1)
+    data: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(1)
     """inner transaction data"""
 
     size: float = betterproto.double_field(2)
@@ -365,7 +365,7 @@ class AccessListTx(betterproto.Message):
     data: bytes = betterproto.bytes_field(7)
     """input defines the data payload bytes of the transaction."""
 
-    accesses: List['AccessTuple'] = betterproto.message_field(8)
+    accesses: List["AccessTuple"] = betterproto.message_field(8)
     v: bytes = betterproto.bytes_field(9)
     """v defines the signature value"""
 
@@ -404,7 +404,7 @@ class DynamicFeeTx(betterproto.Message):
     data: bytes = betterproto.bytes_field(8)
     """input defines the data payload bytes of the transaction."""
 
-    accesses: List['AccessTuple'] = betterproto.message_field(9)
+    accesses: List["AccessTuple"] = betterproto.message_field(9)
     v: bytes = betterproto.bytes_field(10)
     """v defines the signature value"""
 
@@ -431,7 +431,7 @@ class MsgEthereumTxResponse(betterproto.Message):
     https://github.com/tendermint/tendermint/issues/6539 for reference
     """
 
-    logs: List['Log'] = betterproto.message_field(2)
+    logs: List["Log"] = betterproto.message_field(2)
     """
     logs contains the transaction hash and the proto-compatible ethereum
     logs.
@@ -592,7 +592,7 @@ class QueryTxLogsRequest(betterproto.Message):
     hash: str = betterproto.string_field(1)
     """hash is the ethereum transaction hex hash to query the logs for."""
 
-    pagination: '___cosmos_base_query_v1_beta1__.PageRequest' = (
+    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(2)
     )
     """pagination defines an optional pagination for the request."""
@@ -602,10 +602,10 @@ class QueryTxLogsRequest(betterproto.Message):
 class QueryTxLogsResponse(betterproto.Message):
     """QueryTxLogs is the response type for the Query/TxLogs RPC method."""
 
-    logs: List['Log'] = betterproto.message_field(1)
+    logs: List["Log"] = betterproto.message_field(1)
     """logs represents the ethereum logs generated from the given transaction."""
 
-    pagination: '___cosmos_base_query_v1_beta1__.PageResponse' = (
+    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
         betterproto.message_field(2)
     )
     """pagination defines the pagination in the response."""
@@ -622,7 +622,7 @@ class QueryParamsRequest(betterproto.Message):
 class QueryParamsResponse(betterproto.Message):
     """QueryParamsResponse defines the response type for querying x/evm parameters."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params define the evm module parameters."""
 
 
@@ -649,13 +649,13 @@ class EstimateGasResponse(betterproto.Message):
 class QueryTraceTxRequest(betterproto.Message):
     """QueryTraceTxRequest defines TraceTx request"""
 
-    msg: 'MsgEthereumTx' = betterproto.message_field(1)
+    msg: "MsgEthereumTx" = betterproto.message_field(1)
     """msgEthereumTx for the requested transaction"""
 
-    trace_config: 'TraceConfig' = betterproto.message_field(3)
+    trace_config: "TraceConfig" = betterproto.message_field(3)
     """TraceConfig holds extra parameters to trace functions."""
 
-    predecessors: List['MsgEthereumTx'] = betterproto.message_field(4)
+    predecessors: List["MsgEthereumTx"] = betterproto.message_field(4)
     """
     the predecessor transactions included in the same block
     need to be replayed first to get correct context for tracing.
@@ -683,10 +683,10 @@ class QueryTraceTxResponse(betterproto.Message):
 class QueryTraceBlockRequest(betterproto.Message):
     """QueryTraceBlockRequest defines TraceTx request"""
 
-    txs: List['MsgEthereumTx'] = betterproto.message_field(1)
+    txs: List["MsgEthereumTx"] = betterproto.message_field(1)
     """txs messages in the block"""
 
-    trace_config: 'TraceConfig' = betterproto.message_field(3)
+    trace_config: "TraceConfig" = betterproto.message_field(3)
     """TraceConfig holds extra parameters to trace functions."""
 
     block_number: int = betterproto.int64_field(5)
@@ -726,14 +726,14 @@ class QueryBaseFeeResponse(betterproto.Message):
 class MsgStub(betterproto.ServiceStub):
     async def ethereum_tx(
         self,
-        msg_ethereum_tx: 'MsgEthereumTx',
+        msg_ethereum_tx: "MsgEthereumTx",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgEthereumTxResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgEthereumTxResponse":
         return await self._unary_unary(
-            '/ethermint.evm.v1.Msg/EthereumTx',
+            "/ethermint.evm.v1.Msg/EthereumTx",
             msg_ethereum_tx,
             MsgEthereumTxResponse,
             timeout=timeout,
@@ -745,14 +745,14 @@ class MsgStub(betterproto.ServiceStub):
 class QueryStub(betterproto.ServiceStub):
     async def account(
         self,
-        query_account_request: 'QueryAccountRequest',
+        query_account_request: "QueryAccountRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryAccountResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryAccountResponse":
         return await self._unary_unary(
-            '/ethermint.evm.v1.Query/Account',
+            "/ethermint.evm.v1.Query/Account",
             query_account_request,
             QueryAccountResponse,
             timeout=timeout,
@@ -762,14 +762,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def cosmos_account(
         self,
-        query_cosmos_account_request: 'QueryCosmosAccountRequest',
+        query_cosmos_account_request: "QueryCosmosAccountRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryCosmosAccountResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryCosmosAccountResponse":
         return await self._unary_unary(
-            '/ethermint.evm.v1.Query/CosmosAccount',
+            "/ethermint.evm.v1.Query/CosmosAccount",
             query_cosmos_account_request,
             QueryCosmosAccountResponse,
             timeout=timeout,
@@ -779,14 +779,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def validator_account(
         self,
-        query_validator_account_request: 'QueryValidatorAccountRequest',
+        query_validator_account_request: "QueryValidatorAccountRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryValidatorAccountResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryValidatorAccountResponse":
         return await self._unary_unary(
-            '/ethermint.evm.v1.Query/ValidatorAccount',
+            "/ethermint.evm.v1.Query/ValidatorAccount",
             query_validator_account_request,
             QueryValidatorAccountResponse,
             timeout=timeout,
@@ -796,14 +796,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def balance(
         self,
-        query_balance_request: 'QueryBalanceRequest',
+        query_balance_request: "QueryBalanceRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryBalanceResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryBalanceResponse":
         return await self._unary_unary(
-            '/ethermint.evm.v1.Query/Balance',
+            "/ethermint.evm.v1.Query/Balance",
             query_balance_request,
             QueryBalanceResponse,
             timeout=timeout,
@@ -813,14 +813,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def storage(
         self,
-        query_storage_request: 'QueryStorageRequest',
+        query_storage_request: "QueryStorageRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryStorageResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryStorageResponse":
         return await self._unary_unary(
-            '/ethermint.evm.v1.Query/Storage',
+            "/ethermint.evm.v1.Query/Storage",
             query_storage_request,
             QueryStorageResponse,
             timeout=timeout,
@@ -830,14 +830,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def code(
         self,
-        query_code_request: 'QueryCodeRequest',
+        query_code_request: "QueryCodeRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryCodeResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryCodeResponse":
         return await self._unary_unary(
-            '/ethermint.evm.v1.Query/Code',
+            "/ethermint.evm.v1.Query/Code",
             query_code_request,
             QueryCodeResponse,
             timeout=timeout,
@@ -847,14 +847,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def params(
         self,
-        query_params_request: 'QueryParamsRequest',
+        query_params_request: "QueryParamsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryParamsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryParamsResponse":
         return await self._unary_unary(
-            '/ethermint.evm.v1.Query/Params',
+            "/ethermint.evm.v1.Query/Params",
             query_params_request,
             QueryParamsResponse,
             timeout=timeout,
@@ -864,14 +864,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def eth_call(
         self,
-        eth_call_request: 'EthCallRequest',
+        eth_call_request: "EthCallRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgEthereumTxResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgEthereumTxResponse":
         return await self._unary_unary(
-            '/ethermint.evm.v1.Query/EthCall',
+            "/ethermint.evm.v1.Query/EthCall",
             eth_call_request,
             MsgEthereumTxResponse,
             timeout=timeout,
@@ -881,14 +881,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def estimate_gas(
         self,
-        eth_call_request: 'EthCallRequest',
+        eth_call_request: "EthCallRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'EstimateGasResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "EstimateGasResponse":
         return await self._unary_unary(
-            '/ethermint.evm.v1.Query/EstimateGas',
+            "/ethermint.evm.v1.Query/EstimateGas",
             eth_call_request,
             EstimateGasResponse,
             timeout=timeout,
@@ -898,14 +898,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def trace_tx(
         self,
-        query_trace_tx_request: 'QueryTraceTxRequest',
+        query_trace_tx_request: "QueryTraceTxRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryTraceTxResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryTraceTxResponse":
         return await self._unary_unary(
-            '/ethermint.evm.v1.Query/TraceTx',
+            "/ethermint.evm.v1.Query/TraceTx",
             query_trace_tx_request,
             QueryTraceTxResponse,
             timeout=timeout,
@@ -915,14 +915,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def trace_block(
         self,
-        query_trace_block_request: 'QueryTraceBlockRequest',
+        query_trace_block_request: "QueryTraceBlockRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryTraceBlockResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryTraceBlockResponse":
         return await self._unary_unary(
-            '/ethermint.evm.v1.Query/TraceBlock',
+            "/ethermint.evm.v1.Query/TraceBlock",
             query_trace_block_request,
             QueryTraceBlockResponse,
             timeout=timeout,
@@ -932,14 +932,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def base_fee(
         self,
-        query_base_fee_request: 'QueryBaseFeeRequest',
+        query_base_fee_request: "QueryBaseFeeRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryBaseFeeResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryBaseFeeResponse":
         return await self._unary_unary(
-            '/ethermint.evm.v1.Query/BaseFee',
+            "/ethermint.evm.v1.Query/BaseFee",
             query_base_fee_request,
             QueryBaseFeeResponse,
             timeout=timeout,
@@ -950,12 +950,12 @@ class QueryStub(betterproto.ServiceStub):
 
 class MsgBase(ServiceBase):
     async def ethereum_tx(
-        self, msg_ethereum_tx: 'MsgEthereumTx'
-    ) -> 'MsgEthereumTxResponse':
+        self, msg_ethereum_tx: "MsgEthereumTx"
+    ) -> "MsgEthereumTxResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_ethereum_tx(
-        self, stream: 'grpclib.server.Stream[MsgEthereumTx, MsgEthereumTxResponse]'
+        self, stream: "grpclib.server.Stream[MsgEthereumTx, MsgEthereumTxResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.ethereum_tx(request)
@@ -963,7 +963,7 @@ class MsgBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/ethermint.evm.v1.Msg/EthereumTx': grpclib.const.Handler(
+            "/ethermint.evm.v1.Msg/EthereumTx": grpclib.const.Handler(
                 self.__rpc_ethereum_tx,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgEthereumTx,
@@ -974,65 +974,65 @@ class MsgBase(ServiceBase):
 
 class QueryBase(ServiceBase):
     async def account(
-        self, query_account_request: 'QueryAccountRequest'
-    ) -> 'QueryAccountResponse':
+        self, query_account_request: "QueryAccountRequest"
+    ) -> "QueryAccountResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def cosmos_account(
-        self, query_cosmos_account_request: 'QueryCosmosAccountRequest'
-    ) -> 'QueryCosmosAccountResponse':
+        self, query_cosmos_account_request: "QueryCosmosAccountRequest"
+    ) -> "QueryCosmosAccountResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def validator_account(
-        self, query_validator_account_request: 'QueryValidatorAccountRequest'
-    ) -> 'QueryValidatorAccountResponse':
+        self, query_validator_account_request: "QueryValidatorAccountRequest"
+    ) -> "QueryValidatorAccountResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def balance(
-        self, query_balance_request: 'QueryBalanceRequest'
-    ) -> 'QueryBalanceResponse':
+        self, query_balance_request: "QueryBalanceRequest"
+    ) -> "QueryBalanceResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def storage(
-        self, query_storage_request: 'QueryStorageRequest'
-    ) -> 'QueryStorageResponse':
+        self, query_storage_request: "QueryStorageRequest"
+    ) -> "QueryStorageResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def code(self, query_code_request: 'QueryCodeRequest') -> 'QueryCodeResponse':
+    async def code(self, query_code_request: "QueryCodeRequest") -> "QueryCodeResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def params(
-        self, query_params_request: 'QueryParamsRequest'
-    ) -> 'QueryParamsResponse':
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def eth_call(
-        self, eth_call_request: 'EthCallRequest'
-    ) -> 'MsgEthereumTxResponse':
+        self, eth_call_request: "EthCallRequest"
+    ) -> "MsgEthereumTxResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def estimate_gas(
-        self, eth_call_request: 'EthCallRequest'
-    ) -> 'EstimateGasResponse':
+        self, eth_call_request: "EthCallRequest"
+    ) -> "EstimateGasResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def trace_tx(
-        self, query_trace_tx_request: 'QueryTraceTxRequest'
-    ) -> 'QueryTraceTxResponse':
+        self, query_trace_tx_request: "QueryTraceTxRequest"
+    ) -> "QueryTraceTxResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def trace_block(
-        self, query_trace_block_request: 'QueryTraceBlockRequest'
-    ) -> 'QueryTraceBlockResponse':
+        self, query_trace_block_request: "QueryTraceBlockRequest"
+    ) -> "QueryTraceBlockResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def base_fee(
-        self, query_base_fee_request: 'QueryBaseFeeRequest'
-    ) -> 'QueryBaseFeeResponse':
+        self, query_base_fee_request: "QueryBaseFeeRequest"
+    ) -> "QueryBaseFeeResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_account(
-        self, stream: 'grpclib.server.Stream[QueryAccountRequest, QueryAccountResponse]'
+        self, stream: "grpclib.server.Stream[QueryAccountRequest, QueryAccountResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.account(request)
@@ -1040,7 +1040,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_cosmos_account(
         self,
-        stream: 'grpclib.server.Stream[QueryCosmosAccountRequest, QueryCosmosAccountResponse]',
+        stream: "grpclib.server.Stream[QueryCosmosAccountRequest, QueryCosmosAccountResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.cosmos_account(request)
@@ -1048,56 +1048,56 @@ class QueryBase(ServiceBase):
 
     async def __rpc_validator_account(
         self,
-        stream: 'grpclib.server.Stream[QueryValidatorAccountRequest, QueryValidatorAccountResponse]',
+        stream: "grpclib.server.Stream[QueryValidatorAccountRequest, QueryValidatorAccountResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.validator_account(request)
         await stream.send_message(response)
 
     async def __rpc_balance(
-        self, stream: 'grpclib.server.Stream[QueryBalanceRequest, QueryBalanceResponse]'
+        self, stream: "grpclib.server.Stream[QueryBalanceRequest, QueryBalanceResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.balance(request)
         await stream.send_message(response)
 
     async def __rpc_storage(
-        self, stream: 'grpclib.server.Stream[QueryStorageRequest, QueryStorageResponse]'
+        self, stream: "grpclib.server.Stream[QueryStorageRequest, QueryStorageResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.storage(request)
         await stream.send_message(response)
 
     async def __rpc_code(
-        self, stream: 'grpclib.server.Stream[QueryCodeRequest, QueryCodeResponse]'
+        self, stream: "grpclib.server.Stream[QueryCodeRequest, QueryCodeResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.code(request)
         await stream.send_message(response)
 
     async def __rpc_params(
-        self, stream: 'grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]'
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
         await stream.send_message(response)
 
     async def __rpc_eth_call(
-        self, stream: 'grpclib.server.Stream[EthCallRequest, MsgEthereumTxResponse]'
+        self, stream: "grpclib.server.Stream[EthCallRequest, MsgEthereumTxResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.eth_call(request)
         await stream.send_message(response)
 
     async def __rpc_estimate_gas(
-        self, stream: 'grpclib.server.Stream[EthCallRequest, EstimateGasResponse]'
+        self, stream: "grpclib.server.Stream[EthCallRequest, EstimateGasResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.estimate_gas(request)
         await stream.send_message(response)
 
     async def __rpc_trace_tx(
-        self, stream: 'grpclib.server.Stream[QueryTraceTxRequest, QueryTraceTxResponse]'
+        self, stream: "grpclib.server.Stream[QueryTraceTxRequest, QueryTraceTxResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.trace_tx(request)
@@ -1105,14 +1105,14 @@ class QueryBase(ServiceBase):
 
     async def __rpc_trace_block(
         self,
-        stream: 'grpclib.server.Stream[QueryTraceBlockRequest, QueryTraceBlockResponse]',
+        stream: "grpclib.server.Stream[QueryTraceBlockRequest, QueryTraceBlockResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.trace_block(request)
         await stream.send_message(response)
 
     async def __rpc_base_fee(
-        self, stream: 'grpclib.server.Stream[QueryBaseFeeRequest, QueryBaseFeeResponse]'
+        self, stream: "grpclib.server.Stream[QueryBaseFeeRequest, QueryBaseFeeResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.base_fee(request)
@@ -1120,73 +1120,73 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/ethermint.evm.v1.Query/Account': grpclib.const.Handler(
+            "/ethermint.evm.v1.Query/Account": grpclib.const.Handler(
                 self.__rpc_account,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryAccountRequest,
                 QueryAccountResponse,
             ),
-            '/ethermint.evm.v1.Query/CosmosAccount': grpclib.const.Handler(
+            "/ethermint.evm.v1.Query/CosmosAccount": grpclib.const.Handler(
                 self.__rpc_cosmos_account,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryCosmosAccountRequest,
                 QueryCosmosAccountResponse,
             ),
-            '/ethermint.evm.v1.Query/ValidatorAccount': grpclib.const.Handler(
+            "/ethermint.evm.v1.Query/ValidatorAccount": grpclib.const.Handler(
                 self.__rpc_validator_account,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryValidatorAccountRequest,
                 QueryValidatorAccountResponse,
             ),
-            '/ethermint.evm.v1.Query/Balance': grpclib.const.Handler(
+            "/ethermint.evm.v1.Query/Balance": grpclib.const.Handler(
                 self.__rpc_balance,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryBalanceRequest,
                 QueryBalanceResponse,
             ),
-            '/ethermint.evm.v1.Query/Storage': grpclib.const.Handler(
+            "/ethermint.evm.v1.Query/Storage": grpclib.const.Handler(
                 self.__rpc_storage,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryStorageRequest,
                 QueryStorageResponse,
             ),
-            '/ethermint.evm.v1.Query/Code': grpclib.const.Handler(
+            "/ethermint.evm.v1.Query/Code": grpclib.const.Handler(
                 self.__rpc_code,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryCodeRequest,
                 QueryCodeResponse,
             ),
-            '/ethermint.evm.v1.Query/Params': grpclib.const.Handler(
+            "/ethermint.evm.v1.Query/Params": grpclib.const.Handler(
                 self.__rpc_params,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,
                 QueryParamsResponse,
             ),
-            '/ethermint.evm.v1.Query/EthCall': grpclib.const.Handler(
+            "/ethermint.evm.v1.Query/EthCall": grpclib.const.Handler(
                 self.__rpc_eth_call,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 EthCallRequest,
                 MsgEthereumTxResponse,
             ),
-            '/ethermint.evm.v1.Query/EstimateGas': grpclib.const.Handler(
+            "/ethermint.evm.v1.Query/EstimateGas": grpclib.const.Handler(
                 self.__rpc_estimate_gas,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 EthCallRequest,
                 EstimateGasResponse,
             ),
-            '/ethermint.evm.v1.Query/TraceTx': grpclib.const.Handler(
+            "/ethermint.evm.v1.Query/TraceTx": grpclib.const.Handler(
                 self.__rpc_trace_tx,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryTraceTxRequest,
                 QueryTraceTxResponse,
             ),
-            '/ethermint.evm.v1.Query/TraceBlock': grpclib.const.Handler(
+            "/ethermint.evm.v1.Query/TraceBlock": grpclib.const.Handler(
                 self.__rpc_trace_block,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryTraceBlockRequest,
                 QueryTraceBlockResponse,
             ),
-            '/ethermint.evm.v1.Query/BaseFee': grpclib.const.Handler(
+            "/ethermint.evm.v1.Query/BaseFee": grpclib.const.Handler(
                 self.__rpc_base_fee,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryBaseFeeRequest,

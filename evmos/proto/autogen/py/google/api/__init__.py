@@ -17,7 +17,7 @@ class Http(betterproto.Message):
     to one or more HTTP REST API methods.
     """
 
-    rules: List['HttpRule'] = betterproto.message_field(1)
+    rules: List["HttpRule"] = betterproto.message_field(1)
     """
     A list of HTTP configuration rules that apply to individual API methods.
     **NOTE:** All service configuration rules follow "last one wins" order.
@@ -226,22 +226,22 @@ class HttpRule(betterproto.Message):
     details.
     """
 
-    get: str = betterproto.string_field(2, group='pattern')
+    get: str = betterproto.string_field(2, group="pattern")
     """Used for listing and getting information about resources."""
 
-    put: str = betterproto.string_field(3, group='pattern')
+    put: str = betterproto.string_field(3, group="pattern")
     """Used for updating a resource."""
 
-    post: str = betterproto.string_field(4, group='pattern')
+    post: str = betterproto.string_field(4, group="pattern")
     """Used for creating a resource."""
 
-    delete: str = betterproto.string_field(5, group='pattern')
+    delete: str = betterproto.string_field(5, group="pattern")
     """Used for deleting a resource."""
 
-    patch: str = betterproto.string_field(6, group='pattern')
+    patch: str = betterproto.string_field(6, group="pattern")
     """Used for updating a resource."""
 
-    custom: 'CustomHttpPattern' = betterproto.message_field(8, group='pattern')
+    custom: "CustomHttpPattern" = betterproto.message_field(8, group="pattern")
     """
     The custom pattern is used for specifying an HTTP method that is not
     included in the `pattern` field, such as HEAD, or "*" to leave the
@@ -264,7 +264,7 @@ class HttpRule(betterproto.Message):
     not set, the response message will be used as HTTP body of response.
     """
 
-    additional_bindings: List['HttpRule'] = betterproto.message_field(11)
+    additional_bindings: List["HttpRule"] = betterproto.message_field(11)
     """
     Additional HTTP bindings for the selector. Nested bindings must
     not contain an `additional_bindings` field themselves (that is,
@@ -323,7 +323,7 @@ class HttpBody(betterproto.Message):
     data: bytes = betterproto.bytes_field(2)
     """The HTTP request/response body as raw binary."""
 
-    extensions: List['betterproto_lib_google_protobuf.Any'] = betterproto.message_field(
+    extensions: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(
         3
     )
     """

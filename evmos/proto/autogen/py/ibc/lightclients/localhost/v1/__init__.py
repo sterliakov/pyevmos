@@ -19,5 +19,5 @@ class ClientState(betterproto.Message):
     chain_id: str = betterproto.string_field(1)
     """self chain ID"""
 
-    height: '___core_client_v1__.Height' = betterproto.message_field(2)
+    height: "___core_client_v1__.Height" = betterproto.message_field(2)
     """self latest block height"""

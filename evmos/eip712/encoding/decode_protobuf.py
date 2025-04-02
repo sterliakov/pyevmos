@@ -22,9 +22,9 @@ from evmos.proto.autogen.py.cosmos.tx.v1beta1 import AuthInfo, SignDoc, TxBody
 class ProtoMsgTypes(str, Enum):
     """Type URLs for supported proto messages."""
 
-    MSG_SEND = '/cosmos.bank.v1beta1.MsgSend'
-    MSG_VOTE = '/cosmos.gov.v1beta1.MsgVote'
-    MSG_DELEGATE = '/cosmos.staking.v1beta1.MsgDelegate'
+    MSG_SEND = "/cosmos.bank.v1beta1.MsgSend"
+    MSG_VOTE = "/cosmos.gov.v1beta1.MsgVote"
+    MSG_DELEGATE = "/cosmos.staking.v1beta1.MsgDelegate"
 
 
 def _protobuf_type_url_to_amino_type(type_url: str) -> MsgTypes:
@@ -35,8 +35,10 @@ def _protobuf_type_url_to_amino_type(type_url: str) -> MsgTypes:
     }
     try:
         return mapping[ProtoMsgTypes(type_url)]
-    except KeyError:
-        raise NotImplementedError('Invalid Protobuf message type url received')
+    except KeyError as e:
+        raise NotImplementedError(
+            f"Invalid Protobuf message type url received: `{type_url}`"
+        ) from e
 
 
 def _convert_protobuf_msg_to_amino_msg(obj: Message) -> dict[str, Any]:
@@ -67,52 +69,43 @@ def decode_protobuf_sign_doc(bytes_src: bytes) -> EIPToSign:
     auth_info = AuthInfo().parse(sign_doc.auth_info_bytes)
 
     if not tx_body.messages:
-        raise ValueError('Expected a message in Protobuf SignDoc but received empty.')
-    elif len(tx_body.messages) > 1:
+        raise ValueError("Expected a message in Protobuf SignDoc but received empty.")
+    if len(tx_body.messages) > 1:
         # Enforce single message for now
         raise NotImplementedError(
-            'Expected single message in Protobuf SignDoc '
-            f'but received {len(tx_body.messages)}.'
+            "Expected single message in Protobuf SignDoc "
+            f"but received {len(tx_body.messages)}."
         )
-
-    first_msg = tx_body.messages[0]
 
     # Enforce single signer for now
     if len(auth_info.signer_infos) != 1:
         raise NotImplementedError(
-            'Expected single signer in Protobuf SignDoc '
-            f'but received {len(auth_info.signer_infos)}.'
+            "Expected single signer in Protobuf SignDoc "
+            f"but received {len(auth_info.signer_infos)}."
         )
-
-    signer = auth_info.signer_infos[0]
 
     # Enforce presence of fee
     if not auth_info.fee:
         raise ValueError(
-            'Expected fee object to be included in payload, got undefined',
+            "Expected fee object to be included in payload, got undefined",
         )
 
     # Enforce single fee
     if len(auth_info.fee.amount) != 1:
         raise ValueError(
-            'Expected single fee in Protobuf SignDoc '
-            f'but received {len(auth_info.fee.amount)}'
+            "Expected single fee in Protobuf SignDoc "
+            f"but received {len(auth_info.fee.amount)}"
         )
-    amount = auth_info.fee.amount[0]
 
-    # Parse SignDoc fields
-    account_number = str(sign_doc.account_number)
-    sequence = str(signer.sequence)
-    chain_id = sign_doc.chain_id
-    memo = tx_body.memo
+    first_msg = tx_body.messages[0]
 
     # Decode message using registry
     proto_msg = registry.decode(first_msg.type_url, first_msg.value)
 
     # Convert Protobuf message to expected Amino type
     amino_msg = {
-        'type': _protobuf_type_url_to_amino_type(first_msg.type_url),
-        'value': _convert_protobuf_msg_to_amino_msg(proto_msg),
+        "type": _protobuf_type_url_to_amino_type(first_msg.type_url),
+        "value": _convert_protobuf_msg_to_amino_msg(proto_msg),
     }
 
     # Use the feePayer from the message if unset in body
@@ -120,17 +113,24 @@ def decode_protobuf_sign_doc(bytes_src: bytes) -> EIPToSign:
     if not fee_payer:
         fee_payer = get_fee_payer_from_msg(amino_msg)
 
-    gas_limit = str(auth_info.fee.gas_limit)
-    fee = generate_fee(amount.amount, amount.denom, gas_limit, fee_payer)
-    type_ = eip712_message_type(amino_msg)
-
-    eip712_tx = generate_message(
-        account_number,
-        sequence,
-        chain_id,
-        memo,
-        fee,
-        amino_msg,
+    amount = auth_info.fee.amount[0]
+    fee = generate_fee(
+        amount.amount,
+        amount.denom,
+        gas=str(auth_info.fee.gas_limit),
+        fee_payer=fee_payer,
     )
 
+    signer = auth_info.signer_infos[0]
+    chain_id = sign_doc.chain_id
+    eip712_tx = generate_message(
+        account_number=str(sign_doc.account_number),
+        sequence=str(signer.sequence),
+        chain_cosmos_id=chain_id,
+        memo=tx_body.memo,
+        fee=fee,
+        msg=amino_msg,
+    )
+
+    type_ = eip712_message_type(amino_msg)
     return create_eip712(type_, parse_chain_id(chain_id), eip712_tx)

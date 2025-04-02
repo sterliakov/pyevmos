@@ -54,7 +54,7 @@ class TokenPair(betterproto.Message):
     enabled: bool = betterproto.bool_field(3)
     """shows token mapping enable status"""
 
-    contract_owner: 'Owner' = betterproto.enum_field(4)
+    contract_owner: "Owner" = betterproto.enum_field(4)
     """ERC20 owner address ENUM (0 invalid, 1 ModuleAccount, 2 external address)"""
 
 
@@ -71,7 +71,7 @@ class RegisterCoinProposal(betterproto.Message):
     description: str = betterproto.string_field(2)
     """proposal description"""
 
-    metadata: '___cosmos_bank_v1_beta1__.Metadata' = betterproto.message_field(3)
+    metadata: "___cosmos_bank_v1_beta1__.Metadata" = betterproto.message_field(3)
     """metadata of the native Cosmos coin"""
 
 
@@ -116,10 +116,10 @@ class ToggleTokenConversionProposal(betterproto.Message):
 class GenesisState(betterproto.Message):
     """GenesisState defines the module's genesis state."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """module parameters"""
 
-    token_pairs: List['TokenPair'] = betterproto.message_field(2)
+    token_pairs: List["TokenPair"] = betterproto.message_field(2)
     """registered token pairs"""
 
 
@@ -145,7 +145,7 @@ class QueryTokenPairsRequest(betterproto.Message):
     method.
     """
 
-    pagination: '___cosmos_base_query_v1_beta1__.PageRequest' = (
+    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(1)
     )
     """pagination defines an optional pagination for the request."""
@@ -158,8 +158,8 @@ class QueryTokenPairsResponse(betterproto.Message):
     method.
     """
 
-    token_pairs: List['TokenPair'] = betterproto.message_field(1)
-    pagination: '___cosmos_base_query_v1_beta1__.PageResponse' = (
+    token_pairs: List["TokenPair"] = betterproto.message_field(1)
+    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
         betterproto.message_field(2)
     )
     """pagination defines the pagination in the response."""
@@ -183,7 +183,7 @@ class QueryTokenPairResponse(betterproto.Message):
     method.
     """
 
-    token_pair: 'TokenPair' = betterproto.message_field(1)
+    token_pair: "TokenPair" = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -200,14 +200,14 @@ class QueryParamsResponse(betterproto.Message):
     method.
     """
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
 class MsgConvertCoin(betterproto.Message):
     """MsgConvertCoin defines a Msg to convert a native Cosmos coin to a ERC20 token"""
 
-    coin: '___cosmos_base_v1_beta1__.Coin' = betterproto.message_field(1)
+    coin: "___cosmos_base_v1_beta1__.Coin" = betterproto.message_field(1)
     """
     Cosmos coin which denomination is registered in a token pair. The coin
     amount defines the amount of coins to convert.
@@ -257,14 +257,14 @@ class MsgConvertErc20Response(betterproto.Message):
 class QueryStub(betterproto.ServiceStub):
     async def token_pairs(
         self,
-        query_token_pairs_request: 'QueryTokenPairsRequest',
+        query_token_pairs_request: "QueryTokenPairsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryTokenPairsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryTokenPairsResponse":
         return await self._unary_unary(
-            '/evmos.erc20.v1.Query/TokenPairs',
+            "/evmos.erc20.v1.Query/TokenPairs",
             query_token_pairs_request,
             QueryTokenPairsResponse,
             timeout=timeout,
@@ -274,14 +274,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def token_pair(
         self,
-        query_token_pair_request: 'QueryTokenPairRequest',
+        query_token_pair_request: "QueryTokenPairRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryTokenPairResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryTokenPairResponse":
         return await self._unary_unary(
-            '/evmos.erc20.v1.Query/TokenPair',
+            "/evmos.erc20.v1.Query/TokenPair",
             query_token_pair_request,
             QueryTokenPairResponse,
             timeout=timeout,
@@ -291,14 +291,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def params(
         self,
-        query_params_request: 'QueryParamsRequest',
+        query_params_request: "QueryParamsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryParamsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryParamsResponse":
         return await self._unary_unary(
-            '/evmos.erc20.v1.Query/Params',
+            "/evmos.erc20.v1.Query/Params",
             query_params_request,
             QueryParamsResponse,
             timeout=timeout,
@@ -310,14 +310,14 @@ class QueryStub(betterproto.ServiceStub):
 class MsgStub(betterproto.ServiceStub):
     async def convert_coin(
         self,
-        msg_convert_coin: 'MsgConvertCoin',
+        msg_convert_coin: "MsgConvertCoin",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgConvertCoinResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgConvertCoinResponse":
         return await self._unary_unary(
-            '/evmos.erc20.v1.Msg/ConvertCoin',
+            "/evmos.erc20.v1.Msg/ConvertCoin",
             msg_convert_coin,
             MsgConvertCoinResponse,
             timeout=timeout,
@@ -329,11 +329,11 @@ class MsgStub(betterproto.ServiceStub):
         self,
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgConvertErc20Response':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgConvertErc20Response":
         return await self._unary_unary(
-            '/evmos.erc20.v1.Msg/ConvertERC20',
+            "/evmos.erc20.v1.Msg/ConvertERC20",
             msg_convert_erc20,
             MsgConvertErc20Response,
             timeout=timeout,
@@ -344,23 +344,23 @@ class MsgStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def token_pairs(
-        self, query_token_pairs_request: 'QueryTokenPairsRequest'
-    ) -> 'QueryTokenPairsResponse':
+        self, query_token_pairs_request: "QueryTokenPairsRequest"
+    ) -> "QueryTokenPairsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def token_pair(
-        self, query_token_pair_request: 'QueryTokenPairRequest'
-    ) -> 'QueryTokenPairResponse':
+        self, query_token_pair_request: "QueryTokenPairRequest"
+    ) -> "QueryTokenPairResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def params(
-        self, query_params_request: 'QueryParamsRequest'
-    ) -> 'QueryParamsResponse':
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_token_pairs(
         self,
-        stream: 'grpclib.server.Stream[QueryTokenPairsRequest, QueryTokenPairsResponse]',
+        stream: "grpclib.server.Stream[QueryTokenPairsRequest, QueryTokenPairsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.token_pairs(request)
@@ -368,14 +368,14 @@ class QueryBase(ServiceBase):
 
     async def __rpc_token_pair(
         self,
-        stream: 'grpclib.server.Stream[QueryTokenPairRequest, QueryTokenPairResponse]',
+        stream: "grpclib.server.Stream[QueryTokenPairRequest, QueryTokenPairResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.token_pair(request)
         await stream.send_message(response)
 
     async def __rpc_params(
-        self, stream: 'grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]'
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
@@ -383,19 +383,19 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/evmos.erc20.v1.Query/TokenPairs': grpclib.const.Handler(
+            "/evmos.erc20.v1.Query/TokenPairs": grpclib.const.Handler(
                 self.__rpc_token_pairs,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryTokenPairsRequest,
                 QueryTokenPairsResponse,
             ),
-            '/evmos.erc20.v1.Query/TokenPair': grpclib.const.Handler(
+            "/evmos.erc20.v1.Query/TokenPair": grpclib.const.Handler(
                 self.__rpc_token_pair,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryTokenPairRequest,
                 QueryTokenPairResponse,
             ),
-            '/evmos.erc20.v1.Query/Params': grpclib.const.Handler(
+            "/evmos.erc20.v1.Query/Params": grpclib.const.Handler(
                 self.__rpc_params,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,
@@ -406,22 +406,22 @@ class QueryBase(ServiceBase):
 
 class MsgBase(ServiceBase):
     async def convert_coin(
-        self, msg_convert_coin: 'MsgConvertCoin'
-    ) -> 'MsgConvertCoinResponse':
+        self, msg_convert_coin: "MsgConvertCoin"
+    ) -> "MsgConvertCoinResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def convert_erc20(self) -> 'MsgConvertErc20Response':
+    async def convert_erc20(self) -> "MsgConvertErc20Response":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_convert_coin(
-        self, stream: 'grpclib.server.Stream[MsgConvertCoin, MsgConvertCoinResponse]'
+        self, stream: "grpclib.server.Stream[MsgConvertCoin, MsgConvertCoinResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.convert_coin(request)
         await stream.send_message(response)
 
     async def __rpc_convert_erc20(
-        self, stream: 'grpclib.server.Stream[MsgConvertErc20, MsgConvertErc20Response]'
+        self, stream: "grpclib.server.Stream[MsgConvertErc20, MsgConvertErc20Response]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.convert_erc20(request)
@@ -429,13 +429,13 @@ class MsgBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/evmos.erc20.v1.Msg/ConvertCoin': grpclib.const.Handler(
+            "/evmos.erc20.v1.Msg/ConvertCoin": grpclib.const.Handler(
                 self.__rpc_convert_coin,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgConvertCoin,
                 MsgConvertCoinResponse,
             ),
-            '/evmos.erc20.v1.Msg/ConvertERC20': grpclib.const.Handler(
+            "/evmos.erc20.v1.Msg/ConvertERC20": grpclib.const.Handler(
                 self.__rpc_convert_erc20,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgConvertErc20,

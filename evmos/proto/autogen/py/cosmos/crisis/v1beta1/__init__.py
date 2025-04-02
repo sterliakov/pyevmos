@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 class GenesisState(betterproto.Message):
     """GenesisState defines the crisis module's genesis state."""
 
-    constant_fee: '__base_v1_beta1__.Coin' = betterproto.message_field(3)
+    constant_fee: "__base_v1_beta1__.Coin" = betterproto.message_field(3)
     """
     constant_fee is the fee used to verify the invariant in the crisis
     module.
@@ -52,14 +52,14 @@ class MsgVerifyInvariantResponse(betterproto.Message):
 class MsgStub(betterproto.ServiceStub):
     async def verify_invariant(
         self,
-        msg_verify_invariant: 'MsgVerifyInvariant',
+        msg_verify_invariant: "MsgVerifyInvariant",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgVerifyInvariantResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgVerifyInvariantResponse":
         return await self._unary_unary(
-            '/cosmos.crisis.v1beta1.Msg/VerifyInvariant',
+            "/cosmos.crisis.v1beta1.Msg/VerifyInvariant",
             msg_verify_invariant,
             MsgVerifyInvariantResponse,
             timeout=timeout,
@@ -70,13 +70,13 @@ class MsgStub(betterproto.ServiceStub):
 
 class MsgBase(ServiceBase):
     async def verify_invariant(
-        self, msg_verify_invariant: 'MsgVerifyInvariant'
-    ) -> 'MsgVerifyInvariantResponse':
+        self, msg_verify_invariant: "MsgVerifyInvariant"
+    ) -> "MsgVerifyInvariantResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_verify_invariant(
         self,
-        stream: 'grpclib.server.Stream[MsgVerifyInvariant, MsgVerifyInvariantResponse]',
+        stream: "grpclib.server.Stream[MsgVerifyInvariant, MsgVerifyInvariantResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.verify_invariant(request)
@@ -84,7 +84,7 @@ class MsgBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.crisis.v1beta1.Msg/VerifyInvariant': grpclib.const.Handler(
+            "/cosmos.crisis.v1beta1.Msg/VerifyInvariant": grpclib.const.Handler(
                 self.__rpc_verify_invariant,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgVerifyInvariant,

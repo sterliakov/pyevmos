@@ -52,4 +52,4 @@ class MerkleProof(betterproto.Message):
     MerkleProofs are ordered from leaf-to-root
     """
 
-    proofs: List['____ics23__.CommitmentProof'] = betterproto.message_field(1)
+    proofs: List["____ics23__.CommitmentProof"] = betterproto.message_field(1)

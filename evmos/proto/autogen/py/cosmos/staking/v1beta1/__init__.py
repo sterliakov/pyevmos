@@ -76,15 +76,15 @@ class StakeAuthorization(betterproto.Message):
     Since: cosmos-sdk 0.43
     """
 
-    max_tokens: '__base_v1_beta1__.Coin' = betterproto.message_field(1)
+    max_tokens: "__base_v1_beta1__.Coin" = betterproto.message_field(1)
     """
     max_tokens specifies the maximum amount of tokens can be delegate to a validator. If
     it is
     empty, there is no spend limit and any amount of coins can be delegated.
     """
 
-    allow_list: 'StakeAuthorizationValidators' = betterproto.message_field(
-        2, group='validators'
+    allow_list: "StakeAuthorizationValidators" = betterproto.message_field(
+        2, group="validators"
     )
     """
     allow_list specifies list of validator addresses to whom grantee can delegate tokens
@@ -92,15 +92,15 @@ class StakeAuthorization(betterproto.Message):
     account.
     """
 
-    deny_list: 'StakeAuthorizationValidators' = betterproto.message_field(
-        3, group='validators'
+    deny_list: "StakeAuthorizationValidators" = betterproto.message_field(
+        3, group="validators"
     )
     """
     deny_list specifies list of validator addresses to whom grantee can not delegate
     tokens.
     """
 
-    authorization_type: 'AuthorizationType' = betterproto.enum_field(4)
+    authorization_type: "AuthorizationType" = betterproto.enum_field(4)
     """authorization_type defines one of AuthorizationType."""
 
 
@@ -120,8 +120,8 @@ class HistoricalInfo(betterproto.Message):
     (`n` is set by the staking module's `historical_entries` parameter).
     """
 
-    header: '___tendermint_types__.Header' = betterproto.message_field(1)
-    valset: List['Validator'] = betterproto.message_field(2)
+    header: "___tendermint_types__.Header" = betterproto.message_field(1)
+    valset: List["Validator"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -151,7 +151,7 @@ class CommissionRates(betterproto.Message):
 class Commission(betterproto.Message):
     """Commission defines commission parameters for a given validator."""
 
-    commission_rates: 'CommissionRates' = betterproto.message_field(1)
+    commission_rates: "CommissionRates" = betterproto.message_field(1)
     """
     commission_rates defines the initial commission rates to be used for creating a
     validator.
@@ -200,7 +200,7 @@ class Validator(betterproto.Message):
     JSON.
     """
 
-    consensus_pubkey: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(
+    consensus_pubkey: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(
         2
     )
     """
@@ -212,7 +212,7 @@ class Validator(betterproto.Message):
     jailed defined whether the validator has been jailed from bonded status or not.
     """
 
-    status: 'BondStatus' = betterproto.enum_field(4)
+    status: "BondStatus" = betterproto.enum_field(4)
     """status is the validator status (bonded/unbonding/unbonded)."""
 
     tokens: str = betterproto.string_field(5)
@@ -221,7 +221,7 @@ class Validator(betterproto.Message):
     delegator_shares: str = betterproto.string_field(6)
     """delegator_shares defines total shares issued to a validator's delegators."""
 
-    description: 'Description' = betterproto.message_field(7)
+    description: "Description" = betterproto.message_field(7)
     """description defines the description terms for the validator."""
 
     unbonding_height: int = betterproto.int64_field(8)
@@ -236,7 +236,7 @@ class Validator(betterproto.Message):
     unbonding.
     """
 
-    commission: 'Commission' = betterproto.message_field(10)
+    commission: "Commission" = betterproto.message_field(10)
     """commission defines the commission parameters."""
 
     min_self_delegation: str = betterproto.string_field(11)
@@ -266,7 +266,7 @@ class DvPair(betterproto.Message):
 class DvPairs(betterproto.Message):
     """DVPairs defines an array of DVPair objects."""
 
-    pairs: List['DvPair'] = betterproto.message_field(1)
+    pairs: List["DvPair"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -287,7 +287,7 @@ class DvvTriplet(betterproto.Message):
 class DvvTriplets(betterproto.Message):
     """DVVTriplets defines an array of DVVTriplet objects."""
 
-    triplets: List['DvvTriplet'] = betterproto.message_field(1)
+    triplets: List["DvvTriplet"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -321,7 +321,7 @@ class UnbondingDelegation(betterproto.Message):
     validator_address: str = betterproto.string_field(2)
     """validator_address is the bech32-encoded address of the validator."""
 
-    entries: List['UnbondingDelegationEntry'] = betterproto.message_field(3)
+    entries: List["UnbondingDelegationEntry"] = betterproto.message_field(3)
     """entries are the unbonding delegation entries."""
 
 
@@ -381,7 +381,7 @@ class Redelegation(betterproto.Message):
     validator_dst_address is the validator redelegation destination operator address.
     """
 
-    entries: List['RedelegationEntry'] = betterproto.message_field(4)
+    entries: List["RedelegationEntry"] = betterproto.message_field(4)
     """entries are the redelegation entries."""
 
 
@@ -415,8 +415,8 @@ class DelegationResponse(betterproto.Message):
     balance in addition to shares which is more suitable for client responses.
     """
 
-    delegation: 'Delegation' = betterproto.message_field(1)
-    balance: '__base_v1_beta1__.Coin' = betterproto.message_field(2)
+    delegation: "Delegation" = betterproto.message_field(1)
+    balance: "__base_v1_beta1__.Coin" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -427,7 +427,7 @@ class RedelegationEntryResponse(betterproto.Message):
     responses.
     """
 
-    redelegation_entry: 'RedelegationEntry' = betterproto.message_field(1)
+    redelegation_entry: "RedelegationEntry" = betterproto.message_field(1)
     balance: str = betterproto.string_field(4)
 
 
@@ -439,8 +439,8 @@ class RedelegationResponse(betterproto.Message):
     responses.
     """
 
-    redelegation: 'Redelegation' = betterproto.message_field(1)
-    entries: List['RedelegationEntryResponse'] = betterproto.message_field(2)
+    redelegation: "Redelegation" = betterproto.message_field(1)
+    entries: List["RedelegationEntryResponse"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -458,7 +458,7 @@ class Pool(betterproto.Message):
 class GenesisState(betterproto.Message):
     """GenesisState defines the staking module's genesis state."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params defines all the paramaters of related to deposit."""
 
     last_total_power: bytes = betterproto.bytes_field(2)
@@ -467,22 +467,22 @@ class GenesisState(betterproto.Message):
     the previous end block.
     """
 
-    last_validator_powers: List['LastValidatorPower'] = betterproto.message_field(3)
+    last_validator_powers: List["LastValidatorPower"] = betterproto.message_field(3)
     """
     last_validator_powers is a special index that provides a historical list
     of the last-block's bonded validators.
     """
 
-    validators: List['Validator'] = betterproto.message_field(4)
+    validators: List["Validator"] = betterproto.message_field(4)
     """delegations defines the validator set at genesis."""
 
-    delegations: List['Delegation'] = betterproto.message_field(5)
+    delegations: List["Delegation"] = betterproto.message_field(5)
     """delegations defines the delegations active at genesis."""
 
-    unbonding_delegations: List['UnbondingDelegation'] = betterproto.message_field(6)
+    unbonding_delegations: List["UnbondingDelegation"] = betterproto.message_field(6)
     """unbonding_delegations defines the unbonding delegations active at genesis."""
 
-    redelegations: List['Redelegation'] = betterproto.message_field(7)
+    redelegations: List["Redelegation"] = betterproto.message_field(7)
     """redelegations defines the redelegations active at genesis."""
 
     exported: bool = betterproto.bool_field(8)
@@ -506,7 +506,7 @@ class QueryValidatorsRequest(betterproto.Message):
     status: str = betterproto.string_field(1)
     """status enables to query for validators matching a given status."""
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
     """pagination defines an optional pagination for the request."""
 
 
@@ -514,10 +514,10 @@ class QueryValidatorsRequest(betterproto.Message):
 class QueryValidatorsResponse(betterproto.Message):
     """QueryValidatorsResponse is response type for the Query/Validators RPC method"""
 
-    validators: List['Validator'] = betterproto.message_field(1)
+    validators: List["Validator"] = betterproto.message_field(1)
     """validators contains all the queried validators."""
 
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
 
 
@@ -533,7 +533,7 @@ class QueryValidatorRequest(betterproto.Message):
 class QueryValidatorResponse(betterproto.Message):
     """QueryValidatorResponse is response type for the Query/Validator RPC method"""
 
-    validator: 'Validator' = betterproto.message_field(1)
+    validator: "Validator" = betterproto.message_field(1)
     """validator defines the the validator info."""
 
 
@@ -547,7 +547,7 @@ class QueryValidatorDelegationsRequest(betterproto.Message):
     validator_addr: str = betterproto.string_field(1)
     """validator_addr defines the validator address to query for."""
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
     """pagination defines an optional pagination for the request."""
 
 
@@ -558,8 +558,8 @@ class QueryValidatorDelegationsResponse(betterproto.Message):
     Query/ValidatorDelegations RPC method
     """
 
-    delegation_responses: List['DelegationResponse'] = betterproto.message_field(1)
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    delegation_responses: List["DelegationResponse"] = betterproto.message_field(1)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
 
 
@@ -573,7 +573,7 @@ class QueryValidatorUnbondingDelegationsRequest(betterproto.Message):
     validator_addr: str = betterproto.string_field(1)
     """validator_addr defines the validator address to query for."""
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
     """pagination defines an optional pagination for the request."""
 
 
@@ -584,8 +584,8 @@ class QueryValidatorUnbondingDelegationsResponse(betterproto.Message):
     Query/ValidatorUnbondingDelegations RPC method.
     """
 
-    unbonding_responses: List['UnbondingDelegation'] = betterproto.message_field(1)
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    unbonding_responses: List["UnbondingDelegation"] = betterproto.message_field(1)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
 
 
@@ -604,7 +604,7 @@ class QueryDelegationRequest(betterproto.Message):
 class QueryDelegationResponse(betterproto.Message):
     """QueryDelegationResponse is response type for the Query/Delegation RPC method."""
 
-    delegation_response: 'DelegationResponse' = betterproto.message_field(1)
+    delegation_response: "DelegationResponse" = betterproto.message_field(1)
     """delegation_responses defines the delegation info of a delegation."""
 
 
@@ -629,7 +629,7 @@ class QueryUnbondingDelegationResponse(betterproto.Message):
     RPC method.
     """
 
-    unbond: 'UnbondingDelegation' = betterproto.message_field(1)
+    unbond: "UnbondingDelegation" = betterproto.message_field(1)
     """unbond defines the unbonding information of a delegation."""
 
 
@@ -643,7 +643,7 @@ class QueryDelegatorDelegationsRequest(betterproto.Message):
     delegator_addr: str = betterproto.string_field(1)
     """delegator_addr defines the delegator address to query for."""
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
     """pagination defines an optional pagination for the request."""
 
 
@@ -654,10 +654,10 @@ class QueryDelegatorDelegationsResponse(betterproto.Message):
     Query/DelegatorDelegations RPC method.
     """
 
-    delegation_responses: List['DelegationResponse'] = betterproto.message_field(1)
+    delegation_responses: List["DelegationResponse"] = betterproto.message_field(1)
     """delegation_responses defines all the delegations' info of a delegator."""
 
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
 
 
@@ -671,7 +671,7 @@ class QueryDelegatorUnbondingDelegationsRequest(betterproto.Message):
     delegator_addr: str = betterproto.string_field(1)
     """delegator_addr defines the delegator address to query for."""
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
     """pagination defines an optional pagination for the request."""
 
 
@@ -682,8 +682,8 @@ class QueryDelegatorUnbondingDelegationsResponse(betterproto.Message):
     Query/UnbondingDelegatorDelegations RPC method.
     """
 
-    unbonding_responses: List['UnbondingDelegation'] = betterproto.message_field(1)
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    unbonding_responses: List["UnbondingDelegation"] = betterproto.message_field(1)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
 
 
@@ -703,7 +703,7 @@ class QueryRedelegationsRequest(betterproto.Message):
     dst_validator_addr: str = betterproto.string_field(3)
     """dst_validator_addr defines the validator address to redelegate to."""
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(4)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(4)
     """pagination defines an optional pagination for the request."""
 
 
@@ -714,8 +714,8 @@ class QueryRedelegationsResponse(betterproto.Message):
     method.
     """
 
-    redelegation_responses: List['RedelegationResponse'] = betterproto.message_field(1)
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    redelegation_responses: List["RedelegationResponse"] = betterproto.message_field(1)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
 
 
@@ -729,7 +729,7 @@ class QueryDelegatorValidatorsRequest(betterproto.Message):
     delegator_addr: str = betterproto.string_field(1)
     """delegator_addr defines the delegator address to query for."""
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
     """pagination defines an optional pagination for the request."""
 
 
@@ -740,10 +740,10 @@ class QueryDelegatorValidatorsResponse(betterproto.Message):
     Query/DelegatorValidators RPC method.
     """
 
-    validators: List['Validator'] = betterproto.message_field(1)
+    validators: List["Validator"] = betterproto.message_field(1)
     """validators defines the the validators' info of a delegator."""
 
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
 
 
@@ -768,7 +768,7 @@ class QueryDelegatorValidatorResponse(betterproto.Message):
     Query/DelegatorValidator RPC method.
     """
 
-    validator: 'Validator' = betterproto.message_field(1)
+    validator: "Validator" = betterproto.message_field(1)
     """validator defines the the validator info."""
 
 
@@ -790,7 +790,7 @@ class QueryHistoricalInfoResponse(betterproto.Message):
     method.
     """
 
-    hist: 'HistoricalInfo' = betterproto.message_field(1)
+    hist: "HistoricalInfo" = betterproto.message_field(1)
     """hist defines the historical info at the given height."""
 
 
@@ -805,7 +805,7 @@ class QueryPoolRequest(betterproto.Message):
 class QueryPoolResponse(betterproto.Message):
     """QueryPoolResponse is response type for the Query/Pool RPC method."""
 
-    pool: 'Pool' = betterproto.message_field(1)
+    pool: "Pool" = betterproto.message_field(1)
     """pool defines the pool info."""
 
 
@@ -820,7 +820,7 @@ class QueryParamsRequest(betterproto.Message):
 class QueryParamsResponse(betterproto.Message):
     """QueryParamsResponse is response type for the Query/Params RPC method."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params holds all the parameters of this module."""
 
 
@@ -828,13 +828,13 @@ class QueryParamsResponse(betterproto.Message):
 class MsgCreateValidator(betterproto.Message):
     """MsgCreateValidator defines a SDK message for creating a new validator."""
 
-    description: 'Description' = betterproto.message_field(1)
-    commission: 'CommissionRates' = betterproto.message_field(2)
+    description: "Description" = betterproto.message_field(1)
+    commission: "CommissionRates" = betterproto.message_field(2)
     min_self_delegation: str = betterproto.string_field(3)
     delegator_address: str = betterproto.string_field(4)
     validator_address: str = betterproto.string_field(5)
-    pubkey: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(6)
-    value: '__base_v1_beta1__.Coin' = betterproto.message_field(7)
+    pubkey: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(6)
+    value: "__base_v1_beta1__.Coin" = betterproto.message_field(7)
 
 
 @dataclass(eq=False, repr=False)
@@ -848,7 +848,7 @@ class MsgCreateValidatorResponse(betterproto.Message):
 class MsgEditValidator(betterproto.Message):
     """MsgEditValidator defines a SDK message for editing an existing validator."""
 
-    description: 'Description' = betterproto.message_field(1)
+    description: "Description" = betterproto.message_field(1)
     validator_address: str = betterproto.string_field(2)
     commission_rate: str = betterproto.string_field(3)
     """
@@ -877,7 +877,7 @@ class MsgDelegate(betterproto.Message):
 
     delegator_address: str = betterproto.string_field(1)
     validator_address: str = betterproto.string_field(2)
-    amount: '__base_v1_beta1__.Coin' = betterproto.message_field(3)
+    amount: "__base_v1_beta1__.Coin" = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -897,7 +897,7 @@ class MsgBeginRedelegate(betterproto.Message):
     delegator_address: str = betterproto.string_field(1)
     validator_src_address: str = betterproto.string_field(2)
     validator_dst_address: str = betterproto.string_field(3)
-    amount: '__base_v1_beta1__.Coin' = betterproto.message_field(4)
+    amount: "__base_v1_beta1__.Coin" = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
@@ -916,7 +916,7 @@ class MsgUndelegate(betterproto.Message):
 
     delegator_address: str = betterproto.string_field(1)
     validator_address: str = betterproto.string_field(2)
-    amount: '__base_v1_beta1__.Coin' = betterproto.message_field(3)
+    amount: "__base_v1_beta1__.Coin" = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -929,14 +929,14 @@ class MsgUndelegateResponse(betterproto.Message):
 class QueryStub(betterproto.ServiceStub):
     async def validators(
         self,
-        query_validators_request: 'QueryValidatorsRequest',
+        query_validators_request: "QueryValidatorsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryValidatorsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryValidatorsResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/Validators',
+            "/cosmos.staking.v1beta1.Query/Validators",
             query_validators_request,
             QueryValidatorsResponse,
             timeout=timeout,
@@ -946,14 +946,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def validator(
         self,
-        query_validator_request: 'QueryValidatorRequest',
+        query_validator_request: "QueryValidatorRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryValidatorResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryValidatorResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/Validator',
+            "/cosmos.staking.v1beta1.Query/Validator",
             query_validator_request,
             QueryValidatorResponse,
             timeout=timeout,
@@ -963,14 +963,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def validator_delegations(
         self,
-        query_validator_delegations_request: 'QueryValidatorDelegationsRequest',
+        query_validator_delegations_request: "QueryValidatorDelegationsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryValidatorDelegationsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryValidatorDelegationsResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/ValidatorDelegations',
+            "/cosmos.staking.v1beta1.Query/ValidatorDelegations",
             query_validator_delegations_request,
             QueryValidatorDelegationsResponse,
             timeout=timeout,
@@ -980,14 +980,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def validator_unbonding_delegations(
         self,
-        query_validator_unbonding_delegations_request: 'QueryValidatorUnbondingDelegationsRequest',
+        query_validator_unbonding_delegations_request: "QueryValidatorUnbondingDelegationsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryValidatorUnbondingDelegationsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryValidatorUnbondingDelegationsResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/ValidatorUnbondingDelegations',
+            "/cosmos.staking.v1beta1.Query/ValidatorUnbondingDelegations",
             query_validator_unbonding_delegations_request,
             QueryValidatorUnbondingDelegationsResponse,
             timeout=timeout,
@@ -997,14 +997,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def delegation(
         self,
-        query_delegation_request: 'QueryDelegationRequest',
+        query_delegation_request: "QueryDelegationRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDelegationResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDelegationResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/Delegation',
+            "/cosmos.staking.v1beta1.Query/Delegation",
             query_delegation_request,
             QueryDelegationResponse,
             timeout=timeout,
@@ -1014,14 +1014,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def unbonding_delegation(
         self,
-        query_unbonding_delegation_request: 'QueryUnbondingDelegationRequest',
+        query_unbonding_delegation_request: "QueryUnbondingDelegationRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryUnbondingDelegationResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryUnbondingDelegationResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/UnbondingDelegation',
+            "/cosmos.staking.v1beta1.Query/UnbondingDelegation",
             query_unbonding_delegation_request,
             QueryUnbondingDelegationResponse,
             timeout=timeout,
@@ -1031,14 +1031,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def delegator_delegations(
         self,
-        query_delegator_delegations_request: 'QueryDelegatorDelegationsRequest',
+        query_delegator_delegations_request: "QueryDelegatorDelegationsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDelegatorDelegationsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDelegatorDelegationsResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/DelegatorDelegations',
+            "/cosmos.staking.v1beta1.Query/DelegatorDelegations",
             query_delegator_delegations_request,
             QueryDelegatorDelegationsResponse,
             timeout=timeout,
@@ -1048,14 +1048,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def delegator_unbonding_delegations(
         self,
-        query_delegator_unbonding_delegations_request: 'QueryDelegatorUnbondingDelegationsRequest',
+        query_delegator_unbonding_delegations_request: "QueryDelegatorUnbondingDelegationsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDelegatorUnbondingDelegationsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDelegatorUnbondingDelegationsResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/DelegatorUnbondingDelegations',
+            "/cosmos.staking.v1beta1.Query/DelegatorUnbondingDelegations",
             query_delegator_unbonding_delegations_request,
             QueryDelegatorUnbondingDelegationsResponse,
             timeout=timeout,
@@ -1065,14 +1065,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def redelegations(
         self,
-        query_redelegations_request: 'QueryRedelegationsRequest',
+        query_redelegations_request: "QueryRedelegationsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryRedelegationsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryRedelegationsResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/Redelegations',
+            "/cosmos.staking.v1beta1.Query/Redelegations",
             query_redelegations_request,
             QueryRedelegationsResponse,
             timeout=timeout,
@@ -1082,14 +1082,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def delegator_validators(
         self,
-        query_delegator_validators_request: 'QueryDelegatorValidatorsRequest',
+        query_delegator_validators_request: "QueryDelegatorValidatorsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDelegatorValidatorsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDelegatorValidatorsResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/DelegatorValidators',
+            "/cosmos.staking.v1beta1.Query/DelegatorValidators",
             query_delegator_validators_request,
             QueryDelegatorValidatorsResponse,
             timeout=timeout,
@@ -1099,14 +1099,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def delegator_validator(
         self,
-        query_delegator_validator_request: 'QueryDelegatorValidatorRequest',
+        query_delegator_validator_request: "QueryDelegatorValidatorRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryDelegatorValidatorResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryDelegatorValidatorResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/DelegatorValidator',
+            "/cosmos.staking.v1beta1.Query/DelegatorValidator",
             query_delegator_validator_request,
             QueryDelegatorValidatorResponse,
             timeout=timeout,
@@ -1116,14 +1116,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def historical_info(
         self,
-        query_historical_info_request: 'QueryHistoricalInfoRequest',
+        query_historical_info_request: "QueryHistoricalInfoRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryHistoricalInfoResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryHistoricalInfoResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/HistoricalInfo',
+            "/cosmos.staking.v1beta1.Query/HistoricalInfo",
             query_historical_info_request,
             QueryHistoricalInfoResponse,
             timeout=timeout,
@@ -1133,14 +1133,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def pool(
         self,
-        query_pool_request: 'QueryPoolRequest',
+        query_pool_request: "QueryPoolRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryPoolResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryPoolResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/Pool',
+            "/cosmos.staking.v1beta1.Query/Pool",
             query_pool_request,
             QueryPoolResponse,
             timeout=timeout,
@@ -1150,14 +1150,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def params(
         self,
-        query_params_request: 'QueryParamsRequest',
+        query_params_request: "QueryParamsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryParamsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryParamsResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Query/Params',
+            "/cosmos.staking.v1beta1.Query/Params",
             query_params_request,
             QueryParamsResponse,
             timeout=timeout,
@@ -1169,14 +1169,14 @@ class QueryStub(betterproto.ServiceStub):
 class MsgStub(betterproto.ServiceStub):
     async def create_validator(
         self,
-        msg_create_validator: 'MsgCreateValidator',
+        msg_create_validator: "MsgCreateValidator",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgCreateValidatorResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgCreateValidatorResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Msg/CreateValidator',
+            "/cosmos.staking.v1beta1.Msg/CreateValidator",
             msg_create_validator,
             MsgCreateValidatorResponse,
             timeout=timeout,
@@ -1186,14 +1186,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def edit_validator(
         self,
-        msg_edit_validator: 'MsgEditValidator',
+        msg_edit_validator: "MsgEditValidator",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgEditValidatorResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgEditValidatorResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Msg/EditValidator',
+            "/cosmos.staking.v1beta1.Msg/EditValidator",
             msg_edit_validator,
             MsgEditValidatorResponse,
             timeout=timeout,
@@ -1203,14 +1203,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def delegate(
         self,
-        msg_delegate: 'MsgDelegate',
+        msg_delegate: "MsgDelegate",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgDelegateResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgDelegateResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Msg/Delegate',
+            "/cosmos.staking.v1beta1.Msg/Delegate",
             msg_delegate,
             MsgDelegateResponse,
             timeout=timeout,
@@ -1220,14 +1220,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def begin_redelegate(
         self,
-        msg_begin_redelegate: 'MsgBeginRedelegate',
+        msg_begin_redelegate: "MsgBeginRedelegate",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgBeginRedelegateResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgBeginRedelegateResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Msg/BeginRedelegate',
+            "/cosmos.staking.v1beta1.Msg/BeginRedelegate",
             msg_begin_redelegate,
             MsgBeginRedelegateResponse,
             timeout=timeout,
@@ -1237,14 +1237,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def undelegate(
         self,
-        msg_undelegate: 'MsgUndelegate',
+        msg_undelegate: "MsgUndelegate",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgUndelegateResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgUndelegateResponse":
         return await self._unary_unary(
-            '/cosmos.staking.v1beta1.Msg/Undelegate',
+            "/cosmos.staking.v1beta1.Msg/Undelegate",
             msg_undelegate,
             MsgUndelegateResponse,
             timeout=timeout,
@@ -1255,78 +1255,78 @@ class MsgStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def validators(
-        self, query_validators_request: 'QueryValidatorsRequest'
-    ) -> 'QueryValidatorsResponse':
+        self, query_validators_request: "QueryValidatorsRequest"
+    ) -> "QueryValidatorsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def validator(
-        self, query_validator_request: 'QueryValidatorRequest'
-    ) -> 'QueryValidatorResponse':
+        self, query_validator_request: "QueryValidatorRequest"
+    ) -> "QueryValidatorResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def validator_delegations(
-        self, query_validator_delegations_request: 'QueryValidatorDelegationsRequest'
-    ) -> 'QueryValidatorDelegationsResponse':
+        self, query_validator_delegations_request: "QueryValidatorDelegationsRequest"
+    ) -> "QueryValidatorDelegationsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def validator_unbonding_delegations(
         self,
-        query_validator_unbonding_delegations_request: 'QueryValidatorUnbondingDelegationsRequest',
-    ) -> 'QueryValidatorUnbondingDelegationsResponse':
+        query_validator_unbonding_delegations_request: "QueryValidatorUnbondingDelegationsRequest",
+    ) -> "QueryValidatorUnbondingDelegationsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def delegation(
-        self, query_delegation_request: 'QueryDelegationRequest'
-    ) -> 'QueryDelegationResponse':
+        self, query_delegation_request: "QueryDelegationRequest"
+    ) -> "QueryDelegationResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def unbonding_delegation(
-        self, query_unbonding_delegation_request: 'QueryUnbondingDelegationRequest'
-    ) -> 'QueryUnbondingDelegationResponse':
+        self, query_unbonding_delegation_request: "QueryUnbondingDelegationRequest"
+    ) -> "QueryUnbondingDelegationResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def delegator_delegations(
-        self, query_delegator_delegations_request: 'QueryDelegatorDelegationsRequest'
-    ) -> 'QueryDelegatorDelegationsResponse':
+        self, query_delegator_delegations_request: "QueryDelegatorDelegationsRequest"
+    ) -> "QueryDelegatorDelegationsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def delegator_unbonding_delegations(
         self,
-        query_delegator_unbonding_delegations_request: 'QueryDelegatorUnbondingDelegationsRequest',
-    ) -> 'QueryDelegatorUnbondingDelegationsResponse':
+        query_delegator_unbonding_delegations_request: "QueryDelegatorUnbondingDelegationsRequest",
+    ) -> "QueryDelegatorUnbondingDelegationsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def redelegations(
-        self, query_redelegations_request: 'QueryRedelegationsRequest'
-    ) -> 'QueryRedelegationsResponse':
+        self, query_redelegations_request: "QueryRedelegationsRequest"
+    ) -> "QueryRedelegationsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def delegator_validators(
-        self, query_delegator_validators_request: 'QueryDelegatorValidatorsRequest'
-    ) -> 'QueryDelegatorValidatorsResponse':
+        self, query_delegator_validators_request: "QueryDelegatorValidatorsRequest"
+    ) -> "QueryDelegatorValidatorsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def delegator_validator(
-        self, query_delegator_validator_request: 'QueryDelegatorValidatorRequest'
-    ) -> 'QueryDelegatorValidatorResponse':
+        self, query_delegator_validator_request: "QueryDelegatorValidatorRequest"
+    ) -> "QueryDelegatorValidatorResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def historical_info(
-        self, query_historical_info_request: 'QueryHistoricalInfoRequest'
-    ) -> 'QueryHistoricalInfoResponse':
+        self, query_historical_info_request: "QueryHistoricalInfoRequest"
+    ) -> "QueryHistoricalInfoResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def pool(self, query_pool_request: 'QueryPoolRequest') -> 'QueryPoolResponse':
+    async def pool(self, query_pool_request: "QueryPoolRequest") -> "QueryPoolResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def params(
-        self, query_params_request: 'QueryParamsRequest'
-    ) -> 'QueryParamsResponse':
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_validators(
         self,
-        stream: 'grpclib.server.Stream[QueryValidatorsRequest, QueryValidatorsResponse]',
+        stream: "grpclib.server.Stream[QueryValidatorsRequest, QueryValidatorsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.validators(request)
@@ -1334,7 +1334,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_validator(
         self,
-        stream: 'grpclib.server.Stream[QueryValidatorRequest, QueryValidatorResponse]',
+        stream: "grpclib.server.Stream[QueryValidatorRequest, QueryValidatorResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.validator(request)
@@ -1342,7 +1342,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_validator_delegations(
         self,
-        stream: 'grpclib.server.Stream[QueryValidatorDelegationsRequest, QueryValidatorDelegationsResponse]',
+        stream: "grpclib.server.Stream[QueryValidatorDelegationsRequest, QueryValidatorDelegationsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.validator_delegations(request)
@@ -1350,7 +1350,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_validator_unbonding_delegations(
         self,
-        stream: 'grpclib.server.Stream[QueryValidatorUnbondingDelegationsRequest, QueryValidatorUnbondingDelegationsResponse]',
+        stream: "grpclib.server.Stream[QueryValidatorUnbondingDelegationsRequest, QueryValidatorUnbondingDelegationsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.validator_unbonding_delegations(request)
@@ -1358,7 +1358,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_delegation(
         self,
-        stream: 'grpclib.server.Stream[QueryDelegationRequest, QueryDelegationResponse]',
+        stream: "grpclib.server.Stream[QueryDelegationRequest, QueryDelegationResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.delegation(request)
@@ -1366,7 +1366,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_unbonding_delegation(
         self,
-        stream: 'grpclib.server.Stream[QueryUnbondingDelegationRequest, QueryUnbondingDelegationResponse]',
+        stream: "grpclib.server.Stream[QueryUnbondingDelegationRequest, QueryUnbondingDelegationResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.unbonding_delegation(request)
@@ -1374,7 +1374,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_delegator_delegations(
         self,
-        stream: 'grpclib.server.Stream[QueryDelegatorDelegationsRequest, QueryDelegatorDelegationsResponse]',
+        stream: "grpclib.server.Stream[QueryDelegatorDelegationsRequest, QueryDelegatorDelegationsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.delegator_delegations(request)
@@ -1382,7 +1382,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_delegator_unbonding_delegations(
         self,
-        stream: 'grpclib.server.Stream[QueryDelegatorUnbondingDelegationsRequest, QueryDelegatorUnbondingDelegationsResponse]',
+        stream: "grpclib.server.Stream[QueryDelegatorUnbondingDelegationsRequest, QueryDelegatorUnbondingDelegationsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.delegator_unbonding_delegations(request)
@@ -1390,7 +1390,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_redelegations(
         self,
-        stream: 'grpclib.server.Stream[QueryRedelegationsRequest, QueryRedelegationsResponse]',
+        stream: "grpclib.server.Stream[QueryRedelegationsRequest, QueryRedelegationsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.redelegations(request)
@@ -1398,7 +1398,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_delegator_validators(
         self,
-        stream: 'grpclib.server.Stream[QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponse]',
+        stream: "grpclib.server.Stream[QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.delegator_validators(request)
@@ -1406,7 +1406,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_delegator_validator(
         self,
-        stream: 'grpclib.server.Stream[QueryDelegatorValidatorRequest, QueryDelegatorValidatorResponse]',
+        stream: "grpclib.server.Stream[QueryDelegatorValidatorRequest, QueryDelegatorValidatorResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.delegator_validator(request)
@@ -1414,21 +1414,21 @@ class QueryBase(ServiceBase):
 
     async def __rpc_historical_info(
         self,
-        stream: 'grpclib.server.Stream[QueryHistoricalInfoRequest, QueryHistoricalInfoResponse]',
+        stream: "grpclib.server.Stream[QueryHistoricalInfoRequest, QueryHistoricalInfoResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.historical_info(request)
         await stream.send_message(response)
 
     async def __rpc_pool(
-        self, stream: 'grpclib.server.Stream[QueryPoolRequest, QueryPoolResponse]'
+        self, stream: "grpclib.server.Stream[QueryPoolRequest, QueryPoolResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.pool(request)
         await stream.send_message(response)
 
     async def __rpc_params(
-        self, stream: 'grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]'
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
@@ -1436,85 +1436,85 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.staking.v1beta1.Query/Validators': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/Validators": grpclib.const.Handler(
                 self.__rpc_validators,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryValidatorsRequest,
                 QueryValidatorsResponse,
             ),
-            '/cosmos.staking.v1beta1.Query/Validator': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/Validator": grpclib.const.Handler(
                 self.__rpc_validator,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryValidatorRequest,
                 QueryValidatorResponse,
             ),
-            '/cosmos.staking.v1beta1.Query/ValidatorDelegations': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/ValidatorDelegations": grpclib.const.Handler(
                 self.__rpc_validator_delegations,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryValidatorDelegationsRequest,
                 QueryValidatorDelegationsResponse,
             ),
-            '/cosmos.staking.v1beta1.Query/ValidatorUnbondingDelegations': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/ValidatorUnbondingDelegations": grpclib.const.Handler(
                 self.__rpc_validator_unbonding_delegations,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryValidatorUnbondingDelegationsRequest,
                 QueryValidatorUnbondingDelegationsResponse,
             ),
-            '/cosmos.staking.v1beta1.Query/Delegation': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/Delegation": grpclib.const.Handler(
                 self.__rpc_delegation,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDelegationRequest,
                 QueryDelegationResponse,
             ),
-            '/cosmos.staking.v1beta1.Query/UnbondingDelegation': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/UnbondingDelegation": grpclib.const.Handler(
                 self.__rpc_unbonding_delegation,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryUnbondingDelegationRequest,
                 QueryUnbondingDelegationResponse,
             ),
-            '/cosmos.staking.v1beta1.Query/DelegatorDelegations': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/DelegatorDelegations": grpclib.const.Handler(
                 self.__rpc_delegator_delegations,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDelegatorDelegationsRequest,
                 QueryDelegatorDelegationsResponse,
             ),
-            '/cosmos.staking.v1beta1.Query/DelegatorUnbondingDelegations': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/DelegatorUnbondingDelegations": grpclib.const.Handler(
                 self.__rpc_delegator_unbonding_delegations,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDelegatorUnbondingDelegationsRequest,
                 QueryDelegatorUnbondingDelegationsResponse,
             ),
-            '/cosmos.staking.v1beta1.Query/Redelegations': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/Redelegations": grpclib.const.Handler(
                 self.__rpc_redelegations,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryRedelegationsRequest,
                 QueryRedelegationsResponse,
             ),
-            '/cosmos.staking.v1beta1.Query/DelegatorValidators': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/DelegatorValidators": grpclib.const.Handler(
                 self.__rpc_delegator_validators,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDelegatorValidatorsRequest,
                 QueryDelegatorValidatorsResponse,
             ),
-            '/cosmos.staking.v1beta1.Query/DelegatorValidator': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/DelegatorValidator": grpclib.const.Handler(
                 self.__rpc_delegator_validator,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryDelegatorValidatorRequest,
                 QueryDelegatorValidatorResponse,
             ),
-            '/cosmos.staking.v1beta1.Query/HistoricalInfo': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/HistoricalInfo": grpclib.const.Handler(
                 self.__rpc_historical_info,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryHistoricalInfoRequest,
                 QueryHistoricalInfoResponse,
             ),
-            '/cosmos.staking.v1beta1.Query/Pool': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/Pool": grpclib.const.Handler(
                 self.__rpc_pool,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryPoolRequest,
                 QueryPoolResponse,
             ),
-            '/cosmos.staking.v1beta1.Query/Params': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Query/Params": grpclib.const.Handler(
                 self.__rpc_params,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,
@@ -1525,31 +1525,31 @@ class QueryBase(ServiceBase):
 
 class MsgBase(ServiceBase):
     async def create_validator(
-        self, msg_create_validator: 'MsgCreateValidator'
-    ) -> 'MsgCreateValidatorResponse':
+        self, msg_create_validator: "MsgCreateValidator"
+    ) -> "MsgCreateValidatorResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def edit_validator(
-        self, msg_edit_validator: 'MsgEditValidator'
-    ) -> 'MsgEditValidatorResponse':
+        self, msg_edit_validator: "MsgEditValidator"
+    ) -> "MsgEditValidatorResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def delegate(self, msg_delegate: 'MsgDelegate') -> 'MsgDelegateResponse':
+    async def delegate(self, msg_delegate: "MsgDelegate") -> "MsgDelegateResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def begin_redelegate(
-        self, msg_begin_redelegate: 'MsgBeginRedelegate'
-    ) -> 'MsgBeginRedelegateResponse':
+        self, msg_begin_redelegate: "MsgBeginRedelegate"
+    ) -> "MsgBeginRedelegateResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def undelegate(
-        self, msg_undelegate: 'MsgUndelegate'
-    ) -> 'MsgUndelegateResponse':
+        self, msg_undelegate: "MsgUndelegate"
+    ) -> "MsgUndelegateResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_create_validator(
         self,
-        stream: 'grpclib.server.Stream[MsgCreateValidator, MsgCreateValidatorResponse]',
+        stream: "grpclib.server.Stream[MsgCreateValidator, MsgCreateValidatorResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.create_validator(request)
@@ -1557,14 +1557,14 @@ class MsgBase(ServiceBase):
 
     async def __rpc_edit_validator(
         self,
-        stream: 'grpclib.server.Stream[MsgEditValidator, MsgEditValidatorResponse]',
+        stream: "grpclib.server.Stream[MsgEditValidator, MsgEditValidatorResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.edit_validator(request)
         await stream.send_message(response)
 
     async def __rpc_delegate(
-        self, stream: 'grpclib.server.Stream[MsgDelegate, MsgDelegateResponse]'
+        self, stream: "grpclib.server.Stream[MsgDelegate, MsgDelegateResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.delegate(request)
@@ -1572,14 +1572,14 @@ class MsgBase(ServiceBase):
 
     async def __rpc_begin_redelegate(
         self,
-        stream: 'grpclib.server.Stream[MsgBeginRedelegate, MsgBeginRedelegateResponse]',
+        stream: "grpclib.server.Stream[MsgBeginRedelegate, MsgBeginRedelegateResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.begin_redelegate(request)
         await stream.send_message(response)
 
     async def __rpc_undelegate(
-        self, stream: 'grpclib.server.Stream[MsgUndelegate, MsgUndelegateResponse]'
+        self, stream: "grpclib.server.Stream[MsgUndelegate, MsgUndelegateResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.undelegate(request)
@@ -1587,31 +1587,31 @@ class MsgBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.staking.v1beta1.Msg/CreateValidator': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Msg/CreateValidator": grpclib.const.Handler(
                 self.__rpc_create_validator,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgCreateValidator,
                 MsgCreateValidatorResponse,
             ),
-            '/cosmos.staking.v1beta1.Msg/EditValidator': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Msg/EditValidator": grpclib.const.Handler(
                 self.__rpc_edit_validator,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgEditValidator,
                 MsgEditValidatorResponse,
             ),
-            '/cosmos.staking.v1beta1.Msg/Delegate': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Msg/Delegate": grpclib.const.Handler(
                 self.__rpc_delegate,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgDelegate,
                 MsgDelegateResponse,
             ),
-            '/cosmos.staking.v1beta1.Msg/BeginRedelegate': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Msg/BeginRedelegate": grpclib.const.Handler(
                 self.__rpc_begin_redelegate,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgBeginRedelegate,
                 MsgBeginRedelegateResponse,
             ),
-            '/cosmos.staking.v1beta1.Msg/Undelegate': grpclib.const.Handler(
+            "/cosmos.staking.v1beta1.Msg/Undelegate": grpclib.const.Handler(
                 self.__rpc_undelegate,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgUndelegate,

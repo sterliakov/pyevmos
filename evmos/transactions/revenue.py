@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Any, Mapping, Sequence
+from collections.abc import Mapping, Sequence
+from typing import Any
 
 from evmos.eip712 import (
     MSG_CANCEL_REVENUE_TYPES,
@@ -15,10 +16,10 @@ from evmos.proto import (
     MsgCancelRevenue,
     MsgRegisterRevenue,
     MsgUpdateRevenue,
+    create_msg_cancel_revenue as proto_msg_cancel_revenue,
+    create_msg_register_revenue as proto_msg_register_revenue,
+    create_msg_update_revenue as proto_msg_update_revenue,
 )
-from evmos.proto import create_msg_cancel_revenue as proto_msg_cancel_revenue
-from evmos.proto import create_msg_register_revenue as proto_msg_register_revenue
-from evmos.proto import create_msg_update_revenue as proto_msg_update_revenue
 from evmos.transactions.common import to_generated
 
 # msgCancelRevenue.ts
@@ -78,7 +79,6 @@ def create_tx_msg_update_revenue(
     contract_address: str,
     deployer_address: str,
     withdrawer_address: str,
-    nonces: Sequence[int],
 ) -> tuple[Mapping[str, Any], MessageGenerated[MsgUpdateRevenue]]:
     """Create transaction with message for revenue update."""
     msg = create_msg_update_revenue(

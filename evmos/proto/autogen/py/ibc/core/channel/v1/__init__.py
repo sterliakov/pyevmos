@@ -77,13 +77,13 @@ class Channel(betterproto.Message):
     sending packets and one end capable of receiving packets.
     """
 
-    state: 'State' = betterproto.enum_field(1)
+    state: "State" = betterproto.enum_field(1)
     """current state of the channel end"""
 
-    ordering: 'Order' = betterproto.enum_field(2)
+    ordering: "Order" = betterproto.enum_field(2)
     """whether the channel is ordered or unordered"""
 
-    counterparty: 'Counterparty' = betterproto.message_field(3)
+    counterparty: "Counterparty" = betterproto.message_field(3)
     """counterparty channel end"""
 
     connection_hops: List[str] = betterproto.string_field(4)
@@ -103,13 +103,13 @@ class IdentifiedChannel(betterproto.Message):
     identifier fields.
     """
 
-    state: 'State' = betterproto.enum_field(1)
+    state: "State" = betterproto.enum_field(1)
     """current state of the channel end"""
 
-    ordering: 'Order' = betterproto.enum_field(2)
+    ordering: "Order" = betterproto.enum_field(2)
     """whether the channel is ordered or unordered"""
 
-    counterparty: 'Counterparty' = betterproto.message_field(3)
+    counterparty: "Counterparty" = betterproto.message_field(3)
     """counterparty channel end"""
 
     connection_hops: List[str] = betterproto.string_field(4)
@@ -165,7 +165,7 @@ class Packet(betterproto.Message):
     data: bytes = betterproto.bytes_field(6)
     """actual opaque bytes transferred directly to the application module"""
 
-    timeout_height: '__client_v1__.Height' = betterproto.message_field(7)
+    timeout_height: "__client_v1__.Height" = betterproto.message_field(7)
     """block height after which the packet times out"""
 
     timeout_timestamp: int = betterproto.uint64_field(8)
@@ -206,21 +206,21 @@ class Acknowledgement(betterproto.Message):
     https://github.com/cosmos/ibc/tree/main/spec/core/ics-004-channel-and-packet-semantics
     """
 
-    result: bytes = betterproto.bytes_field(21, group='response')
-    error: str = betterproto.string_field(22, group='response')
+    result: bytes = betterproto.bytes_field(21, group="response")
+    error: str = betterproto.string_field(22, group="response")
 
 
 @dataclass(eq=False, repr=False)
 class GenesisState(betterproto.Message):
     """GenesisState defines the ibc channel submodule's genesis state."""
 
-    channels: List['IdentifiedChannel'] = betterproto.message_field(1)
-    acknowledgements: List['PacketState'] = betterproto.message_field(2)
-    commitments: List['PacketState'] = betterproto.message_field(3)
-    receipts: List['PacketState'] = betterproto.message_field(4)
-    send_sequences: List['PacketSequence'] = betterproto.message_field(5)
-    recv_sequences: List['PacketSequence'] = betterproto.message_field(6)
-    ack_sequences: List['PacketSequence'] = betterproto.message_field(7)
+    channels: List["IdentifiedChannel"] = betterproto.message_field(1)
+    acknowledgements: List["PacketState"] = betterproto.message_field(2)
+    commitments: List["PacketState"] = betterproto.message_field(3)
+    receipts: List["PacketState"] = betterproto.message_field(4)
+    send_sequences: List["PacketSequence"] = betterproto.message_field(5)
+    recv_sequences: List["PacketSequence"] = betterproto.message_field(6)
+    ack_sequences: List["PacketSequence"] = betterproto.message_field(7)
     next_channel_sequence: int = betterproto.uint64_field(8)
     """the sequence for the next generated channel identifier"""
 
@@ -256,13 +256,13 @@ class QueryChannelResponse(betterproto.Message):
     proof was retrieved.
     """
 
-    channel: 'Channel' = betterproto.message_field(1)
+    channel: "Channel" = betterproto.message_field(1)
     """channel associated with the request identifiers"""
 
     proof: bytes = betterproto.bytes_field(2)
     """merkle proof of existence"""
 
-    proof_height: '__client_v1__.Height' = betterproto.message_field(3)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(3)
     """height at which the proof was retrieved"""
 
 
@@ -270,7 +270,7 @@ class QueryChannelResponse(betterproto.Message):
 class QueryChannelsRequest(betterproto.Message):
     """QueryChannelsRequest is the request type for the Query/Channels RPC method"""
 
-    pagination: '____cosmos_base_query_v1_beta1__.PageRequest' = (
+    pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(1)
     )
     """pagination request"""
@@ -280,15 +280,15 @@ class QueryChannelsRequest(betterproto.Message):
 class QueryChannelsResponse(betterproto.Message):
     """QueryChannelsResponse is the response type for the Query/Channels RPC method."""
 
-    channels: List['IdentifiedChannel'] = betterproto.message_field(1)
+    channels: List["IdentifiedChannel"] = betterproto.message_field(1)
     """list of stored channels of the chain."""
 
-    pagination: '____cosmos_base_query_v1_beta1__.PageResponse' = (
+    pagination: "____cosmos_base_query_v1_beta1__.PageResponse" = (
         betterproto.message_field(2)
     )
     """pagination response"""
 
-    height: '__client_v1__.Height' = betterproto.message_field(3)
+    height: "__client_v1__.Height" = betterproto.message_field(3)
     """query block height"""
 
 
@@ -302,7 +302,7 @@ class QueryConnectionChannelsRequest(betterproto.Message):
     connection: str = betterproto.string_field(1)
     """connection unique identifier"""
 
-    pagination: '____cosmos_base_query_v1_beta1__.PageRequest' = (
+    pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(2)
     )
     """pagination request"""
@@ -315,15 +315,15 @@ class QueryConnectionChannelsResponse(betterproto.Message):
     Query/QueryConnectionChannels RPC method
     """
 
-    channels: List['IdentifiedChannel'] = betterproto.message_field(1)
+    channels: List["IdentifiedChannel"] = betterproto.message_field(1)
     """list of channels associated with a connection."""
 
-    pagination: '____cosmos_base_query_v1_beta1__.PageResponse' = (
+    pagination: "____cosmos_base_query_v1_beta1__.PageResponse" = (
         betterproto.message_field(2)
     )
     """pagination response"""
 
-    height: '__client_v1__.Height' = betterproto.message_field(3)
+    height: "__client_v1__.Height" = betterproto.message_field(3)
     """query block height"""
 
 
@@ -348,7 +348,7 @@ class QueryChannelClientStateResponse(betterproto.Message):
     Query/QueryChannelClientState RPC method
     """
 
-    identified_client_state: '__client_v1__.IdentifiedClientState' = (
+    identified_client_state: "__client_v1__.IdentifiedClientState" = (
         betterproto.message_field(1)
     )
     """client state associated with the channel"""
@@ -356,7 +356,7 @@ class QueryChannelClientStateResponse(betterproto.Message):
     proof: bytes = betterproto.bytes_field(2)
     """merkle proof of existence"""
 
-    proof_height: '__client_v1__.Height' = betterproto.message_field(3)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(3)
     """height at which the proof was retrieved"""
 
 
@@ -387,7 +387,7 @@ class QueryChannelConsensusStateResponse(betterproto.Message):
     Query/QueryChannelClientState RPC method
     """
 
-    consensus_state: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(
+    consensus_state: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(
         1
     )
     """consensus state associated with the channel"""
@@ -398,7 +398,7 @@ class QueryChannelConsensusStateResponse(betterproto.Message):
     proof: bytes = betterproto.bytes_field(3)
     """merkle proof of existence"""
 
-    proof_height: '__client_v1__.Height' = betterproto.message_field(4)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(4)
     """height at which the proof was retrieved"""
 
 
@@ -433,7 +433,7 @@ class QueryPacketCommitmentResponse(betterproto.Message):
     proof: bytes = betterproto.bytes_field(2)
     """merkle proof of existence"""
 
-    proof_height: '__client_v1__.Height' = betterproto.message_field(3)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(3)
     """height at which the proof was retrieved"""
 
 
@@ -450,7 +450,7 @@ class QueryPacketCommitmentsRequest(betterproto.Message):
     channel_id: str = betterproto.string_field(2)
     """channel unique identifier"""
 
-    pagination: '____cosmos_base_query_v1_beta1__.PageRequest' = (
+    pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(3)
     )
     """pagination request"""
@@ -463,13 +463,13 @@ class QueryPacketCommitmentsResponse(betterproto.Message):
     Query/QueryPacketCommitments RPC method
     """
 
-    commitments: List['PacketState'] = betterproto.message_field(1)
-    pagination: '____cosmos_base_query_v1_beta1__.PageResponse' = (
+    commitments: List["PacketState"] = betterproto.message_field(1)
+    pagination: "____cosmos_base_query_v1_beta1__.PageResponse" = (
         betterproto.message_field(2)
     )
     """pagination response"""
 
-    height: '__client_v1__.Height' = betterproto.message_field(3)
+    height: "__client_v1__.Height" = betterproto.message_field(3)
     """query block height"""
 
 
@@ -504,7 +504,7 @@ class QueryPacketReceiptResponse(betterproto.Message):
     proof: bytes = betterproto.bytes_field(3)
     """merkle proof of existence"""
 
-    proof_height: '__client_v1__.Height' = betterproto.message_field(4)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(4)
     """height at which the proof was retrieved"""
 
 
@@ -539,7 +539,7 @@ class QueryPacketAcknowledgementResponse(betterproto.Message):
     proof: bytes = betterproto.bytes_field(2)
     """merkle proof of existence"""
 
-    proof_height: '__client_v1__.Height' = betterproto.message_field(3)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(3)
     """height at which the proof was retrieved"""
 
 
@@ -556,7 +556,7 @@ class QueryPacketAcknowledgementsRequest(betterproto.Message):
     channel_id: str = betterproto.string_field(2)
     """channel unique identifier"""
 
-    pagination: '____cosmos_base_query_v1_beta1__.PageRequest' = (
+    pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(3)
     )
     """pagination request"""
@@ -572,13 +572,13 @@ class QueryPacketAcknowledgementsResponse(betterproto.Message):
     Query/QueryPacketAcknowledgements RPC method
     """
 
-    acknowledgements: List['PacketState'] = betterproto.message_field(1)
-    pagination: '____cosmos_base_query_v1_beta1__.PageResponse' = (
+    acknowledgements: List["PacketState"] = betterproto.message_field(1)
+    pagination: "____cosmos_base_query_v1_beta1__.PageResponse" = (
         betterproto.message_field(2)
     )
     """pagination response"""
 
-    height: '__client_v1__.Height' = betterproto.message_field(3)
+    height: "__client_v1__.Height" = betterproto.message_field(3)
     """query block height"""
 
 
@@ -609,7 +609,7 @@ class QueryUnreceivedPacketsResponse(betterproto.Message):
     sequences: List[int] = betterproto.uint64_field(1)
     """list of unreceived packet sequences"""
 
-    height: '__client_v1__.Height' = betterproto.message_field(2)
+    height: "__client_v1__.Height" = betterproto.message_field(2)
     """query block height"""
 
 
@@ -640,7 +640,7 @@ class QueryUnreceivedAcksResponse(betterproto.Message):
     sequences: List[int] = betterproto.uint64_field(1)
     """list of unreceived acknowledgement sequences"""
 
-    height: '__client_v1__.Height' = betterproto.message_field(2)
+    height: "__client_v1__.Height" = betterproto.message_field(2)
     """query block height"""
 
 
@@ -671,7 +671,7 @@ class QueryNextSequenceReceiveResponse(betterproto.Message):
     proof: bytes = betterproto.bytes_field(2)
     """merkle proof of existence"""
 
-    proof_height: '__client_v1__.Height' = betterproto.message_field(3)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(3)
     """height at which the proof was retrieved"""
 
 
@@ -683,7 +683,7 @@ class MsgChannelOpenInit(betterproto.Message):
     """
 
     port_id: str = betterproto.string_field(1)
-    channel: 'Channel' = betterproto.message_field(2)
+    channel: "Channel" = betterproto.message_field(2)
     signer: str = betterproto.string_field(3)
 
 
@@ -709,7 +709,7 @@ class MsgChannelOpenTry(betterproto.Message):
     the channel identifier of the previous channel in state INIT
     """
 
-    channel: 'Channel' = betterproto.message_field(3)
+    channel: "Channel" = betterproto.message_field(3)
     """
     NOTE: the version field within the channel has been deprecated. Its value
     will be ignored by core IBC.
@@ -717,7 +717,7 @@ class MsgChannelOpenTry(betterproto.Message):
 
     counterparty_version: str = betterproto.string_field(4)
     proof_init: bytes = betterproto.bytes_field(5)
-    proof_height: '__client_v1__.Height' = betterproto.message_field(6)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(6)
     signer: str = betterproto.string_field(7)
 
 
@@ -740,7 +740,7 @@ class MsgChannelOpenAck(betterproto.Message):
     counterparty_channel_id: str = betterproto.string_field(3)
     counterparty_version: str = betterproto.string_field(4)
     proof_try: bytes = betterproto.bytes_field(5)
-    proof_height: '__client_v1__.Height' = betterproto.message_field(6)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(6)
     signer: str = betterproto.string_field(7)
 
 
@@ -761,7 +761,7 @@ class MsgChannelOpenConfirm(betterproto.Message):
     port_id: str = betterproto.string_field(1)
     channel_id: str = betterproto.string_field(2)
     proof_ack: bytes = betterproto.bytes_field(3)
-    proof_height: '__client_v1__.Height' = betterproto.message_field(4)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(4)
     signer: str = betterproto.string_field(5)
 
 
@@ -804,7 +804,7 @@ class MsgChannelCloseConfirm(betterproto.Message):
     port_id: str = betterproto.string_field(1)
     channel_id: str = betterproto.string_field(2)
     proof_init: bytes = betterproto.bytes_field(3)
-    proof_height: '__client_v1__.Height' = betterproto.message_field(4)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(4)
     signer: str = betterproto.string_field(5)
 
 
@@ -822,9 +822,9 @@ class MsgChannelCloseConfirmResponse(betterproto.Message):
 class MsgRecvPacket(betterproto.Message):
     """MsgRecvPacket receives incoming IBC packet"""
 
-    packet: 'Packet' = betterproto.message_field(1)
+    packet: "Packet" = betterproto.message_field(1)
     proof_commitment: bytes = betterproto.bytes_field(2)
-    proof_height: '__client_v1__.Height' = betterproto.message_field(3)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(3)
     signer: str = betterproto.string_field(4)
 
 
@@ -839,9 +839,9 @@ class MsgRecvPacketResponse(betterproto.Message):
 class MsgTimeout(betterproto.Message):
     """MsgTimeout receives timed-out packet"""
 
-    packet: 'Packet' = betterproto.message_field(1)
+    packet: "Packet" = betterproto.message_field(1)
     proof_unreceived: bytes = betterproto.bytes_field(2)
-    proof_height: '__client_v1__.Height' = betterproto.message_field(3)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(3)
     next_sequence_recv: int = betterproto.uint64_field(4)
     signer: str = betterproto.string_field(5)
 
@@ -857,10 +857,10 @@ class MsgTimeoutResponse(betterproto.Message):
 class MsgTimeoutOnClose(betterproto.Message):
     """MsgTimeoutOnClose timed-out packet upon counterparty channel closure."""
 
-    packet: 'Packet' = betterproto.message_field(1)
+    packet: "Packet" = betterproto.message_field(1)
     proof_unreceived: bytes = betterproto.bytes_field(2)
     proof_close: bytes = betterproto.bytes_field(3)
-    proof_height: '__client_v1__.Height' = betterproto.message_field(4)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(4)
     next_sequence_recv: int = betterproto.uint64_field(5)
     signer: str = betterproto.string_field(6)
 
@@ -876,10 +876,10 @@ class MsgTimeoutOnCloseResponse(betterproto.Message):
 class MsgAcknowledgement(betterproto.Message):
     """MsgAcknowledgement receives incoming IBC acknowledgement"""
 
-    packet: 'Packet' = betterproto.message_field(1)
+    packet: "Packet" = betterproto.message_field(1)
     acknowledgement: bytes = betterproto.bytes_field(2)
     proof_acked: bytes = betterproto.bytes_field(3)
-    proof_height: '__client_v1__.Height' = betterproto.message_field(4)
+    proof_height: "__client_v1__.Height" = betterproto.message_field(4)
     signer: str = betterproto.string_field(5)
 
 
@@ -893,14 +893,14 @@ class MsgAcknowledgementResponse(betterproto.Message):
 class QueryStub(betterproto.ServiceStub):
     async def channel(
         self,
-        query_channel_request: 'QueryChannelRequest',
+        query_channel_request: "QueryChannelRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryChannelResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryChannelResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Query/Channel',
+            "/ibc.core.channel.v1.Query/Channel",
             query_channel_request,
             QueryChannelResponse,
             timeout=timeout,
@@ -910,14 +910,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def channels(
         self,
-        query_channels_request: 'QueryChannelsRequest',
+        query_channels_request: "QueryChannelsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryChannelsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryChannelsResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Query/Channels',
+            "/ibc.core.channel.v1.Query/Channels",
             query_channels_request,
             QueryChannelsResponse,
             timeout=timeout,
@@ -927,14 +927,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def connection_channels(
         self,
-        query_connection_channels_request: 'QueryConnectionChannelsRequest',
+        query_connection_channels_request: "QueryConnectionChannelsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryConnectionChannelsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryConnectionChannelsResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Query/ConnectionChannels',
+            "/ibc.core.channel.v1.Query/ConnectionChannels",
             query_connection_channels_request,
             QueryConnectionChannelsResponse,
             timeout=timeout,
@@ -944,14 +944,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def channel_client_state(
         self,
-        query_channel_client_state_request: 'QueryChannelClientStateRequest',
+        query_channel_client_state_request: "QueryChannelClientStateRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryChannelClientStateResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryChannelClientStateResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Query/ChannelClientState',
+            "/ibc.core.channel.v1.Query/ChannelClientState",
             query_channel_client_state_request,
             QueryChannelClientStateResponse,
             timeout=timeout,
@@ -961,14 +961,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def channel_consensus_state(
         self,
-        query_channel_consensus_state_request: 'QueryChannelConsensusStateRequest',
+        query_channel_consensus_state_request: "QueryChannelConsensusStateRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryChannelConsensusStateResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryChannelConsensusStateResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Query/ChannelConsensusState',
+            "/ibc.core.channel.v1.Query/ChannelConsensusState",
             query_channel_consensus_state_request,
             QueryChannelConsensusStateResponse,
             timeout=timeout,
@@ -978,14 +978,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def packet_commitment(
         self,
-        query_packet_commitment_request: 'QueryPacketCommitmentRequest',
+        query_packet_commitment_request: "QueryPacketCommitmentRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryPacketCommitmentResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryPacketCommitmentResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Query/PacketCommitment',
+            "/ibc.core.channel.v1.Query/PacketCommitment",
             query_packet_commitment_request,
             QueryPacketCommitmentResponse,
             timeout=timeout,
@@ -995,14 +995,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def packet_commitments(
         self,
-        query_packet_commitments_request: 'QueryPacketCommitmentsRequest',
+        query_packet_commitments_request: "QueryPacketCommitmentsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryPacketCommitmentsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryPacketCommitmentsResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Query/PacketCommitments',
+            "/ibc.core.channel.v1.Query/PacketCommitments",
             query_packet_commitments_request,
             QueryPacketCommitmentsResponse,
             timeout=timeout,
@@ -1012,14 +1012,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def packet_receipt(
         self,
-        query_packet_receipt_request: 'QueryPacketReceiptRequest',
+        query_packet_receipt_request: "QueryPacketReceiptRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryPacketReceiptResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryPacketReceiptResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Query/PacketReceipt',
+            "/ibc.core.channel.v1.Query/PacketReceipt",
             query_packet_receipt_request,
             QueryPacketReceiptResponse,
             timeout=timeout,
@@ -1029,14 +1029,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def packet_acknowledgement(
         self,
-        query_packet_acknowledgement_request: 'QueryPacketAcknowledgementRequest',
+        query_packet_acknowledgement_request: "QueryPacketAcknowledgementRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryPacketAcknowledgementResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryPacketAcknowledgementResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Query/PacketAcknowledgement',
+            "/ibc.core.channel.v1.Query/PacketAcknowledgement",
             query_packet_acknowledgement_request,
             QueryPacketAcknowledgementResponse,
             timeout=timeout,
@@ -1046,14 +1046,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def packet_acknowledgements(
         self,
-        query_packet_acknowledgements_request: 'QueryPacketAcknowledgementsRequest',
+        query_packet_acknowledgements_request: "QueryPacketAcknowledgementsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryPacketAcknowledgementsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryPacketAcknowledgementsResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Query/PacketAcknowledgements',
+            "/ibc.core.channel.v1.Query/PacketAcknowledgements",
             query_packet_acknowledgements_request,
             QueryPacketAcknowledgementsResponse,
             timeout=timeout,
@@ -1063,14 +1063,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def unreceived_packets(
         self,
-        query_unreceived_packets_request: 'QueryUnreceivedPacketsRequest',
+        query_unreceived_packets_request: "QueryUnreceivedPacketsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryUnreceivedPacketsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryUnreceivedPacketsResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Query/UnreceivedPackets',
+            "/ibc.core.channel.v1.Query/UnreceivedPackets",
             query_unreceived_packets_request,
             QueryUnreceivedPacketsResponse,
             timeout=timeout,
@@ -1080,14 +1080,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def unreceived_acks(
         self,
-        query_unreceived_acks_request: 'QueryUnreceivedAcksRequest',
+        query_unreceived_acks_request: "QueryUnreceivedAcksRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryUnreceivedAcksResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryUnreceivedAcksResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Query/UnreceivedAcks',
+            "/ibc.core.channel.v1.Query/UnreceivedAcks",
             query_unreceived_acks_request,
             QueryUnreceivedAcksResponse,
             timeout=timeout,
@@ -1097,14 +1097,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def next_sequence_receive(
         self,
-        query_next_sequence_receive_request: 'QueryNextSequenceReceiveRequest',
+        query_next_sequence_receive_request: "QueryNextSequenceReceiveRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryNextSequenceReceiveResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryNextSequenceReceiveResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Query/NextSequenceReceive',
+            "/ibc.core.channel.v1.Query/NextSequenceReceive",
             query_next_sequence_receive_request,
             QueryNextSequenceReceiveResponse,
             timeout=timeout,
@@ -1116,14 +1116,14 @@ class QueryStub(betterproto.ServiceStub):
 class MsgStub(betterproto.ServiceStub):
     async def channel_open_init(
         self,
-        msg_channel_open_init: 'MsgChannelOpenInit',
+        msg_channel_open_init: "MsgChannelOpenInit",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgChannelOpenInitResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgChannelOpenInitResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Msg/ChannelOpenInit',
+            "/ibc.core.channel.v1.Msg/ChannelOpenInit",
             msg_channel_open_init,
             MsgChannelOpenInitResponse,
             timeout=timeout,
@@ -1133,14 +1133,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def channel_open_try(
         self,
-        msg_channel_open_try: 'MsgChannelOpenTry',
+        msg_channel_open_try: "MsgChannelOpenTry",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgChannelOpenTryResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgChannelOpenTryResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Msg/ChannelOpenTry',
+            "/ibc.core.channel.v1.Msg/ChannelOpenTry",
             msg_channel_open_try,
             MsgChannelOpenTryResponse,
             timeout=timeout,
@@ -1150,14 +1150,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def channel_open_ack(
         self,
-        msg_channel_open_ack: 'MsgChannelOpenAck',
+        msg_channel_open_ack: "MsgChannelOpenAck",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgChannelOpenAckResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgChannelOpenAckResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Msg/ChannelOpenAck',
+            "/ibc.core.channel.v1.Msg/ChannelOpenAck",
             msg_channel_open_ack,
             MsgChannelOpenAckResponse,
             timeout=timeout,
@@ -1167,14 +1167,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def channel_open_confirm(
         self,
-        msg_channel_open_confirm: 'MsgChannelOpenConfirm',
+        msg_channel_open_confirm: "MsgChannelOpenConfirm",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgChannelOpenConfirmResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgChannelOpenConfirmResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Msg/ChannelOpenConfirm',
+            "/ibc.core.channel.v1.Msg/ChannelOpenConfirm",
             msg_channel_open_confirm,
             MsgChannelOpenConfirmResponse,
             timeout=timeout,
@@ -1184,14 +1184,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def channel_close_init(
         self,
-        msg_channel_close_init: 'MsgChannelCloseInit',
+        msg_channel_close_init: "MsgChannelCloseInit",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgChannelCloseInitResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgChannelCloseInitResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Msg/ChannelCloseInit',
+            "/ibc.core.channel.v1.Msg/ChannelCloseInit",
             msg_channel_close_init,
             MsgChannelCloseInitResponse,
             timeout=timeout,
@@ -1201,14 +1201,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def channel_close_confirm(
         self,
-        msg_channel_close_confirm: 'MsgChannelCloseConfirm',
+        msg_channel_close_confirm: "MsgChannelCloseConfirm",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgChannelCloseConfirmResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgChannelCloseConfirmResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Msg/ChannelCloseConfirm',
+            "/ibc.core.channel.v1.Msg/ChannelCloseConfirm",
             msg_channel_close_confirm,
             MsgChannelCloseConfirmResponse,
             timeout=timeout,
@@ -1218,14 +1218,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def recv_packet(
         self,
-        msg_recv_packet: 'MsgRecvPacket',
+        msg_recv_packet: "MsgRecvPacket",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgRecvPacketResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgRecvPacketResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Msg/RecvPacket',
+            "/ibc.core.channel.v1.Msg/RecvPacket",
             msg_recv_packet,
             MsgRecvPacketResponse,
             timeout=timeout,
@@ -1235,14 +1235,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def timeout(
         self,
-        msg_timeout: 'MsgTimeout',
+        msg_timeout: "MsgTimeout",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgTimeoutResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgTimeoutResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Msg/Timeout',
+            "/ibc.core.channel.v1.Msg/Timeout",
             msg_timeout,
             MsgTimeoutResponse,
             timeout=timeout,
@@ -1252,14 +1252,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def timeout_on_close(
         self,
-        msg_timeout_on_close: 'MsgTimeoutOnClose',
+        msg_timeout_on_close: "MsgTimeoutOnClose",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgTimeoutOnCloseResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgTimeoutOnCloseResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Msg/TimeoutOnClose',
+            "/ibc.core.channel.v1.Msg/TimeoutOnClose",
             msg_timeout_on_close,
             MsgTimeoutOnCloseResponse,
             timeout=timeout,
@@ -1269,14 +1269,14 @@ class MsgStub(betterproto.ServiceStub):
 
     async def acknowledgement(
         self,
-        msg_acknowledgement: 'MsgAcknowledgement',
+        msg_acknowledgement: "MsgAcknowledgement",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgAcknowledgementResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgAcknowledgementResponse":
         return await self._unary_unary(
-            '/ibc.core.channel.v1.Msg/Acknowledgement',
+            "/ibc.core.channel.v1.Msg/Acknowledgement",
             msg_acknowledgement,
             MsgAcknowledgementResponse,
             timeout=timeout,
@@ -1287,73 +1287,73 @@ class MsgStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def channel(
-        self, query_channel_request: 'QueryChannelRequest'
-    ) -> 'QueryChannelResponse':
+        self, query_channel_request: "QueryChannelRequest"
+    ) -> "QueryChannelResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def channels(
-        self, query_channels_request: 'QueryChannelsRequest'
-    ) -> 'QueryChannelsResponse':
+        self, query_channels_request: "QueryChannelsRequest"
+    ) -> "QueryChannelsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def connection_channels(
-        self, query_connection_channels_request: 'QueryConnectionChannelsRequest'
-    ) -> 'QueryConnectionChannelsResponse':
+        self, query_connection_channels_request: "QueryConnectionChannelsRequest"
+    ) -> "QueryConnectionChannelsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def channel_client_state(
-        self, query_channel_client_state_request: 'QueryChannelClientStateRequest'
-    ) -> 'QueryChannelClientStateResponse':
+        self, query_channel_client_state_request: "QueryChannelClientStateRequest"
+    ) -> "QueryChannelClientStateResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def channel_consensus_state(
-        self, query_channel_consensus_state_request: 'QueryChannelConsensusStateRequest'
-    ) -> 'QueryChannelConsensusStateResponse':
+        self, query_channel_consensus_state_request: "QueryChannelConsensusStateRequest"
+    ) -> "QueryChannelConsensusStateResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def packet_commitment(
-        self, query_packet_commitment_request: 'QueryPacketCommitmentRequest'
-    ) -> 'QueryPacketCommitmentResponse':
+        self, query_packet_commitment_request: "QueryPacketCommitmentRequest"
+    ) -> "QueryPacketCommitmentResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def packet_commitments(
-        self, query_packet_commitments_request: 'QueryPacketCommitmentsRequest'
-    ) -> 'QueryPacketCommitmentsResponse':
+        self, query_packet_commitments_request: "QueryPacketCommitmentsRequest"
+    ) -> "QueryPacketCommitmentsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def packet_receipt(
-        self, query_packet_receipt_request: 'QueryPacketReceiptRequest'
-    ) -> 'QueryPacketReceiptResponse':
+        self, query_packet_receipt_request: "QueryPacketReceiptRequest"
+    ) -> "QueryPacketReceiptResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def packet_acknowledgement(
-        self, query_packet_acknowledgement_request: 'QueryPacketAcknowledgementRequest'
-    ) -> 'QueryPacketAcknowledgementResponse':
+        self, query_packet_acknowledgement_request: "QueryPacketAcknowledgementRequest"
+    ) -> "QueryPacketAcknowledgementResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def packet_acknowledgements(
         self,
-        query_packet_acknowledgements_request: 'QueryPacketAcknowledgementsRequest',
-    ) -> 'QueryPacketAcknowledgementsResponse':
+        query_packet_acknowledgements_request: "QueryPacketAcknowledgementsRequest",
+    ) -> "QueryPacketAcknowledgementsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def unreceived_packets(
-        self, query_unreceived_packets_request: 'QueryUnreceivedPacketsRequest'
-    ) -> 'QueryUnreceivedPacketsResponse':
+        self, query_unreceived_packets_request: "QueryUnreceivedPacketsRequest"
+    ) -> "QueryUnreceivedPacketsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def unreceived_acks(
-        self, query_unreceived_acks_request: 'QueryUnreceivedAcksRequest'
-    ) -> 'QueryUnreceivedAcksResponse':
+        self, query_unreceived_acks_request: "QueryUnreceivedAcksRequest"
+    ) -> "QueryUnreceivedAcksResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def next_sequence_receive(
-        self, query_next_sequence_receive_request: 'QueryNextSequenceReceiveRequest'
-    ) -> 'QueryNextSequenceReceiveResponse':
+        self, query_next_sequence_receive_request: "QueryNextSequenceReceiveRequest"
+    ) -> "QueryNextSequenceReceiveResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_channel(
-        self, stream: 'grpclib.server.Stream[QueryChannelRequest, QueryChannelResponse]'
+        self, stream: "grpclib.server.Stream[QueryChannelRequest, QueryChannelResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.channel(request)
@@ -1361,7 +1361,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_channels(
         self,
-        stream: 'grpclib.server.Stream[QueryChannelsRequest, QueryChannelsResponse]',
+        stream: "grpclib.server.Stream[QueryChannelsRequest, QueryChannelsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.channels(request)
@@ -1369,7 +1369,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_connection_channels(
         self,
-        stream: 'grpclib.server.Stream[QueryConnectionChannelsRequest, QueryConnectionChannelsResponse]',
+        stream: "grpclib.server.Stream[QueryConnectionChannelsRequest, QueryConnectionChannelsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.connection_channels(request)
@@ -1377,7 +1377,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_channel_client_state(
         self,
-        stream: 'grpclib.server.Stream[QueryChannelClientStateRequest, QueryChannelClientStateResponse]',
+        stream: "grpclib.server.Stream[QueryChannelClientStateRequest, QueryChannelClientStateResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.channel_client_state(request)
@@ -1385,7 +1385,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_channel_consensus_state(
         self,
-        stream: 'grpclib.server.Stream[QueryChannelConsensusStateRequest, QueryChannelConsensusStateResponse]',
+        stream: "grpclib.server.Stream[QueryChannelConsensusStateRequest, QueryChannelConsensusStateResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.channel_consensus_state(request)
@@ -1393,7 +1393,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_packet_commitment(
         self,
-        stream: 'grpclib.server.Stream[QueryPacketCommitmentRequest, QueryPacketCommitmentResponse]',
+        stream: "grpclib.server.Stream[QueryPacketCommitmentRequest, QueryPacketCommitmentResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.packet_commitment(request)
@@ -1401,7 +1401,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_packet_commitments(
         self,
-        stream: 'grpclib.server.Stream[QueryPacketCommitmentsRequest, QueryPacketCommitmentsResponse]',
+        stream: "grpclib.server.Stream[QueryPacketCommitmentsRequest, QueryPacketCommitmentsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.packet_commitments(request)
@@ -1409,7 +1409,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_packet_receipt(
         self,
-        stream: 'grpclib.server.Stream[QueryPacketReceiptRequest, QueryPacketReceiptResponse]',
+        stream: "grpclib.server.Stream[QueryPacketReceiptRequest, QueryPacketReceiptResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.packet_receipt(request)
@@ -1417,7 +1417,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_packet_acknowledgement(
         self,
-        stream: 'grpclib.server.Stream[QueryPacketAcknowledgementRequest, QueryPacketAcknowledgementResponse]',
+        stream: "grpclib.server.Stream[QueryPacketAcknowledgementRequest, QueryPacketAcknowledgementResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.packet_acknowledgement(request)
@@ -1425,7 +1425,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_packet_acknowledgements(
         self,
-        stream: 'grpclib.server.Stream[QueryPacketAcknowledgementsRequest, QueryPacketAcknowledgementsResponse]',
+        stream: "grpclib.server.Stream[QueryPacketAcknowledgementsRequest, QueryPacketAcknowledgementsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.packet_acknowledgements(request)
@@ -1433,7 +1433,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_unreceived_packets(
         self,
-        stream: 'grpclib.server.Stream[QueryUnreceivedPacketsRequest, QueryUnreceivedPacketsResponse]',
+        stream: "grpclib.server.Stream[QueryUnreceivedPacketsRequest, QueryUnreceivedPacketsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.unreceived_packets(request)
@@ -1441,7 +1441,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_unreceived_acks(
         self,
-        stream: 'grpclib.server.Stream[QueryUnreceivedAcksRequest, QueryUnreceivedAcksResponse]',
+        stream: "grpclib.server.Stream[QueryUnreceivedAcksRequest, QueryUnreceivedAcksResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.unreceived_acks(request)
@@ -1449,7 +1449,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_next_sequence_receive(
         self,
-        stream: 'grpclib.server.Stream[QueryNextSequenceReceiveRequest, QueryNextSequenceReceiveResponse]',
+        stream: "grpclib.server.Stream[QueryNextSequenceReceiveRequest, QueryNextSequenceReceiveResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.next_sequence_receive(request)
@@ -1457,79 +1457,79 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/ibc.core.channel.v1.Query/Channel': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Query/Channel": grpclib.const.Handler(
                 self.__rpc_channel,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryChannelRequest,
                 QueryChannelResponse,
             ),
-            '/ibc.core.channel.v1.Query/Channels': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Query/Channels": grpclib.const.Handler(
                 self.__rpc_channels,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryChannelsRequest,
                 QueryChannelsResponse,
             ),
-            '/ibc.core.channel.v1.Query/ConnectionChannels': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Query/ConnectionChannels": grpclib.const.Handler(
                 self.__rpc_connection_channels,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryConnectionChannelsRequest,
                 QueryConnectionChannelsResponse,
             ),
-            '/ibc.core.channel.v1.Query/ChannelClientState': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Query/ChannelClientState": grpclib.const.Handler(
                 self.__rpc_channel_client_state,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryChannelClientStateRequest,
                 QueryChannelClientStateResponse,
             ),
-            '/ibc.core.channel.v1.Query/ChannelConsensusState': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Query/ChannelConsensusState": grpclib.const.Handler(
                 self.__rpc_channel_consensus_state,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryChannelConsensusStateRequest,
                 QueryChannelConsensusStateResponse,
             ),
-            '/ibc.core.channel.v1.Query/PacketCommitment': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Query/PacketCommitment": grpclib.const.Handler(
                 self.__rpc_packet_commitment,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryPacketCommitmentRequest,
                 QueryPacketCommitmentResponse,
             ),
-            '/ibc.core.channel.v1.Query/PacketCommitments': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Query/PacketCommitments": grpclib.const.Handler(
                 self.__rpc_packet_commitments,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryPacketCommitmentsRequest,
                 QueryPacketCommitmentsResponse,
             ),
-            '/ibc.core.channel.v1.Query/PacketReceipt': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Query/PacketReceipt": grpclib.const.Handler(
                 self.__rpc_packet_receipt,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryPacketReceiptRequest,
                 QueryPacketReceiptResponse,
             ),
-            '/ibc.core.channel.v1.Query/PacketAcknowledgement': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Query/PacketAcknowledgement": grpclib.const.Handler(
                 self.__rpc_packet_acknowledgement,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryPacketAcknowledgementRequest,
                 QueryPacketAcknowledgementResponse,
             ),
-            '/ibc.core.channel.v1.Query/PacketAcknowledgements': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Query/PacketAcknowledgements": grpclib.const.Handler(
                 self.__rpc_packet_acknowledgements,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryPacketAcknowledgementsRequest,
                 QueryPacketAcknowledgementsResponse,
             ),
-            '/ibc.core.channel.v1.Query/UnreceivedPackets': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Query/UnreceivedPackets": grpclib.const.Handler(
                 self.__rpc_unreceived_packets,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryUnreceivedPacketsRequest,
                 QueryUnreceivedPacketsResponse,
             ),
-            '/ibc.core.channel.v1.Query/UnreceivedAcks': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Query/UnreceivedAcks": grpclib.const.Handler(
                 self.__rpc_unreceived_acks,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryUnreceivedAcksRequest,
                 QueryUnreceivedAcksResponse,
             ),
-            '/ibc.core.channel.v1.Query/NextSequenceReceive': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Query/NextSequenceReceive": grpclib.const.Handler(
                 self.__rpc_next_sequence_receive,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryNextSequenceReceiveRequest,
@@ -1540,56 +1540,56 @@ class QueryBase(ServiceBase):
 
 class MsgBase(ServiceBase):
     async def channel_open_init(
-        self, msg_channel_open_init: 'MsgChannelOpenInit'
-    ) -> 'MsgChannelOpenInitResponse':
+        self, msg_channel_open_init: "MsgChannelOpenInit"
+    ) -> "MsgChannelOpenInitResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def channel_open_try(
-        self, msg_channel_open_try: 'MsgChannelOpenTry'
-    ) -> 'MsgChannelOpenTryResponse':
+        self, msg_channel_open_try: "MsgChannelOpenTry"
+    ) -> "MsgChannelOpenTryResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def channel_open_ack(
-        self, msg_channel_open_ack: 'MsgChannelOpenAck'
-    ) -> 'MsgChannelOpenAckResponse':
+        self, msg_channel_open_ack: "MsgChannelOpenAck"
+    ) -> "MsgChannelOpenAckResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def channel_open_confirm(
-        self, msg_channel_open_confirm: 'MsgChannelOpenConfirm'
-    ) -> 'MsgChannelOpenConfirmResponse':
+        self, msg_channel_open_confirm: "MsgChannelOpenConfirm"
+    ) -> "MsgChannelOpenConfirmResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def channel_close_init(
-        self, msg_channel_close_init: 'MsgChannelCloseInit'
-    ) -> 'MsgChannelCloseInitResponse':
+        self, msg_channel_close_init: "MsgChannelCloseInit"
+    ) -> "MsgChannelCloseInitResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def channel_close_confirm(
-        self, msg_channel_close_confirm: 'MsgChannelCloseConfirm'
-    ) -> 'MsgChannelCloseConfirmResponse':
+        self, msg_channel_close_confirm: "MsgChannelCloseConfirm"
+    ) -> "MsgChannelCloseConfirmResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def recv_packet(
-        self, msg_recv_packet: 'MsgRecvPacket'
-    ) -> 'MsgRecvPacketResponse':
+        self, msg_recv_packet: "MsgRecvPacket"
+    ) -> "MsgRecvPacketResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def timeout(self, msg_timeout: 'MsgTimeout') -> 'MsgTimeoutResponse':
+    async def timeout(self, msg_timeout: "MsgTimeout") -> "MsgTimeoutResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def timeout_on_close(
-        self, msg_timeout_on_close: 'MsgTimeoutOnClose'
-    ) -> 'MsgTimeoutOnCloseResponse':
+        self, msg_timeout_on_close: "MsgTimeoutOnClose"
+    ) -> "MsgTimeoutOnCloseResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def acknowledgement(
-        self, msg_acknowledgement: 'MsgAcknowledgement'
-    ) -> 'MsgAcknowledgementResponse':
+        self, msg_acknowledgement: "MsgAcknowledgement"
+    ) -> "MsgAcknowledgementResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_channel_open_init(
         self,
-        stream: 'grpclib.server.Stream[MsgChannelOpenInit, MsgChannelOpenInitResponse]',
+        stream: "grpclib.server.Stream[MsgChannelOpenInit, MsgChannelOpenInitResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.channel_open_init(request)
@@ -1597,7 +1597,7 @@ class MsgBase(ServiceBase):
 
     async def __rpc_channel_open_try(
         self,
-        stream: 'grpclib.server.Stream[MsgChannelOpenTry, MsgChannelOpenTryResponse]',
+        stream: "grpclib.server.Stream[MsgChannelOpenTry, MsgChannelOpenTryResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.channel_open_try(request)
@@ -1605,7 +1605,7 @@ class MsgBase(ServiceBase):
 
     async def __rpc_channel_open_ack(
         self,
-        stream: 'grpclib.server.Stream[MsgChannelOpenAck, MsgChannelOpenAckResponse]',
+        stream: "grpclib.server.Stream[MsgChannelOpenAck, MsgChannelOpenAckResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.channel_open_ack(request)
@@ -1613,7 +1613,7 @@ class MsgBase(ServiceBase):
 
     async def __rpc_channel_open_confirm(
         self,
-        stream: 'grpclib.server.Stream[MsgChannelOpenConfirm, MsgChannelOpenConfirmResponse]',
+        stream: "grpclib.server.Stream[MsgChannelOpenConfirm, MsgChannelOpenConfirmResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.channel_open_confirm(request)
@@ -1621,7 +1621,7 @@ class MsgBase(ServiceBase):
 
     async def __rpc_channel_close_init(
         self,
-        stream: 'grpclib.server.Stream[MsgChannelCloseInit, MsgChannelCloseInitResponse]',
+        stream: "grpclib.server.Stream[MsgChannelCloseInit, MsgChannelCloseInitResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.channel_close_init(request)
@@ -1629,21 +1629,21 @@ class MsgBase(ServiceBase):
 
     async def __rpc_channel_close_confirm(
         self,
-        stream: 'grpclib.server.Stream[MsgChannelCloseConfirm, MsgChannelCloseConfirmResponse]',
+        stream: "grpclib.server.Stream[MsgChannelCloseConfirm, MsgChannelCloseConfirmResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.channel_close_confirm(request)
         await stream.send_message(response)
 
     async def __rpc_recv_packet(
-        self, stream: 'grpclib.server.Stream[MsgRecvPacket, MsgRecvPacketResponse]'
+        self, stream: "grpclib.server.Stream[MsgRecvPacket, MsgRecvPacketResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.recv_packet(request)
         await stream.send_message(response)
 
     async def __rpc_timeout(
-        self, stream: 'grpclib.server.Stream[MsgTimeout, MsgTimeoutResponse]'
+        self, stream: "grpclib.server.Stream[MsgTimeout, MsgTimeoutResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.timeout(request)
@@ -1651,7 +1651,7 @@ class MsgBase(ServiceBase):
 
     async def __rpc_timeout_on_close(
         self,
-        stream: 'grpclib.server.Stream[MsgTimeoutOnClose, MsgTimeoutOnCloseResponse]',
+        stream: "grpclib.server.Stream[MsgTimeoutOnClose, MsgTimeoutOnCloseResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.timeout_on_close(request)
@@ -1659,7 +1659,7 @@ class MsgBase(ServiceBase):
 
     async def __rpc_acknowledgement(
         self,
-        stream: 'grpclib.server.Stream[MsgAcknowledgement, MsgAcknowledgementResponse]',
+        stream: "grpclib.server.Stream[MsgAcknowledgement, MsgAcknowledgementResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.acknowledgement(request)
@@ -1667,61 +1667,61 @@ class MsgBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/ibc.core.channel.v1.Msg/ChannelOpenInit': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Msg/ChannelOpenInit": grpclib.const.Handler(
                 self.__rpc_channel_open_init,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgChannelOpenInit,
                 MsgChannelOpenInitResponse,
             ),
-            '/ibc.core.channel.v1.Msg/ChannelOpenTry': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Msg/ChannelOpenTry": grpclib.const.Handler(
                 self.__rpc_channel_open_try,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgChannelOpenTry,
                 MsgChannelOpenTryResponse,
             ),
-            '/ibc.core.channel.v1.Msg/ChannelOpenAck': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Msg/ChannelOpenAck": grpclib.const.Handler(
                 self.__rpc_channel_open_ack,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgChannelOpenAck,
                 MsgChannelOpenAckResponse,
             ),
-            '/ibc.core.channel.v1.Msg/ChannelOpenConfirm': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Msg/ChannelOpenConfirm": grpclib.const.Handler(
                 self.__rpc_channel_open_confirm,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgChannelOpenConfirm,
                 MsgChannelOpenConfirmResponse,
             ),
-            '/ibc.core.channel.v1.Msg/ChannelCloseInit': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Msg/ChannelCloseInit": grpclib.const.Handler(
                 self.__rpc_channel_close_init,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgChannelCloseInit,
                 MsgChannelCloseInitResponse,
             ),
-            '/ibc.core.channel.v1.Msg/ChannelCloseConfirm': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Msg/ChannelCloseConfirm": grpclib.const.Handler(
                 self.__rpc_channel_close_confirm,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgChannelCloseConfirm,
                 MsgChannelCloseConfirmResponse,
             ),
-            '/ibc.core.channel.v1.Msg/RecvPacket': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Msg/RecvPacket": grpclib.const.Handler(
                 self.__rpc_recv_packet,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgRecvPacket,
                 MsgRecvPacketResponse,
             ),
-            '/ibc.core.channel.v1.Msg/Timeout': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Msg/Timeout": grpclib.const.Handler(
                 self.__rpc_timeout,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgTimeout,
                 MsgTimeoutResponse,
             ),
-            '/ibc.core.channel.v1.Msg/TimeoutOnClose': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Msg/TimeoutOnClose": grpclib.const.Handler(
                 self.__rpc_timeout_on_close,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgTimeoutOnClose,
                 MsgTimeoutOnCloseResponse,
             ),
-            '/ibc.core.channel.v1.Msg/Acknowledgement': grpclib.const.Handler(
+            "/ibc.core.channel.v1.Msg/Acknowledgement": grpclib.const.Handler(
                 self.__rpc_acknowledgement,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgAcknowledgement,

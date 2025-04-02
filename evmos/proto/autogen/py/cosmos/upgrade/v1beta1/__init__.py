@@ -58,7 +58,7 @@ class Plan(betterproto.Message):
     such as a git commit that validators could automatically upgrade to
     """
 
-    upgraded_client_state: 'betterproto_lib_google_protobuf.Any' = (
+    upgraded_client_state: "betterproto_lib_google_protobuf.Any" = (
         betterproto.message_field(5)
     )
     """
@@ -70,11 +70,11 @@ class Plan(betterproto.Message):
 
     def __post_init__(self) -> None:
         super().__post_init__()
-        if self.is_set('time'):
-            warnings.warn('Plan.time is deprecated', DeprecationWarning)
-        if self.is_set('upgraded_client_state'):
+        if self.is_set("time"):
+            warnings.warn("Plan.time is deprecated", DeprecationWarning)
+        if self.is_set("upgraded_client_state"):
             warnings.warn(
-                'Plan.upgraded_client_state is deprecated', DeprecationWarning
+                "Plan.upgraded_client_state is deprecated", DeprecationWarning
             )
 
 
@@ -87,7 +87,7 @@ class SoftwareUpgradeProposal(betterproto.Message):
 
     title: str = betterproto.string_field(1)
     description: str = betterproto.string_field(2)
-    plan: 'Plan' = betterproto.message_field(3)
+    plan: "Plan" = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -132,7 +132,7 @@ class QueryCurrentPlanResponse(betterproto.Message):
     method.
     """
 
-    plan: 'Plan' = betterproto.message_field(1)
+    plan: "Plan" = betterproto.message_field(1)
     """plan is the current upgrade plan."""
 
 
@@ -174,7 +174,7 @@ class QueryUpgradedConsensusStateRequest(betterproto.Message):
 
     def __post_init__(self) -> None:
         warnings.warn(
-            'QueryUpgradedConsensusStateRequest is deprecated', DeprecationWarning
+            "QueryUpgradedConsensusStateRequest is deprecated", DeprecationWarning
         )
         super().__post_init__()
 
@@ -192,7 +192,7 @@ class QueryUpgradedConsensusStateResponse(betterproto.Message):
 
     def __post_init__(self) -> None:
         warnings.warn(
-            'QueryUpgradedConsensusStateResponse is deprecated', DeprecationWarning
+            "QueryUpgradedConsensusStateResponse is deprecated", DeprecationWarning
         )
         super().__post_init__()
 
@@ -221,21 +221,21 @@ class QueryModuleVersionsResponse(betterproto.Message):
     Since: cosmos-sdk 0.43
     """
 
-    module_versions: List['ModuleVersion'] = betterproto.message_field(1)
+    module_versions: List["ModuleVersion"] = betterproto.message_field(1)
     """module_versions is a list of module names with their consensus versions."""
 
 
 class QueryStub(betterproto.ServiceStub):
     async def current_plan(
         self,
-        query_current_plan_request: 'QueryCurrentPlanRequest',
+        query_current_plan_request: "QueryCurrentPlanRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryCurrentPlanResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryCurrentPlanResponse":
         return await self._unary_unary(
-            '/cosmos.upgrade.v1beta1.Query/CurrentPlan',
+            "/cosmos.upgrade.v1beta1.Query/CurrentPlan",
             query_current_plan_request,
             QueryCurrentPlanResponse,
             timeout=timeout,
@@ -245,14 +245,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def applied_plan(
         self,
-        query_applied_plan_request: 'QueryAppliedPlanRequest',
+        query_applied_plan_request: "QueryAppliedPlanRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryAppliedPlanResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryAppliedPlanResponse":
         return await self._unary_unary(
-            '/cosmos.upgrade.v1beta1.Query/AppliedPlan',
+            "/cosmos.upgrade.v1beta1.Query/AppliedPlan",
             query_applied_plan_request,
             QueryAppliedPlanResponse,
             timeout=timeout,
@@ -262,14 +262,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def upgraded_consensus_state(
         self,
-        query_upgraded_consensus_state_request: 'QueryUpgradedConsensusStateRequest',
+        query_upgraded_consensus_state_request: "QueryUpgradedConsensusStateRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryUpgradedConsensusStateResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryUpgradedConsensusStateResponse":
         return await self._unary_unary(
-            '/cosmos.upgrade.v1beta1.Query/UpgradedConsensusState',
+            "/cosmos.upgrade.v1beta1.Query/UpgradedConsensusState",
             query_upgraded_consensus_state_request,
             QueryUpgradedConsensusStateResponse,
             timeout=timeout,
@@ -279,14 +279,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def module_versions(
         self,
-        query_module_versions_request: 'QueryModuleVersionsRequest',
+        query_module_versions_request: "QueryModuleVersionsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryModuleVersionsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryModuleVersionsResponse":
         return await self._unary_unary(
-            '/cosmos.upgrade.v1beta1.Query/ModuleVersions',
+            "/cosmos.upgrade.v1beta1.Query/ModuleVersions",
             query_module_versions_request,
             QueryModuleVersionsResponse,
             timeout=timeout,
@@ -297,29 +297,29 @@ class QueryStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def current_plan(
-        self, query_current_plan_request: 'QueryCurrentPlanRequest'
-    ) -> 'QueryCurrentPlanResponse':
+        self, query_current_plan_request: "QueryCurrentPlanRequest"
+    ) -> "QueryCurrentPlanResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def applied_plan(
-        self, query_applied_plan_request: 'QueryAppliedPlanRequest'
-    ) -> 'QueryAppliedPlanResponse':
+        self, query_applied_plan_request: "QueryAppliedPlanRequest"
+    ) -> "QueryAppliedPlanResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def upgraded_consensus_state(
         self,
-        query_upgraded_consensus_state_request: 'QueryUpgradedConsensusStateRequest',
-    ) -> 'QueryUpgradedConsensusStateResponse':
+        query_upgraded_consensus_state_request: "QueryUpgradedConsensusStateRequest",
+    ) -> "QueryUpgradedConsensusStateResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def module_versions(
-        self, query_module_versions_request: 'QueryModuleVersionsRequest'
-    ) -> 'QueryModuleVersionsResponse':
+        self, query_module_versions_request: "QueryModuleVersionsRequest"
+    ) -> "QueryModuleVersionsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_current_plan(
         self,
-        stream: 'grpclib.server.Stream[QueryCurrentPlanRequest, QueryCurrentPlanResponse]',
+        stream: "grpclib.server.Stream[QueryCurrentPlanRequest, QueryCurrentPlanResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.current_plan(request)
@@ -327,7 +327,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_applied_plan(
         self,
-        stream: 'grpclib.server.Stream[QueryAppliedPlanRequest, QueryAppliedPlanResponse]',
+        stream: "grpclib.server.Stream[QueryAppliedPlanRequest, QueryAppliedPlanResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.applied_plan(request)
@@ -335,7 +335,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_upgraded_consensus_state(
         self,
-        stream: 'grpclib.server.Stream[QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse]',
+        stream: "grpclib.server.Stream[QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.upgraded_consensus_state(request)
@@ -343,7 +343,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_module_versions(
         self,
-        stream: 'grpclib.server.Stream[QueryModuleVersionsRequest, QueryModuleVersionsResponse]',
+        stream: "grpclib.server.Stream[QueryModuleVersionsRequest, QueryModuleVersionsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.module_versions(request)
@@ -351,25 +351,25 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.upgrade.v1beta1.Query/CurrentPlan': grpclib.const.Handler(
+            "/cosmos.upgrade.v1beta1.Query/CurrentPlan": grpclib.const.Handler(
                 self.__rpc_current_plan,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryCurrentPlanRequest,
                 QueryCurrentPlanResponse,
             ),
-            '/cosmos.upgrade.v1beta1.Query/AppliedPlan': grpclib.const.Handler(
+            "/cosmos.upgrade.v1beta1.Query/AppliedPlan": grpclib.const.Handler(
                 self.__rpc_applied_plan,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryAppliedPlanRequest,
                 QueryAppliedPlanResponse,
             ),
-            '/cosmos.upgrade.v1beta1.Query/UpgradedConsensusState': grpclib.const.Handler(
+            "/cosmos.upgrade.v1beta1.Query/UpgradedConsensusState": grpclib.const.Handler(
                 self.__rpc_upgraded_consensus_state,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryUpgradedConsensusStateRequest,
                 QueryUpgradedConsensusStateResponse,
             ),
-            '/cosmos.upgrade.v1beta1.Query/ModuleVersions': grpclib.const.Handler(
+            "/cosmos.upgrade.v1beta1.Query/ModuleVersions": grpclib.const.Handler(
                 self.__rpc_module_versions,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryModuleVersionsRequest,

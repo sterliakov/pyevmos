@@ -33,7 +33,7 @@ class BaseAccount(betterproto.Message):
     """
 
     address: str = betterproto.string_field(1)
-    pub_key: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(2)
+    pub_key: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(2)
     account_number: int = betterproto.uint64_field(3)
     sequence: int = betterproto.uint64_field(4)
 
@@ -42,7 +42,7 @@ class BaseAccount(betterproto.Message):
 class ModuleAccount(betterproto.Message):
     """ModuleAccount defines an account for modules that holds coins on a pool."""
 
-    base_account: 'BaseAccount' = betterproto.message_field(1)
+    base_account: "BaseAccount" = betterproto.message_field(1)
     name: str = betterproto.string_field(2)
     permissions: List[str] = betterproto.string_field(3)
 
@@ -62,10 +62,10 @@ class Params(betterproto.Message):
 class GenesisState(betterproto.Message):
     """GenesisState defines the auth module's genesis state."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params defines all the paramaters of the module."""
 
-    accounts: List['betterproto_lib_google_protobuf.Any'] = betterproto.message_field(2)
+    accounts: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(2)
     """accounts are the accounts present at genesis."""
 
 
@@ -76,7 +76,7 @@ class QueryAccountsRequest(betterproto.Message):
     Since: cosmos-sdk 0.43
     """
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(1)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(1)
     """pagination defines an optional pagination for the request."""
 
 
@@ -87,10 +87,10 @@ class QueryAccountsResponse(betterproto.Message):
     Since: cosmos-sdk 0.43
     """
 
-    accounts: List['betterproto_lib_google_protobuf.Any'] = betterproto.message_field(1)
+    accounts: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(1)
     """accounts are the existing accounts"""
 
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
     """pagination defines the pagination in the response."""
 
 
@@ -106,7 +106,7 @@ class QueryAccountRequest(betterproto.Message):
 class QueryAccountResponse(betterproto.Message):
     """QueryAccountResponse is the response type for the Query/Account RPC method."""
 
-    account: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(1)
+    account: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(1)
     """account defines the account of the corresponding address."""
 
 
@@ -121,21 +121,21 @@ class QueryParamsRequest(betterproto.Message):
 class QueryParamsResponse(betterproto.Message):
     """QueryParamsResponse is the response type for the Query/Params RPC method."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params defines the parameters of the module."""
 
 
 class QueryStub(betterproto.ServiceStub):
     async def accounts(
         self,
-        query_accounts_request: 'QueryAccountsRequest',
+        query_accounts_request: "QueryAccountsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryAccountsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryAccountsResponse":
         return await self._unary_unary(
-            '/cosmos.auth.v1beta1.Query/Accounts',
+            "/cosmos.auth.v1beta1.Query/Accounts",
             query_accounts_request,
             QueryAccountsResponse,
             timeout=timeout,
@@ -145,14 +145,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def account(
         self,
-        query_account_request: 'QueryAccountRequest',
+        query_account_request: "QueryAccountRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryAccountResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryAccountResponse":
         return await self._unary_unary(
-            '/cosmos.auth.v1beta1.Query/Account',
+            "/cosmos.auth.v1beta1.Query/Account",
             query_account_request,
             QueryAccountResponse,
             timeout=timeout,
@@ -162,14 +162,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def params(
         self,
-        query_params_request: 'QueryParamsRequest',
+        query_params_request: "QueryParamsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryParamsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryParamsResponse":
         return await self._unary_unary(
-            '/cosmos.auth.v1beta1.Query/Params',
+            "/cosmos.auth.v1beta1.Query/Params",
             query_params_request,
             QueryParamsResponse,
             timeout=timeout,
@@ -180,37 +180,37 @@ class QueryStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def accounts(
-        self, query_accounts_request: 'QueryAccountsRequest'
-    ) -> 'QueryAccountsResponse':
+        self, query_accounts_request: "QueryAccountsRequest"
+    ) -> "QueryAccountsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def account(
-        self, query_account_request: 'QueryAccountRequest'
-    ) -> 'QueryAccountResponse':
+        self, query_account_request: "QueryAccountRequest"
+    ) -> "QueryAccountResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def params(
-        self, query_params_request: 'QueryParamsRequest'
-    ) -> 'QueryParamsResponse':
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_accounts(
         self,
-        stream: 'grpclib.server.Stream[QueryAccountsRequest, QueryAccountsResponse]',
+        stream: "grpclib.server.Stream[QueryAccountsRequest, QueryAccountsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.accounts(request)
         await stream.send_message(response)
 
     async def __rpc_account(
-        self, stream: 'grpclib.server.Stream[QueryAccountRequest, QueryAccountResponse]'
+        self, stream: "grpclib.server.Stream[QueryAccountRequest, QueryAccountResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.account(request)
         await stream.send_message(response)
 
     async def __rpc_params(
-        self, stream: 'grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]'
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
@@ -218,19 +218,19 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.auth.v1beta1.Query/Accounts': grpclib.const.Handler(
+            "/cosmos.auth.v1beta1.Query/Accounts": grpclib.const.Handler(
                 self.__rpc_accounts,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryAccountsRequest,
                 QueryAccountsResponse,
             ),
-            '/cosmos.auth.v1beta1.Query/Account': grpclib.const.Handler(
+            "/cosmos.auth.v1beta1.Query/Account": grpclib.const.Handler(
                 self.__rpc_account,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryAccountRequest,
                 QueryAccountResponse,
             ),
-            '/cosmos.auth.v1beta1.Query/Params': grpclib.const.Handler(
+            "/cosmos.auth.v1beta1.Query/Params": grpclib.const.Handler(
                 self.__rpc_params,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,

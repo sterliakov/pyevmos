@@ -25,29 +25,29 @@ if TYPE_CHECKING:
 class AppDescriptor(betterproto.Message):
     """AppDescriptor describes a cosmos-sdk based application"""
 
-    authn: 'AuthnDescriptor' = betterproto.message_field(1)
+    authn: "AuthnDescriptor" = betterproto.message_field(1)
     """
     AuthnDescriptor provides information on how to authenticate transactions on the
     application
     NOTE: experimental and subject to change in future releases.
     """
 
-    chain: 'ChainDescriptor' = betterproto.message_field(2)
+    chain: "ChainDescriptor" = betterproto.message_field(2)
     """chain provides the chain descriptor"""
 
-    codec: 'CodecDescriptor' = betterproto.message_field(3)
+    codec: "CodecDescriptor" = betterproto.message_field(3)
     """codec provides metadata information regarding codec related types"""
 
-    configuration: 'ConfigurationDescriptor' = betterproto.message_field(4)
+    configuration: "ConfigurationDescriptor" = betterproto.message_field(4)
     """configuration provides metadata information regarding the sdk.Config type"""
 
-    query_services: 'QueryServicesDescriptor' = betterproto.message_field(5)
+    query_services: "QueryServicesDescriptor" = betterproto.message_field(5)
     """
     query_services provides metadata information regarding the available queriable
     endpoints
     """
 
-    tx: 'TxDescriptor' = betterproto.message_field(6)
+    tx: "TxDescriptor" = betterproto.message_field(6)
     """
     tx provides metadata information regarding how to send transactions to the given
     application
@@ -68,7 +68,7 @@ class TxDescriptor(betterproto.Message):
     an application.
     """
 
-    msgs: List['MsgDescriptor'] = betterproto.message_field(2)
+    msgs: List["MsgDescriptor"] = betterproto.message_field(2)
     """msgs lists the accepted application messages (sdk.Msg)"""
 
 
@@ -79,7 +79,7 @@ class AuthnDescriptor(betterproto.Message):
     on the online RPCs GetTxMetadata and CombineUnsignedTxAndSignatures
     """
 
-    sign_modes: List['SigningModeDescriptor'] = betterproto.message_field(1)
+    sign_modes: List["SigningModeDescriptor"] = betterproto.message_field(1)
     """sign_modes defines the supported signature algorithm"""
 
 
@@ -121,7 +121,7 @@ class CodecDescriptor(betterproto.Message):
     information on the types
     """
 
-    interfaces: List['InterfaceDescriptor'] = betterproto.message_field(1)
+    interfaces: List["InterfaceDescriptor"] = betterproto.message_field(1)
     """interfaces is a list of the registerted interfaces descriptors"""
 
 
@@ -132,18 +132,18 @@ class InterfaceDescriptor(betterproto.Message):
     fullname: str = betterproto.string_field(1)
     """fullname is the name of the interface"""
 
-    interface_accepting_messages: List[
-        'InterfaceAcceptingMessageDescriptor'
-    ] = betterproto.message_field(2)
+    interface_accepting_messages: List["InterfaceAcceptingMessageDescriptor"] = (
+        betterproto.message_field(2)
+    )
     """
     interface_accepting_messages contains information regarding the proto messages which
     contain the interface as
     google.protobuf.Any field
     """
 
-    interface_implementers: List[
-        'InterfaceImplementerDescriptor'
-    ] = betterproto.message_field(3)
+    interface_implementers: List["InterfaceImplementerDescriptor"] = (
+        betterproto.message_field(3)
+    )
     """
     interface_implementers is a list of the descriptors of the interface implementers
     """
@@ -215,7 +215,7 @@ class GetAuthnDescriptorResponse(betterproto.Message):
     GetAuthnDescriptorResponse is the response returned by the GetAuthnDescriptor RPC
     """
 
-    authn: 'AuthnDescriptor' = betterproto.message_field(1)
+    authn: "AuthnDescriptor" = betterproto.message_field(1)
     """
     authn describes how to authenticate to the application when sending transactions
     """
@@ -234,7 +234,7 @@ class GetChainDescriptorResponse(betterproto.Message):
     GetChainDescriptorResponse is the response returned by the GetChainDescriptor RPC
     """
 
-    chain: 'ChainDescriptor' = betterproto.message_field(1)
+    chain: "ChainDescriptor" = betterproto.message_field(1)
     """chain describes application chain information"""
 
 
@@ -251,7 +251,7 @@ class GetCodecDescriptorResponse(betterproto.Message):
     GetCodecDescriptorResponse is the response returned by the GetCodecDescriptor RPC
     """
 
-    codec: 'CodecDescriptor' = betterproto.message_field(1)
+    codec: "CodecDescriptor" = betterproto.message_field(1)
     """
     codec describes the application codec such as registered interfaces and
     implementations
@@ -275,7 +275,7 @@ class GetConfigurationDescriptorResponse(betterproto.Message):
     GetConfigurationDescriptor RPC
     """
 
-    config: 'ConfigurationDescriptor' = betterproto.message_field(1)
+    config: "ConfigurationDescriptor" = betterproto.message_field(1)
     """config describes the application's sdk.Config"""
 
 
@@ -296,7 +296,7 @@ class GetQueryServicesDescriptorResponse(betterproto.Message):
     GetQueryServicesDescriptor RPC
     """
 
-    queries: 'QueryServicesDescriptor' = betterproto.message_field(1)
+    queries: "QueryServicesDescriptor" = betterproto.message_field(1)
     """queries provides information on the available queryable services"""
 
 
@@ -311,7 +311,7 @@ class GetTxDescriptorRequest(betterproto.Message):
 class GetTxDescriptorResponse(betterproto.Message):
     """GetTxDescriptorResponse is the response returned by the GetTxDescriptor RPC"""
 
-    tx: 'TxDescriptor' = betterproto.message_field(1)
+    tx: "TxDescriptor" = betterproto.message_field(1)
     """
     tx provides information on msgs that can be forwarded to the application
     alongside the accepted transaction protobuf type
@@ -322,7 +322,7 @@ class GetTxDescriptorResponse(betterproto.Message):
 class QueryServicesDescriptor(betterproto.Message):
     """QueryServicesDescriptor contains the list of cosmos-sdk queriable services"""
 
-    query_services: List['QueryServiceDescriptor'] = betterproto.message_field(1)
+    query_services: List["QueryServiceDescriptor"] = betterproto.message_field(1)
     """query_services is a list of cosmos-sdk QueryServiceDescriptor"""
 
 
@@ -338,7 +338,7 @@ class QueryServiceDescriptor(betterproto.Message):
     is_module describes if this service is actually exposed by an application's module
     """
 
-    methods: List['QueryMethodDescriptor'] = betterproto.message_field(3)
+    methods: List["QueryMethodDescriptor"] = betterproto.message_field(3)
     """methods provides a list of query service methods"""
 
 
@@ -363,14 +363,14 @@ class QueryMethodDescriptor(betterproto.Message):
 class ReflectionServiceStub(betterproto.ServiceStub):
     async def get_authn_descriptor(
         self,
-        get_authn_descriptor_request: 'GetAuthnDescriptorRequest',
+        get_authn_descriptor_request: "GetAuthnDescriptorRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'GetAuthnDescriptorResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "GetAuthnDescriptorResponse":
         return await self._unary_unary(
-            '/cosmos.base.reflection.v2alpha1.ReflectionService/GetAuthnDescriptor',
+            "/cosmos.base.reflection.v2alpha1.ReflectionService/GetAuthnDescriptor",
             get_authn_descriptor_request,
             GetAuthnDescriptorResponse,
             timeout=timeout,
@@ -380,14 +380,14 @@ class ReflectionServiceStub(betterproto.ServiceStub):
 
     async def get_chain_descriptor(
         self,
-        get_chain_descriptor_request: 'GetChainDescriptorRequest',
+        get_chain_descriptor_request: "GetChainDescriptorRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'GetChainDescriptorResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "GetChainDescriptorResponse":
         return await self._unary_unary(
-            '/cosmos.base.reflection.v2alpha1.ReflectionService/GetChainDescriptor',
+            "/cosmos.base.reflection.v2alpha1.ReflectionService/GetChainDescriptor",
             get_chain_descriptor_request,
             GetChainDescriptorResponse,
             timeout=timeout,
@@ -397,14 +397,14 @@ class ReflectionServiceStub(betterproto.ServiceStub):
 
     async def get_codec_descriptor(
         self,
-        get_codec_descriptor_request: 'GetCodecDescriptorRequest',
+        get_codec_descriptor_request: "GetCodecDescriptorRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'GetCodecDescriptorResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "GetCodecDescriptorResponse":
         return await self._unary_unary(
-            '/cosmos.base.reflection.v2alpha1.ReflectionService/GetCodecDescriptor',
+            "/cosmos.base.reflection.v2alpha1.ReflectionService/GetCodecDescriptor",
             get_codec_descriptor_request,
             GetCodecDescriptorResponse,
             timeout=timeout,
@@ -414,14 +414,14 @@ class ReflectionServiceStub(betterproto.ServiceStub):
 
     async def get_configuration_descriptor(
         self,
-        get_configuration_descriptor_request: 'GetConfigurationDescriptorRequest',
+        get_configuration_descriptor_request: "GetConfigurationDescriptorRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'GetConfigurationDescriptorResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "GetConfigurationDescriptorResponse":
         return await self._unary_unary(
-            '/cosmos.base.reflection.v2alpha1.ReflectionService/GetConfigurationDescriptor',
+            "/cosmos.base.reflection.v2alpha1.ReflectionService/GetConfigurationDescriptor",
             get_configuration_descriptor_request,
             GetConfigurationDescriptorResponse,
             timeout=timeout,
@@ -431,14 +431,14 @@ class ReflectionServiceStub(betterproto.ServiceStub):
 
     async def get_query_services_descriptor(
         self,
-        get_query_services_descriptor_request: 'GetQueryServicesDescriptorRequest',
+        get_query_services_descriptor_request: "GetQueryServicesDescriptorRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'GetQueryServicesDescriptorResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "GetQueryServicesDescriptorResponse":
         return await self._unary_unary(
-            '/cosmos.base.reflection.v2alpha1.ReflectionService/GetQueryServicesDescriptor',
+            "/cosmos.base.reflection.v2alpha1.ReflectionService/GetQueryServicesDescriptor",
             get_query_services_descriptor_request,
             GetQueryServicesDescriptorResponse,
             timeout=timeout,
@@ -448,14 +448,14 @@ class ReflectionServiceStub(betterproto.ServiceStub):
 
     async def get_tx_descriptor(
         self,
-        get_tx_descriptor_request: 'GetTxDescriptorRequest',
+        get_tx_descriptor_request: "GetTxDescriptorRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'GetTxDescriptorResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "GetTxDescriptorResponse":
         return await self._unary_unary(
-            '/cosmos.base.reflection.v2alpha1.ReflectionService/GetTxDescriptor',
+            "/cosmos.base.reflection.v2alpha1.ReflectionService/GetTxDescriptor",
             get_tx_descriptor_request,
             GetTxDescriptorResponse,
             timeout=timeout,
@@ -466,38 +466,38 @@ class ReflectionServiceStub(betterproto.ServiceStub):
 
 class ReflectionServiceBase(ServiceBase):
     async def get_authn_descriptor(
-        self, get_authn_descriptor_request: 'GetAuthnDescriptorRequest'
-    ) -> 'GetAuthnDescriptorResponse':
+        self, get_authn_descriptor_request: "GetAuthnDescriptorRequest"
+    ) -> "GetAuthnDescriptorResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def get_chain_descriptor(
-        self, get_chain_descriptor_request: 'GetChainDescriptorRequest'
-    ) -> 'GetChainDescriptorResponse':
+        self, get_chain_descriptor_request: "GetChainDescriptorRequest"
+    ) -> "GetChainDescriptorResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def get_codec_descriptor(
-        self, get_codec_descriptor_request: 'GetCodecDescriptorRequest'
-    ) -> 'GetCodecDescriptorResponse':
+        self, get_codec_descriptor_request: "GetCodecDescriptorRequest"
+    ) -> "GetCodecDescriptorResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def get_configuration_descriptor(
-        self, get_configuration_descriptor_request: 'GetConfigurationDescriptorRequest'
-    ) -> 'GetConfigurationDescriptorResponse':
+        self, get_configuration_descriptor_request: "GetConfigurationDescriptorRequest"
+    ) -> "GetConfigurationDescriptorResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def get_query_services_descriptor(
-        self, get_query_services_descriptor_request: 'GetQueryServicesDescriptorRequest'
-    ) -> 'GetQueryServicesDescriptorResponse':
+        self, get_query_services_descriptor_request: "GetQueryServicesDescriptorRequest"
+    ) -> "GetQueryServicesDescriptorResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def get_tx_descriptor(
-        self, get_tx_descriptor_request: 'GetTxDescriptorRequest'
-    ) -> 'GetTxDescriptorResponse':
+        self, get_tx_descriptor_request: "GetTxDescriptorRequest"
+    ) -> "GetTxDescriptorResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_get_authn_descriptor(
         self,
-        stream: 'grpclib.server.Stream[GetAuthnDescriptorRequest, GetAuthnDescriptorResponse]',
+        stream: "grpclib.server.Stream[GetAuthnDescriptorRequest, GetAuthnDescriptorResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.get_authn_descriptor(request)
@@ -505,7 +505,7 @@ class ReflectionServiceBase(ServiceBase):
 
     async def __rpc_get_chain_descriptor(
         self,
-        stream: 'grpclib.server.Stream[GetChainDescriptorRequest, GetChainDescriptorResponse]',
+        stream: "grpclib.server.Stream[GetChainDescriptorRequest, GetChainDescriptorResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.get_chain_descriptor(request)
@@ -513,7 +513,7 @@ class ReflectionServiceBase(ServiceBase):
 
     async def __rpc_get_codec_descriptor(
         self,
-        stream: 'grpclib.server.Stream[GetCodecDescriptorRequest, GetCodecDescriptorResponse]',
+        stream: "grpclib.server.Stream[GetCodecDescriptorRequest, GetCodecDescriptorResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.get_codec_descriptor(request)
@@ -521,7 +521,7 @@ class ReflectionServiceBase(ServiceBase):
 
     async def __rpc_get_configuration_descriptor(
         self,
-        stream: 'grpclib.server.Stream[GetConfigurationDescriptorRequest, GetConfigurationDescriptorResponse]',
+        stream: "grpclib.server.Stream[GetConfigurationDescriptorRequest, GetConfigurationDescriptorResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.get_configuration_descriptor(request)
@@ -529,7 +529,7 @@ class ReflectionServiceBase(ServiceBase):
 
     async def __rpc_get_query_services_descriptor(
         self,
-        stream: 'grpclib.server.Stream[GetQueryServicesDescriptorRequest, GetQueryServicesDescriptorResponse]',
+        stream: "grpclib.server.Stream[GetQueryServicesDescriptorRequest, GetQueryServicesDescriptorResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.get_query_services_descriptor(request)
@@ -537,7 +537,7 @@ class ReflectionServiceBase(ServiceBase):
 
     async def __rpc_get_tx_descriptor(
         self,
-        stream: 'grpclib.server.Stream[GetTxDescriptorRequest, GetTxDescriptorResponse]',
+        stream: "grpclib.server.Stream[GetTxDescriptorRequest, GetTxDescriptorResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.get_tx_descriptor(request)
@@ -545,37 +545,37 @@ class ReflectionServiceBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.base.reflection.v2alpha1.ReflectionService/GetAuthnDescriptor': grpclib.const.Handler(
+            "/cosmos.base.reflection.v2alpha1.ReflectionService/GetAuthnDescriptor": grpclib.const.Handler(
                 self.__rpc_get_authn_descriptor,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 GetAuthnDescriptorRequest,
                 GetAuthnDescriptorResponse,
             ),
-            '/cosmos.base.reflection.v2alpha1.ReflectionService/GetChainDescriptor': grpclib.const.Handler(
+            "/cosmos.base.reflection.v2alpha1.ReflectionService/GetChainDescriptor": grpclib.const.Handler(
                 self.__rpc_get_chain_descriptor,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 GetChainDescriptorRequest,
                 GetChainDescriptorResponse,
             ),
-            '/cosmos.base.reflection.v2alpha1.ReflectionService/GetCodecDescriptor': grpclib.const.Handler(
+            "/cosmos.base.reflection.v2alpha1.ReflectionService/GetCodecDescriptor": grpclib.const.Handler(
                 self.__rpc_get_codec_descriptor,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 GetCodecDescriptorRequest,
                 GetCodecDescriptorResponse,
             ),
-            '/cosmos.base.reflection.v2alpha1.ReflectionService/GetConfigurationDescriptor': grpclib.const.Handler(
+            "/cosmos.base.reflection.v2alpha1.ReflectionService/GetConfigurationDescriptor": grpclib.const.Handler(
                 self.__rpc_get_configuration_descriptor,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 GetConfigurationDescriptorRequest,
                 GetConfigurationDescriptorResponse,
             ),
-            '/cosmos.base.reflection.v2alpha1.ReflectionService/GetQueryServicesDescriptor': grpclib.const.Handler(
+            "/cosmos.base.reflection.v2alpha1.ReflectionService/GetQueryServicesDescriptor": grpclib.const.Handler(
                 self.__rpc_get_query_services_descriptor,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 GetQueryServicesDescriptorRequest,
                 GetQueryServicesDescriptorResponse,
             ),
-            '/cosmos.base.reflection.v2alpha1.ReflectionService/GetTxDescriptor': grpclib.const.Handler(
+            "/cosmos.base.reflection.v2alpha1.ReflectionService/GetTxDescriptor": grpclib.const.Handler(
                 self.__rpc_get_tx_descriptor,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 GetTxDescriptorRequest,

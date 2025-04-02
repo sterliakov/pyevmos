@@ -93,8 +93,8 @@ class ExistenceProof(betterproto.Message):
 
     key: bytes = betterproto.bytes_field(1)
     value: bytes = betterproto.bytes_field(2)
-    leaf: 'LeafOp' = betterproto.message_field(3)
-    path: List['InnerOp'] = betterproto.message_field(4)
+    leaf: "LeafOp" = betterproto.message_field(3)
+    path: List["InnerOp"] = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
@@ -106,8 +106,8 @@ class NonExistenceProof(betterproto.Message):
     """
 
     key: bytes = betterproto.bytes_field(1)
-    left: 'ExistenceProof' = betterproto.message_field(2)
-    right: 'ExistenceProof' = betterproto.message_field(3)
+    left: "ExistenceProof" = betterproto.message_field(2)
+    right: "ExistenceProof" = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -117,10 +117,10 @@ class CommitmentProof(betterproto.Message):
     of such messages
     """
 
-    exist: 'ExistenceProof' = betterproto.message_field(1, group='proof')
-    nonexist: 'NonExistenceProof' = betterproto.message_field(2, group='proof')
-    batch: 'BatchProof' = betterproto.message_field(3, group='proof')
-    compressed: 'CompressedBatchProof' = betterproto.message_field(4, group='proof')
+    exist: "ExistenceProof" = betterproto.message_field(1, group="proof")
+    nonexist: "NonExistenceProof" = betterproto.message_field(2, group="proof")
+    batch: "BatchProof" = betterproto.message_field(3, group="proof")
+    compressed: "CompressedBatchProof" = betterproto.message_field(4, group="proof")
 
 
 @dataclass(eq=False, repr=False)
@@ -139,10 +139,10 @@ class LeafOp(betterproto.Message):
     output = hash(prefix || length(hkey) || hkey || length(hvalue) || hvalue)
     """
 
-    hash: 'HashOp' = betterproto.enum_field(1)
-    prehash_key: 'HashOp' = betterproto.enum_field(2)
-    prehash_value: 'HashOp' = betterproto.enum_field(3)
-    length: 'LengthOp' = betterproto.enum_field(4)
+    hash: "HashOp" = betterproto.enum_field(1)
+    prehash_key: "HashOp" = betterproto.enum_field(2)
+    prehash_value: "HashOp" = betterproto.enum_field(3)
+    length: "LengthOp" = betterproto.enum_field(4)
     prefix: bytes = betterproto.bytes_field(5)
     """
     prefix is a fixed bytes that may optionally be included at the beginning to
@@ -169,7 +169,7 @@ class InnerOp(betterproto.Message):
     treat it as an empty string
     """
 
-    hash: 'HashOp' = betterproto.enum_field(1)
+    hash: "HashOp" = betterproto.enum_field(1)
     prefix: bytes = betterproto.bytes_field(2)
     suffix: bytes = betterproto.bytes_field(3)
 
@@ -188,13 +188,13 @@ class ProofSpec(betterproto.Message):
     tree format server uses. But not in code, rather a configuration object.
     """
 
-    leaf_spec: 'LeafOp' = betterproto.message_field(1)
+    leaf_spec: "LeafOp" = betterproto.message_field(1)
     """
     any field in the ExistenceProof must be the same as in this spec.
     except Prefix, which is just the first bytes of prefix (spec can be longer)
     """
 
-    inner_spec: 'InnerSpec' = betterproto.message_field(2)
+    inner_spec: "InnerSpec" = betterproto.message_field(2)
     max_depth: int = betterproto.int32_field(3)
     """
     max_depth (if > 0) is the maximum number of InnerOps allowed (mainly for
@@ -235,7 +235,7 @@ class InnerSpec(betterproto.Message):
     bytes of 0)
     """
 
-    hash: 'HashOp' = betterproto.enum_field(6)
+    hash: "HashOp" = betterproto.enum_field(6)
     """hash is the algorithm that must be used for each InnerOp"""
 
 
@@ -243,30 +243,30 @@ class InnerSpec(betterproto.Message):
 class BatchProof(betterproto.Message):
     """BatchProof is a group of multiple proof types than can be compressed"""
 
-    entries: List['BatchEntry'] = betterproto.message_field(1)
+    entries: List["BatchEntry"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
 class BatchEntry(betterproto.Message):
     """Use BatchEntry not CommitmentProof, to avoid recursion"""
 
-    exist: 'ExistenceProof' = betterproto.message_field(1, group='proof')
-    nonexist: 'NonExistenceProof' = betterproto.message_field(2, group='proof')
+    exist: "ExistenceProof" = betterproto.message_field(1, group="proof")
+    nonexist: "NonExistenceProof" = betterproto.message_field(2, group="proof")
 
 
 @dataclass(eq=False, repr=False)
 class CompressedBatchProof(betterproto.Message):
-    entries: List['CompressedBatchEntry'] = betterproto.message_field(1)
-    lookup_inners: List['InnerOp'] = betterproto.message_field(2)
+    entries: List["CompressedBatchEntry"] = betterproto.message_field(1)
+    lookup_inners: List["InnerOp"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
 class CompressedBatchEntry(betterproto.Message):
     """Use BatchEntry not CommitmentProof, to avoid recursion"""
 
-    exist: 'CompressedExistenceProof' = betterproto.message_field(1, group='proof')
-    nonexist: 'CompressedNonExistenceProof' = betterproto.message_field(
-        2, group='proof'
+    exist: "CompressedExistenceProof" = betterproto.message_field(1, group="proof")
+    nonexist: "CompressedNonExistenceProof" = betterproto.message_field(
+        2, group="proof"
     )
 
 
@@ -274,7 +274,7 @@ class CompressedBatchEntry(betterproto.Message):
 class CompressedExistenceProof(betterproto.Message):
     key: bytes = betterproto.bytes_field(1)
     value: bytes = betterproto.bytes_field(2)
-    leaf: 'LeafOp' = betterproto.message_field(3)
+    leaf: "LeafOp" = betterproto.message_field(3)
     path: List[int] = betterproto.int32_field(4)
     """these are indexes into the lookup_inners table in CompressedBatchProof"""
 
@@ -282,5 +282,5 @@ class CompressedExistenceProof(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class CompressedNonExistenceProof(betterproto.Message):
     key: bytes = betterproto.bytes_field(1)
-    left: 'CompressedExistenceProof' = betterproto.message_field(2)
-    right: 'CompressedExistenceProof' = betterproto.message_field(3)
+    left: "CompressedExistenceProof" = betterproto.message_field(2)
+    right: "CompressedExistenceProof" = betterproto.message_field(3)

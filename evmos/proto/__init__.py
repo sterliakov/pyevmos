@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Sequence
+from collections.abc import Sequence
 
 from evmos.proto.authz import (
     MsgGrant,
@@ -61,62 +61,62 @@ from evmos.proto.utils import MessageGenerated, create_any_message
 from evmos.proto.validator import MsgEditValidator, create_msg_edit_validator
 
 __all__ = [
-    'create_msg_grant',
-    'create_msg_revoke',
-    'create_stake_authorization',
-    'StakeAuthTypes',
-    'RevokeMessages',
-    'MsgConvertCoin',
-    'MsgConvertErc20',
-    'MsgGrant',
-    'MsgRevoke',
-    'MsgCancelRevenue',
-    'MsgUpdateRevenue',
-    'MsgRegisterRevenue',
-    'MsgWithdrawDelegatorReward',
-    'MsgWithdrawValidatorCommission',
-    'MsgSetWithdrawAddress',
-    'MsgDelegate',
-    'MsgBeginRedelegate',
-    'MsgUndelegate',
-    'MsgEditValidator',
-    'TxRaw',
-    'AuthInfo',
-    'TxBody',
-    'create_msg_convert_coin',
-    'create_msg_convert_erc20',
-    'create_msg_cancel_revenue',
-    'create_msg_register_revenue',
-    'create_msg_update_revenue',
-    'create_msg_delegate',
-    'create_msg_begin_redelegate',
-    'create_msg_undelegate',
-    'create_msg_withdraw_delegator_reward',
-    'create_msg_withdraw_validator_commission',
-    'create_msg_set_withdraw_address',
-    'create_body_with_multiple_messages',
-    'create_body',
-    'create_fee',
-    'create_signer_info',
-    'create_auth_info',
-    'create_sig_doc',
-    'create_transaction_with_multiple_messages',
-    'create_transaction',
-    'MessageGenerated',
-    'create_any_message',
-    'create_msg_edit_validator',
-    'create_msg_send',
-    'create_ibc_msg_transfer',
-    'bytes_to_msg_ethereum_tx',
-    'bytes_to_legacy_tx',
-    'bytes_to_access_list_tx',
-    'bytes_to_dynamic_fee_tx',
-    'bytes_to_tx_raw',
-    'bytes_to_tx_body',
-    'bytes_to_auth_info',
-    'create_tx_raw',
-    'create_msg_vote',
-    'create_web3_extension',
+    "AuthInfo",
+    "MessageGenerated",
+    "MsgBeginRedelegate",
+    "MsgCancelRevenue",
+    "MsgConvertCoin",
+    "MsgConvertErc20",
+    "MsgDelegate",
+    "MsgEditValidator",
+    "MsgGrant",
+    "MsgRegisterRevenue",
+    "MsgRevoke",
+    "MsgSetWithdrawAddress",
+    "MsgUndelegate",
+    "MsgUpdateRevenue",
+    "MsgWithdrawDelegatorReward",
+    "MsgWithdrawValidatorCommission",
+    "RevokeMessages",
+    "StakeAuthTypes",
+    "TxBody",
+    "TxRaw",
+    "bytes_to_access_list_tx",
+    "bytes_to_auth_info",
+    "bytes_to_dynamic_fee_tx",
+    "bytes_to_legacy_tx",
+    "bytes_to_msg_ethereum_tx",
+    "bytes_to_tx_body",
+    "bytes_to_tx_raw",
+    "create_any_message",
+    "create_auth_info",
+    "create_body",
+    "create_body_with_multiple_messages",
+    "create_fee",
+    "create_ibc_msg_transfer",
+    "create_msg_begin_redelegate",
+    "create_msg_cancel_revenue",
+    "create_msg_convert_coin",
+    "create_msg_convert_erc20",
+    "create_msg_delegate",
+    "create_msg_edit_validator",
+    "create_msg_grant",
+    "create_msg_register_revenue",
+    "create_msg_revoke",
+    "create_msg_send",
+    "create_msg_set_withdraw_address",
+    "create_msg_undelegate",
+    "create_msg_update_revenue",
+    "create_msg_vote",
+    "create_msg_withdraw_delegator_reward",
+    "create_msg_withdraw_validator_commission",
+    "create_sig_doc",
+    "create_signer_info",
+    "create_stake_authorization",
+    "create_transaction",
+    "create_transaction_with_multiple_messages",
+    "create_tx_raw",
+    "create_web3_extension",
 ]
 
 
@@ -139,7 +139,7 @@ def create_msg_send(
     )
     return MessageGenerated(
         message=message,
-        path='cosmos.bank.v1beta1.MsgSend',
+        path="cosmos.bank.v1beta1.MsgSend",
     )
 
 
@@ -181,7 +181,7 @@ def create_ibc_msg_transfer(
 
     return MessageGenerated(
         message=ibc_message,
-        path='ibc.applications.transfer.v1.MsgTransfer',
+        path="ibc.applications.transfer.v1.MsgTransfer",
     )
 
 
@@ -239,7 +239,7 @@ def create_tx_raw(
     )
     return MessageGenerated(
         message=message,
-        path='cosmos.tx.v1beta1.TxRaw',
+        path="cosmos.tx.v1beta1.TxRaw",
     )
 
 
@@ -260,7 +260,7 @@ def create_msg_vote(
 
     return MessageGenerated(
         message=vote_message,
-        path='cosmos.gov.v1beta1.MsgVote',
+        path="cosmos.gov.v1beta1.MsgVote",
     )
 
 
@@ -280,5 +280,5 @@ def create_web3_extension(
     )
     return MessageGenerated(
         message=message,
-        path='ethermint.types.v1.ExtensionOptionsWeb3Tx',
+        path="ethermint.types.v1.ExtensionOptionsWeb3Tx",
     )

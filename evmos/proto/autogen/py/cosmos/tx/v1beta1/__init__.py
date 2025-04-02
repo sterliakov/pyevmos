@@ -77,10 +77,10 @@ class BroadcastMode(betterproto.Enum):
 class Tx(betterproto.Message):
     """Tx is the standard type used for broadcasting transactions."""
 
-    body: 'TxBody' = betterproto.message_field(1)
+    body: "TxBody" = betterproto.message_field(1)
     """body is the processable content of the transaction"""
 
-    auth_info: 'AuthInfo' = betterproto.message_field(2)
+    auth_info: "AuthInfo" = betterproto.message_field(2)
     """
     auth_info is the authorization related content of the transaction,
     specifically signers, signer modes and fee
@@ -155,7 +155,7 @@ class SignDoc(betterproto.Message):
 class TxBody(betterproto.Message):
     """TxBody is the body of a transaction that all signers sign over."""
 
-    messages: List['betterproto_lib_google_protobuf.Any'] = betterproto.message_field(1)
+    messages: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(1)
     """
     messages is a list of messages to be executed. The required signers of
     those messages define the number and order of elements in AuthInfo's
@@ -180,18 +180,18 @@ class TxBody(betterproto.Message):
     be processed by the chain
     """
 
-    extension_options: List[
-        'betterproto_lib_google_protobuf.Any'
-    ] = betterproto.message_field(1023)
+    extension_options: List["betterproto_lib_google_protobuf.Any"] = (
+        betterproto.message_field(1023)
+    )
     """
     extension_options are arbitrary options that can be added by chains
     when the default options are not sufficient. If any of these are present
     and can't be handled, the transaction will be rejected
     """
 
-    non_critical_extension_options: List[
-        'betterproto_lib_google_protobuf.Any'
-    ] = betterproto.message_field(2047)
+    non_critical_extension_options: List["betterproto_lib_google_protobuf.Any"] = (
+        betterproto.message_field(2047)
+    )
     """
     extension_options are arbitrary options that can be added by chains
     when the default options are not sufficient. If any of these are present
@@ -206,7 +206,7 @@ class AuthInfo(betterproto.Message):
     transaction.
     """
 
-    signer_infos: List['SignerInfo'] = betterproto.message_field(1)
+    signer_infos: List["SignerInfo"] = betterproto.message_field(1)
     """
     signer_infos defines the signing modes for the required signers. The number
     and order of elements must match the required signers from TxBody's
@@ -214,7 +214,7 @@ class AuthInfo(betterproto.Message):
     the fee.
     """
 
-    fee: 'Fee' = betterproto.message_field(2)
+    fee: "Fee" = betterproto.message_field(2)
     """
     Fee is the fee and gas limit for the transaction. The first signer is the
     primary signer and the one which pays the fee. The fee can be calculated
@@ -230,14 +230,14 @@ class SignerInfo(betterproto.Message):
     signer.
     """
 
-    public_key: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(1)
+    public_key: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(1)
     """
     public_key is the public key of the signer. It is optional for accounts
     that already exist in state. If unset, the verifier can use the required \
     signer address for this position and lookup the public key.
     """
 
-    mode_info: 'ModeInfo' = betterproto.message_field(2)
+    mode_info: "ModeInfo" = betterproto.message_field(2)
     """
     mode_info describes the signing mode of the signer and is a nested
     structure to support nested multisig pubkey's
@@ -255,10 +255,10 @@ class SignerInfo(betterproto.Message):
 class ModeInfo(betterproto.Message):
     """ModeInfo describes the signing mode of a single or nested multisig signer."""
 
-    single: 'ModeInfoSingle' = betterproto.message_field(1, group='sum')
+    single: "ModeInfoSingle" = betterproto.message_field(1, group="sum")
     """single represents a single signer"""
 
-    multi: 'ModeInfoMulti' = betterproto.message_field(2, group='sum')
+    multi: "ModeInfoMulti" = betterproto.message_field(2, group="sum")
     """multi represents a nested multisig signer"""
 
 
@@ -270,7 +270,7 @@ class ModeInfoSingle(betterproto.Message):
     future
     """
 
-    mode: '_signing_v1_beta1__.SignMode' = betterproto.enum_field(1)
+    mode: "_signing_v1_beta1__.SignMode" = betterproto.enum_field(1)
     """mode is the signing mode of the single signer"""
 
 
@@ -278,12 +278,12 @@ class ModeInfoSingle(betterproto.Message):
 class ModeInfoMulti(betterproto.Message):
     """Multi is the mode info for a multisig public key"""
 
-    bitarray: '__crypto_multisig_v1_beta1__.CompactBitArray' = (
+    bitarray: "__crypto_multisig_v1_beta1__.CompactBitArray" = (
         betterproto.message_field(1)
     )
     """bitarray specifies which keys within the multisig are signing"""
 
-    mode_infos: List['ModeInfo'] = betterproto.message_field(2)
+    mode_infos: List["ModeInfo"] = betterproto.message_field(2)
     """
     mode_infos is the corresponding modes of the signers of the multisig
     which could include nested multisig public keys
@@ -298,7 +298,7 @@ class Fee(betterproto.Message):
     which must be above some miminum to be accepted into the mempool.
     """
 
-    amount: List['__base_v1_beta1__.Coin'] = betterproto.message_field(1)
+    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(1)
     """amount is the amount of coins to be paid as a fee"""
 
     gas_limit: int = betterproto.uint64_field(2)
@@ -336,10 +336,10 @@ class GetTxsEventRequest(betterproto.Message):
     events: List[str] = betterproto.string_field(1)
     """events is the list of transaction event type."""
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
     """pagination defines a pagination for the request."""
 
-    order_by: 'OrderBy' = betterproto.enum_field(3)
+    order_by: "OrderBy" = betterproto.enum_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -349,15 +349,15 @@ class GetTxsEventResponse(betterproto.Message):
     RPC method.
     """
 
-    txs: List['Tx'] = betterproto.message_field(1)
+    txs: List["Tx"] = betterproto.message_field(1)
     """txs is the list of queried transactions."""
 
-    tx_responses: List['__base_abci_v1_beta1__.TxResponse'] = betterproto.message_field(
+    tx_responses: List["__base_abci_v1_beta1__.TxResponse"] = betterproto.message_field(
         2
     )
     """tx_responses is the list of queried TxResponses."""
 
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(3)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(3)
     """pagination defines a pagination for the response."""
 
 
@@ -371,7 +371,7 @@ class BroadcastTxRequest(betterproto.Message):
     tx_bytes: bytes = betterproto.bytes_field(1)
     """tx_bytes is the raw transaction."""
 
-    mode: 'BroadcastMode' = betterproto.enum_field(2)
+    mode: "BroadcastMode" = betterproto.enum_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -381,7 +381,7 @@ class BroadcastTxResponse(betterproto.Message):
     Service.BroadcastTx method.
     """
 
-    tx_response: '__base_abci_v1_beta1__.TxResponse' = betterproto.message_field(1)
+    tx_response: "__base_abci_v1_beta1__.TxResponse" = betterproto.message_field(1)
     """tx_response is the queried TxResponses."""
 
 
@@ -392,7 +392,7 @@ class SimulateRequest(betterproto.Message):
     RPC method.
     """
 
-    tx: 'Tx' = betterproto.message_field(1)
+    tx: "Tx" = betterproto.message_field(1)
     """
     tx is the transaction to simulate.
     Deprecated. Send raw tx bytes instead.
@@ -406,8 +406,8 @@ class SimulateRequest(betterproto.Message):
 
     def __post_init__(self) -> None:
         super().__post_init__()
-        if self.is_set('tx'):
-            warnings.warn('SimulateRequest.tx is deprecated', DeprecationWarning)
+        if self.is_set("tx"):
+            warnings.warn("SimulateRequest.tx is deprecated", DeprecationWarning)
 
 
 @dataclass(eq=False, repr=False)
@@ -417,10 +417,10 @@ class SimulateResponse(betterproto.Message):
     Service.SimulateRPC method.
     """
 
-    gas_info: '__base_abci_v1_beta1__.GasInfo' = betterproto.message_field(1)
+    gas_info: "__base_abci_v1_beta1__.GasInfo" = betterproto.message_field(1)
     """gas_info is the information about gas used in the simulation."""
 
-    result: '__base_abci_v1_beta1__.Result' = betterproto.message_field(2)
+    result: "__base_abci_v1_beta1__.Result" = betterproto.message_field(2)
     """result is the result of the simulation."""
 
 
@@ -439,10 +439,10 @@ class GetTxRequest(betterproto.Message):
 class GetTxResponse(betterproto.Message):
     """GetTxResponse is the response type for the Service.GetTx method."""
 
-    tx: 'Tx' = betterproto.message_field(1)
+    tx: "Tx" = betterproto.message_field(1)
     """tx is the queried transaction."""
 
-    tx_response: '__base_abci_v1_beta1__.TxResponse' = betterproto.message_field(2)
+    tx_response: "__base_abci_v1_beta1__.TxResponse" = betterproto.message_field(2)
     """tx_response is the queried TxResponses."""
 
 
@@ -457,7 +457,7 @@ class GetBlockWithTxsRequest(betterproto.Message):
     height: int = betterproto.int64_field(1)
     """height is the height of the block to query."""
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
     """pagination defines a pagination for the request."""
 
 
@@ -468,26 +468,26 @@ class GetBlockWithTxsResponse(betterproto.Message):
     Since: cosmos-sdk 0.45.2
     """
 
-    txs: List['Tx'] = betterproto.message_field(1)
+    txs: List["Tx"] = betterproto.message_field(1)
     """txs are the transactions in the block."""
 
-    block_id: '___tendermint_types__.BlockId' = betterproto.message_field(2)
-    block: '___tendermint_types__.Block' = betterproto.message_field(3)
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(4)
+    block_id: "___tendermint_types__.BlockId" = betterproto.message_field(2)
+    block: "___tendermint_types__.Block" = betterproto.message_field(3)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(4)
     """pagination defines a pagination for the response."""
 
 
 class ServiceStub(betterproto.ServiceStub):
     async def simulate(
         self,
-        simulate_request: 'SimulateRequest',
+        simulate_request: "SimulateRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'SimulateResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "SimulateResponse":
         return await self._unary_unary(
-            '/cosmos.tx.v1beta1.Service/Simulate',
+            "/cosmos.tx.v1beta1.Service/Simulate",
             simulate_request,
             SimulateResponse,
             timeout=timeout,
@@ -497,14 +497,14 @@ class ServiceStub(betterproto.ServiceStub):
 
     async def get_tx(
         self,
-        get_tx_request: 'GetTxRequest',
+        get_tx_request: "GetTxRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'GetTxResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "GetTxResponse":
         return await self._unary_unary(
-            '/cosmos.tx.v1beta1.Service/GetTx',
+            "/cosmos.tx.v1beta1.Service/GetTx",
             get_tx_request,
             GetTxResponse,
             timeout=timeout,
@@ -514,14 +514,14 @@ class ServiceStub(betterproto.ServiceStub):
 
     async def broadcast_tx(
         self,
-        broadcast_tx_request: 'BroadcastTxRequest',
+        broadcast_tx_request: "BroadcastTxRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'BroadcastTxResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "BroadcastTxResponse":
         return await self._unary_unary(
-            '/cosmos.tx.v1beta1.Service/BroadcastTx',
+            "/cosmos.tx.v1beta1.Service/BroadcastTx",
             broadcast_tx_request,
             BroadcastTxResponse,
             timeout=timeout,
@@ -531,14 +531,14 @@ class ServiceStub(betterproto.ServiceStub):
 
     async def get_txs_event(
         self,
-        get_txs_event_request: 'GetTxsEventRequest',
+        get_txs_event_request: "GetTxsEventRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'GetTxsEventResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "GetTxsEventResponse":
         return await self._unary_unary(
-            '/cosmos.tx.v1beta1.Service/GetTxsEvent',
+            "/cosmos.tx.v1beta1.Service/GetTxsEvent",
             get_txs_event_request,
             GetTxsEventResponse,
             timeout=timeout,
@@ -548,14 +548,14 @@ class ServiceStub(betterproto.ServiceStub):
 
     async def get_block_with_txs(
         self,
-        get_block_with_txs_request: 'GetBlockWithTxsRequest',
+        get_block_with_txs_request: "GetBlockWithTxsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'GetBlockWithTxsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "GetBlockWithTxsResponse":
         return await self._unary_unary(
-            '/cosmos.tx.v1beta1.Service/GetBlockWithTxs',
+            "/cosmos.tx.v1beta1.Service/GetBlockWithTxs",
             get_block_with_txs_request,
             GetBlockWithTxsResponse,
             timeout=timeout,
@@ -565,50 +565,50 @@ class ServiceStub(betterproto.ServiceStub):
 
 
 class ServiceBase(ServiceBase):
-    async def simulate(self, simulate_request: 'SimulateRequest') -> 'SimulateResponse':
+    async def simulate(self, simulate_request: "SimulateRequest") -> "SimulateResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def get_tx(self, get_tx_request: 'GetTxRequest') -> 'GetTxResponse':
+    async def get_tx(self, get_tx_request: "GetTxRequest") -> "GetTxResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def broadcast_tx(
-        self, broadcast_tx_request: 'BroadcastTxRequest'
-    ) -> 'BroadcastTxResponse':
+        self, broadcast_tx_request: "BroadcastTxRequest"
+    ) -> "BroadcastTxResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def get_txs_event(
-        self, get_txs_event_request: 'GetTxsEventRequest'
-    ) -> 'GetTxsEventResponse':
+        self, get_txs_event_request: "GetTxsEventRequest"
+    ) -> "GetTxsEventResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def get_block_with_txs(
-        self, get_block_with_txs_request: 'GetBlockWithTxsRequest'
-    ) -> 'GetBlockWithTxsResponse':
+        self, get_block_with_txs_request: "GetBlockWithTxsRequest"
+    ) -> "GetBlockWithTxsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_simulate(
-        self, stream: 'grpclib.server.Stream[SimulateRequest, SimulateResponse]'
+        self, stream: "grpclib.server.Stream[SimulateRequest, SimulateResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.simulate(request)
         await stream.send_message(response)
 
     async def __rpc_get_tx(
-        self, stream: 'grpclib.server.Stream[GetTxRequest, GetTxResponse]'
+        self, stream: "grpclib.server.Stream[GetTxRequest, GetTxResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.get_tx(request)
         await stream.send_message(response)
 
     async def __rpc_broadcast_tx(
-        self, stream: 'grpclib.server.Stream[BroadcastTxRequest, BroadcastTxResponse]'
+        self, stream: "grpclib.server.Stream[BroadcastTxRequest, BroadcastTxResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.broadcast_tx(request)
         await stream.send_message(response)
 
     async def __rpc_get_txs_event(
-        self, stream: 'grpclib.server.Stream[GetTxsEventRequest, GetTxsEventResponse]'
+        self, stream: "grpclib.server.Stream[GetTxsEventRequest, GetTxsEventResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.get_txs_event(request)
@@ -616,7 +616,7 @@ class ServiceBase(ServiceBase):
 
     async def __rpc_get_block_with_txs(
         self,
-        stream: 'grpclib.server.Stream[GetBlockWithTxsRequest, GetBlockWithTxsResponse]',
+        stream: "grpclib.server.Stream[GetBlockWithTxsRequest, GetBlockWithTxsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.get_block_with_txs(request)
@@ -624,31 +624,31 @@ class ServiceBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.tx.v1beta1.Service/Simulate': grpclib.const.Handler(
+            "/cosmos.tx.v1beta1.Service/Simulate": grpclib.const.Handler(
                 self.__rpc_simulate,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 SimulateRequest,
                 SimulateResponse,
             ),
-            '/cosmos.tx.v1beta1.Service/GetTx': grpclib.const.Handler(
+            "/cosmos.tx.v1beta1.Service/GetTx": grpclib.const.Handler(
                 self.__rpc_get_tx,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 GetTxRequest,
                 GetTxResponse,
             ),
-            '/cosmos.tx.v1beta1.Service/BroadcastTx': grpclib.const.Handler(
+            "/cosmos.tx.v1beta1.Service/BroadcastTx": grpclib.const.Handler(
                 self.__rpc_broadcast_tx,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 BroadcastTxRequest,
                 BroadcastTxResponse,
             ),
-            '/cosmos.tx.v1beta1.Service/GetTxsEvent': grpclib.const.Handler(
+            "/cosmos.tx.v1beta1.Service/GetTxsEvent": grpclib.const.Handler(
                 self.__rpc_get_txs_event,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 GetTxsEventRequest,
                 GetTxsEventResponse,
             ),
-            '/cosmos.tx.v1beta1.Service/GetBlockWithTxs': grpclib.const.Handler(
+            "/cosmos.tx.v1beta1.Service/GetBlockWithTxs": grpclib.const.Handler(
                 self.__rpc_get_block_with_txs,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 GetBlockWithTxsRequest,

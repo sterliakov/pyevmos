@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Any, Mapping
+from collections.abc import Mapping
+from typing import Any
 
 from betterproto import Message
 
@@ -21,11 +22,12 @@ from evmos.proto import (
     TxBody,
     TxRaw,
     create_any_message,
+    create_ibc_msg_transfer as proto_create_ibc_msg_transfer,
+    create_msg_send as proto_msg_send,
+    create_msg_vote as proto_create_msg_vote,
+    create_tx_raw,
+    create_web3_extension,
 )
-from evmos.proto import create_ibc_msg_transfer as proto_create_ibc_msg_transfer
-from evmos.proto import create_msg_send as proto_msg_send
-from evmos.proto import create_msg_vote as proto_create_msg_vote
-from evmos.proto import create_tx_raw, create_web3_extension
 from evmos.proto.autogen.py.ethermint.types.v1 import ExtensionOptionsWeb3Tx
 from evmos.transactions.authz import (
     create_tx_msg_stake_authorization,
@@ -60,31 +62,31 @@ from evmos.transactions.staking import (
 from evmos.transactions.validator import create_tx_msg_edit_validator
 
 __all__ = [
-    'create_tx_msg_vote',
-    'create_tx_ibc_msg_transfer',
-    'create_message_send',
-    'create_tx_raw_eip712',
-    'signature_to_web3_extension',
-    'Chain',
-    'Fee',
-    'Sender',
-    'TxGeneratedBase',
-    'TxGenerated',
-    'create_tx_msg_stake_authorization',
-    'create_tx_msg_stake_revoke_authorization',
-    'create_tx_msg_convert_coin',
-    'create_tx_msg_convert_erc20',
-    'create_tx_msg_cancel_revenue',
-    'create_tx_msg_register_revenue',
-    'create_tx_msg_update_revenue',
-    'create_tx_msg_delegate',
-    'create_tx_msg_begin_redelegate',
-    'create_tx_msg_undelegate',
-    'create_tx_msg_withdraw_delegator_reward',
-    'create_tx_msg_multiple_withdraw_delegator_reward',
-    'create_tx_msg_withdraw_validator_commission',
-    'create_tx_msg_set_withdraw_address',
-    'create_tx_msg_edit_validator',
+    "Chain",
+    "Fee",
+    "Sender",
+    "TxGenerated",
+    "TxGeneratedBase",
+    "create_message_send",
+    "create_tx_ibc_msg_transfer",
+    "create_tx_msg_begin_redelegate",
+    "create_tx_msg_cancel_revenue",
+    "create_tx_msg_convert_coin",
+    "create_tx_msg_convert_erc20",
+    "create_tx_msg_delegate",
+    "create_tx_msg_edit_validator",
+    "create_tx_msg_multiple_withdraw_delegator_reward",
+    "create_tx_msg_register_revenue",
+    "create_tx_msg_set_withdraw_address",
+    "create_tx_msg_stake_authorization",
+    "create_tx_msg_stake_revoke_authorization",
+    "create_tx_msg_undelegate",
+    "create_tx_msg_update_revenue",
+    "create_tx_msg_vote",
+    "create_tx_msg_withdraw_delegator_reward",
+    "create_tx_msg_withdraw_validator_commission",
+    "create_tx_raw_eip712",
+    "signature_to_web3_extension",
 ]
 
 
@@ -203,7 +205,7 @@ def create_tx_raw_eip712(
     """Create a message with raw EIP712 transaction."""
     body.extension_options.append(create_any_message(extension))
 
-    return create_tx_raw(bytes(body), bytes(auth_info), [b''])
+    return create_tx_raw(bytes(body), bytes(auth_info), [b""])
 
 
 # web3Extension.ts

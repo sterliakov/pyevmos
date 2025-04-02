@@ -6,7 +6,6 @@ https://github.com/cosmos/cosmjs/blob/main/packages/proto-signing/src/registry.t
 from __future__ import annotations
 
 from enum import Enum, unique
-from typing import Type
 
 from betterproto import Message
 
@@ -19,9 +18,9 @@ from evmos.proto.autogen.py.cosmos.tx.v1beta1 import TxBody
 class DefaultTypeUrls(str, Enum):
     """Type URLS supported by default."""
 
-    COSMOS_COIN = '/cosmos.base.v1beta1.Coin'
-    COSMOS_MSG_SEND = '/cosmos.bank.v1beta1.MsgSend'
-    COSMOS_TX_BODY = '/cosmos.tx.v1beta1.TxBody'
+    COSMOS_COIN = "/cosmos.base.v1beta1.Coin"
+    COSMOS_MSG_SEND = "/cosmos.bank.v1beta1.MsgSend"
+    COSMOS_TX_BODY = "/cosmos.tx.v1beta1.TxBody"
 
 
 class Registry:
@@ -54,7 +53,7 @@ class Registry:
     def _lookup_type_with_error(self, type_url: str) -> type[Message]:
         type_ = self.lookup_type(type_url)
         if not type_:
-            raise KeyError(f'Unregistered type url: {type_url}')
+            raise KeyError(f"Unregistered type url: {type_url}")
         return type_
 
     def decode(self, type_url: str, value: bytes) -> Message:

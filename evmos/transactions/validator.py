@@ -1,10 +1,14 @@
 from __future__ import annotations
 
-from typing import Any, Mapping
+from collections.abc import Mapping
+from typing import Any
 
 from evmos.eip712 import MSG_EDIT_VALIDATOR_TYPES, create_msg_edit_validator
-from evmos.proto import MessageGenerated, MsgEditValidator
-from evmos.proto import create_msg_edit_validator as proto_msg_edit_validator
+from evmos.proto import (
+    MessageGenerated,
+    MsgEditValidator,
+    create_msg_edit_validator as proto_msg_edit_validator,
+)
 from evmos.transactions.common import to_generated
 
 

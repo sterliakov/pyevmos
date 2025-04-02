@@ -23,14 +23,14 @@ class ProtocolVersion(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class DefaultNodeInfo(betterproto.Message):
-    protocol_version: 'ProtocolVersion' = betterproto.message_field(1)
+    protocol_version: "ProtocolVersion" = betterproto.message_field(1)
     default_node_id: str = betterproto.string_field(2)
     listen_addr: str = betterproto.string_field(3)
     network: str = betterproto.string_field(4)
     version: str = betterproto.string_field(5)
     channels: bytes = betterproto.bytes_field(6)
     moniker: str = betterproto.string_field(7)
-    other: 'DefaultNodeInfoOther' = betterproto.message_field(8)
+    other: "DefaultNodeInfoOther" = betterproto.message_field(8)
 
 
 @dataclass(eq=False, repr=False)

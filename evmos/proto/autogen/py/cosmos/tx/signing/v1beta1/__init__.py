@@ -56,7 +56,7 @@ class SignMode(betterproto.Enum):
 class SignatureDescriptors(betterproto.Message):
     """SignatureDescriptors wraps multiple SignatureDescriptor's."""
 
-    signatures: List['SignatureDescriptor'] = betterproto.message_field(1)
+    signatures: List["SignatureDescriptor"] = betterproto.message_field(1)
     """signatures are the signature descriptors"""
 
 
@@ -69,10 +69,10 @@ class SignatureDescriptor(betterproto.Message):
     clients.
     """
 
-    public_key: 'betterproto_lib_google_protobuf.Any' = betterproto.message_field(1)
+    public_key: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(1)
     """public_key is the public key of the signer"""
 
-    data: 'SignatureDescriptorData' = betterproto.message_field(2)
+    data: "SignatureDescriptorData" = betterproto.message_field(2)
     sequence: int = betterproto.uint64_field(3)
     """
     sequence is the sequence of the account, which describes the
@@ -85,10 +85,10 @@ class SignatureDescriptor(betterproto.Message):
 class SignatureDescriptorData(betterproto.Message):
     """Data represents signature data"""
 
-    single: 'SignatureDescriptorDataSingle' = betterproto.message_field(1, group='sum')
+    single: "SignatureDescriptorDataSingle" = betterproto.message_field(1, group="sum")
     """single represents a single signer"""
 
-    multi: 'SignatureDescriptorDataMulti' = betterproto.message_field(2, group='sum')
+    multi: "SignatureDescriptorDataMulti" = betterproto.message_field(2, group="sum")
     """multi represents a multisig signer"""
 
 
@@ -96,7 +96,7 @@ class SignatureDescriptorData(betterproto.Message):
 class SignatureDescriptorDataSingle(betterproto.Message):
     """Single is the signature data for a single signer"""
 
-    mode: 'SignMode' = betterproto.enum_field(1)
+    mode: "SignMode" = betterproto.enum_field(1)
     """mode is the signing mode of the single signer"""
 
     signature: bytes = betterproto.bytes_field(2)
@@ -107,10 +107,10 @@ class SignatureDescriptorDataSingle(betterproto.Message):
 class SignatureDescriptorDataMulti(betterproto.Message):
     """Multi is the signature data for a multisig public key"""
 
-    bitarray: '___crypto_multisig_v1_beta1__.CompactBitArray' = (
+    bitarray: "___crypto_multisig_v1_beta1__.CompactBitArray" = (
         betterproto.message_field(1)
     )
     """bitarray specifies which keys within the multisig are signing"""
 
-    signatures: List['SignatureDescriptorData'] = betterproto.message_field(2)
+    signatures: List["SignatureDescriptorData"] = betterproto.message_field(2)
     """signatures is the signatures of the multi-signature"""

@@ -43,52 +43,52 @@ from evmos.eip712.staking import (
 from evmos.eip712.validator import MSG_EDIT_VALIDATOR_TYPES, create_msg_edit_validator
 
 __all__ = [
-    'create_eip712',
-    'create_ibc_msg_transfer',
-    'create_msg_begin_redelegate',
-    'create_msg_cancel_revenue',
-    'create_msg_convert_coin',
-    'create_msg_convert_erc20',
-    'MSG_CANCEL_REVENUE_TYPES',
-    'create_msg_delegate',
-    'create_msg_edit_validator',
-    'create_msg_set_withdraw_address',
-    'MSG_VOTE_TYPES',
-    'create_msg_register_revenue',
-    'create_msg_send',
-    'create_msg_undelegate',
-    'create_msg_update_revenue',
-    'MSG_DELEGATE_TYPES',
-    'create_msg_vote',
-    'create_msg_withdraw_delegator_reward',
-    'create_msg_withdraw_validator_commission',
-    'generate_fee',
-    'MSG_CONVERT_COIN_TYPES',
-    'generate_message',
-    'generate_message_with_multiple_transactions',
-    'generate_types',
-    'IBC_MSG_TRANSFER_TYPES',
-    'MSG_BEGIN_REDELEGATE_TYPES',
-    'MSG_CONVERT_ERC20_TYPES',
-    'MSG_REGISTER_REVENUE_TYPES',
-    'MSG_SEND_TYPES',
-    'MSG_UNDELEGATE_TYPES',
-    'MSG_UPDATE_REVENUE_TYPES',
-    'MSG_WITHDRAW_DELEGATOR_REWARD_TYPES',
-    'MSG_WITHDRAW_VALIDATOR_COMMISSION_TYPES',
-    'MSG_EDIT_VALIDATOR_TYPES',
-    'MSG_SET_WITHDRAW_ADDRESS_TYPES',
-    'EIPToSign',
-    'Domain',
+    "IBC_MSG_TRANSFER_TYPES",
+    "MSG_BEGIN_REDELEGATE_TYPES",
+    "MSG_CANCEL_REVENUE_TYPES",
+    "MSG_CONVERT_COIN_TYPES",
+    "MSG_CONVERT_ERC20_TYPES",
+    "MSG_DELEGATE_TYPES",
+    "MSG_EDIT_VALIDATOR_TYPES",
+    "MSG_REGISTER_REVENUE_TYPES",
+    "MSG_SEND_TYPES",
+    "MSG_SET_WITHDRAW_ADDRESS_TYPES",
+    "MSG_UNDELEGATE_TYPES",
+    "MSG_UPDATE_REVENUE_TYPES",
+    "MSG_VOTE_TYPES",
+    "MSG_WITHDRAW_DELEGATOR_REWARD_TYPES",
+    "MSG_WITHDRAW_VALIDATOR_COMMISSION_TYPES",
+    "Domain",
+    "EIPToSign",
+    "create_eip712",
+    "create_ibc_msg_transfer",
+    "create_msg_begin_redelegate",
+    "create_msg_cancel_revenue",
+    "create_msg_convert_coin",
+    "create_msg_convert_erc20",
+    "create_msg_delegate",
+    "create_msg_edit_validator",
+    "create_msg_register_revenue",
+    "create_msg_send",
+    "create_msg_set_withdraw_address",
+    "create_msg_undelegate",
+    "create_msg_update_revenue",
+    "create_msg_vote",
+    "create_msg_withdraw_delegator_reward",
+    "create_msg_withdraw_validator_commission",
+    "generate_fee",
+    "generate_message",
+    "generate_message_with_multiple_transactions",
+    "generate_types",
 ]
 
 
 # gov.ts
 MSG_VOTE_TYPES: Final = {
-    'MsgValue': [
-        {'name': 'proposal_id', 'type': 'uint64'},
-        {'name': 'voter', 'type': 'string'},
-        {'name': 'option', 'type': 'int32'},
+    "MsgValue": [
+        {"name": "proposal_id", "type": "uint64"},
+        {"name": "voter", "type": "string"},
+        {"name": "option", "type": "int32"},
     ],
 }
 """Types for voting message."""
@@ -97,33 +97,33 @@ MSG_VOTE_TYPES: Final = {
 def create_msg_vote(proposal_id: int, option: int, sender: str) -> MsgInterface:
     """Create voting (governmental) message."""
     return {
-        'type': 'cosmos-sdk/MsgVote',
-        'value': {
-            'proposalId': proposal_id,
-            'voter': sender,
-            'option': option,
+        "type": "cosmos-sdk/MsgVote",
+        "value": {
+            "proposalId": proposal_id,
+            "voter": sender,
+            "option": option,
         },
     }
 
 
 # ibcMsgTransfer.ts
 IBC_MSG_TRANSFER_TYPES: Final = {
-    'MsgValue': [
-        {'name': 'sourcePort', 'type': 'string'},
-        {'name': 'sourceChannel', 'type': 'string'},
-        {'name': 'token', 'type': 'TypeToken'},
-        {'name': 'sender', 'type': 'string'},
-        {'name': 'receiver', 'type': 'string'},
-        {'name': 'timeoutHeight', 'type': 'TypeTimeoutHeight'},
-        {'name': 'timeoutTimestamp', 'type': 'uint64'},
+    "MsgValue": [
+        {"name": "sourcePort", "type": "string"},
+        {"name": "sourceChannel", "type": "string"},
+        {"name": "token", "type": "TypeToken"},
+        {"name": "sender", "type": "string"},
+        {"name": "receiver", "type": "string"},
+        {"name": "timeoutHeight", "type": "TypeTimeoutHeight"},
+        {"name": "timeoutTimestamp", "type": "uint64"},
     ],
-    'TypeToken': [
-        {'name': 'denom', 'type': 'string'},
-        {'name': 'amount', 'type': 'string'},
+    "TypeToken": [
+        {"name": "denom", "type": "string"},
+        {"name": "amount", "type": "string"},
     ],
-    'TypeTimeoutHeight': [
-        {'name': 'revisionNumber', 'type': 'uint64'},
-        {'name': 'revisionHeight', 'type': 'uint64'},
+    "TypeTimeoutHeight": [
+        {"name": "revisionNumber", "type": "uint64"},
+        {"name": "revisionHeight", "type": "uint64"},
     ],
 }
 """Types for IBC message."""
@@ -146,32 +146,32 @@ def create_ibc_msg_transfer(
         https://tutorials.cosmos.network/academy/4-ibc/what-is-ibc.html
     """
     return {
-        'type': 'cosmos-sdk/MsgTransfer',
-        'value': {
-            'receiver': receiver,
-            'sender': sender,
-            'sourceChannel': source_channel,
-            'sourcePort': source_port,
-            'timeoutHeight': {
-                'revisionHeight': str(revision_height),
-                'revisionNumber': str(revision_number),
+        "type": "cosmos-sdk/MsgTransfer",
+        "value": {
+            "receiver": receiver,
+            "sender": sender,
+            "sourceChannel": source_channel,
+            "sourcePort": source_port,
+            "timeoutHeight": {
+                "revisionHeight": str(revision_height),
+                "revisionNumber": str(revision_number),
             },
-            'timeoutTimestamp': timeout_timestamp,
-            'token': {'amount': amount, 'denom': denom},
+            "timeoutTimestamp": timeout_timestamp,
+            "token": {"amount": amount, "denom": denom},
         },
     }
 
 
 # msgSend.ts
 MSG_SEND_TYPES: Final = {
-    'MsgValue': [
-        {'name': 'from_address', 'type': 'string'},
-        {'name': 'to_address', 'type': 'string'},
-        {'name': 'amount', 'type': 'TypeAmount[]'},
+    "MsgValue": [
+        {"name": "from_address", "type": "string"},
+        {"name": "to_address", "type": "string"},
+        {"name": "amount", "type": "TypeAmount[]"},
     ],
-    'TypeAmount': [
-        {'name': 'denom', 'type': 'string'},
-        {'name': 'amount', 'type': 'string'},
+    "TypeAmount": [
+        {"name": "denom", "type": "string"},
+        {"name": "amount", "type": "string"},
     ],
 }
 """Types for message sending."""
@@ -185,12 +185,12 @@ def create_msg_send(
 ) -> MsgInterface:
     """Create message for sending."""
     return {
-        'type': 'cosmos-sdk/MsgSend',
-        'value': {
-            'amount': [
-                {'amount': amount, 'denom': denom},
+        "type": "cosmos-sdk/MsgSend",
+        "value": {
+            "amount": [
+                {"amount": amount, "denom": denom},
             ],
-            'from_address': from_address,
-            'to_address': to_address,
+            "from_address": from_address,
+            "to_address": to_address,
         },
     }

@@ -35,7 +35,7 @@ class Incentive(betterproto.Message):
     contract: str = betterproto.string_field(1)
     """contract address"""
 
-    allocations: List['___cosmos_base_v1_beta1__.DecCoin'] = betterproto.message_field(
+    allocations: List["___cosmos_base_v1_beta1__.DecCoin"] = betterproto.message_field(
         2
     )
     """denoms and percentage of rewards to be allocated"""
@@ -77,7 +77,7 @@ class RegisterIncentiveProposal(betterproto.Message):
     contract: str = betterproto.string_field(3)
     """contract address"""
 
-    allocations: List['___cosmos_base_v1_beta1__.DecCoin'] = betterproto.message_field(
+    allocations: List["___cosmos_base_v1_beta1__.DecCoin"] = betterproto.message_field(
         4
     )
     """denoms and percentage of rewards to be allocated"""
@@ -104,13 +104,13 @@ class CancelIncentiveProposal(betterproto.Message):
 class GenesisState(betterproto.Message):
     """GenesisState defines the module's genesis state."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """module parameters"""
 
-    incentives: List['Incentive'] = betterproto.message_field(2)
+    incentives: List["Incentive"] = betterproto.message_field(2)
     """active incentives"""
 
-    gas_meters: List['GasMeter'] = betterproto.message_field(3)
+    gas_meters: List["GasMeter"] = betterproto.message_field(3)
     """active Gasmeters"""
 
 
@@ -138,7 +138,7 @@ class QueryIncentivesRequest(betterproto.Message):
     method.
     """
 
-    pagination: '___cosmos_base_query_v1_beta1__.PageRequest' = (
+    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(1)
     )
     """pagination defines an optional pagination for the request."""
@@ -151,8 +151,8 @@ class QueryIncentivesResponse(betterproto.Message):
     method.
     """
 
-    incentives: List['Incentive'] = betterproto.message_field(1)
-    pagination: '___cosmos_base_query_v1_beta1__.PageResponse' = (
+    incentives: List["Incentive"] = betterproto.message_field(1)
+    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
         betterproto.message_field(2)
     )
     """pagination defines the pagination in the response."""
@@ -173,7 +173,7 @@ class QueryIncentiveResponse(betterproto.Message):
     method.
     """
 
-    incentive: 'Incentive' = betterproto.message_field(1)
+    incentive: "Incentive" = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -186,7 +186,7 @@ class QueryGasMetersRequest(betterproto.Message):
     contract: str = betterproto.string_field(1)
     """contract is the hex contract address of a incentivized smart contract"""
 
-    pagination: '___cosmos_base_query_v1_beta1__.PageRequest' = (
+    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(2)
     )
     """pagination defines an optional pagination for the request."""
@@ -199,8 +199,8 @@ class QueryGasMetersResponse(betterproto.Message):
     method.
     """
 
-    gas_meters: List['GasMeter'] = betterproto.message_field(1)
-    pagination: '___cosmos_base_query_v1_beta1__.PageResponse' = (
+    gas_meters: List["GasMeter"] = betterproto.message_field(1)
+    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
         betterproto.message_field(2)
     )
     """pagination defines the pagination in the response."""
@@ -234,7 +234,7 @@ class QueryAllocationMetersRequest(betterproto.Message):
     Query/AllocationMeters RPC method.
     """
 
-    pagination: '___cosmos_base_query_v1_beta1__.PageRequest' = (
+    pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(1)
     )
     """pagination defines an optional pagination for the request."""
@@ -247,10 +247,10 @@ class QueryAllocationMetersResponse(betterproto.Message):
     Query/AllocationMeters RPC method.
     """
 
-    allocation_meters: List[
-        '___cosmos_base_v1_beta1__.DecCoin'
-    ] = betterproto.message_field(1)
-    pagination: '___cosmos_base_query_v1_beta1__.PageResponse' = (
+    allocation_meters: List["___cosmos_base_v1_beta1__.DecCoin"] = (
+        betterproto.message_field(1)
+    )
+    pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
         betterproto.message_field(2)
     )
     """pagination defines the pagination in the response."""
@@ -274,7 +274,7 @@ class QueryAllocationMeterResponse(betterproto.Message):
     Query/AllocationMeter RPC method.
     """
 
-    allocation_meter: '___cosmos_base_v1_beta1__.DecCoin' = betterproto.message_field(1)
+    allocation_meter: "___cosmos_base_v1_beta1__.DecCoin" = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -291,20 +291,20 @@ class QueryParamsResponse(betterproto.Message):
     method.
     """
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
 
 
 class QueryStub(betterproto.ServiceStub):
     async def incentives(
         self,
-        query_incentives_request: 'QueryIncentivesRequest',
+        query_incentives_request: "QueryIncentivesRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryIncentivesResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryIncentivesResponse":
         return await self._unary_unary(
-            '/evmos.incentives.v1.Query/Incentives',
+            "/evmos.incentives.v1.Query/Incentives",
             query_incentives_request,
             QueryIncentivesResponse,
             timeout=timeout,
@@ -314,14 +314,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def incentive(
         self,
-        query_incentive_request: 'QueryIncentiveRequest',
+        query_incentive_request: "QueryIncentiveRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryIncentiveResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryIncentiveResponse":
         return await self._unary_unary(
-            '/evmos.incentives.v1.Query/Incentive',
+            "/evmos.incentives.v1.Query/Incentive",
             query_incentive_request,
             QueryIncentiveResponse,
             timeout=timeout,
@@ -331,14 +331,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def gas_meters(
         self,
-        query_gas_meters_request: 'QueryGasMetersRequest',
+        query_gas_meters_request: "QueryGasMetersRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryGasMetersResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryGasMetersResponse":
         return await self._unary_unary(
-            '/evmos.incentives.v1.Query/GasMeters',
+            "/evmos.incentives.v1.Query/GasMeters",
             query_gas_meters_request,
             QueryGasMetersResponse,
             timeout=timeout,
@@ -348,14 +348,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def gas_meter(
         self,
-        query_gas_meter_request: 'QueryGasMeterRequest',
+        query_gas_meter_request: "QueryGasMeterRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryGasMeterResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryGasMeterResponse":
         return await self._unary_unary(
-            '/evmos.incentives.v1.Query/GasMeter',
+            "/evmos.incentives.v1.Query/GasMeter",
             query_gas_meter_request,
             QueryGasMeterResponse,
             timeout=timeout,
@@ -365,14 +365,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def allocation_meters(
         self,
-        query_allocation_meters_request: 'QueryAllocationMetersRequest',
+        query_allocation_meters_request: "QueryAllocationMetersRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryAllocationMetersResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryAllocationMetersResponse":
         return await self._unary_unary(
-            '/evmos.incentives.v1.Query/AllocationMeters',
+            "/evmos.incentives.v1.Query/AllocationMeters",
             query_allocation_meters_request,
             QueryAllocationMetersResponse,
             timeout=timeout,
@@ -382,14 +382,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def allocation_meter(
         self,
-        query_allocation_meter_request: 'QueryAllocationMeterRequest',
+        query_allocation_meter_request: "QueryAllocationMeterRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryAllocationMeterResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryAllocationMeterResponse":
         return await self._unary_unary(
-            '/evmos.incentives.v1.Query/AllocationMeter',
+            "/evmos.incentives.v1.Query/AllocationMeter",
             query_allocation_meter_request,
             QueryAllocationMeterResponse,
             timeout=timeout,
@@ -399,14 +399,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def params(
         self,
-        query_params_request: 'QueryParamsRequest',
+        query_params_request: "QueryParamsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryParamsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryParamsResponse":
         return await self._unary_unary(
-            '/evmos.incentives.v1.Query/Params',
+            "/evmos.incentives.v1.Query/Params",
             query_params_request,
             QueryParamsResponse,
             timeout=timeout,
@@ -417,43 +417,43 @@ class QueryStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def incentives(
-        self, query_incentives_request: 'QueryIncentivesRequest'
-    ) -> 'QueryIncentivesResponse':
+        self, query_incentives_request: "QueryIncentivesRequest"
+    ) -> "QueryIncentivesResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def incentive(
-        self, query_incentive_request: 'QueryIncentiveRequest'
-    ) -> 'QueryIncentiveResponse':
+        self, query_incentive_request: "QueryIncentiveRequest"
+    ) -> "QueryIncentiveResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def gas_meters(
-        self, query_gas_meters_request: 'QueryGasMetersRequest'
-    ) -> 'QueryGasMetersResponse':
+        self, query_gas_meters_request: "QueryGasMetersRequest"
+    ) -> "QueryGasMetersResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def gas_meter(
-        self, query_gas_meter_request: 'QueryGasMeterRequest'
-    ) -> 'QueryGasMeterResponse':
+        self, query_gas_meter_request: "QueryGasMeterRequest"
+    ) -> "QueryGasMeterResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def allocation_meters(
-        self, query_allocation_meters_request: 'QueryAllocationMetersRequest'
-    ) -> 'QueryAllocationMetersResponse':
+        self, query_allocation_meters_request: "QueryAllocationMetersRequest"
+    ) -> "QueryAllocationMetersResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def allocation_meter(
-        self, query_allocation_meter_request: 'QueryAllocationMeterRequest'
-    ) -> 'QueryAllocationMeterResponse':
+        self, query_allocation_meter_request: "QueryAllocationMeterRequest"
+    ) -> "QueryAllocationMeterResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def params(
-        self, query_params_request: 'QueryParamsRequest'
-    ) -> 'QueryParamsResponse':
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_incentives(
         self,
-        stream: 'grpclib.server.Stream[QueryIncentivesRequest, QueryIncentivesResponse]',
+        stream: "grpclib.server.Stream[QueryIncentivesRequest, QueryIncentivesResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.incentives(request)
@@ -461,7 +461,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_incentive(
         self,
-        stream: 'grpclib.server.Stream[QueryIncentiveRequest, QueryIncentiveResponse]',
+        stream: "grpclib.server.Stream[QueryIncentiveRequest, QueryIncentiveResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.incentive(request)
@@ -469,7 +469,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_gas_meters(
         self,
-        stream: 'grpclib.server.Stream[QueryGasMetersRequest, QueryGasMetersResponse]',
+        stream: "grpclib.server.Stream[QueryGasMetersRequest, QueryGasMetersResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.gas_meters(request)
@@ -477,7 +477,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_gas_meter(
         self,
-        stream: 'grpclib.server.Stream[QueryGasMeterRequest, QueryGasMeterResponse]',
+        stream: "grpclib.server.Stream[QueryGasMeterRequest, QueryGasMeterResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.gas_meter(request)
@@ -485,7 +485,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_allocation_meters(
         self,
-        stream: 'grpclib.server.Stream[QueryAllocationMetersRequest, QueryAllocationMetersResponse]',
+        stream: "grpclib.server.Stream[QueryAllocationMetersRequest, QueryAllocationMetersResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.allocation_meters(request)
@@ -493,14 +493,14 @@ class QueryBase(ServiceBase):
 
     async def __rpc_allocation_meter(
         self,
-        stream: 'grpclib.server.Stream[QueryAllocationMeterRequest, QueryAllocationMeterResponse]',
+        stream: "grpclib.server.Stream[QueryAllocationMeterRequest, QueryAllocationMeterResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.allocation_meter(request)
         await stream.send_message(response)
 
     async def __rpc_params(
-        self, stream: 'grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]'
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
@@ -508,43 +508,43 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/evmos.incentives.v1.Query/Incentives': grpclib.const.Handler(
+            "/evmos.incentives.v1.Query/Incentives": grpclib.const.Handler(
                 self.__rpc_incentives,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryIncentivesRequest,
                 QueryIncentivesResponse,
             ),
-            '/evmos.incentives.v1.Query/Incentive': grpclib.const.Handler(
+            "/evmos.incentives.v1.Query/Incentive": grpclib.const.Handler(
                 self.__rpc_incentive,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryIncentiveRequest,
                 QueryIncentiveResponse,
             ),
-            '/evmos.incentives.v1.Query/GasMeters': grpclib.const.Handler(
+            "/evmos.incentives.v1.Query/GasMeters": grpclib.const.Handler(
                 self.__rpc_gas_meters,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryGasMetersRequest,
                 QueryGasMetersResponse,
             ),
-            '/evmos.incentives.v1.Query/GasMeter': grpclib.const.Handler(
+            "/evmos.incentives.v1.Query/GasMeter": grpclib.const.Handler(
                 self.__rpc_gas_meter,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryGasMeterRequest,
                 QueryGasMeterResponse,
             ),
-            '/evmos.incentives.v1.Query/AllocationMeters': grpclib.const.Handler(
+            "/evmos.incentives.v1.Query/AllocationMeters": grpclib.const.Handler(
                 self.__rpc_allocation_meters,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryAllocationMetersRequest,
                 QueryAllocationMetersResponse,
             ),
-            '/evmos.incentives.v1.Query/AllocationMeter': grpclib.const.Handler(
+            "/evmos.incentives.v1.Query/AllocationMeter": grpclib.const.Handler(
                 self.__rpc_allocation_meter,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryAllocationMeterRequest,
                 QueryAllocationMeterResponse,
             ),
-            '/evmos.incentives.v1.Query/Params': grpclib.const.Handler(
+            "/evmos.incentives.v1.Query/Params": grpclib.const.Handler(
                 self.__rpc_params,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,

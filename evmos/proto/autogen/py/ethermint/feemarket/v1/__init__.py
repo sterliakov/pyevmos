@@ -61,7 +61,7 @@ class Params(betterproto.Message):
 class GenesisState(betterproto.Message):
     """GenesisState defines the feemarket module's genesis state."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params defines all the paramaters of the module."""
 
     block_gas: int = betterproto.uint64_field(3)
@@ -82,7 +82,7 @@ class QueryParamsRequest(betterproto.Message):
 class QueryParamsResponse(betterproto.Message):
     """QueryParamsResponse defines the response type for querying x/evm parameters."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params define the evm module parameters."""
 
 
@@ -123,14 +123,14 @@ class QueryBlockGasResponse(betterproto.Message):
 class QueryStub(betterproto.ServiceStub):
     async def params(
         self,
-        query_params_request: 'QueryParamsRequest',
+        query_params_request: "QueryParamsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryParamsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryParamsResponse":
         return await self._unary_unary(
-            '/ethermint.feemarket.v1.Query/Params',
+            "/ethermint.feemarket.v1.Query/Params",
             query_params_request,
             QueryParamsResponse,
             timeout=timeout,
@@ -140,14 +140,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def base_fee(
         self,
-        query_base_fee_request: 'QueryBaseFeeRequest',
+        query_base_fee_request: "QueryBaseFeeRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryBaseFeeResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryBaseFeeResponse":
         return await self._unary_unary(
-            '/ethermint.feemarket.v1.Query/BaseFee',
+            "/ethermint.feemarket.v1.Query/BaseFee",
             query_base_fee_request,
             QueryBaseFeeResponse,
             timeout=timeout,
@@ -157,14 +157,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def block_gas(
         self,
-        query_block_gas_request: 'QueryBlockGasRequest',
+        query_block_gas_request: "QueryBlockGasRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryBlockGasResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryBlockGasResponse":
         return await self._unary_unary(
-            '/ethermint.feemarket.v1.Query/BlockGas',
+            "/ethermint.feemarket.v1.Query/BlockGas",
             query_block_gas_request,
             QueryBlockGasResponse,
             timeout=timeout,
@@ -175,29 +175,29 @@ class QueryStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def params(
-        self, query_params_request: 'QueryParamsRequest'
-    ) -> 'QueryParamsResponse':
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def base_fee(
-        self, query_base_fee_request: 'QueryBaseFeeRequest'
-    ) -> 'QueryBaseFeeResponse':
+        self, query_base_fee_request: "QueryBaseFeeRequest"
+    ) -> "QueryBaseFeeResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def block_gas(
-        self, query_block_gas_request: 'QueryBlockGasRequest'
-    ) -> 'QueryBlockGasResponse':
+        self, query_block_gas_request: "QueryBlockGasRequest"
+    ) -> "QueryBlockGasResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_params(
-        self, stream: 'grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]'
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
         await stream.send_message(response)
 
     async def __rpc_base_fee(
-        self, stream: 'grpclib.server.Stream[QueryBaseFeeRequest, QueryBaseFeeResponse]'
+        self, stream: "grpclib.server.Stream[QueryBaseFeeRequest, QueryBaseFeeResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.base_fee(request)
@@ -205,7 +205,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_block_gas(
         self,
-        stream: 'grpclib.server.Stream[QueryBlockGasRequest, QueryBlockGasResponse]',
+        stream: "grpclib.server.Stream[QueryBlockGasRequest, QueryBlockGasResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.block_gas(request)
@@ -213,19 +213,19 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/ethermint.feemarket.v1.Query/Params': grpclib.const.Handler(
+            "/ethermint.feemarket.v1.Query/Params": grpclib.const.Handler(
                 self.__rpc_params,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,
                 QueryParamsResponse,
             ),
-            '/ethermint.feemarket.v1.Query/BaseFee': grpclib.const.Handler(
+            "/ethermint.feemarket.v1.Query/BaseFee": grpclib.const.Handler(
                 self.__rpc_base_fee,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryBaseFeeRequest,
                 QueryBaseFeeResponse,
             ),
-            '/ethermint.feemarket.v1.Query/BlockGas': grpclib.const.Handler(
+            "/ethermint.feemarket.v1.Query/BlockGas": grpclib.const.Handler(
                 self.__rpc_block_gas,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryBlockGasRequest,

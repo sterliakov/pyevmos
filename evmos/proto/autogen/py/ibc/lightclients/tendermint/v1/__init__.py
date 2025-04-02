@@ -25,7 +25,7 @@ class ClientState(betterproto.Message):
     """
 
     chain_id: str = betterproto.string_field(1)
-    trust_level: 'Fraction' = betterproto.message_field(2)
+    trust_level: "Fraction" = betterproto.message_field(2)
     trusting_period: timedelta = betterproto.message_field(3)
     """
     duration of the period since the LastestTimestamp during which the
@@ -38,13 +38,13 @@ class ClientState(betterproto.Message):
     max_clock_drift: timedelta = betterproto.message_field(5)
     """defines how much new (untrusted) header's Time can drift into the future."""
 
-    frozen_height: '___core_client_v1__.Height' = betterproto.message_field(6)
+    frozen_height: "___core_client_v1__.Height" = betterproto.message_field(6)
     """Block height when the client was frozen due to a misbehaviour"""
 
-    latest_height: '___core_client_v1__.Height' = betterproto.message_field(7)
+    latest_height: "___core_client_v1__.Height" = betterproto.message_field(7)
     """Latest height the client was updated to"""
 
-    proof_specs: List['____ics23__.ProofSpec'] = betterproto.message_field(8)
+    proof_specs: List["____ics23__.ProofSpec"] = betterproto.message_field(8)
     """Proof specifications used in verifying counterparty state"""
 
     upgrade_path: List[str] = betterproto.string_field(9)
@@ -81,7 +81,7 @@ class ConsensusState(betterproto.Message):
     was stored.
     """
 
-    root: '___core_commitment_v1__.MerkleRoot' = betterproto.message_field(2)
+    root: "___core_commitment_v1__.MerkleRoot" = betterproto.message_field(2)
     """commitment root (i.e app hash)"""
 
     next_validators_hash: bytes = betterproto.bytes_field(3)
@@ -95,8 +95,8 @@ class Misbehaviour(betterproto.Message):
     """
 
     client_id: str = betterproto.string_field(1)
-    header_1: 'Header' = betterproto.message_field(2)
-    header_2: 'Header' = betterproto.message_field(3)
+    header_1: "Header" = betterproto.message_field(2)
+    header_2: "Header" = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -116,10 +116,10 @@ class Header(betterproto.Message):
     trusted validator set at the TrustedHeight.
     """
 
-    signed_header: '____tendermint_types__.SignedHeader' = betterproto.message_field(1)
-    validator_set: '____tendermint_types__.ValidatorSet' = betterproto.message_field(2)
-    trusted_height: '___core_client_v1__.Height' = betterproto.message_field(3)
-    trusted_validators: '____tendermint_types__.ValidatorSet' = (
+    signed_header: "____tendermint_types__.SignedHeader" = betterproto.message_field(1)
+    validator_set: "____tendermint_types__.ValidatorSet" = betterproto.message_field(2)
+    trusted_height: "___core_client_v1__.Height" = betterproto.message_field(3)
+    trusted_validators: "____tendermint_types__.ValidatorSet" = (
         betterproto.message_field(4)
     )
 

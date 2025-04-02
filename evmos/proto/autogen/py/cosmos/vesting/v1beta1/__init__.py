@@ -33,7 +33,7 @@ class MsgCreateVestingAccount(betterproto.Message):
 
     from_address: str = betterproto.string_field(1)
     to_address: str = betterproto.string_field(2)
-    amount: List['__base_v1_beta1__.Coin'] = betterproto.message_field(3)
+    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(3)
     end_time: int = betterproto.int64_field(4)
     delayed: bool = betterproto.bool_field(5)
 
@@ -54,10 +54,10 @@ class BaseVestingAccount(betterproto.Message):
     the necessary fields needed for any vesting account implementation.
     """
 
-    base_account: '__auth_v1_beta1__.BaseAccount' = betterproto.message_field(1)
-    original_vesting: List['__base_v1_beta1__.Coin'] = betterproto.message_field(2)
-    delegated_free: List['__base_v1_beta1__.Coin'] = betterproto.message_field(3)
-    delegated_vesting: List['__base_v1_beta1__.Coin'] = betterproto.message_field(4)
+    base_account: "__auth_v1_beta1__.BaseAccount" = betterproto.message_field(1)
+    original_vesting: List["__base_v1_beta1__.Coin"] = betterproto.message_field(2)
+    delegated_free: List["__base_v1_beta1__.Coin"] = betterproto.message_field(3)
+    delegated_vesting: List["__base_v1_beta1__.Coin"] = betterproto.message_field(4)
     end_time: int = betterproto.int64_field(5)
 
 
@@ -68,7 +68,7 @@ class ContinuousVestingAccount(betterproto.Message):
     continuously vests by unlocking coins linearly with respect to time.
     """
 
-    base_vesting_account: 'BaseVestingAccount' = betterproto.message_field(1)
+    base_vesting_account: "BaseVestingAccount" = betterproto.message_field(1)
     start_time: int = betterproto.int64_field(2)
 
 
@@ -80,7 +80,7 @@ class DelayedVestingAccount(betterproto.Message):
     locked until a specified time.
     """
 
-    base_vesting_account: 'BaseVestingAccount' = betterproto.message_field(1)
+    base_vesting_account: "BaseVestingAccount" = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -88,7 +88,7 @@ class Period(betterproto.Message):
     """Period defines a length of time and amount of coins that will vest."""
 
     length: int = betterproto.int64_field(1)
-    amount: List['__base_v1_beta1__.Coin'] = betterproto.message_field(2)
+    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -98,9 +98,9 @@ class PeriodicVestingAccount(betterproto.Message):
     periodically vests by unlocking coins during each specified period.
     """
 
-    base_vesting_account: 'BaseVestingAccount' = betterproto.message_field(1)
+    base_vesting_account: "BaseVestingAccount" = betterproto.message_field(1)
     start_time: int = betterproto.int64_field(2)
-    vesting_periods: List['Period'] = betterproto.message_field(3)
+    vesting_periods: List["Period"] = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -112,20 +112,20 @@ class PermanentLockedAccount(betterproto.Message):
     Since: cosmos-sdk 0.43
     """
 
-    base_vesting_account: 'BaseVestingAccount' = betterproto.message_field(1)
+    base_vesting_account: "BaseVestingAccount" = betterproto.message_field(1)
 
 
 class MsgStub(betterproto.ServiceStub):
     async def create_vesting_account(
         self,
-        msg_create_vesting_account: 'MsgCreateVestingAccount',
+        msg_create_vesting_account: "MsgCreateVestingAccount",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgCreateVestingAccountResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgCreateVestingAccountResponse":
         return await self._unary_unary(
-            '/cosmos.vesting.v1beta1.Msg/CreateVestingAccount',
+            "/cosmos.vesting.v1beta1.Msg/CreateVestingAccount",
             msg_create_vesting_account,
             MsgCreateVestingAccountResponse,
             timeout=timeout,
@@ -136,13 +136,13 @@ class MsgStub(betterproto.ServiceStub):
 
 class MsgBase(ServiceBase):
     async def create_vesting_account(
-        self, msg_create_vesting_account: 'MsgCreateVestingAccount'
-    ) -> 'MsgCreateVestingAccountResponse':
+        self, msg_create_vesting_account: "MsgCreateVestingAccount"
+    ) -> "MsgCreateVestingAccountResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_create_vesting_account(
         self,
-        stream: 'grpclib.server.Stream[MsgCreateVestingAccount, MsgCreateVestingAccountResponse]',
+        stream: "grpclib.server.Stream[MsgCreateVestingAccount, MsgCreateVestingAccountResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.create_vesting_account(request)
@@ -150,7 +150,7 @@ class MsgBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.vesting.v1beta1.Msg/CreateVestingAccount': grpclib.const.Handler(
+            "/cosmos.vesting.v1beta1.Msg/CreateVestingAccount": grpclib.const.Handler(
                 self.__rpc_create_vesting_account,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgCreateVestingAccount,

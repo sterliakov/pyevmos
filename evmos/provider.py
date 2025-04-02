@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from enum import Enum
-from typing import Sequence, TypedDict
+from typing import TypedDict
 
 from typing_extensions import NotRequired
 
@@ -11,30 +12,30 @@ from typing_extensions import NotRequired
 class BroadcastMode(str, Enum):
     """Broadcasting mode."""
 
-    UNSPECIFIED = 'BROADCAST_MODE_UNSPECIFIED'
+    UNSPECIFIED = "BROADCAST_MODE_UNSPECIFIED"
     """Broadcasting mode unset."""
-    BLOCK = 'BROADCAST_MODE_BLOCK'
+    BLOCK = "BROADCAST_MODE_BLOCK"
     """Broadcasting mode - block."""
-    SYNC = 'BROADCAST_MODE_SYNC'
+    SYNC = "BROADCAST_MODE_SYNC"
     """Broadcasting mode - synchronous."""
-    ASYNC = 'BROADCAST_MODE_ASYNC'
+    ASYNC = "BROADCAST_MODE_ASYNC"
     """Broadcasting mode - asynchronous."""
 
 
 class ProposalStatus(str, Enum):
     """Proposal status."""
 
-    UNSPECIFIED = 'PROPOSAL_STATUS_UNSPECIFIED'
+    UNSPECIFIED = "PROPOSAL_STATUS_UNSPECIFIED"
     """Proposal status unset."""
-    DEPOSIT = 'PROPOSAL_STATUS_DEPOSIT_PERIOD'
+    DEPOSIT = "PROPOSAL_STATUS_DEPOSIT_PERIOD"
     """Proposal during deposit period."""
-    VOTING = 'PROPOSAL_STATUS_VOTING_PERIOD'
+    VOTING = "PROPOSAL_STATUS_VOTING_PERIOD"
     """Proposal during voting period."""
-    PASSED = 'PROPOSAL_STATUS_PASSED'
+    PASSED = "PROPOSAL_STATUS_PASSED"
     """Proposal passed."""
-    REJECTED = 'PROPOSAL_STATUS_REJECTED'
+    REJECTED = "PROPOSAL_STATUS_REJECTED"
     """Proposal rejected."""
-    FAILED = 'PROPOSAL_STATUS_FAILED'
+    FAILED = "PROPOSAL_STATUS_FAILED"
     """Proposal failed."""
 
 
@@ -43,17 +44,17 @@ class ProposalStatus(str, Enum):
 
 def generate_endpoint_account(address: str) -> str:
     """Generate endpoint for account details."""
-    return f'/cosmos/auth/v1beta1/accounts/{address}'
+    return f"/cosmos/auth/v1beta1/accounts/{address}"
 
 
 def generate_endpoint_balances(address: str) -> str:
     """Generate endpoint for account balances."""
-    return f'/cosmos/bank/v1beta1/balances/{address}'
+    return f"/cosmos/bank/v1beta1/balances/{address}"
 
 
 def generate_endpoint_broadcast() -> str:
     """Generate endpoint for broadcasting."""
-    return '/cosmos/tx/v1beta1/txs'
+    return "/cosmos/tx/v1beta1/txs"
 
 
 def generate_endpoint_proposals() -> str:
@@ -63,49 +64,49 @@ def generate_endpoint_proposals() -> str:
       This returns all the proposals.
     """
     # TODO: add pagination to the request
-    return '/cosmos/gov/v1beta1/proposals'
+    return "/cosmos/gov/v1beta1/proposals"
 
 
 def generate_endpoint_claims_record(address: str) -> str:
     """Generate endpoint for record claims."""
-    return f'/evmos/claims/v1/claims_records/{address}'
+    return f"/evmos/claims/v1/claims_records/{address}"
 
 
 def generate_endpoint_proposal_tally(proposal_id: str) -> str:
     """Generate endpoint for tally proposals."""
-    return f'/cosmos/gov/v1beta1/proposals/{proposal_id}/tally'
+    return f"/cosmos/gov/v1beta1/proposals/{proposal_id}/tally"
 
 
 def generate_endpoint_ibc_channels() -> str:
     """Get all the IBC channels."""
-    return '/ibc/core/channel/v1/channels'
+    return "/ibc/core/channel/v1/channels"
 
 
 def generate_endpoint_distribution_rewards_by_address(address: str) -> str:
     """Generate endpoint for rewards distribution."""
-    return f'/cosmos/distribution/v1beta1/delegators/{address}/rewards'
+    return f"/cosmos/distribution/v1beta1/delegators/{address}/rewards"
 
 
 def generate_endpoint_get_validators() -> str:
     """Generate endpoint for validators list."""
-    return '/cosmos/staking/v1beta1/validators'
+    return "/cosmos/staking/v1beta1/validators"
 
 
 def generate_endpoint_get_delegations(delegator_address: str) -> str:
     """Generate endpoint for delegation."""
-    return f'/cosmos/staking/v1beta1/delegations/{delegator_address}'
+    return f"/cosmos/staking/v1beta1/delegations/{delegator_address}"
 
 
 def generate_endpoint_get_undelegations(delegator_address: str) -> str:
     """Generate endpoint for undelegation."""
     return (
-        f'/cosmos/staking/v1beta1/delegators/{delegator_address}/unbonding_delegations'
+        f"/cosmos/staking/v1beta1/delegators/{delegator_address}/unbonding_delegations"
     )
 
 
 def generate_endpoint_balance_by_denom(address: str, denom: str) -> str:
     """Generate endpoint for undelegation."""
-    return f'/cosmos/bank/v1beta1/balances/{address}/by_denom?denom={denom}'
+    return f"/cosmos/bank/v1beta1/balances/{address}/by_denom?denom={denom}"
 
 
 # account.ts

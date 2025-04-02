@@ -77,16 +77,16 @@ class Params(betterproto.Message):
 class GenesisState(betterproto.Message):
     """GenesisState defines the slashing module's genesis state."""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
     """params defines all the paramaters of related to deposit."""
 
-    signing_infos: List['SigningInfo'] = betterproto.message_field(2)
+    signing_infos: List["SigningInfo"] = betterproto.message_field(2)
     """
     signing_infos represents a map between validator addresses and their
     signing infos.
     """
 
-    missed_blocks: List['ValidatorMissedBlocks'] = betterproto.message_field(3)
+    missed_blocks: List["ValidatorMissedBlocks"] = betterproto.message_field(3)
     """
     missed_blocks represents a map between validator addresses and their
     missed blocks.
@@ -100,7 +100,7 @@ class SigningInfo(betterproto.Message):
     address: str = betterproto.string_field(1)
     """address is the validator address."""
 
-    validator_signing_info: 'ValidatorSigningInfo' = betterproto.message_field(2)
+    validator_signing_info: "ValidatorSigningInfo" = betterproto.message_field(2)
     """validator_signing_info represents the signing info of this validator."""
 
 
@@ -114,7 +114,7 @@ class ValidatorMissedBlocks(betterproto.Message):
     address: str = betterproto.string_field(1)
     """address is the validator address."""
 
-    missed_blocks: List['MissedBlock'] = betterproto.message_field(2)
+    missed_blocks: List["MissedBlock"] = betterproto.message_field(2)
     """missed_blocks is an array of missed blocks by the validator."""
 
 
@@ -140,7 +140,7 @@ class QueryParamsRequest(betterproto.Message):
 class QueryParamsResponse(betterproto.Message):
     """QueryParamsResponse is the response type for the Query/Params RPC method"""
 
-    params: 'Params' = betterproto.message_field(1)
+    params: "Params" = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -161,7 +161,7 @@ class QuerySigningInfoResponse(betterproto.Message):
     method
     """
 
-    val_signing_info: 'ValidatorSigningInfo' = betterproto.message_field(1)
+    val_signing_info: "ValidatorSigningInfo" = betterproto.message_field(1)
     """val_signing_info is the signing info of requested val cons address"""
 
 
@@ -172,7 +172,7 @@ class QuerySigningInfosRequest(betterproto.Message):
     method
     """
 
-    pagination: '__base_query_v1_beta1__.PageRequest' = betterproto.message_field(1)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
@@ -182,10 +182,10 @@ class QuerySigningInfosResponse(betterproto.Message):
     method
     """
 
-    info: List['ValidatorSigningInfo'] = betterproto.message_field(1)
+    info: List["ValidatorSigningInfo"] = betterproto.message_field(1)
     """info is the signing info of all validators"""
 
-    pagination: '__base_query_v1_beta1__.PageResponse' = betterproto.message_field(2)
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
@@ -205,14 +205,14 @@ class MsgUnjailResponse(betterproto.Message):
 class QueryStub(betterproto.ServiceStub):
     async def params(
         self,
-        query_params_request: 'QueryParamsRequest',
+        query_params_request: "QueryParamsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QueryParamsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryParamsResponse":
         return await self._unary_unary(
-            '/cosmos.slashing.v1beta1.Query/Params',
+            "/cosmos.slashing.v1beta1.Query/Params",
             query_params_request,
             QueryParamsResponse,
             timeout=timeout,
@@ -222,14 +222,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def signing_info(
         self,
-        query_signing_info_request: 'QuerySigningInfoRequest',
+        query_signing_info_request: "QuerySigningInfoRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QuerySigningInfoResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QuerySigningInfoResponse":
         return await self._unary_unary(
-            '/cosmos.slashing.v1beta1.Query/SigningInfo',
+            "/cosmos.slashing.v1beta1.Query/SigningInfo",
             query_signing_info_request,
             QuerySigningInfoResponse,
             timeout=timeout,
@@ -239,14 +239,14 @@ class QueryStub(betterproto.ServiceStub):
 
     async def signing_infos(
         self,
-        query_signing_infos_request: 'QuerySigningInfosRequest',
+        query_signing_infos_request: "QuerySigningInfosRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'QuerySigningInfosResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QuerySigningInfosResponse":
         return await self._unary_unary(
-            '/cosmos.slashing.v1beta1.Query/SigningInfos',
+            "/cosmos.slashing.v1beta1.Query/SigningInfos",
             query_signing_infos_request,
             QuerySigningInfosResponse,
             timeout=timeout,
@@ -258,14 +258,14 @@ class QueryStub(betterproto.ServiceStub):
 class MsgStub(betterproto.ServiceStub):
     async def unjail(
         self,
-        msg_unjail: 'MsgUnjail',
+        msg_unjail: "MsgUnjail",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'MsgUnjailResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgUnjailResponse":
         return await self._unary_unary(
-            '/cosmos.slashing.v1beta1.Msg/Unjail',
+            "/cosmos.slashing.v1beta1.Msg/Unjail",
             msg_unjail,
             MsgUnjailResponse,
             timeout=timeout,
@@ -276,22 +276,22 @@ class MsgStub(betterproto.ServiceStub):
 
 class QueryBase(ServiceBase):
     async def params(
-        self, query_params_request: 'QueryParamsRequest'
-    ) -> 'QueryParamsResponse':
+        self, query_params_request: "QueryParamsRequest"
+    ) -> "QueryParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def signing_info(
-        self, query_signing_info_request: 'QuerySigningInfoRequest'
-    ) -> 'QuerySigningInfoResponse':
+        self, query_signing_info_request: "QuerySigningInfoRequest"
+    ) -> "QuerySigningInfoResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def signing_infos(
-        self, query_signing_infos_request: 'QuerySigningInfosRequest'
-    ) -> 'QuerySigningInfosResponse':
+        self, query_signing_infos_request: "QuerySigningInfosRequest"
+    ) -> "QuerySigningInfosResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_params(
-        self, stream: 'grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]'
+        self, stream: "grpclib.server.Stream[QueryParamsRequest, QueryParamsResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
@@ -299,7 +299,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_signing_info(
         self,
-        stream: 'grpclib.server.Stream[QuerySigningInfoRequest, QuerySigningInfoResponse]',
+        stream: "grpclib.server.Stream[QuerySigningInfoRequest, QuerySigningInfoResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.signing_info(request)
@@ -307,7 +307,7 @@ class QueryBase(ServiceBase):
 
     async def __rpc_signing_infos(
         self,
-        stream: 'grpclib.server.Stream[QuerySigningInfosRequest, QuerySigningInfosResponse]',
+        stream: "grpclib.server.Stream[QuerySigningInfosRequest, QuerySigningInfosResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.signing_infos(request)
@@ -315,19 +315,19 @@ class QueryBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.slashing.v1beta1.Query/Params': grpclib.const.Handler(
+            "/cosmos.slashing.v1beta1.Query/Params": grpclib.const.Handler(
                 self.__rpc_params,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QueryParamsRequest,
                 QueryParamsResponse,
             ),
-            '/cosmos.slashing.v1beta1.Query/SigningInfo': grpclib.const.Handler(
+            "/cosmos.slashing.v1beta1.Query/SigningInfo": grpclib.const.Handler(
                 self.__rpc_signing_info,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QuerySigningInfoRequest,
                 QuerySigningInfoResponse,
             ),
-            '/cosmos.slashing.v1beta1.Query/SigningInfos': grpclib.const.Handler(
+            "/cosmos.slashing.v1beta1.Query/SigningInfos": grpclib.const.Handler(
                 self.__rpc_signing_infos,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 QuerySigningInfosRequest,
@@ -337,11 +337,11 @@ class QueryBase(ServiceBase):
 
 
 class MsgBase(ServiceBase):
-    async def unjail(self, msg_unjail: 'MsgUnjail') -> 'MsgUnjailResponse':
+    async def unjail(self, msg_unjail: "MsgUnjail") -> "MsgUnjailResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_unjail(
-        self, stream: 'grpclib.server.Stream[MsgUnjail, MsgUnjailResponse]'
+        self, stream: "grpclib.server.Stream[MsgUnjail, MsgUnjailResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.unjail(request)
@@ -349,7 +349,7 @@ class MsgBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.slashing.v1beta1.Msg/Unjail': grpclib.const.Handler(
+            "/cosmos.slashing.v1beta1.Msg/Unjail": grpclib.const.Handler(
                 self.__rpc_unjail,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgUnjail,

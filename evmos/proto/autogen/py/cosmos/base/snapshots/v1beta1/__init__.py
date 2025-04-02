@@ -16,7 +16,7 @@ class Snapshot(betterproto.Message):
     format: int = betterproto.uint32_field(2)
     chunks: int = betterproto.uint32_field(3)
     hash: bytes = betterproto.bytes_field(4)
-    metadata: 'Metadata' = betterproto.message_field(5)
+    metadata: "Metadata" = betterproto.message_field(5)
 
 
 @dataclass(eq=False, repr=False)
@@ -30,11 +30,11 @@ class Metadata(betterproto.Message):
 class SnapshotItem(betterproto.Message):
     """SnapshotItem is an item contained in a rootmulti.Store snapshot."""
 
-    store: 'SnapshotStoreItem' = betterproto.message_field(1, group='item')
-    iavl: 'SnapshotIavlItem' = betterproto.message_field(2, group='item')
-    extension: 'SnapshotExtensionMeta' = betterproto.message_field(3, group='item')
-    extension_payload: 'SnapshotExtensionPayload' = betterproto.message_field(
-        4, group='item'
+    store: "SnapshotStoreItem" = betterproto.message_field(1, group="item")
+    iavl: "SnapshotIavlItem" = betterproto.message_field(2, group="item")
+    extension: "SnapshotExtensionMeta" = betterproto.message_field(3, group="item")
+    extension_payload: "SnapshotExtensionPayload" = betterproto.message_field(
+        4, group="item"
     )
 
 

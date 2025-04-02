@@ -60,14 +60,14 @@ class ListImplementationsResponse(betterproto.Message):
 class ReflectionServiceStub(betterproto.ServiceStub):
     async def list_all_interfaces(
         self,
-        list_all_interfaces_request: 'ListAllInterfacesRequest',
+        list_all_interfaces_request: "ListAllInterfacesRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'ListAllInterfacesResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "ListAllInterfacesResponse":
         return await self._unary_unary(
-            '/cosmos.base.reflection.v1beta1.ReflectionService/ListAllInterfaces',
+            "/cosmos.base.reflection.v1beta1.ReflectionService/ListAllInterfaces",
             list_all_interfaces_request,
             ListAllInterfacesResponse,
             timeout=timeout,
@@ -77,14 +77,14 @@ class ReflectionServiceStub(betterproto.ServiceStub):
 
     async def list_implementations(
         self,
-        list_implementations_request: 'ListImplementationsRequest',
+        list_implementations_request: "ListImplementationsRequest",
         *,
         timeout: Optional[float] = None,
-        deadline: Optional['Deadline'] = None,
-        metadata: Optional['MetadataLike'] = None
-    ) -> 'ListImplementationsResponse':
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "ListImplementationsResponse":
         return await self._unary_unary(
-            '/cosmos.base.reflection.v1beta1.ReflectionService/ListImplementations',
+            "/cosmos.base.reflection.v1beta1.ReflectionService/ListImplementations",
             list_implementations_request,
             ListImplementationsResponse,
             timeout=timeout,
@@ -95,18 +95,18 @@ class ReflectionServiceStub(betterproto.ServiceStub):
 
 class ReflectionServiceBase(ServiceBase):
     async def list_all_interfaces(
-        self, list_all_interfaces_request: 'ListAllInterfacesRequest'
-    ) -> 'ListAllInterfacesResponse':
+        self, list_all_interfaces_request: "ListAllInterfacesRequest"
+    ) -> "ListAllInterfacesResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def list_implementations(
-        self, list_implementations_request: 'ListImplementationsRequest'
-    ) -> 'ListImplementationsResponse':
+        self, list_implementations_request: "ListImplementationsRequest"
+    ) -> "ListImplementationsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_list_all_interfaces(
         self,
-        stream: 'grpclib.server.Stream[ListAllInterfacesRequest, ListAllInterfacesResponse]',
+        stream: "grpclib.server.Stream[ListAllInterfacesRequest, ListAllInterfacesResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.list_all_interfaces(request)
@@ -114,7 +114,7 @@ class ReflectionServiceBase(ServiceBase):
 
     async def __rpc_list_implementations(
         self,
-        stream: 'grpclib.server.Stream[ListImplementationsRequest, ListImplementationsResponse]',
+        stream: "grpclib.server.Stream[ListImplementationsRequest, ListImplementationsResponse]",
     ) -> None:
         request = await stream.recv_message()
         response = await self.list_implementations(request)
@@ -122,13 +122,13 @@ class ReflectionServiceBase(ServiceBase):
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
-            '/cosmos.base.reflection.v1beta1.ReflectionService/ListAllInterfaces': grpclib.const.Handler(
+            "/cosmos.base.reflection.v1beta1.ReflectionService/ListAllInterfaces": grpclib.const.Handler(
                 self.__rpc_list_all_interfaces,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 ListAllInterfacesRequest,
                 ListAllInterfacesResponse,
             ),
-            '/cosmos.base.reflection.v1beta1.ReflectionService/ListImplementations': grpclib.const.Handler(
+            "/cosmos.base.reflection.v1beta1.ReflectionService/ListImplementations": grpclib.const.Handler(
                 self.__rpc_list_implementations,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 ListImplementationsRequest,

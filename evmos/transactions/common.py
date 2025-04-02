@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
-from typing import Any, Callable, Literal, Mapping, Sequence, overload
+from typing import Any, Callable, Literal, overload
 
 import requests
 from typing_extensions import Concatenate, ParamSpec
@@ -46,20 +47,22 @@ class Sender:
     """Account nonce - amount of previously sent transactions."""
     account_number: int = 0
     """Internal account number."""
-    pubkey: str = ''
+    pubkey: str = ""
     """Account public key."""
 
-    def update_from_chain(self, url: str = 'http://127.0.0.1:1317') -> None:
+    def update_from_chain(
+        self, url: str = "http://127.0.0.1:1317", timeout: int | None = 5
+    ) -> None:
         """Set `sequence`, `account_number` and possibly `pubkey` from API response."""
         response = requests.get(
-            f'{url}{generate_endpoint_account(self.account_address)}'
+            f"{url}{generate_endpoint_account(self.account_address)}", timeout=timeout
         )
         resp = response.json()
 
-        self.sequence = int(resp['account']['base_account']['sequence'])
-        self.account_number = int(resp['account']['base_account']['account_number'])
+        self.sequence = int(resp["account"]["base_account"]["sequence"])
+        self.account_number = int(resp["account"]["base_account"]["account_number"])
         if not self.pubkey:
-            self.pubkey = resp['account']['base_account']['pub_key']['key']
+            self.pubkey = resp["account"]["base_account"]["pub_key"]["key"]
 
 
 @dataclass
@@ -80,13 +83,14 @@ class TxGenerated(TxGeneratedBase):
     """EIP message to sign for EIP-712 transactions."""
 
 
-_P = ParamSpec('_P')
+_P = ParamSpec("_P")
 
 
 def to_generated_base(
-    func: Callable[Concatenate[str, _P], MessageGenerated[Any]]
+    func: Callable[Concatenate[str, _P], MessageGenerated[Any]],
 ) -> Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGeneratedBase]:
     """Wrap function returning message with transaction base."""
+
     # Not using functools.wraps, because signature is altered
     @_inherit(func)
     def inner(
@@ -105,7 +109,7 @@ def to_generated_base(
             fee.amount,
             fee.denom,
             int(fee.gas),
-            'ethsecp256',
+            "ethsecp256",
             sender.pubkey,
             sender.sequence,
             sender.account_number,
@@ -131,8 +135,7 @@ def to_generated(
         ]
     ],
     Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
-]:
-    ...
+]: ...
 
 
 @overload
@@ -141,8 +144,7 @@ def to_generated(
 ) -> Callable[
     [Callable[_P, tuple[Sequence[Mapping[str, Any]], Sequence[MessageGenerated[Any]]]]],
     Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
-]:
-    ...
+]: ...
 
 
 @overload
@@ -151,8 +153,7 @@ def to_generated(
 ) -> Callable[
     [Callable[Concatenate[str, _P], tuple[Mapping[str, Any], MessageGenerated[Any]]]],
     Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
-]:
-    ...
+]: ...
 
 
 @overload
@@ -164,30 +165,42 @@ def to_generated(
 ) -> Callable[
     [Callable[_P, tuple[Mapping[str, Any], MessageGenerated[Any]]]],
     Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
-]:
-    ...
+]: ...
 
 
 def to_generated(
     types_def: dict[str, Any], *, proto: bool = False, many: bool = False
-) -> Callable[
-    [Callable[_P, tuple[Mapping[str, Any], MessageGenerated[Any]]]],
-    Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
-] | Callable[
-    [Callable[Concatenate[str, _P], tuple[Mapping[str, Any], MessageGenerated[Any]]]],
-    Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
-] | Callable[
-    [Callable[_P, tuple[Sequence[Mapping[str, Any]], Sequence[MessageGenerated[Any]]]]],
-    Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
-] | Callable[
-    [
-        Callable[
-            Concatenate[str, _P],
-            tuple[Sequence[Mapping[str, Any]], Sequence[MessageGenerated[Any]]],
-        ]
-    ],
-    Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
-]:
+) -> (
+    Callable[
+        [Callable[_P, tuple[Mapping[str, Any], MessageGenerated[Any]]]],
+        Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
+    ]
+    | Callable[
+        [
+            Callable[
+                Concatenate[str, _P], tuple[Mapping[str, Any], MessageGenerated[Any]]
+            ]
+        ],
+        Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
+    ]
+    | Callable[
+        [
+            Callable[
+                _P, tuple[Sequence[Mapping[str, Any]], Sequence[MessageGenerated[Any]]]
+            ]
+        ],
+        Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
+    ]
+    | Callable[
+        [
+            Callable[
+                Concatenate[str, _P],
+                tuple[Sequence[Mapping[str, Any]], Sequence[MessageGenerated[Any]]],
+            ]
+        ],
+        Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated],
+    ]
+):
     """Wrap function returning message with transaction."""
 
     def _inner(
@@ -232,7 +245,7 @@ def to_generated(
             fee.amount,
             fee.denom,
             int(fee.gas),
-            'ethsecp256',
+            "ethsecp256",
             sender.pubkey,
             sender.sequence,
             sender.account_number,
@@ -254,7 +267,7 @@ def to_generated(
                     Mapping[str, Any] | Sequence[Mapping[str, Any]],
                     MessageGenerated[Any] | Sequence[MessageGenerated[Any]],
                 ],
-            ]
+            ],
         ) -> Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated]:
             @_inherit(func)
             def inner(
@@ -272,29 +285,27 @@ def to_generated(
 
         return decorator
 
-    else:
+    def decorator2(
+        func: Callable[
+            _P,
+            tuple[
+                Mapping[str, Any] | Sequence[Mapping[str, Any]],
+                MessageGenerated[Any] | Sequence[MessageGenerated[Any]],
+            ],
+        ],
+    ) -> Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated]:
+        @_inherit(func)
+        def inner(
+            chain: Chain,
+            sender: Sender,
+            fee: Fee,
+            memo: str,
+            *args: _P.args,
+            **kwargs: _P.kwargs,
+        ) -> TxGenerated:
+            msg, msg_cosmos = func(*args, **kwargs)
+            return _inner(chain, sender, fee, memo, msg, msg_cosmos)
 
-        def decorator2(
-            func: Callable[
-                _P,
-                tuple[
-                    Mapping[str, Any] | Sequence[Mapping[str, Any]],
-                    MessageGenerated[Any] | Sequence[MessageGenerated[Any]],
-                ],
-            ]
-        ) -> Callable[Concatenate[Chain, Sender, Fee, str, _P], TxGenerated]:
-            @_inherit(func)
-            def inner(
-                chain: Chain,
-                sender: Sender,
-                fee: Fee,
-                memo: str,
-                *args: _P.args,
-                **kwargs: _P.kwargs,
-            ) -> TxGenerated:
-                msg, msg_cosmos = func(*args, **kwargs)
-                return _inner(chain, sender, fee, memo, msg, msg_cosmos)
+        return inner
 
-            return inner
-
-        return decorator2
+    return decorator2

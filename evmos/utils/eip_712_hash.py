@@ -4,30 +4,29 @@ Copied under the MIT license from
 https://github.com/ethereum/eth-account/blob/master/eth_account/_utils/structured_data/hashing.py
 with minor modifications.
 """
+
 from __future__ import annotations
 
-from dataclasses import asdict
+from collections.abc import Iterable, Iterator, Mapping, Sequence
 from itertools import chain, groupby
 from operator import itemgetter
-from typing import Any, Iterable, Iterator, Mapping, Sequence, TypedDict
+from typing import Any, TypedDict
 
 from eth_abi import encode, is_encodable, is_encodable_type
 from eth_abi.grammar import parse
 from eth_utils import keccak, to_tuple
 from typing_extensions import TypeAlias
 
-from evmos.eip712 import EIPToSign
 
-
-class _FieldT(TypedDict):
+class _FieldDef(TypedDict):
     name: str
-    type: str  # noqa: A003
+    type: str
 
 
-_TypesT: TypeAlias = Mapping[str, Sequence[_FieldT]]
+_MsgTypes: TypeAlias = Mapping[str, Sequence[_FieldDef]]
 
 
-def get_dependencies(primary_type: str, types: _TypesT) -> tuple[str, ...]:
+def get_dependencies(primary_type: str, types: _MsgTypes) -> tuple[str, ...]:
     """Perform DFS to get all the dependencies of the `primary_type`."""
     deps = set()
     struct_names_yet_to_be_expanded = [primary_type]
@@ -38,11 +37,11 @@ def get_dependencies(primary_type: str, types: _TypesT) -> tuple[str, ...]:
         deps.add(struct_name)
         fields = types[struct_name]
         for field in fields:
-            field_type = field['type']
+            field_type = field["type"]
 
             # Handle array types
             if is_array_type(field_type):
-                field_type = field_type[: field_type.index('[')]
+                field_type = field_type[: field_type.index("[")]
 
             if field_type in types and field_type not in deps:
                 # We don't need to expand types that are not user defined (customized)
@@ -55,20 +54,20 @@ def get_dependencies(primary_type: str, types: _TypesT) -> tuple[str, ...]:
     return tuple(deps)
 
 
-def field_identifier(field: _FieldT) -> str:
+def field_identifier(field: _FieldDef) -> str:
     """Stringify a field in ``'TYPE NAME'`` format."""
-    return f'{field["type"]} {field["name"]}'
+    return f"{field['type']} {field['name']}"
 
 
-def encode_struct(struct_name: str, struct_field_types: Iterable[_FieldT]) -> str:
+def encode_struct(struct_name: str, struct_field_types: Iterable[_FieldDef]) -> str:
     """Stringify a single struct in ``'NAME(type1 name1,type2 name2,...)'`` format."""
-    return '{name}({args})'.format(
+    return "{name}({args})".format(
         name=struct_name,
-        args=','.join(map(field_identifier, struct_field_types)),
+        args=",".join(map(field_identifier, struct_field_types)),
     )
 
 
-def encode_type(primary_type: str, types: _TypesT) -> str:
+def encode_type(primary_type: str, types: _MsgTypes) -> str:
     """Encode type as concatenation of itself and all dependencies (alphabetical order).
 
     The type of a struct is encoded as
@@ -82,20 +81,20 @@ def encode_type(primary_type: str, types: _TypesT) -> str:
     # Getting the dependencies and sorting them alphabetically as per EIP712
     deps = get_dependencies(primary_type, types)
 
-    return ''.join(
+    return "".join(
         encode_struct(struct_name, types[struct_name])
         for struct_name in chain((primary_type,), sorted(deps))
     )
 
 
-def hash_struct_type(primary_type: str, types: _TypesT) -> bytes:
+def hash_struct_type(primary_type: str, types: _MsgTypes) -> bytes:
     """Hash string representation of type of struct."""
     return keccak(text=encode_type(primary_type, types))
 
 
 def is_array_type(type_: str) -> bool:
     """Identify if type such as ``person[]`` or ``person[2]`` is an array."""
-    return type_.endswith(']')
+    return type_.endswith("]")
 
 
 @to_tuple
@@ -125,13 +124,13 @@ def get_array_dimensions(data: Any) -> tuple[int | str, ...]:
     # re-form as a dictionary with `depth` as key, and all of the dimensions
     # found at that depth.
     grouped_by_depth = {
-        depth: tuple(dimension for depth, dimension in group)
+        depth: tuple(dimension for _, dimension in group)
         for depth, group in groupby(depths_and_dimensions, itemgetter(0))
     }
 
     return tuple(
         # check that all dimensions are the same, else use "dynamic"
-        dimensions[0] if all(dim == dimensions[0] for dim in dimensions) else 'dynamic'
+        dimensions[0] if all(dim == dimensions[0] for dim in dimensions) else "dynamic"
         for _depth, dimensions in sorted(grouped_by_depth.items(), reverse=True)
     )
 
@@ -149,21 +148,21 @@ def _check_dimensions(field_type: str, value: Any) -> None:
         if given != expected[0]:
             # Dimensions should match with declared schema
             expected_dimensions_repr = tuple(
-                map(lambda x: x[0] if x else 'dynamic', parsed_field_type.arrlist)
+                x[0] if x else "dynamic" for x in parsed_field_type.arrlist
             )
             raise TypeError(
-                f'Array data `{value}` has dimensions `{array_dimensions}`'
-                f' whereas the schema has dimensions `{expected_dimensions_repr}`'
+                f"Array data `{value}` has dimensions `{array_dimensions}`"
+                f" whereas the schema has dimensions `{expected_dimensions_repr}`"
             )
 
 
 def _encode_array_field(
-    types: _TypesT, name: str, field_type: str, value: Any
+    types: _MsgTypes, name: str, field_type: str, value: Any
 ) -> bytes:
     _check_dimensions(field_type, value)
 
     if value:
-        field_type_of_inside_array = field_type[: field_type.rindex('[')]
+        field_type_of_inside_array = field_type[: field_type.rindex("[")]
         field_type_value_pairs = [
             encode_field(types, name, field_type_of_inside_array, item)
             for item in value
@@ -171,13 +170,13 @@ def _encode_array_field(
 
         data_types, data_hashes = zip(*field_type_value_pairs)
     else:
-        data_types = data_hashes = tuple()
+        data_types = data_hashes = ()
 
     return keccak(encode(data_types, data_hashes))
 
 
 def encode_field(
-    types: _TypesT, name: str, field_type: str, value: Any
+    types: _MsgTypes, name: str, field_type: str, value: Any
 ) -> tuple[str, bytes]:
     """Encode field according to given type.
 
@@ -191,36 +190,36 @@ def encode_field(
         tuple of form (result_type, encoded_bytes)
     """
     if value is None:
-        raise ValueError(f'Missing value for field {name} of type {field_type}')
+        raise ValueError(f"Missing value for field {name} of type {field_type}")
 
     if field_type in types:
-        return ('bytes32', keccak(encode_data(field_type, types, value)))
+        return ("bytes32", keccak(encode_data(field_type, types, value)))
 
-    if field_type == 'bytes':
+    if field_type == "bytes":
         if not isinstance(value, bytes):
             raise TypeError(
-                f'Value of field `{name}` ({value}) is of the type `{type(value)}`, '
-                f'but expected bytes value'
+                f"Value of field `{name}` ({value}) is of the type `{type(value)}`, "
+                f"but expected bytes value"
             )
 
-        return ('bytes32', keccak(value))
+        return ("bytes32", keccak(value))
 
-    if field_type == 'string':
+    if field_type == "string":
         if not isinstance(value, str):
             raise TypeError(
-                f'Value of field `{name}` ({value}) is of the type `{type(value)}`, '
-                f'but expected string value'
+                f"Value of field `{name}` ({value}) is of the type `{type(value)}`, "
+                f"but expected string value"
             )
 
-        return ('bytes32', keccak(text=value))
+        return ("bytes32", keccak(text=value))
 
     if is_array_type(field_type):
         encoded = _encode_array_field(types, name, field_type, value)
-        return ('bytes32', encoded)
+        return ("bytes32", encoded)
 
     # First checking to see if field_type is valid as per abi
     if not is_encodable_type(field_type):
-        raise TypeError(f'Received Invalid type `{field_type}` in field `{name}`')
+        raise TypeError(f"Received Invalid type `{field_type}` in field `{name}`")
 
     # Next, see if the value is encodable as the specified field_type
     if is_encodable(field_type, value):
@@ -228,42 +227,22 @@ def encode_field(
         return (field_type, value)
 
     raise TypeError(
-        f'Value of `{name}` ({value}) is not encodable as type `{field_type}`. '
-        f'If the base type is correct, verify that the value does not '
-        f'exceed the specified size for the type.'
+        f"Value of `{name}` ({value}) is not encodable as type `{field_type}`. "
+        f"If the base type is correct, verify that the value does not "
+        f"exceed the specified size for the type."
     )
 
 
-def encode_data(primary_type: str, types: _TypesT, data: Any) -> bytes:
+def encode_data(primary_type: str, types: _MsgTypes, data: Any) -> bytes:
     """Encode data defined by ``primary_type``."""
-    encoded_types = ['bytes32']
+    encoded_types = ["bytes32"]
     encoded_values = [hash_struct_type(primary_type, types)]
 
     for field in types[primary_type]:
         type_, value = encode_field(
-            types, field['name'], field['type'], data[field['name']]
+            types, field["name"], field["type"], data[field["name"]]
         )
         encoded_types.append(type_)
         encoded_values.append(value)
 
     return encode(encoded_types, encoded_values)
-
-
-def hash_domain(structured_data: EIPToSign) -> bytes:
-    """Hash domain part of EIP-712 message."""
-    return keccak(
-        encode_data(
-            'EIP712Domain', structured_data.types, asdict(structured_data.domain)
-        )
-    )
-
-
-def hash_message(structured_data: EIPToSign) -> bytes:
-    """Hash message part of EIP-712 message."""
-    return keccak(
-        encode_data(
-            structured_data.primaryType,
-            structured_data.types,
-            structured_data.message,
-        )
-    )

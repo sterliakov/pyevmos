@@ -21,7 +21,7 @@ def create_msg_convert_coin(
     )
     return MessageGenerated(
         message=msg,
-        path='evmos.erc20.v1.MsgConvertCoin',
+        path="evmos.erc20.v1.MsgConvertCoin",
     )
 
 
@@ -43,5 +43,5 @@ def create_msg_convert_erc20(
     )
     return MessageGenerated(
         message=msg,
-        path='evmos.erc20.v1.MsgConvertERC20',
+        path="evmos.erc20.v1.MsgConvertERC20",
     )

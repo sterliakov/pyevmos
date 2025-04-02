@@ -38,7 +38,7 @@ keywords = ["blockchain", "sdk", "ethereum"]
 license = {file = "LICENSE.md"}
 name = "evmos"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 
 [project.optional-dependencies]
 dev = [
@@ -93,46 +93,6 @@ omit = [
     "evmos/proto/autogen/*",
 ]
 
-[tool.flake8]
-# Docstring validation
-docstring-convention = "google"
-exclude = """
-    .git,
-    .github,
-    __pycache__,
-    .pytest_cache,
-    .env,
-    env,
-    .pyenv,
-    pyenv,
-    *.egg_info,
-"""
-extend_ignore = [
-    "SIM905",  # Allow statement "hello world".split() instead of list literal
-    # "N806",  # Allow non-"lower_underscore" variables (it's too stupid rule)
-    "PIE798",  # Allow class with only static methods for namespacing
-    "D105",  # Magic methods may remain unannotated
-    "D401",  # Imperative mood of first docstring line is not always encouraged
-    "RST306",  # Plugin can't resolve links defined in other docstrings.
-    "RST304",  # No builtin roles, so too much to do manually.
-    "RST301",
-    "RST201",  # Incompatible with google doc style
-    "E203",  # Invalid. Expressions like `[len(x) :]` conform with PEP8, but raise this.
-    "D100",  # Modules may remain unannotated
-    "D104",  # Packages may remain unannotated
-    "D107",  # __init__ may remain unannotated
-]
-max-complexity = 10
-max_line_length = 88
-# Ignore
-per-file-ignores = [
-    "tests/*:D,RST",  # We don't care about docstrings in tests.
-]
-
-[tool.isort]
-add_imports = "from __future__ import annotations"
-profile = "black"
-
 [tool.mypy]
 # This applies to all files (not very strict, used for scripts, etc.)
 allow_redefinition = true
@@ -182,6 +142,74 @@ markers = [
     'offline',  # write (interacts with the chain)
     'read',  # read only (query)
 ]
+
+[tool.ruff]
+target-version = 'py39'
+
+[tool.ruff.format]
+preview = true
+
+[tool.ruff.lint]
+exclude = [
+    ".svn",
+    "CVS",
+    ".bzr",
+    ".hg",
+    ".git",
+    "__pycache__",
+    ".tox",
+    ".nox",
+    ".eggs",
+    "*.egg",
+    "migrations",
+    "manage.py",
+]
+extend-ignore = [
+    "S101",
+    "E203",
+    "DJ",
+    "TC00",  # Move standard library/third party/application import `xx.X` into a type-checking block
+    "TD",  # to do comment lints
+    "FIX",  # Line contains FIXME/TODO/HACK/..., consider resolving the issue
+    "CPY001",  # Missing copyright notice at top of file
+    "D1",  # Missing docstrings
+    "D400",  # Conflicts with D415
+    "D213",  # Conflicts with D212
+    "D203",  # Conflicts with D211
+    "DOC2",  # Returns not in docstring
+    "DOC4",  # Yields not in docstring
+    "DOC5",  # Exceptions not in docstring
+    "ANN0",  # Missing type annotation for ... - `mypy` knows that.
+    "ANN2",  # Missing return type annotation for ... - `mypy` knows that.
+    "ANN401",  # Dynamically typed expressions (typing.Any) are disallowed in `xxx`
+    "TRY003",  # Avoid specifying long messages outside the exception class
+    "EM101",  # Exception must not use a string literal, assign to variable first
+    "EM102",  # Exception must not use an f-string literal, assign to variable first
+    "PLC0414",  # useless-import-alias - mypy doesn't think so
+    "PLC0415",  # `import` should be at the top-level of a file
+    # For formatter
+    "COM812",
+    "E501",
+    # Good to enable later
+    "PLR0913",  # Too many arguments in function definition (9 > 5)
+    "PLR0917",  # Too many positional arguments (6/5)
+]
+preview = true
+select = ["ALL"]
+unfixable = ['ERA001']
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-wrap-aliases = true
+required-imports = ["from __future__ import annotations"]
+split-on-trailing-comma = false
+
+[tool.ruff.lint.per-file-ignores]
+# Allow printing there and some magic values
+"tests/*" = ["T201", "T203", "PLR2004"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.setuptools.dynamic]
 version = {attr = "evmos.__version__"}

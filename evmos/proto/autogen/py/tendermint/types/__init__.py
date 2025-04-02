@@ -41,22 +41,22 @@ class SignedMsgType(betterproto.Enum):
 
 @dataclass(eq=False, repr=False)
 class ValidatorSet(betterproto.Message):
-    validators: List['Validator'] = betterproto.message_field(1)
-    proposer: 'Validator' = betterproto.message_field(2)
+    validators: List["Validator"] = betterproto.message_field(1)
+    proposer: "Validator" = betterproto.message_field(2)
     total_voting_power: int = betterproto.int64_field(3)
 
 
 @dataclass(eq=False, repr=False)
 class Validator(betterproto.Message):
     address: bytes = betterproto.bytes_field(1)
-    pub_key: '_crypto__.PublicKey' = betterproto.message_field(2)
+    pub_key: "_crypto__.PublicKey" = betterproto.message_field(2)
     voting_power: int = betterproto.int64_field(3)
     proposer_priority: int = betterproto.int64_field(4)
 
 
 @dataclass(eq=False, repr=False)
 class SimpleValidator(betterproto.Message):
-    pub_key: '_crypto__.PublicKey' = betterproto.message_field(1)
+    pub_key: "_crypto__.PublicKey" = betterproto.message_field(1)
     voting_power: int = betterproto.int64_field(2)
 
 
@@ -72,7 +72,7 @@ class PartSetHeader(betterproto.Message):
 class Part(betterproto.Message):
     index: int = betterproto.uint32_field(1)
     bytes: builtins.bytes = betterproto.bytes_field(2)
-    proof: '_crypto__.Proof' = betterproto.message_field(3)
+    proof: "_crypto__.Proof" = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -80,20 +80,20 @@ class BlockId(betterproto.Message):
     """BlockID"""
 
     hash: bytes = betterproto.bytes_field(1)
-    part_set_header: 'PartSetHeader' = betterproto.message_field(2)
+    part_set_header: "PartSetHeader" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
 class Header(betterproto.Message):
     """Header defines the structure of a Tendermint block header."""
 
-    version: '_version__.Consensus' = betterproto.message_field(1)
+    version: "_version__.Consensus" = betterproto.message_field(1)
     """basic block info"""
 
     chain_id: str = betterproto.string_field(2)
     height: int = betterproto.int64_field(3)
     time: datetime = betterproto.message_field(4)
-    last_block_id: 'BlockId' = betterproto.message_field(5)
+    last_block_id: "BlockId" = betterproto.message_field(5)
     """prev block info"""
 
     last_commit_hash: bytes = betterproto.bytes_field(6)
@@ -132,10 +132,10 @@ class Vote(betterproto.Message):
     consensus.
     """
 
-    type: 'SignedMsgType' = betterproto.enum_field(1)
+    type: "SignedMsgType" = betterproto.enum_field(1)
     height: int = betterproto.int64_field(2)
     round: int = betterproto.int32_field(3)
-    block_id: 'BlockId' = betterproto.message_field(4)
+    block_id: "BlockId" = betterproto.message_field(4)
     timestamp: datetime = betterproto.message_field(5)
     validator_address: bytes = betterproto.bytes_field(6)
     validator_index: int = betterproto.int32_field(7)
@@ -151,15 +151,15 @@ class Commit(betterproto.Message):
 
     height: int = betterproto.int64_field(1)
     round: int = betterproto.int32_field(2)
-    block_id: 'BlockId' = betterproto.message_field(3)
-    signatures: List['CommitSig'] = betterproto.message_field(4)
+    block_id: "BlockId" = betterproto.message_field(3)
+    signatures: List["CommitSig"] = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
 class CommitSig(betterproto.Message):
     """CommitSig is a part of the Vote included in a Commit."""
 
-    block_id_flag: 'BlockIdFlag' = betterproto.enum_field(1)
+    block_id_flag: "BlockIdFlag" = betterproto.enum_field(1)
     validator_address: bytes = betterproto.bytes_field(2)
     timestamp: datetime = betterproto.message_field(3)
     signature: bytes = betterproto.bytes_field(4)
@@ -167,32 +167,32 @@ class CommitSig(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class Proposal(betterproto.Message):
-    type: 'SignedMsgType' = betterproto.enum_field(1)
+    type: "SignedMsgType" = betterproto.enum_field(1)
     height: int = betterproto.int64_field(2)
     round: int = betterproto.int32_field(3)
     pol_round: int = betterproto.int32_field(4)
-    block_id: 'BlockId' = betterproto.message_field(5)
+    block_id: "BlockId" = betterproto.message_field(5)
     timestamp: datetime = betterproto.message_field(6)
     signature: bytes = betterproto.bytes_field(7)
 
 
 @dataclass(eq=False, repr=False)
 class SignedHeader(betterproto.Message):
-    header: 'Header' = betterproto.message_field(1)
-    commit: 'Commit' = betterproto.message_field(2)
+    header: "Header" = betterproto.message_field(1)
+    commit: "Commit" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
 class LightBlock(betterproto.Message):
-    signed_header: 'SignedHeader' = betterproto.message_field(1)
-    validator_set: 'ValidatorSet' = betterproto.message_field(2)
+    signed_header: "SignedHeader" = betterproto.message_field(1)
+    validator_set: "ValidatorSet" = betterproto.message_field(2)
 
 
 @dataclass(eq=False, repr=False)
 class BlockMeta(betterproto.Message):
-    block_id: 'BlockId' = betterproto.message_field(1)
+    block_id: "BlockId" = betterproto.message_field(1)
     block_size: int = betterproto.int64_field(2)
-    header: 'Header' = betterproto.message_field(3)
+    header: "Header" = betterproto.message_field(3)
     num_txs: int = betterproto.int64_field(4)
 
 
@@ -205,7 +205,7 @@ class TxProof(betterproto.Message):
 
     root_hash: bytes = betterproto.bytes_field(1)
     data: bytes = betterproto.bytes_field(2)
-    proof: '_crypto__.Proof' = betterproto.message_field(3)
+    proof: "_crypto__.Proof" = betterproto.message_field(3)
 
 
 @dataclass(eq=False, repr=False)
@@ -215,10 +215,10 @@ class ConsensusParams(betterproto.Message):
     validity of blocks.
     """
 
-    block: 'BlockParams' = betterproto.message_field(1)
-    evidence: 'EvidenceParams' = betterproto.message_field(2)
-    validator: 'ValidatorParams' = betterproto.message_field(3)
-    version: 'VersionParams' = betterproto.message_field(4)
+    block: "BlockParams" = betterproto.message_field(1)
+    evidence: "EvidenceParams" = betterproto.message_field(2)
+    validator: "ValidatorParams" = betterproto.message_field(3)
+    version: "VersionParams" = betterproto.message_field(4)
 
 
 @dataclass(eq=False, repr=False)
@@ -301,11 +301,11 @@ class HashedParams(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class Evidence(betterproto.Message):
-    duplicate_vote_evidence: 'DuplicateVoteEvidence' = betterproto.message_field(
-        1, group='sum'
+    duplicate_vote_evidence: "DuplicateVoteEvidence" = betterproto.message_field(
+        1, group="sum"
     )
-    light_client_attack_evidence: 'LightClientAttackEvidence' = (
-        betterproto.message_field(2, group='sum')
+    light_client_attack_evidence: "LightClientAttackEvidence" = (
+        betterproto.message_field(2, group="sum")
     )
 
 
@@ -316,8 +316,8 @@ class DuplicateVoteEvidence(betterproto.Message):
     votes.
     """
 
-    vote_a: 'Vote' = betterproto.message_field(1)
-    vote_b: 'Vote' = betterproto.message_field(2)
+    vote_a: "Vote" = betterproto.message_field(1)
+    vote_b: "Vote" = betterproto.message_field(2)
     total_voting_power: int = betterproto.int64_field(3)
     validator_power: int = betterproto.int64_field(4)
     timestamp: datetime = betterproto.message_field(5)
@@ -330,21 +330,21 @@ class LightClientAttackEvidence(betterproto.Message):
     to mislead a light client.
     """
 
-    conflicting_block: 'LightBlock' = betterproto.message_field(1)
+    conflicting_block: "LightBlock" = betterproto.message_field(1)
     common_height: int = betterproto.int64_field(2)
-    byzantine_validators: List['Validator'] = betterproto.message_field(3)
+    byzantine_validators: List["Validator"] = betterproto.message_field(3)
     total_voting_power: int = betterproto.int64_field(4)
     timestamp: datetime = betterproto.message_field(5)
 
 
 @dataclass(eq=False, repr=False)
 class EvidenceList(betterproto.Message):
-    evidence: List['Evidence'] = betterproto.message_field(1)
+    evidence: List["Evidence"] = betterproto.message_field(1)
 
 
 @dataclass(eq=False, repr=False)
 class Block(betterproto.Message):
-    header: 'Header' = betterproto.message_field(1)
-    data: 'Data' = betterproto.message_field(2)
-    evidence: 'EvidenceList' = betterproto.message_field(3)
-    last_commit: 'Commit' = betterproto.message_field(4)
+    header: "Header" = betterproto.message_field(1)
+    data: "Data" = betterproto.message_field(2)
+    evidence: "EvidenceList" = betterproto.message_field(3)
+    last_commit: "Commit" = betterproto.message_field(4)
