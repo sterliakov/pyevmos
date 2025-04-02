@@ -37,13 +37,6 @@ def test_generate_types():
             ],
         }
     ) == {
-        'EIP712Domain': [
-            {'name': 'name', 'type': 'string'},
-            {'name': 'version', 'type': 'string'},
-            {'name': 'chainId', 'type': 'uint256'},
-            {'name': 'verifyingContract', 'type': 'string'},
-            {'name': 'salt', 'type': 'string'},
-        ],
         'Tx': [
             {'name': 'account_number', 'type': 'string'},
             {'name': 'chain_id', 'type': 'string'},
@@ -121,51 +114,46 @@ def test_generate_message():
 
 
 def test_generate_base():
-    assert asdict(
-        create_eip712(
-            generate_types(
-                {
-                    'MsgValue': [
-                        {'name': 'from_address', 'type': 'string'},
-                        {'name': 'to_address', 'type': 'string'},
-                        {'name': 'amount', 'type': 'TypeAmount[]'},
-                    ],
-                    'TypeAmount': [
-                        {'name': 'denom', 'type': 'string'},
-                        {'name': 'amount', 'type': 'string'},
-                    ],
-                }
+    got = create_eip712(
+        generate_types(
+            {
+                'MsgValue': [
+                    {'name': 'from_address', 'type': 'string'},
+                    {'name': 'to_address', 'type': 'string'},
+                    {'name': 'amount', 'type': 'TypeAmount[]'},
+                ],
+                'TypeAmount': [
+                    {'name': 'denom', 'type': 'string'},
+                    {'name': 'amount', 'type': 'string'},
+                ],
+            }
+        ),
+        9000,
+        generate_message(
+            '8',
+            '0',
+            'ethermint_9000-1',
+            '',
+            generate_fee(
+                '20',
+                'aphoton',
+                '20000',
+                'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
             ),
-            9000,
-            generate_message(
-                '8',
-                '0',
-                'ethermint_9000-1',
-                '',
-                generate_fee(
-                    '20',
-                    'aphoton',
-                    '20000',
-                    'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
-                ),
-                {
-                    'type': 'cosmos-sdk/MsgSend',
-                    'value': {
-                        'amount': [{'amount': '1', 'denom': 'aphoton'}],
-                        'from_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
-                        'to_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
-                    },
+            {
+                'type': 'cosmos-sdk/MsgSend',
+                'value': {
+                    'amount': [{'amount': '1', 'denom': 'aphoton'}],
+                    'from_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
+                    'to_address': 'ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
                 },
-            ),
-        )
-    ) == {
+            },
+        ),
+    )
+    expected = {
         'types': {
             'EIP712Domain': [
-                {'name': 'name', 'type': 'string'},
-                {'name': 'version', 'type': 'string'},
                 {'name': 'chainId', 'type': 'uint256'},
-                {'name': 'verifyingContract', 'type': 'string'},
-                {'name': 'salt', 'type': 'string'},
             ],
             'Tx': [
                 {'name': 'account_number', 'type': 'string'},
@@ -200,11 +188,11 @@ def test_generate_base():
         },
         'primaryType': 'Tx',
         'domain': {
-            'name': 'Cosmos Web3',
-            'version': '1.0.0',
+            'name': None,
+            'version': None,
             'chainId': 9000,
-            'verifyingContract': 'cosmos',
-            'salt': '0',
+            'verifyingContract': None,
+            'salt': None,
         },
         'message': {
             'account_number': '8',
@@ -228,3 +216,4 @@ def test_generate_base():
             'sequence': '0',
         },
     }
+    assert asdict(got) == expected

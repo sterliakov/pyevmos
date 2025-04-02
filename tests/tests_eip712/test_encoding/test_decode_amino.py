@@ -10,11 +10,11 @@ from evmos.eip712.base import generate_types
 from evmos.eip712.encoding.decode_amino import decode_amino_sign_doc
 
 eip712_domain = {
-    'name': 'Cosmos Web3',
-    'version': '1.0.0',
+    'name': None,
+    'version': None,
     'chainId': 9000,
-    'verifyingContract': 'cosmos',
-    'salt': '0',
+    'verifyingContract': None,
+    'salt': None,
 }
 eip712_primary_type = 'Tx'
 
@@ -42,6 +42,7 @@ def test_decodes_msg_send_payloads():
 
     assert asdict(eip712.domain) == eip712_domain
     assert eip712.primaryType == eip712_primary_type
+    assert eip712.types.pop('EIP712Domain') == eip712.domain.pick_types()
     assert eip712.types == generate_types(MSG_SEND_TYPES)
     assert eip712.message == {
         'account_number': '0',
@@ -94,6 +95,7 @@ def test_decodes_msg_vote_payloads():
 
     assert asdict(eip712.domain) == eip712_domain
     assert eip712.primaryType == eip712_primary_type
+    assert eip712.types.pop('EIP712Domain') == eip712.domain.pick_types()
     assert eip712.types == generate_types(MSG_VOTE_TYPES)
     assert eip712.message == {
         'account_number': '0',
@@ -143,6 +145,7 @@ def test_decodes_msg_delegate_payloads():
 
     assert asdict(eip712.domain) == eip712_domain
     assert eip712.primaryType == eip712_primary_type
+    assert eip712.types.pop('EIP712Domain') == eip712.domain.pick_types()
     assert eip712.types == generate_types(MSG_DELEGATE_TYPES)
     assert eip712.message == {
         'account_number': '0',

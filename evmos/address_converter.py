@@ -107,7 +107,7 @@ def make_bech32_decoder(current_prefix: str) -> Callable[[str], bytes]:
         prefix, words = bech32.bech32_decode(data)
         if prefix != current_prefix:
             raise ValueError('Unrecognised address format')
-
+        assert words is not None
         decoded = bech32.convertbits(words, 5, 8, False)
         if decoded is None or len(decoded) < 2 or len(decoded) > 40:
             raise ValueError('Unrecognised address format')
@@ -121,7 +121,10 @@ def make_bech32_encoder(prefix: str) -> Callable[[bytes], str]:
 
     def encoder(data: bytes) -> str:
         """Address encoder."""
-        return bech32.bech32_encode(prefix, bech32.convertbits(data, 8, 5))
+        bits = bech32.convertbits(data, 8, 5)
+        if bits is None:
+            raise ValueError('Failed to convert data to bech32 input format.')
+        return bech32.bech32_encode(prefix, bits)
 
     return encoder
 

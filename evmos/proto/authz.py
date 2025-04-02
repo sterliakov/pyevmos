@@ -10,6 +10,7 @@ from evmos.proto.autogen.py.cosmos.base.v1beta1 import Coin
 from evmos.proto.autogen.py.cosmos.staking.v1beta1 import (
     AuthorizationType,
     StakeAuthorization,
+    StakeAuthorizationValidators,
 )
 from evmos.proto.utils import MessageGenerated, create_any_message
 
@@ -79,7 +80,7 @@ def create_stake_authorization(
 ) -> MessageGenerated[StakeAuthorization]:
     """Create staking authorization message."""
     msg = StakeAuthorization(
-        allow_list=StakeAuthorization.Validators(address=[allow_address]),
+        allow_list=StakeAuthorizationValidators(address=[allow_address]),
         max_tokens=(
             Coin(denom=denom, amount=max_tokens)  # type: ignore[arg-type]
             if max_tokens

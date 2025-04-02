@@ -104,7 +104,7 @@ def get_depths_and_dimensions(data: Any, depth: int) -> Iterator[tuple[int, int]
     if not isinstance(data, (list, tuple)):
         # Not checking for Iterable instance, because even Dictionaries and strings
         # are considered as iterables, but that's not what we want the condition to be.
-        return ()
+        return
 
     yield depth, len(data)
 

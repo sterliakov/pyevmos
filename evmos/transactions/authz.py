@@ -32,7 +32,7 @@ def create_tx_msg_stake_authorization(
         validator_address,
         denom,
         max_tokens,
-        StakeAuthTypes.AUTHORIZATION_TYPE_DELEGATE,  # type: ignore
+        StakeAuthTypes.AUTHORIZATION_TYPE_DELEGATE,
     )
     return create_msg_grant(
         account_address,

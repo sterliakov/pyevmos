@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Mapping, Sequence, TypedDict
+from typing import Any, Mapping, Optional, Sequence, TypedDict, Union
+
+from eth_typing import ChecksumAddress, HexAddress
 
 
 class WithValidator(TypedDict):
@@ -33,16 +35,26 @@ class MsgInterface(TypedDict):
 class Domain:
     """This describes ``domain`` field of :class:`EIPToSign`."""
 
-    name: str
+    name: str | None = None
     """Domain name."""
-    version: str
+    version: str | None = None
     """Version (usually ``1.0.0``)."""
-    chainId: int  # noqa: N815
+    chainId: int | None = None  # noqa: N815
     """Chain ID."""
-    verifyingContract: str  # noqa: N815
+    verifyingContract: HexAddress | ChecksumAddress | None = None  # noqa: N815
     """Verifying contract address."""
-    salt: str
+    salt: str | None = None
     """Used salt (usually ``'0'``)."""
+
+    def pick_types(self) -> dict[str, Any]:
+        known_fields = [
+            {'name': 'name', 'type': 'string'},
+            {'name': 'version', 'type': 'string'},
+            {'name': 'chainId', 'type': 'uint256'},
+            {'name': 'verifyingContract', 'type': 'address'},
+            {'name': 'salt', 'type': 'bytes32'},
+        ]
+        return [f for f in known_fields if getattr(self, f['name']) is not None]
 
 
 @dataclass
@@ -63,16 +75,11 @@ def create_eip712(
     types: dict[str, Any], chain_id: int, message: dict[str, Any]
 ) -> EIPToSign:
     """Create `EIP712 <https://eips.ethereum.org/EIPS/eip-712>`_ data."""
+    domain = Domain(chainId=chain_id)
     return EIPToSign(
-        types=types,
+        types=types | {'EIP712Domain': domain.pick_types()},
         primaryType='Tx',
-        domain=Domain(
-            name='Cosmos Web3',
-            version='1.0.0',
-            chainId=chain_id,
-            verifyingContract='cosmos',
-            salt='0',
-        ),
+        domain=domain,
         message=message,
     )
 
@@ -118,13 +125,6 @@ def generate_message(
 def generate_types(msg_values: dict[str, Any]) -> dict[str, Any]:
     """Generate EIP-712 types."""
     types = {
-        'EIP712Domain': [
-            {'name': 'name', 'type': 'string'},
-            {'name': 'version', 'type': 'string'},
-            {'name': 'chainId', 'type': 'uint256'},
-            {'name': 'verifyingContract', 'type': 'string'},
-            {'name': 'salt', 'type': 'string'},
-        ],
         'Tx': [
             {'name': 'account_number', 'type': 'string'},
             {'name': 'chain_id', 'type': 'string'},

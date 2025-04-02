@@ -15,10 +15,7 @@ from evmos.transactions import (
 
 
 def test_msg_send_valid():
-    chain = Chain(
-        chain_id=9000,
-        cosmos_chain_id='evmos_9000-1',
-    )
+    chain = Chain(chain_id=9000, cosmos_chain_id='evmos_9000-1')
 
     sender = Sender(
         account_address='ethm1tfegf50n5xl0hd5cxfzjca3ylsfpg0fned5gqm',
@@ -27,14 +24,11 @@ def test_msg_send_valid():
         pubkey='AgTw+4v0daIrxsNSW4FcQ+IoingPseFwHO1DnssyoOqZ',
     )
 
-    fee = Fee(
-        amount='20',
-        denom='aevmos',
-        gas='200000',
-    )
+    fee = Fee(amount='20', denom='aevmos', gas='200000')
 
     memo = ''
 
+    # FIXME: there should be a way to pass a domain here.
     msg = create_message_send(
         chain,
         sender,
@@ -71,10 +65,10 @@ def test_msg_send_valid():
     assert asdict(msg.eip_to_sign) == {
         'domain': {
             'chainId': 9000,
-            'name': 'Cosmos Web3',
-            'salt': '0',
-            'verifyingContract': 'cosmos',
-            'version': '1.0.0',
+            'name': None,
+            'salt': None,
+            'verifyingContract': None,
+            'version': None,
         },
         'message': {
             'account_number': '9',
@@ -104,11 +98,7 @@ def test_msg_send_valid():
                 {'name': 'amount', 'type': 'string'},
             ],
             'EIP712Domain': [
-                {'name': 'name', 'type': 'string'},
-                {'name': 'version', 'type': 'string'},
                 {'name': 'chainId', 'type': 'uint256'},
-                {'name': 'verifyingContract', 'type': 'string'},
-                {'name': 'salt', 'type': 'string'},
             ],
             'Fee': [
                 {'name': 'feePayer', 'type': 'string'},

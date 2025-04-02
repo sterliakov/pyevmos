@@ -12,7 +12,7 @@ dotenv.load_dotenv()
 
 @pytest.fixture()
 def url():
-    return os.getenv('EVMOS_REST_API_URL', 'https://rest.bd.evmos.dev:1317')
+    return os.getenv('EVMOS_REST_API_URL', 'https://rest.evmos-testnet.lava.build')
 
 
 @pytest.fixture()

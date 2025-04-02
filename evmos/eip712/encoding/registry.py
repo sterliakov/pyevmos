@@ -6,6 +6,7 @@ https://github.com/cosmos/cosmjs/blob/main/packages/proto-signing/src/registry.t
 from __future__ import annotations
 
 from enum import Enum, unique
+from typing import Type
 
 from betterproto import Message
 
@@ -29,9 +30,9 @@ class Registry:
     We support only betterproto-generated declarations.
     """
 
-    types: dict[str, Message]
+    types: dict[str, type[Message]]
 
-    def __init__(self, custom_types: dict[str, Message] | None = None):
+    def __init__(self, custom_types: dict[str, type[Message]] | None = None):
         self.types = (
             dict(custom_types)
             if custom_types
@@ -42,15 +43,15 @@ class Registry:
             }
         )
 
-    def register(self, type_url: str, type_: Message) -> None:
+    def register(self, type_url: str, type_: type[Message]) -> None:
         """Add new type to registry."""
         self.types[type_url] = type_
 
-    def lookup_type(self, type_url: str) -> Message | None:
+    def lookup_type(self, type_url: str) -> type[Message] | None:
         """Looks up a type that was previously added to the registry."""
         return self.types.get(type_url)
 
-    def _lookup_type_with_error(self, type_url: str) -> Message:
+    def _lookup_type_with_error(self, type_url: str) -> type[Message]:
         type_ = self.lookup_type(type_url)
         if not type_:
             raise KeyError(f'Unregistered type url: {type_url}')

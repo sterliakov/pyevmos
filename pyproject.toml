@@ -12,6 +12,9 @@ classifiers = [
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Build Tools",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
@@ -20,15 +23,14 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "eth-abi ~= 3.0",
-    "eth-account ~= 0.7.0",
-    "eth-hash ~= 0.3",
-    "eth-typing >= 3.1",
-    "eth-utils ~= 2.0",
-    "hexbytes ~= 0.3.0",
+    "eth-abi >= 4.0,<6",
+    "eth-account >= 0.13.0,<0.14",
+    "eth-hash >= 0.7,<0.8",
+    "eth-typing >= 5.0, <6",
+    "eth-utils >= 5.0, <6",
     "bech32 ~= 1.2",
-    "typing_extensions ~= 4.3",
-    "requests ~= 2.28",
+    "typing_extensions >= 4.3",
+    "requests >= 2.28,<3",
     "alt-betterproto ~= 2.0.1",
 ]
 description = "Python port of evmos.js - library to interact with Evmos blockchain"
@@ -42,7 +44,9 @@ requires-python = ">=3.8"
 [project.optional-dependencies]
 dev = [
     "alt-betterproto[compiler] ~= 2.0.1",
+    "mypy >= 1.15.0",
     "pre-commit",
+    "setuptools",
 ]
 docs = [
     'docutils >=0.16, <0.18',  # Sphinx haven't upgraded yet
@@ -53,6 +57,10 @@ test = [
     'pytest>=6.4.0',
     "pytest-cov",
     "python-dotenv",
+]
+types = [
+    'types-protobuf',
+    'types-requests',
 ]
 
 [project.urls]

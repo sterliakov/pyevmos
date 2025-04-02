@@ -82,6 +82,7 @@ def broadcast(
     return post.json()
 
 
+# FIXME: broadcast_mode belongs to ``broadcast``, not here
 def sign_transaction(
     tx: TxGenerated,
     private_key: HexStr,
@@ -90,10 +91,7 @@ def sign_transaction(
     """Sign transaction using payload method (keplr style)."""
     data_to_sign = base64.b64decode(tx.sign_direct.sign_bytes)
 
-    with warnings.catch_warnings():
-        # signHash is deprecated, but there is no alternative to sign raw bytes
-        warnings.filterwarnings('ignore', category=DeprecationWarning)
-        signature_raw = Account.signHash(data_to_sign, private_key=private_key)
+    signature_raw = Account.unsafe_sign_hash(data_to_sign, private_key=private_key)
 
     signed_tx = create_tx_raw(
         bytes(tx.sign_direct.body),
@@ -102,7 +100,7 @@ def sign_transaction(
     )
     return {
         'tx_bytes': base64.b64encode(bytes(signed_tx.message)).decode(),
-        'mode': 'BROADCAST_MODE_BLOCK',
+        'mode': broadcast_mode,
     }
 
 
@@ -118,17 +116,11 @@ def sign_transaction_eip712(
         b'\x19\x01' + hash_domain(tx.eip_to_sign) + hash_message(tx.eip_to_sign)
     )
 
-    with warnings.catch_warnings():
-        # signHash is deprecated, but there is no alternative to sign raw bytes
-        warnings.filterwarnings('ignore', category=DeprecationWarning)
-        signature_raw = Account.signHash(data_to_sign, private_key=private_key)
-
-    signature = signature_raw.signature
-
+    signature_raw = Account.unsafe_sign_hash(data_to_sign, private_key=private_key)
     extension = signature_to_web3_extension(
         chain,
         sender,
-        signature,
+        signature_raw.signature,
     )
     signed_tx = create_tx_raw_eip712(
         tx.legacy_amino.body,

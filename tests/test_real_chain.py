@@ -5,6 +5,7 @@ from pprint import pprint
 
 import pytest
 
+from evmos.provider import BroadcastMode
 from evmos.transactions import create_message_send
 from evmos.wallet import (
     TESTNET_CHAIN,
@@ -30,7 +31,7 @@ def test_send_money_simple(sender, sender_pk, receiver_addr, url):
             'atevmos',
         )
 
-        signed = sign_transaction(tx, sender_pk)
+        signed = sign_transaction(tx, sender_pk, BroadcastMode.SYNC)
         response = broadcast(signed, url)
         pprint(response)
 
@@ -72,7 +73,9 @@ def test_send_money_eip712(receiver, receiver_pk, sender_addr, url):
             'atevmos',
         )
 
-        signed = sign_transaction_eip712(receiver, tx, receiver_pk)
+        signed = sign_transaction_eip712(
+            receiver, tx, receiver_pk, broadcast_mode=BroadcastMode.SYNC
+        )
         response = broadcast(signed, url)
         pprint(response)
 

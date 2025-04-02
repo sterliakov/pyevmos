@@ -6,7 +6,7 @@ from typing import Generic, TypeVar
 from betterproto import Message
 from betterproto.lib.google.protobuf import Any as GoogleAny
 
-_M = TypeVar('_M', bound=Message)
+_M = TypeVar('_M', bound=Message, covariant=True)
 
 
 @dataclass

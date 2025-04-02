@@ -208,23 +208,25 @@ def to_generated(
         types = generate_types(types_def)
 
         # No, I won't make it even more ugly with further typing
-        messages = (  # type: ignore
+        messages_factory = (
             generate_message_with_multiple_transactions if many else generate_message
-        )(
+        )
+        messages = messages_factory(
             str(sender.account_number),
             str(sender.sequence),
             chain.cosmos_chain_id,
             memo,
             fee_object,
-            msg,
+            msg,  # type: ignore[arg-type]
         )
         eip_to_sign = create_eip712(types, chain.chain_id, messages)
 
         # Cosmos
 
-        tx = (
+        tx_factory = (
             create_transaction_with_multiple_messages if many else create_transaction
-        )(
+        )
+        tx = tx_factory(
             msg_cosmos,
             memo,
             fee.amount,

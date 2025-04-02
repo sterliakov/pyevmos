@@ -3,7 +3,8 @@ from __future__ import annotations
 from dataclasses import asdict
 from typing import Any
 
-from eth_account.messages import hash_domain, hash_eip712_message
+from eth_account._utils.encode_typed_data.encoding_and_hashing import hash_struct
+from eth_account.messages import hash_domain
 
 from evmos.eip712.base import EIPToSign
 from evmos.eip712.encoding.decode_amino import decode_amino_sign_doc
@@ -35,18 +36,13 @@ def hash_eip712(eip712: EIPToSign) -> dict[str, Any]:
     """
     try:
         eip712_domain = hash_domain(
-            {
-                'primaryType': 'EIP712Domain',
-                'domain': asdict(eip712.domain),
-                'types': eip712.types,
-            }
+            {k: v for k, v in asdict(eip712.domain).items() if v is not None}
         )
-        eip712_hash = hash_eip712_message(
-            {
-                'primaryType': eip712.primaryType,
-                'message': eip712.message,
-                'types': eip712.types,
-            }
+        # FIXME: private API, just hash manually
+        eip712_hash = hash_struct(
+            eip712.primaryType,
+            eip712.types,
+            eip712.message,
         )
 
         return {

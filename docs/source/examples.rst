@@ -16,7 +16,7 @@ Sending with keplr-style transaction
         sign_transaction,
     )
 
-    url='https://rest.bd.evmos.dev:1317'  # REST API url (here for testnet)
+    url='https://rest.evmos-testnet.lava.build'  # REST API url (here for testnet)
     sender_pk='...'  # Private key (hex, without 0x prefix)
     receiver_addr='evmos1...'  # Receiver address, bech32
 
@@ -58,7 +58,7 @@ Sending with EIP-712 transaction
         sign_transaction_eip712,
     )
 
-    url='https://rest.bd.evmos.dev:1317'  # REST API url (here for testnet)
+    url='https://rest.evmos-testnet.lava.build'  # REST API url (here for testnet)
     sender_pk='...'  # Private key (hex, without 0x prefix)
     receiver_addr='evmos1...'  # Receiver address, bech32
 
