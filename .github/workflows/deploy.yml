@@ -2,55 +2,38 @@ name: PyPi deployment
 
 on:
   push:
-    tags:
-      - '*'
+    tags: ['*']
+
+permissions:
+  contents: read
 
 jobs:
   deploy:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v3
+      - uses: actions/checkout@v4
         with:
-          python-version: '3.10'
-      - name: Install dependencies
-        run: |
-          pip install -U pip setuptools wheel build twine
-          pip install -e .
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: false
+
       - name: Build
-        run: |
-          python -m build
-
-      - name: Publish a Python distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
-
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
+        run: uv build
+      - name: Build
+        run: uv publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          draft: false
-          prerelease: false
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
 
-      - name: Get Asset name
-        run: |
-          export PKG=$(ls dist/ | grep -E 'tar|whl')
-          set -- $PKG
-          echo "name=$1" >> $GITHUB_ENV
-      - name: Upload Release Asset (sdist) to GitHub
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/${{ env.name }}
-          asset_name: ${{ env.name }}
-          asset_content_type: application/zip
+          prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') }}
+          make_latest: ${{ !contains(github.ref, 'alpha') && !contains(github.ref, 'beta') }}
+          generate_release_notes: true
+          files: dist/*

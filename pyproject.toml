@@ -43,7 +43,6 @@ requires-python = ">=3.9"
 [project.optional-dependencies]
 dev = [
     "alt-betterproto[compiler] ~= 2.0.1",
-    "mypy >= 1.15.0",
     "pre-commit",
     "setuptools",
 ]
@@ -53,6 +52,7 @@ docs = [
     "sphinx-rtd-theme",
 ]
 test = [
+    "mypy >= 1.15.0",
     'pytest>=6.4.0',
     "pytest-cov",
     "python-dotenv",
@@ -100,7 +100,6 @@ check_untyped_defs = true
 ignore_missing_imports = true
 incremental = true
 no_implicit_optional = true
-python_version = '3.9'
 show_error_codes = true
 show_traceback = true
 strict_optional = true
