@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict
-from typing import Any
+from typing import Any, cast
 
 from eth_account._utils.encode_typed_data.encoding_and_hashing import hash_struct
 from eth_account.messages import hash_domain
@@ -41,7 +41,7 @@ def hash_eip712(eip712: EIPToSign) -> dict[str, Any]:
         # FIXME: private API, just hash manually
         eip712_hash = hash_struct(
             eip712.primaryType,
-            eip712.types,
+            cast('dict[str, list[dict[str, str]]]', eip712.types),
             eip712.message,
         )
 

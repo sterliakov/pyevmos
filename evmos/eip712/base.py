@@ -5,6 +5,8 @@ from typing import Any, Mapping, Optional, Sequence, TypedDict, Union
 
 from eth_typing import ChecksumAddress, HexAddress
 
+from evmos.utils.eip_712_hash import _FieldT
+
 
 class WithValidator(TypedDict):
     """:class:`~typing.TypedDict` with string ``validator_address`` field."""
@@ -46,8 +48,8 @@ class Domain:
     salt: str | None = None
     """Used salt (usually ``'0'``)."""
 
-    def pick_types(self) -> dict[str, Any]:
-        known_fields = [
+    def pick_types(self) -> list[_FieldT]:
+        known_fields: list[_FieldT] = [
             {'name': 'name', 'type': 'string'},
             {'name': 'version', 'type': 'string'},
             {'name': 'chainId', 'type': 'uint256'},
@@ -61,7 +63,7 @@ class Domain:
 class EIPToSign:
     """EIP message to sign."""
 
-    types: dict[str, Any]
+    types: dict[str, list[_FieldT]]
     """Message types for ABI encoding, mapping name to type."""
     primaryType: str  # noqa: N815
     """Type name of ``message`` attribute."""

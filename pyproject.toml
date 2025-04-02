@@ -9,7 +9,6 @@ requires = [
 [project]
 authors = [{name = "sterliakov", email = "terlya.stas@gmail.com"}]
 classifiers = [
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -141,7 +140,7 @@ check_untyped_defs = true
 ignore_missing_imports = true
 incremental = true
 no_implicit_optional = true
-python_version = '3.8'
+python_version = '3.9'
 show_error_codes = true
 show_traceback = true
 strict_optional = true

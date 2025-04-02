@@ -26,8 +26,8 @@ class TxGeneratedSignInfo:
     """Transaction body."""
     auth_info: tx.AuthInfo
     """Transaction authentication info."""
-    sign_bytes: HexStr
-    """Raw bytes for signing as hex string."""
+    sign_bytes: str
+    """Raw bytes for signing as base64."""
 
 
 @dataclass
@@ -82,6 +82,7 @@ def create_signer_info(
     with provided parameters.
     """
     # NOTE: secp256k1 is going to be removed from evmos
+    pubkey: MessageGenerated[secp.PubKey | eth.PubKey]
     if algo == 'secp256k1':
         pubkey = MessageGenerated(
             message=secp.PubKey(key=public_key),

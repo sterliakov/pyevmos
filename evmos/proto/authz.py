@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime, timedelta, timezone
 from enum import Enum
 from typing import Final
 
@@ -21,15 +22,24 @@ def create_msg_grant(
     granter: str,
     grantee: str,
     grant_message: MessageGenerated[Message],
-    seconds: int,
+    expires_in: int,
 ) -> MessageGenerated[MsgGrant]:
-    """Create grant message."""
+    """Create grant message.
+
+    Args:
+        granter: granter address.
+        grantee: grantee address.
+        grant_message: message to wrap with grant.
+        expires_in: grant duration in seconds.
+    """
+    expiration = datetime.now(timezone.utc) + timedelta(seconds=expires_in)
+    expiration = expiration.replace(microsecond=0)
     msg = MsgGrant(
         granter=granter,
         grantee=grantee,
         grant=Grant(
             authorization=create_any_message(grant_message),
-            expiration=Timestamp(seconds=seconds, nanos=0),
+            expiration=expiration,
         ),
     )
     return MessageGenerated(
