@@ -2,6 +2,7 @@
 # sources: cosmos/bank/v1beta1/authz.proto, cosmos/bank/v1beta1/bank.proto, cosmos/bank/v1beta1/genesis.proto, cosmos/bank/v1beta1/query.proto, cosmos/bank/v1beta1/tx.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,

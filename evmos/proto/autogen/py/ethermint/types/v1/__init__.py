@@ -2,6 +2,7 @@
 # sources: ethermint/types/v1/account.proto, ethermint/types/v1/indexer.proto, ethermint/types/v1/web3.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 
 import betterproto

@@ -2,6 +2,7 @@
 # sources: cosmos/staking/v1beta1/authz.proto, cosmos/staking/v1beta1/genesis.proto, cosmos/staking/v1beta1/query.proto, cosmos/staking/v1beta1/staking.proto, cosmos/staking/v1beta1/tx.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from datetime import (
     datetime,

@@ -2,6 +2,7 @@
 # sources: ibc/applications/interchain_accounts/controller/v1/controller.proto, ibc/applications/interchain_accounts/controller/v1/query.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,

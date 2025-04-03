@@ -2,6 +2,7 @@
 # sources: google/api/annotations.proto, google/api/http.proto, google/api/httpbody.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import List
 

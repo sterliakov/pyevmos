@@ -2,6 +2,7 @@
 # sources: ethermint/evm/v1/evm.proto, ethermint/evm/v1/genesis.proto, ethermint/evm/v1/query.proto, ethermint/evm/v1/tx.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from datetime import datetime
 from typing import (

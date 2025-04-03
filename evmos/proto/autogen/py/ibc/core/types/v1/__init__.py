@@ -2,6 +2,7 @@
 # sources: ibc/core/types/v1/genesis.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 
 import betterproto

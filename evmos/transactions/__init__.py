@@ -3,8 +3,6 @@ from __future__ import annotations
 from collections.abc import Mapping
 from typing import Any
 
-from betterproto import Message
-
 from evmos.eip712 import (
     IBC_MSG_TRANSFER_TYPES,
     MSG_SEND_TYPES,
@@ -200,7 +198,7 @@ def create_message_send(
 def create_tx_raw_eip712(
     body: TxBody,
     auth_info: AuthInfo,
-    extension: MessageGenerated[Message],
+    extension: MessageGenerated[Any],
 ) -> MessageGenerated[TxRaw]:
     """Create a message with raw EIP712 transaction."""
     body.extension_options.append(create_any_message(extension))

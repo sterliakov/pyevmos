@@ -2,6 +2,7 @@
 # sources: evmos/revenue/v1/genesis.proto, evmos/revenue/v1/query.proto, evmos/revenue/v1/revenue.proto, evmos/revenue/v1/tx.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,

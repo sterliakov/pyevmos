@@ -30,7 +30,8 @@ dependencies = [
     "bech32 ~= 1.2",
     "typing_extensions >= 4.3",
     "requests >= 2.28,<3",
-    "alt-betterproto ~= 2.0.1",
+    # 2.0.0-beta7 is broken (https://github.com/danielgtaylor/python-betterproto/pull/609/files)
+    "betterproto == 2.0.0-beta6",
 ]
 description = "Python port of evmos.js - library to interact with Evmos blockchain"
 dynamic = ["version"]
@@ -42,20 +43,16 @@ requires-python = ">=3.9"
 
 [project.optional-dependencies]
 dev = [
-    "alt-betterproto[compiler] ~= 2.0.1",
+    "betterproto[compiler]",
     "pre-commit",
     "setuptools",
-]
-docs = [
-    'docutils >=0.16, <0.18',  # Sphinx haven't upgraded yet
-    "sphinx >=5.1.1, <6.0",
-    "sphinx-rtd-theme",
-]
-test = [
     "mypy >= 1.15.0",
     'pytest>=6.4.0',
     "pytest-cov",
     "python-dotenv",
+    'docutils >=0.16, <0.18',  # Sphinx haven't upgraded yet
+    "sphinx >=5.1.1, <6.0",
+    "sphinx-rtd-theme",
 ]
 types = [
     'types-protobuf',

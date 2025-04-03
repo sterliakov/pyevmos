@@ -2,6 +2,7 @@
 # sources: ibc/lightclients/localhost/v1/localhost.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 
 import betterproto

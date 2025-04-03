@@ -2,6 +2,7 @@
 # sources: evmos/vesting/v1/query.proto, evmos/vesting/v1/tx.proto, evmos/vesting/v1/vesting.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from datetime import datetime
 from typing import (

@@ -2,6 +2,7 @@
 # sources: ibc/lightclients/solomachine/v1/solomachine.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 
 import betterproto

@@ -2,6 +2,7 @@
 # sources: ethermint/crypto/v1/ethsecp256k1/keys.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 
 import betterproto

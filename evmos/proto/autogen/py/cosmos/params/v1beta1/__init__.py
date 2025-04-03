@@ -2,6 +2,7 @@
 # sources: cosmos/params/v1beta1/params.proto, cosmos/params/v1beta1/query.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,

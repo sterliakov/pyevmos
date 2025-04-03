@@ -12,6 +12,9 @@ from typing_extensions import NotRequired
 class BroadcastMode(str, Enum):
     """Broadcasting mode."""
 
+    # Must be in sync with evmos.proto.autogen.py.cosmos.tx.v1beta1.BroadcastMode
+    # but exists as a normal Enum for usability
+
     UNSPECIFIED = "BROADCAST_MODE_UNSPECIFIED"
     """Broadcasting mode unset."""
     BLOCK = "BROADCAST_MODE_BLOCK"
@@ -24,6 +27,9 @@ class BroadcastMode(str, Enum):
 
 class ProposalStatus(str, Enum):
     """Proposal status."""
+
+    # Must be in sync withevmos.proto.autogen.py.cosmos.gov.v1beta1.ProposalStatus
+    # but exists as a normal Enum for usability
 
     UNSPECIFIED = "PROPOSAL_STATUS_UNSPECIFIED"
     """Proposal status unset."""

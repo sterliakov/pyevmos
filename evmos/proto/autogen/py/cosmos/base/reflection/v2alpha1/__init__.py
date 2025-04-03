@@ -2,6 +2,7 @@
 # sources: cosmos/base/reflection/v2alpha1/reflection.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,

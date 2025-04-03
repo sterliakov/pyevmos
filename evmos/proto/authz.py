@@ -2,9 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 from enum import Enum
-from typing import Final
-
-from betterproto import Message
+from typing import Any, Final
 
 from evmos.proto.autogen.py.cosmos.authz.v1beta1 import Grant, MsgGrant, MsgRevoke
 from evmos.proto.autogen.py.cosmos.base.v1beta1 import Coin
@@ -21,7 +19,7 @@ from evmos.proto.utils import MessageGenerated, create_any_message
 def create_msg_grant(
     granter: str,
     grantee: str,
-    grant_message: MessageGenerated[Message],
+    grant_message: MessageGenerated[Any],
     expires_in: int,
 ) -> MessageGenerated[MsgGrant]:
     """Create grant message.

@@ -2,6 +2,7 @@
 # sources: cosmos/base/store/v1beta1/commit_info.proto, cosmos/base/store/v1beta1/listening.proto, cosmos/base/store/v1beta1/snapshot.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import List
 

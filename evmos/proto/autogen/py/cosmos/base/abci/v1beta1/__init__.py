@@ -2,6 +2,7 @@
 # sources: cosmos/base/abci/v1beta1/abci.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import List
 

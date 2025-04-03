@@ -10,9 +10,9 @@ OUT=$OUT_RST/_proto_auto/
 OUT_RST_INDEX=docs/source/autogen_proto.rst
 template=/out/_template.html
 
-sudo rm -rf "$OUT_RST"
+rm -rf "$OUT_RST"
 mkdir -p "$OUT_RST"
-sudo rm -rf "$OUT"
+rm -rf "$OUT"
 mkdir -p "$OUT"
 
 cp docs/source/_templates/proto.html "${OUT}_template.html"
@@ -96,11 +96,13 @@ for f in $(find "$OUT" -type f | sort); do
     } >>"$final_rst"
 done
 
-sudo chown -R "$(id -u)" "$OUT_RST"
-sudo chmod -R 666 "$OUT_RST"
-sudo chmod 777 "$OUT_RST"
-sudo chown -R "$(id -u)" "$OUT"
-sudo chmod -R 666 "$OUT"
-sudo chmod 777 "$OUT"
-sudo chown "$(id -u)" "$OUT_RST_INDEX"
-sudo chmod 666 "$OUT_RST_INDEX"
+chown -R "$(id -u)" "$OUT_RST"
+chmod -R 666 "$OUT_RST"
+chmod 777 "$OUT_RST"
+chown -R "$(id -u)" "$OUT"
+chmod -R 666 "$OUT"
+chmod 777 "$OUT"
+chown "$(id -u)" "$OUT_RST_INDEX"
+chmod 666 "$OUT_RST_INDEX"
+
+pre-commit run -a trailing-whitespace || true

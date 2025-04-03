@@ -2,6 +2,7 @@
 # sources: evmos/inflation/v1/genesis.proto, evmos/inflation/v1/inflation.proto, evmos/inflation/v1/query.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,

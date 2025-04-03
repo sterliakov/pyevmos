@@ -67,7 +67,7 @@ diff --git b/evmos/proto/autogen/py/ibc/core/channel/v1/__init__.py a/evmos/prot
 index 2435714..16e928d 100644
 --- b/evmos/proto/autogen/py/ibc/core/channel/v1/__init__.py
 +++ a/evmos/proto/autogen/py/ibc/core/channel/v1/__init__.py
-@@ -206,7 +206,7 @@ class Acknowledgement(betterproto.Message):
+@@ -207,7 +207,7 @@ class Acknowledgement(betterproto.Message):
      conflicts with other protobuf message formats used for acknowledgements.
      The first byte of any message with this format will be the non-ASCII values
      `0xaa` (result) or `0xb2` (error). Implemented as defined by ICS:
@@ -75,7 +75,7 @@ index 2435714..16e928d 100644
 +    https://github.com/cosmos/ibc/tree/main/spec/core/ics-004-channel-and-packet-semantics
      """
 
-     result: bytes = betterproto.bytes_field(21, group='response')
+     result: bytes = betterproto.bytes_field(21, group="response")
 diff --git b/evmos/proto/autogen/py/tendermint/types/__init__.py a/evmos/proto/autogen/py/tendermint/types/__init__.py
 index 42e7137..0ac64b3 100644
 --- b/evmos/proto/autogen/py/tendermint/types/__init__.py

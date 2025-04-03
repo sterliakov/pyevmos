@@ -2,6 +2,7 @@
 # sources: ibc/applications/interchain_accounts/v1/account.proto, ibc/applications/interchain_accounts/v1/genesis.proto, ibc/applications/interchain_accounts/v1/metadata.proto, ibc/applications/interchain_accounts/v1/packet.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import List
 

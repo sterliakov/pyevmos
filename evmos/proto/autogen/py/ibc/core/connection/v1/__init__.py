@@ -2,6 +2,7 @@
 # sources: ibc/core/connection/v1/connection.proto, ibc/core/connection/v1/genesis.proto, ibc/core/connection/v1/query.proto, ibc/core/connection/v1/tx.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,

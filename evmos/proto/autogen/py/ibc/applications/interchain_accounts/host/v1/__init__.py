@@ -2,6 +2,7 @@
 # sources: ibc/applications/interchain_accounts/host/v1/host.proto, ibc/applications/interchain_accounts/host/v1/query.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,

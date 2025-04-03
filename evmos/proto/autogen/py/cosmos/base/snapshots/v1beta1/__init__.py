@@ -2,6 +2,7 @@
 # sources: cosmos/base/snapshots/v1beta1/snapshot.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import List
 

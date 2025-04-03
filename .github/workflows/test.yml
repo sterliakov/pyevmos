@@ -41,11 +41,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install deps
-        run: uv sync --extra test --extra types
+        run: uv sync --extra types --no-install-project
       - name: Run mypy
-        run: |
-          . .venv/bin/activate
-          mypy evmos
+        run: uv run mypy evmos
 
   test:
     runs-on: ubuntu-latest
@@ -63,7 +61,7 @@ jobs:
       - uses: astral-sh/setup-uv@v5
 
       - name: Install deps
-        run: uv sync --extra test
+        run: uv sync --no-install-project
 
       - name: Run regular tests
         run: pytest -vv
@@ -82,7 +80,7 @@ jobs:
       - uses: astral-sh/setup-uv@v5
 
       - name: Install deps
-        run: uv sync --extra docs
+        run: uv sync --no-install-project
 
       - name: Make docs
         run: |

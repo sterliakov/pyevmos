@@ -2,6 +2,7 @@
 # sources: ethermint/feemarket/v1/feemarket.proto, ethermint/feemarket/v1/genesis.proto, ethermint/feemarket/v1/query.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,

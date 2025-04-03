@@ -2,6 +2,7 @@
 # sources: ibc/lightclients/tendermint/v1/tendermint.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from datetime import (
     datetime,

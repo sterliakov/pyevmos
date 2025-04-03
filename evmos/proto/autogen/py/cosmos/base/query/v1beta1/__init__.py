@@ -2,6 +2,7 @@
 # sources: cosmos/base/query/v1beta1/pagination.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 
 import betterproto

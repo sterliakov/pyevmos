@@ -2,6 +2,7 @@
 # sources: evmos/claims/v1/claims.proto, evmos/claims/v1/genesis.proto, evmos/claims/v1/query.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from datetime import (
     datetime,

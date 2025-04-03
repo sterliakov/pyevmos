@@ -3,6 +3,9 @@
 set -euo pipefail
 shopt -s globstar
 
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+plugin_path=$script_dir/betterproto_wrapped.py
+
 cd evmos/proto
 
 root_dir=$(pwd)/autogen
@@ -13,11 +16,14 @@ rm -rf "${dest_py_dir:?must be set}"/*
 cd "$protos_dir"
 
 protoc \
-    --python_betterproto_out="$dest_py_dir" \
+    --python_betterproto_wrapped_out="$dest_py_dir" \
+    --plugin=protoc-gen-python_betterproto_wrapped="$plugin_path" \
     -I "$protos_dir" \
     "$protos_dir"/**/*.proto
 touch "$dest_py_dir/__init__.py"
 
 cd "$root_dir"
-pre-commit run --all-files &>/dev/null || true
+pre-commit run -a trailing-whitespace || true
+pre-commit run -a ruff-format || true
+# This step isn't critical and only applies cosmetic links changes
 git apply links.patch

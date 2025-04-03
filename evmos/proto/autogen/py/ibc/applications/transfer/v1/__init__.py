@@ -2,6 +2,7 @@
 # sources: ibc/applications/transfer/v1/genesis.proto, ibc/applications/transfer/v1/query.proto, ibc/applications/transfer/v1/transfer.proto, ibc/applications/transfer/v1/tx.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,

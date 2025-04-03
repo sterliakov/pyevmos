@@ -2,6 +2,7 @@
 # sources: evmos/erc20/v1/erc20.proto, evmos/erc20/v1/genesis.proto, evmos/erc20/v1/query.proto, evmos/erc20/v1/tx.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,
@@ -327,6 +328,7 @@ class MsgStub(betterproto.ServiceStub):
 
     async def convert_erc20(
         self,
+        msg_convert_erc20: "MsgConvertErc20",
         *,
         timeout: Optional[float] = None,
         deadline: Optional["Deadline"] = None,
@@ -410,7 +412,9 @@ class MsgBase(ServiceBase):
     ) -> "MsgConvertCoinResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
-    async def convert_erc20(self) -> "MsgConvertErc20Response":
+    async def convert_erc20(
+        self, msg_convert_erc20: "MsgConvertErc20"
+    ) -> "MsgConvertErc20Response":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_convert_coin(

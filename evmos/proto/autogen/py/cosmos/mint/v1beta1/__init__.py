@@ -2,6 +2,7 @@
 # sources: cosmos/mint/v1beta1/genesis.proto, cosmos/mint/v1beta1/mint.proto, cosmos/mint/v1beta1/query.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,

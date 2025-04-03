@@ -2,6 +2,7 @@
 # sources: cosmos/slashing/v1beta1/genesis.proto, cosmos/slashing/v1beta1/query.proto, cosmos/slashing/v1beta1/slashing.proto, cosmos/slashing/v1beta1/tx.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from datetime import (
     datetime,

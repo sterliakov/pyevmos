@@ -3,7 +3,7 @@ from __future__ import annotations
 import base64
 from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Any, Final
+from typing import Any
 
 from eth_utils import keccak
 
@@ -13,9 +13,6 @@ from evmos.proto.autogen.py.cosmos.tx import v1beta1 as tx
 from evmos.proto.autogen.py.cosmos.tx.signing.v1beta1 import SignMode
 from evmos.proto.autogen.py.ethermint.crypto.v1 import ethsecp256k1 as eth
 from evmos.proto.utils import MessageGenerated, create_any_message
-
-SIGN_DIRECT: Final = SignMode.SIGN_MODE_DIRECT
-LEGACY_AMINO: Final = SignMode.SIGN_MODE_LEGACY_AMINO_JSON
 
 
 @dataclass
@@ -74,7 +71,7 @@ def create_signer_info(
     algo: str,
     public_key: bytes,
     sequence: int,
-    mode: int | SignMode,
+    mode: SignMode,
 ) -> tx.SignerInfo:
     """Create a SignerInfo instance.
 
@@ -98,9 +95,7 @@ def create_signer_info(
 
     return tx.SignerInfo(
         public_key=create_any_message(pubkey),
-        mode_info=tx.ModeInfo(
-            single=tx.ModeInfoSingle(mode=mode)  # type: ignore[arg-type]
-        ),
+        mode_info=tx.ModeInfo(single=tx.ModeInfoSingle(mode=mode)),
         sequence=sequence,
     )
 
@@ -152,7 +147,7 @@ def create_transaction_with_multiple_messages(
         algo,
         bytes(pub_key_decoded),
         sequence,
-        LEGACY_AMINO,
+        SignMode.SIGN_MODE_LEGACY_AMINO_JSON,
     )
 
     auth_info_amino = create_auth_info(sign_info_amino, fee_message)
@@ -171,7 +166,7 @@ def create_transaction_with_multiple_messages(
         algo,
         bytes(pub_key_decoded),
         sequence,
-        SIGN_DIRECT,
+        SignMode.SIGN_MODE_DIRECT,
     )
 
     auth_info_direct = create_auth_info(sign_info_direct, fee_message)

@@ -6,7 +6,7 @@ from betterproto import casing
 
 from evmos.proto import create_msg_send
 from evmos.proto.transactions import (
-    SIGN_DIRECT,
+    SignMode,
     create_auth_info,
     create_body,
     create_fee,
@@ -50,7 +50,9 @@ def test_create_fee():
 
 def test_create_signer_info(pubkey):
     sequence = 0
-    info = create_signer_info("ethsecp256k1", pubkey, sequence, SIGN_DIRECT)
+    info = create_signer_info(
+        "ethsecp256k1", pubkey, sequence, SignMode.SIGN_MODE_DIRECT
+    )
     assert info.to_pydict(casing=casing.snake_case) == {
         "public_key": {
             "type_url": "/ethermint.crypto.v1.ethsecp256k1.PubKey",
@@ -62,7 +64,9 @@ def test_create_signer_info(pubkey):
 
 def test_create_auth_info(pubkey):
     sequence = 0
-    info = create_signer_info("ethsecp256k1", pubkey, sequence, SIGN_DIRECT)
+    info = create_signer_info(
+        "ethsecp256k1", pubkey, sequence, SignMode.SIGN_MODE_DIRECT
+    )
     value = "20"
     denom = "aphoton"
     gas = 20000
@@ -76,7 +80,7 @@ def test_create_auth_info(pubkey):
                     "type_url": "/ethermint.crypto.v1.ethsecp256k1.PubKey",
                     "value": b"\x0a\x23" + pubkey,
                 },
-                "mode_info": {"single": {"mode": SIGN_DIRECT}},
+                "mode_info": {"single": {"mode": SignMode.SIGN_MODE_DIRECT}},
             },
         ],
         "fee": {
@@ -96,7 +100,9 @@ def test_create_sig_doc(pubkey):
     body = create_body(msg_send, "this is a test")
 
     sequence = 0
-    info = create_signer_info("ethsecp256k1", pubkey, sequence, SIGN_DIRECT)
+    info = create_signer_info(
+        "ethsecp256k1", pubkey, sequence, SignMode.SIGN_MODE_DIRECT
+    )
     value = "20"
     denom = "aphoton"
     gas = 20000

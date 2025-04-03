@@ -2,6 +2,7 @@
 # sources: tendermint/crypto/keys.proto, tendermint/crypto/proof.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import List
 
