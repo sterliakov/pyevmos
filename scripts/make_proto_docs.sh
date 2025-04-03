@@ -106,3 +106,4 @@ chown "$(id -u)" "$OUT_RST_INDEX"
 chmod 666 "$OUT_RST_INDEX"
 
 pre-commit run -a trailing-whitespace || true
+pre-commit run -a end-of-file-fixer || true

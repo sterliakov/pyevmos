@@ -23,7 +23,7 @@ index 4e127dc..72500e5 100644
 +    `RFC 6570 <https://www.rfc-editor.org/rfc/rfc6570>`_ Section 3.2.2 Simple String
      Expansion, the multi segment variable **does not** follow RFC 6570 Section
      3.2.3 Reserved Expansion. The reason is that the Reserved Expansion
-     does not expand special characters like `?` and `#`, which would lead
+     does not expand special characters like `?` and `#`\\s, which would lead
 diff --git b/evmos/proto/autogen/py/ibc/applications/interchain_accounts/v1/__init__.py a/evmos/proto/autogen/py/ibc/applications/interchain_accounts/v1/__init__.py
 index 961938d..762470a 100644
 --- b/evmos/proto/autogen/py/ibc/applications/interchain_accounts/v1/__init__.py
