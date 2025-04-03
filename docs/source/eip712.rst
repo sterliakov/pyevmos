@@ -1,6 +1,11 @@
 EIP-712 messages
 ================
 
+.. warning::
+
+	This package only features legacy-style EIP712 signing which is deprecated
+	and may not be supported by nodes operating the network.
+
 Miscellaneous
 -------------
 .. automodule:: evmos.eip712
