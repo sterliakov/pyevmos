@@ -6,6 +6,17 @@ requires = [
     'toml>=0.10.1;python_version<"3.11"',
 ]
 
+[dependency-groups]
+dev = [
+    "betterproto[compiler]",
+    "pre-commit",
+    "setuptools",
+    "mypy >= 1.15.0",
+    'pytest>=6.4.0',
+    "pytest-cov",
+    "python-dotenv",
+]
+
 [project]
 authors = [{name = "sterliakov", email = "terlya.stas@gmail.com"}]
 classifiers = [
@@ -42,16 +53,9 @@ readme = "README.md"
 requires-python = ">=3.9"
 
 [project.optional-dependencies]
-dev = [
-    "betterproto[compiler]",
-    "pre-commit",
-    "setuptools",
-    "mypy >= 1.15.0",
-    'pytest>=6.4.0',
-    "pytest-cov",
-    "python-dotenv",
-    'docutils >=0.16, <0.18',  # Sphinx haven't upgraded yet
-    "sphinx >=5.1.1, <6.0",
+docs = [
+    "docutils>=0.21.2,<0.22",
+    "sphinx>=6,<9",
     "sphinx-rtd-theme",
 ]
 types = [

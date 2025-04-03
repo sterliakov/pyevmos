@@ -593,7 +593,7 @@ class MsgMultiSend(betterproto.Message):
 
     inputs: List["Input"] = betterproto.message_field(1)
     """
-    Inputs, despite being `repeated`, only allows one sender input. This is
+    Inputs, despite being `repeated`\\s, only allows one sender input. This is
     checked in MsgMultiSend's ValidateBasic.
     """
 

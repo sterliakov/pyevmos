@@ -75,7 +75,7 @@ class Header(betterproto.Message):
     """
     proposer_address is the original block proposer address, formatted as a Bech32
     string.
-    In Tendermint, this type is `bytes`, but in the SDK, we convert it to a Bech32
+    In Tendermint, this type is `bytes`\\s, but in the SDK, we convert it to a Bech32
     string
     for better UX.
     """

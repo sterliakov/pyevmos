@@ -143,7 +143,7 @@ class Member(betterproto.Message):
 class MemberRequest(betterproto.Message):
     """
     MemberRequest represents a group member to be used in Msg server requests.
-    Contrary to `Member`, it doesn't have any `added_at` field
+    Contrary to `Member`\\s, it doesn't have any `added_at` field
     since this field cannot be set as part of requests.
     """
 
@@ -163,9 +163,9 @@ class ThresholdDecisionPolicy(betterproto.Message):
     ThresholdDecisionPolicy is a decision policy where a proposal passes when it
     satisfies the two following conditions:
     1. The sum of all `YES` voter's weights is greater or equal than the defined
-       `threshold`.
+       `threshold`\\s.
     2. The voting and execution periods of the proposal respect the parameters
-       given by `windows`.
+       given by `windows`\\s.
     """
 
     threshold: str = betterproto.string_field(1)
@@ -184,9 +184,9 @@ class PercentageDecisionPolicy(betterproto.Message):
     PercentageDecisionPolicy is a decision policy where a proposal passes when
     it satisfies the two following conditions:
     1. The percentage of all `YES` voters' weights out of the total group weight
-       is greater or equal than the given `percentage`.
+       is greater or equal than the given `percentage`\\s.
     2. The voting and execution periods of the proposal respect the parameters
-       given by `windows`.
+       given by `windows`\\s.
     """
 
     percentage: str = betterproto.string_field(1)
@@ -220,7 +220,7 @@ class DecisionPolicyWindows(betterproto.Message):
     where max_execution_period is a app-specific config, defined in the keeper.
     If not set, min_execution_period will default to 0.
     Please make sure to set a `min_execution_period` that is smaller than
-    `voting_period + max_execution_period`, or else the above execution window
+    `voting_period + max_execution_period`\\s, or else the above execution window
     is empty, meaning that all proposals created with this decision policy
     won't be able to be executed.
     """
@@ -311,7 +311,7 @@ class Proposal(betterproto.Message):
     """
     Proposal defines a group proposal. Any member of a group can submit a proposal
     for a group policy to decide upon.
-    A proposal consists of a set of `sdk.Msg`s that will be executed if the proposal
+    A proposal consists of a set of `sdk.Msg`\\ss that will be executed if the proposal
     passes as well as some optional metadata associated with the proposal.
     """
 
@@ -367,7 +367,7 @@ class Proposal(betterproto.Message):
     voting_period_end is the timestamp before which voting must be done.
     Unless a successful MsgExec is called before (to execute a proposal whose
     tally is successful before the voting period ends), tallying will be done
-    at this point, and the `final_tally_result`and `status` fields will be
+    at this point, and the `final_tally_result`\\sand `status` fields will be
     accordingly updated.
     """
 
@@ -381,7 +381,7 @@ class Proposal(betterproto.Message):
         12
     )
     """
-    messages is a list of `sdk.Msg`s that will be executed if the proposal passes.
+    messages is a list of `sdk.Msg`\\ss that will be executed if the proposal passes.
     """
 
     title: str = betterproto.string_field(13)
@@ -1132,7 +1132,7 @@ class MsgSubmitProposal(betterproto.Message):
 
     messages: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(4)
     """
-    messages is a list of `sdk.Msg`s that will be executed if the proposal passes.
+    messages is a list of `sdk.Msg`\\ss that will be executed if the proposal passes.
     """
 
     exec: "Exec" = betterproto.enum_field(5)

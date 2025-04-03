@@ -1,8 +1,9 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# This file only contains a selection of the most common options. For a full
-# list see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+"""Configuration file for the Sphinx documentation builder.
+
+This file only contains a selection of the most common options. For a full
+list see the documentation:
+https://www.sphinx-doc.org/en/master/usage/configuration.html
+"""
 
 from __future__ import annotations
 
@@ -17,15 +18,10 @@ import sys
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.insert(0, os.path.abspath("."))
 
-from ext.monkey_patch_sphinx import monkey_patch
-
-monkey_patch()
-
-
 # -- Project information -----------------------------------------------------
 
 project = "evmos"
-copyright = "2022, protodjango"
+copyright = "2022, protodjango"  # noqa: A001
 author = "protodjango"
 
 # The full version, including alpha/beta/rc tags
@@ -44,7 +40,7 @@ extensions = [
     "sphinx.ext.intersphinx",  # References
     "sphinx.ext.viewcode",  # Links to source
     # Custom
-    "ext.monkey_patch_sphinx",
+    "ext",
 ]
 
 # Add any paths that contain templates here, relative to this directory.

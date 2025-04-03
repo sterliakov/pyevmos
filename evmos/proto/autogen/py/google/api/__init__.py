@@ -87,8 +87,8 @@ class HttpRule(betterproto.Message):
             string subfield = 1;
           }
           string message_id = 1; // Mapped to URL path.
-          int64 revision = 2;    // Mapped to URL query parameter `revision`.
-          SubMessage sub = 3;    // Mapped to URL query parameter `sub.subfield`.
+          int64 revision = 2;    // Mapped to URL query parameter `revision`\\s.
+          SubMessage sub = 3;    // Mapped to URL query parameter `sub.subfield`\\s.
         }
     This enables a HTTP JSON to RPC mapping as below:
     - HTTP: `GET /v1/messages/123456?revision=2&sub.subfield=foo`
@@ -97,9 +97,9 @@ class HttpRule(betterproto.Message):
     Note that fields which are mapped to URL query parameters must have a
     primitive type or a repeated primitive type or a non-repeated message type.
     In the case of a repeated type, the parameter can be repeated in the URL
-    as `...?param=A&param=B`. In the case of a message type, each field of the
+    as `...?param=A&param=B`\\s. In the case of a message type, each field of the
     message is mapped to a separate parameter, such as
-    `...?foo.a=A&foo.b=B&foo.c=C`.
+    `...?foo.a=A&foo.b=B&foo.c=C`\\s.
     For HTTP methods that allow a request body, the `body` field
     specifies the mapping. Consider a REST update method on the
     message resource collection:
@@ -191,29 +191,29 @@ class HttpRule(betterproto.Message):
         Verb     = ":" LITERAL ;
     The syntax `*` matches a single URL path segment. The syntax `**` matches
     zero or more URL path segments, which must be the last part of the URL path
-    except the `Verb`.
+    except the `Verb`\\s.
     The syntax `Variable` matches part of the URL path as specified by its
     template. A variable template must not contain other variables. If a variable
     matches a single path segment, its template may be omitted, e.g. `{var}`
-    is equivalent to `{var=*}`.
+    is equivalent to `{var=*}`\\s.
     The syntax `LITERAL` matches literal text in the URL path. If the `LITERAL`
     contains any reserved character, such characters should be percent-encoded
     before the matching.
     If a variable contains exactly one path segment, such as `"{var}"` or
-    `"{var=*}"`, when such a variable is expanded into a URL path on the client
+    `"{var=*}"`\\s, when such a variable is expanded into a URL path on the client
     side, all characters except `[-_.~0-9a-zA-Z]` are percent-encoded. The
     server side does the reverse decoding. Such variables show up in the
     [Discovery
     Document](https://developers.google.com/discovery/v1/reference/apis) as
-    `{var}`.
+    `{var}`\\s.
     If a variable contains multiple path segments, such as `"{var=foo/*}"`
-    or `"{var=**}"`, when such a variable is expanded into a URL path on the
+    or `"{var=**}"`\\s, when such a variable is expanded into a URL path on the
     client side, all characters except `[-_.~/0-9a-zA-Z]` are percent-encoded.
     The server side does the reverse decoding, except "%2F" and "%2f" are left
     unchanged. Such variables show up in the
     [Discovery
     Document](https://developers.google.com/discovery/v1/reference/apis) as
-    `{+var}`.
+    `{+var}`\\s.
     Using gRPC API Service Configuration
     gRPC API Service Configuration (service config) is a configuration language
     for configuring a gRPC service to become a user-facing product. The
@@ -239,7 +239,7 @@ class HttpRule(betterproto.Message):
     `RFC 6570 <https://www.rfc-editor.org/rfc/rfc6570>`_ Section 3.2.2 Simple String
     Expansion, the multi segment variable **does not** follow RFC 6570 Section
     3.2.3 Reserved Expansion. The reason is that the Reserved Expansion
-    does not expand special characters like `?` and `#`, which would lead
+    does not expand special characters like `?` and `#`\\s, which would lead
     to invalid URLs. As the result, gRPC Transcoding uses a custom encoding
     for multi segment variables.
     The path variables **must not** refer to any repeated or mapped field,

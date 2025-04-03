@@ -44,5 +44,4 @@ pip install .
 
 Supported extras:
 
-- `dev`: install development dependencies (`pip install evmos[dev]`).
 - `types`: install stubs for untyped dependencies.

@@ -47,7 +47,7 @@ class SignMode(betterproto.Enum):
     """
     SIGN_MODE_DIRECT_AUX specifies a signing mode which uses
     SignDocDirectAux. As opposed to SIGN_MODE_DIRECT, this sign mode does not
-    require signers signing over other signers' `signer_info`.
+    require signers signing over other signers' `signer_info`\\s.
     Since: cosmos-sdk 0.46
     """
 
