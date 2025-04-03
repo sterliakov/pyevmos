@@ -84,3 +84,15 @@ intersphinx_mapping = {
     "eth_typing": ("https://eth-typing.readthedocs.io/en/latest/", None),
     "betterproto": ("https://test-betterproto.readthedocs.io/en/docs/", None),
 }
+
+# Linkcheck
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-linkcheck_anchors_ignore_for_url
+linkcheck_anchors_ignore_for_url = [
+    r"https://github\.com/.*",
+    r"https://docs\.cosmos\.network/.*",
+]
+linkcheck_ignore = [
+    # 403, perhaps paywall. I cannot find a free copy other than a draft at
+    # https://safecurves.cr.yp.to/grouper.ieee.org/groups/1363/private/x9-62-09-20-98.pdf
+    r"https://webstore\.ansi\.org/Standards/ASCX9/ansix9621998"
+]

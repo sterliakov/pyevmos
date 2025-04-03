@@ -1,7 +1,7 @@
 """Hashing utilities for EIP-712 messages.
 
 Copied under the MIT license from
-https://github.com/ethereum/eth-account/blob/master/eth_account/_utils/structured_data/hashing.py
+https://github.com/ethereum/eth-account/blob/main/eth_account/_utils/encode_typed_data/encoding_and_hashing.py
 with minor modifications.
 """
 
