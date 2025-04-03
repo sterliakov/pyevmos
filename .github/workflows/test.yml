@@ -36,25 +36,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  typecheck:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-      - uses: astral-sh/setup-uv@v5
-
-      - name: Install deps
-        run: uv sync --extra types --no-install-project
-      - name: Run mypy
-        run: uv run mypy evmos
-
   test:
     runs-on: ubuntu-latest
     strategy:
@@ -71,7 +52,10 @@ jobs:
       - uses: astral-sh/setup-uv@v5
 
       - name: Install deps
-        run: uv sync --no-install-project
+        run: uv sync --extra types --no-install-project
+
+      - name: Run mypy
+        run: uv run mypy evmos
 
       - name: Run regular tests
         run: uv run pytest -vv
