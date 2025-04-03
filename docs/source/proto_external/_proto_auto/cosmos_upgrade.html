@@ -167,6 +167,21 @@
 
 
           <li>
+            <a href="#cosmos/upgrade/module/v1/module.proto">cosmos/upgrade/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.upgrade.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/upgrade/v1beta1/query.proto">cosmos/upgrade/v1beta1/query.proto</a>
             <ul>
 
@@ -176,6 +191,14 @@
 
                 <li>
                   <a href="#cosmos.upgrade.v1beta1.QueryAppliedPlanResponse"><span class="badge">M</span>QueryAppliedPlanResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.upgrade.v1beta1.QueryAuthorityRequest"><span class="badge">M</span>QueryAuthorityRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.upgrade.v1beta1.QueryAuthorityResponse"><span class="badge">M</span>QueryAuthorityResponse</a>
                 </li>
 
                 <li>
@@ -214,6 +237,37 @@
 
 
           <li>
+            <a href="#cosmos/upgrade/v1beta1/tx.proto">cosmos/upgrade/v1beta1/tx.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.upgrade.v1beta1.MsgCancelUpgrade"><span class="badge">M</span>MsgCancelUpgrade</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.upgrade.v1beta1.MsgCancelUpgradeResponse"><span class="badge">M</span>MsgCancelUpgradeResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.upgrade.v1beta1.MsgSoftwareUpgrade"><span class="badge">M</span>MsgSoftwareUpgrade</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.upgrade.v1beta1.MsgSoftwareUpgradeResponse"><span class="badge">M</span>MsgSoftwareUpgradeResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.upgrade.v1beta1.Msg"><span class="badge">S</span>Msg</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/upgrade/v1beta1/upgrade.proto">cosmos/upgrade/v1beta1/upgrade.proto</a>
             <ul>
 
@@ -242,6 +296,44 @@
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/upgrade/module/v1/module.proto">cosmos/upgrade/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.upgrade.module.v1.Module">Module</h3>
+        <p>Module is the config object of the upgrade module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority defines the custom module authority. If not set, defaults to the governance module. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -290,6 +382,37 @@
                   <td><a href="#int64">int64</a></td>
                   <td></td>
                   <td><p>height is the block height at which the plan was applied. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.upgrade.v1beta1.QueryAuthorityRequest">QueryAuthorityRequest</h3>
+        <p>QueryAuthorityRequest is the request type for Query/Authority</p><p>Since: cosmos-sdk 0.46</p>
+
+
+
+
+
+        <h3 id="cosmos.upgrade.v1beta1.QueryAuthorityResponse">QueryAuthorityResponse</h3>
+        <p>QueryAuthorityResponse is the response type for Query/Authority</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
 
             </tbody>
@@ -478,6 +601,15 @@ This rpc is deprecated now that IBC has its own replacement
 Since: cosmos-sdk 0.43</p></td>
               </tr>
 
+              <tr>
+                <td>Authority</td>
+                <td><a href="#cosmos.upgrade.v1beta1.QueryAuthorityRequest">QueryAuthorityRequest</a></td>
+                <td><a href="#cosmos.upgrade.v1beta1.QueryAuthorityResponse">QueryAuthorityResponse</a></td>
+                <td><p>Returns the account with authority to conduct upgrades
+
+Since: cosmos-sdk 0.46</p></td>
+              </tr>
+
           </tbody>
         </table>
 
@@ -557,8 +689,132 @@ Since: cosmos-sdk 0.43</p></td>
               </tr>
 
 
+
+
+              <tr>
+                <td>Authority</td>
+                <td>GET</td>
+                <td>/cosmos/upgrade/v1beta1/authority</td>
+                <td></td>
+              </tr>
+
+
             </tbody>
           </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/upgrade/v1beta1/tx.proto">cosmos/upgrade/v1beta1/tx.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Since: cosmos-sdk 0.46</p>
+
+
+        <h3 id="cosmos.upgrade.v1beta1.MsgCancelUpgrade">MsgCancelUpgrade</h3>
+        <p>MsgCancelUpgrade is the Msg/CancelUpgrade request type.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address that controls the module (defaults to x/gov unless overwritten). </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.upgrade.v1beta1.MsgCancelUpgradeResponse">MsgCancelUpgradeResponse</h3>
+        <p>MsgCancelUpgradeResponse is the Msg/CancelUpgrade response type.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+
+
+
+        <h3 id="cosmos.upgrade.v1beta1.MsgSoftwareUpgrade">MsgSoftwareUpgrade</h3>
+        <p>MsgSoftwareUpgrade is the Msg/SoftwareUpgrade request type.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address that controls the module (defaults to x/gov unless overwritten). </p></td>
+                </tr>
+
+                <tr>
+                  <td>plan</td>
+                  <td><a href="#cosmos.upgrade.v1beta1.Plan">Plan</a></td>
+                  <td></td>
+                  <td><p>plan is the upgrade plan. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.upgrade.v1beta1.MsgSoftwareUpgradeResponse">MsgSoftwareUpgradeResponse</h3>
+        <p>MsgSoftwareUpgradeResponse is the Msg/SoftwareUpgrade response type.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.upgrade.v1beta1.Msg">Msg</h3>
+        <p>Msg defines the upgrade Msg service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>SoftwareUpgrade</td>
+                <td><a href="#cosmos.upgrade.v1beta1.MsgSoftwareUpgrade">MsgSoftwareUpgrade</a></td>
+                <td><a href="#cosmos.upgrade.v1beta1.MsgSoftwareUpgradeResponse">MsgSoftwareUpgradeResponse</a></td>
+                <td><p>SoftwareUpgrade is a governance operation for initiating a software upgrade.
+
+Since: cosmos-sdk 0.46</p></td>
+              </tr>
+
+              <tr>
+                <td>CancelUpgrade</td>
+                <td><a href="#cosmos.upgrade.v1beta1.MsgCancelUpgrade">MsgCancelUpgrade</a></td>
+                <td><a href="#cosmos.upgrade.v1beta1.MsgCancelUpgradeResponse">MsgCancelUpgradeResponse</a></td>
+                <td><p>CancelUpgrade is a governance operation for cancelling a previously
+approved software upgrade.
+
+Since: cosmos-sdk 0.46</p></td>
+              </tr>
+
+          </tbody>
+        </table>
 
 
 
@@ -570,7 +826,7 @@ Since: cosmos-sdk 0.43</p></td>
 
 
         <h3 id="cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal">CancelSoftwareUpgradeProposal</h3>
-        <p>CancelSoftwareUpgradeProposal is a gov Content type for cancelling a software</p><p>upgrade.</p>
+        <p>CancelSoftwareUpgradeProposal is a gov Content type for cancelling a software</p><p>upgrade.</p><p>Deprecated: This legacy proposal is deprecated in favor of Msg-based gov</p><p>proposals, see MsgCancelUpgrade.</p>
 
 
           <table class="field-table">
@@ -583,14 +839,14 @@ Since: cosmos-sdk 0.43</p></td>
                   <td>title</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>title of the proposal </p></td>
                 </tr>
 
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>description of the proposal </p></td>
                 </tr>
 
             </tbody>
@@ -667,8 +923,7 @@ If this field is not empty, an error will be thrown. </p></td>
                   <td>height</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>The height at which the upgrade must be performed.
-Only used if Time is not set. </p></td>
+                  <td><p>The height at which the upgrade must be performed. </p></td>
                 </tr>
 
                 <tr>
@@ -722,7 +977,7 @@ If this field is not empty, an error will be thrown. </p></td>
 
 
         <h3 id="cosmos.upgrade.v1beta1.SoftwareUpgradeProposal">SoftwareUpgradeProposal</h3>
-        <p>SoftwareUpgradeProposal is a gov Content type for initiating a software</p><p>upgrade.</p>
+        <p>SoftwareUpgradeProposal is a gov Content type for initiating a software</p><p>upgrade.</p><p>Deprecated: This legacy proposal is deprecated in favor of Msg-based gov</p><p>proposals, see MsgSoftwareUpgrade.</p>
 
 
           <table class="field-table">
@@ -735,21 +990,21 @@ If this field is not empty, an error will be thrown. </p></td>
                   <td>title</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>title of the proposal </p></td>
                 </tr>
 
                 <tr>
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>description of the proposal </p></td>
                 </tr>
 
                 <tr>
                   <td>plan</td>
                   <td><a href="#cosmos.upgrade.v1beta1.Plan">Plan</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>plan of the proposal </p></td>
                 </tr>
 
             </tbody>

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        /*margin: 1em auto;*/
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin-top: 2ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0; /* No indent on first p in td */
+      }
+
+      /* Table of fields */
+      .field-table td:nth-child(1) { /* Field */
+        width: 10em;
+      }
+      .field-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .field-table td:nth-child(3) { /* Label */
+        width: 6em;
+      }
+      .field-table td:nth-child(4) { /* Description */
+        width: auto;
+      }
+
+      /* Table of extensions */
+      .extension-table td:nth-child(1) { /* Extension */
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) { /* Base */
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) { /* Number */
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) { /* Description */
+        width: auto;
+      }
+
+      /* Table of enum values. */
+      .enum-table td:nth-child(1) { /* Name */
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) { /* Number */
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) { /* Description */
+        width: auto;
+      }
+
+      /* Table of scalar value types. */
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+      /* Table of contents. */
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+      /* File heading div */
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+      /* The 'M', 'E' and 'X' badges in the ToC */
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    <!-- User custom CSS -->
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+
+
+          <li>
+            <a href="#cosmos/app/runtime/v1alpha1/module.proto">cosmos/app/runtime/v1alpha1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.app.runtime.v1alpha1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.app.runtime.v1alpha1.StoreKeyConfig"><span class="badge">M</span>StoreKeyConfig</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/app/v1alpha1/config.proto">cosmos/app/v1alpha1/config.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.app.v1alpha1.Config"><span class="badge">M</span>Config</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.app.v1alpha1.GolangBinding"><span class="badge">M</span>GolangBinding</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.app.v1alpha1.ModuleConfig"><span class="badge">M</span>ModuleConfig</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/app/v1alpha1/module.proto">cosmos/app/v1alpha1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.app.v1alpha1.MigrateFromInfo"><span class="badge">M</span>MigrateFromInfo</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.app.v1alpha1.ModuleDescriptor"><span class="badge">M</span>ModuleDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.app.v1alpha1.PackageReference"><span class="badge">M</span>PackageReference</a>
+                </li>
+
+
+
+                <li>
+                  <a href="#cosmos/app/v1alpha1/module.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/app/v1alpha1/query.proto">cosmos/app/v1alpha1/query.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.app.v1alpha1.QueryConfigRequest"><span class="badge">M</span>QueryConfigRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.app.v1alpha1.QueryConfigResponse"><span class="badge">M</span>QueryConfigResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.app.v1alpha1.Query"><span class="badge">S</span>Query</a>
+                </li>
+
+            </ul>
+          </li>
+
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/app/runtime/v1alpha1/module.proto">cosmos/app/runtime/v1alpha1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.app.runtime.v1alpha1.Module">Module</h3>
+        <p>Module is the config object for the runtime module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>app_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>app_name is the name of the app. </p></td>
+                </tr>
+
+                <tr>
+                  <td>begin_blockers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>begin_blockers specifies the module names of begin blockers
+to call in the order in which they should be called. If this is left empty
+no begin blocker will be registered. </p></td>
+                </tr>
+
+                <tr>
+                  <td>end_blockers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>end_blockers specifies the module names of the end blockers
+to call in the order in which they should be called. If this is left empty
+no end blocker will be registered. </p></td>
+                </tr>
+
+                <tr>
+                  <td>init_genesis</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>init_genesis specifies the module names of init genesis functions
+to call in the order in which they should be called. If this is left empty
+no init genesis function will be registered. </p></td>
+                </tr>
+
+                <tr>
+                  <td>export_genesis</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>export_genesis specifies the order in which to export module genesis data.
+If this is left empty, the init_genesis order will be used for export genesis
+if it is specified. </p></td>
+                </tr>
+
+                <tr>
+                  <td>override_store_keys</td>
+                  <td><a href="#cosmos.app.runtime.v1alpha1.StoreKeyConfig">StoreKeyConfig</a></td>
+                  <td>repeated</td>
+                  <td><p>override_store_keys is an optional list of overrides for the module store keys
+to be used in keeper construction. </p></td>
+                </tr>
+
+                <tr>
+                  <td>order_migrations</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>order_migrations defines the order in which module migrations are performed.
+If this is left empty, it uses the default migration order.
+https://pkg.go.dev/github.com/cosmos/cosmos-sdk@v0.47.0-alpha2/types/module#DefaultMigrationsOrder </p></td>
+                </tr>
+
+                <tr>
+                  <td>precommiters</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>precommiters specifies the module names of the precommiters
+to call in the order in which they should be called. If this is left empty
+no precommit function will be registered. </p></td>
+                </tr>
+
+                <tr>
+                  <td>prepare_check_staters</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>prepare_check_staters specifies the module names of the prepare_check_staters
+to call in the order in which they should be called. If this is left empty
+no preparecheckstate function will be registered. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.app.runtime.v1alpha1.StoreKeyConfig">StoreKeyConfig</h3>
+        <p>StoreKeyConfig may be supplied to override the default module store key, which</p><p>is the module name.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>module_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>name of the module to override the store key of </p></td>
+                </tr>
+
+                <tr>
+                  <td>kv_store_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the kv store key to use instead of the module name. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/app/v1alpha1/config.proto">cosmos/app/v1alpha1/config.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.app.v1alpha1.Config">Config</h3>
+        <p>Config represents the configuration for a Cosmos SDK ABCI app.</p><p>It is intended that all state machine logic including the version of</p><p>baseapp and tx handlers (and possibly even Tendermint) that an app needs</p><p>can be described in a config object. For compatibility, the framework should</p><p>allow a mixture of declarative and imperative app wiring, however, apps</p><p>that strive for the maximum ease of maintainability should be able to describe</p><p>their state machine with a config object alone.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>modules</td>
+                  <td><a href="#cosmos.app.v1alpha1.ModuleConfig">ModuleConfig</a></td>
+                  <td>repeated</td>
+                  <td><p>modules are the module configurations for the app. </p></td>
+                </tr>
+
+                <tr>
+                  <td>golang_bindings</td>
+                  <td><a href="#cosmos.app.v1alpha1.GolangBinding">GolangBinding</a></td>
+                  <td>repeated</td>
+                  <td><p>golang_bindings specifies explicit interface to implementation type bindings which
+depinject uses to resolve interface inputs to provider functions.  The scope of this
+field's configuration is global (not module specific). </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.app.v1alpha1.GolangBinding">GolangBinding</h3>
+        <p>GolangBinding is an explicit interface type to implementing type binding for dependency injection.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>interface_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>interface_type is the interface type which will be bound to a specific implementation type </p></td>
+                </tr>
+
+                <tr>
+                  <td>implementation</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>implementation is the implementing type which will be supplied when an input of type interface is requested </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.app.v1alpha1.ModuleConfig">ModuleConfig</h3>
+        <p>ModuleConfig is a module configuration for an app.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>name is the unique name of the module within the app. It should be a name
+that persists between different versions of a module so that modules
+can be smoothly upgraded to new versions.
+
+For example, for the module cosmos.bank.module.v1.Module, we may chose
+to simply name the module "bank" in the app. When we upgrade to
+cosmos.bank.module.v2.Module, the app-specific name "bank" stays the same
+and the framework knows that the v2 module should receive all the same state
+that the v1 module had. Note: modules should provide info on which versions
+they can migrate from in the ModuleDescriptor.can_migration_from field. </p></td>
+                </tr>
+
+                <tr>
+                  <td>config</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p>config is the config object for the module. Module config messages should
+define a ModuleDescriptor using the cosmos.app.v1alpha1.is_module extension. </p></td>
+                </tr>
+
+                <tr>
+                  <td>golang_bindings</td>
+                  <td><a href="#cosmos.app.v1alpha1.GolangBinding">GolangBinding</a></td>
+                  <td>repeated</td>
+                  <td><p>golang_bindings specifies explicit interface to implementation type bindings which
+depinject uses to resolve interface inputs to provider functions.  The scope of this
+field's configuration is module specific. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/app/v1alpha1/module.proto">cosmos/app/v1alpha1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.app.v1alpha1.MigrateFromInfo">MigrateFromInfo</h3>
+        <p>MigrateFromInfo is information on a module version that a newer module</p><p>can migrate from.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>module</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>module is the fully-qualified protobuf name of the module config object
+for the previous module version, ex: "cosmos.group.module.v1.Module". </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.app.v1alpha1.ModuleDescriptor">ModuleDescriptor</h3>
+        <p>ModuleDescriptor describes an app module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>go_import</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>go_import names the package that should be imported by an app to load the
+module in the runtime module registry. It is required to make debugging
+of configuration errors easier for users. </p></td>
+                </tr>
+
+                <tr>
+                  <td>use_package</td>
+                  <td><a href="#cosmos.app.v1alpha1.PackageReference">PackageReference</a></td>
+                  <td>repeated</td>
+                  <td><p>use_package refers to a protobuf package that this module
+uses and exposes to the world. In an app, only one module should "use"
+or own a single protobuf package. It is assumed that the module uses
+all of the .proto files in a single package. </p></td>
+                </tr>
+
+                <tr>
+                  <td>can_migrate_from</td>
+                  <td><a href="#cosmos.app.v1alpha1.MigrateFromInfo">MigrateFromInfo</a></td>
+                  <td>repeated</td>
+                  <td><p>can_migrate_from defines which module versions this module can migrate
+state from. The framework will check that one module version is able to
+migrate from a previous module version before attempting to update its
+config. It is assumed that modules can transitively migrate from earlier
+versions. For instance if v3 declares it can migrate from v2, and v2
+declares it can migrate from v1, the framework knows how to migrate
+from v1 to v3, assuming all 3 module versions are registered at runtime. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.app.v1alpha1.PackageReference">PackageReference</h3>
+        <p>PackageReference is a reference to a protobuf package used by a module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>name is the fully-qualified name of the package. </p></td>
+                </tr>
+
+                <tr>
+                  <td>revision</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>revision is the optional revision of the package that is being used.
+Protobuf packages used in Cosmos should generally have a major version
+as the last part of the package name, ex. foo.bar.baz.v1.
+The revision of a package can be thought of as the minor version of a
+package which has additional backwards compatible definitions that weren't
+present in a previous version.
+
+A package should indicate its revision with a source code comment
+above the package declaration in one of its files containing the
+text "Revision N" where N is an integer revision. All packages start
+at revision 0 the first time they are released in a module.
+
+When a new version of a module is released and items are added to existing
+.proto files, these definitions should contain comments of the form
+"Since: Revision N" where N is an integer revision.
+
+When the module runtime starts up, it will check the pinned proto
+image and panic if there are runtime protobuf definitions that are not
+in the pinned descriptor which do not have
+a "Since Revision N" comment or have a "Since Revision N" comment where
+N is <= to the revision specified here. This indicates that the protobuf
+files have been updated, but the pinned file descriptor hasn't.
+
+If there are items in the pinned file descriptor with a revision
+greater than the value indicated here, this will also cause a panic
+as it may mean that the pinned descriptor for a legacy module has been
+improperly updated or that there is some other versioning discrepancy.
+Runtime protobuf definitions will also be checked for compatibility
+with pinned file descriptors to make sure there are no incompatible changes.
+
+This behavior ensures that:
+* pinned proto images are up-to-date
+* protobuf files are carefully annotated with revision comments which
+  are important good client UX
+* protobuf files are changed in backwards and forwards compatible ways </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos/app/v1alpha1/module.proto-extensions">File-level Extensions</h3>
+        <table class="extension-table">
+          <thead>
+            <tr><td>Extension</td><td>Type</td><td>Base</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>module</td>
+                <td><a href="#cosmos.app.v1alpha1.ModuleDescriptor">ModuleDescriptor</a></td>
+                <td><a href="#google.protobuf.MessageOptions">.google.protobuf.MessageOptions</a></td>
+                <td>57193479</td>
+                <td><p>module indicates that this proto type is a config object for an app module
+and optionally provides other descriptive information about the module.
+It is recommended that a new module config object and go module is versioned
+for every state machine breaking version of a module. The recommended
+pattern for doing this is to put module config objects in a separate proto
+package from the API they expose. Ex: the cosmos.group.v1 API would be
+exposed by module configs cosmos.group.module.v1, cosmos.group.module.v2, etc.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/app/v1alpha1/query.proto">cosmos/app/v1alpha1/query.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.app.v1alpha1.QueryConfigRequest">QueryConfigRequest</h3>
+        <p>QueryConfigRequest is the Query/Config request type.</p>
+
+
+
+
+
+        <h3 id="cosmos.app.v1alpha1.QueryConfigResponse">QueryConfigResponse</h3>
+        <p>QueryConfigRequest is the Query/Config response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>config</td>
+                  <td><a href="#cosmos.app.v1alpha1.Config">Config</a></td>
+                  <td></td>
+                  <td><p>config is the current app config. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.app.v1alpha1.Query">Query</h3>
+        <p>Query is the app module query service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>Config</td>
+                <td><a href="#cosmos.app.v1alpha1.QueryConfigRequest">QueryConfigRequest</a></td>
+                <td><a href="#cosmos.app.v1alpha1.QueryConfigResponse">QueryConfigResponse</a></td>
+                <td><p>Config returns the current app config.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr>
+          <td>.proto Type</td>
+          <td>Notes</td>
+          <td>Python Type</td>
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>boolean</td>
+          </tr>
+
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>str/unicode</td>
+          </tr>
+
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>str</td>
+          </tr>
+
+      </tbody>
+    </table>

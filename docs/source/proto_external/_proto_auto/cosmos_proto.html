@@ -170,7 +170,43 @@
             <a href="#cosmos_proto/cosmos.proto">cosmos_proto/cosmos.proto</a>
             <ul>
 
+                <li>
+                  <a href="#cosmos_proto.InterfaceDescriptor"><span class="badge">M</span>InterfaceDescriptor</a>
+                </li>
 
+                <li>
+                  <a href="#cosmos_proto.ScalarDescriptor"><span class="badge">M</span>ScalarDescriptor</a>
+                </li>
+
+
+                <li>
+                  <a href="#cosmos_proto.ScalarType"><span class="badge">E</span>ScalarType</a>
+                </li>
+
+
+                <li>
+                  <a href="#cosmos_proto/cosmos.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos_proto/cosmos.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos_proto/cosmos.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos_proto/cosmos.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos_proto/cosmos.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos_proto/cosmos.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
 
                 <li>
                   <a href="#cosmos_proto/cosmos.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
@@ -200,7 +236,117 @@
       <p></p>
 
 
+        <h3 id="cosmos_proto.InterfaceDescriptor">InterfaceDescriptor</h3>
+        <p>InterfaceDescriptor describes an interface type to be used with</p><p>accepts_interface and implements_interface and declared by declare_interface.</p>
 
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>name is the name of the interface. It should be a short-name (without
+a period) such that the fully qualified name of the interface will be
+package.name, ex. for the package a.b and interface named C, the
+fully-qualified name will be a.b.C. </p></td>
+                </tr>
+
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>description is a human-readable description of the interface and its
+purpose. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos_proto.ScalarDescriptor">ScalarDescriptor</h3>
+        <p>ScalarDescriptor describes an scalar type to be used with</p><p>the scalar field option and declared by declare_scalar.</p><p>Scalars extend simple protobuf built-in types with additional</p><p>syntax and semantics, for instance to represent big integers.</p><p>Scalars should ideally define an encoding such that there is only one</p><p>valid syntactical representation for a given semantic meaning,</p><p>i.e. the encoding should be deterministic.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>name is the name of the scalar. It should be a short-name (without
+a period) such that the fully qualified name of the scalar will be
+package.name, ex. for the package a.b and scalar named C, the
+fully-qualified name will be a.b.C. </p></td>
+                </tr>
+
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>description is a human-readable description of the scalar and its
+encoding format. For instance a big integer or decimal scalar should
+specify precisely the expected encoding format. </p></td>
+                </tr>
+
+                <tr>
+                  <td>field_type</td>
+                  <td><a href="#cosmos_proto.ScalarType">ScalarType</a></td>
+                  <td>repeated</td>
+                  <td><p>field_type is the type of field with which this scalar can be used.
+Scalars can be used with one and only one type of field so that
+encoding standards and simple and clear. Currently only string and
+bytes fields are supported for scalars. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+        <h3 id="cosmos_proto.ScalarType">ScalarType</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>SCALAR_TYPE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>SCALAR_TYPE_STRING</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+
+              <tr>
+                <td>SCALAR_TYPE_BYTES</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+
+          </tbody>
+        </table>
 
 
 
@@ -216,23 +362,90 @@
                 <td><a href="#string">string</a></td>
                 <td><a href="#google.protobuf.FieldOptions">.google.protobuf.FieldOptions</a></td>
                 <td>93001</td>
-                <td><p></p></td>
+                <td><p>accepts_interface is used to annotate that a google.protobuf.Any
+field accepts messages that implement the specified interface.
+Interfaces should be declared using a declare_interface file option.</p></td>
+              </tr>
+
+              <tr>
+                <td>field_added_in</td>
+                <td><a href="#string">string</a></td>
+                <td><a href="#google.protobuf.FieldOptions">.google.protobuf.FieldOptions</a></td>
+                <td>93003</td>
+                <td><p>field_added_in is used to indicate from which version the field was added.</p></td>
+              </tr>
+
+              <tr>
+                <td>scalar</td>
+                <td><a href="#string">string</a></td>
+                <td><a href="#google.protobuf.FieldOptions">.google.protobuf.FieldOptions</a></td>
+                <td>93002</td>
+                <td><p>scalar is used to indicate that this field follows the formatting defined
+by the named scalar which should be declared with declare_scalar. Code
+generators may choose to use this information to map this field to a
+language-specific type representing the scalar.</p></td>
+              </tr>
+
+              <tr>
+                <td>declare_interface</td>
+                <td><a href="#cosmos_proto.InterfaceDescriptor">InterfaceDescriptor</a></td>
+                <td><a href="#google.protobuf.FileOptions">.google.protobuf.FileOptions</a></td>
+                <td>793021</td>
+                <td><p>declare_interface declares an interface type to be used with
+accepts_interface and implements_interface. Interface names are
+expected to follow the following convention such that their declaration
+can be discovered by tools: for a given interface type a.b.C, it is
+expected that the declaration will be found in a protobuf file named
+a/b/interfaces.proto in the file descriptor set.</p></td>
+              </tr>
+
+              <tr>
+                <td>declare_scalar</td>
+                <td><a href="#cosmos_proto.ScalarDescriptor">ScalarDescriptor</a></td>
+                <td><a href="#google.protobuf.FileOptions">.google.protobuf.FileOptions</a></td>
+                <td>793022</td>
+                <td><p>declare_scalar declares a scalar type to be used with
+the scalar field option. Scalar names are
+expected to follow the following convention such that their declaration
+can be discovered by tools: for a given scalar type a.b.C, it is
+expected that the declaration will be found in a protobuf file named
+a/b/scalars.proto in the file descriptor set.</p></td>
+              </tr>
+
+              <tr>
+                <td>file_added_in</td>
+                <td><a href="#string">string</a></td>
+                <td><a href="#google.protobuf.FileOptions">.google.protobuf.FileOptions</a></td>
+                <td>793023</td>
+                <td><p>file_added_in is used to indicate from which the version the file was added.</p></td>
               </tr>
 
               <tr>
                 <td>implements_interface</td>
                 <td><a href="#string">string</a></td>
                 <td><a href="#google.protobuf.MessageOptions">.google.protobuf.MessageOptions</a></td>
-                <td>93002</td>
-                <td><p></p></td>
+                <td>93001</td>
+                <td><p>implements_interface is used to indicate the type name of the interface
+that a message implements so that it can be used in google.protobuf.Any
+fields that accept that interface. A message can implement multiple
+interfaces. Interfaces should be declared using a declare_interface
+file option.</p></td>
               </tr>
 
               <tr>
-                <td>interface_type</td>
+                <td>message_added_in</td>
                 <td><a href="#string">string</a></td>
                 <td><a href="#google.protobuf.MessageOptions">.google.protobuf.MessageOptions</a></td>
+                <td>93002</td>
+                <td><p>message_added_in is used to indicate from which version the message was added.</p></td>
+              </tr>
+
+              <tr>
+                <td>method_added_in</td>
+                <td><a href="#string">string</a></td>
+                <td><a href="#google.protobuf.MethodOptions">.google.protobuf.MethodOptions</a></td>
                 <td>93001</td>
-                <td><p></p></td>
+                <td><p>method_added_in is used to indicate from which version the method was added.</p></td>
               </tr>
 
           </tbody>

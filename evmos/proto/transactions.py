@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 import base64
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Any, Final, Sequence
+from typing import Any
 
-from eth_typing import HexStr
 from eth_utils import keccak
 
 from evmos.proto.autogen.py.cosmos.base.v1beta1 import Coin
@@ -13,9 +13,6 @@ from evmos.proto.autogen.py.cosmos.tx import v1beta1 as tx
 from evmos.proto.autogen.py.cosmos.tx.signing.v1beta1 import SignMode
 from evmos.proto.autogen.py.ethermint.crypto.v1 import ethsecp256k1 as eth
 from evmos.proto.utils import MessageGenerated, create_any_message
-
-SIGN_DIRECT: Final = SignMode.SIGN_MODE_DIRECT
-LEGACY_AMINO: Final = SignMode.SIGN_MODE_LEGACY_AMINO_JSON
 
 
 @dataclass
@@ -26,8 +23,8 @@ class TxGeneratedSignInfo:
     """Transaction body."""
     auth_info: tx.AuthInfo
     """Transaction authentication info."""
-    sign_bytes: HexStr
-    """Raw bytes for signing as hex string."""
+    sign_bytes: str
+    """Raw bytes for signing as base64."""
 
 
 @dataclass
@@ -74,7 +71,7 @@ def create_signer_info(
     algo: str,
     public_key: bytes,
     sequence: int,
-    mode: int | SignMode,
+    mode: SignMode,
 ) -> tx.SignerInfo:
     """Create a SignerInfo instance.
 
@@ -82,24 +79,23 @@ def create_signer_info(
     with provided parameters.
     """
     # NOTE: secp256k1 is going to be removed from evmos
-    if algo == 'secp256k1':
+    pubkey: MessageGenerated[secp.PubKey | eth.PubKey]
+    if algo == "secp256k1":
         pubkey = MessageGenerated(
             message=secp.PubKey(key=public_key),
-            path='cosmos.crypto.secp256k1.PubKey',
+            path="cosmos.crypto.secp256k1.PubKey",
         )
     else:
         # NOTE: assume ethsecp256k1 by default because after mainnet is the only one
         # that is going to be supported
         pubkey = MessageGenerated(
             message=eth.PubKey(key=public_key),
-            path='ethermint.crypto.v1.ethsecp256k1.PubKey',
+            path="ethermint.crypto.v1.ethsecp256k1.PubKey",
         )
 
     return tx.SignerInfo(
         public_key=create_any_message(pubkey),
-        mode_info=tx.ModeInfo(
-            single=tx.ModeInfoSingle(mode=mode)  # type: ignore[arg-type]
-        ),
+        mode_info=tx.ModeInfo(single=tx.ModeInfoSingle(mode=mode)),
         sequence=sequence,
     )
 
@@ -151,7 +147,7 @@ def create_transaction_with_multiple_messages(
         algo,
         bytes(pub_key_decoded),
         sequence,
-        LEGACY_AMINO,
+        SignMode.SIGN_MODE_LEGACY_AMINO_JSON,
     )
 
     auth_info_amino = create_auth_info(sign_info_amino, fee_message)
@@ -170,7 +166,7 @@ def create_transaction_with_multiple_messages(
         algo,
         bytes(pub_key_decoded),
         sequence,
-        SIGN_DIRECT,
+        SignMode.SIGN_MODE_DIRECT,
     )
 
     auth_info_direct = create_auth_info(sign_info_direct, fee_message)

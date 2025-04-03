@@ -1,15 +1,15 @@
 from __future__ import annotations
 
+from datetime import datetime, timedelta, timezone
 from enum import Enum
-from typing import Final
-
-from betterproto import Message, Timestamp
+from typing import Any, Final
 
 from evmos.proto.autogen.py.cosmos.authz.v1beta1 import Grant, MsgGrant, MsgRevoke
 from evmos.proto.autogen.py.cosmos.base.v1beta1 import Coin
 from evmos.proto.autogen.py.cosmos.staking.v1beta1 import (
     AuthorizationType,
     StakeAuthorization,
+    StakeAuthorizationValidators,
 )
 from evmos.proto.utils import MessageGenerated, create_any_message
 
@@ -19,31 +19,40 @@ from evmos.proto.utils import MessageGenerated, create_any_message
 def create_msg_grant(
     granter: str,
     grantee: str,
-    grant_message: MessageGenerated[Message],
-    seconds: int,
+    grant_message: MessageGenerated[Any],
+    expires_in: int,
 ) -> MessageGenerated[MsgGrant]:
-    """Create grant message."""
+    """Create grant message.
+
+    Args:
+        granter: granter address.
+        grantee: grantee address.
+        grant_message: message to wrap with grant.
+        expires_in: grant duration in seconds.
+    """
+    expiration = datetime.now(timezone.utc) + timedelta(seconds=expires_in)
+    expiration = expiration.replace(microsecond=0)
     msg = MsgGrant(
         granter=granter,
         grantee=grantee,
         grant=Grant(
             authorization=create_any_message(grant_message),
-            expiration=Timestamp(seconds=seconds, nanos=0),
+            expiration=expiration,
         ),
     )
     return MessageGenerated(
         message=msg,
-        path='cosmos.authz.v1beta1.MsgGrant',
+        path="cosmos.authz.v1beta1.MsgGrant",
     )
 
 
 class RevokeMessages(str, Enum):
     """Revoke message paths."""
 
-    REVOKE_MSG_DELEGATE = '/cosmos.staking.v1beta1.MsgDelegate'
+    REVOKE_MSG_DELEGATE = "/cosmos.staking.v1beta1.MsgDelegate"
     """Revoke delegate message path."""
     REVOKE_MSG_WITHDRAW_DELEGATOR_REWARDS = (
-        '/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward'
+        "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward"
     )
     """Revoke delegate and withdraw rewards message path."""
 
@@ -61,7 +70,7 @@ def create_msg_revoke(
     )
     return MessageGenerated(
         message=msg,
-        path='cosmos.authz.v1beta1.MsgRevoke',
+        path="cosmos.authz.v1beta1.MsgRevoke",
     )
 
 
@@ -79,7 +88,7 @@ def create_stake_authorization(
 ) -> MessageGenerated[StakeAuthorization]:
     """Create staking authorization message."""
     msg = StakeAuthorization(
-        allow_list=StakeAuthorization.Validators(address=[allow_address]),
+        allow_list=StakeAuthorizationValidators(address=[allow_address]),
         max_tokens=(
             Coin(denom=denom, amount=max_tokens)  # type: ignore[arg-type]
             if max_tokens
@@ -90,5 +99,5 @@ def create_stake_authorization(
 
     return MessageGenerated(
         message=msg,
-        path='cosmos.staking.v1beta1.StakeAuthorization',
+        path="cosmos.staking.v1beta1.StakeAuthorization",
     )

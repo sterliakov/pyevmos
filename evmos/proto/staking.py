@@ -31,7 +31,7 @@ def create_msg_delegate(
 
     return MessageGenerated(
         message=message,
-        path='cosmos.staking.v1beta1.MsgDelegate',
+        path="cosmos.staking.v1beta1.MsgDelegate",
     )
 
 
@@ -54,7 +54,7 @@ def create_msg_begin_redelegate(
 
     return MessageGenerated(
         message=message,
-        path='cosmos.staking.v1beta1.MsgBeginRedelegate',
+        path="cosmos.staking.v1beta1.MsgBeginRedelegate",
     )
 
 
@@ -75,7 +75,7 @@ def create_msg_undelegate(
 
     return MessageGenerated(
         message=message,
-        path='cosmos.staking.v1beta1.MsgUndelegate',
+        path="cosmos.staking.v1beta1.MsgUndelegate",
     )
 
 
@@ -91,7 +91,7 @@ def create_msg_withdraw_delegator_reward(
 
     return MessageGenerated(
         message=message,
-        path='cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward',
+        path="cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
     )
 
 
@@ -105,7 +105,7 @@ def create_msg_withdraw_validator_commission(
 
     return MessageGenerated(
         message=message,
-        path='cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission',
+        path="cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission",
     )
 
 
@@ -121,5 +121,5 @@ def create_msg_set_withdraw_address(
 
     return MessageGenerated(
         message=message,
-        path='cosmos.distribution.v1beta1.MsgSetWithdrawAddress',
+        path="cosmos.distribution.v1beta1.MsgSetWithdrawAddress",
     )

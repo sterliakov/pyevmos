@@ -167,8 +167,43 @@
 
 
           <li>
+            <a href="#ethermint/evm/v1/events.proto">ethermint/evm/v1/events.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#ethermint.evm.v1.EventBlockBloom"><span class="badge">M</span>EventBlockBloom</a>
+                </li>
+
+                <li>
+                  <a href="#ethermint.evm.v1.EventEthereumTx"><span class="badge">M</span>EventEthereumTx</a>
+                </li>
+
+                <li>
+                  <a href="#ethermint.evm.v1.EventMessage"><span class="badge">M</span>EventMessage</a>
+                </li>
+
+                <li>
+                  <a href="#ethermint.evm.v1.EventTxLog"><span class="badge">M</span>EventTxLog</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#ethermint/evm/v1/evm.proto">ethermint/evm/v1/evm.proto</a>
             <ul>
+
+                <li>
+                  <a href="#ethermint.evm.v1.AccessControl"><span class="badge">M</span>AccessControl</a>
+                </li>
+
+                <li>
+                  <a href="#ethermint.evm.v1.AccessControlType"><span class="badge">M</span>AccessControlType</a>
+                </li>
 
                 <li>
                   <a href="#ethermint.evm.v1.AccessTuple"><span class="badge">M</span>AccessTuple</a>
@@ -200,6 +235,29 @@
 
                 <li>
                   <a href="#ethermint.evm.v1.TxResult"><span class="badge">M</span>TxResult</a>
+                </li>
+
+
+                <li>
+                  <a href="#ethermint.evm.v1.AccessType"><span class="badge">E</span>AccessType</a>
+                </li>
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#ethermint/evm/v1/genesis.proto">ethermint/evm/v1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#ethermint.evm.v1.GenesisAccount"><span class="badge">M</span>GenesisAccount</a>
+                </li>
+
+                <li>
+                  <a href="#ethermint.evm.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
                 </li>
 
 
@@ -321,25 +379,6 @@
 
 
           <li>
-            <a href="#ethermint/evm/v1/genesis.proto">ethermint/evm/v1/genesis.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#ethermint.evm.v1.GenesisAccount"><span class="badge">M</span>GenesisAccount</a>
-                </li>
-
-                <li>
-                  <a href="#ethermint.evm.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
             <a href="#ethermint/evm/v1/tx.proto">ethermint/evm/v1/tx.proto</a>
             <ul>
 
@@ -367,6 +406,14 @@
                   <a href="#ethermint.evm.v1.MsgEthereumTxResponse"><span class="badge">M</span>MsgEthereumTxResponse</a>
                 </li>
 
+                <li>
+                  <a href="#ethermint.evm.v1.MsgUpdateParams"><span class="badge">M</span>MsgUpdateParams</a>
+                </li>
+
+                <li>
+                  <a href="#ethermint.evm.v1.MsgUpdateParamsResponse"><span class="badge">M</span>MsgUpdateParamsResponse</a>
+                </li>
+
 
 
 
@@ -384,9 +431,240 @@
 
 
       <div class="file-heading">
+        <h2 id="ethermint/evm/v1/events.proto">ethermint/evm/v1/events.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
+
+
+        <h3 id="ethermint.evm.v1.EventBlockBloom">EventBlockBloom</h3>
+        <p>EventBlockBloom defines an Ethereum block bloom filter event</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>bloom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>bloom is the bloom filter of the block </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="ethermint.evm.v1.EventEthereumTx">EventEthereumTx</h3>
+        <p>EventEthereumTx defines the event for an Ethereum transaction</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>amount </p></td>
+                </tr>
+
+                <tr>
+                  <td>eth_hash</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>eth_hash is the Ethereum hash of the transaction </p></td>
+                </tr>
+
+                <tr>
+                  <td>index</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>index of the transaction in the block </p></td>
+                </tr>
+
+                <tr>
+                  <td>gas_used</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>gas_used is the amount of gas used by the transaction </p></td>
+                </tr>
+
+                <tr>
+                  <td>hash</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>hash is the Tendermint hash of the transaction </p></td>
+                </tr>
+
+                <tr>
+                  <td>recipient</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>recipient of the transaction </p></td>
+                </tr>
+
+                <tr>
+                  <td>eth_tx_failed</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>eth_tx_failed contains a VM error should it occur </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="ethermint.evm.v1.EventMessage">EventMessage</h3>
+        <p>EventMessage</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>module</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>module which emits the event </p></td>
+                </tr>
+
+                <tr>
+                  <td>sender</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>sender of the message </p></td>
+                </tr>
+
+                <tr>
+                  <td>tx_type</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>tx_type is the type of the message </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="ethermint.evm.v1.EventTxLog">EventTxLog</h3>
+        <p>EventTxLog defines the event for an Ethereum transaction log</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>tx_logs</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>tx_logs is an array of transaction logs </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
         <h2 id="ethermint/evm/v1/evm.proto">ethermint/evm/v1/evm.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
+
+
+        <h3 id="ethermint.evm.v1.AccessControl">AccessControl</h3>
+        <p>AccessControl defines the permission policy of the EVM</p><p>for creating and calling contracts</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>create</td>
+                  <td><a href="#ethermint.evm.v1.AccessControlType">AccessControlType</a></td>
+                  <td></td>
+                  <td><p>create defines the permission policy for creating contracts </p></td>
+                </tr>
+
+                <tr>
+                  <td>call</td>
+                  <td><a href="#ethermint.evm.v1.AccessControlType">AccessControlType</a></td>
+                  <td></td>
+                  <td><p>call defines the permission policy for calling contracts </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="ethermint.evm.v1.AccessControlType">AccessControlType</h3>
+        <p>AccessControlType defines the permission type for policies</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>access_type</td>
+                  <td><a href="#ethermint.evm.v1.AccessType">AccessType</a></td>
+                  <td></td>
+                  <td><p>access_type defines which type of permission is required for the operation </p></td>
+                </tr>
+
+                <tr>
+                  <td>access_control_list</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>access_control_list defines defines different things depending on the AccessType:
+- ACCESS_TYPE_PERMISSIONLESS: list of addresses that are blocked from performing the operation
+- ACCESS_TYPE_RESTRICTED: ignored
+- ACCESS_TYPE_PERMISSIONED: list of addresses that are allowed to perform the operation </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
 
 
         <h3 id="ethermint.evm.v1.AccessTuple">AccessTuple</h3>
@@ -403,14 +681,14 @@
                   <td>address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>hex formatted ethereum address </p></td>
+                  <td><p>address is a hex formatted ethereum address </p></td>
                 </tr>
 
                 <tr>
                   <td>storage_keys</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>hex formatted hashes of the storage keys </p></td>
+                  <td><p>storage_keys are hex formatted hashes of the storage keys </p></td>
                 </tr>
 
             </tbody>
@@ -434,28 +712,28 @@
                   <td>homestead_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Homestead switch block (nil no fork, 0 = already homestead) </p></td>
+                  <td><p>homestead_block switch (nil no fork, 0 = already homestead) </p></td>
                 </tr>
 
                 <tr>
                   <td>dao_fork_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>TheDAO hard-fork switch block (nil no fork) </p></td>
+                  <td><p>dao_fork_block corresponds to TheDAO hard-fork switch block (nil no fork) </p></td>
                 </tr>
 
                 <tr>
                   <td>dao_fork_support</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Whether the nodes supports or opposes the DAO hard-fork </p></td>
+                  <td><p>dao_fork_support defines whether the nodes supports or opposes the DAO hard-fork </p></td>
                 </tr>
 
                 <tr>
                   <td>eip150_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>EIP150 implements the Gas price changes
+                  <td><p>eip150_block: EIP150 implements the Gas price changes
 (https://github.com/ethereum/EIPs/issues/150) EIP150 HF block (nil no fork) </p></td>
                 </tr>
 
@@ -463,84 +741,105 @@
                   <td>eip150_hash</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>EIP150 HF hash (needed for header only clients as only gas pricing changed) </p></td>
+                  <td><p>eip150_hash: EIP150 HF hash (needed for header only clients as only gas pricing changed) </p></td>
                 </tr>
 
                 <tr>
                   <td>eip155_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>EIP155Block HF block </p></td>
+                  <td><p>eip155_block: EIP155Block HF block </p></td>
                 </tr>
 
                 <tr>
                   <td>eip158_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>EIP158 HF block </p></td>
+                  <td><p>eip158_block: EIP158 HF block </p></td>
                 </tr>
 
                 <tr>
                   <td>byzantium_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Byzantium switch block (nil no fork, 0 = already on byzantium) </p></td>
+                  <td><p>byzantium_block: Byzantium switch block (nil no fork, 0 = already on byzantium) </p></td>
                 </tr>
 
                 <tr>
                   <td>constantinople_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Constantinople switch block (nil no fork, 0 = already activated) </p></td>
+                  <td><p>constantinople_block: Constantinople switch block (nil no fork, 0 = already activated) </p></td>
                 </tr>
 
                 <tr>
                   <td>petersburg_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Petersburg switch block (nil same as Constantinople) </p></td>
+                  <td><p>petersburg_block: Petersburg switch block (nil same as Constantinople) </p></td>
                 </tr>
 
                 <tr>
                   <td>istanbul_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Istanbul switch block (nil no fork, 0 = already on istanbul) </p></td>
+                  <td><p>istanbul_block: Istanbul switch block (nil no fork, 0 = already on istanbul) </p></td>
                 </tr>
 
                 <tr>
                   <td>muir_glacier_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Eip-2384 (bomb delay) switch block (nil no fork, 0 = already activated) </p></td>
+                  <td><p>muir_glacier_block: Eip-2384 (bomb delay) switch block (nil no fork, 0 = already activated) </p></td>
                 </tr>
 
                 <tr>
                   <td>berlin_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Berlin switch block (nil = no fork, 0 = already on berlin) </p></td>
+                  <td><p>berlin_block: Berlin switch block (nil = no fork, 0 = already on berlin) </p></td>
                 </tr>
 
                 <tr>
                   <td>london_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>London switch block (nil = no fork, 0 = already on london) </p></td>
+                  <td><p>london_block: London switch block (nil = no fork, 0 = already on london) </p></td>
                 </tr>
 
                 <tr>
                   <td>arrow_glacier_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Eip-4345 (bomb delay) switch block (nil = no fork, 0 = already activated) </p></td>
+                  <td><p>arrow_glacier_block: Eip-4345 (bomb delay) switch block (nil = no fork, 0 = already activated) </p></td>
                 </tr>
 
                 <tr>
-                  <td>merge_fork_block</td>
+                  <td>gray_glacier_block</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>EIP-3675 (TheMerge) switch block (nil = no fork, 0 = already in merge proceedings) </p></td>
+                  <td><p>gray_glacier_block: EIP-5133 (bomb delay) switch block (nil = no fork, 0 = already activated) </p></td>
+                </tr>
+
+                <tr>
+                  <td>merge_netsplit_block</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>merge_netsplit_block: Virtual fork after The Merge to use as a network splitter </p></td>
+                </tr>
+
+                <tr>
+                  <td>shanghai_block</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>shanghai_block switch block (nil = no fork, 0 = already on shanghai) </p></td>
+                </tr>
+
+                <tr>
+                  <td>cancun_block</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>cancun_block switch block (nil = no fork, 0 = already on cancun) </p></td>
                 </tr>
 
             </tbody>
@@ -551,7 +850,7 @@
 
 
         <h3 id="ethermint.evm.v1.Log">Log</h3>
-        <p>Log represents an protobuf compatible Ethereum Log that defines a contract</p><p>log event. These events are generated by the LOG opcode and stored/indexed by</p><p>the node.</p><p>Consensus fields:</p>
+        <p>Log represents an protobuf compatible Ethereum Log that defines a contract</p><p>log event. These events are generated by the LOG opcode and stored/indexed by</p><p>the node.</p><p>NOTE: address, topics and data are consensus fields. The rest of the fields</p><p>are derived, i.e. filled in by the nodes, but not secured by consensus.</p>
 
 
           <table class="field-table">
@@ -571,42 +870,42 @@
                   <td>topics</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>list of topics provided by the contract. </p></td>
+                  <td><p>topics is a list of topics provided by the contract. </p></td>
                 </tr>
 
                 <tr>
                   <td>data</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
-                  <td><p>supplied by the contract, usually ABI-encoded </p></td>
+                  <td><p>data which is supplied by the contract, usually ABI-encoded </p></td>
                 </tr>
 
                 <tr>
                   <td>block_number</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>block in which the transaction was included </p></td>
+                  <td><p>block_number of the block in which the transaction was included </p></td>
                 </tr>
 
                 <tr>
                   <td>tx_hash</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>hash of the transaction </p></td>
+                  <td><p>tx_hash is the transaction hash </p></td>
                 </tr>
 
                 <tr>
                   <td>tx_index</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>index of the transaction in the block </p></td>
+                  <td><p>tx_index of the transaction in the block </p></td>
                 </tr>
 
                 <tr>
                   <td>block_hash</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>hash of the block in which the transaction was included </p></td>
+                  <td><p>block_hash of the block in which the transaction was included </p></td>
                 </tr>
 
                 <tr>
@@ -620,7 +919,7 @@
                   <td>removed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>The Removed field is true if this log was reverted due to a chain
+                  <td><p>removed is true if this log was reverted due to a chain
 reorganisation. You must pay attention to this field if you receive logs
 through a filter query. </p></td>
                 </tr>
@@ -646,44 +945,52 @@ through a filter query. </p></td>
                   <td>evm_denom</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>evm denom represents the token denomination used to run the EVM state
+                  <td><p>evm_denom represents the token denomination used to run the EVM state
 transitions. </p></td>
                 </tr>
 
                 <tr>
-                  <td>enable_create</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>enable create toggles state transitions that use the vm.Create function </p></td>
-                </tr>
-
-                <tr>
-                  <td>enable_call</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>enable call toggles state transitions that use the vm.Call function </p></td>
-                </tr>
-
-                <tr>
                   <td>extra_eips</td>
-                  <td><a href="#int64">int64</a></td>
+                  <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>extra eips defines the additional EIPs for the vm.Config </p></td>
+                  <td><p>extra_eips defines the additional EIPs for the vm.Config </p></td>
                 </tr>
 
                 <tr>
                   <td>chain_config</td>
                   <td><a href="#ethermint.evm.v1.ChainConfig">ChainConfig</a></td>
                   <td></td>
-                  <td><p>chain config defines the EVM chain configuration parameters </p></td>
+                  <td><p>chain_config defines the EVM chain configuration parameters </p></td>
                 </tr>
 
                 <tr>
                   <td>allow_unprotected_txs</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Allow unprotected transactions defines if replay-protected (i.e non EIP155
+                  <td><p>allow_unprotected_txs defines if replay-protected (i.e non EIP155
 signed) transactions can be executed on the state machine. </p></td>
+                </tr>
+
+                <tr>
+                  <td>evm_channels</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>evm_channels is the list of channel identifiers from EVM compatible chains </p></td>
+                </tr>
+
+                <tr>
+                  <td>access_control</td>
+                  <td><a href="#ethermint.evm.v1.AccessControl">AccessControl</a></td>
+                  <td></td>
+                  <td><p>access_control defines the permission policy of the EVM </p></td>
+                </tr>
+
+                <tr>
+                  <td>active_static_precompiles</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>active_static_precompiles defines the slice of hex addresses of the precompiled
+contracts that are active </p></td>
                 </tr>
 
             </tbody>
@@ -707,14 +1014,14 @@ signed) transactions can be executed on the state machine. </p></td>
                   <td>key</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>key is the stored key </p></td>
                 </tr>
 
                 <tr>
                   <td>value</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>value is the stored value for the given key </p></td>
                 </tr>
 
             </tbody>
@@ -738,14 +1045,14 @@ signed) transactions can be executed on the state machine. </p></td>
                   <td>tracer</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>custom javascript tracer </p></td>
+                  <td><p>tracer is a custom javascript tracer </p></td>
                 </tr>
 
                 <tr>
                   <td>timeout</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>overrides the default timeout of 5 seconds for JavaScript-based tracing
+                  <td><p>timeout overrides the default timeout of 5 seconds for JavaScript-based tracing
 calls </p></td>
                 </tr>
 
@@ -753,56 +1060,63 @@ calls </p></td>
                   <td>reexec</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>number of blocks the tracer is willing to go back </p></td>
+                  <td><p>reexec defines the number of blocks the tracer is willing to go back </p></td>
                 </tr>
 
                 <tr>
                   <td>disable_stack</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>disable stack capture </p></td>
+                  <td><p>disable_stack switches stack capture </p></td>
                 </tr>
 
                 <tr>
                   <td>disable_storage</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>disable storage capture </p></td>
+                  <td><p>disable_storage switches storage capture </p></td>
                 </tr>
 
                 <tr>
                   <td>debug</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>print output during capture end </p></td>
+                  <td><p>debug can be used to print output during capture end </p></td>
                 </tr>
 
                 <tr>
                   <td>limit</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
-                  <td><p>maximum length of output, but zero means unlimited </p></td>
+                  <td><p>limit defines the maximum length of output, but zero means unlimited </p></td>
                 </tr>
 
                 <tr>
                   <td>overrides</td>
                   <td><a href="#ethermint.evm.v1.ChainConfig">ChainConfig</a></td>
                   <td></td>
-                  <td><p>Chain overrides, can be used to execute a trace using future fork rules </p></td>
+                  <td><p>overrides can be used to execute a trace using future fork rules </p></td>
                 </tr>
 
                 <tr>
                   <td>enable_memory</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>enable memory capture </p></td>
+                  <td><p>enable_memory switches memory capture </p></td>
                 </tr>
 
                 <tr>
                   <td>enable_return_data</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>enable return data capture </p></td>
+                  <td><p>enable_return_data switches the capture of return data </p></td>
+                </tr>
+
+                <tr>
+                  <td>tracer_json_config</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>tracer_json_config configures the tracer using a JSON string </p></td>
                 </tr>
 
             </tbody>
@@ -826,14 +1140,14 @@ calls </p></td>
                   <td>hash</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>hash of the transaction </p></td>
                 </tr>
 
                 <tr>
                   <td>logs</td>
                   <td><a href="#ethermint.evm.v1.Log">Log</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>logs is an array of Logs for the given transaction hash </p></td>
                 </tr>
 
             </tbody>
@@ -907,6 +1221,118 @@ logs. </p></td>
 
 
 
+        <h3 id="ethermint.evm.v1.AccessType">AccessType</h3>
+        <p>AccessType defines the types of permissions for the operations</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>ACCESS_TYPE_PERMISSIONLESS</td>
+                <td>0</td>
+                <td><p>ACCESS_TYPE_PERMISSIONLESS does not restrict the operation to anyone</p></td>
+              </tr>
+
+              <tr>
+                <td>ACCESS_TYPE_RESTRICTED</td>
+                <td>1</td>
+                <td><p>ACCESS_TYPE_RESTRICTED restrict the operation to anyone</p></td>
+              </tr>
+
+              <tr>
+                <td>ACCESS_TYPE_PERMISSIONED</td>
+                <td>2</td>
+                <td><p>ACCESS_TYPE_PERMISSIONED only allows the operation for specific addresses</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="ethermint/evm/v1/genesis.proto">ethermint/evm/v1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
+
+
+        <h3 id="ethermint.evm.v1.GenesisAccount">GenesisAccount</h3>
+        <p>GenesisAccount defines an account to be initialized in the genesis state.</p><p>Its main difference between with Geth's GenesisAccount is that it uses a</p><p>custom storage type and that it doesn't contain the private key field.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address defines an ethereum hex formated address of an account </p></td>
+                </tr>
+
+                <tr>
+                  <td>code</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>code defines the hex bytes of the account code. </p></td>
+                </tr>
+
+                <tr>
+                  <td>storage</td>
+                  <td><a href="#ethermint.evm.v1.State">State</a></td>
+                  <td>repeated</td>
+                  <td><p>storage defines the set of state key values for the account. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="ethermint.evm.v1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the evm module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>accounts</td>
+                  <td><a href="#ethermint.evm.v1.GenesisAccount">GenesisAccount</a></td>
+                  <td>repeated</td>
+                  <td><p>accounts is an array containing the ethereum genesis accounts. </p></td>
+                </tr>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#ethermint.evm.v1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines all the parameters of the module. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
 
 
 
@@ -916,7 +1342,7 @@ logs. </p></td>
       <div class="file-heading">
         <h2 id="ethermint/evm/v1/query.proto">ethermint/evm/v1/query.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
         <h3 id="ethermint.evm.v1.EstimateGasResponse">EstimateGasResponse</h3>
@@ -933,7 +1359,22 @@ logs. </p></td>
                   <td>gas</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>the estimated gas </p></td>
+                  <td><p>gas returns the estimated gas </p></td>
+                </tr>
+
+                <tr>
+                  <td>ret</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>ret is the returned data from evm function (result or data supplied with revert
+opcode) </p></td>
+                </tr>
+
+                <tr>
+                  <td>vm_error</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>vm_error is the error returned by vm execution </p></td>
                 </tr>
 
             </tbody>
@@ -957,14 +1398,28 @@ logs. </p></td>
                   <td>args</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
-                  <td><p>same json format as the json rpc api. </p></td>
+                  <td><p>args uses the same json format as the json rpc api. </p></td>
                 </tr>
 
                 <tr>
                   <td>gas_cap</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>the default gas cap to be used </p></td>
+                  <td><p>gas_cap defines the default gas cap to be used </p></td>
+                </tr>
+
+                <tr>
+                  <td>proposer_address</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>proposer_address of the requested block in hex format </p></td>
+                </tr>
+
+                <tr>
+                  <td>chain_id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>chain_id is the eip155 chain id parsed from the requested block header </p></td>
                 </tr>
 
             </tbody>
@@ -1019,7 +1474,7 @@ logs. </p></td>
                   <td>code_hash</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>code hash is the hex-formatted code bytes from the EOA. </p></td>
+                  <td><p>code_hash is the hex-formatted code bytes from the EOA. </p></td>
                 </tr>
 
                 <tr>
@@ -1092,7 +1547,7 @@ logs. </p></td>
 
 
         <h3 id="ethermint.evm.v1.QueryBaseFeeResponse">QueryBaseFeeResponse</h3>
-        <p>BaseFeeResponse returns the EIP1559 base fee.</p>
+        <p>QueryBaseFeeResponse returns the EIP1559 base fee.</p>
 
 
           <table class="field-table">
@@ -1105,7 +1560,7 @@ logs. </p></td>
                   <td>base_fee</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>base_fee is the EIP1559 base fee </p></td>
                 </tr>
 
             </tbody>
@@ -1215,7 +1670,7 @@ logs. </p></td>
                   <td>account_number</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>account_number is the account numbert </p></td>
+                  <td><p>account_number is the account number </p></td>
                 </tr>
 
             </tbody>
@@ -1301,7 +1756,7 @@ logs. </p></td>
                   <td>value</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>key defines the storage state value hash associated with the given key. </p></td>
+                  <td><p>value defines the storage state value hash associated with the given key. </p></td>
                 </tr>
 
             </tbody>
@@ -1325,35 +1780,56 @@ logs. </p></td>
                   <td>txs</td>
                   <td><a href="#ethermint.evm.v1.MsgEthereumTx">MsgEthereumTx</a></td>
                   <td>repeated</td>
-                  <td><p>txs messages in the block </p></td>
+                  <td><p>txs is an array of messages in the block </p></td>
                 </tr>
 
                 <tr>
                   <td>trace_config</td>
                   <td><a href="#ethermint.evm.v1.TraceConfig">TraceConfig</a></td>
                   <td></td>
-                  <td><p>TraceConfig holds extra parameters to trace functions. </p></td>
+                  <td><p>trace_config holds extra parameters to trace functions. </p></td>
                 </tr>
 
                 <tr>
                   <td>block_number</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>block number </p></td>
+                  <td><p>block_number of the traced block </p></td>
                 </tr>
 
                 <tr>
                   <td>block_hash</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>block hex hash </p></td>
+                  <td><p>block_hash (hex) of the traced block </p></td>
                 </tr>
 
                 <tr>
                   <td>block_time</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
-                  <td><p>block time </p></td>
+                  <td><p>block_time of the traced block </p></td>
+                </tr>
+
+                <tr>
+                  <td>proposer_address</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>proposer_address is the address of the requested block </p></td>
+                </tr>
+
+                <tr>
+                  <td>chain_id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>chain_id is the eip155 chain id parsed from the requested block header </p></td>
+                </tr>
+
+                <tr>
+                  <td>block_max_gas</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>block_max_gas of the traced block </p></td>
                 </tr>
 
             </tbody>
@@ -1377,7 +1853,7 @@ logs. </p></td>
                   <td>data</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>data is the response serialized in bytes </p></td>
                 </tr>
 
             </tbody>
@@ -1401,21 +1877,21 @@ logs. </p></td>
                   <td>msg</td>
                   <td><a href="#ethermint.evm.v1.MsgEthereumTx">MsgEthereumTx</a></td>
                   <td></td>
-                  <td><p>msgEthereumTx for the requested transaction </p></td>
+                  <td><p>msg is the MsgEthereumTx for the requested transaction </p></td>
                 </tr>
 
                 <tr>
                   <td>trace_config</td>
                   <td><a href="#ethermint.evm.v1.TraceConfig">TraceConfig</a></td>
                   <td></td>
-                  <td><p>TraceConfig holds extra parameters to trace functions. </p></td>
+                  <td><p>trace_config holds extra parameters to trace functions. </p></td>
                 </tr>
 
                 <tr>
                   <td>predecessors</td>
                   <td><a href="#ethermint.evm.v1.MsgEthereumTx">MsgEthereumTx</a></td>
                   <td>repeated</td>
-                  <td><p>the predecessor transactions included in the same block
+                  <td><p>predecessors is an array of transactions included in the same block
 need to be replayed first to get correct context for tracing. </p></td>
                 </tr>
 
@@ -1423,21 +1899,42 @@ need to be replayed first to get correct context for tracing. </p></td>
                   <td>block_number</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>block number of requested transaction </p></td>
+                  <td><p>block_number of requested transaction </p></td>
                 </tr>
 
                 <tr>
                   <td>block_hash</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>block hex hash of requested transaction </p></td>
+                  <td><p>block_hash of requested transaction </p></td>
                 </tr>
 
                 <tr>
                   <td>block_time</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
-                  <td><p>block time of requested transaction </p></td>
+                  <td><p>block_time of requested transaction </p></td>
+                </tr>
+
+                <tr>
+                  <td>proposer_address</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>proposer_address is the proposer of the requested block </p></td>
+                </tr>
+
+                <tr>
+                  <td>chain_id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>chain_id is the eip155 chain id parsed from the requested block header </p></td>
+                </tr>
+
+                <tr>
+                  <td>block_max_gas</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>block_max_gas of the block of the requested transaction </p></td>
                 </tr>
 
             </tbody>
@@ -1461,7 +1958,7 @@ need to be replayed first to get correct context for tracing. </p></td>
                   <td>data</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
-                  <td><p>response serialized in bytes </p></td>
+                  <td><p>data is the response serialized in bytes </p></td>
                 </tr>
 
             </tbody>
@@ -1503,7 +2000,7 @@ need to be replayed first to get correct context for tracing. </p></td>
 
 
         <h3 id="ethermint.evm.v1.QueryTxLogsResponse">QueryTxLogsResponse</h3>
-        <p>QueryTxLogs is the response type for the Query/TxLogs RPC method.</p>
+        <p>QueryTxLogsResponse is the response type for the Query/TxLogs RPC method.</p>
 
 
           <table class="field-table">
@@ -1719,7 +2216,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
               <tr>
                 <td>Account</td>
                 <td>GET</td>
-                <td>/ethermint/evm/v1/account/{address}</td>
+                <td>/evmos/evm/v1/account/{address}</td>
                 <td></td>
               </tr>
 
@@ -1729,7 +2226,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
               <tr>
                 <td>CosmosAccount</td>
                 <td>GET</td>
-                <td>/ethermint/evm/v1/cosmos_account/{address}</td>
+                <td>/evmos/evm/v1/cosmos_account/{address}</td>
                 <td></td>
               </tr>
 
@@ -1739,7 +2236,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
               <tr>
                 <td>ValidatorAccount</td>
                 <td>GET</td>
-                <td>/ethermint/evm/v1/validator_account/{cons_address}</td>
+                <td>/evmos/evm/v1/validator_account/{cons_address}</td>
                 <td></td>
               </tr>
 
@@ -1749,7 +2246,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
               <tr>
                 <td>Balance</td>
                 <td>GET</td>
-                <td>/ethermint/evm/v1/balances/{address}</td>
+                <td>/evmos/evm/v1/balances/{address}</td>
                 <td></td>
               </tr>
 
@@ -1759,7 +2256,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
               <tr>
                 <td>Storage</td>
                 <td>GET</td>
-                <td>/ethermint/evm/v1/storage/{address}/{key}</td>
+                <td>/evmos/evm/v1/storage/{address}/{key}</td>
                 <td></td>
               </tr>
 
@@ -1769,7 +2266,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
               <tr>
                 <td>Code</td>
                 <td>GET</td>
-                <td>/ethermint/evm/v1/codes/{address}</td>
+                <td>/evmos/evm/v1/codes/{address}</td>
                 <td></td>
               </tr>
 
@@ -1779,7 +2276,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
               <tr>
                 <td>Params</td>
                 <td>GET</td>
-                <td>/ethermint/evm/v1/params</td>
+                <td>/evmos/evm/v1/params</td>
                 <td></td>
               </tr>
 
@@ -1789,7 +2286,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
               <tr>
                 <td>EthCall</td>
                 <td>GET</td>
-                <td>/ethermint/evm/v1/eth_call</td>
+                <td>/evmos/evm/v1/eth_call</td>
                 <td></td>
               </tr>
 
@@ -1799,7 +2296,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
               <tr>
                 <td>EstimateGas</td>
                 <td>GET</td>
-                <td>/ethermint/evm/v1/estimate_gas</td>
+                <td>/evmos/evm/v1/estimate_gas</td>
                 <td></td>
               </tr>
 
@@ -1809,7 +2306,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
               <tr>
                 <td>TraceTx</td>
                 <td>GET</td>
-                <td>/ethermint/evm/v1/trace_tx</td>
+                <td>/evmos/evm/v1/trace_tx</td>
                 <td></td>
               </tr>
 
@@ -1819,7 +2316,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
               <tr>
                 <td>TraceBlock</td>
                 <td>GET</td>
-                <td>/ethermint/evm/v1/trace_block</td>
+                <td>/evmos/evm/v1/trace_block</td>
                 <td></td>
               </tr>
 
@@ -1829,7 +2326,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
               <tr>
                 <td>BaseFee</td>
                 <td>GET</td>
-                <td>/ethermint/evm/v1/base_fee</td>
+                <td>/evmos/evm/v1/base_fee</td>
                 <td></td>
               </tr>
 
@@ -1841,92 +2338,9 @@ it's similar to feemarket module's method, but also checks london hardfork statu
 
 
       <div class="file-heading">
-        <h2 id="ethermint/evm/v1/genesis.proto">ethermint/evm/v1/genesis.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="ethermint.evm.v1.GenesisAccount">GenesisAccount</h3>
-        <p>GenesisAccount defines an account to be initialized in the genesis state.</p><p>Its main difference between with Geth's GenesisAccount is that it uses a</p><p>custom storage type and that it doesn't contain the private key field.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>address defines an ethereum hex formated address of an account </p></td>
-                </tr>
-
-                <tr>
-                  <td>code</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>code defines the hex bytes of the account code. </p></td>
-                </tr>
-
-                <tr>
-                  <td>storage</td>
-                  <td><a href="#ethermint.evm.v1.State">State</a></td>
-                  <td>repeated</td>
-                  <td><p>storage defines the set of state key values for the account. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="ethermint.evm.v1.GenesisState">GenesisState</h3>
-        <p>GenesisState defines the evm module's genesis state.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>accounts</td>
-                  <td><a href="#ethermint.evm.v1.GenesisAccount">GenesisAccount</a></td>
-                  <td>repeated</td>
-                  <td><p>accounts is an array containing the ethereum genesis accounts. </p></td>
-                </tr>
-
-                <tr>
-                  <td>params</td>
-                  <td><a href="#ethermint.evm.v1.Params">Params</a></td>
-                  <td></td>
-                  <td><p>params defines all the parameters of the module. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="file-heading">
         <h2 id="ethermint/evm/v1/tx.proto">ethermint/evm/v1/tx.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
         <h3 id="ethermint.evm.v1.AccessListTx">AccessListTx</h3>
@@ -1943,7 +2357,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
                   <td>chain_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>destination EVM chain ID </p></td>
+                  <td><p>chain_id of the destination EVM chain </p></td>
                 </tr>
 
                 <tr>
@@ -1957,7 +2371,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
                   <td>gas_price</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>gas price defines the value for each gas unit </p></td>
+                  <td><p>gas_price defines the value for each gas unit </p></td>
                 </tr>
 
                 <tr>
@@ -1971,7 +2385,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
                   <td>to</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>hex formatted address of the recipient </p></td>
+                  <td><p>to is the recipient address in hex format </p></td>
                 </tr>
 
                 <tr>
@@ -1985,14 +2399,14 @@ it's similar to feemarket module's method, but also checks london hardfork statu
                   <td>data</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
-                  <td><p>input defines the data payload bytes of the transaction. </p></td>
+                  <td><p>data is the data payload bytes of the transaction. </p></td>
                 </tr>
 
                 <tr>
                   <td>accesses</td>
                   <td><a href="#ethermint.evm.v1.AccessTuple">AccessTuple</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>accesses is an array of access tuples </p></td>
                 </tr>
 
                 <tr>
@@ -2024,7 +2438,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
 
 
         <h3 id="ethermint.evm.v1.DynamicFeeTx">DynamicFeeTx</h3>
-        <p>DynamicFeeTx is the data of EIP-1559 dinamic fee transactions.</p>
+        <p>DynamicFeeTx is the data of EIP-1559 dynamic fee transactions.</p>
 
 
           <table class="field-table">
@@ -2037,7 +2451,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
                   <td>chain_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>destination EVM chain ID </p></td>
+                  <td><p>chain_id of the destination EVM chain </p></td>
                 </tr>
 
                 <tr>
@@ -2051,14 +2465,14 @@ it's similar to feemarket module's method, but also checks london hardfork statu
                   <td>gas_tip_cap</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>gas tip cap defines the max value for the gas tip </p></td>
+                  <td><p>gas_tip_cap defines the max value for the gas tip </p></td>
                 </tr>
 
                 <tr>
                   <td>gas_fee_cap</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>gas fee cap defines the max value for the gas fee </p></td>
+                  <td><p>gas_fee_cap defines the max value for the gas fee </p></td>
                 </tr>
 
                 <tr>
@@ -2072,28 +2486,28 @@ it's similar to feemarket module's method, but also checks london hardfork statu
                   <td>to</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>hex formatted address of the recipient </p></td>
+                  <td><p>to is the hex formatted address of the recipient </p></td>
                 </tr>
 
                 <tr>
                   <td>value</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>value defines the the transaction amount. </p></td>
+                  <td><p>value defines the transaction amount. </p></td>
                 </tr>
 
                 <tr>
                   <td>data</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
-                  <td><p>input defines the data payload bytes of the transaction. </p></td>
+                  <td><p>data is the data payload bytes of the transaction. </p></td>
                 </tr>
 
                 <tr>
                   <td>accesses</td>
                   <td><a href="#ethermint.evm.v1.AccessTuple">AccessTuple</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>accesses is an array of access tuples </p></td>
                 </tr>
 
                 <tr>
@@ -2125,7 +2539,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
 
 
         <h3 id="ethermint.evm.v1.ExtensionOptionsEthereumTx">ExtensionOptionsEthereumTx</h3>
-        <p></p>
+        <p>ExtensionOptionsEthereumTx is an extension option for ethereum transactions</p>
 
 
 
@@ -2152,7 +2566,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
                   <td>gas_price</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>gas price defines the value for each gas unit </p></td>
+                  <td><p>gas_price defines the value for each gas unit </p></td>
                 </tr>
 
                 <tr>
@@ -2166,7 +2580,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
                   <td>to</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>hex formatted address of the recipient </p></td>
+                  <td><p>to is the hex formatted address of the recipient </p></td>
                 </tr>
 
                 <tr>
@@ -2180,7 +2594,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
                   <td>data</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
-                  <td><p>input defines the data payload bytes of the transaction. </p></td>
+                  <td><p>data is the data payload bytes of the transaction. </p></td>
                 </tr>
 
                 <tr>
@@ -2225,30 +2639,28 @@ it's similar to feemarket module's method, but also checks london hardfork statu
                   <td>data</td>
                   <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
                   <td></td>
-                  <td><p>inner transaction data
-
-caches </p></td>
+                  <td><p>data is inner transaction data of the Ethereum transaction </p></td>
                 </tr>
 
                 <tr>
                   <td>size</td>
                   <td><a href="#double">double</a></td>
                   <td></td>
-                  <td><p>encoded storage size of the transaction </p></td>
+                  <td><p>size is the encoded storage size of the transaction (DEPRECATED) </p></td>
                 </tr>
 
                 <tr>
                   <td>hash</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>transaction hash in hex format </p></td>
+                  <td><p>hash of the transaction in hex format </p></td>
                 </tr>
 
                 <tr>
                   <td>from</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>ethereum signer address in hex format. This address value is checked
+                  <td><p>from is the ethereum signer address in hex format. This address value is checked
 against the address derived from the signature (V, R, S) using the
 secp256k1 elliptic curve </p></td>
                 </tr>
@@ -2274,7 +2686,7 @@ secp256k1 elliptic curve </p></td>
                   <td>hash</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>ethereum transaction hash in hex format. This hash differs from the
+                  <td><p>hash of the ethereum transaction in hex format. This hash differs from the
 Tendermint sha256 hash of the transaction bytes. See
 https://github.com/tendermint/tendermint/issues/6539 for reference </p></td>
                 </tr>
@@ -2291,7 +2703,7 @@ logs. </p></td>
                   <td>ret</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
-                  <td><p>returned data from evm function (result or data supplied with revert
+                  <td><p>ret is the returned data from evm function (result or data supplied with revert
 opcode) </p></td>
                 </tr>
 
@@ -2299,18 +2711,57 @@ opcode) </p></td>
                   <td>vm_error</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>vm error is the error returned by vm execution </p></td>
+                  <td><p>vm_error is the error returned by vm execution </p></td>
                 </tr>
 
                 <tr>
                   <td>gas_used</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>gas consumed by the transaction </p></td>
+                  <td><p>gas_used specifies how much gas was consumed by the transaction </p></td>
                 </tr>
 
             </tbody>
           </table>
+
+
+
+
+
+        <h3 id="ethermint.evm.v1.MsgUpdateParams">MsgUpdateParams</h3>
+        <p>MsgUpdateParams defines a Msg for updating the x/evm module parameters.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address of the governance account. </p></td>
+                </tr>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#ethermint.evm.v1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines the x/evm parameters to update.
+NOTE: All parameters must be supplied. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="ethermint.evm.v1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</h3>
+        <p>MsgUpdateParamsResponse defines the response structure for executing a</p><p>MsgUpdateParams message.</p>
 
 
 
@@ -2337,6 +2788,14 @@ opcode) </p></td>
                 <td><p>EthereumTx defines a method submitting Ethereum transactions.</p></td>
               </tr>
 
+              <tr>
+                <td>UpdateParams</td>
+                <td><a href="#ethermint.evm.v1.MsgUpdateParams">MsgUpdateParams</a></td>
+                <td><a href="#ethermint.evm.v1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</a></td>
+                <td><p>UpdateParams defined a governance operation for updating the x/evm module parameters.
+The authority is hard-coded to the Cosmos SDK x/gov module account</p></td>
+              </tr>
+
           </tbody>
         </table>
 
@@ -2360,7 +2819,7 @@ opcode) </p></td>
               <tr>
                 <td>EthereumTx</td>
                 <td>POST</td>
-                <td>/ethermint/evm/v1/ethereum_tx</td>
+                <td>/evmos/evm/v1/ethereum_tx</td>
                 <td></td>
               </tr>
 

@@ -167,6 +167,25 @@
 
 
           <li>
+            <a href="#evmos/inflation/v1/genesis.proto">evmos/inflation/v1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#evmos.inflation.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.inflation.v1.Params"><span class="badge">M</span>Params</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#evmos/inflation/v1/inflation.proto">evmos/inflation/v1/inflation.proto</a>
             <ul>
 
@@ -249,19 +268,23 @@
 
 
           <li>
-            <a href="#evmos/inflation/v1/genesis.proto">evmos/inflation/v1/genesis.proto</a>
+            <a href="#evmos/inflation/v1/tx.proto">evmos/inflation/v1/tx.proto</a>
             <ul>
 
                 <li>
-                  <a href="#evmos.inflation.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                  <a href="#evmos.inflation.v1.MsgUpdateParams"><span class="badge">M</span>MsgUpdateParams</a>
                 </li>
 
                 <li>
-                  <a href="#evmos.inflation.v1.Params"><span class="badge">M</span>Params</a>
+                  <a href="#evmos.inflation.v1.MsgUpdateParamsResponse"><span class="badge">M</span>MsgUpdateParamsResponse</a>
                 </li>
 
 
 
+
+                <li>
+                  <a href="#evmos.inflation.v1.Msg"><span class="badge">S</span>Msg</a>
+                </li>
 
             </ul>
           </li>
@@ -273,9 +296,120 @@
 
 
       <div class="file-heading">
+        <h2 id="evmos/inflation/v1/genesis.proto">evmos/inflation/v1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
+
+
+        <h3 id="evmos.inflation.v1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the inflation module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#evmos.inflation.v1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines all the parameters of the module. </p></td>
+                </tr>
+
+                <tr>
+                  <td>period</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>period is the amount of past periods, based on the epochs per period param </p></td>
+                </tr>
+
+                <tr>
+                  <td>epoch_identifier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>epoch_identifier for inflation </p></td>
+                </tr>
+
+                <tr>
+                  <td>epochs_per_period</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>epochs_per_period is the number of epochs after which inflation is recalculated </p></td>
+                </tr>
+
+                <tr>
+                  <td>skipped_epochs</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>skipped_epochs is the number of epochs that have passed while inflation is disabled </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.inflation.v1.Params">Params</h3>
+        <p>Params holds parameters for the inflation module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>mint_denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>mint_denom specifies the type of coin to mint </p></td>
+                </tr>
+
+                <tr>
+                  <td>exponential_calculation</td>
+                  <td><a href="#evmos.inflation.v1.ExponentialCalculation">ExponentialCalculation</a></td>
+                  <td></td>
+                  <td><p>exponential_calculation takes in the variables to calculate exponential inflation </p></td>
+                </tr>
+
+                <tr>
+                  <td>inflation_distribution</td>
+                  <td><a href="#evmos.inflation.v1.InflationDistribution">InflationDistribution</a></td>
+                  <td></td>
+                  <td><p>inflation_distribution of the minted denom </p></td>
+                </tr>
+
+                <tr>
+                  <td>enable_inflation</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>enable_inflation is the parameter that enables inflation and halts increasing the skipped_epochs </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
         <h2 id="evmos/inflation/v1/inflation.proto">evmos/inflation/v1/inflation.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
         <h3 id="evmos.inflation.v1.ExponentialCalculation">ExponentialCalculation</h3>
@@ -292,35 +426,35 @@
                   <td>a</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>initial value </p></td>
+                  <td><p>a defines the initial value </p></td>
                 </tr>
 
                 <tr>
                   <td>r</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>reduction factor </p></td>
+                  <td><p>r defines the reduction factor </p></td>
                 </tr>
 
                 <tr>
                   <td>c</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>long term inflation </p></td>
+                  <td><p>c defines the parameter for long term inflation </p></td>
                 </tr>
 
                 <tr>
                   <td>bonding_target</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>bonding target </p></td>
+                  <td><p>bonding_target </p></td>
                 </tr>
 
                 <tr>
                   <td>max_variance</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>max variance </p></td>
+                  <td><p>max_variance </p></td>
                 </tr>
 
             </tbody>
@@ -352,7 +486,7 @@ to be allocated as staking rewards </p></td>
                   <td>usage_incentives</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>usage_incentives defines the proportion of the minted minted_denom that is
+                  <td><p><strong>Deprecated.</strong> Deprecated: usage_incentives defines the proportion of the minted minted_denom that is
 to be allocated to the incentives module address </p></td>
                 </tr>
 
@@ -370,6 +504,27 @@ be allocated to the community pool </p></td>
 
 
 
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>usage_incentives</td>
+                  <td><p>true</p></td>
+                </tr>
+
+              </tbody>
+            </table>
+
+
+
+
 
 
 
@@ -382,7 +537,7 @@ be allocated to the community pool </p></td>
       <div class="file-heading">
         <h2 id="evmos/inflation/v1/query.proto">evmos/inflation/v1/query.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
         <h3 id="evmos.inflation.v1.QueryCirculatingSupplyRequest">QueryCirculatingSupplyRequest</h3>
@@ -406,7 +561,7 @@ be allocated to the community pool </p></td>
                   <td>circulating_supply</td>
                   <td><a href="#cosmos.base.v1beta1.DecCoin">cosmos.base.v1beta1.DecCoin</a></td>
                   <td></td>
-                  <td><p>total amount of coins in circulation </p></td>
+                  <td><p>circulating_supply is the total amount of coins in circulation </p></td>
                 </tr>
 
             </tbody>
@@ -468,7 +623,7 @@ be allocated to the community pool </p></td>
                   <td>inflation_rate</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>rate by which the total supply increases within one period </p></td>
+                  <td><p>inflation_rate by which the total supply increases within one period </p></td>
                 </tr>
 
             </tbody>
@@ -561,7 +716,7 @@ be allocated to the community pool </p></td>
                   <td>skipped_epochs</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>number of epochs that the inflation module has been disabled. </p></td>
+                  <td><p>skipped_epochs is the number of epochs that the inflation module has been disabled. </p></td>
                 </tr>
 
             </tbody>
@@ -713,13 +868,13 @@ circulation (i.e. excluding unvested tokens).</p></td>
 
 
       <div class="file-heading">
-        <h2 id="evmos/inflation/v1/genesis.proto">evmos/inflation/v1/genesis.proto</h2><a href="#title">Top</a>
+        <h2 id="evmos/inflation/v1/tx.proto">evmos/inflation/v1/tx.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
-        <h3 id="evmos.inflation.v1.GenesisState">GenesisState</h3>
-        <p>GenesisState defines the inflation module's genesis state.</p>
+        <h3 id="evmos.inflation.v1.MsgUpdateParams">MsgUpdateParams</h3>
+        <p>MsgUpdateParams defines a Msg for updating the x/inflation module parameters.</p>
 
 
           <table class="field-table">
@@ -727,40 +882,20 @@ circulation (i.e. excluding unvested tokens).</p></td>
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address of the governance account. </p></td>
+                </tr>
 
                 <tr>
                   <td>params</td>
                   <td><a href="#evmos.inflation.v1.Params">Params</a></td>
                   <td></td>
-                  <td><p>params defines all the paramaters of the module. </p></td>
-                </tr>
-
-                <tr>
-                  <td>period</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>amount of past periods, based on the epochs per period param </p></td>
-                </tr>
-
-                <tr>
-                  <td>epoch_identifier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>inflation epoch identifier </p></td>
-                </tr>
-
-                <tr>
-                  <td>epochs_per_period</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>number of epochs after which inflation is recalculated </p></td>
-                </tr>
-
-                <tr>
-                  <td>skipped_epochs</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>number of epochs that have passed while inflation is disabled </p></td>
+                  <td><p>params defines the x/inflation parameters to update.
+NOTE: All parameters must be supplied. </p></td>
                 </tr>
 
             </tbody>
@@ -770,46 +905,8 @@ circulation (i.e. excluding unvested tokens).</p></td>
 
 
 
-        <h3 id="evmos.inflation.v1.Params">Params</h3>
-        <p>Params holds parameters for the inflation module.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>mint_denom</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>type of coin to mint </p></td>
-                </tr>
-
-                <tr>
-                  <td>exponential_calculation</td>
-                  <td><a href="#evmos.inflation.v1.ExponentialCalculation">ExponentialCalculation</a></td>
-                  <td></td>
-                  <td><p>variables to calculate exponential inflation </p></td>
-                </tr>
-
-                <tr>
-                  <td>inflation_distribution</td>
-                  <td><a href="#evmos.inflation.v1.InflationDistribution">InflationDistribution</a></td>
-                  <td></td>
-                  <td><p>inflation distribution of the minted denom </p></td>
-                </tr>
-
-                <tr>
-                  <td>enable_inflation</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>parameter to enable inflation and halt increasing the skipped_epochs </p></td>
-                </tr>
-
-            </tbody>
-          </table>
+        <h3 id="evmos.inflation.v1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</h3>
+        <p>MsgUpdateParamsResponse defines the response structure for executing a</p><p>MsgUpdateParams message.</p>
 
 
 
@@ -819,6 +916,26 @@ circulation (i.e. excluding unvested tokens).</p></td>
 
 
 
+
+
+        <h3 id="evmos.inflation.v1.Msg">Msg</h3>
+        <p>Msg defines the evm Msg service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>UpdateParams</td>
+                <td><a href="#evmos.inflation.v1.MsgUpdateParams">MsgUpdateParams</a></td>
+                <td><a href="#evmos.inflation.v1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</a></td>
+                <td><p>UpdateParams defined a governance operation for updating the x/inflation module parameters.
+The authority is hard-coded to the Cosmos SDK x/gov module account</p></td>
+              </tr>
+
+          </tbody>
+        </table>
 
 
 

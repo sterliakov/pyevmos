@@ -8,18 +8,16 @@ import bech32
 from eth_typing import HexStr
 from eth_utils import keccak
 
-from evmos.utils.polyfill import removeprefix
-
-ADDRESS_REGEX: Final = re.compile(r'^0x[0-9a-fA-F]{40}$')
+ADDRESS_REGEX: Final = re.compile(r"^0x[0-9a-fA-F]{40}$")
 
 
 def to_checksum_address(address: HexStr, chain_id: int | None = None) -> HexStr:
     """Convert address to checksum address."""
-    strip_address = removeprefix(address, '0x').lower()
-    prefix = (str(chain_id) + '0x') if chain_id is not None else ''
+    strip_address = address.removeprefix("0x").lower()
+    prefix = (str(chain_id) + "0x") if chain_id is not None else ""
     keccak_hash = keccak((prefix + strip_address).encode()).hex()
-    output = '0x' + ''.join(
-        byte.upper() if int(hash_byte, 16) >= 8 else byte
+    output = "0x" + "".join(
+        byte.upper() if int(hash_byte, 16) >= 8 else byte  # noqa: PLR2004
         for byte, hash_byte in zip(strip_address, keccak_hash)
     )
     return HexStr(output)
@@ -38,7 +36,7 @@ def is_valid_checksum_address(address: HexStr, chain_id: int | None = None) -> b
     )
 
 
-_T = TypeVar('_T')
+_T = TypeVar("_T")
 
 
 @dataclass
@@ -60,13 +58,13 @@ def make_checksummed_hex_decoder(
 
     def decoder(data: HexStr) -> bytes:
         """Address decoder."""
-        stripped = removeprefix(data, '0x')
+        stripped = data.removeprefix("0x")
         if (
             not is_valid_checksum_address(data, chain_id)
             and stripped != stripped.lower()
             and stripped != stripped.upper()
         ):
-            raise ValueError('Invalid address checksum.')
+            raise ValueError("Invalid address checksum.")
         return bytes.fromhex(stripped)
 
     return decoder
@@ -95,7 +93,7 @@ def hex_checksum_chain(
     )
 
 
-ETH: Final = hex_checksum_chain('ETH')
+ETH: Final = hex_checksum_chain("ETH")
 """Eth chain address converter."""
 
 
@@ -106,11 +104,11 @@ def make_bech32_decoder(current_prefix: str) -> Callable[[str], bytes]:
         """Address decoder."""
         prefix, words = bech32.bech32_decode(data)
         if prefix != current_prefix:
-            raise ValueError('Unrecognised address format')
-
-        decoded = bech32.convertbits(words, 5, 8, False)
-        if decoded is None or len(decoded) < 2 or len(decoded) > 40:
-            raise ValueError('Unrecognised address format')
+            raise ValueError("Unrecognised address format")
+        assert words is not None
+        decoded = bech32.convertbits(words, 5, 8, pad=False)
+        if decoded is None or not 2 <= len(decoded) <= 40:  # noqa: PLR2004
+            raise ValueError("Unrecognised address format")
         return bytes(decoded)
 
     return decoder
@@ -121,7 +119,10 @@ def make_bech32_encoder(prefix: str) -> Callable[[bytes], str]:
 
     def encoder(data: bytes) -> str:
         """Address encoder."""
-        return bech32.bech32_encode(prefix, bech32.convertbits(data, 8, 5))
+        bits = bech32.convertbits(data, 8, 5)
+        if bits is None:
+            raise ValueError("Failed to convert data to bech32 input format.")
+        return bech32.bech32_encode(prefix, bits)
 
     return encoder
 
@@ -135,7 +136,7 @@ def bech32_chain(name: str, prefix: str) -> ChainConverter[str]:
     )
 
 
-ETHERMINT: Final = bech32_chain('ETHERMINT', 'ethm')
+ETHERMINT: Final = bech32_chain("ETHERMINT", "ethm")
 """Ethermint chain address converter."""
 
 
@@ -151,7 +152,7 @@ def ethermint_to_eth(ethermint_address: str) -> HexStr:
     return ETH.encoder(data)
 
 
-EVMOS: Final = bech32_chain('EVMOS', 'evmos')
+EVMOS: Final = bech32_chain("EVMOS", "evmos")
 """Evmos chain address converter."""
 
 
@@ -167,7 +168,7 @@ def evmos_to_eth(evmos_address: str) -> HexStr:
     return ETH.encoder(data)
 
 
-OSMOSIS: Final = bech32_chain('OSMOSIS', 'osmo')
+OSMOSIS: Final = bech32_chain("OSMOSIS", "osmo")
 """Osmosis chain address converter."""
 
 
@@ -183,7 +184,7 @@ def osmosis_to_eth(evmos_address: str) -> HexStr:
     return ETH.encoder(data)
 
 
-COSMOS: Final = bech32_chain('COSMOS', 'cosmos')
+COSMOS: Final = bech32_chain("COSMOS", "cosmos")
 """Cosmos chain address converter."""
 
 
@@ -199,7 +200,7 @@ def cosmos_to_eth(evmos_address: str) -> HexStr:
     return ETH.encoder(data)
 
 
-KYVE: Final = bech32_chain('KORELLIA', 'kyve')
+KYVE: Final = bech32_chain("KORELLIA", "kyve")
 """Kyve chain address converter."""
 
 
@@ -215,7 +216,7 @@ def kyve_to_eth(kyve_address: str) -> HexStr:
     return ETH.encoder(data)
 
 
-AKASH: Final = bech32_chain('AKASH', 'akash')
+AKASH: Final = bech32_chain("AKASH", "akash")
 """Akash chain address converter."""
 
 

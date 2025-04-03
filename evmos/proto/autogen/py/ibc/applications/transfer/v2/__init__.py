@@ -2,6 +2,7 @@
 # sources: ibc/applications/transfer/v2/packet.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 
 import betterproto
@@ -26,3 +27,6 @@ class FungibleTokenPacketData(betterproto.Message):
 
     receiver: str = betterproto.string_field(4)
     """the recipient address on the destination chain"""
+
+    memo: str = betterproto.string_field(5)
+    """optional memo"""

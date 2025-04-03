@@ -2,12 +2,13 @@
 # sources: ibc/core/commitment/v1/commitment.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import List
 
 import betterproto
 
-from ..... import ics23 as ____ics23__
+from .....cosmos.ics23 import v1 as ____cosmos_ics23_v1__
 
 
 @dataclass(eq=False, repr=False)
@@ -52,4 +53,4 @@ class MerkleProof(betterproto.Message):
     MerkleProofs are ordered from leaf-to-root
     """
 
-    proofs: List['____ics23__.CommitmentProof'] = betterproto.message_field(1)
+    proofs: List["____cosmos_ics23_v1__.CommitmentProof"] = betterproto.message_field(1)

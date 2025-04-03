@@ -15,23 +15,23 @@ diff --git b/evmos/proto/autogen/py/google/api/__init__.py a/evmos/proto/autogen
 index 4e127dc..72500e5 100644
 --- b/evmos/proto/autogen/py/google/api/__init__.py
 +++ a/evmos/proto/autogen/py/google/api/__init__.py
-@@ -210,7 +210,7 @@ class HttpRule(betterproto.Message):
-     characters except `[-_.~/0-9a-zA-Z]` are percent-encoded. Such variables
-     show up in the Discovery Document as `{+var}`.
-     NOTE: While the single segment variable matches the semantics of
--    [RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2
-+    `RFC 6570 <https://www.rfc-editor.org/rfc/rfc6570>`_ Section 3.2.2
-     Simple String Expansion, the multi segment variable **does not** match
-     RFC 6570 Reserved Expansion. The reason is that the Reserved Expansion
-     does not expand special characters like `?` and `#`, which would lead
+@@ -239,7 +239,7 @@ class HttpRule(betterproto.Message):
+     proto to JSON conversion must follow the [proto3
+     specification](https://developers.google.com/protocol-buffers/docs/proto3#json).
+     While the single segment variable follows the semantics of
+-    [RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String
++    `RFC 6570 <https://www.rfc-editor.org/rfc/rfc6570>`_ Section 3.2.2 Simple String
+     Expansion, the multi segment variable **does not** follow RFC 6570 Section
+     3.2.3 Reserved Expansion. The reason is that the Reserved Expansion
+     does not expand special characters like `?` and `#`\\s, which would lead
 diff --git b/evmos/proto/autogen/py/ibc/applications/interchain_accounts/v1/__init__.py a/evmos/proto/autogen/py/ibc/applications/interchain_accounts/v1/__init__.py
 index 961938d..762470a 100644
 --- b/evmos/proto/autogen/py/ibc/applications/interchain_accounts/v1/__init__.py
 +++ a/evmos/proto/autogen/py/ibc/applications/interchain_accounts/v1/__init__.py
-@@ -31,7 +31,7 @@ class Metadata(betterproto.Message):
-     """
-     Metadata defines a set of protocol specific data encoded into the ICS27
-     channel version bytestring See ICS004:
+@@ -70,7 +70,7 @@ class Metadata(betterproto.Message):
+     Metadata defines a set of protocol specific data encoded into the ICS27 channel
+     version bytestring
+     See ICS004:
 -    https://github.com/cosmos/ibc/tree/master/spec/core/ics-004-channel-and-packet-semantics#Versioning
 +    https://github.com/cosmos/ibc/tree/main/spec/core/ics-004-channel-and-packet-semantics
      """
@@ -67,7 +67,7 @@ diff --git b/evmos/proto/autogen/py/ibc/core/channel/v1/__init__.py a/evmos/prot
 index 2435714..16e928d 100644
 --- b/evmos/proto/autogen/py/ibc/core/channel/v1/__init__.py
 +++ a/evmos/proto/autogen/py/ibc/core/channel/v1/__init__.py
-@@ -203,7 +203,7 @@ class Acknowledgement(betterproto.Message):
+@@ -207,7 +207,7 @@ class Acknowledgement(betterproto.Message):
      conflicts with other protobuf message formats used for acknowledgements.
      The first byte of any message with this format will be the non-ASCII values
      `0xaa` (result) or `0xb2` (error). Implemented as defined by ICS:
@@ -75,7 +75,7 @@ index 2435714..16e928d 100644
 +    https://github.com/cosmos/ibc/tree/main/spec/core/ics-004-channel-and-packet-semantics
      """
 
-     result: bytes = betterproto.bytes_field(21, group='response')
+     result: bytes = betterproto.bytes_field(21, group="response")
 diff --git b/evmos/proto/autogen/py/tendermint/types/__init__.py a/evmos/proto/autogen/py/tendermint/types/__init__.py
 index 42e7137..0ac64b3 100644
 --- b/evmos/proto/autogen/py/tendermint/types/__init__.py

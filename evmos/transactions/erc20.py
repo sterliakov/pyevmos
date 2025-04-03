@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Any, Mapping
+from collections.abc import Mapping
+from typing import Any
 
 from eth_typing import HexStr
 
@@ -10,9 +11,13 @@ from evmos.eip712 import (
     create_msg_convert_coin,
     create_msg_convert_erc20,
 )
-from evmos.proto import MessageGenerated, MsgConvertCoin, MsgConvertErc20
-from evmos.proto import create_msg_convert_coin as proto_msg_convert_coin
-from evmos.proto import create_msg_convert_erc20 as proto_msg_convert_erc20
+from evmos.proto import (
+    MessageGenerated,
+    MsgConvertCoin,
+    MsgConvertErc20,
+    create_msg_convert_coin as proto_msg_convert_coin,
+    create_msg_convert_erc20 as proto_msg_convert_erc20,
+)
 from evmos.transactions.common import to_generated
 
 # msgConvertCoin.ts

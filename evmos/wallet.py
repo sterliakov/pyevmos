@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import base64
-import warnings
 from typing import Any, Final
 
 import requests
@@ -19,7 +18,6 @@ from evmos.transactions import (
     create_tx_raw_eip712,
     signature_to_web3_extension,
 )
-from evmos.utils.eip_712_hash import hash_domain, hash_message
 
 # Copied from
 # https://github.com/hanchon-live/evmos-ts-wallet/blob/main/src/signer.ts
@@ -30,58 +28,60 @@ from evmos.utils.eip_712_hash import hash_domain, hash_message
 
 LOCALNET_CHAIN: Final = Chain(
     chain_id=9000,
-    cosmos_chain_id='evmos_9000-1',
+    cosmos_chain_id="evmos_9000-1",
 )
 
 LOCALNET_FEE: Final = Fee(
-    amount='2000000000000',
-    denom='atevmos',
-    gas='200000',
+    amount="2000000000000",
+    denom="atevmos",
+    gas="200000",
 )
 
 MAINNET_CHAIN: Final = Chain(
     chain_id=9001,
-    cosmos_chain_id='evmos_9001-2',
+    cosmos_chain_id="evmos_9001-2",
 )
 
 MAINNET_FEE: Final = Fee(
-    amount='6000000000000',
-    denom='atevmos',
-    gas='600000',
+    amount="6000000000000",
+    denom="atevmos",
+    gas="600000",
 )
 
 TESTNET_CHAIN: Final = Chain(
     chain_id=9000,
-    cosmos_chain_id='evmos_9000-4',
+    cosmos_chain_id="evmos_9000-4",
 )
 
 TESTNET_FEE: Final = Fee(
-    amount='15000000000000000',
-    denom='atevmos',
-    gas='600000',
+    amount="15000000000000000",
+    denom="atevmos",
+    gas="600000",
 )
 
 
 def broadcast(
     transaction_body: BroadcastPostBody,
-    url: str = 'http://127.0.0.1:1317',
+    url: str = "http://127.0.0.1:1317",
+    timeout: int | None = 5,
 ) -> dict[str, Any]:
     """Broadcast a transaction.
 
     Args:
         transaction_body: data to broadcast, json payload (not stringified).
         url: REST API URL to use.
+        timeout: HTTP timeout, pass `None` to disable.
 
     Returns:
         Info about broadcasted transaction or failure reasons.
     """
     post = requests.post(
-        f'{url}{generate_endpoint_broadcast()}',
-        json=transaction_body,
+        f"{url}{generate_endpoint_broadcast()}", json=transaction_body, timeout=timeout
     )
-    return post.json()
+    return post.json()  # type: ignore[no-any-return]
 
 
+# FIXME: broadcast_mode belongs to ``broadcast``, not here
 def sign_transaction(
     tx: TxGenerated,
     private_key: HexStr,
@@ -90,10 +90,7 @@ def sign_transaction(
     """Sign transaction using payload method (keplr style)."""
     data_to_sign = base64.b64decode(tx.sign_direct.sign_bytes)
 
-    with warnings.catch_warnings():
-        # signHash is deprecated, but there is no alternative to sign raw bytes
-        warnings.filterwarnings('ignore', category=DeprecationWarning)
-        signature_raw = Account.signHash(data_to_sign, private_key=private_key)
+    signature_raw = Account.unsafe_sign_hash(data_to_sign, private_key=private_key)
 
     signed_tx = create_tx_raw(
         bytes(tx.sign_direct.body),
@@ -101,8 +98,8 @@ def sign_transaction(
         [signature_raw.signature],
     )
     return {
-        'tx_bytes': base64.b64encode(bytes(signed_tx.message)).decode(),
-        'mode': 'BROADCAST_MODE_BLOCK',
+        "tx_bytes": base64.b64encode(bytes(signed_tx.message)).decode(),
+        "mode": broadcast_mode,
     }
 
 
@@ -114,21 +111,14 @@ def sign_transaction_eip712(
     broadcast_mode: BroadcastMode = BroadcastMode.BLOCK,
 ) -> BroadcastPostBody:
     """Sign transaction using eip712 method (metamask style)."""
-    data_to_sign = keccak(
-        b'\x19\x01' + hash_domain(tx.eip_to_sign) + hash_message(tx.eip_to_sign)
-    )
+    hashes = tx.eip_to_sign.hash()
+    data_to_sign = keccak(b"\x19\x01" + hashes["domain"] + hashes["message"])
 
-    with warnings.catch_warnings():
-        # signHash is deprecated, but there is no alternative to sign raw bytes
-        warnings.filterwarnings('ignore', category=DeprecationWarning)
-        signature_raw = Account.signHash(data_to_sign, private_key=private_key)
-
-    signature = signature_raw.signature
-
+    signature_raw = Account.unsafe_sign_hash(data_to_sign, private_key=private_key)
     extension = signature_to_web3_extension(
         chain,
         sender,
-        signature,
+        signature_raw.signature,
     )
     signed_tx = create_tx_raw_eip712(
         tx.legacy_amino.body,
@@ -137,6 +127,6 @@ def sign_transaction_eip712(
     )
 
     return {
-        'tx_bytes': base64.b64encode(bytes(signed_tx.message)).decode(),
-        'mode': broadcast_mode,
+        "tx_bytes": base64.b64encode(bytes(signed_tx.message)).decode(),
+        "mode": broadcast_mode,
     }

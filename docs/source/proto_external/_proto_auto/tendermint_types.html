@@ -182,8 +182,39 @@
 
 
           <li>
+            <a href="#tendermint/types/evidence.proto">tendermint/types/evidence.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#tendermint.types.DuplicateVoteEvidence"><span class="badge">M</span>DuplicateVoteEvidence</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.Evidence"><span class="badge">M</span>Evidence</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.EvidenceList"><span class="badge">M</span>EvidenceList</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.LightClientAttackEvidence"><span class="badge">M</span>LightClientAttackEvidence</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#tendermint/types/params.proto">tendermint/types/params.proto</a>
             <ul>
+
+                <li>
+                  <a href="#tendermint.types.ABCIParams"><span class="badge">M</span>ABCIParams</a>
+                </li>
 
                 <li>
                   <a href="#tendermint.types.BlockParams"><span class="badge">M</span>BlockParams</a>
@@ -217,33 +248,6 @@
 
 
           <li>
-            <a href="#tendermint/types/evidence.proto">tendermint/types/evidence.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#tendermint.types.DuplicateVoteEvidence"><span class="badge">M</span>DuplicateVoteEvidence</a>
-                </li>
-
-                <li>
-                  <a href="#tendermint.types.Evidence"><span class="badge">M</span>Evidence</a>
-                </li>
-
-                <li>
-                  <a href="#tendermint.types.EvidenceList"><span class="badge">M</span>EvidenceList</a>
-                </li>
-
-                <li>
-                  <a href="#tendermint.types.LightClientAttackEvidence"><span class="badge">M</span>LightClientAttackEvidence</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
             <a href="#tendermint/types/types.proto">tendermint/types/types.proto</a>
             <ul>
 
@@ -265,6 +269,14 @@
 
                 <li>
                   <a href="#tendermint.types.Data"><span class="badge">M</span>Data</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.ExtendedCommit"><span class="badge">M</span>ExtendedCommit</a>
+                </li>
+
+                <li>
+                  <a href="#tendermint.types.ExtendedCommitSig"><span class="badge">M</span>ExtendedCommitSig</a>
                 </li>
 
                 <li>
@@ -301,10 +313,6 @@
 
 
                 <li>
-                  <a href="#tendermint.types.BlockIDFlag"><span class="badge">E</span>BlockIDFlag</a>
-                </li>
-
-                <li>
                   <a href="#tendermint.types.SignedMsgType"><span class="badge">E</span>SignedMsgType</a>
                 </li>
 
@@ -330,6 +338,10 @@
                   <a href="#tendermint.types.ValidatorSet"><span class="badge">M</span>ValidatorSet</a>
                 </li>
 
+
+                <li>
+                  <a href="#tendermint.types.BlockIDFlag"><span class="badge">E</span>BlockIDFlag</a>
+                </li>
 
 
 
@@ -402,241 +414,13 @@
 
 
       <div class="file-heading">
-        <h2 id="tendermint/types/params.proto">tendermint/types/params.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="tendermint.types.BlockParams">BlockParams</h3>
-        <p>BlockParams contains limits on the block size.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>max_bytes</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>Max block size, in bytes.
-Note: must be greater than 0 </p></td>
-                </tr>
-
-                <tr>
-                  <td>max_gas</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>Max gas per block.
-Note: must be greater or equal to -1 </p></td>
-                </tr>
-
-                <tr>
-                  <td>time_iota_ms</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>Minimum time increment between consecutive blocks (in milliseconds) If the
-block header timestamp is ahead of the system clock, decrease this value.
-
-Not exposed to the application. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="tendermint.types.ConsensusParams">ConsensusParams</h3>
-        <p>ConsensusParams contains consensus critical parameters that determine the</p><p>validity of blocks.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>block</td>
-                  <td><a href="#tendermint.types.BlockParams">BlockParams</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>evidence</td>
-                  <td><a href="#tendermint.types.EvidenceParams">EvidenceParams</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>validator</td>
-                  <td><a href="#tendermint.types.ValidatorParams">ValidatorParams</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>version</td>
-                  <td><a href="#tendermint.types.VersionParams">VersionParams</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="tendermint.types.EvidenceParams">EvidenceParams</h3>
-        <p>EvidenceParams determine how we handle evidence of malfeasance.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>max_age_num_blocks</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>Max age of evidence, in blocks.
-
-The basic formula for calculating this is: MaxAgeDuration / {average block
-time}. </p></td>
-                </tr>
-
-                <tr>
-                  <td>max_age_duration</td>
-                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
-                  <td></td>
-                  <td><p>Max age of evidence, in time.
-
-It should correspond with an app's "unbonding period" or other similar
-mechanism for handling [Nothing-At-Stake
-attacks](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ#what-is-the-nothing-at-stake-problem-and-how-can-it-be-fixed). </p></td>
-                </tr>
-
-                <tr>
-                  <td>max_bytes</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>This sets the maximum size of total evidence in bytes that can be committed
-in a single block. and should fall comfortably under the max block bytes.
-Default is 1048576 or 1MB </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="tendermint.types.HashedParams">HashedParams</h3>
-        <p>HashedParams is a subset of ConsensusParams.</p><p>It is hashed into the Header.ConsensusHash.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>block_max_bytes</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-                <tr>
-                  <td>block_max_gas</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="tendermint.types.ValidatorParams">ValidatorParams</h3>
-        <p>ValidatorParams restrict the public key types validators can use.</p><p>NOTE: uses ABCI pubkey naming, not Amino names.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>pub_key_types</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-        <h3 id="tendermint.types.VersionParams">VersionParams</h3>
-        <p>VersionParams contains the ABCI application version.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>app_version</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class="file-heading">
         <h2 id="tendermint/types/evidence.proto">tendermint/types/evidence.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
 
         <h3 id="tendermint.types.DuplicateVoteEvidence">DuplicateVoteEvidence</h3>
-        <p>DuplicateVoteEvidence contains evidence of a validator signed two conflicting</p><p>votes.</p>
+        <p>DuplicateVoteEvidence contains evidence of a validator signed two conflicting votes.</p>
 
 
           <table class="field-table">
@@ -743,7 +527,7 @@ Default is 1048576 or 1MB </p></td>
 
 
         <h3 id="tendermint.types.LightClientAttackEvidence">LightClientAttackEvidence</h3>
-        <p>LightClientAttackEvidence contains evidence of a set of validators attempting</p><p>to mislead a light client.</p>
+        <p>LightClientAttackEvidence contains evidence of a set of validators attempting to mislead a light client.</p>
 
 
           <table class="field-table">
@@ -783,6 +567,263 @@ Default is 1048576 or 1MB </p></td>
                 <tr>
                   <td>timestamp</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="tendermint/types/params.proto">tendermint/types/params.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="tendermint.types.ABCIParams">ABCIParams</h3>
+        <p>ABCIParams configure functionality specific to the Application Blockchain Interface.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>vote_extensions_enable_height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>vote_extensions_enable_height configures the first height during which
+vote extensions will be enabled. During this specified height, and for all
+subsequent heights, precommit messages that do not contain valid extension data
+will be considered invalid. Prior to this height, vote extensions will not
+be used or accepted by validators on the network.
+
+Once enabled, vote extensions will be created by the application in ExtendVote,
+passed to the application for validation in VerifyVoteExtension and given
+to the application to use when proposing a block during PrepareProposal. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.BlockParams">BlockParams</h3>
+        <p>BlockParams contains limits on the block size.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>max_bytes</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Max block size, in bytes.
+Note: must be greater than 0 </p></td>
+                </tr>
+
+                <tr>
+                  <td>max_gas</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Max gas per block.
+Note: must be greater or equal to -1 </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.ConsensusParams">ConsensusParams</h3>
+        <p>ConsensusParams contains consensus critical parameters that determine the</p><p>validity of blocks.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>block</td>
+                  <td><a href="#tendermint.types.BlockParams">BlockParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>evidence</td>
+                  <td><a href="#tendermint.types.EvidenceParams">EvidenceParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>validator</td>
+                  <td><a href="#tendermint.types.ValidatorParams">ValidatorParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#tendermint.types.VersionParams">VersionParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>abci</td>
+                  <td><a href="#tendermint.types.ABCIParams">ABCIParams</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.EvidenceParams">EvidenceParams</h3>
+        <p>EvidenceParams determine how we handle evidence of malfeasance.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>max_age_num_blocks</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Max age of evidence, in blocks.
+
+The basic formula for calculating this is: MaxAgeDuration / {average block
+time}. </p></td>
+                </tr>
+
+                <tr>
+                  <td>max_age_duration</td>
+                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
+                  <td></td>
+                  <td><p>Max age of evidence, in time.
+
+It should correspond with an app's "unbonding period" or other similar
+mechanism for handling [Nothing-At-Stake
+attacks](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ#what-is-the-nothing-at-stake-problem-and-how-can-it-be-fixed). </p></td>
+                </tr>
+
+                <tr>
+                  <td>max_bytes</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>This sets the maximum size of total evidence in bytes that can be committed in a single block.
+and should fall comfortably under the max block bytes.
+Default is 1048576 or 1MB </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.HashedParams">HashedParams</h3>
+        <p>HashedParams is a subset of ConsensusParams.</p><p>It is hashed into the Header.ConsensusHash.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>block_max_bytes</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>block_max_gas</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.ValidatorParams">ValidatorParams</h3>
+        <p>ValidatorParams restrict the public key types validators can use.</p><p>NOTE: uses ABCI pubkey naming, not Amino names.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>pub_key_types</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.VersionParams">VersionParams</h3>
+        <p>VersionParams contains the ABCI application version.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>app</td>
+                  <td><a href="#uint64">uint64</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -885,7 +926,7 @@ Default is 1048576 or 1MB </p></td>
 
 
         <h3 id="tendermint.types.Commit">Commit</h3>
-        <p>Commit contains the evidence that a block was committed by a set of</p><p>validators.</p>
+        <p>Commit contains the evidence that a block was committed by a set of validators.</p>
 
 
           <table class="field-table">
@@ -1000,8 +1041,112 @@ This means that block.AppHash does not include these txs. </p></td>
 
 
 
+        <h3 id="tendermint.types.ExtendedCommit">ExtendedCommit</h3>
+        <p></p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>round</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>block_id</td>
+                  <td><a href="#tendermint.types.BlockID">BlockID</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>extended_signatures</td>
+                  <td><a href="#tendermint.types.ExtendedCommitSig">ExtendedCommitSig</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="tendermint.types.ExtendedCommitSig">ExtendedCommitSig</h3>
+        <p>ExtendedCommitSig retains all the same fields as CommitSig but adds vote</p><p>extension-related fields. We use two signatures to ensure backwards compatibility.</p><p>That is the digest of the original signature is still the same in prior versions</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>block_id_flag</td>
+                  <td><a href="#tendermint.types.BlockIDFlag">BlockIDFlag</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>validator_address</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>signature</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>extension</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Vote extension data </p></td>
+                </tr>
+
+                <tr>
+                  <td>extension_signature</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Vote extension signature </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
         <h3 id="tendermint.types.Header">Header</h3>
-        <p>Header defines the structure of a Tendermint block header.</p>
+        <p>Header defines the structure of a block header.</p>
 
 
           <table class="field-table">
@@ -1319,7 +1464,7 @@ evidence included in the block </p></td>
 
 
         <h3 id="tendermint.types.TxProof">TxProof</h3>
-        <p>TxProof represents a Merkle proof of the presence of a transaction in the</p><p>Merkle tree.</p>
+        <p>TxProof represents a Merkle proof of the presence of a transaction in the Merkle tree.</p>
 
 
           <table class="field-table">
@@ -1357,7 +1502,7 @@ evidence included in the block </p></td>
 
 
         <h3 id="tendermint.types.Vote">Vote</h3>
-        <p>Vote represents a prevote, precommit, or commit vote from validators for</p><p>consensus.</p>
+        <p>Vote represents a prevote or precommit vote from validators for</p><p>consensus.</p>
 
 
           <table class="field-table">
@@ -1419,7 +1564,25 @@ evidence included in the block </p></td>
                   <td>signature</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Vote signature by the validator if they participated in consensus for the
+associated block. </p></td>
+                </tr>
+
+                <tr>
+                  <td>extension</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Vote extension provided by the application. Only valid for precommit
+messages. </p></td>
+                </tr>
+
+                <tr>
+                  <td>extension_signature</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Vote extension signature by the validator if they participated in
+consensus for the associated block.
+Only valid for precommit messages. </p></td>
                 </tr>
 
             </tbody>
@@ -1430,41 +1593,6 @@ evidence included in the block </p></td>
 
 
 
-
-        <h3 id="tendermint.types.BlockIDFlag">BlockIDFlag</h3>
-        <p>BlockIdFlag indicates which BlcokID the signature is for</p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-
-              <tr>
-                <td>BLOCK_ID_FLAG_UNKNOWN</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-
-              <tr>
-                <td>BLOCK_ID_FLAG_ABSENT</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-
-              <tr>
-                <td>BLOCK_ID_FLAG_COMMIT</td>
-                <td>2</td>
-                <td><p></p></td>
-              </tr>
-
-              <tr>
-                <td>BLOCK_ID_FLAG_NIL</td>
-                <td>3</td>
-                <td><p></p></td>
-              </tr>
-
-          </tbody>
-        </table>
 
         <h3 id="tendermint.types.SignedMsgType">SignedMsgType</h3>
         <p>SignedMsgType is a type of signed message in the consensus.</p>
@@ -1628,6 +1756,41 @@ evidence included in the block </p></td>
 
 
 
+
+        <h3 id="tendermint.types.BlockIDFlag">BlockIDFlag</h3>
+        <p>BlockIdFlag indicates which BlockID the signature is for</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>BLOCK_ID_FLAG_UNKNOWN</td>
+                <td>0</td>
+                <td><p>indicates an error condition</p></td>
+              </tr>
+
+              <tr>
+                <td>BLOCK_ID_FLAG_ABSENT</td>
+                <td>1</td>
+                <td><p>the vote was not received</p></td>
+              </tr>
+
+              <tr>
+                <td>BLOCK_ID_FLAG_COMMIT</td>
+                <td>2</td>
+                <td><p>voted for the block that received the majority</p></td>
+              </tr>
+
+              <tr>
+                <td>BLOCK_ID_FLAG_NIL</td>
+                <td>3</td>
+                <td><p>voted for nil</p></td>
+              </tr>
+
+          </tbody>
+        </table>
 
 
 

@@ -19,9 +19,9 @@ from evmos.eip712.encoding.utils import parse_chain_id
 class MsgTypes(str, Enum):
     """Types for supported messages."""
 
-    MSG_SEND = 'cosmos-sdk/MsgSend'
-    MSG_VOTE = 'cosmos-sdk/MsgVote'
-    MSG_DELEGATE = 'cosmos-sdk/MsgDelegate'
+    MSG_SEND = "cosmos-sdk/MsgSend"
+    MSG_VOTE = "cosmos-sdk/MsgVote"
+    MSG_DELEGATE = "cosmos-sdk/MsgDelegate"
 
 
 # TODO: support all other versions
@@ -32,19 +32,19 @@ def get_fee_payer_from_msg(msg: dict[str, Any]) -> str:
     because Amino JS representations are in JSON and have no better interface.
     """
     mapping = {
-        MsgTypes.MSG_SEND: 'from_address',
-        MsgTypes.MSG_VOTE: 'voter',
-        MsgTypes.MSG_DELEGATE: 'delegator_address',
+        MsgTypes.MSG_SEND: "from_address",
+        MsgTypes.MSG_VOTE: "voter",
+        MsgTypes.MSG_DELEGATE: "delegator_address",
     }
     try:
-        target_field = mapping[msg['type']]
-    except KeyError:
-        raise NotImplementedError('Unsupported message type')
+        target_field = mapping[msg["type"]]
+    except KeyError as e:
+        raise NotImplementedError("Unsupported message type") from e
 
     try:
-        return getattr(msg['value'], target_field)
+        return getattr(msg["value"], target_field)  # type: ignore[no-any-return]
     except AttributeError:
-        return msg['value'][target_field]
+        return msg["value"][target_field]  # type: ignore[no-any-return]
 
 
 def format_sign_doc(sign_doc: dict[str, Any]) -> dict[str, Any]:
@@ -52,8 +52,8 @@ def format_sign_doc(sign_doc: dict[str, Any]) -> dict[str, Any]:
     sign_doc = sign_doc.copy()
 
     # Fill in the feePayer if the field is blank or unset
-    if not sign_doc['fee'].get('feePayer'):
-        sign_doc['fee']['feePayer'] = get_fee_payer_from_msg(sign_doc['msgs'][0])
+    if not sign_doc["fee"].get("feePayer"):
+        sign_doc["fee"]["feePayer"] = get_fee_payer_from_msg(sign_doc["msgs"][0])
 
     return sign_doc
 
@@ -66,9 +66,9 @@ def eip712_message_type(msg: dict[str, Any]) -> dict[str, Any]:
         MsgTypes.MSG_DELEGATE: MSG_DELEGATE_TYPES,
     }
     try:
-        target_types = mapping[msg['type']]
-    except KeyError:
-        raise NotImplementedError('Unsupported message type')
+        target_types = mapping[msg["type"]]
+    except KeyError as e:
+        raise NotImplementedError("Unsupported message type") from e
 
     return generate_types(target_types)
 
@@ -78,17 +78,17 @@ def decode_amino_sign_doc(bytes_src: bytes) -> EIPToSign:
     raw_sign_doc = json.loads(bytes_src)
 
     # Enforce single-message signing for now
-    if len(raw_sign_doc['msgs']) != 1:
+    if len(raw_sign_doc["msgs"]) != 1:
         raise NotImplementedError(
-            'Expected single message in Amino SignDoc '
-            f'but received {len(raw_sign_doc.msgs)}.',
+            "Expected single message in Amino SignDoc "
+            f"but received {len(raw_sign_doc.msgs)}.",
         )
 
     # Format SignDoc to match EIP-712 types
     sign_doc = format_sign_doc(raw_sign_doc)
-    chain_id = sign_doc['chain_id']
+    chain_id = sign_doc["chain_id"]
 
-    msg = sign_doc['msgs'][0]
+    msg = sign_doc["msgs"][0]
     type_ = eip712_message_type(msg)
 
     return create_eip712(type_, parse_chain_id(chain_id), sign_doc)

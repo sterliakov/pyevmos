@@ -167,6 +167,55 @@
 
 
           <li>
+            <a href="#ethermint/feemarket/v1/events.proto">ethermint/feemarket/v1/events.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#ethermint.feemarket.v1.EventBlockGas"><span class="badge">M</span>EventBlockGas</a>
+                </li>
+
+                <li>
+                  <a href="#ethermint.feemarket.v1.EventFeeMarket"><span class="badge">M</span>EventFeeMarket</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#ethermint/feemarket/v1/feemarket.proto">ethermint/feemarket/v1/feemarket.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#ethermint.feemarket.v1.Params"><span class="badge">M</span>Params</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#ethermint/feemarket/v1/genesis.proto">ethermint/feemarket/v1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#ethermint.feemarket.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#ethermint/feemarket/v1/query.proto">ethermint/feemarket/v1/query.proto</a>
             <ul>
 
@@ -206,30 +255,23 @@
 
 
           <li>
-            <a href="#ethermint/feemarket/v1/genesis.proto">ethermint/feemarket/v1/genesis.proto</a>
+            <a href="#ethermint/feemarket/v1/tx.proto">ethermint/feemarket/v1/tx.proto</a>
             <ul>
 
                 <li>
-                  <a href="#ethermint.feemarket.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                  <a href="#ethermint.feemarket.v1.MsgUpdateParams"><span class="badge">M</span>MsgUpdateParams</a>
+                </li>
+
+                <li>
+                  <a href="#ethermint.feemarket.v1.MsgUpdateParamsResponse"><span class="badge">M</span>MsgUpdateParamsResponse</a>
                 </li>
 
 
 
 
-            </ul>
-          </li>
-
-
-          <li>
-            <a href="#ethermint/feemarket/v1/feemarket.proto">ethermint/feemarket/v1/feemarket.proto</a>
-            <ul>
-
                 <li>
-                  <a href="#ethermint.feemarket.v1.Params"><span class="badge">M</span>Params</a>
+                  <a href="#ethermint.feemarket.v1.Msg"><span class="badge">S</span>Msg</a>
                 </li>
-
-
-
 
             </ul>
           </li>
@@ -241,20 +283,44 @@
 
 
       <div class="file-heading">
-        <h2 id="ethermint/feemarket/v1/query.proto">ethermint/feemarket/v1/query.proto</h2><a href="#title">Top</a>
+        <h2 id="ethermint/feemarket/v1/events.proto">ethermint/feemarket/v1/events.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
-        <h3 id="ethermint.feemarket.v1.QueryBaseFeeRequest">QueryBaseFeeRequest</h3>
-        <p>QueryBaseFeeRequest defines the request type for querying the EIP1559 base</p><p>fee.</p>
+        <h3 id="ethermint.feemarket.v1.EventBlockGas">EventBlockGas</h3>
+        <p>EventBlockGas defines an Ethereum block gas event</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>height of the block </p></td>
+                </tr>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>amount of gas wanted by the block </p></td>
+                </tr>
+
+            </tbody>
+          </table>
 
 
 
 
 
-        <h3 id="ethermint.feemarket.v1.QueryBaseFeeResponse">QueryBaseFeeResponse</h3>
-        <p>BaseFeeResponse returns the EIP1559 base fee.</p>
+        <h3 id="ethermint.feemarket.v1.EventFeeMarket">EventFeeMarket</h3>
+        <p>EventFeeMarket is the event type for the fee market module</p>
 
 
           <table class="field-table">
@@ -267,7 +333,181 @@
                   <td>base_fee</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>base_fee for EIP-1559 blocks </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="ethermint/feemarket/v1/feemarket.proto">ethermint/feemarket/v1/feemarket.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
+
+
+        <h3 id="ethermint.feemarket.v1.Params">Params</h3>
+        <p>Params defines the EVM module parameters</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>no_base_fee</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>no_base_fee forces the EIP-1559 base fee to 0 (needed for 0 price calls) </p></td>
+                </tr>
+
+                <tr>
+                  <td>base_fee_change_denominator</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>base_fee_change_denominator bounds the amount the base fee can change
+between blocks. </p></td>
+                </tr>
+
+                <tr>
+                  <td>elasticity_multiplier</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>elasticity_multiplier bounds the maximum gas limit an EIP-1559 block may
+have. </p></td>
+                </tr>
+
+                <tr>
+                  <td>enable_height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>enable_height defines at which block height the base fee calculation is enabled. </p></td>
+                </tr>
+
+                <tr>
+                  <td>base_fee</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>base_fee for EIP-1559 blocks. </p></td>
+                </tr>
+
+                <tr>
+                  <td>min_gas_price</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>min_gas_price defines the minimum gas price value for cosmos and eth transactions </p></td>
+                </tr>
+
+                <tr>
+                  <td>min_gas_multiplier</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>min_gas_multiplier bounds the minimum gas used to be charged
+to senders based on gas limit </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="ethermint/feemarket/v1/genesis.proto">ethermint/feemarket/v1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
+
+
+        <h3 id="ethermint.feemarket.v1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the feemarket module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#ethermint.feemarket.v1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines all the parameters of the feemarket module. </p></td>
+                </tr>
+
+                <tr>
+                  <td>block_gas</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>block_gas is the amount of gas wanted on the last block before the upgrade.
+Zero by default. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="ethermint/feemarket/v1/query.proto">ethermint/feemarket/v1/query.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
+
+
+        <h3 id="ethermint.feemarket.v1.QueryBaseFeeRequest">QueryBaseFeeRequest</h3>
+        <p>QueryBaseFeeRequest defines the request type for querying the EIP1559 base</p><p>fee.</p>
+
+
+
+
+
+        <h3 id="ethermint.feemarket.v1.QueryBaseFeeResponse">QueryBaseFeeResponse</h3>
+        <p>QueryBaseFeeResponse returns the EIP1559 base fee.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>base_fee</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>base_fee is the EIP1559 base fee </p></td>
                 </tr>
 
             </tbody>
@@ -298,7 +538,7 @@
                   <td>gas</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>gas is the returned block gas </p></td>
                 </tr>
 
             </tbody>
@@ -397,7 +637,7 @@
               <tr>
                 <td>Params</td>
                 <td>GET</td>
-                <td>/ethermint/feemarket/v1/params</td>
+                <td>/evmos/feemarket/v1/params</td>
                 <td></td>
               </tr>
 
@@ -407,7 +647,7 @@
               <tr>
                 <td>BaseFee</td>
                 <td>GET</td>
-                <td>/ethermint/feemarket/v1/base_fee</td>
+                <td>/evmos/feemarket/v1/base_fee</td>
                 <td></td>
               </tr>
 
@@ -417,7 +657,7 @@
               <tr>
                 <td>BlockGas</td>
                 <td>GET</td>
-                <td>/ethermint/feemarket/v1/block_gas</td>
+                <td>/evmos/feemarket/v1/block_gas</td>
                 <td></td>
               </tr>
 
@@ -429,13 +669,13 @@
 
 
       <div class="file-heading">
-        <h2 id="ethermint/feemarket/v1/genesis.proto">ethermint/feemarket/v1/genesis.proto</h2><a href="#title">Top</a>
+        <h2 id="ethermint/feemarket/v1/tx.proto">ethermint/feemarket/v1/tx.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
-        <h3 id="ethermint.feemarket.v1.GenesisState">GenesisState</h3>
-        <p>GenesisState defines the feemarket module's genesis state.</p>
+        <h3 id="ethermint.feemarket.v1.MsgUpdateParams">MsgUpdateParams</h3>
+        <p>MsgUpdateParams defines a Msg for updating the x/feemarket module parameters.</p>
 
 
           <table class="field-table">
@@ -443,20 +683,20 @@
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address of the governance account. </p></td>
+                </tr>
 
                 <tr>
                   <td>params</td>
                   <td><a href="#ethermint.feemarket.v1.Params">Params</a></td>
                   <td></td>
-                  <td><p>params defines all the paramaters of the module. </p></td>
-                </tr>
-
-                <tr>
-                  <td>block_gas</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>block gas is the amount of gas wanted on the last block before the upgrade.
-Zero by default. </p></td>
+                  <td><p>params defines the x/feemarket parameters to update.
+NOTE: All parameters must be supplied. </p></td>
                 </tr>
 
             </tbody>
@@ -466,84 +706,8 @@ Zero by default. </p></td>
 
 
 
-
-
-
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="ethermint/feemarket/v1/feemarket.proto">ethermint/feemarket/v1/feemarket.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="ethermint.feemarket.v1.Params">Params</h3>
-        <p>Params defines the EVM module parameters</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>no_base_fee</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>no base fee forces the EIP-1559 base fee to 0 (needed for 0 price calls) </p></td>
-                </tr>
-
-                <tr>
-                  <td>base_fee_change_denominator</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>base fee change denominator bounds the amount the base fee can change
-between blocks. </p></td>
-                </tr>
-
-                <tr>
-                  <td>elasticity_multiplier</td>
-                  <td><a href="#uint32">uint32</a></td>
-                  <td></td>
-                  <td><p>elasticity multiplier bounds the maximum gas limit an EIP-1559 block may
-have. </p></td>
-                </tr>
-
-                <tr>
-                  <td>enable_height</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p>height at which the base fee calculation is enabled. </p></td>
-                </tr>
-
-                <tr>
-                  <td>base_fee</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>base fee for EIP-1559 blocks. </p></td>
-                </tr>
-
-                <tr>
-                  <td>min_gas_price</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>min_gas_price defines the minimum gas price value for cosmos and eth transactions </p></td>
-                </tr>
-
-                <tr>
-                  <td>min_gas_multiplier</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>min gas denominator bounds the minimum gasUsed to be charged
-to senders based on GasLimit </p></td>
-                </tr>
-
-            </tbody>
-          </table>
+        <h3 id="ethermint.feemarket.v1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</h3>
+        <p>MsgUpdateParamsResponse defines the response structure for executing a</p><p>MsgUpdateParams message.</p>
 
 
 
@@ -553,6 +717,26 @@ to senders based on GasLimit </p></td>
 
 
 
+
+
+        <h3 id="ethermint.feemarket.v1.Msg">Msg</h3>
+        <p>Msg defines the erc20 Msg service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>UpdateParams</td>
+                <td><a href="#ethermint.feemarket.v1.MsgUpdateParams">MsgUpdateParams</a></td>
+                <td><a href="#ethermint.feemarket.v1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</a></td>
+                <td><p>UpdateParams defined a governance operation for updating the x/feemarket module parameters.
+The authority is hard-coded to the Cosmos SDK x/gov module account</p></td>
+              </tr>
+
+          </tbody>
+        </table>
 
 
 

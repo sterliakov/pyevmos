@@ -167,6 +167,21 @@
 
 
           <li>
+            <a href="#cosmos/params/module/v1/module.proto">cosmos/params/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.params.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/params/v1beta1/params.proto">cosmos/params/v1beta1/params.proto</a>
             <ul>
 
@@ -197,6 +212,18 @@
                   <a href="#cosmos.params.v1beta1.QueryParamsResponse"><span class="badge">M</span>QueryParamsResponse</a>
                 </li>
 
+                <li>
+                  <a href="#cosmos.params.v1beta1.QuerySubspacesRequest"><span class="badge">M</span>QuerySubspacesRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.params.v1beta1.QuerySubspacesResponse"><span class="badge">M</span>QuerySubspacesResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.params.v1beta1.Subspace"><span class="badge">M</span>Subspace</a>
+                </li>
+
 
 
 
@@ -210,6 +237,27 @@
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/params/module/v1/module.proto">cosmos/params/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.params.module.v1.Module">Module</h3>
+        <p>Module is the config object of the params module.</p>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -364,6 +412,68 @@
 
 
 
+        <h3 id="cosmos.params.v1beta1.QuerySubspacesRequest">QuerySubspacesRequest</h3>
+        <p>QuerySubspacesRequest defines a request type for querying for all registered</p><p>subspaces and all keys for a subspace.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+
+
+
+        <h3 id="cosmos.params.v1beta1.QuerySubspacesResponse">QuerySubspacesResponse</h3>
+        <p>QuerySubspacesResponse defines the response types for querying for all</p><p>registered subspaces and all keys for a subspace.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>subspaces</td>
+                  <td><a href="#cosmos.params.v1beta1.Subspace">Subspace</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.params.v1beta1.Subspace">Subspace</h3>
+        <p>Subspace defines a parameter subspace name and all the keys that exist for</p><p>the subspace.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>subspace</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>keys</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
 
 
 
@@ -384,6 +494,15 @@
                 <td><a href="#cosmos.params.v1beta1.QueryParamsResponse">QueryParamsResponse</a></td>
                 <td><p>Params queries a specific parameter of a module, given its subspace and
 key.</p></td>
+              </tr>
+
+              <tr>
+                <td>Subspaces</td>
+                <td><a href="#cosmos.params.v1beta1.QuerySubspacesRequest">QuerySubspacesRequest</a></td>
+                <td><a href="#cosmos.params.v1beta1.QuerySubspacesResponse">QuerySubspacesResponse</a></td>
+                <td><p>Subspaces queries for all registered subspaces and all keys for a subspace.
+
+Since: cosmos-sdk 0.46</p></td>
               </tr>
 
           </tbody>
@@ -410,6 +529,16 @@ key.</p></td>
                 <td>Params</td>
                 <td>GET</td>
                 <td>/cosmos/params/v1beta1/params</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>Subspaces</td>
+                <td>GET</td>
+                <td>/cosmos/params/v1beta1/subspaces</td>
                 <td></td>
               </tr>
 

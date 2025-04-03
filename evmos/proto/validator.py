@@ -26,11 +26,11 @@ def create_msg_edit_validator(
             details=details or NOT_MODIFY,
         ),
         validator_address=validator_address,
-        commission_rate=str(commission_rate or '<nil>'),
-        min_self_delegation=str(min_self_delegation or '<nil>'),
+        commission_rate=str(commission_rate or "<nil>"),
+        min_self_delegation=str(min_self_delegation or "<nil>"),
     )
 
     return MessageGenerated(
         message=message,
-        path='cosmos.staking.v1beta1.MsgEditValidator',
+        path="cosmos.staking.v1beta1.MsgEditValidator",
     )

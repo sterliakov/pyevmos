@@ -2,6 +2,7 @@
 # sources: ibc/lightclients/tendermint/v1/tendermint.proto
 # plugin: python-betterproto
 # This file has been @generated
+import warnings
 from dataclasses import dataclass
 from datetime import (
     datetime,
@@ -11,7 +12,7 @@ from typing import List
 
 import betterproto
 
-from ..... import ics23 as ____ics23__
+from .....cosmos.ics23 import v1 as ____cosmos_ics23_v1__
 from .....tendermint import types as ____tendermint_types__
 from ....core.client import v1 as ___core_client_v1__
 from ....core.commitment import v1 as ___core_commitment_v1__
@@ -25,7 +26,7 @@ class ClientState(betterproto.Message):
     """
 
     chain_id: str = betterproto.string_field(1)
-    trust_level: 'Fraction' = betterproto.message_field(2)
+    trust_level: "Fraction" = betterproto.message_field(2)
     trusting_period: timedelta = betterproto.message_field(3)
     """
     duration of the period since the LastestTimestamp during which the
@@ -38,13 +39,13 @@ class ClientState(betterproto.Message):
     max_clock_drift: timedelta = betterproto.message_field(5)
     """defines how much new (untrusted) header's Time can drift into the future."""
 
-    frozen_height: '___core_client_v1__.Height' = betterproto.message_field(6)
+    frozen_height: "___core_client_v1__.Height" = betterproto.message_field(6)
     """Block height when the client was frozen due to a misbehaviour"""
 
-    latest_height: '___core_client_v1__.Height' = betterproto.message_field(7)
+    latest_height: "___core_client_v1__.Height" = betterproto.message_field(7)
     """Latest height the client was updated to"""
 
-    proof_specs: List['____ics23__.ProofSpec'] = betterproto.message_field(8)
+    proof_specs: List["____cosmos_ics23_v1__.ProofSpec"] = betterproto.message_field(8)
     """Proof specifications used in verifying counterparty state"""
 
     upgrade_path: List[str] = betterproto.string_field(9)
@@ -59,16 +60,23 @@ class ClientState(betterproto.Message):
     """
 
     allow_update_after_expiry: bool = betterproto.bool_field(10)
-    """
-    This flag, when set to true, will allow governance to recover a client
-    which has expired
-    """
+    """allow_update_after_expiry is deprecated"""
 
     allow_update_after_misbehaviour: bool = betterproto.bool_field(11)
-    """
-    This flag, when set to true, will allow governance to unfreeze a client
-    whose chain has experienced a misbehaviour event
-    """
+    """allow_update_after_misbehaviour is deprecated"""
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+        if self.is_set("allow_update_after_expiry"):
+            warnings.warn(
+                "ClientState.allow_update_after_expiry is deprecated",
+                DeprecationWarning,
+            )
+        if self.is_set("allow_update_after_misbehaviour"):
+            warnings.warn(
+                "ClientState.allow_update_after_misbehaviour is deprecated",
+                DeprecationWarning,
+            )
 
 
 @dataclass(eq=False, repr=False)
@@ -81,7 +89,7 @@ class ConsensusState(betterproto.Message):
     was stored.
     """
 
-    root: '___core_commitment_v1__.MerkleRoot' = betterproto.message_field(2)
+    root: "___core_commitment_v1__.MerkleRoot" = betterproto.message_field(2)
     """commitment root (i.e app hash)"""
 
     next_validators_hash: bytes = betterproto.bytes_field(3)
@@ -95,8 +103,15 @@ class Misbehaviour(betterproto.Message):
     """
 
     client_id: str = betterproto.string_field(1)
-    header_1: 'Header' = betterproto.message_field(2)
-    header_2: 'Header' = betterproto.message_field(3)
+    """ClientID is deprecated"""
+
+    header_1: "Header" = betterproto.message_field(2)
+    header_2: "Header" = betterproto.message_field(3)
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+        if self.is_set("client_id"):
+            warnings.warn("Misbehaviour.client_id is deprecated", DeprecationWarning)
 
 
 @dataclass(eq=False, repr=False)
@@ -116,10 +131,10 @@ class Header(betterproto.Message):
     trusted validator set at the TrustedHeight.
     """
 
-    signed_header: '____tendermint_types__.SignedHeader' = betterproto.message_field(1)
-    validator_set: '____tendermint_types__.ValidatorSet' = betterproto.message_field(2)
-    trusted_height: '___core_client_v1__.Height' = betterproto.message_field(3)
-    trusted_validators: '____tendermint_types__.ValidatorSet' = (
+    signed_header: "____tendermint_types__.SignedHeader" = betterproto.message_field(1)
+    validator_set: "____tendermint_types__.ValidatorSet" = betterproto.message_field(2)
+    trusted_height: "___core_client_v1__.Height" = betterproto.message_field(3)
+    trusted_validators: "____tendermint_types__.ValidatorSet" = (
         betterproto.message_field(4)
     )
 

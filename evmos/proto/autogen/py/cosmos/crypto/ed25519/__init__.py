@@ -2,6 +2,7 @@
 # sources: cosmos/crypto/ed25519/keys.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 
 import betterproto
@@ -23,7 +24,7 @@ class PubKey(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class PrivKey(betterproto.Message):
     """
-    Deprecated: PrivKey defines a ed25519 private key.
+    PrivKey defines a ed25519 private key.
     NOTE: ed25519 keys must not be used in SDK apps except in a tendermint validator
     context.
     """

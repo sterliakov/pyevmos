@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        /*margin: 1em auto;*/
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin-top: 2ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0; /* No indent on first p in td */
+      }
+
+      /* Table of fields */
+      .field-table td:nth-child(1) { /* Field */
+        width: 10em;
+      }
+      .field-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .field-table td:nth-child(3) { /* Label */
+        width: 6em;
+      }
+      .field-table td:nth-child(4) { /* Description */
+        width: auto;
+      }
+
+      /* Table of extensions */
+      .extension-table td:nth-child(1) { /* Extension */
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) { /* Base */
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) { /* Number */
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) { /* Description */
+        width: auto;
+      }
+
+      /* Table of enum values. */
+      .enum-table td:nth-child(1) { /* Name */
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) { /* Number */
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) { /* Description */
+        width: auto;
+      }
+
+      /* Table of scalar value types. */
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+      /* Table of contents. */
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+      /* File heading div */
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+      /* The 'M', 'E' and 'X' badges in the ToC */
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    <!-- User custom CSS -->
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+
+
+          <li>
+            <a href="#cosmos/store/internal/kv/v1beta1/kv.proto">cosmos/store/internal/kv/v1beta1/kv.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.store.internal.kv.v1beta1.Pair"><span class="badge">M</span>Pair</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.store.internal.kv.v1beta1.Pairs"><span class="badge">M</span>Pairs</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/store/snapshots/v1/snapshot.proto">cosmos/store/snapshots/v1/snapshot.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.store.snapshots.v1.Metadata"><span class="badge">M</span>Metadata</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.store.snapshots.v1.Snapshot"><span class="badge">M</span>Snapshot</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.store.snapshots.v1.SnapshotExtensionMeta"><span class="badge">M</span>SnapshotExtensionMeta</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.store.snapshots.v1.SnapshotExtensionPayload"><span class="badge">M</span>SnapshotExtensionPayload</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.store.snapshots.v1.SnapshotIAVLItem"><span class="badge">M</span>SnapshotIAVLItem</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.store.snapshots.v1.SnapshotItem"><span class="badge">M</span>SnapshotItem</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.store.snapshots.v1.SnapshotStoreItem"><span class="badge">M</span>SnapshotStoreItem</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/store/streaming/abci/grpc.proto">cosmos/store/streaming/abci/grpc.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.store.streaming.abci.ListenCommitRequest"><span class="badge">M</span>ListenCommitRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.store.streaming.abci.ListenCommitResponse"><span class="badge">M</span>ListenCommitResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.store.streaming.abci.ListenFinalizeBlockRequest"><span class="badge">M</span>ListenFinalizeBlockRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.store.streaming.abci.ListenFinalizeBlockResponse"><span class="badge">M</span>ListenFinalizeBlockResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.store.streaming.abci.ABCIListenerService"><span class="badge">S</span>ABCIListenerService</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/store/v1beta1/commit_info.proto">cosmos/store/v1beta1/commit_info.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.store.v1beta1.CommitID"><span class="badge">M</span>CommitID</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.store.v1beta1.CommitInfo"><span class="badge">M</span>CommitInfo</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.store.v1beta1.StoreInfo"><span class="badge">M</span>StoreInfo</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/store/v1beta1/listening.proto">cosmos/store/v1beta1/listening.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.store.v1beta1.BlockMetadata"><span class="badge">M</span>BlockMetadata</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.store.v1beta1.StoreKVPair"><span class="badge">M</span>StoreKVPair</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/store/internal/kv/v1beta1/kv.proto">cosmos/store/internal/kv/v1beta1/kv.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.store.internal.kv.v1beta1.Pair">Pair</h3>
+        <p>Pair defines a key/value bytes tuple.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>key</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.store.internal.kv.v1beta1.Pairs">Pairs</h3>
+        <p>Pairs defines a repeated slice of Pair objects.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>pairs</td>
+                  <td><a href="#cosmos.store.internal.kv.v1beta1.Pair">Pair</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/store/snapshots/v1/snapshot.proto">cosmos/store/snapshots/v1/snapshot.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.store.snapshots.v1.Metadata">Metadata</h3>
+        <p>Metadata contains SDK-specific snapshot metadata.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>chunk_hashes</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td>repeated</td>
+                  <td><p>SHA-256 chunk hashes </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.store.snapshots.v1.Snapshot">Snapshot</h3>
+        <p>Snapshot contains Tendermint state sync snapshot info.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>format</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>chunks</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#cosmos.store.snapshots.v1.Metadata">Metadata</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.store.snapshots.v1.SnapshotExtensionMeta">SnapshotExtensionMeta</h3>
+        <p>SnapshotExtensionMeta contains metadata about an external snapshotter.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>format</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.store.snapshots.v1.SnapshotExtensionPayload">SnapshotExtensionPayload</h3>
+        <p>SnapshotExtensionPayload contains payloads of an external snapshotter.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>payload</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.store.snapshots.v1.SnapshotIAVLItem">SnapshotIAVLItem</h3>
+        <p>SnapshotIAVLItem is an exported IAVL node.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>key</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>version is block height </p></td>
+                </tr>
+
+                <tr>
+                  <td>height</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>height is depth of the tree. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.store.snapshots.v1.SnapshotItem">SnapshotItem</h3>
+        <p>SnapshotItem is an item contained in a rootmulti.Store snapshot.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>store</td>
+                  <td><a href="#cosmos.store.snapshots.v1.SnapshotStoreItem">SnapshotStoreItem</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>iavl</td>
+                  <td><a href="#cosmos.store.snapshots.v1.SnapshotIAVLItem">SnapshotIAVLItem</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>extension</td>
+                  <td><a href="#cosmos.store.snapshots.v1.SnapshotExtensionMeta">SnapshotExtensionMeta</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>extension_payload</td>
+                  <td><a href="#cosmos.store.snapshots.v1.SnapshotExtensionPayload">SnapshotExtensionPayload</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.store.snapshots.v1.SnapshotStoreItem">SnapshotStoreItem</h3>
+        <p>SnapshotStoreItem contains metadata about a snapshotted store.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/store/streaming/abci/grpc.proto">cosmos/store/streaming/abci/grpc.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.store.streaming.abci.ListenCommitRequest">ListenCommitRequest</h3>
+        <p>ListenCommitRequest is the request type for the ListenCommit RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>block_height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>explicitly pass in block height as ResponseCommit does not contain this info </p></td>
+                </tr>
+
+                <tr>
+                  <td>res</td>
+                  <td><a href="#tendermint.abci.ResponseCommit">tendermint.abci.ResponseCommit</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>change_set</td>
+                  <td><a href="#cosmos.store.v1beta1.StoreKVPair">cosmos.store.v1beta1.StoreKVPair</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.store.streaming.abci.ListenCommitResponse">ListenCommitResponse</h3>
+        <p>ListenCommitResponse is the response type for the ListenCommit RPC method</p>
+
+
+
+
+
+        <h3 id="cosmos.store.streaming.abci.ListenFinalizeBlockRequest">ListenFinalizeBlockRequest</h3>
+        <p>ListenEndBlockRequest is the request type for the ListenEndBlock RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>req</td>
+                  <td><a href="#tendermint.abci.RequestFinalizeBlock">tendermint.abci.RequestFinalizeBlock</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>res</td>
+                  <td><a href="#tendermint.abci.ResponseFinalizeBlock">tendermint.abci.ResponseFinalizeBlock</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.store.streaming.abci.ListenFinalizeBlockResponse">ListenFinalizeBlockResponse</h3>
+        <p>ListenEndBlockResponse is the response type for the ListenEndBlock RPC method</p>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.store.streaming.abci.ABCIListenerService">ABCIListenerService</h3>
+        <p>ABCIListenerService is the service for the BaseApp ABCIListener interface</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>ListenFinalizeBlock</td>
+                <td><a href="#cosmos.store.streaming.abci.ListenFinalizeBlockRequest">ListenFinalizeBlockRequest</a></td>
+                <td><a href="#cosmos.store.streaming.abci.ListenFinalizeBlockResponse">ListenFinalizeBlockResponse</a></td>
+                <td><p>ListenFinalizeBlock is the corresponding endpoint for ABCIListener.ListenEndBlock</p></td>
+              </tr>
+
+              <tr>
+                <td>ListenCommit</td>
+                <td><a href="#cosmos.store.streaming.abci.ListenCommitRequest">ListenCommitRequest</a></td>
+                <td><a href="#cosmos.store.streaming.abci.ListenCommitResponse">ListenCommitResponse</a></td>
+                <td><p>ListenCommit is the corresponding endpoint for ABCIListener.ListenCommit</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/store/v1beta1/commit_info.proto">cosmos/store/v1beta1/commit_info.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.store.v1beta1.CommitID">CommitID</h3>
+        <p>CommitID defines the commitment information when a specific store is</p><p>committed.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>hash</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.store.v1beta1.CommitInfo">CommitInfo</h3>
+        <p>CommitInfo defines commit information used by the multi-store when committing</p><p>a version/height.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>store_infos</td>
+                  <td><a href="#cosmos.store.v1beta1.StoreInfo">StoreInfo</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.store.v1beta1.StoreInfo">StoreInfo</h3>
+        <p>StoreInfo defines store-specific commit information. It contains a reference</p><p>between a store name and the commit ID.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>commit_id</td>
+                  <td><a href="#cosmos.store.v1beta1.CommitID">CommitID</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/store/v1beta1/listening.proto">cosmos/store/v1beta1/listening.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.store.v1beta1.BlockMetadata">BlockMetadata</h3>
+        <p>BlockMetadata contains all the abci event data of a block</p><p>the file streamer dump them into files together with the state changes.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>response_commit</td>
+                  <td><a href="#tendermint.abci.ResponseCommit">tendermint.abci.ResponseCommit</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>request_finalize_block</td>
+                  <td><a href="#tendermint.abci.RequestFinalizeBlock">tendermint.abci.RequestFinalizeBlock</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>response_finalize_block</td>
+                  <td><a href="#tendermint.abci.ResponseFinalizeBlock">tendermint.abci.ResponseFinalizeBlock</a></td>
+                  <td></td>
+                  <td><p>TODO: should we renumber this? </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.store.v1beta1.StoreKVPair">StoreKVPair</h3>
+        <p>StoreKVPair is a KVStore KVPair used for listening to state changes (Sets and Deletes)</p><p>It optionally includes the StoreKey for the originating KVStore and a Boolean flag to distinguish between Sets and</p><p>Deletes</p><p>Since: cosmos-sdk 0.43</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>store_key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>the store key for the KVStore this pair originates from </p></td>
+                </tr>
+
+                <tr>
+                  <td>delete</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>true indicates a delete operation, false indicates a set operation </p></td>
+                </tr>
+
+                <tr>
+                  <td>key</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr>
+          <td>.proto Type</td>
+          <td>Notes</td>
+          <td>Python Type</td>
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>boolean</td>
+          </tr>
+
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>str/unicode</td>
+          </tr>
+
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>str</td>
+          </tr>
+
+      </tbody>
+    </table>

@@ -1,22 +1,30 @@
 [build-system]
+build-backend = "setuptools.build_meta"
 requires = [
     'setuptools',
     # toml is in standard library in 3.11+
     'toml>=0.10.1;python_version<"3.11"',
 ]
-build-backend = "setuptools.build_meta"
+
+[dependency-groups]
+dev = [
+    "betterproto[compiler]",
+    "pre-commit",
+    "setuptools",
+    "mypy >= 1.15.0",
+    'pytest>=6.4.0',
+    "pytest-cov",
+    "python-dotenv",
+]
 
 [project]
-dynamic = ["version"]
-name = "evmos"
 authors = [{name = "sterliakov", email = "terlya.stas@gmail.com"}]
-readme = "README.md"
-description = "Python port of evmos.js - library to interact with Evmos blockchain"
-license = { file = "LICENSE.md" }
 classifiers = [
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Build Tools",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
@@ -24,75 +32,42 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Typing :: Typed",
 ]
-keywords = ["blockchain", "sdk", "ethereum"]
 dependencies = [
-    "eth-abi ~= 3.0",
-    "eth-account ~= 0.7.0",
-    "eth-hash ~= 0.3",
-    "eth-typing >= 3.1",
-    "eth-utils ~= 2.0",
-
-    "hexbytes ~= 0.3.0",
+    "eth-abi >= 4.0,<6",
+    "eth-account >= 0.13.0,<0.14",
+    "eth-hash >= 0.7,<0.8",
+    "eth-typing >= 5.0, <6",
+    "eth-utils >= 5.0, <6",
     "bech32 ~= 1.2",
-    "typing_extensions ~= 4.3",
-    "requests ~= 2.28",
-    "alt-betterproto ~= 2.0.1",
+    "typing_extensions >= 4.3",
+    "requests >= 2.28,<3",
+    # 2.0.0-beta7 is broken (https://github.com/danielgtaylor/python-betterproto/pull/609/files)
+    "betterproto == 2.0.0-beta6",
 ]
-requires-python = ">=3.8"
-
-[tool.setuptools.dynamic]
-version = {attr = "evmos.__version__"}
+description = "Python port of evmos.js - library to interact with Evmos blockchain"
+dynamic = ["version"]
+keywords = ["blockchain", "sdk", "ethereum"]
+license = {file = "LICENSE.md"}
+name = "evmos"
+readme = "README.md"
+requires-python = ">=3.9"
 
 [project.optional-dependencies]
-dev = [
-    "alt-betterproto[compiler] ~= 2.0.1",
-    "pre-commit",
-]
-test = [
-    'pytest>=6.4.0',
-    "pytest-cov",
-    "python-dotenv",
-]
 docs = [
-    'docutils >=0.16, <0.18',  # Sphinx haven't upgraded yet
-    "sphinx >=5.1.1, <6.0",
+    "docutils>=0.21.2,<0.22",
+    "sphinx>=6,<9",
     "sphinx-rtd-theme",
+]
+types = [
+    'types-protobuf',
+    'types-requests',
 ]
 
 [project.urls]
-Home = "https://github.com/sterliakov/pyevmos"
-Source = "https://github.com/sterliakov/pyevmos"
-Issues = "https://github.com/sterliakov/pyevmos/issues"
 Documentation = "https://readthedocs.org/projects/pyevmos/badge/?version=latest"
-
-
-[tool.pytest.ini_options]
-log_cli = true
-log_cli_level = "INFO"
-markers = [
-    'can_timeout',  # takes forever to finish
-    'online',  # write + return_transaction
-    'offline',  # write (interacts with the chain)
-    'read',  # read only (query)
-]
-addopts = """
-    --tb=short
-    --cov=evmos
-    --no-cov-on-fail
-    --cov-report=term-missing
-    --cov-branch
-    --doctest-modules
-    --doctest-continue-on-failure
-    --ignore=docs
-    --color=yes
-"""
-
-
-[tool.coverage.run]
-omit = [
-    "tests/*",
-    "evmos/proto/autogen/*",
-]
+Home = "https://github.com/sterliakov/pyevmos"
+Issues = "https://github.com/sterliakov/pyevmos/issues"
+Source = "https://github.com/sterliakov/pyevmos"
 
 [tool.coverage.report]
 exclude_lines = [
@@ -110,76 +85,127 @@ exclude_lines = [
     # Typing artifact, that has no implementation
     "@overload",
     # Typing artifact, False at runtime
-    'if (typing\.)?TYPE_CHECKING:'
+    'if (typing\.)?TYPE_CHECKING:',
 ]
 
+[tool.coverage.run]
+omit = [
+    "tests/*",
+    "evmos/proto/autogen/*",
+]
 
 [tool.mypy]
-# This applies to all files (not very strict, used for scripts, etc.)
 allow_redefinition = true
 check_untyped_defs = true
-ignore_missing_imports = true
-incremental = true
-strict_optional = true
-no_implicit_optional = true
-show_traceback = true
-show_error_codes = true
-warn_unused_ignores = true
-warn_redundant_casts = true
-warn_unused_configs = true
-warn_unreachable = true
-
-# Enforce stricter validation for library code
-[[tool.mypy.overrides]]
-module = "evmos.*"
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
 disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+implicit_reexport = true
+incremental = true
+no_implicit_optional = true
+show_error_codes = true
+show_traceback = true
+strict = true
+strict_optional = true
 warn_no_return = true
+warn_redundant_casts = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
 
 # Do not check autogenerated stuff
 [[tool.mypy.overrides]]
-module = "evmos.proto.autogen.py.*"
 ignore_errors = true
+module = "evmos.proto.autogen.py.*"
 
-
-[tool.flake8]
-exclude = """
-    .git,
-    .github,
-    __pycache__,
-    .pytest_cache,
-    .env,
-    env,
-    .pyenv,
-    pyenv,
-    *.egg_info,
+[tool.pytest.ini_options]
+addopts = """
+    --tb=short
+    --cov=evmos
+    --no-cov-on-fail
+    --cov-report=term-missing
+    --cov-branch
+    --doctest-modules
+    --doctest-continue-on-failure
+    --ignore=docs
+    --color=yes
 """
-max_line_length = 88
-extend_ignore = [
-    "SIM905",  # Allow statement "hello world".split() instead of list literal
-    # "N806",  # Allow non-"lower_underscore" variables (it's too stupid rule)
-    "PIE798",  # Allow class with only static methods for namespacing
-    "D105",  # Magic methods may remain unannotated
-    "D401",  # Imperative mood of first docstring line is not always encouraged
-    "RST306",  # Plugin can't resolve links defined in other docstrings.
-    "RST304",  # No builtin roles, so too much to do manually.
-    "RST301", "RST201",  # Incompatible with google doc style
-    "E203",  # Invalid. Expressions like `[len(x) :]` conform with PEP8, but raise this.
-    "D100",  # Modules may remain unannotated
-    "D104",  # Packages may remain unannotated
-    "D107",  # __init__ may remain unannotated
+log_cli = true
+log_cli_level = "INFO"
+markers = [
+    'can_timeout',  # takes forever to finish
+    'online',  # write + return_transaction
+    'offline',  # write (interacts with the chain)
+    'read',  # read only (query)
 ]
-# Ignore
-per-file-ignores = [
-    "tests/*:D,RST",  # We don't care about docstrings in tests.
+
+[tool.ruff]
+target-version = 'py39'
+
+[tool.ruff.format]
+preview = true
+
+[tool.ruff.lint]
+exclude = [
+    ".svn",
+    "CVS",
+    ".bzr",
+    ".hg",
+    ".git",
+    "__pycache__",
+    ".tox",
+    ".nox",
+    ".eggs",
+    "*.egg",
+    "migrations",
+    "manage.py",
 ]
-max-complexity = 10
+extend-ignore = [
+    "S101",
+    "E203",
+    "DJ",
+    "TC00",  # Move standard library/third party/application import `xx.X` into a type-checking block
+    "TD",  # to do comment lints
+    "FIX",  # Line contains FIXME/TODO/HACK/..., consider resolving the issue
+    "CPY001",  # Missing copyright notice at top of file
+    "D1",  # Missing docstrings
+    "D400",  # Conflicts with D415
+    "D213",  # Conflicts with D212
+    "D203",  # Conflicts with D211
+    "DOC2",  # Returns not in docstring
+    "DOC4",  # Yields not in docstring
+    "DOC5",  # Exceptions not in docstring
+    "ANN0",  # Missing type annotation for ... - `mypy` knows that.
+    "ANN2",  # Missing return type annotation for ... - `mypy` knows that.
+    "ANN401",  # Dynamically typed expressions (typing.Any) are disallowed in `xxx`
+    "TRY003",  # Avoid specifying long messages outside the exception class
+    "EM101",  # Exception must not use a string literal, assign to variable first
+    "EM102",  # Exception must not use an f-string literal, assign to variable first
+    "PLC0414",  # useless-import-alias - mypy doesn't think so
+    "PLC0415",  # `import` should be at the top-level of a file
+    # For formatter
+    "COM812",
+    "E501",
+    # Good to enable later
+    "PLR0913",  # Too many arguments in function definition (9 > 5)
+    "PLR0917",  # Too many positional arguments (6/5)
+]
+preview = true
+select = ["ALL"]
+unfixable = ['ERA001']
 
-# Docstring validation
-docstring-convention = "google"
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-wrap-aliases = true
+required-imports = ["from __future__ import annotations"]
+split-on-trailing-comma = false
 
+[tool.ruff.lint.per-file-ignores]
+# Allow printing there and some magic values
+"tests/*" = ["T201", "T203", "PLR2004"]
 
-[tool.isort]
-profile = "black"
-add_imports = "from __future__ import annotations"
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.setuptools.dynamic]
+version = {attr = "evmos.__version__"}

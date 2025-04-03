@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any, Callable, TypeVar
 
-_C = TypeVar('_C', bound=Callable[..., Any])
+_C = TypeVar("_C", bound=Callable[..., Any])
 
 
 def _inherit(func: Callable[..., Any]) -> Callable[[_C], _C]:

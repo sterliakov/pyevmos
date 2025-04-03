@@ -2,6 +2,7 @@
 # sources: cosmos/crypto/multisig/keys.proto
 # plugin: python-betterproto
 # This file has been @generated
+
 from dataclasses import dataclass
 from typing import List
 
@@ -18,6 +19,6 @@ class LegacyAminoPubKey(betterproto.Message):
     """
 
     threshold: int = betterproto.uint32_field(1)
-    public_keys: List[
-        'betterproto_lib_google_protobuf.Any'
-    ] = betterproto.message_field(2)
+    public_keys: List["betterproto_lib_google_protobuf.Any"] = (
+        betterproto.message_field(2)
+    )

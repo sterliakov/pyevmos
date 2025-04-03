@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        /*margin: 1em auto;*/
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin-top: 2ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0; /* No indent on first p in td */
+      }
+
+      /* Table of fields */
+      .field-table td:nth-child(1) { /* Field */
+        width: 10em;
+      }
+      .field-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .field-table td:nth-child(3) { /* Label */
+        width: 6em;
+      }
+      .field-table td:nth-child(4) { /* Description */
+        width: auto;
+      }
+
+      /* Table of extensions */
+      .extension-table td:nth-child(1) { /* Extension */
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) { /* Base */
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) { /* Number */
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) { /* Description */
+        width: auto;
+      }
+
+      /* Table of enum values. */
+      .enum-table td:nth-child(1) { /* Name */
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) { /* Number */
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) { /* Description */
+        width: auto;
+      }
+
+      /* Table of scalar value types. */
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+      /* Table of contents. */
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+      /* File heading div */
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+      /* The 'M', 'E' and 'X' badges in the ToC */
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    <!-- User custom CSS -->
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+
+
+          <li>
+            <a href="#cosmos/circuit/module/v1/module.proto">cosmos/circuit/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.circuit.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/circuit/v1/query.proto">cosmos/circuit/v1/query.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.AccountResponse"><span class="badge">M</span>AccountResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.AccountsResponse"><span class="badge">M</span>AccountsResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.DisabledListResponse"><span class="badge">M</span>DisabledListResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.QueryAccountRequest"><span class="badge">M</span>QueryAccountRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.QueryAccountsRequest"><span class="badge">M</span>QueryAccountsRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.QueryDisabledListRequest"><span class="badge">M</span>QueryDisabledListRequest</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.circuit.v1.Query"><span class="badge">S</span>Query</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/circuit/v1/tx.proto">cosmos/circuit/v1/tx.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.MsgAuthorizeCircuitBreaker"><span class="badge">M</span>MsgAuthorizeCircuitBreaker</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.MsgAuthorizeCircuitBreakerResponse"><span class="badge">M</span>MsgAuthorizeCircuitBreakerResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.MsgResetCircuitBreaker"><span class="badge">M</span>MsgResetCircuitBreaker</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.MsgResetCircuitBreakerResponse"><span class="badge">M</span>MsgResetCircuitBreakerResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.MsgTripCircuitBreaker"><span class="badge">M</span>MsgTripCircuitBreaker</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.MsgTripCircuitBreakerResponse"><span class="badge">M</span>MsgTripCircuitBreakerResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.circuit.v1.Msg"><span class="badge">S</span>Msg</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/circuit/v1/types.proto">cosmos/circuit/v1/types.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.GenesisAccountPermissions"><span class="badge">M</span>GenesisAccountPermissions</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.circuit.v1.Permissions"><span class="badge">M</span>Permissions</a>
+                </li>
+
+
+                <li>
+                  <a href="#cosmos.circuit.v1.Permissions.Level"><span class="badge">E</span>Permissions.Level</a>
+                </li>
+
+
+
+            </ul>
+          </li>
+
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/circuit/module/v1/module.proto">cosmos/circuit/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.circuit.module.v1.Module">Module</h3>
+        <p>Module is the config object of the circuit module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority defines the custom module authority. If not set, defaults to the governance module. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/circuit/v1/query.proto">cosmos/circuit/v1/query.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.circuit.v1.AccountResponse">AccountResponse</h3>
+        <p>AccountResponse is the response type for the Query/Account RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>permission</td>
+                  <td><a href="#cosmos.circuit.v1.Permissions">Permissions</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.AccountsResponse">AccountsResponse</h3>
+        <p>AccountsResponse is the response type for the Query/Accounts RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>accounts</td>
+                  <td><a href="#cosmos.circuit.v1.GenesisAccountPermissions">GenesisAccountPermissions</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.DisabledListResponse">DisabledListResponse</h3>
+        <p>DisabledListResponse is the response type for the Query/DisabledList RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>disabled_list</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.QueryAccountRequest">QueryAccountRequest</h3>
+        <p>QueryAccountRequest is the request type for the Query/Account RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.QueryAccountsRequest">QueryAccountsRequest</h3>
+        <p>QueryAccountsRequest is the request type for the Query/Accounts RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.QueryDisabledListRequest">QueryDisabledListRequest</h3>
+        <p>QueryDisableListRequest is the request type for the Query/DisabledList RPC method.</p>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.Query">Query</h3>
+        <p>Query defines the circuit gRPC querier service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>Account</td>
+                <td><a href="#cosmos.circuit.v1.QueryAccountRequest">QueryAccountRequest</a></td>
+                <td><a href="#cosmos.circuit.v1.AccountResponse">AccountResponse</a></td>
+                <td><p>Account returns account permissions.</p></td>
+              </tr>
+
+              <tr>
+                <td>Accounts</td>
+                <td><a href="#cosmos.circuit.v1.QueryAccountsRequest">QueryAccountsRequest</a></td>
+                <td><a href="#cosmos.circuit.v1.AccountsResponse">AccountsResponse</a></td>
+                <td><p>Account returns account permissions.</p></td>
+              </tr>
+
+              <tr>
+                <td>DisabledList</td>
+                <td><a href="#cosmos.circuit.v1.QueryDisabledListRequest">QueryDisabledListRequest</a></td>
+                <td><a href="#cosmos.circuit.v1.DisabledListResponse">DisabledListResponse</a></td>
+                <td><p>DisabledList returns a list of disabled message urls</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+
+
+
+              <tr>
+                <td>Account</td>
+                <td>GET</td>
+                <td>/cosmos/circuit/v1/accounts/{address}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>Accounts</td>
+                <td>GET</td>
+                <td>/cosmos/circuit/v1/accounts</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>DisabledList</td>
+                <td>GET</td>
+                <td>/cosmos/circuit/v1/disable_list</td>
+                <td></td>
+              </tr>
+
+
+            </tbody>
+          </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/circuit/v1/tx.proto">cosmos/circuit/v1/tx.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.circuit.v1.MsgAuthorizeCircuitBreaker">MsgAuthorizeCircuitBreaker</h3>
+        <p>MsgAuthorizeCircuitBreaker defines the Msg/AuthorizeCircuitBreaker request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>granter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>granter is the granter of the circuit breaker permissions and must have
+LEVEL_SUPER_ADMIN. </p></td>
+                </tr>
+
+                <tr>
+                  <td>grantee</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>grantee is the account authorized with the provided permissions. </p></td>
+                </tr>
+
+                <tr>
+                  <td>permissions</td>
+                  <td><a href="#cosmos.circuit.v1.Permissions">Permissions</a></td>
+                  <td></td>
+                  <td><p>permissions are the circuit breaker permissions that the grantee receives.
+These will overwrite any existing permissions. LEVEL_NONE_UNSPECIFIED can
+be specified to revoke all permissions. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.MsgAuthorizeCircuitBreakerResponse">MsgAuthorizeCircuitBreakerResponse</h3>
+        <p>MsgAuthorizeCircuitBreakerResponse defines the Msg/AuthorizeCircuitBreaker response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>success</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.MsgResetCircuitBreaker">MsgResetCircuitBreaker</h3>
+        <p>MsgResetCircuitBreaker defines the Msg/ResetCircuitBreaker request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the account authorized to trip or reset the circuit breaker. </p></td>
+                </tr>
+
+                <tr>
+                  <td>msg_type_urls</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>msg_type_urls specifies a list of Msg type URLs to resume processing. If
+it is left empty all Msg processing for type URLs that the account is
+authorized to trip will resume. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.MsgResetCircuitBreakerResponse">MsgResetCircuitBreakerResponse</h3>
+        <p>MsgResetCircuitBreakerResponse defines the Msg/ResetCircuitBreaker response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>success</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.MsgTripCircuitBreaker">MsgTripCircuitBreaker</h3>
+        <p>MsgTripCircuitBreaker defines the Msg/TripCircuitBreaker request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the account authorized to trip the circuit breaker. </p></td>
+                </tr>
+
+                <tr>
+                  <td>msg_type_urls</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>msg_type_urls specifies a list of type URLs to immediately stop processing.
+IF IT IS LEFT EMPTY, ALL MSG PROCESSING WILL STOP IMMEDIATELY.
+This value is validated against the authority's permissions and if the
+authority does not have permissions to trip the specified msg type URLs
+(or all URLs), the operation will fail. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.MsgTripCircuitBreakerResponse">MsgTripCircuitBreakerResponse</h3>
+        <p>MsgTripCircuitBreakerResponse defines the Msg/TripCircuitBreaker response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>success</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.Msg">Msg</h3>
+        <p>Msg defines the circuit Msg service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>AuthorizeCircuitBreaker</td>
+                <td><a href="#cosmos.circuit.v1.MsgAuthorizeCircuitBreaker">MsgAuthorizeCircuitBreaker</a></td>
+                <td><a href="#cosmos.circuit.v1.MsgAuthorizeCircuitBreakerResponse">MsgAuthorizeCircuitBreakerResponse</a></td>
+                <td><p>AuthorizeCircuitBreaker allows a super-admin to grant (or revoke) another
+account's circuit breaker permissions.</p></td>
+              </tr>
+
+              <tr>
+                <td>TripCircuitBreaker</td>
+                <td><a href="#cosmos.circuit.v1.MsgTripCircuitBreaker">MsgTripCircuitBreaker</a></td>
+                <td><a href="#cosmos.circuit.v1.MsgTripCircuitBreakerResponse">MsgTripCircuitBreakerResponse</a></td>
+                <td><p>TripCircuitBreaker pauses processing of Msg's in the state machine.</p></td>
+              </tr>
+
+              <tr>
+                <td>ResetCircuitBreaker</td>
+                <td><a href="#cosmos.circuit.v1.MsgResetCircuitBreaker">MsgResetCircuitBreaker</a></td>
+                <td><a href="#cosmos.circuit.v1.MsgResetCircuitBreakerResponse">MsgResetCircuitBreakerResponse</a></td>
+                <td><p>ResetCircuitBreaker resumes processing of Msg's in the state machine that
+have been been paused using TripCircuitBreaker.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/circuit/v1/types.proto">cosmos/circuit/v1/types.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.circuit.v1.GenesisAccountPermissions">GenesisAccountPermissions</h3>
+        <p>GenesisAccountPermissions is the account permissions for the circuit breaker in genesis</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>permissions</td>
+                  <td><a href="#cosmos.circuit.v1.Permissions">Permissions</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.GenesisState">GenesisState</h3>
+        <p>GenesisState is the state that must be provided at genesis.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>account_permissions</td>
+                  <td><a href="#cosmos.circuit.v1.GenesisAccountPermissions">GenesisAccountPermissions</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>disabled_type_urls</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.Permissions">Permissions</h3>
+        <p>Permissions are the permissions that an account has to trip</p><p>or reset the circuit breaker.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>level</td>
+                  <td><a href="#cosmos.circuit.v1.Permissions.Level">Permissions.Level</a></td>
+                  <td></td>
+                  <td><p>level is the level of permissions granted to this account. </p></td>
+                </tr>
+
+                <tr>
+                  <td>limit_type_urls</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>limit_type_urls is used with LEVEL_SOME_MSGS to limit the lists of Msg type
+URLs that the account can trip. It is an error to use limit_type_urls with
+a level other than LEVEL_SOME_MSGS. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+        <h3 id="cosmos.circuit.v1.Permissions.Level">Permissions.Level</h3>
+        <p>Level is the permission level.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>LEVEL_NONE_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>LEVEL_NONE_UNSPECIFIED indicates that the account will have no circuit
+breaker permissions.</p></td>
+              </tr>
+
+              <tr>
+                <td>LEVEL_SOME_MSGS</td>
+                <td>1</td>
+                <td><p>LEVEL_SOME_MSGS indicates that the account will have permission to
+trip or reset the circuit breaker for some Msg type URLs. If this level
+is chosen, a non-empty list of Msg type URLs must be provided in
+limit_type_urls.</p></td>
+              </tr>
+
+              <tr>
+                <td>LEVEL_ALL_MSGS</td>
+                <td>2</td>
+                <td><p>LEVEL_ALL_MSGS indicates that the account can trip or reset the circuit
+breaker for Msg's of all type URLs.</p></td>
+              </tr>
+
+              <tr>
+                <td>LEVEL_SUPER_ADMIN</td>
+                <td>3</td>
+                <td><p>LEVEL_SUPER_ADMIN indicates that the account can take all circuit breaker
+actions and can grant permissions to other accounts.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+
+
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr>
+          <td>.proto Type</td>
+          <td>Notes</td>
+          <td>Python Type</td>
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>boolean</td>
+          </tr>
+
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>str/unicode</td>
+          </tr>
+
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>str</td>
+          </tr>
+
+      </tbody>
+    </table>

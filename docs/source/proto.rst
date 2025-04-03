@@ -13,10 +13,6 @@ ERC20 proto
 -----------
 .. automodule:: evmos.proto.erc20
 
-Revenue proto
--------------
-.. automodule:: evmos.proto.revenue
-
 Staking proto
 -------------
 .. automodule:: evmos.proto.staking

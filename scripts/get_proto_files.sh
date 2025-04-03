@@ -1,27 +1,25 @@
 #!/bin/bash
 
 set -euo pipefail
+
+EVMOS_TAG=v20.0.0
+
 cd evmos/proto
-MYFOLDER="$(pwd)/autogen"
-mkdir -p "$MYFOLDER/proto"
-rm -rf "$MYFOLDER/proto"/*
+protos_root="$(pwd)/autogen"
+mkdir -p "$protos_root/proto"
+rm -rf "$protos_root/proto"/*
 
-# Ethermint
-cd /tmp
-git clone https://github.com/evmos/ethermint/
-cd ethermint/
-git checkout tags/v0.19.3
-cp -r ./proto/* "$MYFOLDER/proto"
-cp -r ./third_party/proto/* "$MYFOLDER/proto"
-cd /tmp
-rm -rf ethermint
-
-# Evmos
-cd /tmp
-git clone https://github.com/evmos/evmos/
+temp=$(mktemp -d)
+cd "$temp"
+git clone -b "$EVMOS_TAG" --depth 1 https://github.com/evmos/evmos/
 cd evmos/
-git checkout tags/v8.2.3
-cp -r ./proto/* "$MYFOLDER/proto"
-cp -r ./third_party/proto/* "$MYFOLDER/proto"
-cd /tmp
-rm -rf evmos
+make proto-download-deps proto-gen
+cp -r ./proto/* "$protos_root/proto"
+cp -r ./swagger-proto/third_party/* "$protos_root/proto"
+
+printf "Trying to clean up %s\n" "$temp"...
+cd ~
+if ! rm -rf "$temp" &>/dev/null; then
+    printf "Failed to clean up temporary directory, please do it yourself (%s)\n" "$temp" >&2
+    exit 1
+fi
