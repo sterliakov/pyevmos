@@ -78,7 +78,7 @@ def broadcast(
     post = requests.post(
         f"{url}{generate_endpoint_broadcast()}", json=transaction_body, timeout=timeout
     )
-    return post.json()
+    return post.json()  # type: ignore[no-any-return]
 
 
 # FIXME: broadcast_mode belongs to ``broadcast``, not here

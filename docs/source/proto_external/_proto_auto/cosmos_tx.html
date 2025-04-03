@@ -167,6 +167,21 @@
 
 
           <li>
+            <a href="#cosmos/tx/config/v1/config.proto">cosmos/tx/config/v1/config.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.tx.config.v1.Config"><span class="badge">M</span>Config</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/tx/signing/v1beta1/signing.proto">cosmos/tx/signing/v1beta1/signing.proto</a>
             <ul>
 
@@ -245,6 +260,38 @@
                   <a href="#cosmos.tx.v1beta1.SimulateResponse"><span class="badge">M</span>SimulateResponse</a>
                 </li>
 
+                <li>
+                  <a href="#cosmos.tx.v1beta1.TxDecodeAminoRequest"><span class="badge">M</span>TxDecodeAminoRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.tx.v1beta1.TxDecodeAminoResponse"><span class="badge">M</span>TxDecodeAminoResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.tx.v1beta1.TxDecodeRequest"><span class="badge">M</span>TxDecodeRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.tx.v1beta1.TxDecodeResponse"><span class="badge">M</span>TxDecodeResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.tx.v1beta1.TxEncodeAminoRequest"><span class="badge">M</span>TxEncodeAminoRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.tx.v1beta1.TxEncodeAminoResponse"><span class="badge">M</span>TxEncodeAminoResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.tx.v1beta1.TxEncodeRequest"><span class="badge">M</span>TxEncodeRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.tx.v1beta1.TxEncodeResponse"><span class="badge">M</span>TxEncodeResponse</a>
+                </li>
+
 
                 <li>
                   <a href="#cosmos.tx.v1beta1.BroadcastMode"><span class="badge">E</span>BroadcastMode</a>
@@ -273,6 +320,10 @@
                 </li>
 
                 <li>
+                  <a href="#cosmos.tx.v1beta1.AuxSignerData"><span class="badge">M</span>AuxSignerData</a>
+                </li>
+
+                <li>
                   <a href="#cosmos.tx.v1beta1.Fee"><span class="badge">M</span>Fee</a>
                 </li>
 
@@ -293,7 +344,15 @@
                 </li>
 
                 <li>
+                  <a href="#cosmos.tx.v1beta1.SignDocDirectAux"><span class="badge">M</span>SignDocDirectAux</a>
+                </li>
+
+                <li>
                   <a href="#cosmos.tx.v1beta1.SignerInfo"><span class="badge">M</span>SignerInfo</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.tx.v1beta1.Tip"><span class="badge">M</span>Tip</a>
                 </li>
 
                 <li>
@@ -317,6 +376,53 @@
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/tx/config/v1/config.proto">cosmos/tx/config/v1/config.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.tx.config.v1.Config">Config</h3>
+        <p>Config is the config object of the x/auth/tx package.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>skip_ante_handler</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>skip_ante_handler defines whether the ante handler registration should be skipped in case an app wants to override
+this functionality. </p></td>
+                </tr>
+
+                <tr>
+                  <td>skip_post_handler</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>skip_post_handler defines whether the post handler registration should be skipped in case an app wants to override
+this functionality. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -486,7 +592,7 @@ replay attacks. </p></td>
 
 
         <h3 id="cosmos.tx.signing.v1beta1.SignMode">SignMode</h3>
-        <p>SignMode represents a signing mode with its own security guarantees.</p>
+        <p>SignMode represents a signing mode with its own security guarantees.</p><p>This enum should be considered a registry of all known sign modes</p><p>in the Cosmos ecosystem. Apps are not expected to support all known</p><p>sign modes. Apps that would like to support custom  sign modes are</p><p>encouraged to open a small PR against this file to add a new case</p><p>to this SignMode enum describing their sign mode so that different</p><p>apps have a consistent version of this enum.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -497,14 +603,14 @@ replay attacks. </p></td>
                 <td>SIGN_MODE_UNSPECIFIED</td>
                 <td>0</td>
                 <td><p>SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be
-rejected</p></td>
+rejected.</p></td>
               </tr>
 
               <tr>
                 <td>SIGN_MODE_DIRECT</td>
                 <td>1</td>
                 <td><p>SIGN_MODE_DIRECT specifies a signing mode which uses SignDoc and is
-verified with raw bytes from Tx</p></td>
+verified with raw bytes from Tx.</p></td>
               </tr>
 
               <tr>
@@ -512,14 +618,26 @@ verified with raw bytes from Tx</p></td>
                 <td>2</td>
                 <td><p>SIGN_MODE_TEXTUAL is a future signing mode that will verify some
 human-readable textual representation on top of the binary representation
-from SIGN_MODE_DIRECT</p></td>
+from SIGN_MODE_DIRECT.
+
+Since: cosmos-sdk 0.50</p></td>
+              </tr>
+
+              <tr>
+                <td>SIGN_MODE_DIRECT_AUX</td>
+                <td>3</td>
+                <td><p>SIGN_MODE_DIRECT_AUX specifies a signing mode which uses
+SignDocDirectAux. As opposed to SIGN_MODE_DIRECT, this sign mode does not
+require signers signing over other signers' `signer_info`.
+
+Since: cosmos-sdk 0.46</p></td>
               </tr>
 
               <tr>
                 <td>SIGN_MODE_LEGACY_AMINO_JSON</td>
                 <td>127</td>
                 <td><p>SIGN_MODE_LEGACY_AMINO_JSON is a backwards compatibility mode which uses
-Amino JSON and will be removed in the future</p></td>
+Amino JSON and will be removed in the future.</p></td>
               </tr>
 
               <tr>
@@ -639,7 +757,7 @@ Since: cosmos-sdk 0.45.2</p></td>
 
 
         <h3 id="cosmos.tx.v1beta1.GetBlockWithTxsResponse">GetBlockWithTxsResponse</h3>
-        <p>GetBlockWithTxsResponse is the response type for the Service.GetBlockWithTxs method.</p><p>Since: cosmos-sdk 0.45.2</p>
+        <p>GetBlockWithTxsResponse is the response type for the Service.GetBlockWithTxs</p><p>method.</p><p>Since: cosmos-sdk 0.45.2</p>
 
 
           <table class="field-table">
@@ -752,14 +870,17 @@ Since: cosmos-sdk 0.45.2</p></td>
                   <td>events</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>events is the list of transaction event type. </p></td>
+                  <td><p><strong>Deprecated.</strong> events is the list of transaction event type.
+Deprecated post v0.47.x: use query instead, which should contain a valid
+events query. </p></td>
                 </tr>
 
                 <tr>
                   <td>pagination</td>
                   <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
                   <td></td>
-                  <td><p>pagination defines a pagination for the request. </p></td>
+                  <td><p><strong>Deprecated.</strong> pagination defines a pagination for the request.
+Deprecated post v0.46.x: use page and limit instead. </p></td>
                 </tr>
 
                 <tr>
@@ -769,8 +890,60 @@ Since: cosmos-sdk 0.45.2</p></td>
                   <td><p> </p></td>
                 </tr>
 
+                <tr>
+                  <td>page</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>page is the page number to query, starts at 1. If not provided, will
+default to first page. </p></td>
+                </tr>
+
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>limit is the total number of results to be returned in the result page.
+If left empty it will default to a value to be set by each app. </p></td>
+                </tr>
+
+                <tr>
+                  <td>query</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>query defines the transaction event query that is proxied to Tendermint's
+TxSearch RPC method. The query must be valid.
+
+Since cosmos-sdk 0.50 </p></td>
+                </tr>
+
             </tbody>
           </table>
+
+
+
+
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>events</td>
+                  <td><p>true</p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><p>true</p></td>
+                </tr>
+
+              </tbody>
+            </table>
 
 
 
@@ -804,11 +977,40 @@ Since: cosmos-sdk 0.45.2</p></td>
                   <td>pagination</td>
                   <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
                   <td></td>
-                  <td><p>pagination defines a pagination for the response. </p></td>
+                  <td><p><strong>Deprecated.</strong> pagination defines a pagination for the response.
+Deprecated post v0.46.x: use total instead. </p></td>
+                </tr>
+
+                <tr>
+                  <td>total</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>total is total number of results available </p></td>
                 </tr>
 
             </tbody>
           </table>
+
+
+
+
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><p>true</p></td>
+                </tr>
+
+              </tbody>
+            </table>
 
 
 
@@ -900,10 +1102,202 @@ Since: cosmos-sdk 0.43 </p></td>
 
 
 
+        <h3 id="cosmos.tx.v1beta1.TxDecodeAminoRequest">TxDecodeAminoRequest</h3>
+        <p>TxDecodeAminoRequest is the request type for the Service.TxDecodeAmino</p><p>RPC method.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>amino_binary</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.tx.v1beta1.TxDecodeAminoResponse">TxDecodeAminoResponse</h3>
+        <p>TxDecodeAminoResponse is the response type for the Service.TxDecodeAmino</p><p>RPC method.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>amino_json</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.tx.v1beta1.TxDecodeRequest">TxDecodeRequest</h3>
+        <p>TxDecodeRequest is the request type for the Service.TxDecode</p><p>RPC method.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>tx_bytes</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>tx_bytes is the raw transaction. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.tx.v1beta1.TxDecodeResponse">TxDecodeResponse</h3>
+        <p>TxDecodeResponse is the response type for the</p><p>Service.TxDecode method.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>tx</td>
+                  <td><a href="#cosmos.tx.v1beta1.Tx">Tx</a></td>
+                  <td></td>
+                  <td><p>tx is the decoded transaction. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.tx.v1beta1.TxEncodeAminoRequest">TxEncodeAminoRequest</h3>
+        <p>TxEncodeAminoRequest is the request type for the Service.TxEncodeAmino</p><p>RPC method.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>amino_json</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.tx.v1beta1.TxEncodeAminoResponse">TxEncodeAminoResponse</h3>
+        <p>TxEncodeAminoResponse is the response type for the Service.TxEncodeAmino</p><p>RPC method.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>amino_binary</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.tx.v1beta1.TxEncodeRequest">TxEncodeRequest</h3>
+        <p>TxEncodeRequest is the request type for the Service.TxEncode</p><p>RPC method.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>tx</td>
+                  <td><a href="#cosmos.tx.v1beta1.Tx">Tx</a></td>
+                  <td></td>
+                  <td><p>tx is the transaction to encode. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.tx.v1beta1.TxEncodeResponse">TxEncodeResponse</h3>
+        <p>TxEncodeResponse is the response type for the</p><p>Service.TxEncode method.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>tx_bytes</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>tx_bytes is the encoded transaction bytes. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
 
 
         <h3 id="cosmos.tx.v1beta1.BroadcastMode">BroadcastMode</h3>
-        <p>BroadcastMode specifies the broadcast mode for the TxService.Broadcast RPC method.</p>
+        <p>BroadcastMode specifies the broadcast mode for the TxService.Broadcast RPC</p><p>method.</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -919,22 +1313,22 @@ Since: cosmos-sdk 0.43 </p></td>
               <tr>
                 <td>BROADCAST_MODE_BLOCK</td>
                 <td>1</td>
-                <td><p>BROADCAST_MODE_BLOCK defines a tx broadcasting mode where the client waits for
-the tx to be committed in a block.</p></td>
+                <td><p>DEPRECATED: use BROADCAST_MODE_SYNC instead,
+BROADCAST_MODE_BLOCK is not supported by the SDK from v0.47.x onwards.</p></td>
               </tr>
 
               <tr>
                 <td>BROADCAST_MODE_SYNC</td>
                 <td>2</td>
-                <td><p>BROADCAST_MODE_SYNC defines a tx broadcasting mode where the client waits for
-a CheckTx execution response only.</p></td>
+                <td><p>BROADCAST_MODE_SYNC defines a tx broadcasting mode where the client waits
+for a CheckTx execution response only.</p></td>
               </tr>
 
               <tr>
                 <td>BROADCAST_MODE_ASYNC</td>
                 <td>3</td>
-                <td><p>BROADCAST_MODE_ASYNC defines a tx broadcasting mode where the client returns
-immediately.</p></td>
+                <td><p>BROADCAST_MODE_ASYNC defines a tx broadcasting mode where the client
+returns immediately.</p></td>
               </tr>
 
           </tbody>
@@ -951,7 +1345,8 @@ immediately.</p></td>
               <tr>
                 <td>ORDER_BY_UNSPECIFIED</td>
                 <td>0</td>
-                <td><p>ORDER_BY_UNSPECIFIED specifies an unknown sorting order. OrderBy defaults to ASC in this case.</p></td>
+                <td><p>ORDER_BY_UNSPECIFIED specifies an unknown sorting order. OrderBy defaults
+to ASC in this case.</p></td>
               </tr>
 
               <tr>
@@ -1016,6 +1411,42 @@ immediately.</p></td>
                 <td><p>GetBlockWithTxs fetches a block with decoded txs.
 
 Since: cosmos-sdk 0.45.2</p></td>
+              </tr>
+
+              <tr>
+                <td>TxDecode</td>
+                <td><a href="#cosmos.tx.v1beta1.TxDecodeRequest">TxDecodeRequest</a></td>
+                <td><a href="#cosmos.tx.v1beta1.TxDecodeResponse">TxDecodeResponse</a></td>
+                <td><p>TxDecode decodes the transaction.
+
+Since: cosmos-sdk 0.47</p></td>
+              </tr>
+
+              <tr>
+                <td>TxEncode</td>
+                <td><a href="#cosmos.tx.v1beta1.TxEncodeRequest">TxEncodeRequest</a></td>
+                <td><a href="#cosmos.tx.v1beta1.TxEncodeResponse">TxEncodeResponse</a></td>
+                <td><p>TxEncode encodes the transaction.
+
+Since: cosmos-sdk 0.47</p></td>
+              </tr>
+
+              <tr>
+                <td>TxEncodeAmino</td>
+                <td><a href="#cosmos.tx.v1beta1.TxEncodeAminoRequest">TxEncodeAminoRequest</a></td>
+                <td><a href="#cosmos.tx.v1beta1.TxEncodeAminoResponse">TxEncodeAminoResponse</a></td>
+                <td><p>TxEncodeAmino encodes an Amino transaction from JSON to encoded bytes.
+
+Since: cosmos-sdk 0.47</p></td>
+              </tr>
+
+              <tr>
+                <td>TxDecodeAmino</td>
+                <td><a href="#cosmos.tx.v1beta1.TxDecodeAminoRequest">TxDecodeAminoRequest</a></td>
+                <td><a href="#cosmos.tx.v1beta1.TxDecodeAminoResponse">TxDecodeAminoResponse</a></td>
+                <td><p>TxDecodeAmino decodes an Amino transaction from encoded bytes to JSON.
+
+Since: cosmos-sdk 0.47</p></td>
               </tr>
 
           </tbody>
@@ -1086,6 +1517,46 @@ Since: cosmos-sdk 0.45.2</p></td>
               </tr>
 
 
+
+
+              <tr>
+                <td>TxDecode</td>
+                <td>POST</td>
+                <td>/cosmos/tx/v1beta1/decode</td>
+                <td>*</td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>TxEncode</td>
+                <td>POST</td>
+                <td>/cosmos/tx/v1beta1/encode</td>
+                <td>*</td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>TxEncodeAmino</td>
+                <td>POST</td>
+                <td>/cosmos/tx/v1beta1/encode/amino</td>
+                <td>*</td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>TxDecodeAmino</td>
+                <td>POST</td>
+                <td>/cosmos/tx/v1beta1/decode/amino</td>
+                <td>*</td>
+              </tr>
+
+
             </tbody>
           </table>
 
@@ -1126,6 +1597,88 @@ the fee. </p></td>
 primary signer and the one which pays the fee. The fee can be calculated
 based on the cost of evaluating the body and doing signature verification
 of the signers. This can be estimated via simulation. </p></td>
+                </tr>
+
+                <tr>
+                  <td>tip</td>
+                  <td><a href="#cosmos.tx.v1beta1.Tip">Tip</a></td>
+                  <td></td>
+                  <td><p><strong>Deprecated.</strong> Tip is the optional tip used for transactions fees paid in another denom.
+
+This field is ignored if the chain didn't enable tips, i.e. didn't add the
+`TipDecorator` in its posthandler.
+
+Since: cosmos-sdk 0.46 </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>tip</td>
+                  <td><p>true</p></td>
+                </tr>
+
+              </tbody>
+            </table>
+
+
+
+
+
+        <h3 id="cosmos.tx.v1beta1.AuxSignerData">AuxSignerData</h3>
+        <p>AuxSignerData is the intermediary format that an auxiliary signer (e.g. a</p><p>tipper) builds and sends to the fee payer (who will build and broadcast the</p><p>actual tx). AuxSignerData is not a valid tx in itself, and will be rejected</p><p>by the node if sent directly as-is.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the bech32-encoded address of the auxiliary signer. If using
+AuxSignerData across different chains, the bech32 prefix of the target
+chain (where the final transaction is broadcasted) should be used. </p></td>
+                </tr>
+
+                <tr>
+                  <td>sign_doc</td>
+                  <td><a href="#cosmos.tx.v1beta1.SignDocDirectAux">SignDocDirectAux</a></td>
+                  <td></td>
+                  <td><p>sign_doc is the SIGN_MODE_DIRECT_AUX sign doc that the auxiliary signer
+signs. Note: we use the same sign doc even if we're signing with
+LEGACY_AMINO_JSON. </p></td>
+                </tr>
+
+                <tr>
+                  <td>mode</td>
+                  <td><a href="#cosmos.tx.signing.v1beta1.SignMode">cosmos.tx.signing.v1beta1.SignMode</a></td>
+                  <td></td>
+                  <td><p>mode is the signing mode of the single signer. </p></td>
+                </tr>
+
+                <tr>
+                  <td>sig</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>sig is the signature of the sign doc. </p></td>
                 </tr>
 
             </tbody>
@@ -1321,6 +1874,89 @@ attacker </p></td>
 
 
 
+        <h3 id="cosmos.tx.v1beta1.SignDocDirectAux">SignDocDirectAux</h3>
+        <p>SignDocDirectAux is the type used for generating sign bytes for</p><p>SIGN_MODE_DIRECT_AUX.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>body_bytes</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>body_bytes is protobuf serialization of a TxBody that matches the
+representation in TxRaw. </p></td>
+                </tr>
+
+                <tr>
+                  <td>public_key</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p>public_key is the public key of the signing account. </p></td>
+                </tr>
+
+                <tr>
+                  <td>chain_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>chain_id is the identifier of the chain this transaction targets.
+It prevents signed transactions from being used on another chain by an
+attacker. </p></td>
+                </tr>
+
+                <tr>
+                  <td>account_number</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>account_number is the account number of the account in state. </p></td>
+                </tr>
+
+                <tr>
+                  <td>sequence</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>sequence is the sequence number of the signing account. </p></td>
+                </tr>
+
+                <tr>
+                  <td>tip</td>
+                  <td><a href="#cosmos.tx.v1beta1.Tip">Tip</a></td>
+                  <td></td>
+                  <td><p><strong>Deprecated.</strong> tips have been depreacted and should not be used </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>tip</td>
+                  <td><p>true</p></td>
+                </tr>
+
+              </tbody>
+            </table>
+
+
+
+
+
         <h3 id="cosmos.tx.v1beta1.SignerInfo">SignerInfo</h3>
         <p>SignerInfo describes the public key and signing mode of a single top-level</p><p>signer.</p>
 
@@ -1355,6 +1991,37 @@ structure to support nested multisig pubkey's </p></td>
                   <td><p>sequence is the sequence of the account, which describes the
 number of committed transactions signed by a given address. It is used to
 prevent replay attacks. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.tx.v1beta1.Tip">Tip</h3>
+        <p>Tip is the tip used for meta-transactions.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p>amount is the amount of the tip </p></td>
+                </tr>
+
+                <tr>
+                  <td>tipper</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>tipper is the address of the account paying for the tip </p></td>
                 </tr>
 
             </tbody>

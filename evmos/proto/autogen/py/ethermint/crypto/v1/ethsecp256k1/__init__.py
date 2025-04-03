@@ -17,6 +17,7 @@ class PubKey(betterproto.Message):
     """
 
     key: bytes = betterproto.bytes_field(1)
+    """key is the public key in byte form"""
 
 
 @dataclass(eq=False, repr=False)
@@ -27,3 +28,4 @@ class PrivKey(betterproto.Message):
     """
 
     key: bytes = betterproto.bytes_field(1)
+    """key is the private key in byte form"""

@@ -12,10 +12,6 @@ ERC20
 -----
 .. automodule:: evmos.eip712.erc20
 
-Revenue
--------
-.. automodule:: evmos.eip712.revenue
-
 Staking
 -------
 .. automodule:: evmos.eip712.staking

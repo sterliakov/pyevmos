@@ -167,6 +167,21 @@
 
 
           <li>
+            <a href="#cosmos/evidence/module/v1/module.proto">cosmos/evidence/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.evidence.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/evidence/v1beta1/evidence.proto">cosmos/evidence/v1beta1/evidence.proto</a>
             <ul>
 
@@ -256,6 +271,27 @@
 
 
       <div class="file-heading">
+        <h2 id="cosmos/evidence/module/v1/module.proto">cosmos/evidence/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.evidence.module.v1.Module">Module</h3>
+        <p>Module is the config object of the evidence module.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
         <h2 id="cosmos/evidence/v1beta1/evidence.proto">cosmos/evidence/v1beta1/evidence.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
@@ -275,28 +311,28 @@
                   <td>height</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>height is the equivocation height. </p></td>
                 </tr>
 
                 <tr>
                   <td>time</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>time is the equivocation time. </p></td>
                 </tr>
 
                 <tr>
                   <td>power</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>power is the equivocation validator power. </p></td>
                 </tr>
 
                 <tr>
                   <td>consensus_address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>consensus_address is the equivocation validator consensus address. </p></td>
                 </tr>
 
             </tbody>
@@ -427,11 +463,42 @@
                   <td>evidence_hash</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
-                  <td><p>evidence_hash defines the hash of the requested evidence. </p></td>
+                  <td><p><strong>Deprecated.</strong> evidence_hash defines the hash of the requested evidence.
+Deprecated: Use hash, a HEX encoded string, instead. </p></td>
+                </tr>
+
+                <tr>
+                  <td>hash</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>hash defines the evidence hash of the requested evidence.
+
+Since: cosmos-sdk 0.47 </p></td>
                 </tr>
 
             </tbody>
           </table>
+
+
+
+
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>evidence_hash</td>
+                  <td><p>true</p></td>
+                </tr>
+
+              </tbody>
+            </table>
 
 
 
@@ -512,7 +579,7 @@
               <tr>
                 <td>Evidence</td>
                 <td>GET</td>
-                <td>/cosmos/evidence/v1beta1/evidence/{evidence_hash}</td>
+                <td>/cosmos/evidence/v1beta1/evidence/{hash}</td>
                 <td></td>
               </tr>
 
@@ -553,14 +620,14 @@
                   <td>submitter</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>submitter is the signer account address of evidence. </p></td>
                 </tr>
 
                 <tr>
                   <td>evidence</td>
                   <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>evidence defines the evidence of misbehavior. </p></td>
                 </tr>
 
             </tbody>

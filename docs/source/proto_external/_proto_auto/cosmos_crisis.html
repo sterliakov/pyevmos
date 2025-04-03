@@ -167,6 +167,21 @@
 
 
           <li>
+            <a href="#cosmos/crisis/module/v1/module.proto">cosmos/crisis/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.crisis.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/crisis/v1beta1/genesis.proto">cosmos/crisis/v1beta1/genesis.proto</a>
             <ul>
 
@@ -184,6 +199,14 @@
           <li>
             <a href="#cosmos/crisis/v1beta1/tx.proto">cosmos/crisis/v1beta1/tx.proto</a>
             <ul>
+
+                <li>
+                  <a href="#cosmos.crisis.v1beta1.MsgUpdateParams"><span class="badge">M</span>MsgUpdateParams</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.crisis.v1beta1.MsgUpdateParamsResponse"><span class="badge">M</span>MsgUpdateParamsResponse</a>
+                </li>
 
                 <li>
                   <a href="#cosmos.crisis.v1beta1.MsgVerifyInvariant"><span class="badge">M</span>MsgVerifyInvariant</a>
@@ -206,6 +229,51 @@
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/crisis/module/v1/module.proto">cosmos/crisis/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.crisis.module.v1.Module">Module</h3>
+        <p>Module is the config object of the crisis module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>fee_collector_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>fee_collector_name is the name of the FeeCollector ModuleAccount. </p></td>
+                </tr>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority defines the custom module authority. If not set, defaults to the governance module. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -254,6 +322,44 @@ module. </p></td>
       <p></p>
 
 
+        <h3 id="cosmos.crisis.v1beta1.MsgUpdateParams">MsgUpdateParams</h3>
+        <p>MsgUpdateParams is the Msg/UpdateParams request type.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address that controls the module (defaults to x/gov unless overwritten). </p></td>
+                </tr>
+
+                <tr>
+                  <td>constant_fee</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td></td>
+                  <td><p>constant_fee defines the x/crisis parameter. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.crisis.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</h3>
+        <p>MsgUpdateParamsResponse defines the response structure for executing a</p><p>MsgUpdateParams message.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+
+
+
         <h3 id="cosmos.crisis.v1beta1.MsgVerifyInvariant">MsgVerifyInvariant</h3>
         <p>MsgVerifyInvariant represents a message to verify a particular invariance.</p>
 
@@ -268,21 +374,21 @@ module. </p></td>
                   <td>sender</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>sender is the account address of private key to send coins to fee collector account. </p></td>
                 </tr>
 
                 <tr>
                   <td>invariant_module_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>name of the invariant module. </p></td>
                 </tr>
 
                 <tr>
                   <td>invariant_route</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>invariant_route is the msg's invariant route. </p></td>
                 </tr>
 
             </tbody>
@@ -317,7 +423,17 @@ module. </p></td>
                 <td>VerifyInvariant</td>
                 <td><a href="#cosmos.crisis.v1beta1.MsgVerifyInvariant">MsgVerifyInvariant</a></td>
                 <td><a href="#cosmos.crisis.v1beta1.MsgVerifyInvariantResponse">MsgVerifyInvariantResponse</a></td>
-                <td><p>VerifyInvariant defines a method to verify a particular invariance.</p></td>
+                <td><p>VerifyInvariant defines a method to verify a particular invariant.</p></td>
+              </tr>
+
+              <tr>
+                <td>UpdateParams</td>
+                <td><a href="#cosmos.crisis.v1beta1.MsgUpdateParams">MsgUpdateParams</a></td>
+                <td><a href="#cosmos.crisis.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</a></td>
+                <td><p>UpdateParams defines a governance operation for updating the x/crisis module
+parameters. The authority is defined in the keeper.
+
+Since: cosmos-sdk 0.47</p></td>
               </tr>
 
           </tbody>

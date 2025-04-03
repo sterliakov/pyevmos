@@ -167,6 +167,21 @@
 
 
           <li>
+            <a href="#cosmos/feegrant/module/v1/module.proto">cosmos/feegrant/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.feegrant.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/feegrant/v1beta1/feegrant.proto">cosmos/feegrant/v1beta1/feegrant.proto</a>
             <ul>
 
@@ -221,6 +236,14 @@
                 </li>
 
                 <li>
+                  <a href="#cosmos.feegrant.v1beta1.QueryAllowancesByGranterRequest"><span class="badge">M</span>QueryAllowancesByGranterRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.feegrant.v1beta1.QueryAllowancesByGranterResponse"><span class="badge">M</span>QueryAllowancesByGranterResponse</a>
+                </li>
+
+                <li>
                   <a href="#cosmos.feegrant.v1beta1.QueryAllowancesRequest"><span class="badge">M</span>QueryAllowancesRequest</a>
                 </li>
 
@@ -252,6 +275,14 @@
                 </li>
 
                 <li>
+                  <a href="#cosmos.feegrant.v1beta1.MsgPruneAllowances"><span class="badge">M</span>MsgPruneAllowances</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.feegrant.v1beta1.MsgPruneAllowancesResponse"><span class="badge">M</span>MsgPruneAllowancesResponse</a>
+                </li>
+
+                <li>
                   <a href="#cosmos.feegrant.v1beta1.MsgRevokeAllowance"><span class="badge">M</span>MsgRevokeAllowance</a>
                 </li>
 
@@ -276,6 +307,27 @@
 
 
       <div class="file-heading">
+        <h2 id="cosmos/feegrant/module/v1/module.proto">cosmos/feegrant/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.feegrant.module.v1.Module">Module</h3>
+        <p>Module is the config object of the feegrant module.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
         <h2 id="cosmos/feegrant/v1beta1/feegrant.proto">cosmos/feegrant/v1beta1/feegrant.proto</h2><a href="#title">Top</a>
       </div>
       <p>Since: cosmos-sdk 0.43</p>
@@ -295,7 +347,7 @@
                   <td>allowance</td>
                   <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
                   <td></td>
-                  <td><p>allowance can be any of basic and filtered fee allowance. </p></td>
+                  <td><p>allowance can be any of basic and periodic fee allowance. </p></td>
                 </tr>
 
                 <tr>
@@ -313,7 +365,7 @@
 
 
         <h3 id="cosmos.feegrant.v1beta1.BasicAllowance">BasicAllowance</h3>
-        <p>BasicAllowance implements Allowance with a one-time grant of tokens</p><p>that optionally expires. The grantee can use up to SpendLimit to cover fees.</p>
+        <p>BasicAllowance implements Allowance with a one-time grant of coins</p><p>that optionally expires. The grantee can use up to SpendLimit to cover fees.</p>
 
 
           <table class="field-table">
@@ -326,8 +378,8 @@
                   <td>spend_limit</td>
                   <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
                   <td>repeated</td>
-                  <td><p>spend_limit specifies the maximum amount of tokens that can be spent
-by this allowance and will be updated as tokens are spent. If it is
+                  <td><p>spend_limit specifies the maximum amount of coins that can be spent
+by this allowance and will be updated as coins are spent. If it is
 empty, there is no spend limit and any amount of coins can be spent. </p></td>
                 </tr>
 
@@ -373,7 +425,7 @@ empty, there is no spend limit and any amount of coins can be spent. </p></td>
                   <td>allowance</td>
                   <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
                   <td></td>
-                  <td><p>allowance can be any of basic and filtered fee allowance. </p></td>
+                  <td><p>allowance can be any of basic, periodic, allowed fee allowance. </p></td>
                 </tr>
 
             </tbody>
@@ -546,6 +598,68 @@ last period ended </p></td>
 
 
 
+        <h3 id="cosmos.feegrant.v1beta1.QueryAllowancesByGranterRequest">QueryAllowancesByGranterRequest</h3>
+        <p>QueryAllowancesByGranterRequest is the request type for the Query/AllowancesByGranter RPC method.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>granter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.feegrant.v1beta1.QueryAllowancesByGranterResponse">QueryAllowancesByGranterResponse</h3>
+        <p>QueryAllowancesByGranterResponse is the response type for the Query/AllowancesByGranter RPC method.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>allowances</td>
+                  <td><a href="#cosmos.feegrant.v1beta1.Grant">Grant</a></td>
+                  <td>repeated</td>
+                  <td><p>allowances that have been issued by the granter. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines an pagination for the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
         <h3 id="cosmos.feegrant.v1beta1.QueryAllowancesRequest">QueryAllowancesRequest</h3>
         <p>QueryAllowancesRequest is the request type for the Query/Allowances RPC method.</p>
 
@@ -626,14 +740,23 @@ last period ended </p></td>
                 <td>Allowance</td>
                 <td><a href="#cosmos.feegrant.v1beta1.QueryAllowanceRequest">QueryAllowanceRequest</a></td>
                 <td><a href="#cosmos.feegrant.v1beta1.QueryAllowanceResponse">QueryAllowanceResponse</a></td>
-                <td><p>Allowance returns fee granted to the grantee by the granter.</p></td>
+                <td><p>Allowance returns granted allwance to the grantee by the granter.</p></td>
               </tr>
 
               <tr>
                 <td>Allowances</td>
                 <td><a href="#cosmos.feegrant.v1beta1.QueryAllowancesRequest">QueryAllowancesRequest</a></td>
                 <td><a href="#cosmos.feegrant.v1beta1.QueryAllowancesResponse">QueryAllowancesResponse</a></td>
-                <td><p>Allowances returns all the grants for address.</p></td>
+                <td><p>Allowances returns all the grants for the given grantee address.</p></td>
+              </tr>
+
+              <tr>
+                <td>AllowancesByGranter</td>
+                <td><a href="#cosmos.feegrant.v1beta1.QueryAllowancesByGranterRequest">QueryAllowancesByGranterRequest</a></td>
+                <td><a href="#cosmos.feegrant.v1beta1.QueryAllowancesByGranterResponse">QueryAllowancesByGranterResponse</a></td>
+                <td><p>AllowancesByGranter returns all the grants given by an address
+
+Since: cosmos-sdk 0.46</p></td>
               </tr>
 
           </tbody>
@@ -670,6 +793,16 @@ last period ended </p></td>
                 <td>Allowances</td>
                 <td>GET</td>
                 <td>/cosmos/feegrant/v1beta1/allowances/{grantee}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>AllowancesByGranter</td>
+                <td>GET</td>
+                <td>/cosmos/feegrant/v1beta1/issued/{granter}</td>
                 <td></td>
               </tr>
 
@@ -714,7 +847,7 @@ last period ended </p></td>
                   <td>allowance</td>
                   <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
                   <td></td>
-                  <td><p>allowance can be any of basic and filtered fee allowance. </p></td>
+                  <td><p>allowance can be any of basic, periodic, allowed fee allowance. </p></td>
                 </tr>
 
             </tbody>
@@ -726,6 +859,37 @@ last period ended </p></td>
 
         <h3 id="cosmos.feegrant.v1beta1.MsgGrantAllowanceResponse">MsgGrantAllowanceResponse</h3>
         <p>MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response type.</p>
+
+
+
+
+
+        <h3 id="cosmos.feegrant.v1beta1.MsgPruneAllowances">MsgPruneAllowances</h3>
+        <p>MsgPruneAllowances prunes expired fee allowances.</p><p>Since cosmos-sdk 0.50</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>pruner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>pruner is the address of the user pruning expired allowances. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.feegrant.v1beta1.MsgPruneAllowancesResponse">MsgPruneAllowancesResponse</h3>
+        <p>MsgPruneAllowancesResponse defines the Msg/PruneAllowancesResponse response type.</p><p>Since cosmos-sdk 0.50</p>
 
 
 
@@ -797,6 +961,15 @@ account with the provided expiration time.</p></td>
                 <td><a href="#cosmos.feegrant.v1beta1.MsgRevokeAllowanceResponse">MsgRevokeAllowanceResponse</a></td>
                 <td><p>RevokeAllowance revokes any fee allowance of granter's account that
 has been granted to the grantee.</p></td>
+              </tr>
+
+              <tr>
+                <td>PruneAllowances</td>
+                <td><a href="#cosmos.feegrant.v1beta1.MsgPruneAllowances">MsgPruneAllowances</a></td>
+                <td><a href="#cosmos.feegrant.v1beta1.MsgPruneAllowancesResponse">MsgPruneAllowancesResponse</a></td>
+                <td><p>PruneAllowances prunes expired fee allowances, currently up to 75 at a time.
+
+Since cosmos-sdk 0.50</p></td>
               </tr>
 
           </tbody>

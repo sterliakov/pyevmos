@@ -167,6 +167,21 @@
 
 
           <li>
+            <a href="#cosmos/distribution/module/v1/module.proto">cosmos/distribution/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.distribution.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/distribution/v1beta1/distribution.proto">cosmos/distribution/v1beta1/distribution.proto</a>
             <ul>
 
@@ -329,6 +344,14 @@
                 </li>
 
                 <li>
+                  <a href="#cosmos.distribution.v1beta1.QueryValidatorDistributionInfoRequest"><span class="badge">M</span>QueryValidatorDistributionInfoRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.distribution.v1beta1.QueryValidatorDistributionInfoResponse"><span class="badge">M</span>QueryValidatorDistributionInfoResponse</a>
+                </li>
+
+                <li>
                   <a href="#cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequest"><span class="badge">M</span>QueryValidatorOutstandingRewardsRequest</a>
                 </li>
 
@@ -360,6 +383,22 @@
             <ul>
 
                 <li>
+                  <a href="#cosmos.distribution.v1beta1.MsgCommunityPoolSpend"><span class="badge">M</span>MsgCommunityPoolSpend</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse"><span class="badge">M</span>MsgCommunityPoolSpendResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPool"><span class="badge">M</span>MsgDepositValidatorRewardsPool</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPoolResponse"><span class="badge">M</span>MsgDepositValidatorRewardsPoolResponse</a>
+                </li>
+
+                <li>
                   <a href="#cosmos.distribution.v1beta1.MsgFundCommunityPool"><span class="badge">M</span>MsgFundCommunityPool</a>
                 </li>
 
@@ -373,6 +412,14 @@
 
                 <li>
                   <a href="#cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse"><span class="badge">M</span>MsgSetWithdrawAddressResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.distribution.v1beta1.MsgUpdateParams"><span class="badge">M</span>MsgUpdateParams</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.distribution.v1beta1.MsgUpdateParamsResponse"><span class="badge">M</span>MsgUpdateParamsResponse</a>
                 </li>
 
                 <li>
@@ -408,13 +455,58 @@
 
 
       <div class="file-heading">
+        <h2 id="cosmos/distribution/module/v1/module.proto">cosmos/distribution/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.distribution.module.v1.Module">Module</h3>
+        <p>Module is the config object of the distribution module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>fee_collector_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority defines the custom module authority. If not set, defaults to the governance module. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
         <h2 id="cosmos/distribution/v1beta1/distribution.proto">cosmos/distribution/v1beta1/distribution.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
 
 
         <h3 id="cosmos.distribution.v1beta1.CommunityPoolSpendProposal">CommunityPoolSpendProposal</h3>
-        <p>CommunityPoolSpendProposal details a proposal for use of community funds,</p><p>together with how many coins are proposed to be spent, and to which</p><p>recipient account.</p>
+        <p>CommunityPoolSpendProposal details a proposal for use of community funds,</p><p>together with how many coins are proposed to be spent, and to which</p><p>recipient account.</p><p>Deprecated: Do not use. As of the Cosmos SDK release v0.47.x, there is no</p><p>longer a need for an explicit CommunityPoolSpendProposal. To spend community</p><p>pool funds, a simple MsgCommunityPoolSpend can be invoked from the x/gov</p><p>module via a v1 governance proposal.</p>
 
 
           <table class="field-table">
@@ -624,14 +716,16 @@
                   <td>base_proposer_reward</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated: The base_proposer_reward field is deprecated and is no longer used
+in the x/distribution module's reward mechanism. </p></td>
                 </tr>
 
                 <tr>
                   <td>bonus_proposer_reward</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated: The bonus_proposer_reward field is deprecated and is no longer used
+in the x/distribution module's reward mechanism. </p></td>
                 </tr>
 
                 <tr>
@@ -643,6 +737,32 @@
 
             </tbody>
           </table>
+
+
+
+
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>base_proposer_reward</td>
+                  <td><p>true</p></td>
+                </tr>
+
+                <tr>
+                  <td>bonus_proposer_reward</td>
+                  <td><p>true</p></td>
+                </tr>
+
+              </tbody>
+            </table>
 
 
 
@@ -910,7 +1030,7 @@
                   <td>params</td>
                   <td><a href="#cosmos.distribution.v1beta1.Params">Params</a></td>
                   <td></td>
-                  <td><p>params defines all the paramaters of the module. </p></td>
+                  <td><p>params defines all the parameters of the module. </p></td>
                 </tr>
 
                 <tr>
@@ -945,7 +1065,7 @@
                   <td>validator_accumulated_commissions</td>
                   <td><a href="#cosmos.distribution.v1beta1.ValidatorAccumulatedCommissionRecord">ValidatorAccumulatedCommissionRecord</a></td>
                   <td>repeated</td>
-                  <td><p>fee_pool defines the accumulated commisions of all validators at genesis. </p></td>
+                  <td><p>fee_pool defines the accumulated commissions of all validators at genesis. </p></td>
                 </tr>
 
                 <tr>
@@ -1104,7 +1224,7 @@
                   <td>outstanding_rewards</td>
                   <td><a href="#cosmos.base.v1beta1.DecCoin">cosmos.base.v1beta1.DecCoin</a></td>
                   <td>repeated</td>
-                  <td><p>outstanding_rewards represents the oustanding rewards of a validator. </p></td>
+                  <td><p>outstanding_rewards represents the outstanding rewards of a validator. </p></td>
                 </tr>
 
             </tbody>
@@ -1135,7 +1255,7 @@
                   <td>height</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>height defines the block height at which the slash event occured. </p></td>
+                  <td><p>height defines the block height at which the slash event occurred. </p></td>
                 </tr>
 
                 <tr>
@@ -1479,7 +1599,69 @@
                   <td>commission</td>
                   <td><a href="#cosmos.distribution.v1beta1.ValidatorAccumulatedCommission">ValidatorAccumulatedCommission</a></td>
                   <td></td>
-                  <td><p>commission defines the commision the validator received. </p></td>
+                  <td><p>commission defines the commission the validator received. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.distribution.v1beta1.QueryValidatorDistributionInfoRequest">QueryValidatorDistributionInfoRequest</h3>
+        <p>QueryValidatorDistributionInfoRequest is the request type for the Query/ValidatorDistributionInfo RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>validator_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>validator_address defines the validator address to query for. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.distribution.v1beta1.QueryValidatorDistributionInfoResponse">QueryValidatorDistributionInfoResponse</h3>
+        <p>QueryValidatorDistributionInfoResponse is the response type for the Query/ValidatorDistributionInfo RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>operator_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>operator_address defines the validator operator address. </p></td>
+                </tr>
+
+                <tr>
+                  <td>self_bond_rewards</td>
+                  <td><a href="#cosmos.base.v1beta1.DecCoin">cosmos.base.v1beta1.DecCoin</a></td>
+                  <td>repeated</td>
+                  <td><p>self_bond_rewards defines the self delegations rewards. </p></td>
+                </tr>
+
+                <tr>
+                  <td>commission</td>
+                  <td><a href="#cosmos.base.v1beta1.DecCoin">cosmos.base.v1beta1.DecCoin</a></td>
+                  <td>repeated</td>
+                  <td><p>commission defines the commission the validator received. </p></td>
                 </tr>
 
             </tbody>
@@ -1635,6 +1817,13 @@
               </tr>
 
               <tr>
+                <td>ValidatorDistributionInfo</td>
+                <td><a href="#cosmos.distribution.v1beta1.QueryValidatorDistributionInfoRequest">QueryValidatorDistributionInfoRequest</a></td>
+                <td><a href="#cosmos.distribution.v1beta1.QueryValidatorDistributionInfoResponse">QueryValidatorDistributionInfoResponse</a></td>
+                <td><p>ValidatorDistributionInfo queries validator commission and self-delegation rewards for validator</p></td>
+              </tr>
+
+              <tr>
                 <td>ValidatorOutstandingRewards</td>
                 <td><a href="#cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequest">QueryValidatorOutstandingRewardsRequest</a></td>
                 <td><a href="#cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsResponse">QueryValidatorOutstandingRewardsResponse</a></td>
@@ -1666,7 +1855,7 @@
                 <td>DelegationTotalRewards</td>
                 <td><a href="#cosmos.distribution.v1beta1.QueryDelegationTotalRewardsRequest">QueryDelegationTotalRewardsRequest</a></td>
                 <td><a href="#cosmos.distribution.v1beta1.QueryDelegationTotalRewardsResponse">QueryDelegationTotalRewardsResponse</a></td>
-                <td><p>DelegationTotalRewards queries the total rewards accrued by a each
+                <td><p>DelegationTotalRewards queries the total rewards accrued by each
 validator.</p></td>
               </tr>
 
@@ -1715,6 +1904,16 @@ validator.</p></td>
                 <td>Params</td>
                 <td>GET</td>
                 <td>/cosmos/distribution/v1beta1/params</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>ValidatorDistributionInfo</td>
+                <td>GET</td>
+                <td>/cosmos/distribution/v1beta1/validators/{validator_address}</td>
                 <td></td>
               </tr>
 
@@ -1811,6 +2010,96 @@ validator.</p></td>
       <p></p>
 
 
+        <h3 id="cosmos.distribution.v1beta1.MsgCommunityPoolSpend">MsgCommunityPoolSpend</h3>
+        <p>MsgCommunityPoolSpend defines a message for sending tokens from the community</p><p>pool to another account. This message is typically executed via a governance</p><p>proposal with the governance module being the executing authority.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address that controls the module (defaults to x/gov unless overwritten). </p></td>
+                </tr>
+
+                <tr>
+                  <td>recipient</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse">MsgCommunityPoolSpendResponse</h3>
+        <p>MsgCommunityPoolSpendResponse defines the response to executing a</p><p>MsgCommunityPoolSpend message.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+
+
+
+        <h3 id="cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPool">MsgDepositValidatorRewardsPool</h3>
+        <p>DepositValidatorRewardsPool defines the request structure to provide</p><p>additional rewards to delegators from a specific validator.</p><p>Since: cosmos-sdk 0.50</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>depositor</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>validator_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPoolResponse">MsgDepositValidatorRewardsPoolResponse</h3>
+        <p>MsgDepositValidatorRewardsPoolResponse defines the response to executing a</p><p>MsgDepositValidatorRewardsPool message.</p><p>Since: cosmos-sdk 0.50</p>
+
+
+
+
+
         <h3 id="cosmos.distribution.v1beta1.MsgFundCommunityPool">MsgFundCommunityPool</h3>
         <p>MsgFundCommunityPool allows an account to directly</p><p>fund the community pool.</p>
 
@@ -1881,7 +2170,47 @@ validator.</p></td>
 
 
         <h3 id="cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse">MsgSetWithdrawAddressResponse</h3>
-        <p>MsgSetWithdrawAddressResponse defines the Msg/SetWithdrawAddress response type.</p>
+        <p>MsgSetWithdrawAddressResponse defines the Msg/SetWithdrawAddress response</p><p>type.</p>
+
+
+
+
+
+        <h3 id="cosmos.distribution.v1beta1.MsgUpdateParams">MsgUpdateParams</h3>
+        <p>MsgUpdateParams is the Msg/UpdateParams request type.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address that controls the module (defaults to x/gov unless overwritten). </p></td>
+                </tr>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#cosmos.distribution.v1beta1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines the x/distribution parameters to update.
+
+NOTE: All parameters must be supplied. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.distribution.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</h3>
+        <p>MsgUpdateParamsResponse defines the response structure for executing a</p><p>MsgUpdateParams message.</p><p>Since: cosmos-sdk 0.47</p>
 
 
 
@@ -1919,7 +2248,24 @@ validator.</p></td>
 
 
         <h3 id="cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse">MsgWithdrawDelegatorRewardResponse</h3>
-        <p>MsgWithdrawDelegatorRewardResponse defines the Msg/WithdrawDelegatorReward response type.</p>
+        <p>MsgWithdrawDelegatorRewardResponse defines the Msg/WithdrawDelegatorReward</p><p>response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p>Since: cosmos-sdk 0.46 </p></td>
+                </tr>
+
+            </tbody>
+          </table>
 
 
 
@@ -1950,7 +2296,24 @@ validator.</p></td>
 
 
         <h3 id="cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse">MsgWithdrawValidatorCommissionResponse</h3>
-        <p>MsgWithdrawValidatorCommissionResponse defines the Msg/WithdrawValidatorCommission response type.</p>
+        <p>MsgWithdrawValidatorCommissionResponse defines the</p><p>Msg/WithdrawValidatorCommission response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p>Since: cosmos-sdk 0.46 </p></td>
+                </tr>
+
+            </tbody>
+          </table>
 
 
 
@@ -2000,6 +2363,38 @@ full commission to the validator address.</p></td>
                 <td><a href="#cosmos.distribution.v1beta1.MsgFundCommunityPoolResponse">MsgFundCommunityPoolResponse</a></td>
                 <td><p>FundCommunityPool defines a method to allow an account to directly
 fund the community pool.</p></td>
+              </tr>
+
+              <tr>
+                <td>UpdateParams</td>
+                <td><a href="#cosmos.distribution.v1beta1.MsgUpdateParams">MsgUpdateParams</a></td>
+                <td><a href="#cosmos.distribution.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</a></td>
+                <td><p>UpdateParams defines a governance operation for updating the x/distribution
+module parameters. The authority is defined in the keeper.
+
+Since: cosmos-sdk 0.47</p></td>
+              </tr>
+
+              <tr>
+                <td>CommunityPoolSpend</td>
+                <td><a href="#cosmos.distribution.v1beta1.MsgCommunityPoolSpend">MsgCommunityPoolSpend</a></td>
+                <td><a href="#cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse">MsgCommunityPoolSpendResponse</a></td>
+                <td><p>CommunityPoolSpend defines a governance operation for sending tokens from
+the community pool in the x/distribution module to another account, which
+could be the governance module itself. The authority is defined in the
+keeper.
+
+Since: cosmos-sdk 0.47</p></td>
+              </tr>
+
+              <tr>
+                <td>DepositValidatorRewardsPool</td>
+                <td><a href="#cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPool">MsgDepositValidatorRewardsPool</a></td>
+                <td><a href="#cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPoolResponse">MsgDepositValidatorRewardsPoolResponse</a></td>
+                <td><p>DepositValidatorRewardsPool defines a method to provide additional rewards
+to delegators to a specific validator.
+
+Since: cosmos-sdk 0.50</p></td>
               </tr>
 
           </tbody>

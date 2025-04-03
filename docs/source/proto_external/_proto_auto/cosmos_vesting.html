@@ -167,8 +167,39 @@
 
 
           <li>
+            <a href="#cosmos/vesting/module/v1/module.proto">cosmos/vesting/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.vesting.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/vesting/v1beta1/tx.proto">cosmos/vesting/v1beta1/tx.proto</a>
             <ul>
+
+                <li>
+                  <a href="#cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccount"><span class="badge">M</span>MsgCreatePeriodicVestingAccount</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccountResponse"><span class="badge">M</span>MsgCreatePeriodicVestingAccountResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccount"><span class="badge">M</span>MsgCreatePermanentLockedAccount</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccountResponse"><span class="badge">M</span>MsgCreatePermanentLockedAccountResponse</a>
+                </li>
 
                 <li>
                   <a href="#cosmos.vesting.v1beta1.MsgCreateVestingAccount"><span class="badge">M</span>MsgCreateVestingAccount</a>
@@ -230,9 +261,127 @@
 
 
       <div class="file-heading">
+        <h2 id="cosmos/vesting/module/v1/module.proto">cosmos/vesting/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.vesting.module.v1.Module">Module</h3>
+        <p>Module is the config object of the vesting module.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
         <h2 id="cosmos/vesting/v1beta1/tx.proto">cosmos/vesting/v1beta1/tx.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
+
+
+        <h3 id="cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccount">MsgCreatePeriodicVestingAccount</h3>
+        <p>MsgCreateVestingAccount defines a message that enables creating a vesting</p><p>account.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>from_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>to_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>start_time</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>start of vesting as unix time (in seconds). </p></td>
+                </tr>
+
+                <tr>
+                  <td>vesting_periods</td>
+                  <td><a href="#cosmos.vesting.v1beta1.Period">Period</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccountResponse">MsgCreatePeriodicVestingAccountResponse</h3>
+        <p>MsgCreateVestingAccountResponse defines the Msg/CreatePeriodicVestingAccount</p><p>response type.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+
+
+
+        <h3 id="cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccount">MsgCreatePermanentLockedAccount</h3>
+        <p>MsgCreatePermanentLockedAccount defines a message that enables creating a permanent</p><p>locked account.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>from_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>to_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccountResponse">MsgCreatePermanentLockedAccountResponse</h3>
+        <p>MsgCreatePermanentLockedAccountResponse defines the Msg/CreatePermanentLockedAccount response type.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+
 
 
         <h3 id="cosmos.vesting.v1beta1.MsgCreateVestingAccount">MsgCreateVestingAccount</h3>
@@ -270,7 +419,7 @@
                   <td>end_time</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>end of vesting as unix time (in seconds). </p></td>
                 </tr>
 
                 <tr>
@@ -314,6 +463,26 @@
                 <td><a href="#cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse">MsgCreateVestingAccountResponse</a></td>
                 <td><p>CreateVestingAccount defines a method that enables creating a vesting
 account.</p></td>
+              </tr>
+
+              <tr>
+                <td>CreatePermanentLockedAccount</td>
+                <td><a href="#cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccount">MsgCreatePermanentLockedAccount</a></td>
+                <td><a href="#cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccountResponse">MsgCreatePermanentLockedAccountResponse</a></td>
+                <td><p>CreatePermanentLockedAccount defines a method that enables creating a permanent
+locked account.
+
+Since: cosmos-sdk 0.46</p></td>
+              </tr>
+
+              <tr>
+                <td>CreatePeriodicVestingAccount</td>
+                <td><a href="#cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccount">MsgCreatePeriodicVestingAccount</a></td>
+                <td><a href="#cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccountResponse">MsgCreatePeriodicVestingAccountResponse</a></td>
+                <td><p>CreatePeriodicVestingAccount defines a method that enables creating a
+periodic vesting account.
+
+Since: cosmos-sdk 0.46</p></td>
               </tr>
 
           </tbody>
@@ -370,7 +539,7 @@ account.</p></td>
                   <td>end_time</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Vesting end time, as unix timestamp (in seconds). </p></td>
                 </tr>
 
             </tbody>
@@ -401,7 +570,7 @@ account.</p></td>
                   <td>start_time</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Vesting start time, as unix timestamp (in seconds). </p></td>
                 </tr>
 
             </tbody>
@@ -449,7 +618,7 @@ account.</p></td>
                   <td>length</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Period duration in seconds. </p></td>
                 </tr>
 
                 <tr>

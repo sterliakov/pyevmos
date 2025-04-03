@@ -30,13 +30,31 @@ if TYPE_CHECKING:
 
 @dataclass(eq=False, repr=False)
 class EpochInfo(betterproto.Message):
+    """
+    EpochInfo defines the message interface containing the relevant informations about
+    an epoch.
+    """
+
     identifier: str = betterproto.string_field(1)
+    """identifier of the epoch"""
+
     start_time: datetime = betterproto.message_field(2)
+    """start_time of the epoch"""
+
     duration: timedelta = betterproto.message_field(3)
+    """duration of the epoch"""
+
     current_epoch: int = betterproto.int64_field(4)
+    """current_epoch is the integer identifier of the epoch"""
+
     current_epoch_start_time: datetime = betterproto.message_field(5)
+    """current_epoch_start_time defines the timestamp of the start of the epoch"""
+
     epoch_counting_started: bool = betterproto.bool_field(6)
+    """epoch_counting_started reflects if the counting for the epoch has started"""
+
     current_epoch_start_height: int = betterproto.int64_field(7)
+    """current_epoch_start_height of the epoch"""
 
 
 @dataclass(eq=False, repr=False)
@@ -44,31 +62,58 @@ class GenesisState(betterproto.Message):
     """GenesisState defines the epochs module's genesis state."""
 
     epochs: List["EpochInfo"] = betterproto.message_field(1)
+    """epochs is a slice of EpochInfo that defines the epochs in the genesis state"""
 
 
 @dataclass(eq=False, repr=False)
 class QueryEpochsInfoRequest(betterproto.Message):
+    """
+    QueryEpochsInfoRequest is the request type for the Query/EpochInfos RPC
+    method.
+    """
+
     pagination: "___cosmos_base_query_v1_beta1__.PageRequest" = (
         betterproto.message_field(1)
     )
+    """pagination defines an optional pagination for the request."""
 
 
 @dataclass(eq=False, repr=False)
 class QueryEpochsInfoResponse(betterproto.Message):
+    """
+    QueryEpochsInfoResponse is the response type for the Query/EpochInfos RPC
+    method.
+    """
+
     epochs: List["EpochInfo"] = betterproto.message_field(1)
+    """epochs is a slice of all EpochInfos"""
+
     pagination: "___cosmos_base_query_v1_beta1__.PageResponse" = (
         betterproto.message_field(2)
     )
+    """pagination defines an optional pagination for the request."""
 
 
 @dataclass(eq=False, repr=False)
 class QueryCurrentEpochRequest(betterproto.Message):
+    """
+    QueryCurrentEpochRequest is the request type for the Query/EpochInfos RPC
+    method.
+    """
+
     identifier: str = betterproto.string_field(1)
+    """identifier of the current epoch"""
 
 
 @dataclass(eq=False, repr=False)
 class QueryCurrentEpochResponse(betterproto.Message):
+    """
+    QueryCurrentEpochResponse is the response type for the Query/EpochInfos RPC
+    method.
+    """
+
     current_epoch: int = betterproto.int64_field(1)
+    """current_epoch is the number of the current epoch"""
 
 
 class QueryStub(betterproto.ServiceStub):

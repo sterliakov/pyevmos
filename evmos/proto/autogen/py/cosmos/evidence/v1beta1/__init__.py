@@ -2,7 +2,7 @@
 # sources: cosmos/evidence/v1beta1/evidence.proto, cosmos/evidence/v1beta1/genesis.proto, cosmos/evidence/v1beta1/query.proto, cosmos/evidence/v1beta1/tx.proto
 # plugin: python-betterproto
 # This file has been @generated
-
+import warnings
 from dataclasses import dataclass
 from datetime import datetime
 from typing import (
@@ -34,9 +34,16 @@ class Equivocation(betterproto.Message):
     """
 
     height: int = betterproto.int64_field(1)
+    """height is the equivocation height."""
+
     time: datetime = betterproto.message_field(2)
+    """time is the equivocation time."""
+
     power: int = betterproto.int64_field(3)
+    """power is the equivocation validator power."""
+
     consensus_address: str = betterproto.string_field(4)
+    """consensus_address is the equivocation validator consensus address."""
 
 
 @dataclass(eq=False, repr=False)
@@ -52,7 +59,23 @@ class QueryEvidenceRequest(betterproto.Message):
     """QueryEvidenceRequest is the request type for the Query/Evidence RPC method."""
 
     evidence_hash: bytes = betterproto.bytes_field(1)
-    """evidence_hash defines the hash of the requested evidence."""
+    """
+    evidence_hash defines the hash of the requested evidence.
+    Deprecated: Use hash, a HEX encoded string, instead.
+    """
+
+    hash: str = betterproto.string_field(2)
+    """
+    hash defines the evidence hash of the requested evidence.
+    Since: cosmos-sdk 0.47
+    """
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+        if self.is_set("evidence_hash"):
+            warnings.warn(
+                "QueryEvidenceRequest.evidence_hash is deprecated", DeprecationWarning
+            )
 
 
 @dataclass(eq=False, repr=False)
@@ -96,7 +119,10 @@ class MsgSubmitEvidence(betterproto.Message):
     """
 
     submitter: str = betterproto.string_field(1)
+    """submitter is the signer account address of evidence."""
+
     evidence: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(2)
+    """evidence defines the evidence of misbehavior."""
 
 
 @dataclass(eq=False, repr=False)

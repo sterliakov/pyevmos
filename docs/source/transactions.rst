@@ -16,10 +16,6 @@ ERC20 transactions
 ------------------
 .. automodule:: evmos.transactions.erc20
 
-Revenue transactions
---------------------
-.. automodule:: evmos.transactions.revenue
-
 Staking transactions
 --------------------
 .. automodule:: evmos.transactions.staking

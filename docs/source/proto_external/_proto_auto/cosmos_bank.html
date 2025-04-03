@@ -167,6 +167,21 @@
 
 
           <li>
+            <a href="#cosmos/bank/module/v1/module.proto">cosmos/bank/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.bank.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/bank/v1beta1/authz.proto">cosmos/bank/v1beta1/authz.proto</a>
             <ul>
 
@@ -244,6 +259,10 @@
             <ul>
 
                 <li>
+                  <a href="#cosmos.bank.v1beta1.DenomOwner"><span class="badge">M</span>DenomOwner</a>
+                </li>
+
+                <li>
                   <a href="#cosmos.bank.v1beta1.QueryAllBalancesRequest"><span class="badge">M</span>QueryAllBalancesRequest</a>
                 </li>
 
@@ -260,11 +279,35 @@
                 </li>
 
                 <li>
+                  <a href="#cosmos.bank.v1beta1.QueryDenomMetadataByQueryStringRequest"><span class="badge">M</span>QueryDenomMetadataByQueryStringRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.QueryDenomMetadataByQueryStringResponse"><span class="badge">M</span>QueryDenomMetadataByQueryStringResponse</a>
+                </li>
+
+                <li>
                   <a href="#cosmos.bank.v1beta1.QueryDenomMetadataRequest"><span class="badge">M</span>QueryDenomMetadataRequest</a>
                 </li>
 
                 <li>
                   <a href="#cosmos.bank.v1beta1.QueryDenomMetadataResponse"><span class="badge">M</span>QueryDenomMetadataResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.QueryDenomOwnersByQueryRequest"><span class="badge">M</span>QueryDenomOwnersByQueryRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.QueryDenomOwnersByQueryResponse"><span class="badge">M</span>QueryDenomOwnersByQueryResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.QueryDenomOwnersRequest"><span class="badge">M</span>QueryDenomOwnersRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.QueryDenomOwnersResponse"><span class="badge">M</span>QueryDenomOwnersResponse</a>
                 </li>
 
                 <li>
@@ -281,6 +324,22 @@
 
                 <li>
                   <a href="#cosmos.bank.v1beta1.QueryParamsResponse"><span class="badge">M</span>QueryParamsResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.QuerySendEnabledRequest"><span class="badge">M</span>QuerySendEnabledRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.QuerySendEnabledResponse"><span class="badge">M</span>QuerySendEnabledResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.QuerySpendableBalanceByDenomRequest"><span class="badge">M</span>QuerySpendableBalanceByDenomRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.QuerySpendableBalanceByDenomResponse"><span class="badge">M</span>QuerySpendableBalanceByDenomResponse</a>
                 </li>
 
                 <li>
@@ -338,6 +397,22 @@
                   <a href="#cosmos.bank.v1beta1.MsgSendResponse"><span class="badge">M</span>MsgSendResponse</a>
                 </li>
 
+                <li>
+                  <a href="#cosmos.bank.v1beta1.MsgSetSendEnabled"><span class="badge">M</span>MsgSetSendEnabled</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.MsgSetSendEnabledResponse"><span class="badge">M</span>MsgSetSendEnabledResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.MsgUpdateParams"><span class="badge">M</span>MsgUpdateParams</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.bank.v1beta1.MsgUpdateParamsResponse"><span class="badge">M</span>MsgUpdateParamsResponse</a>
+                </li>
+
 
 
 
@@ -351,6 +426,63 @@
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/bank/module/v1/module.proto">cosmos/bank/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.bank.module.v1.Module">Module</h3>
+        <p>Module is the config object of the bank module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>blocked_module_accounts_override</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>blocked_module_accounts_override configures exceptional module accounts which should be blocked from receiving
+funds. If left empty it defaults to the list of account names supplied in the auth module configuration as
+module_account_permissions </p></td>
+                </tr>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority defines the custom module authority. If not set, defaults to the governance module. </p></td>
+                </tr>
+
+                <tr>
+                  <td>restrictions_order</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>restrictions_order specifies the order of send restrictions and should be
+a list of module names which provide a send restriction instance. If no
+order is provided, then restrictions will be applied in alphabetical order
+of module names. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -375,6 +507,16 @@
                   <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>allow_list</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>allow_list specifies an optional list of addresses to whom the grantee can send tokens on behalf of the
+granter. If omitted, any recipient is allowed.
+
+Since: cosmos-sdk 0.47 </p></td>
                 </tr>
 
             </tbody>
@@ -421,7 +563,7 @@
                   <td></td>
                   <td><p>exponent represents power of 10 exponent that one must
 raise the base_denom to in order to equal the given DenomUnit's denom
-1 denom = 1^exponent base_denom
+1 denom = 10^exponent base_denom
 (e.g. with a base_denom of uatom, one can create a DenomUnit of 'atom' with
 exponent = 6, thus: 1 atom = 10^6 uatom). </p></td>
                 </tr>
@@ -529,6 +671,25 @@ be the same as the display.
 Since: cosmos-sdk 0.43 </p></td>
                 </tr>
 
+                <tr>
+                  <td>uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>URI to a document (on or off-chain) that contains additional information. Optional.
+
+Since: cosmos-sdk 0.46 </p></td>
+                </tr>
+
+                <tr>
+                  <td>uri_hash</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>URIHash is a sha256 hash of a document pointed by URI. It's used to verify that
+the document didn't change. Optional.
+
+Since: cosmos-sdk 0.46 </p></td>
+                </tr>
+
             </tbody>
           </table>
 
@@ -581,7 +742,11 @@ Since: cosmos-sdk 0.43 </p></td>
                   <td>send_enabled</td>
                   <td><a href="#cosmos.bank.v1beta1.SendEnabled">SendEnabled</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated: Use of SendEnabled in params is deprecated.
+For genesis, use the newly added send_enabled field in the genesis object.
+Storage, lookup, and manipulation of this information is now in the keeper.
+
+As of cosmos-sdk 0.47, this only exists for backwards compatibility of genesis files. </p></td>
                 </tr>
 
                 <tr>
@@ -593,6 +758,27 @@ Since: cosmos-sdk 0.43 </p></td>
 
             </tbody>
           </table>
+
+
+
+
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>send_enabled</td>
+                  <td><p>true</p></td>
+                </tr>
+
+              </tbody>
+            </table>
 
 
 
@@ -712,7 +898,7 @@ Since: cosmos-sdk 0.43 </p></td>
                   <td>params</td>
                   <td><a href="#cosmos.bank.v1beta1.Params">Params</a></td>
                   <td></td>
-                  <td><p>params defines all the paramaters of the module. </p></td>
+                  <td><p>params defines all the parameters of the module. </p></td>
                 </tr>
 
                 <tr>
@@ -734,7 +920,16 @@ balances. Otherwise, it will be used to validate that the sum of the balances eq
                   <td>denom_metadata</td>
                   <td><a href="#cosmos.bank.v1beta1.Metadata">Metadata</a></td>
                   <td>repeated</td>
-                  <td><p>denom_metadata defines the metadata of the differents coins. </p></td>
+                  <td><p>denom_metadata defines the metadata of the different coins. </p></td>
+                </tr>
+
+                <tr>
+                  <td>send_enabled</td>
+                  <td><a href="#cosmos.bank.v1beta1.SendEnabled">SendEnabled</a></td>
+                  <td>repeated</td>
+                  <td><p>send_enabled defines the denoms where send is enabled or disabled.
+
+Since: cosmos-sdk 0.47 </p></td>
                 </tr>
 
             </tbody>
@@ -756,6 +951,37 @@ balances. Otherwise, it will be used to validate that the sum of the balances eq
         <h2 id="cosmos/bank/v1beta1/query.proto">cosmos/bank/v1beta1/query.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
+
+
+        <h3 id="cosmos.bank.v1beta1.DenomOwner">DenomOwner</h3>
+        <p>DenomOwner defines structure representing an account that owns or holds a</p><p>particular denominated token. It contains the account address and account</p><p>balance of the denominated token.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address defines the address that owns a particular denomination. </p></td>
+                </tr>
+
+                <tr>
+                  <td>balance</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td></td>
+                  <td><p>balance is the balance of the denominated coin for an account. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
 
 
         <h3 id="cosmos.bank.v1beta1.QueryAllBalancesRequest">QueryAllBalancesRequest</h3>
@@ -780,6 +1006,15 @@ balances. Otherwise, it will be used to validate that the sum of the balances eq
                   <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
                   <td></td>
                   <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+                <tr>
+                  <td>resolve_denom</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>resolve_denom is the flag to resolve the denom into a human-readable form from the metadata.
+
+Since: cosmos-sdk 0.50 </p></td>
                 </tr>
 
             </tbody>
@@ -875,6 +1110,54 @@ balances. Otherwise, it will be used to validate that the sum of the balances eq
 
 
 
+        <h3 id="cosmos.bank.v1beta1.QueryDenomMetadataByQueryStringRequest">QueryDenomMetadataByQueryStringRequest</h3>
+        <p>QueryDenomMetadataByQueryStringRequest is the request type for the Query/DenomMetadata RPC method.</p><p>Identical with QueryDenomMetadataRequest but receives denom as query string.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>denom is the coin denom to query the metadata for. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.bank.v1beta1.QueryDenomMetadataByQueryStringResponse">QueryDenomMetadataByQueryStringResponse</h3>
+        <p>QueryDenomMetadataByQueryStringResponse is the response type for the Query/DenomMetadata RPC</p><p>method. Identical with QueryDenomMetadataResponse but receives denom as query string in request.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#cosmos.bank.v1beta1.Metadata">Metadata</a></td>
+                  <td></td>
+                  <td><p>metadata describes and provides all the client information for the requested token. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
         <h3 id="cosmos.bank.v1beta1.QueryDenomMetadataRequest">QueryDenomMetadataRequest</h3>
         <p>QueryDenomMetadataRequest is the request type for the Query/DenomMetadata RPC method.</p>
 
@@ -914,6 +1197,130 @@ balances. Otherwise, it will be used to validate that the sum of the balances eq
                   <td><a href="#cosmos.bank.v1beta1.Metadata">Metadata</a></td>
                   <td></td>
                   <td><p>metadata describes and provides all the client information for the requested token. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.bank.v1beta1.QueryDenomOwnersByQueryRequest">QueryDenomOwnersByQueryRequest</h3>
+        <p>QueryDenomOwnersByQueryRequest defines the request type for the DenomOwnersByQuery RPC query,</p><p>which queries for a paginated set of all account holders of a particular</p><p>denomination.</p><p>Since: cosmos-sdk 0.50.3</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>denom defines the coin denomination to query all account holders for. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.bank.v1beta1.QueryDenomOwnersByQueryResponse">QueryDenomOwnersByQueryResponse</h3>
+        <p>QueryDenomOwnersByQueryResponse defines the RPC response of a DenomOwnersByQuery RPC query.</p><p>Since: cosmos-sdk 0.50.3</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>denom_owners</td>
+                  <td><a href="#cosmos.bank.v1beta1.DenomOwner">DenomOwner</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.bank.v1beta1.QueryDenomOwnersRequest">QueryDenomOwnersRequest</h3>
+        <p>QueryDenomOwnersRequest defines the request type for the DenomOwners RPC query,</p><p>which queries for a paginated set of all account holders of a particular</p><p>denomination.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>denom defines the coin denomination to query all account holders for. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.bank.v1beta1.QueryDenomOwnersResponse">QueryDenomOwnersResponse</h3>
+        <p>QueryDenomOwnersResponse defines the RPC response of a DenomOwners RPC query.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>denom_owners</td>
+                  <td><a href="#cosmos.bank.v1beta1.DenomOwner">DenomOwner</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
                 </tr>
 
             </tbody>
@@ -999,7 +1406,126 @@ balances. Otherwise, it will be used to validate that the sum of the balances eq
                   <td>params</td>
                   <td><a href="#cosmos.bank.v1beta1.Params">Params</a></td>
                   <td></td>
+                  <td><p>params provides the parameters of the bank module. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.bank.v1beta1.QuerySendEnabledRequest">QuerySendEnabledRequest</h3>
+        <p>QuerySendEnabledRequest defines the RPC request for looking up SendEnabled entries.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>denoms</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>denoms is the specific denoms you want look up. Leave empty to get all entries. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. This field is
+only read if the denoms field is empty. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.bank.v1beta1.QuerySendEnabledResponse">QuerySendEnabledResponse</h3>
+        <p>QuerySendEnabledResponse defines the RPC response of a SendEnable query.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>send_enabled</td>
+                  <td><a href="#cosmos.bank.v1beta1.SendEnabled">SendEnabled</a></td>
+                  <td>repeated</td>
                   <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. This field is only
+populated if the denoms field in the request is empty. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.bank.v1beta1.QuerySpendableBalanceByDenomRequest">QuerySpendableBalanceByDenomRequest</h3>
+        <p>QuerySpendableBalanceByDenomRequest defines the gRPC request structure for</p><p>querying an account's spendable balance for a specific denom.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the address to query balances for. </p></td>
+                </tr>
+
+                <tr>
+                  <td>denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>denom is the coin denom to query balances for. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.bank.v1beta1.QuerySpendableBalanceByDenomResponse">QuerySpendableBalanceByDenomResponse</h3>
+        <p>QuerySpendableBalanceByDenomResponse defines the gRPC response structure for</p><p>querying an account's spendable balance for a specific denom.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>balance</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td></td>
+                  <td><p>balance is the balance of the coin. </p></td>
                 </tr>
 
             </tbody>
@@ -1010,7 +1536,7 @@ balances. Otherwise, it will be used to validate that the sum of the balances eq
 
 
         <h3 id="cosmos.bank.v1beta1.QuerySpendableBalancesRequest">QuerySpendableBalancesRequest</h3>
-        <p>QuerySpendableBalancesRequest defines the gRPC request structure for querying</p><p>an account's spendable balances.</p>
+        <p>QuerySpendableBalancesRequest defines the gRPC request structure for querying</p><p>an account's spendable balances.</p><p>Since: cosmos-sdk 0.46</p>
 
 
           <table class="field-table">
@@ -1041,7 +1567,7 @@ balances. Otherwise, it will be used to validate that the sum of the balances eq
 
 
         <h3 id="cosmos.bank.v1beta1.QuerySpendableBalancesResponse">QuerySpendableBalancesResponse</h3>
-        <p>QuerySpendableBalancesResponse defines the gRPC response structure for querying</p><p>an account's spendable balances.</p>
+        <p>QuerySpendableBalancesResponse defines the gRPC response structure for querying</p><p>an account's spendable balances.</p><p>Since: cosmos-sdk 0.46</p>
 
 
           <table class="field-table">
@@ -1203,29 +1729,56 @@ Since: cosmos-sdk 0.43 </p></td>
                 <td>AllBalances</td>
                 <td><a href="#cosmos.bank.v1beta1.QueryAllBalancesRequest">QueryAllBalancesRequest</a></td>
                 <td><a href="#cosmos.bank.v1beta1.QueryAllBalancesResponse">QueryAllBalancesResponse</a></td>
-                <td><p>AllBalances queries the balance of all coins for a single account.</p></td>
+                <td><p>AllBalances queries the balance of all coins for a single account.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.</p></td>
               </tr>
 
               <tr>
                 <td>SpendableBalances</td>
                 <td><a href="#cosmos.bank.v1beta1.QuerySpendableBalancesRequest">QuerySpendableBalancesRequest</a></td>
                 <td><a href="#cosmos.bank.v1beta1.QuerySpendableBalancesResponse">QuerySpendableBalancesResponse</a></td>
-                <td><p>SpendableBalances queries the spenable balance of all coins for a single
-account.</p></td>
+                <td><p>SpendableBalances queries the spendable balance of all coins for a single
+account.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.
+
+Since: cosmos-sdk 0.46</p></td>
+              </tr>
+
+              <tr>
+                <td>SpendableBalanceByDenom</td>
+                <td><a href="#cosmos.bank.v1beta1.QuerySpendableBalanceByDenomRequest">QuerySpendableBalanceByDenomRequest</a></td>
+                <td><a href="#cosmos.bank.v1beta1.QuerySpendableBalanceByDenomResponse">QuerySpendableBalanceByDenomResponse</a></td>
+                <td><p>SpendableBalanceByDenom queries the spendable balance of a single denom for
+a single account.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.
+
+Since: cosmos-sdk 0.47</p></td>
               </tr>
 
               <tr>
                 <td>TotalSupply</td>
                 <td><a href="#cosmos.bank.v1beta1.QueryTotalSupplyRequest">QueryTotalSupplyRequest</a></td>
                 <td><a href="#cosmos.bank.v1beta1.QueryTotalSupplyResponse">QueryTotalSupplyResponse</a></td>
-                <td><p>TotalSupply queries the total supply of all coins.</p></td>
+                <td><p>TotalSupply queries the total supply of all coins.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.</p></td>
               </tr>
 
               <tr>
                 <td>SupplyOf</td>
                 <td><a href="#cosmos.bank.v1beta1.QuerySupplyOfRequest">QuerySupplyOfRequest</a></td>
                 <td><a href="#cosmos.bank.v1beta1.QuerySupplyOfResponse">QuerySupplyOfResponse</a></td>
-                <td><p>SupplyOf queries the supply of a single coin.</p></td>
+                <td><p>SupplyOf queries the supply of a single coin.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.</p></td>
               </tr>
 
               <tr>
@@ -1239,14 +1792,58 @@ account.</p></td>
                 <td>DenomMetadata</td>
                 <td><a href="#cosmos.bank.v1beta1.QueryDenomMetadataRequest">QueryDenomMetadataRequest</a></td>
                 <td><a href="#cosmos.bank.v1beta1.QueryDenomMetadataResponse">QueryDenomMetadataResponse</a></td>
-                <td><p>DenomsMetadata queries the client metadata of a given coin denomination.</p></td>
+                <td><p>DenomMetadata queries the client metadata of a given coin denomination.</p></td>
+              </tr>
+
+              <tr>
+                <td>DenomMetadataByQueryString</td>
+                <td><a href="#cosmos.bank.v1beta1.QueryDenomMetadataByQueryStringRequest">QueryDenomMetadataByQueryStringRequest</a></td>
+                <td><a href="#cosmos.bank.v1beta1.QueryDenomMetadataByQueryStringResponse">QueryDenomMetadataByQueryStringResponse</a></td>
+                <td><p>DenomMetadataByQueryString queries the client metadata of a given coin denomination.</p></td>
               </tr>
 
               <tr>
                 <td>DenomsMetadata</td>
                 <td><a href="#cosmos.bank.v1beta1.QueryDenomsMetadataRequest">QueryDenomsMetadataRequest</a></td>
                 <td><a href="#cosmos.bank.v1beta1.QueryDenomsMetadataResponse">QueryDenomsMetadataResponse</a></td>
-                <td><p>DenomsMetadata queries the client metadata for all registered coin denominations.</p></td>
+                <td><p>DenomsMetadata queries the client metadata for all registered coin
+denominations.</p></td>
+              </tr>
+
+              <tr>
+                <td>DenomOwners</td>
+                <td><a href="#cosmos.bank.v1beta1.QueryDenomOwnersRequest">QueryDenomOwnersRequest</a></td>
+                <td><a href="#cosmos.bank.v1beta1.QueryDenomOwnersResponse">QueryDenomOwnersResponse</a></td>
+                <td><p>DenomOwners queries for all account addresses that own a particular token
+denomination.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.
+
+Since: cosmos-sdk 0.46</p></td>
+              </tr>
+
+              <tr>
+                <td>DenomOwnersByQuery</td>
+                <td><a href="#cosmos.bank.v1beta1.QueryDenomOwnersByQueryRequest">QueryDenomOwnersByQueryRequest</a></td>
+                <td><a href="#cosmos.bank.v1beta1.QueryDenomOwnersByQueryResponse">QueryDenomOwnersByQueryResponse</a></td>
+                <td><p>DenomOwnersByQuery queries for all account addresses that own a particular token
+denomination.
+
+Since: cosmos-sdk 0.50.3</p></td>
+              </tr>
+
+              <tr>
+                <td>SendEnabled</td>
+                <td><a href="#cosmos.bank.v1beta1.QuerySendEnabledRequest">QuerySendEnabledRequest</a></td>
+                <td><a href="#cosmos.bank.v1beta1.QuerySendEnabledResponse">QuerySendEnabledResponse</a></td>
+                <td><p>SendEnabled queries for SendEnabled entries.
+
+This query only returns denominations that have specific SendEnabled settings.
+Any denomination that does not have a specific setting will use the default
+params.default_send_enabled, and will not be returned by this query.
+
+Since: cosmos-sdk 0.47</p></td>
               </tr>
 
           </tbody>
@@ -1300,6 +1897,16 @@ account.</p></td>
 
 
               <tr>
+                <td>SpendableBalanceByDenom</td>
+                <td>GET</td>
+                <td>/cosmos/bank/v1beta1/spendable_balances/{address}/by_denom</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
                 <td>TotalSupply</td>
                 <td>GET</td>
                 <td>/cosmos/bank/v1beta1/supply</td>
@@ -1312,7 +1919,7 @@ account.</p></td>
               <tr>
                 <td>SupplyOf</td>
                 <td>GET</td>
-                <td>/cosmos/bank/v1beta1/supply/{denom}</td>
+                <td>/cosmos/bank/v1beta1/supply/by_denom</td>
                 <td></td>
               </tr>
 
@@ -1340,9 +1947,49 @@ account.</p></td>
 
 
               <tr>
+                <td>DenomMetadataByQueryString</td>
+                <td>GET</td>
+                <td>/cosmos/bank/v1beta1/denoms_metadata_by_query_string</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
                 <td>DenomsMetadata</td>
                 <td>GET</td>
                 <td>/cosmos/bank/v1beta1/denoms_metadata</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>DenomOwners</td>
+                <td>GET</td>
+                <td>/cosmos/bank/v1beta1/denom_owners/{denom}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>DenomOwnersByQuery</td>
+                <td>GET</td>
+                <td>/cosmos/bank/v1beta1/denom_owners_by_query</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>SendEnabled</td>
+                <td>GET</td>
+                <td>/cosmos/bank/v1beta1/send_enabled</td>
                 <td></td>
               </tr>
 
@@ -1373,7 +2020,8 @@ account.</p></td>
                   <td>inputs</td>
                   <td><a href="#cosmos.bank.v1beta1.Input">Input</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>Inputs, despite being `repeated`, only allows one sender input. This is
+checked in MsgMultiSend's ValidateBasic. </p></td>
                 </tr>
 
                 <tr>
@@ -1442,6 +2090,94 @@ account.</p></td>
 
 
 
+        <h3 id="cosmos.bank.v1beta1.MsgSetSendEnabled">MsgSetSendEnabled</h3>
+        <p>MsgSetSendEnabled is the Msg/SetSendEnabled request type.</p><p>Only entries to add/update/delete need to be included.</p><p>Existing SendEnabled entries that are not included in this</p><p>message are left unchanged.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address that controls the module. </p></td>
+                </tr>
+
+                <tr>
+                  <td>send_enabled</td>
+                  <td><a href="#cosmos.bank.v1beta1.SendEnabled">SendEnabled</a></td>
+                  <td>repeated</td>
+                  <td><p>send_enabled is the list of entries to add or update. </p></td>
+                </tr>
+
+                <tr>
+                  <td>use_default_for</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>use_default_for is a list of denoms that should use the params.default_send_enabled value.
+Denoms listed here will have their SendEnabled entries deleted.
+If a denom is included that doesn't have a SendEnabled entry,
+it will be ignored. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.bank.v1beta1.MsgSetSendEnabledResponse">MsgSetSendEnabledResponse</h3>
+        <p>MsgSetSendEnabledResponse defines the Msg/SetSendEnabled response type.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+
+
+
+        <h3 id="cosmos.bank.v1beta1.MsgUpdateParams">MsgUpdateParams</h3>
+        <p>MsgUpdateParams is the Msg/UpdateParams request type.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address that controls the module (defaults to x/gov unless overwritten). </p></td>
+                </tr>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#cosmos.bank.v1beta1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines the x/bank parameters to update.
+
+NOTE: All parameters must be supplied. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.bank.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</h3>
+        <p>MsgUpdateParamsResponse defines the response structure for executing a</p><p>MsgUpdateParams message.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+
+
+
 
 
 
@@ -1468,6 +2204,28 @@ account.</p></td>
                 <td><a href="#cosmos.bank.v1beta1.MsgMultiSend">MsgMultiSend</a></td>
                 <td><a href="#cosmos.bank.v1beta1.MsgMultiSendResponse">MsgMultiSendResponse</a></td>
                 <td><p>MultiSend defines a method for sending coins from some accounts to other accounts.</p></td>
+              </tr>
+
+              <tr>
+                <td>UpdateParams</td>
+                <td><a href="#cosmos.bank.v1beta1.MsgUpdateParams">MsgUpdateParams</a></td>
+                <td><a href="#cosmos.bank.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</a></td>
+                <td><p>UpdateParams defines a governance operation for updating the x/bank module parameters.
+The authority is defined in the keeper.
+
+Since: cosmos-sdk 0.47</p></td>
+              </tr>
+
+              <tr>
+                <td>SetSendEnabled</td>
+                <td><a href="#cosmos.bank.v1beta1.MsgSetSendEnabled">MsgSetSendEnabled</a></td>
+                <td><a href="#cosmos.bank.v1beta1.MsgSetSendEnabledResponse">MsgSetSendEnabledResponse</a></td>
+                <td><p>SetSendEnabled is a governance operation for setting the SendEnabled flag
+on any number of Denoms. Only the entries to add or update should be
+included. Entries that already exist in the store, but that aren't
+included in this message, will be left unchanged.
+
+Since: cosmos-sdk 0.47</p></td>
               </tr>
 
           </tbody>

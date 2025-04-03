@@ -182,21 +182,6 @@
 
 
           <li>
-            <a href="#google/api/httpbody.proto">google/api/httpbody.proto</a>
-            <ul>
-
-                <li>
-                  <a href="#google.api.HttpBody"><span class="badge">M</span>HttpBody</a>
-                </li>
-
-
-
-
-            </ul>
-          </li>
-
-
-          <li>
             <a href="#google/api/http.proto">google/api/http.proto</a>
             <ul>
 
@@ -251,59 +236,6 @@
 
           </tbody>
         </table>
-
-
-
-
-
-      <div class="file-heading">
-        <h2 id="google/api/httpbody.proto">google/api/httpbody.proto</h2><a href="#title">Top</a>
-      </div>
-      <p></p>
-
-
-        <h3 id="google.api.HttpBody">HttpBody</h3>
-        <p>Message that represents an arbitrary HTTP body. It should only be used for</p><p>payload formats that can't be represented as JSON, such as raw binary or</p><p>an HTML page.</p><p>This message can be used both in streaming and non-streaming API methods in</p><p>the request as well as the response.</p><p>It can be used as a top-level request field, which is convenient if one</p><p>wants to extract parameters from either the URL or HTTP template into the</p><p>request fields and also want access to the raw HTTP body.</p><p>Example:</p><p>message GetResourceRequest {</p><p>// A unique request id.</p><p>string request_id = 1;</p><p>// The raw HTTP body is bound to this field.</p><p>google.api.HttpBody http_body = 2;</p><p>}</p><p>service ResourceService {</p><p>rpc GetResource(GetResourceRequest) returns (google.api.HttpBody);</p><p>rpc UpdateResource(google.api.HttpBody) returns</p><p>(google.protobuf.Empty);</p><p>}</p><p>Example with streaming methods:</p><p>service CaldavService {</p><p>rpc GetCalendar(stream google.api.HttpBody)</p><p>returns (stream google.api.HttpBody);</p><p>rpc UpdateCalendar(stream google.api.HttpBody)</p><p>returns (stream google.api.HttpBody);</p><p>}</p><p>Use of this type only changes how the request and response bodies are</p><p>handled, all other features will continue to work unchanged.</p>
-
-
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                  <td>content_type</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The HTTP Content-Type header value specifying the content type of the body. </p></td>
-                </tr>
-
-                <tr>
-                  <td>data</td>
-                  <td><a href="#bytes">bytes</a></td>
-                  <td></td>
-                  <td><p>The HTTP request/response body as raw binary. </p></td>
-                </tr>
-
-                <tr>
-                  <td>extensions</td>
-                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
-                  <td>repeated</td>
-                  <td><p>Application specific response metadata. Must be set in the first response
-for streaming APIs. </p></td>
-                </tr>
-
-            </tbody>
-          </table>
-
-
-
-
-
-
-
-
 
 
 
@@ -369,7 +301,7 @@ for streaming APIs. </p></td>
                   <td>fully_decode_reserved_expansion</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>When set to true, URL path parmeters will be fully URI-decoded except in
+                  <td><p>When set to true, URL path parameters will be fully URI-decoded except in
 cases of single segment matches in reserved expansion, where "%2F" will be
 left encoded.
 
@@ -385,7 +317,7 @@ segment matches. </p></td>
 
 
         <h3 id="google.api.HttpRule">HttpRule</h3>
-        <p>`HttpRule` defines the mapping of an RPC method to one or more HTTP</p><p>REST API methods. The mapping specifies how different portions of the RPC</p><p>request message are mapped to URL path, URL query parameters, and</p><p>HTTP request body. The mapping is typically specified as an</p><p>`google.api.http` annotation on the RPC method,</p><p>see "google/api/annotations.proto" for details.</p><p>The mapping consists of a field specifying the path template and</p><p>method kind.  The path template can refer to fields in the request</p><p>message, as in the example below which describes a REST GET</p><p>operation on a resource collection of messages:</p><p>service Messaging {</p><p>rpc GetMessage(GetMessageRequest) returns (Message) {</p><p>option (google.api.http).get =</p><p>"/v1/messages/{message_id}/{sub.subfield}";</p><p>}</p><p>}</p><p>message GetMessageRequest {</p><p>message SubMessage {</p><p>string subfield = 1;</p><p>}</p><p>string message_id = 1; // mapped to the URL</p><p>SubMessage sub = 2;    // `sub.subfield` is url-mapped</p><p>}</p><p>message Message {</p><p>string text = 1; // content of the resource</p><p>}</p><p>The same http annotation can alternatively be expressed inside the</p><p>`GRPC API Configuration` YAML file.</p><p>http:</p><p>rules:</p><p>- selector: <proto_package_name>.Messaging.GetMessage</p><p>get: /v1/messages/{message_id}/{sub.subfield}</p><p>This definition enables an automatic, bidrectional mapping of HTTP</p><p>JSON to RPC. Example:</p><p>HTTP | RPC</p><p>-----|-----</p><p>`GET /v1/messages/123456/foo`  | `GetMessage(message_id: "123456" sub:</p><p>SubMessage(subfield: "foo"))`</p><p>In general, not only fields but also field paths can be referenced</p><p>from a path pattern. Fields mapped to the path pattern cannot be</p><p>repeated and must have a primitive (non-message) type.</p><p>Any fields in the request message which are not bound by the path</p><p>pattern automatically become (optional) HTTP query</p><p>parameters. Assume the following definition of the request message:</p><p>service Messaging {</p><p>rpc GetMessage(GetMessageRequest) returns (Message) {</p><p>option (google.api.http).get = "/v1/messages/{message_id}";</p><p>}</p><p>}</p><p>message GetMessageRequest {</p><p>message SubMessage {</p><p>string subfield = 1;</p><p>}</p><p>string message_id = 1; // mapped to the URL</p><p>int64 revision = 2;    // becomes a parameter</p><p>SubMessage sub = 3;    // `sub.subfield` becomes a parameter</p><p>}</p><p>This enables a HTTP JSON to RPC mapping as below:</p><p>HTTP | RPC</p><p>-----|-----</p><p>`GET /v1/messages/123456?revision=2&sub.subfield=foo` |</p><p>`GetMessage(message_id: "123456" revision: 2 sub: SubMessage(subfield:</p><p>"foo"))`</p><p>Note that fields which are mapped to HTTP parameters must have a</p><p>primitive type or a repeated primitive type. Message types are not</p><p>allowed. In the case of a repeated type, the parameter can be</p><p>repeated in the URL, as in `...?param=A&param=B`.</p><p>For HTTP method kinds which allow a request body, the `body` field</p><p>specifies the mapping. Consider a REST update method on the</p><p>message resource collection:</p><p>service Messaging {</p><p>rpc UpdateMessage(UpdateMessageRequest) returns (Message) {</p><p>option (google.api.http) = {</p><p>put: "/v1/messages/{message_id}"</p><p>body: "message"</p><p>};</p><p>}</p><p>}</p><p>message UpdateMessageRequest {</p><p>string message_id = 1; // mapped to the URL</p><p>Message message = 2;   // mapped to the body</p><p>}</p><p>The following HTTP JSON to RPC mapping is enabled, where the</p><p>representation of the JSON in the request body is determined by</p><p>protos JSON encoding:</p><p>HTTP | RPC</p><p>-----|-----</p><p>`PUT /v1/messages/123456 { "text": "Hi!" }` | `UpdateMessage(message_id:</p><p>"123456" message { text: "Hi!" })`</p><p>The special name `*` can be used in the body mapping to define that</p><p>every field not bound by the path template should be mapped to the</p><p>request body.  This enables the following alternative definition of</p><p>the update method:</p><p>service Messaging {</p><p>rpc UpdateMessage(Message) returns (Message) {</p><p>option (google.api.http) = {</p><p>put: "/v1/messages/{message_id}"</p><p>body: "*"</p><p>};</p><p>}</p><p>}</p><p>message Message {</p><p>string message_id = 1;</p><p>string text = 2;</p><p>}</p><p>The following HTTP JSON to RPC mapping is enabled:</p><p>HTTP | RPC</p><p>-----|-----</p><p>`PUT /v1/messages/123456 { "text": "Hi!" }` | `UpdateMessage(message_id:</p><p>"123456" text: "Hi!")`</p><p>Note that when using `*` in the body mapping, it is not possible to</p><p>have HTTP parameters, as all fields not bound by the path end in</p><p>the body. This makes this option more rarely used in practice of</p><p>defining REST APIs. The common usage of `*` is in custom methods</p><p>which don't use the URL at all for transferring data.</p><p>It is possible to define multiple HTTP methods for one RPC by using</p><p>the `additional_bindings` option. Example:</p><p>service Messaging {</p><p>rpc GetMessage(GetMessageRequest) returns (Message) {</p><p>option (google.api.http) = {</p><p>get: "/v1/messages/{message_id}"</p><p>additional_bindings {</p><p>get: "/v1/users/{user_id}/messages/{message_id}"</p><p>}</p><p>};</p><p>}</p><p>}</p><p>message GetMessageRequest {</p><p>string message_id = 1;</p><p>string user_id = 2;</p><p>}</p><p>This enables the following two alternative HTTP JSON to RPC</p><p>mappings:</p><p>HTTP | RPC</p><p>-----|-----</p><p>`GET /v1/messages/123456` | `GetMessage(message_id: "123456")`</p><p>`GET /v1/users/me/messages/123456` | `GetMessage(user_id: "me" message_id:</p><p>"123456")`</p><p># Rules for HTTP mapping</p><p>The rules for mapping HTTP path, query parameters, and body fields</p><p>to the request message are as follows:</p><p>1. The `body` field specifies either `*` or a field path, or is</p><p>omitted. If omitted, it indicates there is no HTTP request body.</p><p>2. Leaf fields (recursive expansion of nested messages in the</p><p>request) can be classified into three types:</p><p>(a) Matched in the URL template.</p><p>(b) Covered by body (if body is `*`, everything except (a) fields;</p><p>else everything under the body field)</p><p>(c) All other fields.</p><p>3. URL query parameters found in the HTTP request are mapped to (c) fields.</p><p>4. Any body sent with an HTTP request can contain only (b) fields.</p><p>The syntax of the path template is as follows:</p><p>Template = "/" Segments [ Verb ] ;</p><p>Segments = Segment { "/" Segment } ;</p><p>Segment  = "*" | "**" | LITERAL | Variable ;</p><p>Variable = "{" FieldPath [ "=" Segments ] "}" ;</p><p>FieldPath = IDENT { "." IDENT } ;</p><p>Verb     = ":" LITERAL ;</p><p>The syntax `*` matches a single path segment. The syntax `**` matches zero</p><p>or more path segments, which must be the last part of the path except the</p><p>`Verb`. The syntax `LITERAL` matches literal text in the path.</p><p>The syntax `Variable` matches part of the URL path as specified by its</p><p>template. A variable template must not contain other variables. If a variable</p><p>matches a single path segment, its template may be omitted, e.g. `{var}`</p><p>is equivalent to `{var=*}`.</p><p>If a variable contains exactly one path segment, such as `"{var}"` or</p><p>`"{var=*}"`, when such a variable is expanded into a URL path, all characters</p><p>except `[-_.~0-9a-zA-Z]` are percent-encoded. Such variables show up in the</p><p>Discovery Document as `{var}`.</p><p>If a variable contains one or more path segments, such as `"{var=foo/*}"`</p><p>or `"{var=**}"`, when such a variable is expanded into a URL path, all</p><p>characters except `[-_.~/0-9a-zA-Z]` are percent-encoded. Such variables</p><p>show up in the Discovery Document as `{+var}`.</p><p>NOTE: While the single segment variable matches the semantics of</p><p>[RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2</p><p>Simple String Expansion, the multi segment variable **does not** match</p><p>RFC 6570 Reserved Expansion. The reason is that the Reserved Expansion</p><p>does not expand special characters like `?` and `#`, which would lead</p><p>to invalid URLs.</p><p>NOTE: the field paths in variables and in the `body` must not refer to</p><p>repeated fields or map fields.</p>
+        <p>gRPC Transcoding</p><p>gRPC Transcoding is a feature for mapping between a gRPC method and one or</p><p>more HTTP REST endpoints. It allows developers to build a single API service</p><p>that supports both gRPC APIs and REST APIs. Many systems, including [Google</p><p>APIs](https://github.com/googleapis/googleapis),</p><p>[Cloud Endpoints](https://cloud.google.com/endpoints), [gRPC</p><p>Gateway](https://github.com/grpc-ecosystem/grpc-gateway),</p><p>and [Envoy](https://github.com/envoyproxy/envoy) proxy support this feature</p><p>and use it for large scale production services.</p><p>`HttpRule` defines the schema of the gRPC/REST mapping. The mapping specifies</p><p>how different portions of the gRPC request message are mapped to the URL</p><p>path, URL query parameters, and HTTP request body. It also controls how the</p><p>gRPC response message is mapped to the HTTP response body. `HttpRule` is</p><p>typically specified as an `google.api.http` annotation on the gRPC method.</p><p>Each mapping specifies a URL path template and an HTTP method. The path</p><p>template may refer to one or more fields in the gRPC request message, as long</p><p>as each field is a non-repeated field with a primitive (non-message) type.</p><p>The path template controls how fields of the request message are mapped to</p><p>the URL path.</p><p>Example:</p><p>service Messaging {</p><p>rpc GetMessage(GetMessageRequest) returns (Message) {</p><p>option (google.api.http) = {</p><p>get: "/v1/{name=messages/*}"</p><p>};</p><p>}</p><p>}</p><p>message GetMessageRequest {</p><p>string name = 1; // Mapped to URL path.</p><p>}</p><p>message Message {</p><p>string text = 1; // The resource content.</p><p>}</p><p>This enables an HTTP REST to gRPC mapping as below:</p><p>- HTTP: `GET /v1/messages/123456`</p><p>- gRPC: `GetMessage(name: "messages/123456")`</p><p>Any fields in the request message which are not bound by the path template</p><p>automatically become HTTP query parameters if there is no HTTP request body.</p><p>For example:</p><p>service Messaging {</p><p>rpc GetMessage(GetMessageRequest) returns (Message) {</p><p>option (google.api.http) = {</p><p>get:"/v1/messages/{message_id}"</p><p>};</p><p>}</p><p>}</p><p>message GetMessageRequest {</p><p>message SubMessage {</p><p>string subfield = 1;</p><p>}</p><p>string message_id = 1; // Mapped to URL path.</p><p>int64 revision = 2;    // Mapped to URL query parameter `revision`.</p><p>SubMessage sub = 3;    // Mapped to URL query parameter `sub.subfield`.</p><p>}</p><p>This enables a HTTP JSON to RPC mapping as below:</p><p>- HTTP: `GET /v1/messages/123456?revision=2&sub.subfield=foo`</p><p>- gRPC: `GetMessage(message_id: "123456" revision: 2 sub:</p><p>SubMessage(subfield: "foo"))`</p><p>Note that fields which are mapped to URL query parameters must have a</p><p>primitive type or a repeated primitive type or a non-repeated message type.</p><p>In the case of a repeated type, the parameter can be repeated in the URL</p><p>as `...?param=A&param=B`. In the case of a message type, each field of the</p><p>message is mapped to a separate parameter, such as</p><p>`...?foo.a=A&foo.b=B&foo.c=C`.</p><p>For HTTP methods that allow a request body, the `body` field</p><p>specifies the mapping. Consider a REST update method on the</p><p>message resource collection:</p><p>service Messaging {</p><p>rpc UpdateMessage(UpdateMessageRequest) returns (Message) {</p><p>option (google.api.http) = {</p><p>patch: "/v1/messages/{message_id}"</p><p>body: "message"</p><p>};</p><p>}</p><p>}</p><p>message UpdateMessageRequest {</p><p>string message_id = 1; // mapped to the URL</p><p>Message message = 2;   // mapped to the body</p><p>}</p><p>The following HTTP JSON to RPC mapping is enabled, where the</p><p>representation of the JSON in the request body is determined by</p><p>protos JSON encoding:</p><p>- HTTP: `PATCH /v1/messages/123456 { "text": "Hi!" }`</p><p>- gRPC: `UpdateMessage(message_id: "123456" message { text: "Hi!" })`</p><p>The special name `*` can be used in the body mapping to define that</p><p>every field not bound by the path template should be mapped to the</p><p>request body.  This enables the following alternative definition of</p><p>the update method:</p><p>service Messaging {</p><p>rpc UpdateMessage(Message) returns (Message) {</p><p>option (google.api.http) = {</p><p>patch: "/v1/messages/{message_id}"</p><p>body: "*"</p><p>};</p><p>}</p><p>}</p><p>message Message {</p><p>string message_id = 1;</p><p>string text = 2;</p><p>}</p><p>The following HTTP JSON to RPC mapping is enabled:</p><p>- HTTP: `PATCH /v1/messages/123456 { "text": "Hi!" }`</p><p>- gRPC: `UpdateMessage(message_id: "123456" text: "Hi!")`</p><p>Note that when using `*` in the body mapping, it is not possible to</p><p>have HTTP parameters, as all fields not bound by the path end in</p><p>the body. This makes this option more rarely used in practice when</p><p>defining REST APIs. The common usage of `*` is in custom methods</p><p>which don't use the URL at all for transferring data.</p><p>It is possible to define multiple HTTP methods for one RPC by using</p><p>the `additional_bindings` option. Example:</p><p>service Messaging {</p><p>rpc GetMessage(GetMessageRequest) returns (Message) {</p><p>option (google.api.http) = {</p><p>get: "/v1/messages/{message_id}"</p><p>additional_bindings {</p><p>get: "/v1/users/{user_id}/messages/{message_id}"</p><p>}</p><p>};</p><p>}</p><p>}</p><p>message GetMessageRequest {</p><p>string message_id = 1;</p><p>string user_id = 2;</p><p>}</p><p>This enables the following two alternative HTTP JSON to RPC mappings:</p><p>- HTTP: `GET /v1/messages/123456`</p><p>- gRPC: `GetMessage(message_id: "123456")`</p><p>- HTTP: `GET /v1/users/me/messages/123456`</p><p>- gRPC: `GetMessage(user_id: "me" message_id: "123456")`</p><p>Rules for HTTP mapping</p><p>1. Leaf request fields (recursive expansion nested messages in the request</p><p>message) are classified into three categories:</p><p>- Fields referred by the path template. They are passed via the URL path.</p><p>- Fields referred by the [HttpRule.body][google.api.HttpRule.body]. They</p><p>are passed via the HTTP</p><p>request body.</p><p>- All other fields are passed via the URL query parameters, and the</p><p>parameter name is the field path in the request message. A repeated</p><p>field can be represented as multiple query parameters under the same</p><p>name.</p><p>2. If [HttpRule.body][google.api.HttpRule.body] is "*", there is no URL</p><p>query parameter, all fields</p><p>are passed via URL path and HTTP request body.</p><p>3. If [HttpRule.body][google.api.HttpRule.body] is omitted, there is no HTTP</p><p>request body, all</p><p>fields are passed via URL path and URL query parameters.</p><p>Path template syntax</p><p>Template = "/" Segments [ Verb ] ;</p><p>Segments = Segment { "/" Segment } ;</p><p>Segment  = "*" | "**" | LITERAL | Variable ;</p><p>Variable = "{" FieldPath [ "=" Segments ] "}" ;</p><p>FieldPath = IDENT { "." IDENT } ;</p><p>Verb     = ":" LITERAL ;</p><p>The syntax `*` matches a single URL path segment. The syntax `**` matches</p><p>zero or more URL path segments, which must be the last part of the URL path</p><p>except the `Verb`.</p><p>The syntax `Variable` matches part of the URL path as specified by its</p><p>template. A variable template must not contain other variables. If a variable</p><p>matches a single path segment, its template may be omitted, e.g. `{var}`</p><p>is equivalent to `{var=*}`.</p><p>The syntax `LITERAL` matches literal text in the URL path. If the `LITERAL`</p><p>contains any reserved character, such characters should be percent-encoded</p><p>before the matching.</p><p>If a variable contains exactly one path segment, such as `"{var}"` or</p><p>`"{var=*}"`, when such a variable is expanded into a URL path on the client</p><p>side, all characters except `[-_.~0-9a-zA-Z]` are percent-encoded. The</p><p>server side does the reverse decoding. Such variables show up in the</p><p>[Discovery</p><p>Document](https://developers.google.com/discovery/v1/reference/apis) as</p><p>`{var}`.</p><p>If a variable contains multiple path segments, such as `"{var=foo/*}"`</p><p>or `"{var=**}"`, when such a variable is expanded into a URL path on the</p><p>client side, all characters except `[-_.~/0-9a-zA-Z]` are percent-encoded.</p><p>The server side does the reverse decoding, except "%2F" and "%2f" are left</p><p>unchanged. Such variables show up in the</p><p>[Discovery</p><p>Document](https://developers.google.com/discovery/v1/reference/apis) as</p><p>`{+var}`.</p><p>Using gRPC API Service Configuration</p><p>gRPC API Service Configuration (service config) is a configuration language</p><p>for configuring a gRPC service to become a user-facing product. The</p><p>service config is simply the YAML representation of the `google.api.Service`</p><p>proto message.</p><p>As an alternative to annotating your proto file, you can configure gRPC</p><p>transcoding in your service config YAML files. You do this by specifying a</p><p>`HttpRule` that maps the gRPC method to a REST endpoint, achieving the same</p><p>effect as the proto annotation. This can be particularly useful if you</p><p>have a proto that is reused in multiple services. Note that any transcoding</p><p>specified in the service config will override any matching transcoding</p><p>configuration in the proto.</p><p>The following example selects a gRPC method and applies an `HttpRule` to it:</p><p>http:</p><p>rules:</p><p>- selector: example.v1.Messaging.GetMessage</p><p>get: /v1/messages/{message_id}/{sub.subfield}</p><p>Special notes</p><p>When gRPC Transcoding is used to map a gRPC to JSON REST endpoints, the</p><p>proto to JSON conversion must follow the [proto3</p><p>specification](https://developers.google.com/protocol-buffers/docs/proto3#json).</p><p>While the single segment variable follows the semantics of</p><p>[RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String</p><p>Expansion, the multi segment variable **does not** follow RFC 6570 Section</p><p>3.2.3 Reserved Expansion. The reason is that the Reserved Expansion</p><p>does not expand special characters like `?` and `#`, which would lead</p><p>to invalid URLs. As the result, gRPC Transcoding uses a custom encoding</p><p>for multi segment variables.</p><p>The path variables **must not** refer to any repeated or mapped field,</p><p>because client libraries are not capable of handling such variable expansion.</p><p>The path variables **must not** capture the leading "/" character. The reason</p><p>is that the most common use case "{var}" does not capture the leading "/"</p><p>character. For consistency, all path variables must share the same behavior.</p><p>Repeated message fields must not be mapped to URL query parameters, because</p><p>no client library can support such complicated mapping.</p><p>If an API needs to use a JSON array for request or response body, it can map</p><p>the request or response body to a repeated field. However, some gRPC</p><p>Transcoding implementations may not support this feature.</p>
 
 
           <table class="field-table">
@@ -398,7 +330,7 @@ segment matches. </p></td>
                   <td>selector</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Selects methods to which this rule applies.
+                  <td><p>Selects a method to which this rule applies.
 
 Refer to [selector][google.api.DocumentationRule.selector] for syntax
 details. </p></td>
@@ -408,35 +340,36 @@ details. </p></td>
                   <td>get</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Used for listing and getting information about resources. </p></td>
+                  <td><p>Maps to HTTP GET. Used for listing and getting information about
+resources. </p></td>
                 </tr>
 
                 <tr>
                   <td>put</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Used for updating a resource. </p></td>
+                  <td><p>Maps to HTTP PUT. Used for replacing a resource. </p></td>
                 </tr>
 
                 <tr>
                   <td>post</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Used for creating a resource. </p></td>
+                  <td><p>Maps to HTTP POST. Used for creating a resource or performing an action. </p></td>
                 </tr>
 
                 <tr>
                   <td>delete</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Used for deleting a resource. </p></td>
+                  <td><p>Maps to HTTP DELETE. Used for deleting a resource. </p></td>
                 </tr>
 
                 <tr>
                   <td>patch</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Used for updating a resource. </p></td>
+                  <td><p>Maps to HTTP PATCH. Used for updating a resource. </p></td>
                 </tr>
 
                 <tr>
@@ -453,10 +386,12 @@ for services that provide content to Web (HTML) clients. </p></td>
                   <td>body</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>The name of the request field whose value is mapped to the HTTP body, or
-`*` for mapping all fields not captured by the path pattern to the HTTP
-body. NOTE: the referred field must not be a repeated field and must be
-present at the top-level of request message type. </p></td>
+                  <td><p>The name of the request field whose value is mapped to the HTTP request
+body, or `*` for mapping all request fields not captured by the path
+pattern to the HTTP body, or omitted for not having any HTTP request body.
+
+NOTE: the referred field must be present at the top-level of the request
+message type. </p></td>
                 </tr>
 
                 <tr>
@@ -464,8 +399,11 @@ present at the top-level of request message type. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>Optional. The name of the response field whose value is mapped to the HTTP
-body of response. Other response fields are ignored. When
-not set, the response message will be used as HTTP body of response. </p></td>
+response body. When omitted, the entire response message will be used
+as the HTTP response body.
+
+NOTE: The referred field must be present at the top-level of the response
+message type. </p></td>
                 </tr>
 
                 <tr>

@@ -42,9 +42,9 @@ def get_fee_payer_from_msg(msg: dict[str, Any]) -> str:
         raise NotImplementedError("Unsupported message type") from e
 
     try:
-        return getattr(msg["value"], target_field)
+        return getattr(msg["value"], target_field)  # type: ignore[no-any-return]
     except AttributeError:
-        return msg["value"][target_field]
+        return msg["value"][target_field]  # type: ignore[no-any-return]
 
 
 def format_sign_doc(sign_doc: dict[str, Any]) -> dict[str, Any]:

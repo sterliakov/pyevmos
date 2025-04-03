@@ -171,6 +171,10 @@
             <ul>
 
                 <li>
+                  <a href="#evmos.erc20.v1.ProposalMetadata"><span class="badge">M</span>ProposalMetadata</a>
+                </li>
+
+                <li>
                   <a href="#evmos.erc20.v1.RegisterCoinProposal"><span class="badge">M</span>RegisterCoinProposal</a>
                 </li>
 
@@ -190,6 +194,33 @@
                 <li>
                   <a href="#evmos.erc20.v1.Owner"><span class="badge">E</span>Owner</a>
                 </li>
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#evmos/erc20/v1/events.proto">evmos/erc20/v1/events.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#evmos.erc20.v1.EventConvertCoin"><span class="badge">M</span>EventConvertCoin</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.erc20.v1.EventConvertERC20"><span class="badge">M</span>EventConvertERC20</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.erc20.v1.EventRegisterPair"><span class="badge">M</span>EventRegisterPair</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.erc20.v1.EventToggleTokenConversion"><span class="badge">M</span>EventToggleTokenConversion</a>
+                </li>
+
 
 
 
@@ -275,6 +306,30 @@
                   <a href="#evmos.erc20.v1.MsgConvertERC20Response"><span class="badge">M</span>MsgConvertERC20Response</a>
                 </li>
 
+                <li>
+                  <a href="#evmos.erc20.v1.MsgRegisterERC20"><span class="badge">M</span>MsgRegisterERC20</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.erc20.v1.MsgRegisterERC20Response"><span class="badge">M</span>MsgRegisterERC20Response</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.erc20.v1.MsgToggleConversion"><span class="badge">M</span>MsgToggleConversion</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.erc20.v1.MsgToggleConversionResponse"><span class="badge">M</span>MsgToggleConversionResponse</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.erc20.v1.MsgUpdateParams"><span class="badge">M</span>MsgUpdateParams</a>
+                </li>
+
+                <li>
+                  <a href="#evmos.erc20.v1.MsgUpdateParamsResponse"><span class="badge">M</span>MsgUpdateParamsResponse</a>
+                </li>
+
 
 
 
@@ -294,11 +349,35 @@
       <div class="file-heading">
         <h2 id="evmos/erc20/v1/erc20.proto">evmos/erc20/v1/erc20.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
+
+
+        <h3 id="evmos.erc20.v1.ProposalMetadata">ProposalMetadata</h3>
+        <p>Deprecated: ProposalMetadata is used to parse a slice of denom metadata and generate</p><p>the RegisterCoinProposal content. We're keeping it to remove the existing proposals from</p><p>store. After that, remove this message.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#cosmos.bank.v1beta1.Metadata">cosmos.bank.v1beta1.Metadata</a></td>
+                  <td>repeated</td>
+                  <td><p>metadata slice of the native Cosmos coins </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
 
 
         <h3 id="evmos.erc20.v1.RegisterCoinProposal">RegisterCoinProposal</h3>
-        <p>RegisterCoinProposal is a gov Content type to register a token pair for a</p><p>native Cosmos coin.</p>
+        <p>Deprecated: RegisterCoinProposal is a gov Content type to register a token pair for a</p><p>native Cosmos coin. We're keeping it to remove the existing proposals from</p><p>store. After that, remove this message.</p><p>NOTE: Keep this message for backwards compatibility on proposals query</p>
 
 
           <table class="field-table">
@@ -318,14 +397,14 @@
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>proposal description </p></td>
+                  <td><p>description of the proposal </p></td>
                 </tr>
 
                 <tr>
                   <td>metadata</td>
                   <td><a href="#cosmos.bank.v1beta1.Metadata">cosmos.bank.v1beta1.Metadata</a></td>
-                  <td></td>
-                  <td><p>metadata of the native Cosmos coin </p></td>
+                  <td>repeated</td>
+                  <td><p>metadata slice of the native Cosmos coins </p></td>
                 </tr>
 
             </tbody>
@@ -336,7 +415,7 @@
 
 
         <h3 id="evmos.erc20.v1.RegisterERC20Proposal">RegisterERC20Proposal</h3>
-        <p>RegisterERC20Proposal is a gov Content type to register a token pair for an</p><p>ERC20 token</p>
+        <p>Deprecated: RegisterERC20Proposal is a gov Content type to register a token pair for an</p><p>ERC20 token.</p><p>NOTE: Keep this message for backwards compatibility on proposals query</p>
 
 
           <table class="field-table">
@@ -356,14 +435,14 @@
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>proposal description </p></td>
+                  <td><p>description of the proposal </p></td>
                 </tr>
 
                 <tr>
-                  <td>erc20address</td>
+                  <td>erc20addresses</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>contract address of ERC20 token </p></td>
+                  <td>repeated</td>
+                  <td><p>erc20addresses is a slice of  ERC20 token contract addresses </p></td>
                 </tr>
 
             </tbody>
@@ -374,7 +453,7 @@
 
 
         <h3 id="evmos.erc20.v1.ToggleTokenConversionProposal">ToggleTokenConversionProposal</h3>
-        <p>ToggleTokenConversionProposal is a gov Content type to toggle the conversion</p><p>of a token pair.</p>
+        <p>Deprecated: ToggleTokenConversionProposal is a gov Content type to toggle the conversion</p><p>of a token pair.</p><p>NOTE: Keep this message for backwards compatibility on proposals query</p>
 
 
           <table class="field-table">
@@ -394,7 +473,7 @@
                   <td>description</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>proposal description </p></td>
+                  <td><p>description of the proposal </p></td>
                 </tr>
 
                 <tr>
@@ -426,28 +505,28 @@ Cosmos base denomination </p></td>
                   <td>erc20_address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>address of ERC20 contract token </p></td>
+                  <td><p>erc20_address is the hex address of ERC20 contract token </p></td>
                 </tr>
 
                 <tr>
                   <td>denom</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>cosmos base denomination to be mapped to </p></td>
+                  <td><p>denom defines the cosmos base denomination to be mapped to </p></td>
                 </tr>
 
                 <tr>
                   <td>enabled</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>shows token mapping enable status </p></td>
+                  <td><p>enabled defines the token mapping enable status </p></td>
                 </tr>
 
                 <tr>
                   <td>contract_owner</td>
                   <td><a href="#evmos.erc20.v1.Owner">Owner</a></td>
                   <td></td>
-                  <td><p>ERC20 owner address ENUM (0 invalid, 1 ModuleAccount, 2 external address) </p></td>
+                  <td><p>contract_owner is the an ENUM specifying the type of ERC20 owner (0 invalid, 1 ModuleAccount, 2 external address) </p></td>
                 </tr>
 
             </tbody>
@@ -476,13 +555,13 @@ Cosmos base denomination </p></td>
               <tr>
                 <td>OWNER_MODULE</td>
                 <td>1</td>
-                <td><p>OWNER_MODULE erc20 is owned by the erc20 module account.</p></td>
+                <td><p>OWNER_MODULE - erc20 is owned by the erc20 module account.</p></td>
               </tr>
 
               <tr>
                 <td>OWNER_EXTERNAL</td>
                 <td>2</td>
-                <td><p>EXTERNAL erc20 is owned by an external account.</p></td>
+                <td><p>OWNER_EXTERNAL - erc20 is owned by an external account.</p></td>
               </tr>
 
           </tbody>
@@ -495,9 +574,189 @@ Cosmos base denomination </p></td>
 
 
       <div class="file-heading">
+        <h2 id="evmos/erc20/v1/events.proto">evmos/erc20/v1/events.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
+
+
+        <h3 id="evmos.erc20.v1.EventConvertCoin">EventConvertCoin</h3>
+        <p>EventConvertCoin is an event emitted when a coin is converted.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>sender</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>sender is the sender's address. </p></td>
+                </tr>
+
+                <tr>
+                  <td>receiver</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>receiver is the receiver's address. </p></td>
+                </tr>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>amount is the amount of coins to be converted. </p></td>
+                </tr>
+
+                <tr>
+                  <td>denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>denom is the coin's denomination. </p></td>
+                </tr>
+
+                <tr>
+                  <td>erc20_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>erc20_address is the ERC20 contract address. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.erc20.v1.EventConvertERC20">EventConvertERC20</h3>
+        <p>EventConvertERC20 is an event emitted when an ERC20 is converted.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>sender</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>sender is the sender's address. </p></td>
+                </tr>
+
+                <tr>
+                  <td>receiver</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>receiver is the receiver's address. </p></td>
+                </tr>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>amount is the amount of coins to be converted. </p></td>
+                </tr>
+
+                <tr>
+                  <td>denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>denom is the coin's denomination. </p></td>
+                </tr>
+
+                <tr>
+                  <td>contract_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>contract_address of an ERC20 token contract, that is registered in a token pair </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.erc20.v1.EventRegisterPair">EventRegisterPair</h3>
+        <p>EventRegisterPair is an event emitted when a coin is registered.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>denom is the coin's denomination. </p></td>
+                </tr>
+
+                <tr>
+                  <td>erc20_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>erc20_address is the ERC20 contract address. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.erc20.v1.EventToggleTokenConversion">EventToggleTokenConversion</h3>
+        <p>EventToggleTokenConversion is an event emitted when a coin's token conversion is toggled.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>denom</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>denom is the coin's denomination. </p></td>
+                </tr>
+
+                <tr>
+                  <td>erc20_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>erc20_address is the ERC20 contract address. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
         <h2 id="evmos/erc20/v1/genesis.proto">evmos/erc20/v1/genesis.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
         <h3 id="evmos.erc20.v1.GenesisState">GenesisState</h3>
@@ -514,14 +773,14 @@ Cosmos base denomination </p></td>
                   <td>params</td>
                   <td><a href="#evmos.erc20.v1.Params">Params</a></td>
                   <td></td>
-                  <td><p>module parameters </p></td>
+                  <td><p>params are the erc20 module parameters at genesis </p></td>
                 </tr>
 
                 <tr>
                   <td>token_pairs</td>
                   <td><a href="#evmos.erc20.v1.TokenPair">TokenPair</a></td>
                   <td>repeated</td>
-                  <td><p>registered token pairs </p></td>
+                  <td><p>token_pairs is a slice of the registered token pairs at genesis </p></td>
                 </tr>
 
             </tbody>
@@ -545,16 +804,23 @@ Cosmos base denomination </p></td>
                   <td>enable_erc20</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>parameter to enable the conversion of Cosmos coins <--> ERC20 tokens. </p></td>
+                  <td><p>enable_erc20 is the parameter to enable the conversion of Cosmos coins <--> ERC20 tokens. </p></td>
                 </tr>
 
                 <tr>
-                  <td>enable_evm_hook</td>
-                  <td><a href="#bool">bool</a></td>
-                  <td></td>
-                  <td><p>parameter to enable the EVM hook that converts an ERC20 token to a Cosmos
-Coin by transferring the Tokens through a MsgEthereumTx to the
-ModuleAddress Ethereum address. </p></td>
+                  <td>native_precompiles</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>native_precompiles defines the slice of hex addresses of the
+active precompiles that are used to interact with native staking coins as ERC20s </p></td>
+                </tr>
+
+                <tr>
+                  <td>dynamic_precompiles</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>dynamic_precompiles defines the slice of hex addresses of the
+active precompiles that are used to interact with Bank coins as ERC20s </p></td>
                 </tr>
 
             </tbody>
@@ -575,7 +841,7 @@ ModuleAddress Ethereum address. </p></td>
       <div class="file-heading">
         <h2 id="evmos/erc20/v1/query.proto">evmos/erc20/v1/query.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
         <h3 id="evmos.erc20.v1.QueryParamsRequest">QueryParamsRequest</h3>
@@ -599,7 +865,7 @@ ModuleAddress Ethereum address. </p></td>
                   <td>params</td>
                   <td><a href="#evmos.erc20.v1.Params">Params</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>params are the erc20 module parameters </p></td>
                 </tr>
 
             </tbody>
@@ -648,7 +914,7 @@ Cosmos base denomination </p></td>
                   <td>token_pair</td>
                   <td><a href="#evmos.erc20.v1.TokenPair">TokenPair</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>token_pairs returns the info about a registered token pair for the erc20 module </p></td>
                 </tr>
 
             </tbody>
@@ -696,7 +962,7 @@ Cosmos base denomination </p></td>
                   <td>token_pairs</td>
                   <td><a href="#evmos.erc20.v1.TokenPair">TokenPair</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>token_pairs is a slice of registered token pairs for the erc20 module </p></td>
                 </tr>
 
                 <tr>
@@ -805,7 +1071,7 @@ Cosmos base denomination </p></td>
       <div class="file-heading">
         <h2 id="evmos/erc20/v1/tx.proto">evmos/erc20/v1/tx.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
         <h3 id="evmos.erc20.v1.MsgConvertCoin">MsgConvertCoin</h3>
@@ -822,7 +1088,7 @@ Cosmos base denomination </p></td>
                   <td>coin</td>
                   <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
                   <td></td>
-                  <td><p>Cosmos coin which denomination is registered in a token pair. The coin
+                  <td><p>coin is a Cosmos coin whose denomination is registered in a token pair. The coin
 amount defines the amount of coins to convert. </p></td>
                 </tr>
 
@@ -830,14 +1096,14 @@ amount defines the amount of coins to convert. </p></td>
                   <td>receiver</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>recipient hex address to receive ERC20 token </p></td>
+                  <td><p>receiver is the hex address to receive ERC20 token </p></td>
                 </tr>
 
                 <tr>
                   <td>sender</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>cosmos bech32 address from the owner of the given Cosmos coins </p></td>
+                  <td><p>sender is the cosmos bech32 address from the owner of the given Cosmos coins </p></td>
                 </tr>
 
             </tbody>
@@ -868,7 +1134,7 @@ amount defines the amount of coins to convert. </p></td>
                   <td>contract_address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>ERC20 token contract address registered in a token pair </p></td>
+                  <td><p>contract_address of an ERC20 token contract, that is registered in a token pair </p></td>
                 </tr>
 
                 <tr>
@@ -882,14 +1148,14 @@ amount defines the amount of coins to convert. </p></td>
                   <td>receiver</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>bech32 address to receive native Cosmos coins </p></td>
+                  <td><p>receiver is the bech32 address to receive native Cosmos coins </p></td>
                 </tr>
 
                 <tr>
                   <td>sender</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>sender hex address from the owner of the given ERC20 tokens </p></td>
+                  <td><p>sender is the hex address from the owner of the given ERC20 tokens </p></td>
                 </tr>
 
             </tbody>
@@ -901,6 +1167,122 @@ amount defines the amount of coins to convert. </p></td>
 
         <h3 id="evmos.erc20.v1.MsgConvertERC20Response">MsgConvertERC20Response</h3>
         <p>MsgConvertERC20Response returns no fields</p>
+
+
+
+
+
+        <h3 id="evmos.erc20.v1.MsgRegisterERC20">MsgRegisterERC20</h3>
+        <p>MsgRegisterERC20 is the Msg/RegisterERC20 request type for registering</p><p>an Erc20 contract token pair.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address of the governance account. </p></td>
+                </tr>
+
+                <tr>
+                  <td>erc20addresses</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>erc20addresses is a slice of ERC20 token contract hex addresses </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.erc20.v1.MsgRegisterERC20Response">MsgRegisterERC20Response</h3>
+        <p>MsgRegisterERC20Response defines the response structure for executing a</p><p>MsgRegisterERC20 message.</p>
+
+
+
+
+
+        <h3 id="evmos.erc20.v1.MsgToggleConversion">MsgToggleConversion</h3>
+        <p>MsgToggleConversion is the Msg/MsgToggleConversion request type for toggling</p><p>an Erc20 contract conversion capability.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address of the governance account. </p></td>
+                </tr>
+
+                <tr>
+                  <td>token</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>token identifier can be either the hex contract address of the ERC20 or the
+Cosmos base denomination </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.erc20.v1.MsgToggleConversionResponse">MsgToggleConversionResponse</h3>
+        <p>MsgToggleConversionResponse defines the response structure for executing a</p><p>ToggleConversion message.</p>
+
+
+
+
+
+        <h3 id="evmos.erc20.v1.MsgUpdateParams">MsgUpdateParams</h3>
+        <p>MsgUpdateParams is the Msg/UpdateParams request type for Erc20 parameters.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address of the governance account. </p></td>
+                </tr>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#evmos.erc20.v1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines the x/evm parameters to update.
+NOTE: All parameters must be supplied. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="evmos.erc20.v1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</h3>
+        <p>MsgUpdateParamsResponse defines the response structure for executing a</p><p>MsgUpdateParams message.</p><p>Since: cosmos-sdk 0.47</p>
 
 
 
@@ -921,19 +1303,35 @@ amount defines the amount of coins to convert. </p></td>
           <tbody>
 
               <tr>
-                <td>ConvertCoin</td>
-                <td><a href="#evmos.erc20.v1.MsgConvertCoin">MsgConvertCoin</a></td>
-                <td><a href="#evmos.erc20.v1.MsgConvertCoinResponse">MsgConvertCoinResponse</a></td>
-                <td><p>ConvertCoin mints a ERC20 representation of the native Cosmos coin denom
-that is registered on the token mapping.</p></td>
-              </tr>
-
-              <tr>
                 <td>ConvertERC20</td>
                 <td><a href="#evmos.erc20.v1.MsgConvertERC20">MsgConvertERC20</a></td>
                 <td><a href="#evmos.erc20.v1.MsgConvertERC20Response">MsgConvertERC20Response</a></td>
                 <td><p>ConvertERC20 mints a native Cosmos coin representation of the ERC20 token
 contract that is registered on the token mapping.</p></td>
+              </tr>
+
+              <tr>
+                <td>UpdateParams</td>
+                <td><a href="#evmos.erc20.v1.MsgUpdateParams">MsgUpdateParams</a></td>
+                <td><a href="#evmos.erc20.v1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</a></td>
+                <td><p>UpdateParams defines a governance operation for updating the x/erc20 module parameters.
+The authority is hard-coded to the Cosmos SDK x/gov module account</p></td>
+              </tr>
+
+              <tr>
+                <td>RegisterERC20</td>
+                <td><a href="#evmos.erc20.v1.MsgRegisterERC20">MsgRegisterERC20</a></td>
+                <td><a href="#evmos.erc20.v1.MsgRegisterERC20Response">MsgRegisterERC20Response</a></td>
+                <td><p>RegisterERC20 defines a governance operation for registering a token pair for the specified erc20 contract.
+The authority is hard-coded to the Cosmos SDK x/gov module account</p></td>
+              </tr>
+
+              <tr>
+                <td>ToggleConversion</td>
+                <td><a href="#evmos.erc20.v1.MsgToggleConversion">MsgToggleConversion</a></td>
+                <td><a href="#evmos.erc20.v1.MsgToggleConversionResponse">MsgToggleConversionResponse</a></td>
+                <td><p>ToggleConversion defines a governance operation for enabling/disablen a token pair conversion.
+The authority is hard-coded to the Cosmos SDK x/gov module account</p></td>
               </tr>
 
           </tbody>
@@ -953,16 +1351,6 @@ contract that is registered on the token mapping.</p></td>
               </tr>
             </thead>
             <tbody>
-
-
-
-              <tr>
-                <td>ConvertCoin</td>
-                <td>GET</td>
-                <td>/evmos/erc20/v1/tx/convert_coin</td>
-                <td></td>
-              </tr>
-
 
 
 

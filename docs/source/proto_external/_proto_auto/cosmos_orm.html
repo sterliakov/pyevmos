@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        /*margin: 1em auto;*/
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin-top: 2ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0; /* No indent on first p in td */
+      }
+
+      /* Table of fields */
+      .field-table td:nth-child(1) { /* Field */
+        width: 10em;
+      }
+      .field-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .field-table td:nth-child(3) { /* Label */
+        width: 6em;
+      }
+      .field-table td:nth-child(4) { /* Description */
+        width: auto;
+      }
+
+      /* Table of extensions */
+      .extension-table td:nth-child(1) { /* Extension */
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) { /* Base */
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) { /* Number */
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) { /* Description */
+        width: auto;
+      }
+
+      /* Table of enum values. */
+      .enum-table td:nth-child(1) { /* Name */
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) { /* Number */
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) { /* Description */
+        width: auto;
+      }
+
+      /* Table of scalar value types. */
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+      /* Table of contents. */
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+      /* File heading div */
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+      /* The 'M', 'E' and 'X' badges in the ToC */
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    <!-- User custom CSS -->
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+
+
+          <li>
+            <a href="#cosmos/orm/module/v1alpha1/module.proto">cosmos/orm/module/v1alpha1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.orm.module.v1alpha1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/orm/query/v1alpha1/query.proto">cosmos/orm/query/v1alpha1/query.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.orm.query.v1alpha1.GetRequest"><span class="badge">M</span>GetRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.orm.query.v1alpha1.GetResponse"><span class="badge">M</span>GetResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.orm.query.v1alpha1.IndexValue"><span class="badge">M</span>IndexValue</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.orm.query.v1alpha1.ListRequest"><span class="badge">M</span>ListRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.orm.query.v1alpha1.ListRequest.Prefix"><span class="badge">M</span>ListRequest.Prefix</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.orm.query.v1alpha1.ListRequest.Range"><span class="badge">M</span>ListRequest.Range</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.orm.query.v1alpha1.ListResponse"><span class="badge">M</span>ListResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.orm.query.v1alpha1.Query"><span class="badge">S</span>Query</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/orm/v1alpha1/schema.proto">cosmos/orm/v1alpha1/schema.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.orm.v1alpha1.ModuleSchemaDescriptor"><span class="badge">M</span>ModuleSchemaDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.orm.v1alpha1.ModuleSchemaDescriptor.FileEntry"><span class="badge">M</span>ModuleSchemaDescriptor.FileEntry</a>
+                </li>
+
+
+                <li>
+                  <a href="#cosmos.orm.v1alpha1.StorageType"><span class="badge">E</span>StorageType</a>
+                </li>
+
+
+                <li>
+                  <a href="#cosmos/orm/v1alpha1/schema.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/orm/v1/orm.proto">cosmos/orm/v1/orm.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.orm.v1.PrimaryKeyDescriptor"><span class="badge">M</span>PrimaryKeyDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.orm.v1.SecondaryIndexDescriptor"><span class="badge">M</span>SecondaryIndexDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.orm.v1.SingletonDescriptor"><span class="badge">M</span>SingletonDescriptor</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.orm.v1.TableDescriptor"><span class="badge">M</span>TableDescriptor</a>
+                </li>
+
+
+
+                <li>
+                  <a href="#cosmos/orm/v1/orm.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos/orm/v1/orm.proto-extensions"><span class="badge">X</span>File-level Extensions</a>
+                </li>
+
+
+            </ul>
+          </li>
+
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/orm/module/v1alpha1/module.proto">cosmos/orm/module/v1alpha1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.orm.module.v1alpha1.Module">Module</h3>
+        <p>Module defines the ORM module which adds providers to the app container for</p><p>ORM ModuleDB's and in the future will automatically register query</p><p>services for modules that use the ORM.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/orm/query/v1alpha1/query.proto">cosmos/orm/query/v1alpha1/query.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.orm.query.v1alpha1.GetRequest">GetRequest</h3>
+        <p>GetRequest is the Query/Get request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>message_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>message_name is the fully-qualified message name of the ORM table being queried. </p></td>
+                </tr>
+
+                <tr>
+                  <td>index</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>index is the index fields expression used in orm definitions. If it
+is empty, the table's primary key is assumed. If it is non-empty, it must
+refer to an unique index. </p></td>
+                </tr>
+
+                <tr>
+                  <td>values</td>
+                  <td><a href="#cosmos.orm.query.v1alpha1.IndexValue">IndexValue</a></td>
+                  <td>repeated</td>
+                  <td><p>values are the values of the fields corresponding to the requested index.
+There must be as many values provided as there are fields in the index and
+these values must correspond to the index field types. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.orm.query.v1alpha1.GetResponse">GetResponse</h3>
+        <p>GetResponse is the Query/Get response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>result</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p>result is the result of the get query. If no value is found, the gRPC
+status code NOT_FOUND will be returned. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.orm.query.v1alpha1.IndexValue">IndexValue</h3>
+        <p>IndexValue represents the value of a field in an ORM index expression.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>uint</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>uint specifies a value for an uint32, fixed32, uint64, or fixed64
+index field. </p></td>
+                </tr>
+
+                <tr>
+                  <td>int</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>int64 specifies a value for an int32, sfixed32, int64, or sfixed64
+index field. </p></td>
+                </tr>
+
+                <tr>
+                  <td>str</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>str specifies a value for a string index field. </p></td>
+                </tr>
+
+                <tr>
+                  <td>bytes</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>bytes specifies a value for a bytes index field. </p></td>
+                </tr>
+
+                <tr>
+                  <td>enum</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>enum specifies a value for an enum index field. </p></td>
+                </tr>
+
+                <tr>
+                  <td>bool</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>bool specifies a value for a bool index field. </p></td>
+                </tr>
+
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>timestamp specifies a value for a timestamp index field. </p></td>
+                </tr>
+
+                <tr>
+                  <td>duration</td>
+                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
+                  <td></td>
+                  <td><p>duration specifies a value for a duration index field. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.orm.query.v1alpha1.ListRequest">ListRequest</h3>
+        <p>ListRequest is the Query/List request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>message_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>message_name is the fully-qualified message name of the ORM table being queried. </p></td>
+                </tr>
+
+                <tr>
+                  <td>index</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>index is the index fields expression used in orm definitions. If it
+is empty, the table's primary key is assumed. </p></td>
+                </tr>
+
+                <tr>
+                  <td>prefix</td>
+                  <td><a href="#cosmos.orm.query.v1alpha1.ListRequest.Prefix">ListRequest.Prefix</a></td>
+                  <td></td>
+                  <td><p>prefix defines a prefix query. </p></td>
+                </tr>
+
+                <tr>
+                  <td>range</td>
+                  <td><a href="#cosmos.orm.query.v1alpha1.ListRequest.Range">ListRequest.Range</a></td>
+                  <td></td>
+                  <td><p>range defines a range query. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination is the pagination request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.orm.query.v1alpha1.ListRequest.Prefix">ListRequest.Prefix</h3>
+        <p>Prefix specifies the arguments to a prefix query.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>values</td>
+                  <td><a href="#cosmos.orm.query.v1alpha1.IndexValue">IndexValue</a></td>
+                  <td>repeated</td>
+                  <td><p>values specifies the index values for the prefix query.
+It is valid to special a partial prefix with fewer values than
+the number of fields in the index. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.orm.query.v1alpha1.ListRequest.Range">ListRequest.Range</h3>
+        <p>Range specifies the arguments to a range query.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>start</td>
+                  <td><a href="#cosmos.orm.query.v1alpha1.IndexValue">IndexValue</a></td>
+                  <td>repeated</td>
+                  <td><p>start specifies the starting index values for the range query.
+It is valid to provide fewer values than the number of fields in the
+index. </p></td>
+                </tr>
+
+                <tr>
+                  <td>end</td>
+                  <td><a href="#cosmos.orm.query.v1alpha1.IndexValue">IndexValue</a></td>
+                  <td>repeated</td>
+                  <td><p>end specifies the inclusive ending index values for the range query.
+It is valid to provide fewer values than the number of fields in the
+index. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.orm.query.v1alpha1.ListResponse">ListResponse</h3>
+        <p>ListResponse is the Query/List response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>results</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td>repeated</td>
+                  <td><p>results are the results of the query. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination is the pagination response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.orm.query.v1alpha1.Query">Query</h3>
+        <p>Query is a generic gRPC service for querying ORM data.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>Get</td>
+                <td><a href="#cosmos.orm.query.v1alpha1.GetRequest">GetRequest</a></td>
+                <td><a href="#cosmos.orm.query.v1alpha1.GetResponse">GetResponse</a></td>
+                <td><p>Get queries an ORM table against an unique index.</p></td>
+              </tr>
+
+              <tr>
+                <td>List</td>
+                <td><a href="#cosmos.orm.query.v1alpha1.ListRequest">ListRequest</a></td>
+                <td><a href="#cosmos.orm.query.v1alpha1.ListResponse">ListResponse</a></td>
+                <td><p>List queries an ORM table against an index.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/orm/v1alpha1/schema.proto">cosmos/orm/v1alpha1/schema.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.orm.v1alpha1.ModuleSchemaDescriptor">ModuleSchemaDescriptor</h3>
+        <p>ModuleSchemaDescriptor describe's a module's ORM schema.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>schema_file</td>
+                  <td><a href="#cosmos.orm.v1alpha1.ModuleSchemaDescriptor.FileEntry">ModuleSchemaDescriptor.FileEntry</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>prefix</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>prefix is an optional prefix that precedes all keys in this module's
+store. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.orm.v1alpha1.ModuleSchemaDescriptor.FileEntry">ModuleSchemaDescriptor.FileEntry</h3>
+        <p>FileEntry describes an ORM file used in a module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>id is a prefix that will be varint encoded and prepended to all the
+table keys specified in the file's tables. </p></td>
+                </tr>
+
+                <tr>
+                  <td>proto_file_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>proto_file_name is the name of a file .proto in that contains
+table definitions. The .proto file must be in a package that the
+module has referenced using cosmos.app.v1.ModuleDescriptor.use_package. </p></td>
+                </tr>
+
+                <tr>
+                  <td>storage_type</td>
+                  <td><a href="#cosmos.orm.v1alpha1.StorageType">StorageType</a></td>
+                  <td></td>
+                  <td><p>storage_type optionally indicates the type of storage this file's
+tables should used. If it is left unspecified, the default KV-storage
+of the app will be used. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+        <h3 id="cosmos.orm.v1alpha1.StorageType">StorageType</h3>
+        <p>StorageType</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>STORAGE_TYPE_DEFAULT_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>STORAGE_TYPE_DEFAULT_UNSPECIFIED indicates the persistent storage where all
+data is stored in the regular Merkle-tree backed KV-store.</p></td>
+              </tr>
+
+              <tr>
+                <td>STORAGE_TYPE_MEMORY</td>
+                <td>1</td>
+                <td><p>STORAGE_TYPE_MEMORY indicates in-memory storage that will be
+reloaded every time an app restarts. Tables with this type of storage
+will by default be ignored when importing and exporting a module's
+state from JSON.</p></td>
+              </tr>
+
+              <tr>
+                <td>STORAGE_TYPE_TRANSIENT</td>
+                <td>2</td>
+                <td><p>STORAGE_TYPE_TRANSIENT indicates transient storage that is reset
+at the end of every block. Tables with this type of storage
+will by default be ignored when importing and exporting a module's
+state from JSON.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+        <h3 id="cosmos/orm/v1alpha1/schema.proto-extensions">File-level Extensions</h3>
+        <table class="extension-table">
+          <thead>
+            <tr><td>Extension</td><td>Type</td><td>Base</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>module_schema</td>
+                <td><a href="#cosmos.orm.v1alpha1.ModuleSchemaDescriptor">ModuleSchemaDescriptor</a></td>
+                <td><a href="#google.protobuf.MessageOptions">.google.protobuf.MessageOptions</a></td>
+                <td>104503792</td>
+                <td><p>module_schema is used to define the ORM schema for an app module.
+All module config messages that use module_schema must also declare
+themselves as app module config messages using the cosmos.app.v1.is_module
+option.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/orm/v1/orm.proto">cosmos/orm/v1/orm.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.orm.v1.PrimaryKeyDescriptor">PrimaryKeyDescriptor</h3>
+        <p>PrimaryKeyDescriptor describes a table primary key.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>fields</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>fields is a comma-separated list of fields in the primary key. Spaces are
+not allowed. Supported field types, their encodings, and any applicable constraints
+are described below.
+  - uint32 are encoded as 2,3,4 or 5 bytes using a compact encoding that
+    is suitable for sorted iteration (not varint encoding). This type is
+    well-suited for small integers.
+  - uint64 are encoded as 2,4,6 or 9 bytes using a compact encoding that
+    is suitable for sorted iteration (not varint encoding). This type is
+    well-suited for small integers such as auto-incrementing sequences.
+  - fixed32, fixed64 are encoded as big-endian fixed width bytes and support
+  sorted iteration. These types are well-suited for encoding fixed with
+  decimals as integers.
+  - string's are encoded as raw bytes in terminal key segments and null-terminated
+  in non-terminal segments. Null characters are thus forbidden in strings.
+  string fields support sorted iteration.
+  - bytes are encoded as raw bytes in terminal segments and length-prefixed
+  with a 32-bit unsigned varint in non-terminal segments.
+  - int32, sint32, int64, sint64, sfixed32, sfixed64 are encoded as fixed width bytes with
+  an encoding that enables sorted iteration.
+  - google.protobuf.Timestamp is encoded such that values with only seconds occupy 6 bytes,
+  values including nanos occupy 9 bytes, and nil values occupy 1 byte. When iterating, nil
+  values will always be ordered last. Seconds and nanos values must conform to the officially
+  specified ranges of 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z and 0 to 999,999,999 respectively.
+  - google.protobuf.Duration is encoded as 12 bytes using an encoding that enables sorted iteration.
+  - enum fields are encoded using varint encoding and do not support sorted
+  iteration.
+  - bool fields are encoded as a single byte 0 or 1.
+
+All other fields types are unsupported in keys including repeated and
+oneof fields.
+
+Primary keys are prefixed by the varint encoded table id and the byte 0x0
+plus any additional prefix specified by the schema. </p></td>
+                </tr>
+
+                <tr>
+                  <td>auto_increment</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>auto_increment specifies that the primary key is generated by an
+auto-incrementing integer. If this is set to true fields must only
+contain one field of that is of type uint64. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.orm.v1.SecondaryIndexDescriptor">SecondaryIndexDescriptor</h3>
+        <p>PrimaryKeyDescriptor describes a table secondary index.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>fields</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>fields is a comma-separated list of fields in the index. The supported
+field types are the same as those for PrimaryKeyDescriptor.fields.
+Index keys are prefixed by the varint encoded table id and the varint
+encoded index id plus any additional prefix specified by the schema.
+
+In addition the field segments, non-unique index keys are suffixed with
+any additional primary key fields not present in the index fields so that the
+primary key can be reconstructed. Unique indexes instead of being suffixed
+store the remaining primary key fields in the value.. </p></td>
+                </tr>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>id is a non-zero integer ID that must be unique within the indexes for this
+table and less than 32768. It may be deprecated in the future when this can
+be auto-generated. </p></td>
+                </tr>
+
+                <tr>
+                  <td>unique</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>unique specifies that this an unique index. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.orm.v1.SingletonDescriptor">SingletonDescriptor</h3>
+        <p>TableDescriptor describes an ORM singleton table which has at most one instance.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>id is a non-zero integer ID that must be unique within the
+tables and singletons in this file. It may be deprecated in the future when this
+can be auto-generated. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.orm.v1.TableDescriptor">TableDescriptor</h3>
+        <p>TableDescriptor describes an ORM table.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>primary_key</td>
+                  <td><a href="#cosmos.orm.v1.PrimaryKeyDescriptor">PrimaryKeyDescriptor</a></td>
+                  <td></td>
+                  <td><p>primary_key defines the primary key for the table. </p></td>
+                </tr>
+
+                <tr>
+                  <td>index</td>
+                  <td><a href="#cosmos.orm.v1.SecondaryIndexDescriptor">SecondaryIndexDescriptor</a></td>
+                  <td>repeated</td>
+                  <td><p>index defines one or more secondary indexes. </p></td>
+                </tr>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>id is a non-zero integer ID that must be unique within the
+tables and singletons in this file. It may be deprecated in the future when this
+can be auto-generated. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos/orm/v1/orm.proto-extensions">File-level Extensions</h3>
+        <table class="extension-table">
+          <thead>
+            <tr><td>Extension</td><td>Type</td><td>Base</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>singleton</td>
+                <td><a href="#cosmos.orm.v1.SingletonDescriptor">SingletonDescriptor</a></td>
+                <td><a href="#google.protobuf.MessageOptions">.google.protobuf.MessageOptions</a></td>
+                <td>104503791</td>
+                <td><p>singleton specifies that this message will be used as an ORM singleton. It cannot
+be used together with the table option.</p></td>
+              </tr>
+
+              <tr>
+                <td>table</td>
+                <td><a href="#cosmos.orm.v1.TableDescriptor">TableDescriptor</a></td>
+                <td><a href="#google.protobuf.MessageOptions">.google.protobuf.MessageOptions</a></td>
+                <td>104503790</td>
+                <td><p>table specifies that this message will be used as an ORM table. It cannot
+be used together with the singleton option.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr>
+          <td>.proto Type</td>
+          <td>Notes</td>
+          <td>Python Type</td>
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>boolean</td>
+          </tr>
+
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>str/unicode</td>
+          </tr>
+
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>str</td>
+          </tr>
+
+      </tbody>
+    </table>

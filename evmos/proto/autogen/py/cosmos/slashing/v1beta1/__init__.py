@@ -37,13 +37,13 @@ class ValidatorSigningInfo(betterproto.Message):
 
     address: str = betterproto.string_field(1)
     start_height: int = betterproto.int64_field(2)
-    """Height at which validator was first a candidate OR was unjailed"""
+    """Height at which validator was first a candidate OR was un-jailed"""
 
     index_offset: int = betterproto.int64_field(3)
     """
-    Index which is incremented each time the validator was a bonded
-    in a block and may have signed a precommit or not. This in conjunction with the
-    `SignedBlocksWindow` param determines the index in the `MissedBlocksBitArray`.
+    Index which is incremented every time a validator is bonded in a block and
+    _may_ have signed a pre-commit or not. This in conjunction with the
+    signed_blocks_window param determines the index in the missed block bitmap.
     """
 
     jailed_until: datetime = betterproto.message_field(4)
@@ -51,15 +51,15 @@ class ValidatorSigningInfo(betterproto.Message):
 
     tombstoned: bool = betterproto.bool_field(5)
     """
-    Whether or not a validator has been tombstoned (killed out of validator set). It is
-    set
-    once the validator commits an equivocation or for any other configured misbehiavor.
+    Whether or not a validator has been tombstoned (killed out of validator
+    set). It is set once the validator commits an equivocation or for any other
+    configured misbehavior.
     """
 
     missed_blocks_counter: int = betterproto.int64_field(6)
     """
-    A counter kept to avoid unnecessary array reads.
-    Note that `Sum(MissedBlocksBitArray)` always equals `MissedBlocksCounter`.
+    A counter of missed (unsigned) blocks. It is used to avoid unnecessary
+    reads in the missed block bitmap.
     """
 
 
@@ -79,7 +79,7 @@ class GenesisState(betterproto.Message):
     """GenesisState defines the slashing module's genesis state."""
 
     params: "Params" = betterproto.message_field(1)
-    """params defines all the paramaters of related to deposit."""
+    """params defines all the parameters of the module."""
 
     signing_infos: List["SigningInfo"] = betterproto.message_field(2)
     """
@@ -203,6 +203,37 @@ class MsgUnjailResponse(betterproto.Message):
     pass
 
 
+@dataclass(eq=False, repr=False)
+class MsgUpdateParams(betterproto.Message):
+    """
+    MsgUpdateParams is the Msg/UpdateParams request type.
+    Since: cosmos-sdk 0.47
+    """
+
+    authority: str = betterproto.string_field(1)
+    """
+    authority is the address that controls the module (defaults to x/gov unless
+    overwritten).
+    """
+
+    params: "Params" = betterproto.message_field(2)
+    """
+    params defines the x/slashing parameters to update.
+    NOTE: All parameters must be supplied.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateParamsResponse(betterproto.Message):
+    """
+    MsgUpdateParamsResponse defines the response structure for executing a
+    MsgUpdateParams message.
+    Since: cosmos-sdk 0.47
+    """
+
+    pass
+
+
 class QueryStub(betterproto.ServiceStub):
     async def params(
         self,
@@ -269,6 +300,23 @@ class MsgStub(betterproto.ServiceStub):
             "/cosmos.slashing.v1beta1.Msg/Unjail",
             msg_unjail,
             MsgUnjailResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def update_params(
+        self,
+        msg_update_params: "MsgUpdateParams",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgUpdateParamsResponse":
+        return await self._unary_unary(
+            "/cosmos.slashing.v1beta1.Msg/UpdateParams",
+            msg_update_params,
+            MsgUpdateParamsResponse,
             timeout=timeout,
             deadline=deadline,
             metadata=metadata,
@@ -341,11 +389,23 @@ class MsgBase(ServiceBase):
     async def unjail(self, msg_unjail: "MsgUnjail") -> "MsgUnjailResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def update_params(
+        self, msg_update_params: "MsgUpdateParams"
+    ) -> "MsgUpdateParamsResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
     async def __rpc_unjail(
         self, stream: "grpclib.server.Stream[MsgUnjail, MsgUnjailResponse]"
     ) -> None:
         request = await stream.recv_message()
         response = await self.unjail(request)
+        await stream.send_message(response)
+
+    async def __rpc_update_params(
+        self, stream: "grpclib.server.Stream[MsgUpdateParams, MsgUpdateParamsResponse]"
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.update_params(request)
         await stream.send_message(response)
 
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
@@ -355,5 +415,11 @@ class MsgBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgUnjail,
                 MsgUnjailResponse,
+            ),
+            "/cosmos.slashing.v1beta1.Msg/UpdateParams": grpclib.const.Handler(
+                self.__rpc_update_params,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgUpdateParams,
+                MsgUpdateParamsResponse,
             ),
         }

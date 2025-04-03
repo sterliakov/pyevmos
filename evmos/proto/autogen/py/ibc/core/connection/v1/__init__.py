@@ -2,7 +2,7 @@
 # sources: ibc/core/connection/v1/connection.proto, ibc/core/connection/v1/genesis.proto, ibc/core/connection/v1/query.proto, ibc/core/connection/v1/tx.proto
 # plugin: python-betterproto
 # This file has been @generated
-
+import warnings
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,
@@ -169,10 +169,11 @@ class Params(betterproto.Message):
 
     max_expected_time_per_block: int = betterproto.uint64_field(1)
     """
-    maximum expected time per block (in nanoseconds), used to enforce block
-    delay. This parameter should reflect the largest amount of time that the
-    chain might reasonably take to produce the next block under normal
-    operating conditions. A safe choice is 3-5x the expected time per block.
+    maximum expected time per block (in nanoseconds), used to enforce block delay. This
+    parameter should reflect the
+    largest amount of time that the chain might reasonably take to produce the next
+    block under normal operating
+    conditions. A safe choice is 3-5x the expected time per block.
     """
 
 
@@ -343,6 +344,27 @@ class QueryConnectionConsensusStateResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class QueryConnectionParamsRequest(betterproto.Message):
+    """
+    QueryConnectionParamsRequest is the request type for the Query/ConnectionParams RPC
+    method.
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class QueryConnectionParamsResponse(betterproto.Message):
+    """
+    QueryConnectionParamsResponse is the response type for the Query/ConnectionParams
+    RPC method.
+    """
+
+    params: "Params" = betterproto.message_field(1)
+    """params defines the parameters of the module."""
+
+
+@dataclass(eq=False, repr=False)
 class MsgConnectionOpenInit(betterproto.Message):
     """
     MsgConnectionOpenInit defines the msg sent by an account on Chain A to
@@ -376,8 +398,8 @@ class MsgConnectionOpenTry(betterproto.Message):
     client_id: str = betterproto.string_field(1)
     previous_connection_id: str = betterproto.string_field(2)
     """
-    in the case of crossing hello's, when both chains call OpenInit, we need
-    the connection identifier of the previous connection in state INIT
+    Deprecated: this field is unused. Crossing hellos are no longer supported in core
+    IBC.
     """
 
     client_state: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(3)
@@ -399,6 +421,41 @@ class MsgConnectionOpenTry(betterproto.Message):
 
     consensus_height: "__client_v1__.Height" = betterproto.message_field(11)
     signer: str = betterproto.string_field(12)
+    host_consensus_state_proof: bytes = betterproto.bytes_field(13)
+    """
+    optional proof data for host state machines that are unable to introspect their own
+    consensus state
+    """
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+        if self.is_set("previous_connection_id"):
+            warnings.warn(
+                "MsgConnectionOpenTry.previous_connection_id is deprecated",
+                DeprecationWarning,
+            )
+        if self.is_set("client_state"):
+            warnings.warn(
+                "MsgConnectionOpenTry.client_state is deprecated", DeprecationWarning
+            )
+        if self.is_set("proof_client"):
+            warnings.warn(
+                "MsgConnectionOpenTry.proof_client is deprecated", DeprecationWarning
+            )
+        if self.is_set("proof_consensus"):
+            warnings.warn(
+                "MsgConnectionOpenTry.proof_consensus is deprecated", DeprecationWarning
+            )
+        if self.is_set("consensus_height"):
+            warnings.warn(
+                "MsgConnectionOpenTry.consensus_height is deprecated",
+                DeprecationWarning,
+            )
+        if self.is_set("host_consensus_state_proof"):
+            warnings.warn(
+                "MsgConnectionOpenTry.host_consensus_state_proof is deprecated",
+                DeprecationWarning,
+            )
 
 
 @dataclass(eq=False, repr=False)
@@ -434,6 +491,36 @@ class MsgConnectionOpenAck(betterproto.Message):
 
     consensus_height: "__client_v1__.Height" = betterproto.message_field(9)
     signer: str = betterproto.string_field(10)
+    host_consensus_state_proof: bytes = betterproto.bytes_field(11)
+    """
+    optional proof data for host state machines that are unable to introspect their own
+    consensus state
+    """
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+        if self.is_set("client_state"):
+            warnings.warn(
+                "MsgConnectionOpenAck.client_state is deprecated", DeprecationWarning
+            )
+        if self.is_set("proof_client"):
+            warnings.warn(
+                "MsgConnectionOpenAck.proof_client is deprecated", DeprecationWarning
+            )
+        if self.is_set("proof_consensus"):
+            warnings.warn(
+                "MsgConnectionOpenAck.proof_consensus is deprecated", DeprecationWarning
+            )
+        if self.is_set("consensus_height"):
+            warnings.warn(
+                "MsgConnectionOpenAck.consensus_height is deprecated",
+                DeprecationWarning,
+            )
+        if self.is_set("host_consensus_state_proof"):
+            warnings.warn(
+                "MsgConnectionOpenAck.host_consensus_state_proof is deprecated",
+                DeprecationWarning,
+            )
 
 
 @dataclass(eq=False, repr=False)
@@ -464,6 +551,27 @@ class MsgConnectionOpenConfirmResponse(betterproto.Message):
     MsgConnectionOpenConfirmResponse defines the Msg/ConnectionOpenConfirm
     response type.
     """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateParams(betterproto.Message):
+    """MsgUpdateParams defines the sdk.Msg type to update the connection parameters."""
+
+    signer: str = betterproto.string_field(1)
+    """signer address"""
+
+    params: "Params" = betterproto.message_field(2)
+    """
+    params defines the connection parameters to update.
+    NOTE: All parameters must be supplied.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateParamsResponse(betterproto.Message):
+    """MsgUpdateParamsResponse defines the MsgUpdateParams response type."""
 
     pass
 
@@ -554,6 +662,23 @@ class QueryStub(betterproto.ServiceStub):
             metadata=metadata,
         )
 
+    async def connection_params(
+        self,
+        query_connection_params_request: "QueryConnectionParamsRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryConnectionParamsResponse":
+        return await self._unary_unary(
+            "/ibc.core.connection.v1.Query/ConnectionParams",
+            query_connection_params_request,
+            QueryConnectionParamsResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
 
 class MsgStub(betterproto.ServiceStub):
     async def connection_open_init(
@@ -624,6 +749,23 @@ class MsgStub(betterproto.ServiceStub):
             metadata=metadata,
         )
 
+    async def update_connection_params(
+        self,
+        msg_update_params: "MsgUpdateParams",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgUpdateParamsResponse":
+        return await self._unary_unary(
+            "/ibc.core.connection.v1.Msg/UpdateConnectionParams",
+            msg_update_params,
+            MsgUpdateParamsResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
 
 class QueryBase(ServiceBase):
     async def connection(
@@ -650,6 +792,11 @@ class QueryBase(ServiceBase):
         self,
         query_connection_consensus_state_request: "QueryConnectionConsensusStateRequest",
     ) -> "QueryConnectionConsensusStateResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def connection_params(
+        self, query_connection_params_request: "QueryConnectionParamsRequest"
+    ) -> "QueryConnectionParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_connection(
@@ -692,6 +839,14 @@ class QueryBase(ServiceBase):
         response = await self.connection_consensus_state(request)
         await stream.send_message(response)
 
+    async def __rpc_connection_params(
+        self,
+        stream: "grpclib.server.Stream[QueryConnectionParamsRequest, QueryConnectionParamsResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.connection_params(request)
+        await stream.send_message(response)
+
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
             "/ibc.core.connection.v1.Query/Connection": grpclib.const.Handler(
@@ -724,6 +879,12 @@ class QueryBase(ServiceBase):
                 QueryConnectionConsensusStateRequest,
                 QueryConnectionConsensusStateResponse,
             ),
+            "/ibc.core.connection.v1.Query/ConnectionParams": grpclib.const.Handler(
+                self.__rpc_connection_params,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                QueryConnectionParamsRequest,
+                QueryConnectionParamsResponse,
+            ),
         }
 
 
@@ -746,6 +907,11 @@ class MsgBase(ServiceBase):
     async def connection_open_confirm(
         self, msg_connection_open_confirm: "MsgConnectionOpenConfirm"
     ) -> "MsgConnectionOpenConfirmResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def update_connection_params(
+        self, msg_update_params: "MsgUpdateParams"
+    ) -> "MsgUpdateParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_connection_open_init(
@@ -780,6 +946,13 @@ class MsgBase(ServiceBase):
         response = await self.connection_open_confirm(request)
         await stream.send_message(response)
 
+    async def __rpc_update_connection_params(
+        self, stream: "grpclib.server.Stream[MsgUpdateParams, MsgUpdateParamsResponse]"
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.update_connection_params(request)
+        await stream.send_message(response)
+
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
             "/ibc.core.connection.v1.Msg/ConnectionOpenInit": grpclib.const.Handler(
@@ -805,5 +978,11 @@ class MsgBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgConnectionOpenConfirm,
                 MsgConnectionOpenConfirmResponse,
+            ),
+            "/ibc.core.connection.v1.Msg/UpdateConnectionParams": grpclib.const.Handler(
+                self.__rpc_update_connection_params,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgUpdateParams,
+                MsgUpdateParamsResponse,
             ),
         }

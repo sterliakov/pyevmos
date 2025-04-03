@@ -167,6 +167,21 @@
 
 
           <li>
+            <a href="#cosmos/mint/module/v1/module.proto">cosmos/mint/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.mint.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/mint/v1beta1/genesis.proto">cosmos/mint/v1beta1/genesis.proto</a>
             <ul>
 
@@ -238,9 +253,77 @@
             </ul>
           </li>
 
+
+          <li>
+            <a href="#cosmos/mint/v1beta1/tx.proto">cosmos/mint/v1beta1/tx.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.mint.v1beta1.MsgUpdateParams"><span class="badge">M</span>MsgUpdateParams</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.mint.v1beta1.MsgUpdateParamsResponse"><span class="badge">M</span>MsgUpdateParamsResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.mint.v1beta1.Msg"><span class="badge">S</span>Msg</a>
+                </li>
+
+            </ul>
+          </li>
+
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/mint/module/v1/module.proto">cosmos/mint/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.mint.module.v1.Module">Module</h3>
+        <p>Module is the config object of the mint module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>fee_collector_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority defines the custom module authority. If not set, defaults to the governance module. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -271,7 +354,7 @@
                   <td>params</td>
                   <td><a href="#cosmos.mint.v1beta1.Params">Params</a></td>
                   <td></td>
-                  <td><p>params defines all the paramaters of the module. </p></td>
+                  <td><p>params defines all the parameters of the module. </p></td>
                 </tr>
 
             </tbody>
@@ -327,7 +410,7 @@
 
 
         <h3 id="cosmos.mint.v1beta1.Params">Params</h3>
-        <p>Params holds parameters for the mint module.</p>
+        <p>Params defines the parameters for the x/mint module.</p>
 
 
           <table class="field-table">
@@ -577,6 +660,82 @@
 
             </tbody>
           </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/mint/v1beta1/tx.proto">cosmos/mint/v1beta1/tx.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.mint.v1beta1.MsgUpdateParams">MsgUpdateParams</h3>
+        <p>MsgUpdateParams is the Msg/UpdateParams request type.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address that controls the module (defaults to x/gov unless overwritten). </p></td>
+                </tr>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#cosmos.mint.v1beta1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines the x/mint parameters to update.
+
+NOTE: All parameters must be supplied. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.mint.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</h3>
+        <p>MsgUpdateParamsResponse defines the response structure for executing a</p><p>MsgUpdateParams message.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.mint.v1beta1.Msg">Msg</h3>
+        <p>Msg defines the x/mint Msg service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>UpdateParams</td>
+                <td><a href="#cosmos.mint.v1beta1.MsgUpdateParams">MsgUpdateParams</a></td>
+                <td><a href="#cosmos.mint.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</a></td>
+                <td><p>UpdateParams defines a governance operation for updating the x/mint module
+parameters. The authority is defaults to the x/gov module account.
+
+Since: cosmos-sdk 0.47</p></td>
+              </tr>
+
+          </tbody>
+        </table>
 
 
 

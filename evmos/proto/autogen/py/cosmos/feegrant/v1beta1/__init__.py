@@ -33,14 +33,14 @@ if TYPE_CHECKING:
 @dataclass(eq=False, repr=False)
 class BasicAllowance(betterproto.Message):
     """
-    BasicAllowance implements Allowance with a one-time grant of tokens
+    BasicAllowance implements Allowance with a one-time grant of coins
     that optionally expires. The grantee can use up to SpendLimit to cover fees.
     """
 
     spend_limit: List["__base_v1_beta1__.Coin"] = betterproto.message_field(1)
     """
-    spend_limit specifies the maximum amount of tokens that can be spent
-    by this allowance and will be updated as tokens are spent. If it is
+    spend_limit specifies the maximum amount of coins that can be spent
+    by this allowance and will be updated as coins are spent. If it is
     empty, there is no spend limit and any amount of coins can be spent.
     """
 
@@ -89,7 +89,7 @@ class AllowedMsgAllowance(betterproto.Message):
     """AllowedMsgAllowance creates allowance only for specified message types."""
 
     allowance: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(1)
-    """allowance can be any of basic and filtered fee allowance."""
+    """allowance can be any of basic and periodic fee allowance."""
 
     allowed_messages: List[str] = betterproto.string_field(2)
     """allowed_messages are the messages for which the grantee has the access."""
@@ -109,7 +109,7 @@ class Grant(betterproto.Message):
     """
 
     allowance: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(3)
-    """allowance can be any of basic and filtered fee allowance."""
+    """allowance can be any of basic, periodic, allowed fee allowance."""
 
 
 @dataclass(eq=False, repr=False)
@@ -168,6 +168,34 @@ class QueryAllowancesResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class QueryAllowancesByGranterRequest(betterproto.Message):
+    """
+    QueryAllowancesByGranterRequest is the request type for the
+    Query/AllowancesByGranter RPC method.
+    Since: cosmos-sdk 0.46
+    """
+
+    granter: str = betterproto.string_field(1)
+    pagination: "__base_query_v1_beta1__.PageRequest" = betterproto.message_field(2)
+    """pagination defines an pagination for the request."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryAllowancesByGranterResponse(betterproto.Message):
+    """
+    QueryAllowancesByGranterResponse is the response type for the
+    Query/AllowancesByGranter RPC method.
+    Since: cosmos-sdk 0.46
+    """
+
+    allowances: List["Grant"] = betterproto.message_field(1)
+    """allowances that have been issued by the granter."""
+
+    pagination: "__base_query_v1_beta1__.PageResponse" = betterproto.message_field(2)
+    """pagination defines an pagination for the response."""
+
+
+@dataclass(eq=False, repr=False)
 class MsgGrantAllowance(betterproto.Message):
     """
     MsgGrantAllowance adds permission for Grantee to spend up to Allowance
@@ -184,7 +212,7 @@ class MsgGrantAllowance(betterproto.Message):
     """
 
     allowance: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(3)
-    """allowance can be any of basic and filtered fee allowance."""
+    """allowance can be any of basic, periodic, allowed fee allowance."""
 
 
 @dataclass(eq=False, repr=False)
@@ -214,6 +242,27 @@ class MsgRevokeAllowance(betterproto.Message):
 class MsgRevokeAllowanceResponse(betterproto.Message):
     """
     MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response type.
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgPruneAllowances(betterproto.Message):
+    """
+    MsgPruneAllowances prunes expired fee allowances.
+    Since cosmos-sdk 0.50
+    """
+
+    pruner: str = betterproto.string_field(1)
+    """pruner is the address of the user pruning expired allowances."""
+
+
+@dataclass(eq=False, repr=False)
+class MsgPruneAllowancesResponse(betterproto.Message):
+    """
+    MsgPruneAllowancesResponse defines the Msg/PruneAllowancesResponse response type.
+    Since cosmos-sdk 0.50
     """
 
     pass
@@ -249,6 +298,23 @@ class QueryStub(betterproto.ServiceStub):
             "/cosmos.feegrant.v1beta1.Query/Allowances",
             query_allowances_request,
             QueryAllowancesResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def allowances_by_granter(
+        self,
+        query_allowances_by_granter_request: "QueryAllowancesByGranterRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryAllowancesByGranterResponse":
+        return await self._unary_unary(
+            "/cosmos.feegrant.v1beta1.Query/AllowancesByGranter",
+            query_allowances_by_granter_request,
+            QueryAllowancesByGranterResponse,
             timeout=timeout,
             deadline=deadline,
             metadata=metadata,
@@ -290,6 +356,23 @@ class MsgStub(betterproto.ServiceStub):
             metadata=metadata,
         )
 
+    async def prune_allowances(
+        self,
+        msg_prune_allowances: "MsgPruneAllowances",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgPruneAllowancesResponse":
+        return await self._unary_unary(
+            "/cosmos.feegrant.v1beta1.Msg/PruneAllowances",
+            msg_prune_allowances,
+            MsgPruneAllowancesResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
 
 class QueryBase(ServiceBase):
     async def allowance(
@@ -300,6 +383,11 @@ class QueryBase(ServiceBase):
     async def allowances(
         self, query_allowances_request: "QueryAllowancesRequest"
     ) -> "QueryAllowancesResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def allowances_by_granter(
+        self, query_allowances_by_granter_request: "QueryAllowancesByGranterRequest"
+    ) -> "QueryAllowancesByGranterResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_allowance(
@@ -318,6 +406,14 @@ class QueryBase(ServiceBase):
         response = await self.allowances(request)
         await stream.send_message(response)
 
+    async def __rpc_allowances_by_granter(
+        self,
+        stream: "grpclib.server.Stream[QueryAllowancesByGranterRequest, QueryAllowancesByGranterResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.allowances_by_granter(request)
+        await stream.send_message(response)
+
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
             "/cosmos.feegrant.v1beta1.Query/Allowance": grpclib.const.Handler(
@@ -332,6 +428,12 @@ class QueryBase(ServiceBase):
                 QueryAllowancesRequest,
                 QueryAllowancesResponse,
             ),
+            "/cosmos.feegrant.v1beta1.Query/AllowancesByGranter": grpclib.const.Handler(
+                self.__rpc_allowances_by_granter,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                QueryAllowancesByGranterRequest,
+                QueryAllowancesByGranterResponse,
+            ),
         }
 
 
@@ -344,6 +446,11 @@ class MsgBase(ServiceBase):
     async def revoke_allowance(
         self, msg_revoke_allowance: "MsgRevokeAllowance"
     ) -> "MsgRevokeAllowanceResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def prune_allowances(
+        self, msg_prune_allowances: "MsgPruneAllowances"
+    ) -> "MsgPruneAllowancesResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_grant_allowance(
@@ -362,6 +469,14 @@ class MsgBase(ServiceBase):
         response = await self.revoke_allowance(request)
         await stream.send_message(response)
 
+    async def __rpc_prune_allowances(
+        self,
+        stream: "grpclib.server.Stream[MsgPruneAllowances, MsgPruneAllowancesResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.prune_allowances(request)
+        await stream.send_message(response)
+
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
             "/cosmos.feegrant.v1beta1.Msg/GrantAllowance": grpclib.const.Handler(
@@ -375,5 +490,11 @@ class MsgBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgRevokeAllowance,
                 MsgRevokeAllowanceResponse,
+            ),
+            "/cosmos.feegrant.v1beta1.Msg/PruneAllowances": grpclib.const.Handler(
+                self.__rpc_prune_allowances,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgPruneAllowances,
+                MsgPruneAllowancesResponse,
             ),
         }

@@ -2,7 +2,7 @@
 # sources: cosmos/distribution/v1beta1/distribution.proto, cosmos/distribution/v1beta1/genesis.proto, cosmos/distribution/v1beta1/query.proto, cosmos/distribution/v1beta1/tx.proto
 # plugin: python-betterproto
 # This file has been @generated
-
+import warnings
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,
@@ -31,8 +31,29 @@ class Params(betterproto.Message):
 
     community_tax: str = betterproto.string_field(1)
     base_proposer_reward: str = betterproto.string_field(2)
+    """
+    Deprecated: The base_proposer_reward field is deprecated and is no longer used
+    in the x/distribution module's reward mechanism.
+    """
+
     bonus_proposer_reward: str = betterproto.string_field(3)
+    """
+    Deprecated: The bonus_proposer_reward field is deprecated and is no longer used
+    in the x/distribution module's reward mechanism.
+    """
+
     withdraw_addr_enabled: bool = betterproto.bool_field(4)
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+        if self.is_set("base_proposer_reward"):
+            warnings.warn(
+                "Params.base_proposer_reward is deprecated", DeprecationWarning
+            )
+        if self.is_set("bonus_proposer_reward"):
+            warnings.warn(
+                "Params.bonus_proposer_reward is deprecated", DeprecationWarning
+            )
 
 
 @dataclass(eq=False, repr=False)
@@ -123,12 +144,20 @@ class CommunityPoolSpendProposal(betterproto.Message):
     CommunityPoolSpendProposal details a proposal for use of community funds,
     together with how many coins are proposed to be spent, and to which
     recipient account.
+    Deprecated: Do not use. As of the Cosmos SDK release v0.47.x, there is no
+    longer a need for an explicit CommunityPoolSpendProposal. To spend community
+    pool funds, a simple MsgCommunityPoolSpend can be invoked from the x/gov
+    module via a v1 governance proposal.
     """
 
     title: str = betterproto.string_field(1)
     description: str = betterproto.string_field(2)
     recipient: str = betterproto.string_field(3)
     amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(4)
+
+    def __post_init__(self) -> None:
+        warnings.warn("CommunityPoolSpendProposal is deprecated", DeprecationWarning)
+        super().__post_init__()
 
 
 @dataclass(eq=False, repr=False)
@@ -197,7 +226,7 @@ class ValidatorOutstandingRewardsRecord(betterproto.Message):
     outstanding_rewards: List["__base_v1_beta1__.DecCoin"] = betterproto.message_field(
         2
     )
-    """outstanding_rewards represents the oustanding rewards of a validator."""
+    """outstanding_rewards represents the outstanding rewards of a validator."""
 
 
 @dataclass(eq=False, repr=False)
@@ -264,7 +293,7 @@ class ValidatorSlashEventRecord(betterproto.Message):
     """validator_address is the address of the validator."""
 
     height: int = betterproto.uint64_field(2)
-    """height defines the block height at which the slash event occured."""
+    """height defines the block height at which the slash event occurred."""
 
     period: int = betterproto.uint64_field(3)
     """period is the period of the slash event."""
@@ -278,7 +307,7 @@ class GenesisState(betterproto.Message):
     """GenesisState defines the distribution module's genesis state."""
 
     params: "Params" = betterproto.message_field(1)
-    """params defines all the paramaters of the module."""
+    """params defines all the parameters of the module."""
 
     fee_pool: "FeePool" = betterproto.message_field(2)
     """fee_pool defines the fee pool at genesis."""
@@ -299,7 +328,7 @@ class GenesisState(betterproto.Message):
     validator_accumulated_commissions: List["ValidatorAccumulatedCommissionRecord"] = (
         betterproto.message_field(6)
     )
-    """fee_pool defines the accumulated commisions of all validators at genesis."""
+    """fee_pool defines the accumulated commissions of all validators at genesis."""
 
     validator_historical_rewards: List["ValidatorHistoricalRewardsRecord"] = (
         betterproto.message_field(7)
@@ -335,6 +364,34 @@ class QueryParamsResponse(betterproto.Message):
 
     params: "Params" = betterproto.message_field(1)
     """params defines the parameters of the module."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryValidatorDistributionInfoRequest(betterproto.Message):
+    """
+    QueryValidatorDistributionInfoRequest is the request type for the
+    Query/ValidatorDistributionInfo RPC method.
+    """
+
+    validator_address: str = betterproto.string_field(1)
+    """validator_address defines the validator address to query for."""
+
+
+@dataclass(eq=False, repr=False)
+class QueryValidatorDistributionInfoResponse(betterproto.Message):
+    """
+    QueryValidatorDistributionInfoResponse is the response type for the
+    Query/ValidatorDistributionInfo RPC method.
+    """
+
+    operator_address: str = betterproto.string_field(1)
+    """operator_address defines the validator operator address."""
+
+    self_bond_rewards: List["__base_v1_beta1__.DecCoin"] = betterproto.message_field(2)
+    """self_bond_rewards defines the self delegations rewards."""
+
+    commission: List["__base_v1_beta1__.DecCoin"] = betterproto.message_field(3)
+    """commission defines the commission the validator received."""
 
 
 @dataclass(eq=False, repr=False)
@@ -377,7 +434,7 @@ class QueryValidatorCommissionResponse(betterproto.Message):
     """
 
     commission: "ValidatorAccumulatedCommission" = betterproto.message_field(1)
-    """commission defines the commision the validator received."""
+    """commission defines the commission the validator received."""
 
 
 @dataclass(eq=False, repr=False)
@@ -543,7 +600,8 @@ class MsgSetWithdrawAddress(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class MsgSetWithdrawAddressResponse(betterproto.Message):
     """
-    MsgSetWithdrawAddressResponse defines the Msg/SetWithdrawAddress response type.
+    MsgSetWithdrawAddressResponse defines the Msg/SetWithdrawAddress response
+    type.
     """
 
     pass
@@ -563,11 +621,12 @@ class MsgWithdrawDelegatorReward(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class MsgWithdrawDelegatorRewardResponse(betterproto.Message):
     """
-    MsgWithdrawDelegatorRewardResponse defines the Msg/WithdrawDelegatorReward response
-    type.
+    MsgWithdrawDelegatorRewardResponse defines the Msg/WithdrawDelegatorReward
+    response type.
     """
 
-    pass
+    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(1)
+    """Since: cosmos-sdk 0.46"""
 
 
 @dataclass(eq=False, repr=False)
@@ -583,11 +642,12 @@ class MsgWithdrawValidatorCommission(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class MsgWithdrawValidatorCommissionResponse(betterproto.Message):
     """
-    MsgWithdrawValidatorCommissionResponse defines the Msg/WithdrawValidatorCommission
-    response type.
+    MsgWithdrawValidatorCommissionResponse defines the
+    Msg/WithdrawValidatorCommission response type.
     """
 
-    pass
+    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(1)
+    """Since: cosmos-sdk 0.46"""
 
 
 @dataclass(eq=False, repr=False)
@@ -608,6 +668,91 @@ class MsgFundCommunityPoolResponse(betterproto.Message):
     pass
 
 
+@dataclass(eq=False, repr=False)
+class MsgUpdateParams(betterproto.Message):
+    """
+    MsgUpdateParams is the Msg/UpdateParams request type.
+    Since: cosmos-sdk 0.47
+    """
+
+    authority: str = betterproto.string_field(1)
+    """
+    authority is the address that controls the module (defaults to x/gov unless
+    overwritten).
+    """
+
+    params: "Params" = betterproto.message_field(2)
+    """
+    params defines the x/distribution parameters to update.
+    NOTE: All parameters must be supplied.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateParamsResponse(betterproto.Message):
+    """
+    MsgUpdateParamsResponse defines the response structure for executing a
+    MsgUpdateParams message.
+    Since: cosmos-sdk 0.47
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgCommunityPoolSpend(betterproto.Message):
+    """
+    MsgCommunityPoolSpend defines a message for sending tokens from the community
+    pool to another account. This message is typically executed via a governance
+    proposal with the governance module being the executing authority.
+    Since: cosmos-sdk 0.47
+    """
+
+    authority: str = betterproto.string_field(1)
+    """
+    authority is the address that controls the module (defaults to x/gov unless
+    overwritten).
+    """
+
+    recipient: str = betterproto.string_field(2)
+    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(3)
+
+
+@dataclass(eq=False, repr=False)
+class MsgCommunityPoolSpendResponse(betterproto.Message):
+    """
+    MsgCommunityPoolSpendResponse defines the response to executing a
+    MsgCommunityPoolSpend message.
+    Since: cosmos-sdk 0.47
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgDepositValidatorRewardsPool(betterproto.Message):
+    """
+    DepositValidatorRewardsPool defines the request structure to provide
+    additional rewards to delegators from a specific validator.
+    Since: cosmos-sdk 0.50
+    """
+
+    depositor: str = betterproto.string_field(1)
+    validator_address: str = betterproto.string_field(2)
+    amount: List["__base_v1_beta1__.Coin"] = betterproto.message_field(3)
+
+
+@dataclass(eq=False, repr=False)
+class MsgDepositValidatorRewardsPoolResponse(betterproto.Message):
+    """
+    MsgDepositValidatorRewardsPoolResponse defines the response to executing a
+    MsgDepositValidatorRewardsPool message.
+    Since: cosmos-sdk 0.50
+    """
+
+    pass
+
+
 class QueryStub(betterproto.ServiceStub):
     async def params(
         self,
@@ -621,6 +766,23 @@ class QueryStub(betterproto.ServiceStub):
             "/cosmos.distribution.v1beta1.Query/Params",
             query_params_request,
             QueryParamsResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def validator_distribution_info(
+        self,
+        query_validator_distribution_info_request: "QueryValidatorDistributionInfoRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryValidatorDistributionInfoResponse":
+        return await self._unary_unary(
+            "/cosmos.distribution.v1beta1.Query/ValidatorDistributionInfo",
+            query_validator_distribution_info_request,
+            QueryValidatorDistributionInfoResponse,
             timeout=timeout,
             deadline=deadline,
             metadata=metadata,
@@ -832,11 +994,68 @@ class MsgStub(betterproto.ServiceStub):
             metadata=metadata,
         )
 
+    async def update_params(
+        self,
+        msg_update_params: "MsgUpdateParams",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgUpdateParamsResponse":
+        return await self._unary_unary(
+            "/cosmos.distribution.v1beta1.Msg/UpdateParams",
+            msg_update_params,
+            MsgUpdateParamsResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def community_pool_spend(
+        self,
+        msg_community_pool_spend: "MsgCommunityPoolSpend",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgCommunityPoolSpendResponse":
+        return await self._unary_unary(
+            "/cosmos.distribution.v1beta1.Msg/CommunityPoolSpend",
+            msg_community_pool_spend,
+            MsgCommunityPoolSpendResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def deposit_validator_rewards_pool(
+        self,
+        msg_deposit_validator_rewards_pool: "MsgDepositValidatorRewardsPool",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgDepositValidatorRewardsPoolResponse":
+        return await self._unary_unary(
+            "/cosmos.distribution.v1beta1.Msg/DepositValidatorRewardsPool",
+            msg_deposit_validator_rewards_pool,
+            MsgDepositValidatorRewardsPoolResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
 
 class QueryBase(ServiceBase):
     async def params(
         self, query_params_request: "QueryParamsRequest"
     ) -> "QueryParamsResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def validator_distribution_info(
+        self,
+        query_validator_distribution_info_request: "QueryValidatorDistributionInfoRequest",
+    ) -> "QueryValidatorDistributionInfoResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def validator_outstanding_rewards(
@@ -887,6 +1106,14 @@ class QueryBase(ServiceBase):
     ) -> None:
         request = await stream.recv_message()
         response = await self.params(request)
+        await stream.send_message(response)
+
+    async def __rpc_validator_distribution_info(
+        self,
+        stream: "grpclib.server.Stream[QueryValidatorDistributionInfoRequest, QueryValidatorDistributionInfoResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.validator_distribution_info(request)
         await stream.send_message(response)
 
     async def __rpc_validator_outstanding_rewards(
@@ -961,6 +1188,12 @@ class QueryBase(ServiceBase):
                 QueryParamsRequest,
                 QueryParamsResponse,
             ),
+            "/cosmos.distribution.v1beta1.Query/ValidatorDistributionInfo": grpclib.const.Handler(
+                self.__rpc_validator_distribution_info,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                QueryValidatorDistributionInfoRequest,
+                QueryValidatorDistributionInfoResponse,
+            ),
             "/cosmos.distribution.v1beta1.Query/ValidatorOutstandingRewards": grpclib.const.Handler(
                 self.__rpc_validator_outstanding_rewards,
                 grpclib.const.Cardinality.UNARY_UNARY,
@@ -1033,6 +1266,21 @@ class MsgBase(ServiceBase):
     ) -> "MsgFundCommunityPoolResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def update_params(
+        self, msg_update_params: "MsgUpdateParams"
+    ) -> "MsgUpdateParamsResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def community_pool_spend(
+        self, msg_community_pool_spend: "MsgCommunityPoolSpend"
+    ) -> "MsgCommunityPoolSpendResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def deposit_validator_rewards_pool(
+        self, msg_deposit_validator_rewards_pool: "MsgDepositValidatorRewardsPool"
+    ) -> "MsgDepositValidatorRewardsPoolResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
     async def __rpc_set_withdraw_address(
         self,
         stream: "grpclib.server.Stream[MsgSetWithdrawAddress, MsgSetWithdrawAddressResponse]",
@@ -1065,6 +1313,29 @@ class MsgBase(ServiceBase):
         response = await self.fund_community_pool(request)
         await stream.send_message(response)
 
+    async def __rpc_update_params(
+        self, stream: "grpclib.server.Stream[MsgUpdateParams, MsgUpdateParamsResponse]"
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.update_params(request)
+        await stream.send_message(response)
+
+    async def __rpc_community_pool_spend(
+        self,
+        stream: "grpclib.server.Stream[MsgCommunityPoolSpend, MsgCommunityPoolSpendResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.community_pool_spend(request)
+        await stream.send_message(response)
+
+    async def __rpc_deposit_validator_rewards_pool(
+        self,
+        stream: "grpclib.server.Stream[MsgDepositValidatorRewardsPool, MsgDepositValidatorRewardsPoolResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.deposit_validator_rewards_pool(request)
+        await stream.send_message(response)
+
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
             "/cosmos.distribution.v1beta1.Msg/SetWithdrawAddress": grpclib.const.Handler(
@@ -1090,5 +1361,23 @@ class MsgBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgFundCommunityPool,
                 MsgFundCommunityPoolResponse,
+            ),
+            "/cosmos.distribution.v1beta1.Msg/UpdateParams": grpclib.const.Handler(
+                self.__rpc_update_params,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgUpdateParams,
+                MsgUpdateParamsResponse,
+            ),
+            "/cosmos.distribution.v1beta1.Msg/CommunityPoolSpend": grpclib.const.Handler(
+                self.__rpc_community_pool_spend,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgCommunityPoolSpend,
+                MsgCommunityPoolSpendResponse,
+            ),
+            "/cosmos.distribution.v1beta1.Msg/DepositValidatorRewardsPool": grpclib.const.Handler(
+                self.__rpc_deposit_validator_rewards_pool,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgDepositValidatorRewardsPool,
+                MsgDepositValidatorRewardsPoolResponse,
             ),
         }

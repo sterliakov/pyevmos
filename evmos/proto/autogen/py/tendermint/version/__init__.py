@@ -23,9 +23,9 @@ class App(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class Consensus(betterproto.Message):
     """
-    Consensus captures the consensus rules for processing a block in the
-    blockchain, including all blockchain data structures and the rules of the
-    application's state transition machine.
+    Consensus captures the consensus rules for processing a block in the blockchain,
+    including all blockchain data structures and the rules of the application's
+    state transition machine.
     """
 
     block: int = betterproto.uint64_field(1)

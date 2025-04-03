@@ -167,6 +167,21 @@
 
 
           <li>
+            <a href="#cosmos/slashing/module/v1/module.proto">cosmos/slashing/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.slashing.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/slashing/v1beta1/genesis.proto">cosmos/slashing/v1beta1/genesis.proto</a>
             <ul>
 
@@ -263,6 +278,14 @@
                   <a href="#cosmos.slashing.v1beta1.MsgUnjailResponse"><span class="badge">M</span>MsgUnjailResponse</a>
                 </li>
 
+                <li>
+                  <a href="#cosmos.slashing.v1beta1.MsgUpdateParams"><span class="badge">M</span>MsgUpdateParams</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.slashing.v1beta1.MsgUpdateParamsResponse"><span class="badge">M</span>MsgUpdateParamsResponse</a>
+                </li>
+
 
 
 
@@ -276,6 +299,44 @@
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/slashing/module/v1/module.proto">cosmos/slashing/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.slashing.module.v1.Module">Module</h3>
+        <p>Module is the config object of the slashing module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority defines the custom module authority. If not set, defaults to the governance module. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -299,7 +360,7 @@
                   <td>params</td>
                   <td><a href="#cosmos.slashing.v1beta1.Params">Params</a></td>
                   <td></td>
-                  <td><p>params defines all the paramaters of related to deposit. </p></td>
+                  <td><p>params defines all the parameters of the module. </p></td>
                 </tr>
 
                 <tr>
@@ -734,16 +795,16 @@ missed blocks. </p></td>
                   <td>start_height</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>Height at which validator was first a candidate OR was unjailed </p></td>
+                  <td><p>Height at which validator was first a candidate OR was un-jailed </p></td>
                 </tr>
 
                 <tr>
                   <td>index_offset</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>Index which is incremented each time the validator was a bonded
-in a block and may have signed a precommit or not. This in conjunction with the
-`SignedBlocksWindow` param determines the index in the `MissedBlocksBitArray`. </p></td>
+                  <td><p>Index which is incremented every time a validator is bonded in a block and
+_may_ have signed a pre-commit or not. This in conjunction with the
+signed_blocks_window param determines the index in the missed block bitmap. </p></td>
                 </tr>
 
                 <tr>
@@ -757,16 +818,17 @@ in a block and may have signed a precommit or not. This in conjunction with the
                   <td>tombstoned</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Whether or not a validator has been tombstoned (killed out of validator set). It is set
-once the validator commits an equivocation or for any other configured misbehiavor. </p></td>
+                  <td><p>Whether or not a validator has been tombstoned (killed out of validator
+set). It is set once the validator commits an equivocation or for any other
+configured misbehavior. </p></td>
                 </tr>
 
                 <tr>
                   <td>missed_blocks_counter</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>A counter kept to avoid unnecessary array reads.
-Note that `Sum(MissedBlocksBitArray)` always equals `MissedBlocksCounter`. </p></td>
+                  <td><p>A counter of missed (unsigned) blocks. It is used to avoid unnecessary
+reads in the missed block bitmap. </p></td>
                 </tr>
 
             </tbody>
@@ -821,6 +883,46 @@ Note that `Sum(MissedBlocksBitArray)` always equals `MissedBlocksCounter`. </p><
 
 
 
+        <h3 id="cosmos.slashing.v1beta1.MsgUpdateParams">MsgUpdateParams</h3>
+        <p>MsgUpdateParams is the Msg/UpdateParams request type.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address that controls the module (defaults to x/gov unless overwritten). </p></td>
+                </tr>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#cosmos.slashing.v1beta1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines the x/slashing parameters to update.
+
+NOTE: All parameters must be supplied. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.slashing.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</h3>
+        <p>MsgUpdateParamsResponse defines the response structure for executing a</p><p>MsgUpdateParams message.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+
+
+
 
 
 
@@ -842,6 +944,16 @@ Note that `Sum(MissedBlocksBitArray)` always equals `MissedBlocksCounter`. </p><
                 <td><p>Unjail defines a method for unjailing a jailed validator, thus returning
 them into the bonded validator set, so they can begin receiving provisions
 and rewards again.</p></td>
+              </tr>
+
+              <tr>
+                <td>UpdateParams</td>
+                <td><a href="#cosmos.slashing.v1beta1.MsgUpdateParams">MsgUpdateParams</a></td>
+                <td><a href="#cosmos.slashing.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</a></td>
+                <td><p>UpdateParams defines a governance operation for updating the x/slashing module
+parameters. The authority defaults to the x/gov module account.
+
+Since: cosmos-sdk 0.47</p></td>
               </tr>
 
           </tbody>

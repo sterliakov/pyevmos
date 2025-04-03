@@ -98,6 +98,7 @@ def to_generated_base(
         sender: Sender,
         fee: Fee,
         memo: str,
+        /,
         *args: _P.args,
         **kwargs: _P.kwargs,
     ) -> TxGeneratedBase:
@@ -275,6 +276,7 @@ def to_generated(
                 sender: Sender,
                 fee: Fee,
                 memo: str,
+                /,
                 *args: _P.args,
                 **kwargs: _P.kwargs,
             ) -> TxGenerated:
@@ -300,6 +302,7 @@ def to_generated(
             sender: Sender,
             fee: Fee,
             memo: str,
+            /,
             *args: _P.args,
             **kwargs: _P.kwargs,
         ) -> TxGenerated:

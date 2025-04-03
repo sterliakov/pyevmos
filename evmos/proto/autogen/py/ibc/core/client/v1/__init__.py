@@ -2,7 +2,7 @@
 # sources: ibc/core/client/v1/client.proto, ibc/core/client/v1/genesis.proto, ibc/core/client/v1/query.proto, ibc/core/client/v1/tx.proto
 # plugin: python-betterproto
 # This file has been @generated
-
+import warnings
 from dataclasses import dataclass
 from typing import (
     TYPE_CHECKING,
@@ -18,6 +18,7 @@ from betterproto.grpc.grpclib_server import ServiceBase
 
 from .....cosmos.base.query import v1beta1 as ____cosmos_base_query_v1_beta1__
 from .....cosmos.upgrade import v1beta1 as ____cosmos_upgrade_v1_beta1__
+from ...commitment import v1 as __commitment_v1__
 
 
 if TYPE_CHECKING:
@@ -71,55 +72,6 @@ class ClientConsensusStates(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class ClientUpdateProposal(betterproto.Message):
-    """
-    ClientUpdateProposal is a governance proposal. If it passes, the substitute
-    client's latest consensus state is copied over to the subject client. The
-    proposal handler may fail if the subject and the substitute do not match in
-    client and chain parameters (with exception to latest height, frozen height,
-    and chain-id).
-    """
-
-    title: str = betterproto.string_field(1)
-    """the title of the update proposal"""
-
-    description: str = betterproto.string_field(2)
-    """the description of the proposal"""
-
-    subject_client_id: str = betterproto.string_field(3)
-    """the client identifier for the client to be updated if the proposal passes"""
-
-    substitute_client_id: str = betterproto.string_field(4)
-    """
-    the substitute client identifier for the client standing in for the subject
-    client
-    """
-
-
-@dataclass(eq=False, repr=False)
-class UpgradeProposal(betterproto.Message):
-    """
-    UpgradeProposal is a gov Content type for initiating an IBC breaking
-    upgrade.
-    """
-
-    title: str = betterproto.string_field(1)
-    description: str = betterproto.string_field(2)
-    plan: "____cosmos_upgrade_v1_beta1__.Plan" = betterproto.message_field(3)
-    upgraded_client_state: "betterproto_lib_google_protobuf.Any" = (
-        betterproto.message_field(4)
-    )
-    """
-    An UpgradedClientState must be provided to perform an IBC breaking upgrade.
-    This will make the chain commit to the correct upgraded (self) client state
-    before the upgrade occurs, so that connecting chains can verify that the
-    new upgraded client is valid by verifying a proof on the previous version
-    of the chain. This will allow IBC connections to persist smoothly across
-    planned chain upgrades
-    """
-
-
-@dataclass(eq=False, repr=False)
 class Height(betterproto.Message):
     """
     Height is a monotonically increasing data type
@@ -145,7 +97,70 @@ class Params(betterproto.Message):
     """Params defines the set of IBC light client parameters."""
 
     allowed_clients: List[str] = betterproto.string_field(1)
-    """allowed_clients defines the list of allowed client state types."""
+    """
+    allowed_clients defines the list of allowed client state types which can be created
+    and interacted with. If a client type is removed from the allowed clients list,
+    usage
+    of this client will be disabled until it is added again to the list.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class ClientUpdateProposal(betterproto.Message):
+    """
+    ClientUpdateProposal is a legacy governance proposal. If it passes, the substitute
+    client's latest consensus state is copied over to the subject client. The proposal
+    handler may fail if the subject and the substitute do not match in client and
+    chain parameters (with exception to latest height, frozen height, and chain-id).
+    Deprecated: Please use MsgRecoverClient in favour of this message type.
+    """
+
+    title: str = betterproto.string_field(1)
+    """the title of the update proposal"""
+
+    description: str = betterproto.string_field(2)
+    """the description of the proposal"""
+
+    subject_client_id: str = betterproto.string_field(3)
+    """the client identifier for the client to be updated if the proposal passes"""
+
+    substitute_client_id: str = betterproto.string_field(4)
+    """
+    the substitute client identifier for the client standing in for the subject
+    client
+    """
+
+    def __post_init__(self) -> None:
+        warnings.warn("ClientUpdateProposal is deprecated", DeprecationWarning)
+        super().__post_init__()
+
+
+@dataclass(eq=False, repr=False)
+class UpgradeProposal(betterproto.Message):
+    """
+    UpgradeProposal is a gov Content type for initiating an IBC breaking
+    upgrade.
+    Deprecated: Please use MsgIBCSoftwareUpgrade in favour of this message type.
+    """
+
+    title: str = betterproto.string_field(1)
+    description: str = betterproto.string_field(2)
+    plan: "____cosmos_upgrade_v1_beta1__.Plan" = betterproto.message_field(3)
+    upgraded_client_state: "betterproto_lib_google_protobuf.Any" = (
+        betterproto.message_field(4)
+    )
+    """
+    An UpgradedClientState must be provided to perform an IBC breaking upgrade.
+    This will make the chain commit to the correct upgraded (self) client state
+    before the upgrade occurs, so that connecting chains can verify that the
+    new upgraded client is valid by verifying a proof on the previous version
+    of the chain. This will allow IBC connections to persist smoothly across
+    planned chain upgrades
+    """
+
+    def __post_init__(self) -> None:
+        warnings.warn("UpgradeProposal is deprecated", DeprecationWarning)
+        super().__post_init__()
 
 
 @dataclass(eq=False, repr=False)
@@ -163,10 +178,20 @@ class GenesisState(betterproto.Message):
 
     params: "Params" = betterproto.message_field(4)
     create_localhost: bool = betterproto.bool_field(5)
-    """create localhost on initialization"""
+    """
+    Deprecated: create_localhost has been deprecated.
+    The localhost client is automatically created at genesis.
+    """
 
     next_client_sequence: int = betterproto.uint64_field(6)
     """the sequence for the next generated client identifier"""
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+        if self.is_set("create_localhost"):
+            warnings.warn(
+                "GenesisState.create_localhost is deprecated", DeprecationWarning
+            )
 
 
 @dataclass(eq=False, repr=False)
@@ -328,6 +353,39 @@ class QueryConsensusStatesResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class QueryConsensusStateHeightsRequest(betterproto.Message):
+    """
+    QueryConsensusStateHeightsRequest is the request type for
+    Query/ConsensusStateHeights
+    RPC method.
+    """
+
+    client_id: str = betterproto.string_field(1)
+    """client identifier"""
+
+    pagination: "____cosmos_base_query_v1_beta1__.PageRequest" = (
+        betterproto.message_field(2)
+    )
+    """pagination request"""
+
+
+@dataclass(eq=False, repr=False)
+class QueryConsensusStateHeightsResponse(betterproto.Message):
+    """
+    QueryConsensusStateHeightsResponse is the response type for the
+    Query/ConsensusStateHeights RPC method
+    """
+
+    consensus_state_heights: List["Height"] = betterproto.message_field(1)
+    """consensus state heights"""
+
+    pagination: "____cosmos_base_query_v1_beta1__.PageResponse" = (
+        betterproto.message_field(2)
+    )
+    """pagination response"""
+
+
+@dataclass(eq=False, repr=False)
 class QueryClientStatusRequest(betterproto.Message):
     """
     QueryClientStatusRequest is the request type for the Query/ClientStatus RPC
@@ -416,6 +474,46 @@ class QueryUpgradedConsensusStateResponse(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
+class QueryVerifyMembershipRequest(betterproto.Message):
+    """
+    QueryVerifyMembershipRequest is the request type for the Query/VerifyMembership RPC
+    method
+    """
+
+    client_id: str = betterproto.string_field(1)
+    """client unique identifier."""
+
+    proof: bytes = betterproto.bytes_field(2)
+    """the proof to be verified by the client."""
+
+    proof_height: "Height" = betterproto.message_field(3)
+    """the height of the commitment root at which the proof is verified."""
+
+    merkle_path: "__commitment_v1__.MerklePath" = betterproto.message_field(4)
+    """the commitment key path."""
+
+    value: bytes = betterproto.bytes_field(5)
+    """the value which is proven."""
+
+    time_delay: int = betterproto.uint64_field(6)
+    """optional time delay"""
+
+    block_delay: int = betterproto.uint64_field(7)
+    """optional block delay"""
+
+
+@dataclass(eq=False, repr=False)
+class QueryVerifyMembershipResponse(betterproto.Message):
+    """
+    QueryVerifyMembershipResponse is the response type for the Query/VerifyMembership
+    RPC method
+    """
+
+    success: bool = betterproto.bool_field(1)
+    """boolean indicating success or failure of proof verification."""
+
+
+@dataclass(eq=False, repr=False)
 class MsgCreateClient(betterproto.Message):
     """MsgCreateClient defines a message to create an IBC client"""
 
@@ -445,14 +543,14 @@ class MsgCreateClientResponse(betterproto.Message):
 class MsgUpdateClient(betterproto.Message):
     """
     MsgUpdateClient defines an sdk.Msg to update a IBC client state using
-    the given header.
+    the given client message.
     """
 
     client_id: str = betterproto.string_field(1)
     """client unique identifier"""
 
-    header: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(2)
-    """header to update the light client"""
+    client_message: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(2)
+    """client message to update the light client"""
 
     signer: str = betterproto.string_field(3)
     """signer address"""
@@ -508,6 +606,7 @@ class MsgSubmitMisbehaviour(betterproto.Message):
     """
     MsgSubmitMisbehaviour defines an sdk.Msg type that submits Evidence for
     light client misbehaviour.
+    This message has been deprecated. Use MsgUpdateClient instead.
     """
 
     client_id: str = betterproto.string_field(1)
@@ -519,6 +618,10 @@ class MsgSubmitMisbehaviour(betterproto.Message):
     signer: str = betterproto.string_field(3)
     """signer address"""
 
+    def __post_init__(self) -> None:
+        warnings.warn("MsgSubmitMisbehaviour is deprecated", DeprecationWarning)
+        super().__post_init__()
+
 
 @dataclass(eq=False, repr=False)
 class MsgSubmitMisbehaviourResponse(betterproto.Message):
@@ -526,6 +629,88 @@ class MsgSubmitMisbehaviourResponse(betterproto.Message):
     MsgSubmitMisbehaviourResponse defines the Msg/SubmitMisbehaviour response
     type.
     """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgRecoverClient(betterproto.Message):
+    """
+    MsgRecoverClient defines the message used to recover a frozen or expired client.
+    """
+
+    subject_client_id: str = betterproto.string_field(1)
+    """the client identifier for the client to be updated if the proposal passes"""
+
+    substitute_client_id: str = betterproto.string_field(2)
+    """
+    the substitute client identifier for the client which will replace the subject
+    client
+    """
+
+    signer: str = betterproto.string_field(3)
+    """signer address"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgRecoverClientResponse(betterproto.Message):
+    """MsgRecoverClientResponse defines the Msg/RecoverClient response type."""
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgIbcSoftwareUpgrade(betterproto.Message):
+    """
+    MsgIBCSoftwareUpgrade defines the message used to schedule an upgrade of an IBC
+    client using a v1 governance proposal
+    """
+
+    plan: "____cosmos_upgrade_v1_beta1__.Plan" = betterproto.message_field(1)
+    upgraded_client_state: "betterproto_lib_google_protobuf.Any" = (
+        betterproto.message_field(2)
+    )
+    """
+    An UpgradedClientState must be provided to perform an IBC breaking upgrade.
+    This will make the chain commit to the correct upgraded (self) client state
+    before the upgrade occurs, so that connecting chains can verify that the
+    new upgraded client is valid by verifying a proof on the previous version
+    of the chain. This will allow IBC connections to persist smoothly across
+    planned chain upgrades. Correspondingly, the UpgradedClientState field has been
+    deprecated in the Cosmos SDK to allow for this logic to exist solely in
+    the 02-client module.
+    """
+
+    signer: str = betterproto.string_field(3)
+    """signer address"""
+
+
+@dataclass(eq=False, repr=False)
+class MsgIbcSoftwareUpgradeResponse(betterproto.Message):
+    """
+    MsgIBCSoftwareUpgradeResponse defines the Msg/IBCSoftwareUpgrade response type.
+    """
+
+    pass
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateParams(betterproto.Message):
+    """MsgUpdateParams defines the sdk.Msg type to update the client parameters."""
+
+    signer: str = betterproto.string_field(1)
+    """signer address"""
+
+    params: "Params" = betterproto.message_field(2)
+    """
+    params defines the client parameters to update.
+    NOTE: All parameters must be supplied.
+    """
+
+
+@dataclass(eq=False, repr=False)
+class MsgUpdateParamsResponse(betterproto.Message):
+    """MsgUpdateParamsResponse defines the MsgUpdateParams response type."""
 
     pass
 
@@ -599,6 +784,23 @@ class QueryStub(betterproto.ServiceStub):
             metadata=metadata,
         )
 
+    async def consensus_state_heights(
+        self,
+        query_consensus_state_heights_request: "QueryConsensusStateHeightsRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryConsensusStateHeightsResponse":
+        return await self._unary_unary(
+            "/ibc.core.client.v1.Query/ConsensusStateHeights",
+            query_consensus_state_heights_request,
+            QueryConsensusStateHeightsResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
     async def client_status(
         self,
         query_client_status_request: "QueryClientStatusRequest",
@@ -662,6 +864,23 @@ class QueryStub(betterproto.ServiceStub):
             "/ibc.core.client.v1.Query/UpgradedConsensusState",
             query_upgraded_consensus_state_request,
             QueryUpgradedConsensusStateResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def verify_membership(
+        self,
+        query_verify_membership_request: "QueryVerifyMembershipRequest",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "QueryVerifyMembershipResponse":
+        return await self._unary_unary(
+            "/ibc.core.client.v1.Query/VerifyMembership",
+            query_verify_membership_request,
+            QueryVerifyMembershipResponse,
             timeout=timeout,
             deadline=deadline,
             metadata=metadata,
@@ -737,6 +956,57 @@ class MsgStub(betterproto.ServiceStub):
             metadata=metadata,
         )
 
+    async def recover_client(
+        self,
+        msg_recover_client: "MsgRecoverClient",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgRecoverClientResponse":
+        return await self._unary_unary(
+            "/ibc.core.client.v1.Msg/RecoverClient",
+            msg_recover_client,
+            MsgRecoverClientResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def ibc_software_upgrade(
+        self,
+        msg_ibc_software_upgrade: "MsgIbcSoftwareUpgrade",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgIbcSoftwareUpgradeResponse":
+        return await self._unary_unary(
+            "/ibc.core.client.v1.Msg/IBCSoftwareUpgrade",
+            msg_ibc_software_upgrade,
+            MsgIbcSoftwareUpgradeResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
+    async def update_client_params(
+        self,
+        msg_update_params: "MsgUpdateParams",
+        *,
+        timeout: Optional[float] = None,
+        deadline: Optional["Deadline"] = None,
+        metadata: Optional["MetadataLike"] = None,
+    ) -> "MsgUpdateParamsResponse":
+        return await self._unary_unary(
+            "/ibc.core.client.v1.Msg/UpdateClientParams",
+            msg_update_params,
+            MsgUpdateParamsResponse,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
+
 
 class QueryBase(ServiceBase):
     async def client_state(
@@ -759,6 +1029,11 @@ class QueryBase(ServiceBase):
     ) -> "QueryConsensusStatesResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
+    async def consensus_state_heights(
+        self, query_consensus_state_heights_request: "QueryConsensusStateHeightsRequest"
+    ) -> "QueryConsensusStateHeightsResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
     async def client_status(
         self, query_client_status_request: "QueryClientStatusRequest"
     ) -> "QueryClientStatusResponse":
@@ -778,6 +1053,11 @@ class QueryBase(ServiceBase):
         self,
         query_upgraded_consensus_state_request: "QueryUpgradedConsensusStateRequest",
     ) -> "QueryUpgradedConsensusStateResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def verify_membership(
+        self, query_verify_membership_request: "QueryVerifyMembershipRequest"
+    ) -> "QueryVerifyMembershipResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_client_state(
@@ -812,6 +1092,14 @@ class QueryBase(ServiceBase):
         response = await self.consensus_states(request)
         await stream.send_message(response)
 
+    async def __rpc_consensus_state_heights(
+        self,
+        stream: "grpclib.server.Stream[QueryConsensusStateHeightsRequest, QueryConsensusStateHeightsResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.consensus_state_heights(request)
+        await stream.send_message(response)
+
     async def __rpc_client_status(
         self,
         stream: "grpclib.server.Stream[QueryClientStatusRequest, QueryClientStatusResponse]",
@@ -844,6 +1132,14 @@ class QueryBase(ServiceBase):
         response = await self.upgraded_consensus_state(request)
         await stream.send_message(response)
 
+    async def __rpc_verify_membership(
+        self,
+        stream: "grpclib.server.Stream[QueryVerifyMembershipRequest, QueryVerifyMembershipResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.verify_membership(request)
+        await stream.send_message(response)
+
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
             "/ibc.core.client.v1.Query/ClientState": grpclib.const.Handler(
@@ -870,6 +1166,12 @@ class QueryBase(ServiceBase):
                 QueryConsensusStatesRequest,
                 QueryConsensusStatesResponse,
             ),
+            "/ibc.core.client.v1.Query/ConsensusStateHeights": grpclib.const.Handler(
+                self.__rpc_consensus_state_heights,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                QueryConsensusStateHeightsRequest,
+                QueryConsensusStateHeightsResponse,
+            ),
             "/ibc.core.client.v1.Query/ClientStatus": grpclib.const.Handler(
                 self.__rpc_client_status,
                 grpclib.const.Cardinality.UNARY_UNARY,
@@ -894,6 +1196,12 @@ class QueryBase(ServiceBase):
                 QueryUpgradedConsensusStateRequest,
                 QueryUpgradedConsensusStateResponse,
             ),
+            "/ibc.core.client.v1.Query/VerifyMembership": grpclib.const.Handler(
+                self.__rpc_verify_membership,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                QueryVerifyMembershipRequest,
+                QueryVerifyMembershipResponse,
+            ),
         }
 
 
@@ -916,6 +1224,21 @@ class MsgBase(ServiceBase):
     async def submit_misbehaviour(
         self, msg_submit_misbehaviour: "MsgSubmitMisbehaviour"
     ) -> "MsgSubmitMisbehaviourResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def recover_client(
+        self, msg_recover_client: "MsgRecoverClient"
+    ) -> "MsgRecoverClientResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def ibc_software_upgrade(
+        self, msg_ibc_software_upgrade: "MsgIbcSoftwareUpgrade"
+    ) -> "MsgIbcSoftwareUpgradeResponse":
+        raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def update_client_params(
+        self, msg_update_params: "MsgUpdateParams"
+    ) -> "MsgUpdateParamsResponse":
         raise grpclib.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
     async def __rpc_create_client(
@@ -948,6 +1271,29 @@ class MsgBase(ServiceBase):
         response = await self.submit_misbehaviour(request)
         await stream.send_message(response)
 
+    async def __rpc_recover_client(
+        self,
+        stream: "grpclib.server.Stream[MsgRecoverClient, MsgRecoverClientResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.recover_client(request)
+        await stream.send_message(response)
+
+    async def __rpc_ibc_software_upgrade(
+        self,
+        stream: "grpclib.server.Stream[MsgIbcSoftwareUpgrade, MsgIbcSoftwareUpgradeResponse]",
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.ibc_software_upgrade(request)
+        await stream.send_message(response)
+
+    async def __rpc_update_client_params(
+        self, stream: "grpclib.server.Stream[MsgUpdateParams, MsgUpdateParamsResponse]"
+    ) -> None:
+        request = await stream.recv_message()
+        response = await self.update_client_params(request)
+        await stream.send_message(response)
+
     def __mapping__(self) -> Dict[str, grpclib.const.Handler]:
         return {
             "/ibc.core.client.v1.Msg/CreateClient": grpclib.const.Handler(
@@ -973,5 +1319,23 @@ class MsgBase(ServiceBase):
                 grpclib.const.Cardinality.UNARY_UNARY,
                 MsgSubmitMisbehaviour,
                 MsgSubmitMisbehaviourResponse,
+            ),
+            "/ibc.core.client.v1.Msg/RecoverClient": grpclib.const.Handler(
+                self.__rpc_recover_client,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgRecoverClient,
+                MsgRecoverClientResponse,
+            ),
+            "/ibc.core.client.v1.Msg/IBCSoftwareUpgrade": grpclib.const.Handler(
+                self.__rpc_ibc_software_upgrade,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgIbcSoftwareUpgrade,
+                MsgIbcSoftwareUpgradeResponse,
+            ),
+            "/ibc.core.client.v1.Msg/UpdateClientParams": grpclib.const.Handler(
+                self.__rpc_update_client_params,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                MsgUpdateParams,
+                MsgUpdateParamsResponse,
             ),
         }

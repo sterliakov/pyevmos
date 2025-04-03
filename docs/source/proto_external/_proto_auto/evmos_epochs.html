@@ -224,11 +224,11 @@
       <div class="file-heading">
         <h2 id="evmos/epochs/v1/genesis.proto">evmos/epochs/v1/genesis.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
         <h3 id="evmos.epochs.v1.EpochInfo">EpochInfo</h3>
-        <p></p>
+        <p>EpochInfo defines the message interface containing the relevant informations about</p><p>an epoch.</p>
 
 
           <table class="field-table">
@@ -241,49 +241,49 @@
                   <td>identifier</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>identifier of the epoch </p></td>
                 </tr>
 
                 <tr>
                   <td>start_time</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>start_time of the epoch </p></td>
                 </tr>
 
                 <tr>
                   <td>duration</td>
                   <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>duration of the epoch </p></td>
                 </tr>
 
                 <tr>
                   <td>current_epoch</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>current_epoch is the integer identifier of the epoch </p></td>
                 </tr>
 
                 <tr>
                   <td>current_epoch_start_time</td>
                   <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>current_epoch_start_time defines the timestamp of the start of the epoch </p></td>
                 </tr>
 
                 <tr>
                   <td>epoch_counting_started</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>epoch_counting_started reflects if the counting for the epoch has started </p></td>
                 </tr>
 
                 <tr>
                   <td>current_epoch_start_height</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>current_epoch_start_height of the epoch </p></td>
                 </tr>
 
             </tbody>
@@ -307,7 +307,7 @@
                   <td>epochs</td>
                   <td><a href="#evmos.epochs.v1.EpochInfo">EpochInfo</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>epochs is a slice of EpochInfo that defines the epochs in the genesis state </p></td>
                 </tr>
 
             </tbody>
@@ -328,11 +328,11 @@
       <div class="file-heading">
         <h2 id="evmos/epochs/v1/query.proto">evmos/epochs/v1/query.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
         <h3 id="evmos.epochs.v1.QueryCurrentEpochRequest">QueryCurrentEpochRequest</h3>
-        <p></p>
+        <p>QueryCurrentEpochRequest is the request type for the Query/EpochInfos RPC</p><p>method.</p>
 
 
           <table class="field-table">
@@ -345,7 +345,7 @@
                   <td>identifier</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>identifier of the current epoch </p></td>
                 </tr>
 
             </tbody>
@@ -356,7 +356,7 @@
 
 
         <h3 id="evmos.epochs.v1.QueryCurrentEpochResponse">QueryCurrentEpochResponse</h3>
-        <p></p>
+        <p>QueryCurrentEpochResponse is the response type for the Query/EpochInfos RPC</p><p>method.</p>
 
 
           <table class="field-table">
@@ -369,7 +369,7 @@
                   <td>current_epoch</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>current_epoch is the number of the current epoch </p></td>
                 </tr>
 
             </tbody>
@@ -380,7 +380,7 @@
 
 
         <h3 id="evmos.epochs.v1.QueryEpochsInfoRequest">QueryEpochsInfoRequest</h3>
-        <p></p>
+        <p>QueryEpochsInfoRequest is the request type for the Query/EpochInfos RPC</p><p>method.</p>
 
 
           <table class="field-table">
@@ -393,7 +393,7 @@
                   <td>pagination</td>
                   <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
                 </tr>
 
             </tbody>
@@ -404,7 +404,7 @@
 
 
         <h3 id="evmos.epochs.v1.QueryEpochsInfoResponse">QueryEpochsInfoResponse</h3>
-        <p></p>
+        <p>QueryEpochsInfoResponse is the response type for the Query/EpochInfos RPC</p><p>method.</p>
 
 
           <table class="field-table">
@@ -417,14 +417,14 @@
                   <td>epochs</td>
                   <td><a href="#evmos.epochs.v1.EpochInfo">EpochInfo</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>epochs is a slice of all EpochInfos </p></td>
                 </tr>
 
                 <tr>
                   <td>pagination</td>
                   <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
                 </tr>
 
             </tbody>

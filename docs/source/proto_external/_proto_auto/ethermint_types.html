@@ -182,6 +182,21 @@
 
 
           <li>
+            <a href="#ethermint/types/v1/dynamic_fee.proto">ethermint/types/v1/dynamic_fee.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#ethermint.types.v1.ExtensionOptionDynamicFeeTx"><span class="badge">M</span>ExtensionOptionDynamicFeeTx</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#ethermint/types/v1/indexer.proto">ethermint/types/v1/indexer.proto</a>
             <ul>
 
@@ -219,7 +234,7 @@
       <div class="file-heading">
         <h2 id="ethermint/types/v1/account.proto">ethermint/types/v1/account.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
         <h3 id="ethermint.types.v1.EthAccount">EthAccount</h3>
@@ -236,14 +251,52 @@
                   <td>base_account</td>
                   <td><a href="#cosmos.auth.v1beta1.BaseAccount">cosmos.auth.v1beta1.BaseAccount</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>base_account is an authtypes.BaseAccount </p></td>
                 </tr>
 
                 <tr>
                   <td>code_hash</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>code_hash is the hash calculated from the code contents </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="ethermint/types/v1/dynamic_fee.proto">ethermint/types/v1/dynamic_fee.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
+
+
+        <h3 id="ethermint.types.v1.ExtensionOptionDynamicFeeTx">ExtensionOptionDynamicFeeTx</h3>
+        <p>ExtensionOptionDynamicFeeTx is an extension option that specifies the maxPrioPrice for cosmos tx</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>max_priority_price</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>max_priority_price is the same as `max_priority_fee_per_gas` in eip-1559 spec </p></td>
                 </tr>
 
             </tbody>
@@ -264,7 +317,7 @@
       <div class="file-heading">
         <h2 id="ethermint/types/v1/indexer.proto">ethermint/types/v1/indexer.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
         <h3 id="ethermint.types.v1.TxResult">TxResult</h3>
@@ -281,28 +334,28 @@
                   <td>height</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>the block height </p></td>
+                  <td><p>height of the blockchain </p></td>
                 </tr>
 
                 <tr>
                   <td>tx_index</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>cosmos tx index </p></td>
+                  <td><p>tx_index of the cosmos transaction </p></td>
                 </tr>
 
                 <tr>
                   <td>msg_index</td>
                   <td><a href="#uint32">uint32</a></td>
                   <td></td>
-                  <td><p>the msg index in a batch tx </p></td>
+                  <td><p>msg_index in a batch transaction </p></td>
                 </tr>
 
                 <tr>
                   <td>eth_tx_index</td>
                   <td><a href="#int32">int32</a></td>
                   <td></td>
-                  <td><p>eth tx index, the index in the list of valid eth tx in the block,
+                  <td><p>eth_tx_index is the index in the list of valid eth tx in the block,
 aka. the transaction list returned by eth_getBlock api. </p></td>
                 </tr>
 
@@ -310,22 +363,23 @@ aka. the transaction list returned by eth_getBlock api. </p></td>
                   <td>failed</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>if the eth tx is failed </p></td>
+                  <td><p>failed is true if the eth transaction did not go succeed </p></td>
                 </tr>
 
                 <tr>
                   <td>gas_used</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>gas used by tx, if exceeds block gas limit,
-it's set to gas limit which is what's actually deducted by ante handler. </p></td>
+                  <td><p>gas_used by the transaction. If it exceeds the block gas limit,
+it's set to gas limit, which is what's actually deducted by ante handler. </p></td>
                 </tr>
 
                 <tr>
                   <td>cumulative_gas_used</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>the cumulative gas used within current batch tx </p></td>
+                  <td><p>cumulative_gas_used specifies the cumulated amount of gas used for all
+processed messages within the current batch transaction. </p></td>
                 </tr>
 
             </tbody>
@@ -346,11 +400,11 @@ it's set to gas limit which is what's actually deducted by ante handler. </p></t
       <div class="file-heading">
         <h2 id="ethermint/types/v1/web3.proto">ethermint/types/v1/web3.proto</h2><a href="#title">Top</a>
       </div>
-      <p></p>
+      <p>Copyright Tharsis Labs Ltd.(Evmos)</p><p>SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)</p>
 
 
         <h3 id="ethermint.types.v1.ExtensionOptionsWeb3Tx">ExtensionOptionsWeb3Tx</h3>
-        <p></p>
+        <p>ExtensionOptionsWeb3Tx is an extension option that specifies the typed chain id,</p><p>the fee payer as well as its signature data.</p>
 
 
           <table class="field-table">
@@ -363,7 +417,7 @@ it's set to gas limit which is what's actually deducted by ante handler. </p></t
                   <td>typed_data_chain_id</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>typed data chain id used only in EIP712 Domain and should match
+                  <td><p>typed_data_chain_id is used only in EIP712 Domain and should match
 Ethereum network ID in a Web3 provider (e.g. Metamask). </p></td>
                 </tr>
 
@@ -371,7 +425,7 @@ Ethereum network ID in a Web3 provider (e.g. Metamask). </p></td>
                   <td>fee_payer</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>fee payer is an account address for the fee payer. It will be validated
+                  <td><p>fee_payer is an account address for the fee payer. It will be validated
 during EIP712 signature checking. </p></td>
                 </tr>
 
@@ -379,7 +433,7 @@ during EIP712 signature checking. </p></td>
                   <td>fee_payer_sig</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
-                  <td><p>fee payer sig is a signature data from the fee paying account,
+                  <td><p>fee_payer_sig is a signature data from the fee paying account,
 allows to perform fee delegation when using EIP712 Domain. </p></td>
                 </tr>
 

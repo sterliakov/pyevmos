@@ -1,0 +1,3850 @@
+<!DOCTYPE html>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        /*margin: 1em auto;*/
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin-top: 2ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0; /* No indent on first p in td */
+      }
+
+      /* Table of fields */
+      .field-table td:nth-child(1) { /* Field */
+        width: 10em;
+      }
+      .field-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .field-table td:nth-child(3) { /* Label */
+        width: 6em;
+      }
+      .field-table td:nth-child(4) { /* Description */
+        width: auto;
+      }
+
+      /* Table of extensions */
+      .extension-table td:nth-child(1) { /* Extension */
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) { /* Base */
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) { /* Number */
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) { /* Description */
+        width: auto;
+      }
+
+      /* Table of enum values. */
+      .enum-table td:nth-child(1) { /* Name */
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) { /* Number */
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) { /* Description */
+        width: auto;
+      }
+
+      /* Table of scalar value types. */
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+      /* Table of contents. */
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+      /* File heading div */
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+      /* The 'M', 'E' and 'X' badges in the ToC */
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    <!-- User custom CSS -->
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+
+
+          <li>
+            <a href="#cosmos/group/module/v1/module.proto">cosmos/group/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.group.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/group/v1/events.proto">cosmos/group/v1/events.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.group.v1.EventCreateGroup"><span class="badge">M</span>EventCreateGroup</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.EventCreateGroupPolicy"><span class="badge">M</span>EventCreateGroupPolicy</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.EventExec"><span class="badge">M</span>EventExec</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.EventLeaveGroup"><span class="badge">M</span>EventLeaveGroup</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.EventProposalPruned"><span class="badge">M</span>EventProposalPruned</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.EventSubmitProposal"><span class="badge">M</span>EventSubmitProposal</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.EventUpdateGroup"><span class="badge">M</span>EventUpdateGroup</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.EventUpdateGroupPolicy"><span class="badge">M</span>EventUpdateGroupPolicy</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.EventVote"><span class="badge">M</span>EventVote</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.EventWithdrawProposal"><span class="badge">M</span>EventWithdrawProposal</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/group/v1/genesis.proto">cosmos/group/v1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.group.v1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/group/v1/query.proto">cosmos/group/v1/query.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupInfoRequest"><span class="badge">M</span>QueryGroupInfoRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupInfoResponse"><span class="badge">M</span>QueryGroupInfoResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupMembersRequest"><span class="badge">M</span>QueryGroupMembersRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupMembersResponse"><span class="badge">M</span>QueryGroupMembersResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupPoliciesByAdminRequest"><span class="badge">M</span>QueryGroupPoliciesByAdminRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupPoliciesByAdminResponse"><span class="badge">M</span>QueryGroupPoliciesByAdminResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupPoliciesByGroupRequest"><span class="badge">M</span>QueryGroupPoliciesByGroupRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupPoliciesByGroupResponse"><span class="badge">M</span>QueryGroupPoliciesByGroupResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupPolicyInfoRequest"><span class="badge">M</span>QueryGroupPolicyInfoRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupPolicyInfoResponse"><span class="badge">M</span>QueryGroupPolicyInfoResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupsByAdminRequest"><span class="badge">M</span>QueryGroupsByAdminRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupsByAdminResponse"><span class="badge">M</span>QueryGroupsByAdminResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupsByMemberRequest"><span class="badge">M</span>QueryGroupsByMemberRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupsByMemberResponse"><span class="badge">M</span>QueryGroupsByMemberResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupsRequest"><span class="badge">M</span>QueryGroupsRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryGroupsResponse"><span class="badge">M</span>QueryGroupsResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryProposalRequest"><span class="badge">M</span>QueryProposalRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryProposalResponse"><span class="badge">M</span>QueryProposalResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryProposalsByGroupPolicyRequest"><span class="badge">M</span>QueryProposalsByGroupPolicyRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryProposalsByGroupPolicyResponse"><span class="badge">M</span>QueryProposalsByGroupPolicyResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryTallyResultRequest"><span class="badge">M</span>QueryTallyResultRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryTallyResultResponse"><span class="badge">M</span>QueryTallyResultResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryVoteByProposalVoterRequest"><span class="badge">M</span>QueryVoteByProposalVoterRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryVoteByProposalVoterResponse"><span class="badge">M</span>QueryVoteByProposalVoterResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryVotesByProposalRequest"><span class="badge">M</span>QueryVotesByProposalRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryVotesByProposalResponse"><span class="badge">M</span>QueryVotesByProposalResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryVotesByVoterRequest"><span class="badge">M</span>QueryVotesByVoterRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.QueryVotesByVoterResponse"><span class="badge">M</span>QueryVotesByVoterResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.group.v1.Query"><span class="badge">S</span>Query</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/group/v1/tx.proto">cosmos/group/v1/tx.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgCreateGroup"><span class="badge">M</span>MsgCreateGroup</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgCreateGroupPolicy"><span class="badge">M</span>MsgCreateGroupPolicy</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgCreateGroupPolicyResponse"><span class="badge">M</span>MsgCreateGroupPolicyResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgCreateGroupResponse"><span class="badge">M</span>MsgCreateGroupResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgCreateGroupWithPolicy"><span class="badge">M</span>MsgCreateGroupWithPolicy</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgCreateGroupWithPolicyResponse"><span class="badge">M</span>MsgCreateGroupWithPolicyResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgExec"><span class="badge">M</span>MsgExec</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgExecResponse"><span class="badge">M</span>MsgExecResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgLeaveGroup"><span class="badge">M</span>MsgLeaveGroup</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgLeaveGroupResponse"><span class="badge">M</span>MsgLeaveGroupResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgSubmitProposal"><span class="badge">M</span>MsgSubmitProposal</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgSubmitProposalResponse"><span class="badge">M</span>MsgSubmitProposalResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgUpdateGroupAdmin"><span class="badge">M</span>MsgUpdateGroupAdmin</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgUpdateGroupAdminResponse"><span class="badge">M</span>MsgUpdateGroupAdminResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgUpdateGroupMembers"><span class="badge">M</span>MsgUpdateGroupMembers</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgUpdateGroupMembersResponse"><span class="badge">M</span>MsgUpdateGroupMembersResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgUpdateGroupMetadata"><span class="badge">M</span>MsgUpdateGroupMetadata</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgUpdateGroupMetadataResponse"><span class="badge">M</span>MsgUpdateGroupMetadataResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgUpdateGroupPolicyAdmin"><span class="badge">M</span>MsgUpdateGroupPolicyAdmin</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgUpdateGroupPolicyAdminResponse"><span class="badge">M</span>MsgUpdateGroupPolicyAdminResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicy"><span class="badge">M</span>MsgUpdateGroupPolicyDecisionPolicy</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicyResponse"><span class="badge">M</span>MsgUpdateGroupPolicyDecisionPolicyResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgUpdateGroupPolicyMetadata"><span class="badge">M</span>MsgUpdateGroupPolicyMetadata</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgUpdateGroupPolicyMetadataResponse"><span class="badge">M</span>MsgUpdateGroupPolicyMetadataResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgVote"><span class="badge">M</span>MsgVote</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgVoteResponse"><span class="badge">M</span>MsgVoteResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgWithdrawProposal"><span class="badge">M</span>MsgWithdrawProposal</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MsgWithdrawProposalResponse"><span class="badge">M</span>MsgWithdrawProposalResponse</a>
+                </li>
+
+
+                <li>
+                  <a href="#cosmos.group.v1.Exec"><span class="badge">E</span>Exec</a>
+                </li>
+
+
+
+                <li>
+                  <a href="#cosmos.group.v1.Msg"><span class="badge">S</span>Msg</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/group/v1/types.proto">cosmos/group/v1/types.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.group.v1.DecisionPolicyWindows"><span class="badge">M</span>DecisionPolicyWindows</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.GroupInfo"><span class="badge">M</span>GroupInfo</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.GroupMember"><span class="badge">M</span>GroupMember</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.GroupPolicyInfo"><span class="badge">M</span>GroupPolicyInfo</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.Member"><span class="badge">M</span>Member</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.MemberRequest"><span class="badge">M</span>MemberRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.PercentageDecisionPolicy"><span class="badge">M</span>PercentageDecisionPolicy</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.Proposal"><span class="badge">M</span>Proposal</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.TallyResult"><span class="badge">M</span>TallyResult</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.ThresholdDecisionPolicy"><span class="badge">M</span>ThresholdDecisionPolicy</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.Vote"><span class="badge">M</span>Vote</a>
+                </li>
+
+
+                <li>
+                  <a href="#cosmos.group.v1.ProposalExecutorResult"><span class="badge">E</span>ProposalExecutorResult</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.ProposalStatus"><span class="badge">E</span>ProposalStatus</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.group.v1.VoteOption"><span class="badge">E</span>VoteOption</a>
+                </li>
+
+
+
+            </ul>
+          </li>
+
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/group/module/v1/module.proto">cosmos/group/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.group.module.v1.Module">Module</h3>
+        <p>Module is the config object of the group module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>max_execution_period</td>
+                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
+                  <td></td>
+                  <td><p>max_execution_period defines the max duration after a proposal's voting period ends that members can send a MsgExec
+to execute the proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>max_metadata_len</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>max_metadata_len defines the max length of the metadata bytes field for various entities within the group module.
+Defaults to 255 if not explicitly set. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/group/v1/events.proto">cosmos/group/v1/events.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Since: cosmos-sdk 0.46</p>
+
+
+        <h3 id="cosmos.group.v1.EventCreateGroup">EventCreateGroup</h3>
+        <p>EventCreateGroup is an event emitted when a group is created.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the group. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.EventCreateGroupPolicy">EventCreateGroupPolicy</h3>
+        <p>EventCreateGroupPolicy is an event emitted when a group policy is created.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the account address of the group policy. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.EventExec">EventExec</h3>
+        <p>EventExec is an event emitted when a proposal is executed.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal_id is the unique ID of the proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>result</td>
+                  <td><a href="#cosmos.group.v1.ProposalExecutorResult">ProposalExecutorResult</a></td>
+                  <td></td>
+                  <td><p>result is the proposal execution result. </p></td>
+                </tr>
+
+                <tr>
+                  <td>logs</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>logs contains error logs in case the execution result is FAILURE. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.EventLeaveGroup">EventLeaveGroup</h3>
+        <p>EventLeaveGroup is an event emitted when group member leaves the group.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the group. </p></td>
+                </tr>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the account address of the group member. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.EventProposalPruned">EventProposalPruned</h3>
+        <p>EventProposalPruned is an event emitted when a proposal is pruned.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal_id is the unique ID of the proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cosmos.group.v1.ProposalStatus">ProposalStatus</a></td>
+                  <td></td>
+                  <td><p>status is the proposal status (UNSPECIFIED, SUBMITTED, ACCEPTED, REJECTED, ABORTED, WITHDRAWN). </p></td>
+                </tr>
+
+                <tr>
+                  <td>tally_result</td>
+                  <td><a href="#cosmos.group.v1.TallyResult">TallyResult</a></td>
+                  <td></td>
+                  <td><p>tally_result is the proposal tally result (when applicable). </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.EventSubmitProposal">EventSubmitProposal</h3>
+        <p>EventSubmitProposal is an event emitted when a proposal is created.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal_id is the unique ID of the proposal. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.EventUpdateGroup">EventUpdateGroup</h3>
+        <p>EventUpdateGroup is an event emitted when a group is updated.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the group. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.EventUpdateGroupPolicy">EventUpdateGroupPolicy</h3>
+        <p>EventUpdateGroupPolicy is an event emitted when a group policy is updated.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the account address of the group policy. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.EventVote">EventVote</h3>
+        <p>EventVote is an event emitted when a voter votes on a proposal.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal_id is the unique ID of the proposal. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.EventWithdrawProposal">EventWithdrawProposal</h3>
+        <p>EventWithdrawProposal is an event emitted when a proposal is withdrawn.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal_id is the unique ID of the proposal. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/group/v1/genesis.proto">cosmos/group/v1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Since: cosmos-sdk 0.46</p>
+
+
+        <h3 id="cosmos.group.v1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the group module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>group_seq</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_seq is the group table orm.Sequence,
+it is used to get the next group ID. </p></td>
+                </tr>
+
+                <tr>
+                  <td>groups</td>
+                  <td><a href="#cosmos.group.v1.GroupInfo">GroupInfo</a></td>
+                  <td>repeated</td>
+                  <td><p>groups is the list of groups info. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_members</td>
+                  <td><a href="#cosmos.group.v1.GroupMember">GroupMember</a></td>
+                  <td>repeated</td>
+                  <td><p>group_members is the list of groups members. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_policy_seq</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_policy_seq is the group policy table orm.Sequence,
+it is used to generate the next group policy account address. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_policies</td>
+                  <td><a href="#cosmos.group.v1.GroupPolicyInfo">GroupPolicyInfo</a></td>
+                  <td>repeated</td>
+                  <td><p>group_policies is the list of group policies info. </p></td>
+                </tr>
+
+                <tr>
+                  <td>proposal_seq</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal_seq is the proposal table orm.Sequence,
+it is used to get the next proposal ID. </p></td>
+                </tr>
+
+                <tr>
+                  <td>proposals</td>
+                  <td><a href="#cosmos.group.v1.Proposal">Proposal</a></td>
+                  <td>repeated</td>
+                  <td><p>proposals is the list of proposals. </p></td>
+                </tr>
+
+                <tr>
+                  <td>votes</td>
+                  <td><a href="#cosmos.group.v1.Vote">Vote</a></td>
+                  <td>repeated</td>
+                  <td><p>votes is the list of votes. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/group/v1/query.proto">cosmos/group/v1/query.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Since: cosmos-sdk 0.46</p>
+
+
+        <h3 id="cosmos.group.v1.QueryGroupInfoRequest">QueryGroupInfoRequest</h3>
+        <p>QueryGroupInfoRequest is the Query/GroupInfo request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the group. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupInfoResponse">QueryGroupInfoResponse</h3>
+        <p>QueryGroupInfoResponse is the Query/GroupInfo response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>info</td>
+                  <td><a href="#cosmos.group.v1.GroupInfo">GroupInfo</a></td>
+                  <td></td>
+                  <td><p>info is the GroupInfo of the group. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupMembersRequest">QueryGroupMembersRequest</h3>
+        <p>QueryGroupMembersRequest is the Query/GroupMembers request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the group. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupMembersResponse">QueryGroupMembersResponse</h3>
+        <p>QueryGroupMembersResponse is the Query/GroupMembersResponse response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>members</td>
+                  <td><a href="#cosmos.group.v1.GroupMember">GroupMember</a></td>
+                  <td>repeated</td>
+                  <td><p>members are the members of the group with given group_id. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupPoliciesByAdminRequest">QueryGroupPoliciesByAdminRequest</h3>
+        <p>QueryGroupPoliciesByAdminRequest is the Query/GroupPoliciesByAdmin request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>admin is the admin address of the group policy. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupPoliciesByAdminResponse">QueryGroupPoliciesByAdminResponse</h3>
+        <p>QueryGroupPoliciesByAdminResponse is the Query/GroupPoliciesByAdmin response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>group_policies</td>
+                  <td><a href="#cosmos.group.v1.GroupPolicyInfo">GroupPolicyInfo</a></td>
+                  <td>repeated</td>
+                  <td><p>group_policies are the group policies info with provided admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupPoliciesByGroupRequest">QueryGroupPoliciesByGroupRequest</h3>
+        <p>QueryGroupPoliciesByGroupRequest is the Query/GroupPoliciesByGroup request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the group policy's group. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupPoliciesByGroupResponse">QueryGroupPoliciesByGroupResponse</h3>
+        <p>QueryGroupPoliciesByGroupResponse is the Query/GroupPoliciesByGroup response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>group_policies</td>
+                  <td><a href="#cosmos.group.v1.GroupPolicyInfo">GroupPolicyInfo</a></td>
+                  <td>repeated</td>
+                  <td><p>group_policies are the group policies info associated with the provided group. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupPolicyInfoRequest">QueryGroupPolicyInfoRequest</h3>
+        <p>QueryGroupPolicyInfoRequest is the Query/GroupPolicyInfo request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the account address of the group policy. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupPolicyInfoResponse">QueryGroupPolicyInfoResponse</h3>
+        <p>QueryGroupPolicyInfoResponse is the Query/GroupPolicyInfo response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>info</td>
+                  <td><a href="#cosmos.group.v1.GroupPolicyInfo">GroupPolicyInfo</a></td>
+                  <td></td>
+                  <td><p>info is the GroupPolicyInfo of the group policy. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupsByAdminRequest">QueryGroupsByAdminRequest</h3>
+        <p>QueryGroupsByAdminRequest is the Query/GroupsByAdmin request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>admin is the account address of a group's admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupsByAdminResponse">QueryGroupsByAdminResponse</h3>
+        <p>QueryGroupsByAdminResponse is the Query/GroupsByAdminResponse response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>groups</td>
+                  <td><a href="#cosmos.group.v1.GroupInfo">GroupInfo</a></td>
+                  <td>repeated</td>
+                  <td><p>groups are the groups info with the provided admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupsByMemberRequest">QueryGroupsByMemberRequest</h3>
+        <p>QueryGroupsByMemberRequest is the Query/GroupsByMember request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the group member address. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupsByMemberResponse">QueryGroupsByMemberResponse</h3>
+        <p>QueryGroupsByMemberResponse is the Query/GroupsByMember response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>groups</td>
+                  <td><a href="#cosmos.group.v1.GroupInfo">GroupInfo</a></td>
+                  <td>repeated</td>
+                  <td><p>groups are the groups info with the provided group member. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupsRequest">QueryGroupsRequest</h3>
+        <p>QueryGroupsRequest is the Query/Groups request type.</p><p>Since: cosmos-sdk 0.47.1</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryGroupsResponse">QueryGroupsResponse</h3>
+        <p>QueryGroupsResponse is the Query/Groups response type.</p><p>Since: cosmos-sdk 0.47.1</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>groups</td>
+                  <td><a href="#cosmos.group.v1.GroupInfo">GroupInfo</a></td>
+                  <td>repeated</td>
+                  <td><p>`groups` is all the groups present in state. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryProposalRequest">QueryProposalRequest</h3>
+        <p>QueryProposalRequest is the Query/Proposal request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal_id is the unique ID of a proposal. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryProposalResponse">QueryProposalResponse</h3>
+        <p>QueryProposalResponse is the Query/Proposal response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal</td>
+                  <td><a href="#cosmos.group.v1.Proposal">Proposal</a></td>
+                  <td></td>
+                  <td><p>proposal is the proposal info. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryProposalsByGroupPolicyRequest">QueryProposalsByGroupPolicyRequest</h3>
+        <p>QueryProposalsByGroupPolicyRequest is the Query/ProposalByGroupPolicy request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the account address of the group policy related to proposals. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryProposalsByGroupPolicyResponse">QueryProposalsByGroupPolicyResponse</h3>
+        <p>QueryProposalsByGroupPolicyResponse is the Query/ProposalByGroupPolicy response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposals</td>
+                  <td><a href="#cosmos.group.v1.Proposal">Proposal</a></td>
+                  <td>repeated</td>
+                  <td><p>proposals are the proposals with given group policy. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryTallyResultRequest">QueryTallyResultRequest</h3>
+        <p>QueryTallyResultRequest is the Query/TallyResult request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal_id is the unique id of a proposal. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryTallyResultResponse">QueryTallyResultResponse</h3>
+        <p>QueryTallyResultResponse is the Query/TallyResult response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>tally</td>
+                  <td><a href="#cosmos.group.v1.TallyResult">TallyResult</a></td>
+                  <td></td>
+                  <td><p>tally defines the requested tally. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryVoteByProposalVoterRequest">QueryVoteByProposalVoterRequest</h3>
+        <p>QueryVoteByProposalVoterRequest is the Query/VoteByProposalVoter request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal_id is the unique ID of a proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>voter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>voter is a proposal voter account address. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryVoteByProposalVoterResponse">QueryVoteByProposalVoterResponse</h3>
+        <p>QueryVoteByProposalVoterResponse is the Query/VoteByProposalVoter response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>vote</td>
+                  <td><a href="#cosmos.group.v1.Vote">Vote</a></td>
+                  <td></td>
+                  <td><p>vote is the vote with given proposal_id and voter. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryVotesByProposalRequest">QueryVotesByProposalRequest</h3>
+        <p>QueryVotesByProposalRequest is the Query/VotesByProposal request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal_id is the unique ID of a proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryVotesByProposalResponse">QueryVotesByProposalResponse</h3>
+        <p>QueryVotesByProposalResponse is the Query/VotesByProposal response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>votes</td>
+                  <td><a href="#cosmos.group.v1.Vote">Vote</a></td>
+                  <td>repeated</td>
+                  <td><p>votes are the list of votes for given proposal_id. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryVotesByVoterRequest">QueryVotesByVoterRequest</h3>
+        <p>QueryVotesByVoterRequest is the Query/VotesByVoter request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>voter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>voter is a proposal voter account address. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.QueryVotesByVoterResponse">QueryVotesByVoterResponse</h3>
+        <p>QueryVotesByVoterResponse is the Query/VotesByVoter response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>votes</td>
+                  <td><a href="#cosmos.group.v1.Vote">Vote</a></td>
+                  <td>repeated</td>
+                  <td><p>votes are the list of votes by given voter. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.group.v1.Query">Query</h3>
+        <p>Query is the cosmos.group.v1 Query service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>GroupInfo</td>
+                <td><a href="#cosmos.group.v1.QueryGroupInfoRequest">QueryGroupInfoRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryGroupInfoResponse">QueryGroupInfoResponse</a></td>
+                <td><p>GroupInfo queries group info based on group id.</p></td>
+              </tr>
+
+              <tr>
+                <td>GroupPolicyInfo</td>
+                <td><a href="#cosmos.group.v1.QueryGroupPolicyInfoRequest">QueryGroupPolicyInfoRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryGroupPolicyInfoResponse">QueryGroupPolicyInfoResponse</a></td>
+                <td><p>GroupPolicyInfo queries group policy info based on account address of group policy.</p></td>
+              </tr>
+
+              <tr>
+                <td>GroupMembers</td>
+                <td><a href="#cosmos.group.v1.QueryGroupMembersRequest">QueryGroupMembersRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryGroupMembersResponse">QueryGroupMembersResponse</a></td>
+                <td><p>GroupMembers queries members of a group by group id.</p></td>
+              </tr>
+
+              <tr>
+                <td>GroupsByAdmin</td>
+                <td><a href="#cosmos.group.v1.QueryGroupsByAdminRequest">QueryGroupsByAdminRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryGroupsByAdminResponse">QueryGroupsByAdminResponse</a></td>
+                <td><p>GroupsByAdmin queries groups by admin address.</p></td>
+              </tr>
+
+              <tr>
+                <td>GroupPoliciesByGroup</td>
+                <td><a href="#cosmos.group.v1.QueryGroupPoliciesByGroupRequest">QueryGroupPoliciesByGroupRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryGroupPoliciesByGroupResponse">QueryGroupPoliciesByGroupResponse</a></td>
+                <td><p>GroupPoliciesByGroup queries group policies by group id.</p></td>
+              </tr>
+
+              <tr>
+                <td>GroupPoliciesByAdmin</td>
+                <td><a href="#cosmos.group.v1.QueryGroupPoliciesByAdminRequest">QueryGroupPoliciesByAdminRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryGroupPoliciesByAdminResponse">QueryGroupPoliciesByAdminResponse</a></td>
+                <td><p>GroupPoliciesByAdmin queries group policies by admin address.</p></td>
+              </tr>
+
+              <tr>
+                <td>Proposal</td>
+                <td><a href="#cosmos.group.v1.QueryProposalRequest">QueryProposalRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryProposalResponse">QueryProposalResponse</a></td>
+                <td><p>Proposal queries a proposal based on proposal id.</p></td>
+              </tr>
+
+              <tr>
+                <td>ProposalsByGroupPolicy</td>
+                <td><a href="#cosmos.group.v1.QueryProposalsByGroupPolicyRequest">QueryProposalsByGroupPolicyRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryProposalsByGroupPolicyResponse">QueryProposalsByGroupPolicyResponse</a></td>
+                <td><p>ProposalsByGroupPolicy queries proposals based on account address of group policy.</p></td>
+              </tr>
+
+              <tr>
+                <td>VoteByProposalVoter</td>
+                <td><a href="#cosmos.group.v1.QueryVoteByProposalVoterRequest">QueryVoteByProposalVoterRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryVoteByProposalVoterResponse">QueryVoteByProposalVoterResponse</a></td>
+                <td><p>VoteByProposalVoter queries a vote by proposal id and voter.</p></td>
+              </tr>
+
+              <tr>
+                <td>VotesByProposal</td>
+                <td><a href="#cosmos.group.v1.QueryVotesByProposalRequest">QueryVotesByProposalRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryVotesByProposalResponse">QueryVotesByProposalResponse</a></td>
+                <td><p>VotesByProposal queries a vote by proposal id.</p></td>
+              </tr>
+
+              <tr>
+                <td>VotesByVoter</td>
+                <td><a href="#cosmos.group.v1.QueryVotesByVoterRequest">QueryVotesByVoterRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryVotesByVoterResponse">QueryVotesByVoterResponse</a></td>
+                <td><p>VotesByVoter queries a vote by voter.</p></td>
+              </tr>
+
+              <tr>
+                <td>GroupsByMember</td>
+                <td><a href="#cosmos.group.v1.QueryGroupsByMemberRequest">QueryGroupsByMemberRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryGroupsByMemberResponse">QueryGroupsByMemberResponse</a></td>
+                <td><p>GroupsByMember queries groups by member address.</p></td>
+              </tr>
+
+              <tr>
+                <td>TallyResult</td>
+                <td><a href="#cosmos.group.v1.QueryTallyResultRequest">QueryTallyResultRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryTallyResultResponse">QueryTallyResultResponse</a></td>
+                <td><p>TallyResult returns the tally result of a proposal. If the proposal is
+still in voting period, then this query computes the current tally state,
+which might not be final. On the other hand, if the proposal is final,
+then it simply returns the `final_tally_result` state stored in the
+proposal itself.</p></td>
+              </tr>
+
+              <tr>
+                <td>Groups</td>
+                <td><a href="#cosmos.group.v1.QueryGroupsRequest">QueryGroupsRequest</a></td>
+                <td><a href="#cosmos.group.v1.QueryGroupsResponse">QueryGroupsResponse</a></td>
+                <td><p>Groups queries all groups in state.
+
+Since: cosmos-sdk 0.47.1</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+
+
+
+              <tr>
+                <td>GroupInfo</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/group_info/{group_id}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GroupPolicyInfo</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/group_policy_info/{address}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GroupMembers</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/group_members/{group_id}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GroupsByAdmin</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/groups_by_admin/{admin}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GroupPoliciesByGroup</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/group_policies_by_group/{group_id}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GroupPoliciesByAdmin</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/group_policies_by_admin/{admin}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>Proposal</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/proposal/{proposal_id}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>ProposalsByGroupPolicy</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/proposals_by_group_policy/{address}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>VoteByProposalVoter</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/vote_by_proposal_voter/{proposal_id}/{voter}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>VotesByProposal</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/votes_by_proposal/{proposal_id}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>VotesByVoter</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/votes_by_voter/{voter}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>GroupsByMember</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/groups_by_member/{address}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>TallyResult</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/proposals/{proposal_id}/tally</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>Groups</td>
+                <td>GET</td>
+                <td>/cosmos/group/v1/groups</td>
+                <td></td>
+              </tr>
+
+
+            </tbody>
+          </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/group/v1/tx.proto">cosmos/group/v1/tx.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Since: cosmos-sdk 0.46</p>
+
+
+        <h3 id="cosmos.group.v1.MsgCreateGroup">MsgCreateGroup</h3>
+        <p>MsgCreateGroup is the Msg/CreateGroup request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>admin is the account address of the group admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>members</td>
+                  <td><a href="#cosmos.group.v1.MemberRequest">MemberRequest</a></td>
+                  <td>repeated</td>
+                  <td><p>members defines the group members. </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>metadata is any arbitrary metadata to attached to the group. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgCreateGroupPolicy">MsgCreateGroupPolicy</h3>
+        <p>MsgCreateGroupPolicy is the Msg/CreateGroupPolicy request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>admin is the account address of the group admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the group. </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>metadata is any arbitrary metadata attached to the group policy. </p></td>
+                </tr>
+
+                <tr>
+                  <td>decision_policy</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p>decision_policy specifies the group policy's decision policy. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgCreateGroupPolicyResponse">MsgCreateGroupPolicyResponse</h3>
+        <p>MsgCreateGroupPolicyResponse is the Msg/CreateGroupPolicy response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the account address of the newly created group policy. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgCreateGroupResponse">MsgCreateGroupResponse</h3>
+        <p>MsgCreateGroupResponse is the Msg/CreateGroup response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the newly created group. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgCreateGroupWithPolicy">MsgCreateGroupWithPolicy</h3>
+        <p>MsgCreateGroupWithPolicy is the Msg/CreateGroupWithPolicy request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>admin is the account address of the group and group policy admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>members</td>
+                  <td><a href="#cosmos.group.v1.MemberRequest">MemberRequest</a></td>
+                  <td>repeated</td>
+                  <td><p>members defines the group members. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>group_metadata is any arbitrary metadata attached to the group. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_policy_metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>group_policy_metadata is any arbitrary metadata attached to the group policy. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_policy_as_admin</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>group_policy_as_admin is a boolean field, if set to true, the group policy account address will be used as group
+and group policy admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>decision_policy</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p>decision_policy specifies the group policy's decision policy. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgCreateGroupWithPolicyResponse">MsgCreateGroupWithPolicyResponse</h3>
+        <p>MsgCreateGroupWithPolicyResponse is the Msg/CreateGroupWithPolicy response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the newly created group with policy. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_policy_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>group_policy_address is the account address of the newly created group policy. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgExec">MsgExec</h3>
+        <p>MsgExec is the Msg/Exec request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal is the unique ID of the proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>executor</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>executor is the account address used to execute the proposal. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgExecResponse">MsgExecResponse</h3>
+        <p>MsgExecResponse is the Msg/Exec request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>result</td>
+                  <td><a href="#cosmos.group.v1.ProposalExecutorResult">ProposalExecutorResult</a></td>
+                  <td></td>
+                  <td><p>result is the final result of the proposal execution. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgLeaveGroup">MsgLeaveGroup</h3>
+        <p>MsgLeaveGroup is the Msg/LeaveGroup request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the account address of the group member. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the group. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgLeaveGroupResponse">MsgLeaveGroupResponse</h3>
+        <p>MsgLeaveGroupResponse is the Msg/LeaveGroup response type.</p>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgSubmitProposal">MsgSubmitProposal</h3>
+        <p>MsgSubmitProposal is the Msg/SubmitProposal request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>group_policy_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>group_policy_address is the account address of group policy. </p></td>
+                </tr>
+
+                <tr>
+                  <td>proposers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>proposers are the account addresses of the proposers.
+Proposers signatures will be counted as yes votes. </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>metadata is any arbitrary metadata attached to the proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>messages</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td>repeated</td>
+                  <td><p>messages is a list of `sdk.Msg`s that will be executed if the proposal passes. </p></td>
+                </tr>
+
+                <tr>
+                  <td>exec</td>
+                  <td><a href="#cosmos.group.v1.Exec">Exec</a></td>
+                  <td></td>
+                  <td><p>exec defines the mode of execution of the proposal,
+whether it should be executed immediately on creation or not.
+If so, proposers signatures are considered as Yes votes. </p></td>
+                </tr>
+
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>title is the title of the proposal.
+
+Since: cosmos-sdk 0.47 </p></td>
+                </tr>
+
+                <tr>
+                  <td>summary</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>summary is the summary of the proposal.
+
+Since: cosmos-sdk 0.47 </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgSubmitProposalResponse">MsgSubmitProposalResponse</h3>
+        <p>MsgSubmitProposalResponse is the Msg/SubmitProposal response type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal is the unique ID of the proposal. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgUpdateGroupAdmin">MsgUpdateGroupAdmin</h3>
+        <p>MsgUpdateGroupAdmin is the Msg/UpdateGroupAdmin request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>admin is the current account address of the group admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the group. </p></td>
+                </tr>
+
+                <tr>
+                  <td>new_admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>new_admin is the group new admin account address. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgUpdateGroupAdminResponse">MsgUpdateGroupAdminResponse</h3>
+        <p>MsgUpdateGroupAdminResponse is the Msg/UpdateGroupAdmin response type.</p>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgUpdateGroupMembers">MsgUpdateGroupMembers</h3>
+        <p>MsgUpdateGroupMembers is the Msg/UpdateGroupMembers request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>admin is the account address of the group admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the group. </p></td>
+                </tr>
+
+                <tr>
+                  <td>member_updates</td>
+                  <td><a href="#cosmos.group.v1.MemberRequest">MemberRequest</a></td>
+                  <td>repeated</td>
+                  <td><p>member_updates is the list of members to update,
+set weight to 0 to remove a member. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgUpdateGroupMembersResponse">MsgUpdateGroupMembersResponse</h3>
+        <p>MsgUpdateGroupMembersResponse is the Msg/UpdateGroupMembers response type.</p>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgUpdateGroupMetadata">MsgUpdateGroupMetadata</h3>
+        <p>MsgUpdateGroupMetadata is the Msg/UpdateGroupMetadata request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>admin is the account address of the group admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the group. </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>metadata is the updated group's metadata. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgUpdateGroupMetadataResponse">MsgUpdateGroupMetadataResponse</h3>
+        <p>MsgUpdateGroupMetadataResponse is the Msg/UpdateGroupMetadata response type.</p>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgUpdateGroupPolicyAdmin">MsgUpdateGroupPolicyAdmin</h3>
+        <p>MsgUpdateGroupPolicyAdmin is the Msg/UpdateGroupPolicyAdmin request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>admin is the account address of the group admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_policy_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>group_policy_address is the account address of the group policy. </p></td>
+                </tr>
+
+                <tr>
+                  <td>new_admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>new_admin is the new group policy admin. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgUpdateGroupPolicyAdminResponse">MsgUpdateGroupPolicyAdminResponse</h3>
+        <p>MsgUpdateGroupPolicyAdminResponse is the Msg/UpdateGroupPolicyAdmin response type.</p>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicy">MsgUpdateGroupPolicyDecisionPolicy</h3>
+        <p>MsgUpdateGroupPolicyDecisionPolicy is the Msg/UpdateGroupPolicyDecisionPolicy request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>admin is the account address of the group admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_policy_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>group_policy_address is the account address of group policy. </p></td>
+                </tr>
+
+                <tr>
+                  <td>decision_policy</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p>decision_policy is the updated group policy's decision policy. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicyResponse">MsgUpdateGroupPolicyDecisionPolicyResponse</h3>
+        <p>MsgUpdateGroupPolicyDecisionPolicyResponse is the Msg/UpdateGroupPolicyDecisionPolicy response type.</p>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgUpdateGroupPolicyMetadata">MsgUpdateGroupPolicyMetadata</h3>
+        <p>MsgUpdateGroupPolicyMetadata is the Msg/UpdateGroupPolicyMetadata request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>admin is the account address of the group admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_policy_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>group_policy_address is the account address of group policy. </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>metadata is the group policy metadata to be updated. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgUpdateGroupPolicyMetadataResponse">MsgUpdateGroupPolicyMetadataResponse</h3>
+        <p>MsgUpdateGroupPolicyMetadataResponse is the Msg/UpdateGroupPolicyMetadata response type.</p>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgVote">MsgVote</h3>
+        <p>MsgVote is the Msg/Vote request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal is the unique ID of the proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>voter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>voter is the voter account address. </p></td>
+                </tr>
+
+                <tr>
+                  <td>option</td>
+                  <td><a href="#cosmos.group.v1.VoteOption">VoteOption</a></td>
+                  <td></td>
+                  <td><p>option is the voter's choice on the proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>metadata is any arbitrary metadata attached to the vote. </p></td>
+                </tr>
+
+                <tr>
+                  <td>exec</td>
+                  <td><a href="#cosmos.group.v1.Exec">Exec</a></td>
+                  <td></td>
+                  <td><p>exec defines whether the proposal should be executed
+immediately after voting or not. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgVoteResponse">MsgVoteResponse</h3>
+        <p>MsgVoteResponse is the Msg/Vote response type.</p>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgWithdrawProposal">MsgWithdrawProposal</h3>
+        <p>MsgWithdrawProposal is the Msg/WithdrawProposal request type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal is the unique ID of the proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the admin of the group policy or one of the proposer of the proposal. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MsgWithdrawProposalResponse">MsgWithdrawProposalResponse</h3>
+        <p>MsgWithdrawProposalResponse is the Msg/WithdrawProposal response type.</p>
+
+
+
+
+
+
+
+        <h3 id="cosmos.group.v1.Exec">Exec</h3>
+        <p>Exec defines modes of execution of a proposal on creation or on new vote.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>EXEC_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>An empty value means that there should be a separate
+MsgExec request for the proposal to execute.</p></td>
+              </tr>
+
+              <tr>
+                <td>EXEC_TRY</td>
+                <td>1</td>
+                <td><p>Try to execute the proposal immediately.
+If the proposal is not allowed per the DecisionPolicy,
+the proposal will still be open and could
+be executed at a later point.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.Msg">Msg</h3>
+        <p>Msg is the cosmos.group.v1 Msg service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>CreateGroup</td>
+                <td><a href="#cosmos.group.v1.MsgCreateGroup">MsgCreateGroup</a></td>
+                <td><a href="#cosmos.group.v1.MsgCreateGroupResponse">MsgCreateGroupResponse</a></td>
+                <td><p>CreateGroup creates a new group with an admin account address, a list of members and some optional metadata.</p></td>
+              </tr>
+
+              <tr>
+                <td>UpdateGroupMembers</td>
+                <td><a href="#cosmos.group.v1.MsgUpdateGroupMembers">MsgUpdateGroupMembers</a></td>
+                <td><a href="#cosmos.group.v1.MsgUpdateGroupMembersResponse">MsgUpdateGroupMembersResponse</a></td>
+                <td><p>UpdateGroupMembers updates the group members with given group id and admin address.</p></td>
+              </tr>
+
+              <tr>
+                <td>UpdateGroupAdmin</td>
+                <td><a href="#cosmos.group.v1.MsgUpdateGroupAdmin">MsgUpdateGroupAdmin</a></td>
+                <td><a href="#cosmos.group.v1.MsgUpdateGroupAdminResponse">MsgUpdateGroupAdminResponse</a></td>
+                <td><p>UpdateGroupAdmin updates the group admin with given group id and previous admin address.</p></td>
+              </tr>
+
+              <tr>
+                <td>UpdateGroupMetadata</td>
+                <td><a href="#cosmos.group.v1.MsgUpdateGroupMetadata">MsgUpdateGroupMetadata</a></td>
+                <td><a href="#cosmos.group.v1.MsgUpdateGroupMetadataResponse">MsgUpdateGroupMetadataResponse</a></td>
+                <td><p>UpdateGroupMetadata updates the group metadata with given group id and admin address.</p></td>
+              </tr>
+
+              <tr>
+                <td>CreateGroupPolicy</td>
+                <td><a href="#cosmos.group.v1.MsgCreateGroupPolicy">MsgCreateGroupPolicy</a></td>
+                <td><a href="#cosmos.group.v1.MsgCreateGroupPolicyResponse">MsgCreateGroupPolicyResponse</a></td>
+                <td><p>CreateGroupPolicy creates a new group policy using given DecisionPolicy.</p></td>
+              </tr>
+
+              <tr>
+                <td>CreateGroupWithPolicy</td>
+                <td><a href="#cosmos.group.v1.MsgCreateGroupWithPolicy">MsgCreateGroupWithPolicy</a></td>
+                <td><a href="#cosmos.group.v1.MsgCreateGroupWithPolicyResponse">MsgCreateGroupWithPolicyResponse</a></td>
+                <td><p>CreateGroupWithPolicy creates a new group with policy.</p></td>
+              </tr>
+
+              <tr>
+                <td>UpdateGroupPolicyAdmin</td>
+                <td><a href="#cosmos.group.v1.MsgUpdateGroupPolicyAdmin">MsgUpdateGroupPolicyAdmin</a></td>
+                <td><a href="#cosmos.group.v1.MsgUpdateGroupPolicyAdminResponse">MsgUpdateGroupPolicyAdminResponse</a></td>
+                <td><p>UpdateGroupPolicyAdmin updates a group policy admin.</p></td>
+              </tr>
+
+              <tr>
+                <td>UpdateGroupPolicyDecisionPolicy</td>
+                <td><a href="#cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicy">MsgUpdateGroupPolicyDecisionPolicy</a></td>
+                <td><a href="#cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicyResponse">MsgUpdateGroupPolicyDecisionPolicyResponse</a></td>
+                <td><p>UpdateGroupPolicyDecisionPolicy allows a group policy's decision policy to be updated.</p></td>
+              </tr>
+
+              <tr>
+                <td>UpdateGroupPolicyMetadata</td>
+                <td><a href="#cosmos.group.v1.MsgUpdateGroupPolicyMetadata">MsgUpdateGroupPolicyMetadata</a></td>
+                <td><a href="#cosmos.group.v1.MsgUpdateGroupPolicyMetadataResponse">MsgUpdateGroupPolicyMetadataResponse</a></td>
+                <td><p>UpdateGroupPolicyMetadata updates a group policy metadata.</p></td>
+              </tr>
+
+              <tr>
+                <td>SubmitProposal</td>
+                <td><a href="#cosmos.group.v1.MsgSubmitProposal">MsgSubmitProposal</a></td>
+                <td><a href="#cosmos.group.v1.MsgSubmitProposalResponse">MsgSubmitProposalResponse</a></td>
+                <td><p>SubmitProposal submits a new proposal.</p></td>
+              </tr>
+
+              <tr>
+                <td>WithdrawProposal</td>
+                <td><a href="#cosmos.group.v1.MsgWithdrawProposal">MsgWithdrawProposal</a></td>
+                <td><a href="#cosmos.group.v1.MsgWithdrawProposalResponse">MsgWithdrawProposalResponse</a></td>
+                <td><p>WithdrawProposal withdraws a proposal.</p></td>
+              </tr>
+
+              <tr>
+                <td>Vote</td>
+                <td><a href="#cosmos.group.v1.MsgVote">MsgVote</a></td>
+                <td><a href="#cosmos.group.v1.MsgVoteResponse">MsgVoteResponse</a></td>
+                <td><p>Vote allows a voter to vote on a proposal.</p></td>
+              </tr>
+
+              <tr>
+                <td>Exec</td>
+                <td><a href="#cosmos.group.v1.MsgExec">MsgExec</a></td>
+                <td><a href="#cosmos.group.v1.MsgExecResponse">MsgExecResponse</a></td>
+                <td><p>Exec executes a proposal.</p></td>
+              </tr>
+
+              <tr>
+                <td>LeaveGroup</td>
+                <td><a href="#cosmos.group.v1.MsgLeaveGroup">MsgLeaveGroup</a></td>
+                <td><a href="#cosmos.group.v1.MsgLeaveGroupResponse">MsgLeaveGroupResponse</a></td>
+                <td><p>LeaveGroup allows a group member to leave the group.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/group/v1/types.proto">cosmos/group/v1/types.proto</h2><a href="#title">Top</a>
+      </div>
+      <p>Since: cosmos-sdk 0.46</p>
+
+
+        <h3 id="cosmos.group.v1.DecisionPolicyWindows">DecisionPolicyWindows</h3>
+        <p>DecisionPolicyWindows defines the different windows for voting and execution.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>voting_period</td>
+                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
+                  <td></td>
+                  <td><p>voting_period is the duration from submission of a proposal to the end of voting period
+Within this times votes can be submitted with MsgVote. </p></td>
+                </tr>
+
+                <tr>
+                  <td>min_execution_period</td>
+                  <td><a href="#google.protobuf.Duration">google.protobuf.Duration</a></td>
+                  <td></td>
+                  <td><p>min_execution_period is the minimum duration after the proposal submission
+where members can start sending MsgExec. This means that the window for
+sending a MsgExec transaction is:
+`[ submission + min_execution_period ; submission + voting_period + max_execution_period]`
+where max_execution_period is a app-specific config, defined in the keeper.
+If not set, min_execution_period will default to 0.
+
+Please make sure to set a `min_execution_period` that is smaller than
+`voting_period + max_execution_period`, or else the above execution window
+is empty, meaning that all proposals created with this decision policy
+won't be able to be executed. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.GroupInfo">GroupInfo</h3>
+        <p>GroupInfo represents the high-level on-chain information for a group.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>id is the unique ID of the group. </p></td>
+                </tr>
+
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>admin is the account address of the group's admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>metadata is any arbitrary metadata to attached to the group.
+the recommended format of the metadata is to be found here: https://docs.cosmos.network/v0.47/modules/group#group-1 </p></td>
+                </tr>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>version is used to track changes to a group's membership structure that
+would break existing proposals. Whenever any members weight is changed,
+or any member is added or removed this version is incremented and will
+cause proposals based on older versions of this group to fail </p></td>
+                </tr>
+
+                <tr>
+                  <td>total_weight</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>total_weight is the sum of the group members' weights. </p></td>
+                </tr>
+
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>created_at is a timestamp specifying when a group was created. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.GroupMember">GroupMember</h3>
+        <p>GroupMember represents the relationship between a group and a member.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the group. </p></td>
+                </tr>
+
+                <tr>
+                  <td>member</td>
+                  <td><a href="#cosmos.group.v1.Member">Member</a></td>
+                  <td></td>
+                  <td><p>member is the member data. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.GroupPolicyInfo">GroupPolicyInfo</h3>
+        <p>GroupPolicyInfo represents the high-level on-chain information for a group policy.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the account address of group policy. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_id is the unique ID of the group. </p></td>
+                </tr>
+
+                <tr>
+                  <td>admin</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>admin is the account address of the group admin. </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>metadata is any arbitrary metadata attached to the group policy.
+the recommended format of the metadata is to be found here:
+https://docs.cosmos.network/v0.47/modules/group#decision-policy-1 </p></td>
+                </tr>
+
+                <tr>
+                  <td>version</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>version is used to track changes to a group's GroupPolicyInfo structure that
+would create a different result on a running proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>decision_policy</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p>decision_policy specifies the group policy's decision policy. </p></td>
+                </tr>
+
+                <tr>
+                  <td>created_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>created_at is a timestamp specifying when a group policy was created. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.Member">Member</h3>
+        <p>Member represents a group member with an account address,</p><p>non-zero weight, metadata and added_at timestamp.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the member's account address. </p></td>
+                </tr>
+
+                <tr>
+                  <td>weight</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>weight is the member's voting weight that should be greater than 0. </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>metadata is any arbitrary metadata attached to the member. </p></td>
+                </tr>
+
+                <tr>
+                  <td>added_at</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>added_at is a timestamp specifying when a member was added. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.MemberRequest">MemberRequest</h3>
+        <p>MemberRequest represents a group member to be used in Msg server requests.</p><p>Contrary to `Member`, it doesn't have any `added_at` field</p><p>since this field cannot be set as part of requests.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the member's account address. </p></td>
+                </tr>
+
+                <tr>
+                  <td>weight</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>weight is the member's voting weight that should be greater than 0. </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>metadata is any arbitrary metadata attached to the member. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.PercentageDecisionPolicy">PercentageDecisionPolicy</h3>
+        <p>PercentageDecisionPolicy is a decision policy where a proposal passes when</p><p>it satisfies the two following conditions:</p><p>1. The percentage of all `YES` voters' weights out of the total group weight</p><p>is greater or equal than the given `percentage`.</p><p>2. The voting and execution periods of the proposal respect the parameters</p><p>given by `windows`.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>percentage</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>percentage is the minimum percentage of the weighted sum of `YES` votes must
+meet for a proposal to succeed. </p></td>
+                </tr>
+
+                <tr>
+                  <td>windows</td>
+                  <td><a href="#cosmos.group.v1.DecisionPolicyWindows">DecisionPolicyWindows</a></td>
+                  <td></td>
+                  <td><p>windows defines the different windows for voting and execution. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.Proposal">Proposal</h3>
+        <p>Proposal defines a group proposal. Any member of a group can submit a proposal</p><p>for a group policy to decide upon.</p><p>A proposal consists of a set of `sdk.Msg`s that will be executed if the proposal</p><p>passes as well as some optional metadata associated with the proposal.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>id is the unique id of the proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_policy_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>group_policy_address is the account address of group policy. </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>metadata is any arbitrary metadata attached to the proposal.
+the recommended format of the metadata is to be found here:
+https://docs.cosmos.network/v0.47/modules/group#proposal-4 </p></td>
+                </tr>
+
+                <tr>
+                  <td>proposers</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>proposers are the account addresses of the proposers. </p></td>
+                </tr>
+
+                <tr>
+                  <td>submit_time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>submit_time is a timestamp specifying when a proposal was submitted. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_version</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_version tracks the version of the group at proposal submission.
+This field is here for informational purposes only. </p></td>
+                </tr>
+
+                <tr>
+                  <td>group_policy_version</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>group_policy_version tracks the version of the group policy at proposal submission.
+When a decision policy is changed, existing proposals from previous policy
+versions will become invalid with the `ABORTED` status.
+This field is here for informational purposes only. </p></td>
+                </tr>
+
+                <tr>
+                  <td>status</td>
+                  <td><a href="#cosmos.group.v1.ProposalStatus">ProposalStatus</a></td>
+                  <td></td>
+                  <td><p>status represents the high level position in the life cycle of the proposal. Initial value is Submitted. </p></td>
+                </tr>
+
+                <tr>
+                  <td>final_tally_result</td>
+                  <td><a href="#cosmos.group.v1.TallyResult">TallyResult</a></td>
+                  <td></td>
+                  <td><p>final_tally_result contains the sums of all weighted votes for this
+proposal for each vote option. It is empty at submission, and only
+populated after tallying, at voting period end or at proposal execution,
+whichever happens first. </p></td>
+                </tr>
+
+                <tr>
+                  <td>voting_period_end</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>voting_period_end is the timestamp before which voting must be done.
+Unless a successful MsgExec is called before (to execute a proposal whose
+tally is successful before the voting period ends), tallying will be done
+at this point, and the `final_tally_result`and `status` fields will be
+accordingly updated. </p></td>
+                </tr>
+
+                <tr>
+                  <td>executor_result</td>
+                  <td><a href="#cosmos.group.v1.ProposalExecutorResult">ProposalExecutorResult</a></td>
+                  <td></td>
+                  <td><p>executor_result is the final result of the proposal execution. Initial value is NotRun. </p></td>
+                </tr>
+
+                <tr>
+                  <td>messages</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td>repeated</td>
+                  <td><p>messages is a list of `sdk.Msg`s that will be executed if the proposal passes. </p></td>
+                </tr>
+
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>title is the title of the proposal
+
+Since: cosmos-sdk 0.47 </p></td>
+                </tr>
+
+                <tr>
+                  <td>summary</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>summary is a short summary of the proposal
+
+Since: cosmos-sdk 0.47 </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.TallyResult">TallyResult</h3>
+        <p>TallyResult represents the sum of weighted votes for each vote option.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>yes_count</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>yes_count is the weighted sum of yes votes. </p></td>
+                </tr>
+
+                <tr>
+                  <td>abstain_count</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>abstain_count is the weighted sum of abstainers. </p></td>
+                </tr>
+
+                <tr>
+                  <td>no_count</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>no_count is the weighted sum of no votes. </p></td>
+                </tr>
+
+                <tr>
+                  <td>no_with_veto_count</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>no_with_veto_count is the weighted sum of veto. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.ThresholdDecisionPolicy">ThresholdDecisionPolicy</h3>
+        <p>ThresholdDecisionPolicy is a decision policy where a proposal passes when it</p><p>satisfies the two following conditions:</p><p>1. The sum of all `YES` voter's weights is greater or equal than the defined</p><p>`threshold`.</p><p>2. The voting and execution periods of the proposal respect the parameters</p><p>given by `windows`.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>threshold</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>threshold is the minimum weighted sum of `YES` votes that must be met or
+exceeded for a proposal to succeed. </p></td>
+                </tr>
+
+                <tr>
+                  <td>windows</td>
+                  <td><a href="#cosmos.group.v1.DecisionPolicyWindows">DecisionPolicyWindows</a></td>
+                  <td></td>
+                  <td><p>windows defines the different windows for voting and execution. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.group.v1.Vote">Vote</h3>
+        <p>Vote represents a vote for a proposal.string metadata</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>proposal_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>proposal is the unique ID of the proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>voter</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>voter is the account address of the voter. </p></td>
+                </tr>
+
+                <tr>
+                  <td>option</td>
+                  <td><a href="#cosmos.group.v1.VoteOption">VoteOption</a></td>
+                  <td></td>
+                  <td><p>option is the voter's choice on the proposal. </p></td>
+                </tr>
+
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>metadata is any arbitrary metadata attached to the vote.
+the recommended format of the metadata is to be found here: https://docs.cosmos.network/v0.47/modules/group#vote-2 </p></td>
+                </tr>
+
+                <tr>
+                  <td>submit_time</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>submit_time is the timestamp when the vote was submitted. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+        <h3 id="cosmos.group.v1.ProposalExecutorResult">ProposalExecutorResult</h3>
+        <p>ProposalExecutorResult defines types of proposal executor results.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>PROPOSAL_EXECUTOR_RESULT_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>An empty value is not allowed.</p></td>
+              </tr>
+
+              <tr>
+                <td>PROPOSAL_EXECUTOR_RESULT_NOT_RUN</td>
+                <td>1</td>
+                <td><p>We have not yet run the executor.</p></td>
+              </tr>
+
+              <tr>
+                <td>PROPOSAL_EXECUTOR_RESULT_SUCCESS</td>
+                <td>2</td>
+                <td><p>The executor was successful and proposed action updated state.</p></td>
+              </tr>
+
+              <tr>
+                <td>PROPOSAL_EXECUTOR_RESULT_FAILURE</td>
+                <td>3</td>
+                <td><p>The executor returned an error and proposed action didn't update state.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <h3 id="cosmos.group.v1.ProposalStatus">ProposalStatus</h3>
+        <p>ProposalStatus defines proposal statuses.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>PROPOSAL_STATUS_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>An empty value is invalid and not allowed.</p></td>
+              </tr>
+
+              <tr>
+                <td>PROPOSAL_STATUS_SUBMITTED</td>
+                <td>1</td>
+                <td><p>Initial status of a proposal when submitted.</p></td>
+              </tr>
+
+              <tr>
+                <td>PROPOSAL_STATUS_ACCEPTED</td>
+                <td>2</td>
+                <td><p>Final status of a proposal when the final tally is done and the outcome
+passes the group policy's decision policy.</p></td>
+              </tr>
+
+              <tr>
+                <td>PROPOSAL_STATUS_REJECTED</td>
+                <td>3</td>
+                <td><p>Final status of a proposal when the final tally is done and the outcome
+is rejected by the group policy's decision policy.</p></td>
+              </tr>
+
+              <tr>
+                <td>PROPOSAL_STATUS_ABORTED</td>
+                <td>4</td>
+                <td><p>Final status of a proposal when the group policy is modified before the
+final tally.</p></td>
+              </tr>
+
+              <tr>
+                <td>PROPOSAL_STATUS_WITHDRAWN</td>
+                <td>5</td>
+                <td><p>A proposal can be withdrawn before the voting start time by the owner.
+When this happens the final status is Withdrawn.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <h3 id="cosmos.group.v1.VoteOption">VoteOption</h3>
+        <p>VoteOption enumerates the valid vote options for a given proposal.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>VOTE_OPTION_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>VOTE_OPTION_UNSPECIFIED defines an unspecified vote option which will
+return an error.</p></td>
+              </tr>
+
+              <tr>
+                <td>VOTE_OPTION_YES</td>
+                <td>1</td>
+                <td><p>VOTE_OPTION_YES defines a yes vote option.</p></td>
+              </tr>
+
+              <tr>
+                <td>VOTE_OPTION_ABSTAIN</td>
+                <td>2</td>
+                <td><p>VOTE_OPTION_ABSTAIN defines an abstain vote option.</p></td>
+              </tr>
+
+              <tr>
+                <td>VOTE_OPTION_NO</td>
+                <td>3</td>
+                <td><p>VOTE_OPTION_NO defines a no vote option.</p></td>
+              </tr>
+
+              <tr>
+                <td>VOTE_OPTION_NO_WITH_VETO</td>
+                <td>4</td>
+                <td><p>VOTE_OPTION_NO_WITH_VETO defines a no with veto vote option.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+
+
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr>
+          <td>.proto Type</td>
+          <td>Notes</td>
+          <td>Python Type</td>
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>boolean</td>
+          </tr>
+
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>str/unicode</td>
+          </tr>
+
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>str</td>
+          </tr>
+
+      </tbody>
+    </table>

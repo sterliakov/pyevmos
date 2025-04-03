@@ -48,6 +48,11 @@ class Grant(betterproto.Message):
 
     authorization: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(1)
     expiration: datetime = betterproto.message_field(2)
+    """
+    time when the grant will expire and will be pruned. If null, then the grant
+    doesn't have a time expiration (other conditions  in `authorization`
+    may apply to invalidate the grant)
+    """
 
 
 @dataclass(eq=False, repr=False)
@@ -56,13 +61,20 @@ class GrantAuthorization(betterproto.Message):
     GrantAuthorization extends a grant with both the addresses of the grantee and
     granter.
     It is used in genesis.proto and query.proto
-    Since: cosmos-sdk 0.45.2
     """
 
     granter: str = betterproto.string_field(1)
     grantee: str = betterproto.string_field(2)
     authorization: "betterproto_lib_google_protobuf.Any" = betterproto.message_field(3)
     expiration: datetime = betterproto.message_field(4)
+
+
+@dataclass(eq=False, repr=False)
+class GrantQueueItem(betterproto.Message):
+    """GrantQueueItem contains the list of TypeURL of a sdk.Msg."""
+
+    msg_type_urls: List[str] = betterproto.string_field(1)
+    """msg_type_urls contains the list of TypeURL of a sdk.Msg."""
 
 
 @dataclass(eq=False, repr=False)
@@ -157,7 +169,8 @@ class QueryGranterGrantsResponse(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class QueryGranteeGrantsRequest(betterproto.Message):
     """
-    QueryGranteeGrantsRequest is the request type for the Query/IssuedGrants RPC method.
+    QueryGranteeGrantsRequest is the request type for the Query/GranteeGrants RPC
+    method.
     """
 
     grantee: str = betterproto.string_field(1)
@@ -193,10 +206,10 @@ class MsgGrant(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class MsgExecResponse(betterproto.Message):
-    """MsgExecResponse defines the Msg/MsgExecResponse response type."""
+class MsgGrantResponse(betterproto.Message):
+    """MsgGrantResponse defines the Msg/MsgGrant response type."""
 
-    results: List[bytes] = betterproto.bytes_field(1)
+    pass
 
 
 @dataclass(eq=False, repr=False)
@@ -210,8 +223,7 @@ class MsgExec(betterproto.Message):
     grantee: str = betterproto.string_field(1)
     msgs: List["betterproto_lib_google_protobuf.Any"] = betterproto.message_field(2)
     """
-    Authorization Msg requests to execute. Each msg must implement Authorization
-    interface
+    Execute Msg.
     The x/authz will try to find a grant matching (msg.signers[0], grantee,
     MsgTypeURL(msg))
     triple and validate it.
@@ -219,10 +231,10 @@ class MsgExec(betterproto.Message):
 
 
 @dataclass(eq=False, repr=False)
-class MsgGrantResponse(betterproto.Message):
-    """MsgGrantResponse defines the Msg/MsgGrant response type."""
+class MsgExecResponse(betterproto.Message):
+    """MsgExecResponse defines the Msg/MsgExecResponse response type."""
 
-    pass
+    results: List[bytes] = betterproto.bytes_field(1)
 
 
 @dataclass(eq=False, repr=False)

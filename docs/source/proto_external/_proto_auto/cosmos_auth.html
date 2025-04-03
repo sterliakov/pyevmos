@@ -167,6 +167,25 @@
 
 
           <li>
+            <a href="#cosmos/auth/module/v1/module.proto">cosmos/auth/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.auth.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.module.v1.ModuleAccountPermission"><span class="badge">M</span>ModuleAccountPermission</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/auth/v1beta1/auth.proto">cosmos/auth/v1beta1/auth.proto</a>
             <ul>
 
@@ -176,6 +195,10 @@
 
                 <li>
                   <a href="#cosmos.auth.v1beta1.ModuleAccount"><span class="badge">M</span>ModuleAccount</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.ModuleCredential"><span class="badge">M</span>ModuleCredential</a>
                 </li>
 
                 <li>
@@ -209,6 +232,46 @@
             <ul>
 
                 <li>
+                  <a href="#cosmos.auth.v1beta1.AddressBytesToStringRequest"><span class="badge">M</span>AddressBytesToStringRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.AddressBytesToStringResponse"><span class="badge">M</span>AddressBytesToStringResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.AddressStringToBytesRequest"><span class="badge">M</span>AddressStringToBytesRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.AddressStringToBytesResponse"><span class="badge">M</span>AddressStringToBytesResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.Bech32PrefixRequest"><span class="badge">M</span>Bech32PrefixRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.Bech32PrefixResponse"><span class="badge">M</span>Bech32PrefixResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.QueryAccountAddressByIDRequest"><span class="badge">M</span>QueryAccountAddressByIDRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.QueryAccountAddressByIDResponse"><span class="badge">M</span>QueryAccountAddressByIDResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.QueryAccountInfoRequest"><span class="badge">M</span>QueryAccountInfoRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.QueryAccountInfoResponse"><span class="badge">M</span>QueryAccountInfoResponse</a>
+                </li>
+
+                <li>
                   <a href="#cosmos.auth.v1beta1.QueryAccountRequest"><span class="badge">M</span>QueryAccountRequest</a>
                 </li>
 
@@ -222,6 +285,22 @@
 
                 <li>
                   <a href="#cosmos.auth.v1beta1.QueryAccountsResponse"><span class="badge">M</span>QueryAccountsResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.QueryModuleAccountByNameRequest"><span class="badge">M</span>QueryModuleAccountByNameRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.QueryModuleAccountByNameResponse"><span class="badge">M</span>QueryModuleAccountByNameResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.QueryModuleAccountsRequest"><span class="badge">M</span>QueryModuleAccountsRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.QueryModuleAccountsResponse"><span class="badge">M</span>QueryModuleAccountsResponse</a>
                 </li>
 
                 <li>
@@ -242,9 +321,116 @@
             </ul>
           </li>
 
+
+          <li>
+            <a href="#cosmos/auth/v1beta1/tx.proto">cosmos/auth/v1beta1/tx.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.MsgUpdateParams"><span class="badge">M</span>MsgUpdateParams</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.MsgUpdateParamsResponse"><span class="badge">M</span>MsgUpdateParamsResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.auth.v1beta1.Msg"><span class="badge">S</span>Msg</a>
+                </li>
+
+            </ul>
+          </li>
+
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/auth/module/v1/module.proto">cosmos/auth/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.auth.module.v1.Module">Module</h3>
+        <p>Module is the config object for the auth module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>bech32_prefix</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>bech32_prefix is the bech32 account prefix for the app. </p></td>
+                </tr>
+
+                <tr>
+                  <td>module_account_permissions</td>
+                  <td><a href="#cosmos.auth.module.v1.ModuleAccountPermission">ModuleAccountPermission</a></td>
+                  <td>repeated</td>
+                  <td><p>module_account_permissions are module account permissions. </p></td>
+                </tr>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority defines the custom module authority. If not set, defaults to the governance module. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.module.v1.ModuleAccountPermission">ModuleAccountPermission</h3>
+        <p>ModuleAccountPermission represents permissions for a module account.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>account</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>account is the name of the module. </p></td>
+                </tr>
+
+                <tr>
+                  <td>permissions</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>permissions are the permissions this module has. Currently recognized
+values are minter, burner and staking. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -337,6 +523,38 @@
 
 
 
+        <h3 id="cosmos.auth.v1beta1.ModuleCredential">ModuleCredential</h3>
+        <p>ModuleCredential represents a unclaimable pubkey for base accounts controlled by modules.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>module_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>module_name is the name of the module used for address derivation (passed into address.Module). </p></td>
+                </tr>
+
+                <tr>
+                  <td>derivation_keys</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td>repeated</td>
+                  <td><p>derivation_keys is for deriving a module account address (passed into address.Module)
+adding more keys creates sub-account addresses (passed into address.Derive) </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
         <h3 id="cosmos.auth.v1beta1.Params">Params</h3>
         <p>Params defines the parameters for the auth module.</p>
 
@@ -417,7 +635,7 @@
                   <td>params</td>
                   <td><a href="#cosmos.auth.v1beta1.Params">Params</a></td>
                   <td></td>
-                  <td><p>params defines all the paramaters of the module. </p></td>
+                  <td><p>params defines all the parameters of the module. </p></td>
                 </tr>
 
                 <tr>
@@ -446,6 +664,263 @@
         <h2 id="cosmos/auth/v1beta1/query.proto">cosmos/auth/v1beta1/query.proto</h2><a href="#title">Top</a>
       </div>
       <p></p>
+
+
+        <h3 id="cosmos.auth.v1beta1.AddressBytesToStringRequest">AddressBytesToStringRequest</h3>
+        <p>AddressBytesToStringRequest is the request type for AddressString rpc method.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address_bytes</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.AddressBytesToStringResponse">AddressBytesToStringResponse</h3>
+        <p>AddressBytesToStringResponse is the response type for AddressString rpc method.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address_string</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.AddressStringToBytesRequest">AddressStringToBytesRequest</h3>
+        <p>AddressStringToBytesRequest is the request type for AccountBytes rpc method.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address_string</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.AddressStringToBytesResponse">AddressStringToBytesResponse</h3>
+        <p>AddressStringToBytesResponse is the response type for AddressBytes rpc method.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address_bytes</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.Bech32PrefixRequest">Bech32PrefixRequest</h3>
+        <p>Bech32PrefixRequest is the request type for Bech32Prefix rpc method.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.Bech32PrefixResponse">Bech32PrefixResponse</h3>
+        <p>Bech32PrefixResponse is the response type for Bech32Prefix rpc method.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>bech32_prefix</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.QueryAccountAddressByIDRequest">QueryAccountAddressByIDRequest</h3>
+        <p>QueryAccountAddressByIDRequest is the request type for AccountAddressByID rpc method</p><p>Since: cosmos-sdk 0.46.2</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated, use account_id instead
+
+id is the account number of the address to be queried. This field
+should have been an uint64 (like all account numbers), and will be
+updated to uint64 in a future version of the auth query. </p></td>
+                </tr>
+
+                <tr>
+                  <td>account_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>account_id is the account number of the address to be queried.
+
+Since: cosmos-sdk 0.47 </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>id</td>
+                  <td><p>true</p></td>
+                </tr>
+
+              </tbody>
+            </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.QueryAccountAddressByIDResponse">QueryAccountAddressByIDResponse</h3>
+        <p>QueryAccountAddressByIDResponse is the response type for AccountAddressByID rpc method</p><p>Since: cosmos-sdk 0.46.2</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>account_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.QueryAccountInfoRequest">QueryAccountInfoRequest</h3>
+        <p>QueryAccountInfoRequest is the Query/AccountInfo request type.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>address is the account address string. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.QueryAccountInfoResponse">QueryAccountInfoResponse</h3>
+        <p>QueryAccountInfoResponse is the Query/AccountInfo response type.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>info</td>
+                  <td><a href="#cosmos.auth.v1beta1.BaseAccount">BaseAccount</a></td>
+                  <td></td>
+                  <td><p>info is the account info which is represented by BaseAccount. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
 
 
         <h3 id="cosmos.auth.v1beta1.QueryAccountRequest">QueryAccountRequest</h3>
@@ -551,6 +1026,85 @@
 
 
 
+        <h3 id="cosmos.auth.v1beta1.QueryModuleAccountByNameRequest">QueryModuleAccountByNameRequest</h3>
+        <p>QueryModuleAccountByNameRequest is the request type for the Query/ModuleAccountByName RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.QueryModuleAccountByNameResponse">QueryModuleAccountByNameResponse</h3>
+        <p>QueryModuleAccountByNameResponse is the response type for the Query/ModuleAccountByName RPC method.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>account</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.QueryModuleAccountsRequest">QueryModuleAccountsRequest</h3>
+        <p>QueryModuleAccountsRequest is the request type for the Query/ModuleAccounts RPC method.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.QueryModuleAccountsResponse">QueryModuleAccountsResponse</h3>
+        <p>QueryModuleAccountsResponse is the response type for the Query/ModuleAccounts RPC method.</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>accounts</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
         <h3 id="cosmos.auth.v1beta1.QueryParamsRequest">QueryParamsRequest</h3>
         <p>QueryParamsRequest is the request type for the Query/Params RPC method.</p>
 
@@ -600,7 +1154,10 @@
                 <td>Accounts</td>
                 <td><a href="#cosmos.auth.v1beta1.QueryAccountsRequest">QueryAccountsRequest</a></td>
                 <td><a href="#cosmos.auth.v1beta1.QueryAccountsResponse">QueryAccountsResponse</a></td>
-                <td><p>Accounts returns all the existing accounts
+                <td><p>Accounts returns all the existing accounts.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.
 
 Since: cosmos-sdk 0.43</p></td>
               </tr>
@@ -613,10 +1170,71 @@ Since: cosmos-sdk 0.43</p></td>
               </tr>
 
               <tr>
+                <td>AccountAddressByID</td>
+                <td><a href="#cosmos.auth.v1beta1.QueryAccountAddressByIDRequest">QueryAccountAddressByIDRequest</a></td>
+                <td><a href="#cosmos.auth.v1beta1.QueryAccountAddressByIDResponse">QueryAccountAddressByIDResponse</a></td>
+                <td><p>AccountAddressByID returns account address based on account number.
+
+Since: cosmos-sdk 0.46.2</p></td>
+              </tr>
+
+              <tr>
                 <td>Params</td>
                 <td><a href="#cosmos.auth.v1beta1.QueryParamsRequest">QueryParamsRequest</a></td>
                 <td><a href="#cosmos.auth.v1beta1.QueryParamsResponse">QueryParamsResponse</a></td>
                 <td><p>Params queries all parameters.</p></td>
+              </tr>
+
+              <tr>
+                <td>ModuleAccounts</td>
+                <td><a href="#cosmos.auth.v1beta1.QueryModuleAccountsRequest">QueryModuleAccountsRequest</a></td>
+                <td><a href="#cosmos.auth.v1beta1.QueryModuleAccountsResponse">QueryModuleAccountsResponse</a></td>
+                <td><p>ModuleAccounts returns all the existing module accounts.
+
+Since: cosmos-sdk 0.46</p></td>
+              </tr>
+
+              <tr>
+                <td>ModuleAccountByName</td>
+                <td><a href="#cosmos.auth.v1beta1.QueryModuleAccountByNameRequest">QueryModuleAccountByNameRequest</a></td>
+                <td><a href="#cosmos.auth.v1beta1.QueryModuleAccountByNameResponse">QueryModuleAccountByNameResponse</a></td>
+                <td><p>ModuleAccountByName returns the module account info by module name</p></td>
+              </tr>
+
+              <tr>
+                <td>Bech32Prefix</td>
+                <td><a href="#cosmos.auth.v1beta1.Bech32PrefixRequest">Bech32PrefixRequest</a></td>
+                <td><a href="#cosmos.auth.v1beta1.Bech32PrefixResponse">Bech32PrefixResponse</a></td>
+                <td><p>Bech32Prefix queries bech32Prefix
+
+Since: cosmos-sdk 0.46</p></td>
+              </tr>
+
+              <tr>
+                <td>AddressBytesToString</td>
+                <td><a href="#cosmos.auth.v1beta1.AddressBytesToStringRequest">AddressBytesToStringRequest</a></td>
+                <td><a href="#cosmos.auth.v1beta1.AddressBytesToStringResponse">AddressBytesToStringResponse</a></td>
+                <td><p>AddressBytesToString converts Account Address bytes to string
+
+Since: cosmos-sdk 0.46</p></td>
+              </tr>
+
+              <tr>
+                <td>AddressStringToBytes</td>
+                <td><a href="#cosmos.auth.v1beta1.AddressStringToBytesRequest">AddressStringToBytesRequest</a></td>
+                <td><a href="#cosmos.auth.v1beta1.AddressStringToBytesResponse">AddressStringToBytesResponse</a></td>
+                <td><p>AddressStringToBytes converts Address string to bytes
+
+Since: cosmos-sdk 0.46</p></td>
+              </tr>
+
+              <tr>
+                <td>AccountInfo</td>
+                <td><a href="#cosmos.auth.v1beta1.QueryAccountInfoRequest">QueryAccountInfoRequest</a></td>
+                <td><a href="#cosmos.auth.v1beta1.QueryAccountInfoResponse">QueryAccountInfoResponse</a></td>
+                <td><p>AccountInfo queries account info which is common to all account types.
+
+Since: cosmos-sdk 0.47</p></td>
               </tr>
 
           </tbody>
@@ -660,6 +1278,16 @@ Since: cosmos-sdk 0.43</p></td>
 
 
               <tr>
+                <td>AccountAddressByID</td>
+                <td>GET</td>
+                <td>/cosmos/auth/v1beta1/address_by_id/{id}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
                 <td>Params</td>
                 <td>GET</td>
                 <td>/cosmos/auth/v1beta1/params</td>
@@ -667,8 +1295,144 @@ Since: cosmos-sdk 0.43</p></td>
               </tr>
 
 
+
+
+              <tr>
+                <td>ModuleAccounts</td>
+                <td>GET</td>
+                <td>/cosmos/auth/v1beta1/module_accounts</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>ModuleAccountByName</td>
+                <td>GET</td>
+                <td>/cosmos/auth/v1beta1/module_accounts/{name}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>Bech32Prefix</td>
+                <td>GET</td>
+                <td>/cosmos/auth/v1beta1/bech32</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>AddressBytesToString</td>
+                <td>GET</td>
+                <td>/cosmos/auth/v1beta1/bech32/{address_bytes}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>AddressStringToBytes</td>
+                <td>GET</td>
+                <td>/cosmos/auth/v1beta1/bech32/{address_string}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>AccountInfo</td>
+                <td>GET</td>
+                <td>/cosmos/auth/v1beta1/account_info/{address}</td>
+                <td></td>
+              </tr>
+
+
             </tbody>
           </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/auth/v1beta1/tx.proto">cosmos/auth/v1beta1/tx.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.auth.v1beta1.MsgUpdateParams">MsgUpdateParams</h3>
+        <p>MsgUpdateParams is the Msg/UpdateParams request type.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address that controls the module (defaults to x/gov unless overwritten). </p></td>
+                </tr>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#cosmos.auth.v1beta1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines the x/auth parameters to update.
+
+NOTE: All parameters must be supplied. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</h3>
+        <p>MsgUpdateParamsResponse defines the response structure for executing a</p><p>MsgUpdateParams message.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.auth.v1beta1.Msg">Msg</h3>
+        <p>Msg defines the x/auth Msg service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>UpdateParams</td>
+                <td><a href="#cosmos.auth.v1beta1.MsgUpdateParams">MsgUpdateParams</a></td>
+                <td><a href="#cosmos.auth.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</a></td>
+                <td><p>UpdateParams defines a (governance) operation for updating the x/auth module
+parameters. The authority defaults to the x/gov module account.
+
+Since: cosmos-sdk 0.47</p></td>
+              </tr>
+
+          </tbody>
+        </table>
 
 
 

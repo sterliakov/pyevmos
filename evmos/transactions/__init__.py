@@ -43,11 +43,6 @@ from evmos.transactions.erc20 import (
     create_tx_msg_convert_coin,
     create_tx_msg_convert_erc20,
 )
-from evmos.transactions.revenue import (
-    create_tx_msg_cancel_revenue,
-    create_tx_msg_register_revenue,
-    create_tx_msg_update_revenue,
-)
 from evmos.transactions.staking import (
     create_tx_msg_begin_redelegate,
     create_tx_msg_delegate,
@@ -68,18 +63,15 @@ __all__ = [
     "create_message_send",
     "create_tx_ibc_msg_transfer",
     "create_tx_msg_begin_redelegate",
-    "create_tx_msg_cancel_revenue",
     "create_tx_msg_convert_coin",
     "create_tx_msg_convert_erc20",
     "create_tx_msg_delegate",
     "create_tx_msg_edit_validator",
     "create_tx_msg_multiple_withdraw_delegator_reward",
-    "create_tx_msg_register_revenue",
     "create_tx_msg_set_withdraw_address",
     "create_tx_msg_stake_authorization",
     "create_tx_msg_stake_revoke_authorization",
     "create_tx_msg_undelegate",
-    "create_tx_msg_update_revenue",
     "create_tx_msg_vote",
     "create_tx_msg_withdraw_delegator_reward",
     "create_tx_msg_withdraw_validator_commission",

@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        /*margin: 1em auto;*/
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin-top: 2ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0; /* No indent on first p in td */
+      }
+
+      /* Table of fields */
+      .field-table td:nth-child(1) { /* Field */
+        width: 10em;
+      }
+      .field-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .field-table td:nth-child(3) { /* Label */
+        width: 6em;
+      }
+      .field-table td:nth-child(4) { /* Description */
+        width: auto;
+      }
+
+      /* Table of extensions */
+      .extension-table td:nth-child(1) { /* Extension */
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) { /* Type */
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) { /* Base */
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) { /* Number */
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) { /* Description */
+        width: auto;
+      }
+
+      /* Table of enum values. */
+      .enum-table td:nth-child(1) { /* Name */
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) { /* Number */
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) { /* Description */
+        width: auto;
+      }
+
+      /* Table of scalar value types. */
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+      /* Table of contents. */
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+      /* File heading div */
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+      /* The 'M', 'E' and 'X' badges in the ToC */
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    <!-- User custom CSS -->
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+
+
+          <li>
+            <a href="#cosmos/nft/module/v1/module.proto">cosmos/nft/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.nft.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/nft/v1beta1/event.proto">cosmos/nft/v1beta1/event.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.EventBurn"><span class="badge">M</span>EventBurn</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.EventMint"><span class="badge">M</span>EventMint</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.EventSend"><span class="badge">M</span>EventSend</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/nft/v1beta1/genesis.proto">cosmos/nft/v1beta1/genesis.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.Entry"><span class="badge">M</span>Entry</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.GenesisState"><span class="badge">M</span>GenesisState</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/nft/v1beta1/nft.proto">cosmos/nft/v1beta1/nft.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.Class"><span class="badge">M</span>Class</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.NFT"><span class="badge">M</span>NFT</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/nft/v1beta1/query.proto">cosmos/nft/v1beta1/query.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QueryBalanceRequest"><span class="badge">M</span>QueryBalanceRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QueryBalanceResponse"><span class="badge">M</span>QueryBalanceResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QueryClassRequest"><span class="badge">M</span>QueryClassRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QueryClassResponse"><span class="badge">M</span>QueryClassResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QueryClassesRequest"><span class="badge">M</span>QueryClassesRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QueryClassesResponse"><span class="badge">M</span>QueryClassesResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QueryNFTRequest"><span class="badge">M</span>QueryNFTRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QueryNFTResponse"><span class="badge">M</span>QueryNFTResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QueryNFTsRequest"><span class="badge">M</span>QueryNFTsRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QueryNFTsResponse"><span class="badge">M</span>QueryNFTsResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QueryOwnerRequest"><span class="badge">M</span>QueryOwnerRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QueryOwnerResponse"><span class="badge">M</span>QueryOwnerResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QuerySupplyRequest"><span class="badge">M</span>QuerySupplyRequest</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.QuerySupplyResponse"><span class="badge">M</span>QuerySupplyResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.Query"><span class="badge">S</span>Query</a>
+                </li>
+
+            </ul>
+          </li>
+
+
+          <li>
+            <a href="#cosmos/nft/v1beta1/tx.proto">cosmos/nft/v1beta1/tx.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.MsgSend"><span class="badge">M</span>MsgSend</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.MsgSendResponse"><span class="badge">M</span>MsgSendResponse</a>
+                </li>
+
+
+
+
+                <li>
+                  <a href="#cosmos.nft.v1beta1.Msg"><span class="badge">S</span>Msg</a>
+                </li>
+
+            </ul>
+          </li>
+
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/nft/module/v1/module.proto">cosmos/nft/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.nft.module.v1.Module">Module</h3>
+        <p>Module is the config object of the nft module.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/nft/v1beta1/event.proto">cosmos/nft/v1beta1/event.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.nft.v1beta1.EventBurn">EventBurn</h3>
+        <p>EventBurn is emitted on Burn</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>class_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>class_id associated with the nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>id is a unique identifier of the nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>owner is the owner address of the nft </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.EventMint">EventMint</h3>
+        <p>EventMint is emitted on Mint</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>class_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>class_id associated with the nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>id is a unique identifier of the nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>owner is the owner address of the nft </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.EventSend">EventSend</h3>
+        <p>EventSend is emitted on Msg/Send</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>class_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>class_id associated with the nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>id is a unique identifier of the nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>sender</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>sender is the address of the owner of nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>receiver</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>receiver is the receiver address of nft </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/nft/v1beta1/genesis.proto">cosmos/nft/v1beta1/genesis.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.nft.v1beta1.Entry">Entry</h3>
+        <p>Entry Defines all nft owned by a person</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>owner is the owner address of the following nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>nfts</td>
+                  <td><a href="#cosmos.nft.v1beta1.NFT">NFT</a></td>
+                  <td>repeated</td>
+                  <td><p>nfts is a group of nfts of the same owner </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.GenesisState">GenesisState</h3>
+        <p>GenesisState defines the nft module's genesis state.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>classes</td>
+                  <td><a href="#cosmos.nft.v1beta1.Class">Class</a></td>
+                  <td>repeated</td>
+                  <td><p>class defines the class of the nft type. </p></td>
+                </tr>
+
+                <tr>
+                  <td>entries</td>
+                  <td><a href="#cosmos.nft.v1beta1.Entry">Entry</a></td>
+                  <td>repeated</td>
+                  <td><p>entry defines all nft owned by a person. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/nft/v1beta1/nft.proto">cosmos/nft/v1beta1/nft.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.nft.v1beta1.Class">Class</h3>
+        <p>Class defines the class of the nft type.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>id defines the unique identifier of the NFT classification, similar to the contract address of ERC721 </p></td>
+                </tr>
+
+                <tr>
+                  <td>name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>name defines the human-readable name of the NFT classification. Optional </p></td>
+                </tr>
+
+                <tr>
+                  <td>symbol</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>symbol is an abbreviated name for nft classification. Optional </p></td>
+                </tr>
+
+                <tr>
+                  <td>description</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>description is a brief description of nft classification. Optional </p></td>
+                </tr>
+
+                <tr>
+                  <td>uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>uri for the class metadata stored off chain. It can define schema for Class and NFT `Data` attributes. Optional </p></td>
+                </tr>
+
+                <tr>
+                  <td>uri_hash</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>uri_hash is a hash of the document pointed by uri. Optional </p></td>
+                </tr>
+
+                <tr>
+                  <td>data</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p>data is the app specific metadata of the NFT class. Optional </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.NFT">NFT</h3>
+        <p>NFT defines the NFT.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>class_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>class_id associated with the NFT, similar to the contract address of ERC721 </p></td>
+                </tr>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>id is a unique identifier of the NFT </p></td>
+                </tr>
+
+                <tr>
+                  <td>uri</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>uri for the NFT metadata stored off chain </p></td>
+                </tr>
+
+                <tr>
+                  <td>uri_hash</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>uri_hash is a hash of the document pointed by uri </p></td>
+                </tr>
+
+                <tr>
+                  <td>data</td>
+                  <td><a href="#google.protobuf.Any">google.protobuf.Any</a></td>
+                  <td></td>
+                  <td><p>data is an app specific data of the NFT. Optional </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/nft/v1beta1/query.proto">cosmos/nft/v1beta1/query.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.nft.v1beta1.QueryBalanceRequest">QueryBalanceRequest</h3>
+        <p>QueryBalanceRequest is the request type for the Query/Balance RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>class_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>class_id associated with the nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>owner is the owner address of the nft </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.QueryBalanceResponse">QueryBalanceResponse</h3>
+        <p>QueryBalanceResponse is the response type for the Query/Balance RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>amount is the number of all NFTs of a given class owned by the owner </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.QueryClassRequest">QueryClassRequest</h3>
+        <p>QueryClassRequest is the request type for the Query/Class RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>class_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>class_id associated with the nft </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.QueryClassResponse">QueryClassResponse</h3>
+        <p>QueryClassResponse is the response type for the Query/Class RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>class</td>
+                  <td><a href="#cosmos.nft.v1beta1.Class">Class</a></td>
+                  <td></td>
+                  <td><p>class defines the class of the nft type. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.QueryClassesRequest">QueryClassesRequest</h3>
+        <p>QueryClassesRequest is the request type for the Query/Classes RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.QueryClassesResponse">QueryClassesResponse</h3>
+        <p>QueryClassesResponse is the response type for the Query/Classes RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>classes</td>
+                  <td><a href="#cosmos.nft.v1beta1.Class">Class</a></td>
+                  <td>repeated</td>
+                  <td><p>class defines the class of the nft type. </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.QueryNFTRequest">QueryNFTRequest</h3>
+        <p>QueryNFTRequest is the request type for the Query/NFT RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>class_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>class_id associated with the nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>id is a unique identifier of the NFT </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.QueryNFTResponse">QueryNFTResponse</h3>
+        <p>QueryNFTResponse is the response type for the Query/NFT RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>nft</td>
+                  <td><a href="#cosmos.nft.v1beta1.NFT">NFT</a></td>
+                  <td></td>
+                  <td><p>owner is the owner address of the nft </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.QueryNFTsRequest">QueryNFTsRequest</h3>
+        <p>QueryNFTstRequest is the request type for the Query/NFTs RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>class_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>class_id associated with the nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>owner is the owner address of the nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageRequest">cosmos.base.query.v1beta1.PageRequest</a></td>
+                  <td></td>
+                  <td><p>pagination defines an optional pagination for the request. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.QueryNFTsResponse">QueryNFTsResponse</h3>
+        <p>QueryNFTsResponse is the response type for the Query/NFTs RPC methods</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>nfts</td>
+                  <td><a href="#cosmos.nft.v1beta1.NFT">NFT</a></td>
+                  <td>repeated</td>
+                  <td><p>NFT defines the NFT </p></td>
+                </tr>
+
+                <tr>
+                  <td>pagination</td>
+                  <td><a href="#cosmos.base.query.v1beta1.PageResponse">cosmos.base.query.v1beta1.PageResponse</a></td>
+                  <td></td>
+                  <td><p>pagination defines the pagination in the response. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.QueryOwnerRequest">QueryOwnerRequest</h3>
+        <p>QueryOwnerRequest is the request type for the Query/Owner RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>class_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>class_id associated with the nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>id is a unique identifier of the NFT </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.QueryOwnerResponse">QueryOwnerResponse</h3>
+        <p>QueryOwnerResponse is the response type for the Query/Owner RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>owner</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>owner is the owner address of the nft </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.QuerySupplyRequest">QuerySupplyRequest</h3>
+        <p>QuerySupplyRequest is the request type for the Query/Supply RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>class_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>class_id associated with the nft </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.QuerySupplyResponse">QuerySupplyResponse</h3>
+        <p>QuerySupplyResponse is the response type for the Query/Supply RPC method</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>amount is the number of all NFTs from the given class </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.Query">Query</h3>
+        <p>Query defines the gRPC querier service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>Balance</td>
+                <td><a href="#cosmos.nft.v1beta1.QueryBalanceRequest">QueryBalanceRequest</a></td>
+                <td><a href="#cosmos.nft.v1beta1.QueryBalanceResponse">QueryBalanceResponse</a></td>
+                <td><p>Balance queries the number of NFTs of a given class owned by the owner, same as balanceOf in ERC721</p></td>
+              </tr>
+
+              <tr>
+                <td>Owner</td>
+                <td><a href="#cosmos.nft.v1beta1.QueryOwnerRequest">QueryOwnerRequest</a></td>
+                <td><a href="#cosmos.nft.v1beta1.QueryOwnerResponse">QueryOwnerResponse</a></td>
+                <td><p>Owner queries the owner of the NFT based on its class and id, same as ownerOf in ERC721</p></td>
+              </tr>
+
+              <tr>
+                <td>Supply</td>
+                <td><a href="#cosmos.nft.v1beta1.QuerySupplyRequest">QuerySupplyRequest</a></td>
+                <td><a href="#cosmos.nft.v1beta1.QuerySupplyResponse">QuerySupplyResponse</a></td>
+                <td><p>Supply queries the number of NFTs from the given class, same as totalSupply of ERC721.</p></td>
+              </tr>
+
+              <tr>
+                <td>NFTs</td>
+                <td><a href="#cosmos.nft.v1beta1.QueryNFTsRequest">QueryNFTsRequest</a></td>
+                <td><a href="#cosmos.nft.v1beta1.QueryNFTsResponse">QueryNFTsResponse</a></td>
+                <td><p>NFTs queries all NFTs of a given class or owner,choose at least one of the two, similar to tokenByIndex in
+ERC721Enumerable</p></td>
+              </tr>
+
+              <tr>
+                <td>NFT</td>
+                <td><a href="#cosmos.nft.v1beta1.QueryNFTRequest">QueryNFTRequest</a></td>
+                <td><a href="#cosmos.nft.v1beta1.QueryNFTResponse">QueryNFTResponse</a></td>
+                <td><p>NFT queries an NFT based on its class and id.</p></td>
+              </tr>
+
+              <tr>
+                <td>Class</td>
+                <td><a href="#cosmos.nft.v1beta1.QueryClassRequest">QueryClassRequest</a></td>
+                <td><a href="#cosmos.nft.v1beta1.QueryClassResponse">QueryClassResponse</a></td>
+                <td><p>Class queries an NFT class based on its id</p></td>
+              </tr>
+
+              <tr>
+                <td>Classes</td>
+                <td><a href="#cosmos.nft.v1beta1.QueryClassesRequest">QueryClassesRequest</a></td>
+                <td><a href="#cosmos.nft.v1beta1.QueryClassesResponse">QueryClassesResponse</a></td>
+                <td><p>Classes queries all NFT classes</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+
+
+
+              <tr>
+                <td>Balance</td>
+                <td>GET</td>
+                <td>/cosmos/nft/v1beta1/balance/{owner}/{class_id}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>Owner</td>
+                <td>GET</td>
+                <td>/cosmos/nft/v1beta1/owner/{class_id}/{id}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>Supply</td>
+                <td>GET</td>
+                <td>/cosmos/nft/v1beta1/supply/{class_id}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>NFTs</td>
+                <td>GET</td>
+                <td>/cosmos/nft/v1beta1/nfts</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>NFT</td>
+                <td>GET</td>
+                <td>/cosmos/nft/v1beta1/nfts/{class_id}/{id}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>Class</td>
+                <td>GET</td>
+                <td>/cosmos/nft/v1beta1/classes/{class_id}</td>
+                <td></td>
+              </tr>
+
+
+
+
+              <tr>
+                <td>Classes</td>
+                <td>GET</td>
+                <td>/cosmos/nft/v1beta1/classes</td>
+                <td></td>
+              </tr>
+
+
+            </tbody>
+          </table>
+
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/nft/v1beta1/tx.proto">cosmos/nft/v1beta1/tx.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.nft.v1beta1.MsgSend">MsgSend</h3>
+        <p>MsgSend represents a message to send a nft from one account to another account.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>class_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>class_id defines the unique identifier of the nft classification, similar to the contract address of ERC721 </p></td>
+                </tr>
+
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>id defines the unique identification of nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>sender</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>sender is the address of the owner of nft </p></td>
+                </tr>
+
+                <tr>
+                  <td>receiver</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>receiver is the receiver address of nft </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.MsgSendResponse">MsgSendResponse</h3>
+        <p>MsgSendResponse defines the Msg/Send response type.</p>
+
+
+
+
+
+
+
+
+
+
+
+        <h3 id="cosmos.nft.v1beta1.Msg">Msg</h3>
+        <p>Msg defines the nft Msg service.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>Send</td>
+                <td><a href="#cosmos.nft.v1beta1.MsgSend">MsgSend</a></td>
+                <td><a href="#cosmos.nft.v1beta1.MsgSendResponse">MsgSendResponse</a></td>
+                <td><p>Send defines a method to send a nft from one account to another account.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+
+
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr>
+          <td>.proto Type</td>
+          <td>Notes</td>
+          <td>Python Type</td>
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+          </tr>
+
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int</td>
+          </tr>
+
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int/long</td>
+          </tr>
+
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>boolean</td>
+          </tr>
+
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>str/unicode</td>
+          </tr>
+
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>str</td>
+          </tr>
+
+      </tbody>
+    </table>

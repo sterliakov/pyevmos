@@ -167,6 +167,21 @@
 
 
           <li>
+            <a href="#cosmos/staking/module/v1/module.proto">cosmos/staking/module/v1/module.proto</a>
+            <ul>
+
+                <li>
+                  <a href="#cosmos.staking.module.v1.Module"><span class="badge">M</span>Module</a>
+                </li>
+
+
+
+
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#cosmos/staking/v1beta1/authz.proto">cosmos/staking/v1beta1/authz.proto</a>
             <ul>
 
@@ -419,9 +434,17 @@
                   <a href="#cosmos.staking.v1beta1.Validator"><span class="badge">M</span>Validator</a>
                 </li>
 
+                <li>
+                  <a href="#cosmos.staking.v1beta1.ValidatorUpdates"><span class="badge">M</span>ValidatorUpdates</a>
+                </li>
+
 
                 <li>
                   <a href="#cosmos.staking.v1beta1.BondStatus"><span class="badge">E</span>BondStatus</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.staking.v1beta1.Infraction"><span class="badge">E</span>Infraction</a>
                 </li>
 
 
@@ -440,6 +463,14 @@
 
                 <li>
                   <a href="#cosmos.staking.v1beta1.MsgBeginRedelegateResponse"><span class="badge">M</span>MsgBeginRedelegateResponse</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.staking.v1beta1.MsgCancelUnbondingDelegation"><span class="badge">M</span>MsgCancelUnbondingDelegation</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.staking.v1beta1.MsgCancelUnbondingDelegationResponse"><span class="badge">M</span>MsgCancelUnbondingDelegationResponse</a>
                 </li>
 
                 <li>
@@ -474,6 +505,14 @@
                   <a href="#cosmos.staking.v1beta1.MsgUndelegateResponse"><span class="badge">M</span>MsgUndelegateResponse</a>
                 </li>
 
+                <li>
+                  <a href="#cosmos.staking.v1beta1.MsgUpdateParams"><span class="badge">M</span>MsgUpdateParams</a>
+                </li>
+
+                <li>
+                  <a href="#cosmos.staking.v1beta1.MsgUpdateParamsResponse"><span class="badge">M</span>MsgUpdateParamsResponse</a>
+                </li>
+
 
 
 
@@ -487,6 +526,67 @@
         <li><a href="#scalar-value-types">Scalar Value Types</a></li>
       </ul>
     </div>
+
+
+
+      <div class="file-heading">
+        <h2 id="cosmos/staking/module/v1/module.proto">cosmos/staking/module/v1/module.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+
+        <h3 id="cosmos.staking.module.v1.Module">Module</h3>
+        <p>Module is the config object of the staking module.</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>hooks_order</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>hooks_order specifies the order of staking hooks and should be a list
+of module names which provide a staking hooks instance. If no order is
+provided, then hooks will be applied in alphabetical order of module names. </p></td>
+                </tr>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority defines the custom module authority. If not set, defaults to the governance module. </p></td>
+                </tr>
+
+                <tr>
+                  <td>bech32_prefix_validator</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>bech32_prefix_validator is the bech32 validator prefix for the app. </p></td>
+                </tr>
+
+                <tr>
+                  <td>bech32_prefix_consensus</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>bech32_prefix_consensus is the bech32 consensus node prefix for the app. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -601,6 +701,12 @@ account. </p></td>
                 <td><p>AUTHORIZATION_TYPE_REDELEGATE defines an authorization type for Msg/BeginRedelegate</p></td>
               </tr>
 
+              <tr>
+                <td>AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION</td>
+                <td>4</td>
+                <td><p>AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION defines an authorization type for Msg/MsgCancelUnbondingDelegation</p></td>
+              </tr>
+
           </tbody>
         </table>
 
@@ -630,7 +736,7 @@ account. </p></td>
                   <td>params</td>
                   <td><a href="#cosmos.staking.v1beta1.Params">Params</a></td>
                   <td></td>
-                  <td><p>params defines all the paramaters of related to deposit. </p></td>
+                  <td><p>params defines all the parameters of related to deposit. </p></td>
                 </tr>
 
                 <tr>
@@ -653,7 +759,7 @@ of the last-block's bonded validators. </p></td>
                   <td>validators</td>
                   <td><a href="#cosmos.staking.v1beta1.Validator">Validator</a></td>
                   <td>repeated</td>
-                  <td><p>delegations defines the validator set at genesis. </p></td>
+                  <td><p>validators defines the validator set at genesis. </p></td>
                 </tr>
 
                 <tr>
@@ -681,7 +787,7 @@ of the last-block's bonded validators. </p></td>
                   <td>exported</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>exported defines a bool to identify whether the chain dealing with exported or initialized genesis. </p></td>
                 </tr>
 
             </tbody>
@@ -960,7 +1066,7 @@ of the last-block's bonded validators. </p></td>
                   <td>validator</td>
                   <td><a href="#cosmos.staking.v1beta1.Validator">Validator</a></td>
                   <td></td>
-                  <td><p>validator defines the the validator info. </p></td>
+                  <td><p>validator defines the validator info. </p></td>
                 </tr>
 
             </tbody>
@@ -1015,7 +1121,7 @@ of the last-block's bonded validators. </p></td>
                   <td>validators</td>
                   <td><a href="#cosmos.staking.v1beta1.Validator">Validator</a></td>
                   <td>repeated</td>
-                  <td><p>validators defines the the validators' info of a delegator. </p></td>
+                  <td><p>validators defines the validators' info of a delegator. </p></td>
                 </tr>
 
                 <tr>
@@ -1373,7 +1479,7 @@ of the last-block's bonded validators. </p></td>
                   <td>validator</td>
                   <td><a href="#cosmos.staking.v1beta1.Validator">Validator</a></td>
                   <td></td>
-                  <td><p>validator defines the the validator info. </p></td>
+                  <td><p>validator defines the validator info. </p></td>
                 </tr>
 
             </tbody>
@@ -1525,7 +1631,10 @@ of the last-block's bonded validators. </p></td>
                 <td>Validators</td>
                 <td><a href="#cosmos.staking.v1beta1.QueryValidatorsRequest">QueryValidatorsRequest</a></td>
                 <td><a href="#cosmos.staking.v1beta1.QueryValidatorsResponse">QueryValidatorsResponse</a></td>
-                <td><p>Validators queries all validators that match the given status.</p></td>
+                <td><p>Validators queries all validators that match the given status.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.</p></td>
               </tr>
 
               <tr>
@@ -1539,14 +1648,20 @@ of the last-block's bonded validators. </p></td>
                 <td>ValidatorDelegations</td>
                 <td><a href="#cosmos.staking.v1beta1.QueryValidatorDelegationsRequest">QueryValidatorDelegationsRequest</a></td>
                 <td><a href="#cosmos.staking.v1beta1.QueryValidatorDelegationsResponse">QueryValidatorDelegationsResponse</a></td>
-                <td><p>ValidatorDelegations queries delegate info for given validator.</p></td>
+                <td><p>ValidatorDelegations queries delegate info for given validator.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.</p></td>
               </tr>
 
               <tr>
                 <td>ValidatorUnbondingDelegations</td>
                 <td><a href="#cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsRequest">QueryValidatorUnbondingDelegationsRequest</a></td>
                 <td><a href="#cosmos.staking.v1beta1.QueryValidatorUnbondingDelegationsResponse">QueryValidatorUnbondingDelegationsResponse</a></td>
-                <td><p>ValidatorUnbondingDelegations queries unbonding delegations of a validator.</p></td>
+                <td><p>ValidatorUnbondingDelegations queries unbonding delegations of a validator.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.</p></td>
               </tr>
 
               <tr>
@@ -1568,7 +1683,10 @@ pair.</p></td>
                 <td>DelegatorDelegations</td>
                 <td><a href="#cosmos.staking.v1beta1.QueryDelegatorDelegationsRequest">QueryDelegatorDelegationsRequest</a></td>
                 <td><a href="#cosmos.staking.v1beta1.QueryDelegatorDelegationsResponse">QueryDelegatorDelegationsResponse</a></td>
-                <td><p>DelegatorDelegations queries all delegations of a given delegator address.</p></td>
+                <td><p>DelegatorDelegations queries all delegations of a given delegator address.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.</p></td>
               </tr>
 
               <tr>
@@ -1576,14 +1694,20 @@ pair.</p></td>
                 <td><a href="#cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsRequest">QueryDelegatorUnbondingDelegationsRequest</a></td>
                 <td><a href="#cosmos.staking.v1beta1.QueryDelegatorUnbondingDelegationsResponse">QueryDelegatorUnbondingDelegationsResponse</a></td>
                 <td><p>DelegatorUnbondingDelegations queries all unbonding delegations of a given
-delegator address.</p></td>
+delegator address.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.</p></td>
               </tr>
 
               <tr>
                 <td>Redelegations</td>
                 <td><a href="#cosmos.staking.v1beta1.QueryRedelegationsRequest">QueryRedelegationsRequest</a></td>
                 <td><a href="#cosmos.staking.v1beta1.QueryRedelegationsResponse">QueryRedelegationsResponse</a></td>
-                <td><p>Redelegations queries redelegations of given address.</p></td>
+                <td><p>Redelegations queries redelegations of given address.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.</p></td>
               </tr>
 
               <tr>
@@ -1591,7 +1715,10 @@ delegator address.</p></td>
                 <td><a href="#cosmos.staking.v1beta1.QueryDelegatorValidatorsRequest">QueryDelegatorValidatorsRequest</a></td>
                 <td><a href="#cosmos.staking.v1beta1.QueryDelegatorValidatorsResponse">QueryDelegatorValidatorsResponse</a></td>
                 <td><p>DelegatorValidators queries all validators info for given delegator
-address.</p></td>
+address.
+
+When called from another module, this query might consume a high amount of
+gas if the pagination field is incorrectly set.</p></td>
               </tr>
 
               <tr>
@@ -1993,14 +2120,14 @@ pair.</p></td>
                   <td>delegator_address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>delegator_address is the bech32-encoded address of the delegator. </p></td>
+                  <td><p>delegator_address is the encoded address of the delegator. </p></td>
                 </tr>
 
                 <tr>
                   <td>validator_address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>validator_address is the bech32-encoded address of the validator. </p></td>
+                  <td><p>validator_address is the encoded address of the validator. </p></td>
                 </tr>
 
                 <tr>
@@ -2132,7 +2259,7 @@ pair.</p></td>
 
 
         <h3 id="cosmos.staking.v1beta1.Params">Params</h3>
-        <p>Params defines the parameters for the staking module.</p>
+        <p>Params defines the parameters for the x/staking module.</p>
 
 
           <table class="field-table">
@@ -2174,6 +2301,13 @@ pair.</p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>bond_denom defines the bondable coin denomination. </p></td>
+                </tr>
+
+                <tr>
+                  <td>min_commission_rate</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>min_commission_rate is the chain-wide minimum commission rate that a validator can charge their delegators </p></td>
                 </tr>
 
             </tbody>
@@ -2299,6 +2433,20 @@ redelegation entries </p></td>
                   <td><p>shares_dst is the amount of destination-validator shares created by redelegation. </p></td>
                 </tr>
 
+                <tr>
+                  <td>unbonding_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Incrementing id that uniquely identifies this entry </p></td>
+                </tr>
+
+                <tr>
+                  <td>unbonding_on_hold_ref_count</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Strictly positive if this entry's unbonding has been stopped by external modules </p></td>
+                </tr>
+
             </tbody>
           </table>
 
@@ -2382,14 +2530,14 @@ redelegation entries </p></td>
                   <td>delegator_address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>delegator_address is the bech32-encoded address of the delegator. </p></td>
+                  <td><p>delegator_address is the encoded address of the delegator. </p></td>
                 </tr>
 
                 <tr>
                   <td>validator_address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>validator_address is the bech32-encoded address of the validator. </p></td>
+                  <td><p>validator_address is the encoded address of the validator. </p></td>
                 </tr>
 
                 <tr>
@@ -2444,6 +2592,20 @@ unbonding delegation entries </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>balance defines the tokens to receive at completion. </p></td>
+                </tr>
+
+                <tr>
+                  <td>unbonding_id</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Incrementing id that uniquely identifies this entry </p></td>
+                </tr>
+
+                <tr>
+                  <td>unbonding_on_hold_ref_count</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Strictly positive if this entry's unbonding has been stopped by external modules </p></td>
                 </tr>
 
             </tbody>
@@ -2561,7 +2723,47 @@ unbonding delegation entries </p></td>
                   <td>min_self_delegation</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>min_self_delegation is the validator's self declared minimum self delegation. </p></td>
+                  <td><p>min_self_delegation is the validator's self declared minimum self delegation.
+
+Since: cosmos-sdk 0.46 </p></td>
+                </tr>
+
+                <tr>
+                  <td>unbonding_on_hold_ref_count</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>strictly positive if this validator's unbonding has been stopped by external modules </p></td>
+                </tr>
+
+                <tr>
+                  <td>unbonding_ids</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td>repeated</td>
+                  <td><p>list of unbonding ids, each uniquely identifing an unbonding of this validator </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.staking.v1beta1.ValidatorUpdates">ValidatorUpdates</h3>
+        <p>ValidatorUpdates defines an array of abci.ValidatorUpdate objects.</p><p>TODO: explore moving this to proto/cosmos/base to separate modules from tendermint dependence</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>updates</td>
+                  <td><a href="#tendermint.abci.ValidatorUpdate">tendermint.abci.ValidatorUpdate</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
                 </tr>
 
             </tbody>
@@ -2603,6 +2805,35 @@ unbonding delegation entries </p></td>
                 <td>BOND_STATUS_BONDED</td>
                 <td>3</td>
                 <td><p>BONDED defines a validator that is bonded.</p></td>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <h3 id="cosmos.staking.v1beta1.Infraction">Infraction</h3>
+        <p>Infraction indicates the infraction a validator commited.</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+
+              <tr>
+                <td>INFRACTION_UNSPECIFIED</td>
+                <td>0</td>
+                <td><p>UNSPECIFIED defines an empty infraction.</p></td>
+              </tr>
+
+              <tr>
+                <td>INFRACTION_DOUBLE_SIGN</td>
+                <td>1</td>
+                <td><p>DOUBLE_SIGN defines a validator that double-signs a block.</p></td>
+              </tr>
+
+              <tr>
+                <td>INFRACTION_DOWNTIME</td>
+                <td>2</td>
+                <td><p>DOWNTIME defines a validator that missed signing too many blocks.</p></td>
               </tr>
 
           </tbody>
@@ -2689,6 +2920,58 @@ unbonding delegation entries </p></td>
 
 
 
+        <h3 id="cosmos.staking.v1beta1.MsgCancelUnbondingDelegation">MsgCancelUnbondingDelegation</h3>
+        <p>MsgCancelUnbondingDelegation defines the SDK message for performing a cancel unbonding delegation for delegator</p><p>Since: cosmos-sdk 0.46</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>delegator_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>validator_address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td></td>
+                  <td><p>amount is always less than or equal to unbonding delegation entry balance </p></td>
+                </tr>
+
+                <tr>
+                  <td>creation_height</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>creation_height is the height which the unbonding took place. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.staking.v1beta1.MsgCancelUnbondingDelegationResponse">MsgCancelUnbondingDelegationResponse</h3>
+        <p>MsgCancelUnbondingDelegationResponse</p><p>Since: cosmos-sdk 0.46</p>
+
+
+
+
+
         <h3 id="cosmos.staking.v1beta1.MsgCreateValidator">MsgCreateValidator</h3>
         <p>MsgCreateValidator defines a SDK message for creating a new validator.</p>
 
@@ -2724,7 +3007,9 @@ unbonding delegation entries </p></td>
                   <td>delegator_address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p><strong>Deprecated.</strong> Deprecated: Use of Delegator Address in MsgCreateValidator is deprecated.
+The validator address bytes and delegator address bytes refer to the same account while creating validator (defer
+only in bech32 notation). </p></td>
                 </tr>
 
                 <tr>
@@ -2750,6 +3035,27 @@ unbonding delegation entries </p></td>
 
             </tbody>
           </table>
+
+
+
+
+            <h4>Fields with deprecated option</h4>
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Option</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>delegator_address</td>
+                  <td><p>true</p></td>
+                </tr>
+
+              </tbody>
+            </table>
 
 
 
@@ -2917,8 +3223,57 @@ REF: #2373 </p></td>
                   <td><p> </p></td>
                 </tr>
 
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#cosmos.base.v1beta1.Coin">cosmos.base.v1beta1.Coin</a></td>
+                  <td></td>
+                  <td><p>amount returns the amount of undelegated coins
+
+Since: cosmos-sdk 0.50 </p></td>
+                </tr>
+
             </tbody>
           </table>
+
+
+
+
+
+        <h3 id="cosmos.staking.v1beta1.MsgUpdateParams">MsgUpdateParams</h3>
+        <p>MsgUpdateParams is the Msg/UpdateParams request type.</p><p>Since: cosmos-sdk 0.47</p>
+
+
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                  <td>authority</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>authority is the address that controls the module (defaults to x/gov unless overwritten). </p></td>
+                </tr>
+
+                <tr>
+                  <td>params</td>
+                  <td><a href="#cosmos.staking.v1beta1.Params">Params</a></td>
+                  <td></td>
+                  <td><p>params defines the x/staking parameters to update.
+
+NOTE: All parameters must be supplied. </p></td>
+                </tr>
+
+            </tbody>
+          </table>
+
+
+
+
+
+        <h3 id="cosmos.staking.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</h3>
+        <p>MsgUpdateParamsResponse defines the response structure for executing a</p><p>MsgUpdateParams message.</p><p>Since: cosmos-sdk 0.47</p>
 
 
 
@@ -2974,6 +3329,25 @@ of coins from a delegator and source validator to a destination validator.</p></
                 <td><a href="#cosmos.staking.v1beta1.MsgUndelegateResponse">MsgUndelegateResponse</a></td>
                 <td><p>Undelegate defines a method for performing an undelegation from a
 delegate and a validator.</p></td>
+              </tr>
+
+              <tr>
+                <td>CancelUnbondingDelegation</td>
+                <td><a href="#cosmos.staking.v1beta1.MsgCancelUnbondingDelegation">MsgCancelUnbondingDelegation</a></td>
+                <td><a href="#cosmos.staking.v1beta1.MsgCancelUnbondingDelegationResponse">MsgCancelUnbondingDelegationResponse</a></td>
+                <td><p>CancelUnbondingDelegation defines a method for performing canceling the unbonding delegation
+and delegate back to previous validator.
+
+Since: cosmos-sdk 0.46</p></td>
+              </tr>
+
+              <tr>
+                <td>UpdateParams</td>
+                <td><a href="#cosmos.staking.v1beta1.MsgUpdateParams">MsgUpdateParams</a></td>
+                <td><a href="#cosmos.staking.v1beta1.MsgUpdateParamsResponse">MsgUpdateParamsResponse</a></td>
+                <td><p>UpdateParams defines an operation for updating the x/staking module
+parameters.
+Since: cosmos-sdk 0.47</p></td>
               </tr>
 
           </tbody>
