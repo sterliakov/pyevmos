@@ -59,8 +59,10 @@ def test_send_money_simple(sender, sender_pk, receiver_addr, url):
 
 
 @pytest.mark.online
-@pytest.mark.skip("Fails, but why?")
+@pytest.mark.skip("Fails, legacy-style EIP-712 is long gone.")
 def test_send_money_eip712(receiver, receiver_pk, sender_addr, url):
+    # https://github.com/evmos/evmos/pull/1390 - updated logic
+    # https://github.com/evmos/evmos/pull/2078 - removal
     for _ in range(3):
         receiver.update_from_chain(url)
 
