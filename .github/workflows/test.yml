@@ -24,6 +24,20 @@ env:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: pre-commit/action@v3.0.1
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  typecheck:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
@@ -35,10 +49,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - uses: astral-sh/setup-uv@v5
-
-      - uses: pre-commit/action@v3.0.1
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install deps
         run: uv sync --extra types --no-install-project
@@ -64,7 +74,7 @@ jobs:
         run: uv sync --no-install-project
 
       - name: Run regular tests
-        run: pytest -vv
+        run: uv run pytest -vv
       - name: Wait for chain to sync
         run: sleep 15s
 
@@ -84,6 +94,7 @@ jobs:
 
       - name: Make docs
         run: |
+          . .venv/bin/activate
           cd docs
           SPHINXOPTS="-W --keep-going" make clean html
           sphinx-build -b linkcheck source build/linkcheck
